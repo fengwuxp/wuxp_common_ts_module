@@ -1,0 +1,37 @@
+{
+  "name": "common_fetch",
+  "version": "0.0.1",
+  "description": "common fetch",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.6"
+  },
+  "dependencies": {
+    "@types/weex": "0.0.1",
+    "@types/weixin": "0.0.1",
+    "es5-shim": "^4.5.9",
+    "es6-promise": "^4.1.1",
+    "fetch-detector": "^1.0.1",
+    "fetch-ie8": "^1.5.0",
+    "isomorphic-fetch": "^2.2.1",
+    "common_core": "0.0.1",
+    "common_env": "0.0.1"
+  }
+}

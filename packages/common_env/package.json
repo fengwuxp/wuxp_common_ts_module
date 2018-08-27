@@ -1,0 +1,31 @@
+{
+  "name": "common_env",
+  "version": "0.0.1",
+  "description": "common env",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "keywords": [
+    "weex",
+    "types"
+  ],
+  "types": "./index.d.ts",
+  "devDependencies": {
+    "@types/node": "^9.4.6"
+  }
+}

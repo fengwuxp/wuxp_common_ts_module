@@ -1,0 +1,51 @@
+@import "~antd-mobile/lib/style/themes/default";
+
+/*--- 1像素边框 begin---*/
+.one_px_border,
+.one_px_border_top,
+.one_px_border_bottom,
+.one_px_border_right {
+  position: relative;
+}
+
+.one_px_border:before, .one_px_border:after,
+.one_px_border_top:before, .one_px_border_bottom:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: @border-color-base;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.one_px_border:before, .one_px_border_top:before {
+  top: 0;
+}
+
+.one_px_border:after, .one_px_border_bottom:after {
+  bottom: 0;
+}
+
+.one_px_border_right:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: @border-color-base;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scaleX(0.5);
+  transform: scaleX(0.5);
+}
+
+.one_px_border_right:after {
+  right: 0;
+}
+.border_one{
+  border: 1px solid  @border-color-base;;
+}

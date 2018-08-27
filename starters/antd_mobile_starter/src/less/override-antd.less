@@ -1,0 +1,46 @@
+/*------导航栏左侧--------*/
+.am-navbar-left{
+  padding-left: 0 !important;
+}
+
+/*---下拉刷新的容器----*/
+.am-pull-to-refresh-content-wrapper {
+  min-height: 100%;
+}
+
+/*--去除弹窗的overflow--*/
+.am-modal-content, .am-modal-body {
+  overflow: inherit !important;
+}
+
+/*---进度条---*/
+.am-progress-bar{
+  border: none;
+  background-color: #1a8fe4;
+  height: 100% !important;
+}
+/*-----ListView-----*/
+.am-list-body{
+  background-color: transparent;
+}
+
+/*-------TabBar 解决ios 10.x 下的问题 --------*/
+.am-tabs-pane-wrap{
+  height: 100% !important;
+}
+
+/*-------下拉刷新，解决ios 10.x 下的问题---------*/
+.am-pull-to-refresh-content,.am-pull-to-refresh-content > div{
+  height: 100%;
+}
+
+
+.am-list-body:before{
+  height: 0 !important;
+}
+
+
+/*-------覆盖antd的button的border------*/
+.button_not_border:before{
+  border-color:transparent !important;
+}

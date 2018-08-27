@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "packages/*",
+    "types/*"
+  ],
+  "version": "0.0.1",
+  "commands": {
+    "publish": {
+      "skipGit": true,
+      "allowBranch": "master"
+    }
+  }
+}

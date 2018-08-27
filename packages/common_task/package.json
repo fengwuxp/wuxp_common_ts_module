@@ -1,0 +1,17 @@
+{
+  "name": "common_task",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
+  },
+  "description": "task defined",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "keywords": [
+    "task"
+  ],
+  "author": "wuxp",
+  "license": "ISC"
+}
