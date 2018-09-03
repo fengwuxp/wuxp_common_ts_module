@@ -18,7 +18,7 @@
 
 ##### 安装依赖
 
-       1. 设置仓库地址 npm config set registry http://nexus.oaknt.com.com:18081/repository/npm_hosted/
+       1. 设置仓库地址 npm config set registry http://nexus.oaknt.com:18081/repository/oak_npm_hosted/
           npm config list
   
        2. npm i 

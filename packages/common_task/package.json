@@ -2,7 +2,7 @@
   "name": "common_task",
   "version": "0.0.1",
   "publishConfig": {
-    "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
   "description": "task defined",
   "main": "index.js",

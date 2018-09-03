@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "common view",
   "publishConfig": {
-    "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
   "repository": {
     "type": "git",
