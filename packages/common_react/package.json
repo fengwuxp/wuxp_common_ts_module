@@ -16,6 +16,10 @@
   "main": "index.js",
   "author": "wuxp",
   "license": "ISC",
+  "keywords": [
+    "react",
+    "typescript"
+  ],
   "scripts": {
     "npm_i": "npm i",
     "npm_publish": "npm publish"

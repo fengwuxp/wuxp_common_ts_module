@@ -20,6 +20,10 @@
     "npm_i": "npm i",
     "npm_publish": "npm publish"
   },
+  "keywords": [
+    "weex",
+    "typescrit"
+  ],
   "dependencies": {
     "@types/node": "^9.4.6",
     "@types/weex": "^0.0.1"

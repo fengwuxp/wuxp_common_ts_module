@@ -20,6 +20,12 @@
     "npm_i": "npm i",
     "npm_publish": "npm publish"
   },
+  "keywords": [
+    "fetch",
+    "typescript",
+    "weex",
+    "minapp"
+  ],
   "devDependencies": {
     "@types/node": "^9.4.6"
   },
