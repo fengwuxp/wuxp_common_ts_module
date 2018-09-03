@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@types/node": "^9.4.6",
-    "@types/weex": "0.0.1",
-    "@types/weixin": "0.0.1",
-    "common_env": "0.0.1"
+    "@types/weex": "^0.0.1",
+    "@types/weixin": "^0.0.1",
+    "common_env": "^0.0.1"
   }
 }

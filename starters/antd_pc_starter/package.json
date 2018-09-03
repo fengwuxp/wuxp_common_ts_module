@@ -1,7 +1,7 @@
 {
-  "name": "antd_manager_stater",
+  "name": "antd_pc_starter",
   "version": "0.0.1",
-  "description": "基于antd的通用管理后台壳子",
+  "description": "基于antd的通用pc前端壳子",
   "main": "index.js",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"

@@ -1,7 +1,7 @@
 {
-  "name": "common_react",
+  "name": "common_route",
   "version": "0.0.1",
-  "description": "common react",
+  "description": "common route",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com.com:18081/repository/npm_hosted/"
   },
@@ -21,17 +21,14 @@
     "npm_publish": "npm publish"
   },
   "dependencies": {
-    "@types/react": "^16.4.11",
-    "@types/react-dom": "^16.0.7",
-    "@types/react-router": "^4.0.30",
-    "@types/react-router-config": "^1.0.8",
-    "@types/react-router-dom": "^4.3.0",
-    "awesome-typescript-loader": "^5.2.0",
-    "common_view": "^0.0.1",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-router": "^4.3.1",
-    "react-router-config": "^1.0.0-beta.4",
-    "react-router-dom": "^4.3.1"
+    "@types/history": "^4.7.0",
+    "@types/node": "^9.4.6",
+    "@types/weex": "^0.0.1",
+    "@types/weixin": "^0.0.1",
+    "common_core": "^0.0.1",
+    "common_env": "^0.0.1",
+    "common_utils": "^0.0.1",
+    "history": "^4.7.2",
+    "querystring": "^0.2.0"
   }
 }

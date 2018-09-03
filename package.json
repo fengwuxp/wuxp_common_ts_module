@@ -2,7 +2,7 @@
   "name": "wuxp_common_ts_module",
   "version": "0.0.1",
   "private": true,
-  "author":"wuxp",
+  "author": "wuxp",
   "repository": {
     "type": "git",
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.0",
-    "lerna": "3.0.0",
+    "lerna": "^2.11.0",
     "typescript": "^2.8.3",
     "typings": "^2.1.1",
     "webpack-uglify-parallel": "^0.1.4"

@@ -15,7 +15,7 @@
   "description": "weex 类型定义",
   "main": "index.js",
   "scripts": {
-    "npm_publish":"npm publish"
+    "npm_publish": "npm publish"
   },
   "keywords": [
     "weex",

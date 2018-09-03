@@ -6,9 +6,7 @@
   },
   "description": "task defined",
   "main": "index.js",
-  "scripts": {
-
-  },
+  "scripts": {},
   "keywords": [
     "task"
   ],
