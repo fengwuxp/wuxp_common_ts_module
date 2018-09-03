@@ -4,5 +4,6 @@
 		"@types/node": "^9.4.6",
 		"history": "^4.7.2",
 		"querystring": "^0.2.0"
-	}
+	},
+	"version": "0.0.1"
 }
