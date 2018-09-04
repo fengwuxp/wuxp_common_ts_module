@@ -1,19 +1,24 @@
-import {FormItemBuilder} from "common_stater/src/builder/form/FormItemBuilder";
+import {FormItemBuilder} from "common_starter/src/builder/form/FormItemBuilder";
 import * as React from "react";
 import {WrappedFormUtils} from "antd/es/form/Form";
 
 
-export default class AntdFormItemBuilder<T> implements FormItemBuilder<T> {
+/**
+ * 表单项组件构建器
+ *
+ *
+ */
+export default class AntdFormItemBuilder implements FormItemBuilder<React.ReactNode> {
 
-    private formWrapperUtils:WrappedFormUtils;
+    private formWrapperUtils: WrappedFormUtils;
 
     public build = (): React.ReactNode => {
 
-        const {getFieldDecorator}=this.formWrapperUtils;
+        const {getFieldDecorator} = this.formWrapperUtils;
 
 
-        getFieldDecorator("",{
-            rules:[
+        getFieldDecorator("", {
+            rules: [
                 {}
             ]
         })(null);
@@ -26,5 +31,13 @@ export default class AntdFormItemBuilder<T> implements FormItemBuilder<T> {
 
     verify: (...args) => this;
 
-
 }
+
+function wrapperFormComponent<T extends React.Component>(c: T): T {
+
+    return null;
+}
+
+
+
+

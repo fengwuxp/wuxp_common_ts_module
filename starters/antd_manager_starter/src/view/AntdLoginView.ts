@@ -1,4 +1,4 @@
-import {LoginView} from "common_stater/src/views/account/LoginView";
+import {LoginView} from "common_starter/src/views/account/LoginView";
 import * as React from "react";
 
 

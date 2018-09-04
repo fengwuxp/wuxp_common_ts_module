@@ -1,4 +1,4 @@
-import {PcNavigationView} from "common_stater/src/views/nav/PcNavigationView";
+import {PcNavigationView} from "common_starter/src/views/nav/PcNavigationView";
 import * as React from "react";
 
 
