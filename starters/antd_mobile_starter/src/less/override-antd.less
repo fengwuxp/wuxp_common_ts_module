@@ -24,17 +24,6 @@
   background-color: transparent;
 }
 
-/*-------TabBar 解决ios 10.x 下的问题 --------*/
-.am-tabs-pane-wrap{
-  height: 100% !important;
-}
-
-/*-------下拉刷新，解决ios 10.x 下的问题---------*/
-.am-pull-to-refresh-content,.am-pull-to-refresh-content > div{
-  height: 100%;
-}
-
-
 .am-list-body:before{
   height: 0 !important;
 }
@@ -43,4 +32,27 @@
 /*-------覆盖antd的button的border------*/
 .button_not_border:before{
   border-color:transparent !important;
+}
+
+
+/*--------------------------BUG 修复-------------------------------------*/
+
+/*------- TabBar 解决ios 10.x 下的问题高度不可见的问题 --------*/
+.am-tabs-content-wrap {
+  //全屏高度减去 底部导航栏的50px
+  height: calc(100vh - 50px) !important;
+}
+
+.am-tabs-horizontal .am-tabs-pane-wrap-active {
+  height: 100% !important;
+}
+
+/*-------下拉刷新，解决ios 10.x 下高度不可见的问题---------*/
+.am-pull-to-refresh-content, .am-pull-to-refresh-content > div {
+  height: 100%;
+}
+
+/*---------Tabs 解决ios 10.x 下由于transform导致宽度变化的问题--------------------*/
+.am-tabs-horizontal {
+  max-width: 100vw !important;
 }

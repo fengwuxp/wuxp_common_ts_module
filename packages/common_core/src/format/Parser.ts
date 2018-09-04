@@ -14,5 +14,5 @@ export interface Parser<T> {
      * @param {Locale} local
      * @return {T}
      */
-    paras: (text: string, local?: Locale) => T;
+    parse: (text: string, local?: Locale) => T;
 }

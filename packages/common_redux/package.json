@@ -16,10 +16,6 @@
   "main": "index.js",
   "author": "wuxp",
   "license": "ISC",
-  "keywords": [
-    "redux",
-    "react-redux"
-  ],
   "scripts": {
     "npm_i": "npm i",
     "npm_publish": "npm publish"
@@ -27,7 +23,7 @@
   "dependencies": {
     "@types/react-redux": "^6.0.6",
     "@types/react-router-redux": "^5.0.15",
-    "common_core": "0.0.1",
+    "common_core": "^0.0.1",
     "connected-react-router": "^4.4.1",
     "querystring": "^0.2.0",
     "react-redux": "^5.0.7",
