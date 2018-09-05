@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "react-router",
+      "react-router-dom",
+      "react-loadable",
+      "lodash"
+    ],
+    "lib": [
+      "dom",
+      "es5",
+      "es2015",
+      "es2015.promise"
+    ]
+    //    "typeRoots": [
+    //      "types"
+    //    ]
+  },
+  "compileOnSave": false,
+  "include": [
+    "src/**/*",
+    "node_modules/typescript_api_sdk/types/PromiseExt.ts",
+    "node_modules/wuxp_react_dynamic_router/types/index.d.ts"
+  ],
+  "exclude": [
+    "config/dist",
+//    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

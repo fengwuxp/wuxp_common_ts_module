@@ -3,8 +3,8 @@ import {applyMiddleware, createStore} from 'redux'
 import {createEpicMiddleware} from 'redux-observable'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {routerMiddleware, connectRouter} from 'connected-react-router'
-import rootReducer from '../reducers'
-import rootEpic from '../epics'
+import rootReducer from '../reducers/index'
+import rootEpic from '../epics/index'
 import {History} from "history";
 
 

@@ -1,0 +1,19 @@
+{
+  "name": "antd-manager-template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "App.tsx",
+  "scripts": {
+    "serve-dev": "cross-env RELEASE=0  webpack-dev-server --config ./webpack.local.dev.js --devtool eval --progress --colors  --watch --port 9000 --open",
+    "build": "cross-env RELEASE=0 webpack --config ./webpack.config.js --progress --colors",
+    "build:release": "cross-env RELEASE=1 webpack --config ./webpack.config.js --progress --colors",
+    "build:prod": "cross-env RELEASE=0 webpack --config ./webpack.prod.config.js  --progress --colors",
+    "build:prod:release": "cross-env RELEASE=1 webpack --config ./webpack.prod.config.js  --progress --colors",
+    "npm_i": "npm i antd_mobile_starter@0.0.1"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "dependencies": {
+    "antd_manager_stater": "0.0.1"
+  }
+}

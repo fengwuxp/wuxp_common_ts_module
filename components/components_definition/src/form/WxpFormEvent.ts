@@ -4,7 +4,7 @@
  * @create 2018-07-28 15:26
  **/
 
-export interface WxpFormEvent extends Event {
+export interface WxpFormEvent/* extends Event*/ {
 
     /**
      * 值发生改变

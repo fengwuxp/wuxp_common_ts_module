@@ -1,0 +1,33 @@
+{
+  "presets": [
+    "react",
+    "env"
+  ],
+  "plugins": [
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "ant-design-pro",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ]
+  ]
+}

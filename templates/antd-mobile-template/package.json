@@ -1,5 +1,5 @@
 {
-  "name": "moon_game_h5_app",
+  "name": "antd-mobile-template",
   "version": "0.0.1",
   "description": "",
   "main": "App.tsx",
@@ -11,7 +11,7 @@
     "build:prod:release": "cross-env RELEASE=1 webpack --config ./webpack.prod.config.js  --progress --colors",
     "npm_i": "npm i antd_mobile_starter@0.0.1"
   },
-  "author": "moon",
+  "author": "wuxp",
   "license": "ISC",
   "dependencies": {
     "antd_mobile_starter": "0.0.1"

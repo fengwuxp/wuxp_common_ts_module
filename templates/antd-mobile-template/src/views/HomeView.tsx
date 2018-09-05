@@ -5,11 +5,11 @@ import {AntdMobileStore} from "../store/AntdMobileStore";
 import AntdAbstractView, {
     AntdAbstractViewProps,
     AntdAbstractViewState
-} from "antd_mobile_starter/src/layouts/view/AntdAbstractView";
+} from "../../../../starters/antd_mobile_starter/src/layouts/view/AntdAbstractView";
 import classNames from "classnames"
 import styles from "./style.module.less";
-import utilLess from "antd_mobile_starter/src/less/utils.module.less";
-import fontLess from "antd_mobile_starter/src/less/font.module.less";
+import utilLess from "../../../../starters/antd_mobile_starter/src/less/utils.module.less";
+import fontLess from "../../../../starters/antd_mobile_starter/src/less/font.module.less";
 import {indexRouteName} from "./index";
 import iconGameIcon from "../assert/images/home/icon-game.png";
 import iconActivityIcon from "../assert/images/home/icon-activity.png";
