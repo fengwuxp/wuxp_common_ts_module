@@ -3,6 +3,7 @@ import {RouteLayout, RouteLayoutProps} from "./RouteLayout";
 import Layout from "antd/es/layout/layout";
 import {ContainerQuery} from "react-container-query";
 import {Query} from "react-container-query/src/interfaces";
+import SidebarMenu from "../components/sidebar/SidebarMenu";
 
 const {Header, Footer, Sider, Content} = Layout;
 
@@ -18,7 +19,6 @@ interface DefaultRouteLayoutProps extends RouteLayoutProps {
 interface DefaultRouteLayoutState {
 
 }
-
 
 //媒体查询
 const MediaQuery: Query = {
@@ -73,7 +73,7 @@ export default class DefaultRouteLayout extends RouteLayout<DefaultRouteLayoutPr
 
 
         let View = <Layout>
-            <Sider>Sider</Sider>
+            <SidebarMenu logo={""} siteName={""} menus={[]}/>
             <Layout>
                 <Header>Header</Header>
                 <Content>Content</Content>

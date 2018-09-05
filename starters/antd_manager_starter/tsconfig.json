@@ -21,11 +21,11 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "node_modules/common_core/types/PromiseExt",
+    "node_modules/common_starter/types/**/*"
   ],
   "exclude": [
-    "dist",
-    "node_modules",
     "**/*.spec.ts"
   ]
 }
