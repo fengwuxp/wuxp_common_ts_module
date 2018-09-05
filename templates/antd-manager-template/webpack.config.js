@@ -1,4 +1,4 @@
-const baseConfig = require("./webpack/webpack.config.template");
+const baseConfig = require("antd_manager_stater/webpack/webpack.config.template");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 
