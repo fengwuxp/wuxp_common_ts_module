@@ -1,3 +1,5 @@
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {Route, Switch} from "react-router";
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -10,9 +12,9 @@ import CustomArgumentsResolver from "./resolver/CustomArgumentsResolver";
 import CustomRequestURLResolver from "./resolver/CustomRequestURLResolver";
 import {ConnectedRouter} from 'connected-react-router'
 import StoreRepository from './store/StoreRepository';
-import * as React from "react";
 import DefaultRouteLayout from "antd_manager_starter/src/layout/DefaultRouteLayout";
 import Spin from "antd/lib/spin";
+
 
 //注册fetch client 拦截器
 FetchInterceptorRegister.register("", new NeedProgressBarInterceptor({
@@ -41,7 +43,7 @@ const store = StoreRepository.init(history);
 
 function render(isLogin) {
     ReactDOM.render(
-        <Provider store={{}}>
+        <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
                     <Route path="/" render={(props: any) => <DefaultRouteLayout {...props} />}/>

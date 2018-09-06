@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
+    "esModuleInterop": true,
+    //导入语法 import foo from "foo"
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -8,6 +10,7 @@
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
+    "compileOnSave": false,
     "jsx": "react",
     "jsxFactory": "React.createElement",
     "baseUrl": "./src",
@@ -20,28 +23,20 @@
       "react-dom",
       "react-router",
       "react-router-dom",
-      "react-loadable",
-      "lodash"
+      "react-loadable"
     ],
     "lib": [
-      "dom",
-      "es5",
-      "es2015",
-      "es2015.promise"
+      "esnext",
+      "dom"
     ]
-    //    "typeRoots": [
-    //      "types"
-    //    ]
   },
-  "compileOnSave": false,
   "include": [
     "src/**/*",
-    "node_modules/typescript_api_sdk/types/PromiseExt.ts",
-    "node_modules/wuxp_react_dynamic_router/types/index.d.ts"
+    "node_modules/common_starter/types/index.d.ts",
+    "node_modules/common_core/types/PromiseExt.ts"
+
   ],
   "exclude": [
-    "config/dist",
-//    "node_modules",
     "**/*.spec.ts"
   ]
 }
