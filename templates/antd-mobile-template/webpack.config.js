@@ -28,7 +28,7 @@ const htmlPluginOptions = {
     chunks: ['app']
 };
 
-const title = "moon game";
+const title = "antd mobile template";
 
 
 if (process.env.RELEASE === "1") {

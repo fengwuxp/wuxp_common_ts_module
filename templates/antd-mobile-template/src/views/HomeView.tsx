@@ -34,7 +34,7 @@ interface HomeViewState extends AntdAbstractViewState {
 
 }
 
-const mapStateToPropsParam: MapStateToPropsParam<any, HomeViewProps, AntdMobileStore> = ({homeProps}) => ({...homeProps});
+const mapStateToPropsParam: MapStateToPropsParam<any, HomeViewProps, AntdMobileStore> = () => ({});
 
 
 /**
