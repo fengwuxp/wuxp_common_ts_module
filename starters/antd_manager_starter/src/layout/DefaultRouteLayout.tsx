@@ -7,6 +7,9 @@ import SidebarMenu from "../components/sidebar/SidebarMenu";
 
 const {Header, Footer, Sider, Content} = Layout;
 
+
+console.log("1234")
+
 interface DefaultRouteLayoutProps extends RouteLayoutProps {
 
     /**
@@ -49,7 +52,8 @@ const MediaQuery: Query = {
  * @author wxup
  * @create 2018-09-05 15:47
  **/
-export default class DefaultRouteLayout extends RouteLayout<DefaultRouteLayoutProps, DefaultRouteLayoutState> {
+export default class DefaultRouteLayout extends React.Component<DefaultRouteLayoutProps, DefaultRouteLayoutState> implements
+    RouteLayout<DefaultRouteLayoutProps, DefaultRouteLayoutState> {
 
 
     static defaultProps = {

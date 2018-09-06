@@ -1,29 +1,39 @@
-const path = require("path");
+const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const config = require("./webpack.config");
-const ip = require('quick-local-ip').getLocalIP4();
-const host =ip; //"localhost";
+const path = require("path");
+const host = "localhost";
 const port = 9000;
 
 /**
  * 接口请求被代理的入口地址
  * @type {string}
  */
-const proxyTarget = `http://localhost:8912/api/`;
-// const proxyTarget = `http:///api/`;
+const proxyTarget = `http://localhost:8088/admin/`;
 
 /**
- * 代理服务器地址的web context
+ * 代理服务器地址的web contenx
  * @type {RegExp}
  */
-const proxyServerWebContext = 'api';
+const proxyServerWebContext = 'admin';
 
-// const public = `${host}:${port}`;
+config.plugins.push(
+    new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify("dev"),
+            // ROOT_DOMAIN: JSON.stringify(`/`),
+            BASE_NAME: JSON.stringify("/")
+        }
+    })
+);
+const public = `${host}:${port}`;
 
 config.devServer = {
     contentBase: path.join(__dirname, ''),
     compress: true,
     host: host,
     port,    //设置端口号
+    public,
 
     publicPath: '/',
     proxy: {
@@ -60,4 +70,4 @@ config.devServer = {
 
 };
 
-module.exports= config;
+module.exports = config;

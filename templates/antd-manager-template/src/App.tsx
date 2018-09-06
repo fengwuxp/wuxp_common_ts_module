@@ -14,6 +14,7 @@ import {ConnectedRouter} from 'connected-react-router'
 import StoreRepository from './store/StoreRepository';
 import DefaultRouteLayout from "antd_manager_starter/src/layout/DefaultRouteLayout";
 import Spin from "antd/lib/spin";
+import BasicLayout from "antd_manager_starter/src/layout/RouteLayout";
 
 
 //注册fetch client 拦截器
@@ -46,7 +47,10 @@ function render(isLogin) {
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
-                    <Route path="/" render={(props: any) => <DefaultRouteLayout {...props} />}/>
+                    <Route path="/" render={(props: any) => <BasicLayout {...props}
+                                                                         routes={[]}
+                                                                         siteName={""}
+                                                                         layout={DefaultRouteLayout}/>}/>
                 </Switch>
             </ConnectedRouter>
         </Provider>,

@@ -32,7 +32,7 @@ const title = "antd manager template";
 
 
 if (process.env.RELEASE === "1") {
-    global["__RESOURCES_BASE_NAME__"] = "/h5/views/";
+    global["__RESOURCES_BASE_NAME__"] = "/admin/views/";
     config.output.publicPath = `${global["__RESOURCES_BASE_NAME__"]}`;
     basePath = "/admin";
     htmlPluginOptions.template = "./src/index.html";

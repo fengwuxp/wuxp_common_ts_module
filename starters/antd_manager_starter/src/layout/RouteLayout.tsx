@@ -2,7 +2,7 @@ import * as React from "react";
 import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig";
 import DocumentTitle from "react-document-title";
 
-export interface BaseLayoutProps {
+export interface BasicLayoutProps {
 
     /**
      * 路由列表
@@ -29,14 +29,14 @@ export interface BaseLayoutState {
 
 }
 
-export interface RouteLayoutProps extends BaseLayoutProps {
+export interface RouteLayoutProps extends BasicLayoutProps {
 
 }
 
 /**
  * 路由布局器组件
  */
-export declare class RouteLayout<P extends BaseLayoutProps = BaseLayoutProps, S = any> extends React.Component<P, any> {
+export interface RouteLayout<P extends BasicLayoutProps = BasicLayoutProps, S = any> extends React.Component<P, any> {
 
 }
 
@@ -45,7 +45,7 @@ export declare class RouteLayout<P extends BaseLayoutProps = BaseLayoutProps, S 
  * 期望目标：灵活的配置主页的布局，可以做到动态切换，例如左右布局，或上下布局
  * 实现思路：主题布局功能有外部注入的组件实现，这里只是定义接口
  */
-export default class BaseLayout extends React.Component<BaseLayoutProps, BaseLayoutState> {
+export default class BasicLayout extends React.Component<BasicLayoutProps, BaseLayoutState> {
 
 
     render() {
