@@ -36,7 +36,6 @@ config.optimization = { // 提取js 第三方库等
                 chunks: 'initial', // 必须三选一： "initial"(初始化) | "all" | "async"(默认就是异步)
                 name: 'common',    // entry中js
                 enforce: true,      // 强制
-                enforce: true,     // 强制
                 test: /node_modules/,     // 正则规则验证，如果符合就提取 chunk
                 minSize: 0,
                 minChunks: 1,

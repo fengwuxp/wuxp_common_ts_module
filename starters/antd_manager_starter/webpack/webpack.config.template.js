@@ -1,19 +1,29 @@
-const path = require('path');
-const {getWebpackBaseConfig} = require("./webpack.base.config");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path=require("path");
+
+const {getWebpackBaseConfig}=require("common_starter/webpack/webpack.base.config");
+
 
 
 const baseConfig = getWebpackBaseConfig({
     themePath: path.resolve("theme", "index.json")
 });
 const config = {
-    ...baseConfig
+    ...baseConfig,
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM",
+        // "moment": "moment"
+    },
 };
 
 
 config.plugins = [
     ...config.plugins,
-    new ExtractTextPlugin('styles.css')
 ];
+config.mode = "development";
 
-module.exports = config;
+module.exports=config;

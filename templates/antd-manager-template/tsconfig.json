@@ -10,6 +10,10 @@
     "allowJs": true,
     "jsx": "react",
     "jsxFactory": "React.createElement",
+    "baseUrl": "./src",
+    "paths": {
+      "@services/*": ["./services/*"]
+    },
     "types": [
       "node",
       "react",
