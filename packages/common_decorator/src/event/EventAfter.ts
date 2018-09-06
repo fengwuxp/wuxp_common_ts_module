@@ -1,13 +1,11 @@
+import {isPromise} from "common_utils/src/fn/isPromise";
+
 /**
- * 去抖函数
- *（debounce）：当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，
- * 如果设定的时间到来之前，又一次触发了事件，就重新开始延时。
+ * 在方法执行之后执行
  * @author wxup
- * @create 2018-09-06 13:10
- *
- * @param times 毫秒数
+ * @create 2018-09-06 14:25
  **/
-export function debounce(times: number) {
+export function eventAfter(event: Function, ...p) {
 
     /**
      * decorator
@@ -17,16 +15,18 @@ export function debounce(times: number) {
      */
     return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
 
-        let timerId;
-        target[name] = function (...args) {
-            if (timerId != null) {
-                clearTimeout(timerId);
-            }
-            timerId = setTimeout(() => {
-                target[name](...args)
-            }, times)
-        };
 
+        target[name] = function (...args) {
+            const resp = target[name](...args);
+            if (isPromise(resp)) {
+                //promise
+                resp.finally(() => {
+                    event(...p);
+                });
+            } else {
+                event(...p);
+            }
+        };
 
         return target;
 

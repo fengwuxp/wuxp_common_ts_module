@@ -1,8 +1,4 @@
-/**
- * 方法事件的锁处理
- * @author wxup
- * @create 2018-09-06 13:12
- **/
+import {isPromise} from "common_utils/src/fn/isPromise";
 
 
 /**
@@ -11,6 +7,40 @@
  */
 export function syncWait(times: number = 0) {
 
+    /**
+     * decorator
+     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {string} name                     装饰的属性的 key
+     * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
+     */
+    return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
+
+        let loading = false;
+        target[name] = function (...args) {
+
+            if (loading) {
+                return;
+            }
+            //锁定
+            loading = true;
+            const resp = target[name](...args);
+            if (isPromise(resp)) {
+                //promise
+                resp.finally(() => {
+                    setTimeout(() => {
+                        loading = true;
+                    }, times);
+                });
+            } else {
+                setTimeout(() => {
+                    loading = true;
+                }, times);
+            }
+        };
+
+        return target;
+
+    }
 }
 
 /**
@@ -18,13 +48,70 @@ export function syncWait(times: number = 0) {
  * @param times 毫秒数
  */
 export function timeLock(times: number) {
+    /**
+     * decorator
+     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {string} name                     装饰的属性的 key
+     * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
+     */
+    return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
 
+        let loading = false;
+        target[name] = function (...args) {
+            if (loading) {
+                return;
+            }
+            //锁定
+            loading = true;
+            const resp = target[name](...args);
+
+            setTimeout(() => {
+                loading = true;
+            }, times)
+        };
+
+        return target;
+    }
 }
 
 /**
  * 当方法调用的结果满足条件condition时，这个方法无法被再次调用
- * @param condition
+ * @param condition 如果 condition===true 则表示无论方法返回什么结果，改方法都只会执行一次
  */
-export function once(condition) {
+export function once(condition: any = true) {
 
+    /**
+     * decorator
+     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {string} name                     装饰的属性的 key
+     * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
+     */
+    return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
+
+        let lock = false;
+        target[name] = function (...args) {
+            if (lock) {
+                //返回值
+                return;
+            }
+
+            const resp = target[name](...args);
+            if (condition === true) {
+                lock = true;
+                return resp;
+            }
+            let flag = typeof  condition === "function" ? condition() : condition;
+            if (isPromise(resp)) {
+                resp.finally((data) => {
+
+                    lock = data === flag;
+                })
+            } else {
+                lock = resp === flag;
+            }
+        };
+
+        return target;
+
+    }
 }

@@ -1,15 +1,26 @@
 {
   "name": "common_task",
   "version": "0.0.1",
+  "description": "common task",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
-  "description": "task defined",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [
-    "task"
-  ],
   "author": "wuxp",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "dependencies": {
+
+  }
 }
