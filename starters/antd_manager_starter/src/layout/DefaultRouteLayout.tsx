@@ -8,7 +8,6 @@ import SidebarMenu from "../components/sidebar/SidebarMenu";
 const {Header, Footer, Sider, Content} = Layout;
 
 
-console.log("1234")
 
 interface DefaultRouteLayoutProps extends RouteLayoutProps {
 
