@@ -1,11 +1,17 @@
 {
   "presets": [
-    "react",
-    "env"
+    ["@babel/env", {
+      "targets": {
+        "browsers": ["last 2 versions"]
+      }
+    }],
+    "@babel/stage-3",
+    "@babel/react",
+    "@babel/typescript"
   ],
   "plugins": [
     [
-      "transform-runtime",
+      "@babel/plugin-transform-runtime",
       {
         "helpers": false,
         "polyfill": false,
@@ -13,7 +19,6 @@
         "moduleName": "babel-runtime"
       }
     ],
-
     [
       "import",
       {
