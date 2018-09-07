@@ -6,7 +6,7 @@ const DEFAULT_INCLUDE: string[] = [
 const list: string[] = [...DEFAULT_INCLUDE];
 
 if (process.env._self !== "1") {
-    const {INCLUDE_PATH} = require("../../../webpack-config/WebpackConfig");
+    const {INCLUDE_PATH} = require("../../../../webpack-config/WebpackConfig");
     if (INCLUDE_PATH) {
         list.push(...INCLUDE_PATH);
     }

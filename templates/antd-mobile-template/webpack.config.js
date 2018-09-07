@@ -1,9 +1,8 @@
-import * as webpack from "webpack";
-import * as path from "path";
-import {baseConfig} from "antd_mobile_starter/webpack/webpack.config.template";
+const webpack = require("webpack");
+const path = require("path");
+const {baseConfig} = require("antd_mobile_starter/webpack/webpack.config.template");
 
 const jspArtTemplate = require("./webpack-config/jspArtTemplate");
-
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 
@@ -27,7 +26,7 @@ let basePath = "";
 let rootDomain = "";
 let nodeDev = "dev";
 
-const htmlPluginOptions: any = {
+const htmlPluginOptions = {
     chunks: ['app']
 };
 
@@ -68,6 +67,6 @@ config.plugins.push(
     htmlWebPackPlugin
 );
 
-export {
+module.exports = {
     config
 }

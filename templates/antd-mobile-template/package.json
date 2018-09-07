@@ -4,8 +4,8 @@
   "description": "",
   "main": "App.tsx",
   "scripts": {
-    "serve-dev": "cross-env webpack-dev-server --config ./webpack.local.dev.ts --devtool eval --progress --colors  --watch --port 9000 --open",
-    "build": "cross-env  TS_NODE_PROJECT='./tsconfig-for-webpack-config.json'  release=0 webpack --config ./webpack.config.ts --progress --colors",
+    "serve-dev": "cross-env webpack-dev-server --config ./webpack.local.dev.js --devtool eval --progress --colors  --watch --port 9000 --open",
+    "build": "cross-env  release=0 webpack --config ./webpack.config.js --progress --colors",
     "build:release": "cross-env RELEASE=1 webpack --config ./webpack.config.js --progress --colors",
     "build:prod": "cross-env RELEASE=0 webpack --config ./webpack.prod.config.js  --progress --colors",
     "build:prod:release": "cross-env RELEASE=1 webpack --config ./webpack.prod.config.js  --progress --colors",
@@ -14,12 +14,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_mobile_starter": "0.0.1"
-  },
-  "devDependencies": {
-    "raw-loader": "^0.5.1",
-    "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.5.0",
-    "write-file-webpack-plugin": "^4.4.0"
+    "antd_mobile_starter": "0.0.1",
+    "common_webpack": "0.0.1"
   }
 }

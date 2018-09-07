@@ -1,7 +1,6 @@
 const path = require("path");
 const os = require("os");
-
-const {getWebpackBaseConfig} = "common_webpack/lib/web/webpack.base.config";
+const {getWebpackBaseConfig} = require("common_webpack/lib/web/webpack.base.config");
 
 //多线程压缩插件
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
@@ -140,6 +139,6 @@ baseConfig.plugins.push(
     })
 );
 
-export {
+module.exports= {
     baseConfig
 };

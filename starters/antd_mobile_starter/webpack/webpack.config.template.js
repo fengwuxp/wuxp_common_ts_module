@@ -1,6 +1,5 @@
 const path = require("path");
-
-const {getWebpackBaseConfig} = "common_webpack/lib/web/webpack.base.config";
+const {getWebpackBaseConfig} = require("common_webpack/lib/web/webpack.base.config");
 
 
 const config = getWebpackBaseConfig({
@@ -25,6 +24,6 @@ baseConfig.plugins = [
 ];
 baseConfig.mode = "development";
 
-export {
+module.exports= {
     baseConfig
 };
