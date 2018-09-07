@@ -1,0 +1,56 @@
+{
+  "name": "common_webpack",
+  "description": "common webpack",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "@types/clean-webpack-plugin": "^0.1.2",
+    "@types/ @types/copy-webpack-plugin": "^4.4.2",
+    "@types/node": "^10.7.1",
+    "@types/webpack": "^4.4.11",
+    "clean-webpack-plugin": "^0.1.18",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "happypack": "^5.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "http-proxy-middleware": "^0.18.0",
+    "open-browser-webpack-plugin": "0.0.5",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "node-sass": "^4.9.3",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "quick-local-ip": "^1.0.7",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.20.3",
+    "svg-url-loader": "^2.3.2",
+    "webpack": "^4.17.2",
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
+    "webpack-uglify-parallel": "^0.1.4",
+    "url-loader": "^1.1.1"
+  }
+}
