@@ -1,3 +1,5 @@
+import {INCLUDE_PATH} from "../web/webpackConfig";
+
 //默认导入的模块
 const DEFAULT_INCLUDE: string[] = [
     "common_"
@@ -6,7 +8,6 @@ const DEFAULT_INCLUDE: string[] = [
 const list: string[] = [...DEFAULT_INCLUDE];
 
 if (process.env._self !== "1") {
-    const {INCLUDE_PATH} = require("../../../../webpack-config/WebpackConfig");
     if (INCLUDE_PATH) {
         list.push(...INCLUDE_PATH);
     }

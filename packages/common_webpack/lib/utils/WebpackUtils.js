@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
+var webpackConfig_1 = require("../web/webpackConfig");
 //默认导入的模块
 var DEFAULT_INCLUDE = [
     "common_"
 ];
 var list = DEFAULT_INCLUDE.slice();
 if (process.env._self !== "1") {
-    var INCLUDE_PATH = require("../../../../webpack-config/WebpackConfig").INCLUDE_PATH;
-    if (INCLUDE_PATH) {
-        list.push.apply(list, INCLUDE_PATH);
+    if (webpackConfig_1.INCLUDE_PATH) {
+        list.push.apply(list, webpackConfig_1.INCLUDE_PATH);
     }
 }
 /**

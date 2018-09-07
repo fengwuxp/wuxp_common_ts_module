@@ -6,13 +6,7 @@ var CleanWebpackPlugin = require("clean-webpack-plugin");
 var WebpackUtils_1 = require("../utils/WebpackUtils");
 var CoverThemeLessLoader_1 = require("../style/CoverThemeLessLoader");
 var CssModuleUtils_1 = require("../style/CssModuleUtils");
-function getWebpackConfig() {
-    if (process.env._self !== "1") {
-        return require("../../../webpack-config/WebpackConfig");
-    }
-    return {};
-}
-var _a = getWebpackConfig(), DEPLOYMENT_DIRECTORY = _a.DEPLOYMENT_DIRECTORY, PROJECT_DIR = _a.PROJECT_DIR;
+var webpackConfig_1 = require("./webpackConfig");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -147,7 +141,7 @@ exports.getWebpackBaseConfig = function (options) {
     var release = process.env.release;
     if (release === "1") {
         //重写打包目录到部署目录
-        config.output.path = DEPLOYMENT_DIRECTORY;
+        config.output.path = webpackConfig_1.DEPLOYMENT_DIRECTORY;
     }
     if (release != null) {
         config.plugins.push(
@@ -156,7 +150,7 @@ exports.getWebpackBaseConfig = function (options) {
         new CleanWebpackPlugin([
             config.output.path
         ], {
-            root: PROJECT_DIR,
+            root: webpackConfig_1.PROJECT_DIR,
             // verbose: true,        　　　　　　　  //开启在控制台输出信息
             // dry: false        　　　　　　　　　　//启用删除文件,
             allowExternal: true

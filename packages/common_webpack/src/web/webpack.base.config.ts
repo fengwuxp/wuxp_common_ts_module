@@ -6,21 +6,7 @@ import {isExclude} from "../utils/WebpackUtils";
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
 import {scssModuleLoader, cssModuleLoader} from "../style/CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
-
-
-function getWebpackConfig() {
-    if (process.env._self !== "1") {
-        return require("../../../webpack-config/WebpackConfig");
-    }
-    return {};
-}
-
-const {
-    DEPLOYMENT_DIRECTORY,
-    PROJECT_DIR
-} = getWebpackConfig();
-
-
+import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "./webpackConfig";
 
 
 /**
