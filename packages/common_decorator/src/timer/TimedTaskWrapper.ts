@@ -60,9 +60,6 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
 
     /**
      * 无限循环任务
-     * @param task
-     * @param times
-     * @param close
      * @param args
      */
     function interval(...args) {
@@ -86,10 +83,6 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
 
     /**
      * 循环执行任务
-     * @param task
-     * @param times
-     * @param count
-     * @param close
      * @param args
      */
     function timeOut(...args) {
