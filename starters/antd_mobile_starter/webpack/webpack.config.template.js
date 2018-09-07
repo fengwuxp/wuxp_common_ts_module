@@ -1,6 +1,6 @@
 const path=require("path");
 
-const {getWebpackBaseConfig}=require("common_starter/webpack/webpack.base.config");
+const {getWebpackBaseConfig}=require("common_starter/webpack/webpack-babel7.base.config");
 
 
 

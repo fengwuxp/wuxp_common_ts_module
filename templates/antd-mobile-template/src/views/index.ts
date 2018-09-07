@@ -1,10 +1,7 @@
 import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig"
 import IndexNavView from "./IndexNavView";
-import {ErrorMessage, ErrorView, NotFoundView} from "./exception/CommonException";
-import LoginView from "./account/LoginView";
-import RegisterView from "./account/RegisterView";
+// import {ErrorMessage, ErrorView, NotFoundView} from "./exception/CommonException";
 import {buildRouteNames} from "../utils/CommonUtil";
-import memberRoutes from "./member/";
 
 
 interface IndexRouteNames {
@@ -24,32 +21,23 @@ interface IndexRouteNames {
 const routes: Array<NamedRouteConfig> = [
 
 
-    {
-        path: '/login',
-        component: LoginView
-    },
-    {
-        path: '/register',
-        component: RegisterView
-    },
 
-    ...memberRoutes,
 
-    {
-        path: "/404",
-        exact: true,
-        component: NotFoundView
-    },
-    {
-        path: "/500",
-        exact: true,
-        component: ErrorView
-    },
-    {
-        path: "/error_message",
-        exact: true,
-        component: ErrorMessage
-    },
+    // {
+    //     path: "/404",
+    //     exact: true,
+    //     component: NotFoundView
+    // },
+    // {
+    //     path: "/500",
+    //     exact: true,
+    //     component: ErrorView
+    // },
+    // {
+    //     path: "/error_message",
+    //     exact: true,
+    //     component: ErrorMessage
+    // },
     {
         path: '/',
         component: IndexNavView
