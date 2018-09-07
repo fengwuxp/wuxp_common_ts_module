@@ -7,7 +7,7 @@
  *
  * @param times 毫秒数
  **/
-export function debounce(times: number) {
+export function debounce(times: number) :any {
 
     /**
      * decorator

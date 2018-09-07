@@ -5,7 +5,7 @@ import {isPromise} from "common_utils/src/fn/isPromise";
  * @author wxup
  * @create 2018-09-06 14:25
  **/
-export function eventAfter(event: Function, ...p) {
+export function eventAfter(event: Function, ...p) :any {
 
     /**
      * decorator

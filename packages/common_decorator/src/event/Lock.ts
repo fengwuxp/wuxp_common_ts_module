@@ -5,7 +5,7 @@ import {isPromise} from "common_utils/src/fn/isPromise";
  * 将方法标记为同步等待，在方法为完成之后times毫秒才能够被再次调用
  * @param times 毫秒数
  */
-export function syncWait(times: number = 0) {
+export function syncWait(times: number = 0): any {
 
     /**
      * decorator
@@ -13,29 +13,35 @@ export function syncWait(times: number = 0) {
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
+    return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): any {
 
         let loading = false;
+        let oldFn = target[name];
         target[name] = function (...args) {
-
             if (loading) {
+                console.log("方法已被锁定");
                 return;
             }
+            console.log("执行方法", oldFn.name);
             //锁定
             loading = true;
-            const resp = target[name](...args);
+            const resp = oldFn.apply(this, ...args);
             if (isPromise(resp)) {
                 //promise
                 resp.finally(() => {
                     setTimeout(() => {
-                        loading = true;
+                        loading = false;
+                        console.log("方法已解锁")
                     }, times);
                 });
             } else {
                 setTimeout(() => {
-                    loading = true;
+                    loading = false;
+                    console.log("方法已解锁")
                 }, times);
             }
+
+            return resp;
         };
 
         return target;
@@ -57,17 +63,30 @@ export function timeLock(times: number) {
     return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
 
         let loading = false;
+        let oldFn = target[name];
         target[name] = function (...args) {
             if (loading) {
                 return;
             }
             //锁定
             loading = true;
-            const resp = target[name](...args);
+            const resp = oldFn.apply(this, ...args);
 
-            setTimeout(() => {
-                loading = true;
-            }, times)
+            if (isPromise(resp)) {
+                //promise
+                resp.finally(() => {
+                    setTimeout(() => {
+                        loading = false;
+                        console.log("方法已解锁")
+                    }, times);
+                });
+            } else {
+                setTimeout(() => {
+                    loading = false;
+                    console.log("方法已解锁")
+                }, times);
+            }
+            return resp;
         };
 
         return target;
@@ -89,13 +108,14 @@ export function once(condition: any = true) {
     return function <T = any>(target: T, name: string, descriptor: PropertyDescriptor): T {
 
         let lock = false;
+        let oldFn = target[name];
         target[name] = function (...args) {
             if (lock) {
                 //返回值
                 return;
             }
 
-            const resp = target[name](...args);
+            const resp = oldFn.apply(this, ...args);
             if (condition === true) {
                 lock = true;
                 return resp;
@@ -109,6 +129,8 @@ export function once(condition: any = true) {
             } else {
                 lock = resp === flag;
             }
+
+            return resp;
         };
 
         return target;

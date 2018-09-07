@@ -8,7 +8,7 @@
  * @create 2018-09-06 13:10
  * @param delay 毫秒数
  **/
-export function throttle(delay: number) {
+export function throttle(delay: number) :any {
 
 
 

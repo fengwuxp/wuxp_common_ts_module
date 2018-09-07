@@ -6,7 +6,7 @@ import {isPromise} from "common_utils/src/fn/isPromise";
  * @create 2018-09-06 14:25
  **/
 
-export function eventBefore(event: Function, ...p) {
+export function eventBefore(event: Function, ...p): any {
 
     /**
      * decorator
