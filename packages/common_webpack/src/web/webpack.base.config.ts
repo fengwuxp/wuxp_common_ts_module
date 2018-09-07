@@ -6,7 +6,7 @@ import {isExclude} from "../utils/WebpackUtils";
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
 import {scssModuleLoader, cssModuleLoader} from "../style/CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
-import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "./webpackConfig";
+import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "../config/webpackConfig";
 
 
 /**

@@ -1,4 +1,4 @@
-import {INCLUDE_PATH} from "../web/webpackConfig";
+import {INCLUDE_PATH} from "../config/webpackConfig";
 
 //默认导入的模块
 const DEFAULT_INCLUDE: string[] = [

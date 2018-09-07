@@ -27,6 +27,10 @@ list.push({
     source: path.join(__dirname, "../src/style/PostCss.config.ts"),
     output: path.resolve(__dirname, "../lib/style")
 });
+list.push({
+    source: path.join(__dirname, "../src/config/WebpackConfig.config.ts"),
+    output: path.resolve(__dirname, "../lib/config")
+});
 
 console.log("生成的文件", list.length);
 
