@@ -14,8 +14,6 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_mobile_starter": "0.0.1",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-import": "^1.8.0"
+    "babel-loader": "^8.0.2"
   }
 }
