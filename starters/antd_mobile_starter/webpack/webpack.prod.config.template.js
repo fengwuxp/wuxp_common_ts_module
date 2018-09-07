@@ -1,7 +1,7 @@
-import * as path from "path";
-import * as os from "os";
+const path = require("path");
+const os = require("os");
 
-import {getWebpackBaseConfig} from "common_webpack/scr/web/webpack.base.config";
+const {getWebpackBaseConfig} = "common_webpack/lib/web/webpack.base.config";
 
 //多线程压缩插件
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');

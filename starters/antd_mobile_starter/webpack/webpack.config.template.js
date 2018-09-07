@@ -1,6 +1,6 @@
-import * as path from "path";
+const path = require("path");
 
-import {getWebpackBaseConfig} from "common_webpack/src/web/webpack.base.config";
+const {getWebpackBaseConfig} = "common_webpack/lib/web/webpack.base.config";
 
 
 const config = getWebpackBaseConfig({
