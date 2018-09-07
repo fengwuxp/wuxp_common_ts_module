@@ -1,7 +1,8 @@
-const {existsSync} = require("fs");
-const path = require("path");
-const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
-const {lessModuleLoader} = require("./cssModuleUtils");
+import {existsSync} from "fs";
+import * as path from "path";
+import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import {lessModuleLoader} from "./CssModuleUtils";
+import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 
 
 /**
@@ -32,7 +33,7 @@ function getTheme(path, isPackage) {
     return theme;
 }
 
-function getLessLoader(options) {
+function getLessLoader(options: GetWebpackBaseConfigOptions) {
 
     const isPackage = options.packagePath !== undefined && options.packagePath !== null;
     const theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
@@ -47,13 +48,12 @@ function getLessLoader(options) {
                     loader: "postcss-loader",
                     options: {
                         config: {
-                            path: path.join(__dirname, './PostCss.config.ts')
+                            path: path.join(__dirname, './PostCss.config.js')
                         },
                         ident: "css-loader"
                     }
                 },
                 {
-                    // loader: require.resolve('less-loader'),
                     loader: 'less-loader',
                     options: {
                         sourceMap: true,
@@ -67,6 +67,4 @@ function getLessLoader(options) {
     }
 }
 
-module.exports ={
-    getLessLoader
-} ;
+export default getLessLoader;

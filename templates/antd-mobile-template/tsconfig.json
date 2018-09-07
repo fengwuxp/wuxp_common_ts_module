@@ -15,7 +15,9 @@
     "jsxFactory": "React.createElement",
     "baseUrl": "./src",
     "paths": {
-      "@services/*": ["./services/*"]
+      "@services/*": [
+        "./services/*"
+      ]
     },
     "types": [
       "node",
@@ -27,14 +29,16 @@
     ],
     "lib": [
       "esnext",
-      "dom"
+      "dom",
+      "es6",
+      "es2015",
+      "es2015.promise"
     ]
   },
   "include": [
     "src/**/*",
     "node_modules/common_starter/types/index.d.ts",
     "node_modules/common_core/types/PromiseExt.ts"
-
   ],
   "exclude": [
     "**/*.spec.ts"

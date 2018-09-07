@@ -103,7 +103,7 @@ getWebpackBaseConfig = function (options) {
                                 loader: "postcss-loader",
                                 options: {
                                     config: {
-                                        path: path.join(__dirname, './postcss.config.js')
+                                        path: path.join(__dirname, './postCss.config.ts')
                                     }
                                 }
                             }
@@ -123,7 +123,7 @@ getWebpackBaseConfig = function (options) {
                                 loader: "postcss-loader",
                                 options: {
                                     config: {
-                                        path: path.join(__dirname, './postcss.config.js')
+                                        path: path.join(__dirname, './PostCss.config.ts')
                                     }
                                 }
                             },

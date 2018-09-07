@@ -1,14 +1,13 @@
-const path=require("path");
+import * as path from "path";
 
-const {getWebpackBaseConfig}=require("common_starter/webpack/webpack-babel7.base.config");
+import {getWebpackBaseConfig} from "common_webpack/src/web/webpack.base.config";
 
 
-
-const baseConfig = getWebpackBaseConfig({
+const config = getWebpackBaseConfig({
     themePath: path.resolve("theme", "index.json")
 });
-const config = {
-    ...baseConfig,
+const baseConfig = {
+    ...config,
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
@@ -21,9 +20,11 @@ const config = {
 };
 
 
-config.plugins = [
+baseConfig.plugins = [
     ...config.plugins,
 ];
-config.mode = "development";
+baseConfig.mode = "development";
 
-module.exports=config;
+export {
+    baseConfig
+};

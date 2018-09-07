@@ -1,6 +1,7 @@
-const path = require("path");
-const config = require("./webpack.config");
+import * as path from "path";
+import {config} from "./webpack.config";
 const ip = require('quick-local-ip').getLocalIP4();
+
 const host =ip; //"localhost";
 const port = 9000;
 
@@ -60,4 +61,4 @@ config.devServer = {
 
 };
 
-module.exports= config;
+export default config;

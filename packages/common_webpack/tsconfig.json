@@ -10,14 +10,17 @@
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
+    "outDir": "./lib",
     "types": [
       "node",
       "webpack"
     ],
     "lib": [
-      "esnext"
+      "esnext",
+      "dom",
+      "es6",
+      "es2015",
+      "es2015.promise"
     ]
   },
   "include": [

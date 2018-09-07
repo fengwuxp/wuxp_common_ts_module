@@ -20,7 +20,7 @@
     "lib": [
       "dom",
       "es6",
-      "es2015",
+      "esnext",
       "es2015.promise"
     ]
   },

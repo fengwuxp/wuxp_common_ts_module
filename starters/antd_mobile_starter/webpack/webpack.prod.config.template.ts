@@ -1,20 +1,19 @@
-const path = require("path");
-const os = require('os');
+import * as path from "path";
+import * as os from "os";
 
-//https://github.com/tradingview/webpack-uglify-parallel
+import {getWebpackBaseConfig} from "common_webpack/scr/web/webpack.base.config";
+
 //多线程压缩插件
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
-// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const {getWebpackBaseConfig} = require("common_starter/webpack/webpack.base.config");
 
 
-const baseConfig = getWebpackBaseConfig({
+const config = getWebpackBaseConfig({
     themePath: path.resolve("theme", "index.json")
 });
 
 
-const config = {
-    ...baseConfig,
+const baseConfig = {
+    ...config,
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
@@ -26,10 +25,10 @@ const config = {
     },
 };
 
-config.mode = "production";
+baseConfig.mode = "production";
 
 
-config.optimization = { // 提取js 第三方库等
+baseConfig.optimization = { // 提取js 第三方库等
     splitChunks: {
         cacheGroups: {
             common: {
@@ -47,7 +46,7 @@ config.optimization = { // 提取js 第三方库等
 
 
 // let uglifyJsPlugin = new UglifyJsPlugin({});
-config.plugins.push(
+baseConfig.plugins.push(
     new UglifyJsParallelPlugin({
         // usually having as many workers as cpu cores gives good results
         workers: os.cpus().length,
@@ -141,4 +140,6 @@ config.plugins.push(
     })
 );
 
-module.exports = config;
+export {
+    baseConfig
+};

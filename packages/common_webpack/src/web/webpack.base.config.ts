@@ -1,16 +1,11 @@
-const webpack = require("webpack");
-const path = require("path");
-const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+import * as webpack from "webpack";
+import * as path from "path";
+import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const {isExclude} = require("./WebpackUtils");
-const {getLessLoader} = require("./getLessLoader");
-const {scssModuleLoader, cssModuleLoader} = require("./cssModuleUtils");
-
-//多线程打包
-const HappyPack = require('happypack');
-const os = require('os'); // 系统操作函数
-// 指定线程池个数
-const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
+import {isExclude} from "../utils/WebpackUtils";
+import coverThemeLessLoader from "../style/CoverThemeLessLoader";
+import {scssModuleLoader, cssModuleLoader} from "../style/CssModuleUtils";
+import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 
 
 function getWebpackConfig() {
@@ -26,12 +21,14 @@ const {
 } = getWebpackConfig();
 
 
+
+
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
  * @return {webpack.Configuration}
  */
-getWebpackBaseConfig = function (options) {
+export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptions): webpack.Configuration {
 
     console.log("---------初始化打包配置--------", options);
 
@@ -39,7 +36,7 @@ getWebpackBaseConfig = function (options) {
     //默认打包目录
     const packPath = path.resolve("src", '../dist');
 
-    const config = {
+    const config: webpack.Configuration = {
         entry: {
             app: path.resolve('src', 'App'),
         },
@@ -49,7 +46,6 @@ getWebpackBaseConfig = function (options) {
             path: packPath,
             publicPath: "/"
         },
-        devtool: 'source-map',
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
         },
@@ -69,7 +65,6 @@ getWebpackBaseConfig = function (options) {
                 {
                     test: /\.ts[x]?$/,
                     exclude: isExclude,
-                    // loaders:`${HappyLoader}?id=tsx`,
                     use: [
                         {
                             loader: "babel-loader",
@@ -88,7 +83,7 @@ getWebpackBaseConfig = function (options) {
                                 loader: "postcss-loader",
                                 options: {
                                     config: {
-                                        path: path.join(__dirname, './postCss.config.ts')
+                                        path: path.join(__dirname, './postcss.config.js')
                                     }
                                 }
                             }
@@ -96,19 +91,20 @@ getWebpackBaseConfig = function (options) {
                     }),
 
                 },
-                getLessLoader(options),
+                coverThemeLessLoader(options),
 
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
+                            // require.resolve("style-loader"),
                             scssModuleLoader,
                             {
                                 loader: "postcss-loader",
                                 options: {
                                     config: {
-                                        path: path.join(__dirname, './PostCss.config.ts')
+                                        path: path.join(__dirname, './postcss.config.js')
                                     }
                                 }
                             },
@@ -117,7 +113,7 @@ getWebpackBaseConfig = function (options) {
                     })
                 },
                 {
-                    test: /\.(png|jpg|svg)/,
+                    test: /\.(png|jpg|jpeg|svg|gif)/,
                     use: [
                         {
                             loader: "url-loader",
@@ -140,92 +136,29 @@ getWebpackBaseConfig = function (options) {
                                 //返回最终的资源相对路径
                                 publicPath: function (url) {
                                     //使用全局变量来传递 资源根路径
-                                    let uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
+                                    const uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
                                     return uri;
                                 }
                             },
 
                         }
                     ]
-                },
-                {
-                    test: /\.art$/,
-                    loader: "art-template-loader",
-                    options: {
-                        escape: false
-                        // art-template options (if necessary)
-                        // @see https://github.com/aui/art-template
-                    }
                 }
-            ],
-            noParse: function (content) { // content 从入口开始解析的模块路径
-                return /no-parser/.test(content); // 返回true则忽略对no-parser.js的解析
-            }
+            ]
         },
-
+        // When importing a module whose path matches one of the following, just
+        // assume a corresponding global variable exists and use that instead.
+        // This is important because it allows us to avoid bundling all of our
+        // dependencies, which allows browsers to cache those libraries between builds.
+        externals: {
+            "react": "React",
+            "react-dom": "ReactDOM"
+        },
         plugins: [
             new ExtractTextWebpackPlugin({
-                filename: "style.css",
+                filename: "[name].css",
                 allChunks: true
             }),
-
-            // new HappyPack({
-            //     id: 'jsx',
-            //     threadPool: happyThreadPool,
-            //     threads: 2,
-            //     verbose: true,
-            //     loaders: [
-            //         {
-            //             loader: "babel-loader",
-            //             options: {
-            //                 cacheDirectory: true,
-            //                 presets: ["react", "env"],
-            //             }
-            //         }
-            //     ]
-            // }),
-            // new HappyPack({
-            //     id: 'tsx',
-            //     threadPool: happyThreadPool,
-            //     threads: 2,
-            //     verbose: true,
-            //     loaders: [
-            //         {
-            //             loader: "babel-loader",
-            //             options: {
-            //                 cacheDirectory: true,
-            //                 presets: ["react", "env"],
-            //             }
-            //         },
-            //         {loader: "awesome-typescript-loader"}
-            //     ],
-            // }),
-            // new HappyPack({
-            //     id: 'scss',
-            //     threadPool: happyThreadPool,
-            //     threads: 2,
-            //     verbose: true,
-            //     loaders: [
-            //         'style-loader',
-            //         'css-loader',
-            //         'postcss-loader',
-            //         'sass-loader',
-            //     ],
-            // }),
-            // new HappyPack({
-            //     id: 'less',
-            //     threadPool: happyThreadPool,
-            //     threads: 2,
-            //     verbose: true,
-            //     loaders: [
-            //         'style-loader',
-            //         'css-loader',
-            //         'postcss-loader',
-            //         'sass-loader',
-            //     ],
-            //
-            // })
-            // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
             // new WriteFilePlugin({
             //     // test: /^((?!\.hot-update).)*$/,
             //     test: /\.jsp|\.tld|\.xml$/,
@@ -233,7 +166,7 @@ getWebpackBaseConfig = function (options) {
         ]
     };
     //是否打release包
-    let release = process.env.RELEASE;
+    let release = process.env.release;
     if (release === "1") {
         //重写打包目录到部署目录
         config.output.path = DEPLOYMENT_DIRECTORY;
@@ -259,6 +192,5 @@ getWebpackBaseConfig = function (options) {
 };
 
 
-module.exports = {
-    getWebpackBaseConfig
-};
+
+
