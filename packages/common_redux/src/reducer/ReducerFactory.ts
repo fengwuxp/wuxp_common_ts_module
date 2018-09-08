@@ -1,7 +1,6 @@
 import {Reducer} from "redux";
 import {ReduxAction} from "../action/ReduxAction";
-import {isArray, isFunction, isObject} from "rxjs/internal-compatibility";
-import {ReduxActionHandler} from "../action/ReduxActionHandler";
+import {isArray, isObject} from "rxjs/internal-compatibility";
 import {ReducerHolder} from "./ReducerHolder";
 
 
@@ -60,9 +59,3 @@ export default class ReducerFactory {
         };
     }
 }
-
-
-// export function buildActionType(constructorName,prop) {
-//
-//     return `${constructorName}.${prop}`
-// }

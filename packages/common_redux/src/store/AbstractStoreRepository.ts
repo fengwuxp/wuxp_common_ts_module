@@ -4,7 +4,7 @@ import {Store} from "redux";
 
 
 /**
- *
+ * 抽象的store repository
  */
 export default abstract class AbstractStoreRepository<T> implements StoreRepository<T> {
 
