@@ -29,6 +29,7 @@ exports.getWebpackBaseConfig = function (options) {
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
         },
+        devtool: "source-map",
         module: {
             rules: [
                 {
