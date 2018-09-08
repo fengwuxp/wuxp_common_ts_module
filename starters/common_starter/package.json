@@ -46,6 +46,7 @@
     "babel-loader": "^8.0.2",
     "classnames": "^2.2.6",
     "common_core": "^0.0.1",
+    "common_decorator": "^0.0.1",
     "common_fetch": "^0.0.1",
     "common_view": "0.0.1",
     "common_webpack": "0.0.1",

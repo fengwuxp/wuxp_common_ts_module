@@ -16,7 +16,8 @@
   "main": "index.js",
   "scripts": {
     "npm_i": "npm i",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "author": "wuxp",
   "license": "ISC",
@@ -43,7 +44,9 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.2",
+    "classnames": "^2.2.6",
     "common_core": "^0.0.1",
+    "common_decorator": "^0.0.1",
     "common_fetch": "^0.0.1",
     "common_view": "0.0.1",
     "common_webpack": "0.0.1",
