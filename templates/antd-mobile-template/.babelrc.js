@@ -1,8 +1,6 @@
-/**
- *
- * @author wxup
- * @create 2018-09-08 10:45
- **/
+
+// const config=require("common_webpack/babel/babelrc7");
+
 module.exports = {
     presets: [
         [
@@ -41,5 +39,13 @@ module.exports = {
                 "regenerator": true
             }
         ],
+        [
+            "import",
+            {
+                "libraryName": "antd-mobile",
+                "libraryDirectory": "lib",
+                "style": true
+            }
+        ]
     ]
 };

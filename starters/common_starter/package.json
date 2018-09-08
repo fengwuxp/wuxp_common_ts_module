@@ -16,7 +16,8 @@
   "main": "index.js",
   "scripts": {
     "npm_i": "npm i",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "author": "wuxp",
   "license": "ISC",

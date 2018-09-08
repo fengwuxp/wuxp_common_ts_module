@@ -10,12 +10,11 @@
     "build:prod": "cross-env RELEASE=0 webpack --config ./webpack.prod.config.js  --progress --colors",
     "build:prod:release": "cross-env RELEASE=1 webpack --config ./webpack.prod.config.js  --progress --colors",
     "npm_i": "npm i antd_mobile_starter@0.0.1",
-    "npm_rest_dependencies":"rm -rf ./node_modules && npm run npm_i"
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_mobile_starter": "0.0.1",
-    "common_webpack": "0.0.1"
+    "antd_mobile_starter": "0.0.1"
   }
 }

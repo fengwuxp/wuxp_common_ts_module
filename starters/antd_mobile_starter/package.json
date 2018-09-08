@@ -21,7 +21,8 @@
   "author": "wuxp",
   "scripts": {
     "npm_i": "npm i",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "dependencies": {
     "@types/react-loadable": "^5.4.1",

@@ -17,7 +17,8 @@
   "scripts": {
     "build_ts": "rm -rf ./lib && node ./scripts/build.js",
     "npm_i": "npm i",
-    "npm_publish": "npm run build_ts && npm publish"
+    "npm_publish": "npm publish",
+    "npm_build_publish": "npm run build_ts && npm publish"
   },
   "author": "wuxp",
   "license": "ISC",
