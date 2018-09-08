@@ -36,7 +36,7 @@ console.log("生成的文件", list.length);
 
 
 list.forEach((obj) => {
-    let command = `tsc ${obj.source} --outDir ${obj.output} --module commonjs`;
+    let command = `tsc ${obj.source} --outDir ${obj.output} --module CommonJS --target es5`;
     console.log(command);
     try {
         execSync(command);

@@ -1,5 +1,5 @@
 const path =require("path");
-const {config} =require("./webpack.config");
+const config =require("./webpack.config");
 const ip = require('quick-local-ip').getLocalIP4();
 
 const host =ip; //"localhost";

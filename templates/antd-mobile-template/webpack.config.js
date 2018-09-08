@@ -67,6 +67,4 @@ config.plugins.push(
     htmlWebPackPlugin
 );
 
-module.exports = {
-    config
-}
+module.exports = config
