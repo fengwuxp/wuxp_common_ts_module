@@ -1,0 +1,39 @@
+{
+  "name": "weex_starter",
+  "version": "0.0.1",
+  "description": "weex starter",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "common_starter": "^0.0.1",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.1",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.17",
+    "weex-devtool": "^0.3.8",
+    "weex-loader": "~0.7.9",
+    "weex-ui": "^0.6.6",
+    "weex-vue-framework": "^2.5.16-weex.3",
+    "weex-vue-loader": "~0.6.12",
+    "weex-vue-precompiler": "^0.1.22",
+    "weex-vue-render": "^1.0.30"
+  }
+}
