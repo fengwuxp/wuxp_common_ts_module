@@ -38,6 +38,8 @@ HistoryRegistry.register(history);
 ResolverRegister.registerArgumentsResolver(new CustomArgumentsResolver());
 ResolverRegister.registerRequestURLResolver(new CustomRequestURLResolver());
 
+console.log(StoreRepository);
+
 //创建store
 const store = StoreRepository.init(history);
 

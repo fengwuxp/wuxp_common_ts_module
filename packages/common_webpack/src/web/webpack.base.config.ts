@@ -1,6 +1,7 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 import {isExclude} from "../utils/WebpackUtils";
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
@@ -36,7 +37,7 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
         },
 
-        devtool:"source-map",
+        devtool: "source-map",
         module: {
             rules: [
                 {
@@ -45,7 +46,17 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
                     use: [
                         {
                             loader: "babel-loader",
-                            options: {}
+                            options: {
+                                "presets": [
+                                    [
+                                        "@babel/preset-env",
+                                        {
+                                            "targets": "last 2 versions, ie 11",
+                                            "modules": false
+                                        }
+                                    ]
+                                ]
+                            }
                         }
                     ]
                 },
@@ -55,7 +66,17 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
                     use: [
                         {
                             loader: "babel-loader",
-                            options: {}
+                            options: {
+                                "presets": [
+                                    [
+                                        "@babel/preset-env",
+                                        {
+                                            "targets": "last 2 versions, ie 11",
+                                            "modules": false
+                                        }
+                                    ]
+                                ]
+                            }
                         },
                         {loader: "awesome-typescript-loader"}
                     ]

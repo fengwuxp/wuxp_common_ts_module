@@ -6,9 +6,17 @@ import {routerMiddleware, connectRouter} from 'connected-react-router';
 import rootReducer from '../reducers/index';
 import rootEpic from '../epics/index';
 import {History} from "history";
+import {AntdMobileStore} from "./AntdMobileStore";
 
 
-class StoreRepository extends AbstractStoreRepository<any> {
+/**
+ * store repository
+ */
+class StoreRepository extends AbstractStoreRepository<AntdMobileStore> {
+
+    constructor() {
+        super();
+    }
 
     /**
      * 初始化store
@@ -33,8 +41,10 @@ class StoreRepository extends AbstractStoreRepository<any> {
         return this.store
     };
 }
-
-export default new StoreRepository()
+console.log("------------------")
+const storeRepository = new StoreRepository();
+console.log("------------------",storeRepository);
+export default storeRepository;
 
 
 

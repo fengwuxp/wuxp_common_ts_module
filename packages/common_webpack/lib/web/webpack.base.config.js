@@ -38,7 +38,17 @@ exports.getWebpackBaseConfig = function (options) {
                     use: [
                         {
                             loader: "babel-loader",
-                            options: {}
+                            options: {
+                                "presets": [
+                                    [
+                                        "@babel/preset-env",
+                                        {
+                                            "targets": "last 2 versions, ie 11",
+                                            "modules": false
+                                        }
+                                    ]
+                                ]
+                            }
                         }
                     ]
                 },
@@ -48,7 +58,17 @@ exports.getWebpackBaseConfig = function (options) {
                     use: [
                         {
                             loader: "babel-loader",
-                            options: {}
+                            options: {
+                                "presets": [
+                                    [
+                                        "@babel/preset-env",
+                                        {
+                                            "targets": "last 2 versions, ie 11",
+                                            "modules": false
+                                        }
+                                    ]
+                                ]
+                            }
                         },
                         { loader: "awesome-typescript-loader" }
                     ]
