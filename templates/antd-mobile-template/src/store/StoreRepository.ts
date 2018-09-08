@@ -41,9 +41,7 @@ class StoreRepository extends AbstractStoreRepository<AntdMobileStore> {
         return this.store
     };
 }
-console.log("------------------")
 const storeRepository = new StoreRepository();
-console.log("------------------",storeRepository);
 export default storeRepository;
 
 
