@@ -1,6 +1,6 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import ResolverRegister from "common_fetch/src/register/ResolverRegister";
 import NeedProgressBarInterceptor from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
@@ -9,7 +9,7 @@ import HistoryRegistry from "common_route/src/registry/HistoryRegistry";
 import PopupLayerHelper from "common_react/src/components/popup-layer/PopupLayerHelper";
 import CustomArgumentsResolver from "./resolver/CustomArgumentsResolver";
 import CustomRequestURLResolver from "./resolver/CustomRequestURLResolver";
-import {ConnectedRouter} from 'connected-react-router'
+import {ConnectedRouter} from 'connected-react-router';
 import StoreRepository from './store/StoreRepository';
 import "./App.less";
 import {Route, Switch} from "react-router-dom";
