@@ -1,5 +1,6 @@
 import * as React from "react";
 import {ScrollBar} from "./bar/ScrollBar";
+import {UIEventHandler} from "react";
 
 export interface ScrollerProps {
 
@@ -46,6 +47,12 @@ export interface ScrollerProps {
      * 如果没有设置则使用浏览器自带的滚动条
      */
     scrollBar?: ScrollBar;
+
+    /**
+     * 原始的滚动事件，但是会收到debounceTimes的去抖控制
+     * @param event
+     */
+    onScroll?: (event: UIEventHandler<HTMLElement>) => void;
 
 }
 
