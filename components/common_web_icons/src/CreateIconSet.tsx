@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import {isFunction} from "util";
 
 
-const DEFAULT_ICON_SIZE = 12;
-
-
-export interface IconProps<T> {
+export interface IconProps<T = string> {
 
     name: T;
 
@@ -20,6 +17,8 @@ export interface IconProps<T> {
 
     style?: React.CSSProperties;
 
+    classNames?: String;
+
     onClick?: MouseEventHandler<any>;
 }
 
@@ -32,13 +31,13 @@ export interface GlyphMap {
  * @param fontFamily
  * @return {Icon}
  */
-export default function createIconSet<T=string>(glyphMap: GlyphMap, fontFamily: string) {
+export default function createIconSet<T = string>(glyphMap: GlyphMap, fontFamily: string) {
 
     let fontReference = fontFamily;
 
     const IconNamePropType = PropTypes.oneOf(Object.keys(glyphMap));
 
-    class Icon extends PureComponent<IconProps<T>, any> {
+    class Icon extends PureComponent<IconProps, any> {
 
         static propTypes = {
             name: IconNamePropType,
@@ -49,12 +48,13 @@ export default function createIconSet<T=string>(glyphMap: GlyphMap, fontFamily: 
         };
 
         static defaultProps = {
-            size: DEFAULT_ICON_SIZE,
+            size: "inherit",
             allowFontScaling: false,
+            color: "currentColor"
         };
 
         render() {
-            const {name, size, color,style} = this.props;
+            const {name, size, color, style, classNames} = this.props;
 
             let glyph = name ? glyphMap[name as any] || '?' : '';
 
@@ -71,11 +71,13 @@ export default function createIconSet<T=string>(glyphMap: GlyphMap, fontFamily: 
             };
 
             return (
-                <i style={styleOverrides} onClick={(event)=>{
-                    if ( isFunction( this.props.onClick)){
-                        this.props.onClick(event);
-                    }
-                }}>
+                <i style={styleOverrides}
+                   classNames={classNames}
+                   onClick={(event) => {
+                       if (isFunction(this.props.onClick)) {
+                           this.props.onClick(event);
+                       }
+                   }}>
                     {glyph}
                     {this.props.children}
                 </i>
