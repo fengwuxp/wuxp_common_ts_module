@@ -26,7 +26,7 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
 
     function intervalTask(...args) {
         //先关闭前一次任务
-        closeTaskByFn(task);
+        closeTaskByFn(this,task);
         if (typeof before === "function") {
 
             before.apply(this, ...args)['finally']((resp: boolean) => {
@@ -42,7 +42,7 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
 
     function loopTask(...args) {
         //先关闭前一次任务
-        closeTaskByFn(task);
+        closeTaskByFn(this,task);
         if (typeof before === "function") {
 
             before.apply(this, ...args)['finally']((resp: boolean) => {
@@ -67,10 +67,10 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
         let timerId = setInterval(() => {
             if (typeof close === "function") {
                 const isClose = close.apply(this, ...args);
-                console.log("isClose", isClose)
+                console.log("isClose", isClose);
                 if (isClose) {
                     //提前结束任务
-                    closeTaskByFn(task);
+                    closeTaskByFn(this,task);
                     return;
                 }
             }
@@ -94,7 +94,7 @@ export function wrapperTask(task: Function, options: TimedTaskOptions) {
             const isClose = close.apply(this, ...args);
             if (isClose) {
                 //提前结束任务
-                closeTaskByFn(task);
+                closeTaskByFn(this,task);
                 return;
             }
         }
@@ -125,7 +125,7 @@ export function closeTaskByFn(clazz, task?: Function) {
         if (task == null) {
             //清除所有定时任务
             const values = map.values();
-            console.log(`清除${clazz.constructor.name}所有定时任务`);
+            console.log(`清除${clazz.constructor.name}所有定时任务`,values);
             while (true) {
                 const next = values.next();
                 if (next.done) {
@@ -139,12 +139,13 @@ export function closeTaskByFn(clazz, task?: Function) {
             return;
         }
 
-        const number = map.get(task);
-        if (number == null) {
+        const timerId = map.get(task);
+        // console.log(`清除定时任务`,timerId);
+        if (timerId == null) {
             break;
         }
-        clearInterval(number);
-        clearTimeout(number);
+        clearInterval(timerId);
+        clearTimeout(timerId);
         map.delete(task);
     }
 }

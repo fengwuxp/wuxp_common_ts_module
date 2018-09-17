@@ -19,10 +19,10 @@ export function syncWait(times: number = 0): any {
         let oldFn = target[name];
         target[name] = function (...args) {
             if (loading) {
-                console.log("方法已被锁定");
+                // console.log("方法已被锁定");
                 return;
             }
-            console.log("执行方法", oldFn.name);
+            // console.log("执行方法", oldFn.name);
             //锁定
             loading = true;
             const resp = oldFn.apply(this, ...args);
@@ -31,13 +31,13 @@ export function syncWait(times: number = 0): any {
                 resp.finally(() => {
                     setTimeout(() => {
                         loading = false;
-                        console.log("方法已解锁")
+                        // console.log("方法已解锁")
                     }, times);
                 });
             } else {
                 setTimeout(() => {
                     loading = false;
-                    console.log("方法已解锁")
+                    // console.log("方法已解锁")
                 }, times);
             }
 

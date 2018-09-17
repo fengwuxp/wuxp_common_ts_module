@@ -73,6 +73,9 @@ export function onceTask(times: number) {
     }
 }
 
+/**
+ * 清除任务
+ */
 export function clearTask(): any {
     /**
      * decorator
