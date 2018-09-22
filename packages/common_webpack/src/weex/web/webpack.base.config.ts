@@ -15,7 +15,7 @@ HappyPack.SERIALIZABLE_OPTIONS = HappyPack.SERIALIZABLE_OPTIONS.concat([
     'postcss'
 ]);
 
-const webConfig: webpack.Configuration = {
+const webpackConfig: webpack.Configuration = {
 
     entry: {
         app: path.resolve('src', 'Main'),
@@ -77,7 +77,7 @@ const postcssPluginWeex = require('postcss-plugin-weex');
 const autoprefixer = require('autoprefixer');
 const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 
-(webConfig.module.rules[1].use as any).push({
+(webpackConfig.module.rules[1].use as any).push({
     loader: 'vue-loader',
     options: {
         optimizeSSR: false,
@@ -101,4 +101,7 @@ const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
         }
     }
 });
-export default webConfig;
+
+webpackConfig.mode = "development";
+
+export default webpackConfig;

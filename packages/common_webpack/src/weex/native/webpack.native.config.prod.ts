@@ -1,5 +1,5 @@
-import nativeCOnfig from "./webpack.native.config";
 import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
+import config from "./webpack.native.base.config";
 
 const uglifyJsPlugin = new (UglifyJsPlugin as any)({
     parallel: true,
@@ -90,6 +90,7 @@ const uglifyJsPlugin = new (UglifyJsPlugin as any)({
     },
 });
 
-nativeCOnfig.plugins.unshift(uglifyJsPlugin);
+config.plugins.unshift(uglifyJsPlugin);
+config.mode = "production";
 
-export default nativeCOnfig;
+export default config;

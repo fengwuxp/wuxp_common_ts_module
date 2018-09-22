@@ -28,6 +28,7 @@ const config: webpack.Configuration = {
     node: {
         global: true
     },
+
     module: {
         rules: [
             // {

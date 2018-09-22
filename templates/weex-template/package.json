@@ -15,7 +15,9 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-import": "^1.9.1",
     "common_webpack": "0.0.1",
+    "postcss-plugin-weex": "^0.1.7",
     "weex_starter": "0.0.1"
   }
 }
