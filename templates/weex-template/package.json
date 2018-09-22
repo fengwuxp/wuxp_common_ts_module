@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve-dev": "webpack-dev-server  --config webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "build:web": "webpack --config webpack.config.js  --devtool eval --progress --colors  --watch --port 9088 --open",
     "build:native": "webpack  --config webpack-config/webpack.native.config.js --progress --colors",
     "build:web-prod": "webpack --config webpack.prod.config.js --progress --colors",
     "build:native-prod": "webpack --config webpack-config/webpack.native.config.prod.js --progress --colors",

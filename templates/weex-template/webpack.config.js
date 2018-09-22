@@ -1,13 +1,14 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
+const {VueLoaderPlugin} = require('vue-loader');
 const config = require('common_webpack/lib/weex/web/webpack.base.config');
-
 const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
-config.mode="development";
+config.mode = "development";
 
-config.plugins=[];
+config.plugins = [];
 config.plugins.push(
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: "index.html",
@@ -18,9 +19,10 @@ config.plugins.push(
     new webpack.DefinePlugin({
         'process.env': {
             IS_WEB: true,
-            NODE_ENV: '"dev"',
+            // NODE_ENV: '"dev"',
             API_ROOT: JSON.stringify(DEV_API_ADDRESS)
         }
     })
 );
+
 module.exports = config;
