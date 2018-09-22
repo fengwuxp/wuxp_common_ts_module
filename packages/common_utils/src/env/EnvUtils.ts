@@ -32,21 +32,3 @@ export const IS_WEIXIN = userAgent.toLowerCase().indexOf("micromessenger") >= 0;
 export const IS_MOBILE = IS_WEIXIN || IS_IPAD || IS_IPHONE || IS_MIDP || IS_UC7 || IS_UC || IS_WIN_CE || IS_WIN_MOBILE || IS_ANDROID;
 
 
-// /**
-//  * 是否为为微信浏览器
-//  * @return {boolean}
-//  */
-// export function isWxBrowser() {
-//     return IS_WEIXIN;
-// }
-//
-//
-// // const isAndroid = sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('Linux') > -1; //android终端或者uc浏览器
-// // const isiOS = !!sUserAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-//
-// /**
-//  * 是否为手机客户端
-//  */
-// export function isMobilePhone() {
-//     return IS_MOBILE;
-// }

@@ -55,14 +55,14 @@
     "webpack": "^4.17.2",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^3.1.0",
-    "webpack-merge": "^4.1.4",
     "webpack-dev-server": "^3.1.8",
+    "webpack-merge": "^4.1.4",
     "webpack-uglify-parallel": "^0.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "babel-loader": "^8.0.2",
     "awesome-typescript-loader": "^5.2.0",
+    "babel-loader": "^8.0.2",
     "typescript": "^3.0.3"
   }
 }

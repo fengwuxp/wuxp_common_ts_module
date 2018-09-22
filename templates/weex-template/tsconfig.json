@@ -1,20 +1,26 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-//    "esModuleInterop":true,
+    "esModuleInterop": true,
+    //导入语法 import foo from "foo"
     "allowSyntheticDefaultImports": true,
-//    "compileOnSave": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "esnext",
     "target": "es6",
-    "sourceMap": false,
+    "sourceMap": true,
     "allowJs": true,
+    "compileOnSave": false,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
     "baseUrl": "./src",
-    "outDir": "./lib",
+    "paths": {
+      "@services/*": [
+        "./services/*"
+      ]
+    },
     "types": [
-      "node",
-      "webpack"
+      "node"
     ],
     "lib": [
       "esnext",
@@ -25,11 +31,11 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "src/**/*",
+    "node_modules/common_starter/types/index.d.ts",
+    "node_modules/common_core/types/PromiseExt.ts"
   ],
   "exclude": [
-    "dist",
-    "node_modules",
     "**/*.spec.ts"
   ]
 }

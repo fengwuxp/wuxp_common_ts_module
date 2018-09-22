@@ -45,6 +45,7 @@ export default class ReducerFactory {
                 return null;
             }
 
+            //TODO 使用immutable.js进行优化
             //合并新旧state
             if (isArray(state)) {
                 return Object.assign(state, payload);

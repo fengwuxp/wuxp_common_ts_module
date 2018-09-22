@@ -1,21 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = require("fs");
-var path = require("path");
-var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
-var CssModuleUtils_1 = require("./CssModuleUtils");
+import { existsSync } from "fs";
+import * as path from "path";
+import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import { lessModuleLoader } from "./CssModuleUtils";
 /**
  * 获取主题配置
  * @param path    文件路径
  * @param isPackage  是否配置在package.json文件中
  */
 function getTheme(path, isPackage) {
-    var theme = {};
+    let theme = {};
     if (isPackage) {
         //配置在package.json文件中
-        var pkg = fs_1.existsSync(path) ? require(path) : {};
+        const pkg = existsSync(path) ? require(path) : {};
         if (pkg.theme && typeof (pkg.theme) === 'string') {
-            var cfgPath = pkg.theme;
+            let cfgPath = pkg.theme;
             // relative path
             if (cfgPath.charAt(0) === '.') {
                 cfgPath = path.resolve(global['args'].cwd, cfgPath);
@@ -33,14 +31,14 @@ function getTheme(path, isPackage) {
     return theme;
 }
 function getLessLoader(options) {
-    var isPackage = options.packagePath !== undefined && options.packagePath !== null;
-    var theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    const isPackage = options.packagePath !== undefined && options.packagePath !== null;
+    const theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
     return {
         test: /\.less$/,
         use: ExtractTextWebpackPlugin.extract({
             fallback: "style-loader",
             use: [
-                CssModuleUtils_1.lessModuleLoader,
+                lessModuleLoader,
                 {
                     loader: "postcss-loader",
                     options: {
@@ -63,4 +61,4 @@ function getLessLoader(options) {
         })
     };
 }
-exports.default = getLessLoader;
+export default getLessLoader;

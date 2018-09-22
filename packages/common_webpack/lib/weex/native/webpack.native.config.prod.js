@@ -1,23 +1,6 @@
-import * as path from "path";
+import nativeCOnfig from "./webpack.native.config";
 import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
-import { getWebpackBaseConfig } from "./webpack.base.config";
-const baseConfig = getWebpackBaseConfig({
-    themePath: path.resolve("theme", "index.json")
-});
-const config = Object.assign({}, baseConfig);
-config.mode = "production";
-config.optimization = {
-    splitChunks: {
-        cacheGroups: {
-            common: {
-                chunks: 'initial',
-                name: 'common',
-                enforce: true // 强制
-            }
-        }
-    }
-};
-let uglifyJsPlugin = new UglifyJsPlugin({
+const uglifyJsPlugin = new UglifyJsPlugin({
     parallel: true,
     uglifyOptions: {
         /**
@@ -92,5 +75,5 @@ let uglifyJsPlugin = new UglifyJsPlugin({
         safari10: false,
     },
 });
-config.plugins.push(uglifyJsPlugin);
-export default config;
+nativeCOnfig.plugins.unshift(uglifyJsPlugin);
+export default nativeCOnfig;

@@ -1,22 +1,20 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
-var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
-var CleanWebpackPlugin = require("clean-webpack-plugin");
-var WebpackUtils_1 = require("../utils/WebpackUtils");
-var CoverThemeLessLoader_1 = require("../style/CoverThemeLessLoader");
-var CssModuleUtils_1 = require("../style/CssModuleUtils");
-var webpackConfig_1 = require("../config/webpackConfig");
+import * as path from "path";
+import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+import { isExclude } from "../utils/WebpackUtils";
+import coverThemeLessLoader from "../style/CoverThemeLessLoader";
+import { scssModuleLoader, cssModuleLoader } from "../style/CssModuleUtils";
+import { DEPLOYMENT_DIRECTORY, PROJECT_DIR } from "../config/webpackConfig";
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
  * @return {webpack.Configuration}
  */
-exports.getWebpackBaseConfig = function (options) {
+export const getWebpackBaseConfig = function (options) {
     console.log("---------初始化打包配置--------", options);
     //默认打包目录
-    var packPath = path.resolve("src", '../dist');
-    var config = {
+    const packPath = path.resolve("src", '../dist');
+    const config = {
         entry: {
             app: path.resolve('src', 'App'),
         },
@@ -34,7 +32,7 @@ exports.getWebpackBaseConfig = function (options) {
             rules: [
                 {
                     test: /\.js[x]?$/,
-                    exclude: WebpackUtils_1.isExclude,
+                    exclude: isExclude,
                     use: [
                         {
                             loader: "babel-loader",
@@ -54,7 +52,7 @@ exports.getWebpackBaseConfig = function (options) {
                 },
                 {
                     test: /\.ts[x]?$/,
-                    exclude: WebpackUtils_1.isExclude,
+                    exclude: isExclude,
                     use: [
                         {
                             loader: "babel-loader",
@@ -78,7 +76,7 @@ exports.getWebpackBaseConfig = function (options) {
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
-                            CssModuleUtils_1.cssModuleLoader,
+                            cssModuleLoader,
                             {
                                 loader: "postcss-loader",
                                 options: {
@@ -90,14 +88,14 @@ exports.getWebpackBaseConfig = function (options) {
                         ]
                     }),
                 },
-                CoverThemeLessLoader_1.default(options),
+                coverThemeLessLoader(options),
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
                             // require.resolve("style-loader"),
-                            CssModuleUtils_1.scssModuleLoader,
+                            scssModuleLoader,
                             {
                                 loader: "postcss-loader",
                                 options: {
@@ -134,7 +132,7 @@ exports.getWebpackBaseConfig = function (options) {
                                 //返回最终的资源相对路径
                                 publicPath: function (url) {
                                     //使用全局变量来传递 资源根路径
-                                    var uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
+                                    const uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
                                     return uri;
                                 }
                             },
@@ -159,10 +157,10 @@ exports.getWebpackBaseConfig = function (options) {
         ]
     };
     //是否打release包
-    var release = process.env.release;
+    let release = process.env.release;
     if (release === "1") {
         //重写打包目录到部署目录
-        config.output.path = webpackConfig_1.DEPLOYMENT_DIRECTORY;
+        config.output.path = DEPLOYMENT_DIRECTORY;
     }
     if (release != null) {
         config.plugins.push(
@@ -171,7 +169,7 @@ exports.getWebpackBaseConfig = function (options) {
         new CleanWebpackPlugin([
             config.output.path
         ], {
-            root: webpackConfig_1.PROJECT_DIR,
+            root: PROJECT_DIR,
             // verbose: true,        　　　　　　　  //开启在控制台输出信息
             // dry: false        　　　　　　　　　　//启用删除文件,
             allowExternal: true,

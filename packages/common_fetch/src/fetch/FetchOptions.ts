@@ -34,6 +34,9 @@ export interface FetchOptions extends BaseFetchOptions {
      */
     requestProgress?: (data: {
 
+        /**
+         * 进度
+         */
         progress: number;
         /**
          * 当前状态

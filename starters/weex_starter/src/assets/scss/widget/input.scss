@@ -1,0 +1,13 @@
+
+@mixin default_input{
+  border-width: 0;
+  padding-left: 15px;
+  line-height: 45px;
+}
+.input_default{
+  height: 45px;
+  @include default_input;
+}
+.input_textarea{
+  @include default_input;
+}
