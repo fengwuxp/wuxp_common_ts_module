@@ -4,21 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve-dev": "webpack-dev-server  --config webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
-    "build:web": "webpack --config webpack.config.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "serve-dev": "webpack-dev-server  --config ./webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "build:web": "webpack --config ./webpack.config.js --devtool eval --progress --colors  --watch --port 9088 --open",
     "build:native": "webpack  --config webpack-config/webpack.native.config.js --progress --colors",
     "build:web-prod": "webpack --config webpack.prod.config.js --progress --colors",
     "build:native-prod": "webpack --config webpack-config/webpack.native.config.prod.js --progress --colors",
     "build:native-release": "cross-env NATIVE_RELEASE=ANDROID_AND_IOS NOT_USE_DEV=1 webpack --config webpack-config/webpack.native.config.prod.js --progress --colors",
     "build:two-prod": "npm run build:web-prod & npm run build:native-prod --progress --colors",
-    "npm_i": "npm i"
+    "npm_i": "npm i",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "babel-plugin-import": "^1.9.1",
-    "common_webpack": "0.0.1",
-    "postcss-plugin-weex": "^0.1.7",
+    "weex-vue-precompiler": "^0.1.23",
     "weex_starter": "0.0.1"
   }
 }

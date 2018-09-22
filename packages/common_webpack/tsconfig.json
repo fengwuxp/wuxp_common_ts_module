@@ -2,14 +2,14 @@
   "compilerOptions": {
     "moduleResolution": "node",
 //    "esModuleInterop":true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
 //    "compileOnSave": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+//    "emitDecoratorMetadata": true,
+//    "experimentalDecorators": true,
     "module": "commonjs",
     "target": "es5",
     "sourceMap": false,
-    "allowJs": true,
+//    "allowJs": true,
     "baseUrl": "./src",
     "outDir": "./lib",
     "types": [

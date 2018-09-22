@@ -57,7 +57,6 @@ const webpackConfig: webpack.Configuration = {
         bannerPlugin,
         new HappyPack({
             id: 'babel',
-            cache: false,
             verbose: true,
             loaders: ['babel-loader?cacheDirectory=true'],
             threadPool: happyThreadPool
@@ -65,7 +64,6 @@ const webpackConfig: webpack.Configuration = {
         new HappyPack({
             id: 'css',
             verbose: true,
-            cache: false,
             loaders: ['postcss-loader'],
             threadPool: happyThreadPool
         })
@@ -88,13 +86,15 @@ const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
             }),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
         ],
-        compilerModules: [
-            {
-                postTransformNode: el => {
-                    weexVuePrecompiler(el);
+        compilerOptions: {
+            modules: [
+                {
+                    postTransformNode: function (el) {
+                        weexVuePrecompiler(el);
+                    }
                 }
-            }
-        ],
+            ]
+        },
         loaders: {
             js: 'happypack/loader?id=babel',
             scss: 'vue-style-loader!css-loader!sass-loader'
@@ -104,4 +104,6 @@ const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 
 webpackConfig.mode = "development";
 
-export default webpackConfig;
+export {
+    webpackConfig
+};

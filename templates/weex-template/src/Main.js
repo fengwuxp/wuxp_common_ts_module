@@ -10,7 +10,7 @@ import App from './App.vue';
 // weex.supports = (name) => {
 //     return true;
 // };
-
+weex.init(Vue);
 
 App.el = '#root';
 // App.router = router;

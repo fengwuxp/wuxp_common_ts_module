@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpack = require('webpack');
-var config = require('./GetNativeBaseConfig.js').config;
-// const {DEV_API_ADDRESS,TEST_H5_WEB_CONTEXT} = require("../../../webpack-config/WebpackConfig");
+var webpack = require("webpack");
+var webpack_native_base_config_1 = require("./webpack.native.base.config");
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
     raw: true
 });
-if (config.plugins == null) {
-    config.plugins = [];
+if (webpack_native_base_config_1.default.plugins == null) {
+    webpack_native_base_config_1.default.plugins = [];
 }
-config.plugins.push(bannerPlugin);
-exports.default = config;
+webpack_native_base_config_1.default.mode = "development";
+webpack_native_base_config_1.default.plugins.push(bannerPlugin);
+exports.default = webpack_native_base_config_1.default;

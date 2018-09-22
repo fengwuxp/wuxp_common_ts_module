@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var webpack_native_config_1 = require("./webpack.native.config");
 var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+var webpack_native_base_config_1 = require("./webpack.native.base.config");
 var uglifyJsPlugin = new UglifyJsPlugin({
     parallel: true,
     uglifyOptions: {
@@ -77,5 +77,6 @@ var uglifyJsPlugin = new UglifyJsPlugin({
         safari10: false,
     },
 });
-webpack_native_config_1.default.plugins.unshift(uglifyJsPlugin);
-exports.default = webpack_native_config_1.default;
+webpack_native_base_config_1.default.plugins.unshift(uglifyJsPlugin);
+webpack_native_base_config_1.default.mode = "production";
+exports.default = webpack_native_base_config_1.default;

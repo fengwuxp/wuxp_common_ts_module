@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const config = require('wxp_weex_components/webpack-web/webpack.base.config');
+const config = require('./webpack-config');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const {PROD_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
@@ -8,7 +8,7 @@ config.plugins.push(
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: "index.html",
-        title: "刮刮彩",
+        title: "template demo",
         chunks: ["app"],
         inject: false,
     }),

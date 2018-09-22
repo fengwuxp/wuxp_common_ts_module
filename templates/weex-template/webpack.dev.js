@@ -1,10 +1,10 @@
-const configs = require('./webpack.config.js');
+const config = require('./webpack.config.js');
 const ip = "localhost";
 const pathTo = require('path');
 const chalk = require('chalk');
 const port=9088;
 
-let config = Array.isArray(configs) ? configs[0] : configs;
+
 
 
 /**
@@ -55,6 +55,5 @@ config.devServer = {
 
     },
 };
-
 console.log('server is running! Please open ' + chalk.green(`http://${ip}:${port}/index.html`));
 module.exports = config;

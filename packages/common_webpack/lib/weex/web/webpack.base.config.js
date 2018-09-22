@@ -13,7 +13,7 @@ var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 HappyPack.SERIALIZABLE_OPTIONS = HappyPack.SERIALIZABLE_OPTIONS.concat([
     'postcss'
 ]);
-var webConfig = {
+var webpackConfig = {
     entry: {
         app: path.resolve('src', 'Main'),
     },
@@ -53,7 +53,6 @@ var webConfig = {
         bannerPlugin,
         new HappyPack({
             id: 'babel',
-            cache: false,
             verbose: true,
             loaders: ['babel-loader?cacheDirectory=true'],
             threadPool: happyThreadPool
@@ -61,17 +60,17 @@ var webConfig = {
         new HappyPack({
             id: 'css',
             verbose: true,
-            cache: false,
             loaders: ['postcss-loader'],
             threadPool: happyThreadPool
         })
     ]
 };
+exports.webpackConfig = webpackConfig;
 var weexVuePrecompiler = require('weex-vue-precompiler')();
 var postcssPluginWeex = require('postcss-plugin-weex');
 var autoprefixer = require('autoprefixer');
 var postcssPluginPx2Rem = require('postcss-plugin-px2rem');
-webConfig.module.rules[1].use.push({
+webpackConfig.module.rules[1].use.push({
     loader: 'vue-loader',
     options: {
         optimizeSSR: false,
@@ -82,17 +81,19 @@ webConfig.module.rules[1].use.push({
             }),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
         ],
-        compilerModules: [
-            {
-                postTransformNode: function (el) {
-                    weexVuePrecompiler(el);
+        compilerOptions: {
+            modules: [
+                {
+                    postTransformNode: function (el) {
+                        weexVuePrecompiler(el);
+                    }
                 }
-            }
-        ],
+            ]
+        },
         loaders: {
             js: 'happypack/loader?id=babel',
             scss: 'vue-style-loader!css-loader!sass-loader'
         }
     }
 });
-exports.default = webConfig;
+webpackConfig.mode = "development";

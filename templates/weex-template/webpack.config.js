@@ -1,13 +1,16 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {VueLoaderPlugin} = require('vue-loader');
-const config = require('common_webpack/lib/weex/web/webpack.base.config');
+const {webpackConfig} = require('common_webpack/lib/weex/web/webpack.base.config');
+
 const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
-config.mode = "development";
 
-config.plugins = [];
-config.plugins.push(
+webpackConfig.mode = "development";
+webpackConfig.output.path = path.resolve(__dirname, './dist_web');
+
+webpackConfig.plugins.push(
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -25,4 +28,4 @@ config.plugins.push(
     })
 );
 
-module.exports = config;
+module.exports = webpackConfig;
