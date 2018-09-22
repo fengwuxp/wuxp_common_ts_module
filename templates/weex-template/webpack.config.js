@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const config = require('common_webpack/lib/weex/web/webpack.base.config');
 
 const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
-config.module="development";
+
+config.mode="development";
 
 config.plugins=[];
 config.plugins.push(
