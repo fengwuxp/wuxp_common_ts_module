@@ -15,6 +15,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
+    "common_webpack": "0.0.1",
     "weex_starter": "0.0.1"
   }
 }

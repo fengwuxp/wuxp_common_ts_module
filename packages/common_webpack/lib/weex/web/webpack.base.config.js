@@ -1,17 +1,19 @@
-import * as webpack from "webpack";
-import * as path from "path";
-import * as os from "os";
-import * as HappyPack from "happypack";
-import { isExclude } from "../../utils/WebpackUtils";
-const bannerPlugin = new webpack.BannerPlugin({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpack = require("webpack");
+var path = require("path");
+var os = require("os");
+var HappyPack = require("happypack");
+var WebpackUtils_1 = require("../../utils/WebpackUtils");
+var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
     raw: true
 });
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 HappyPack.SERIALIZABLE_OPTIONS = HappyPack.SERIALIZABLE_OPTIONS.concat([
     'postcss'
 ]);
-const webConfig = {
+var webConfig = {
     entry: {
         app: path.resolve('src', 'Main'),
     },
@@ -27,7 +29,7 @@ const webConfig = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: isExclude
+                exclude: WebpackUtils_1.isExclude
             }, {
                 test: /\.vue(\?[^?]+)?$/,
                 use: []
@@ -65,10 +67,10 @@ const webConfig = {
         })
     ]
 };
-const weexVuePrecompiler = require('weex-vue-precompiler')();
-const postcssPluginWeex = require('postcss-plugin-weex');
-const autoprefixer = require('autoprefixer');
-const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
+var weexVuePrecompiler = require('weex-vue-precompiler')();
+var postcssPluginWeex = require('postcss-plugin-weex');
+var autoprefixer = require('autoprefixer');
+var postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 webConfig.module.rules[1].use.push({
     loader: 'vue-loader',
     options: {
@@ -82,7 +84,7 @@ webConfig.module.rules[1].use.push({
         ],
         compilerModules: [
             {
-                postTransformNode: el => {
+                postTransformNode: function (el) {
                     weexVuePrecompiler(el);
                 }
             }
@@ -93,4 +95,4 @@ webConfig.module.rules[1].use.push({
         }
     }
 });
-export default webConfig;
+exports.default = webConfig;

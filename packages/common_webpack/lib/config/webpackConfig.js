@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var _a;
 /**
  * 配置
  * @author wxup
@@ -9,4 +12,4 @@ function getWebpackConfig() {
     }
     return {};
 }
-export const { DEPLOYMENT_DIRECTORY, INCLUDE_PATH, PROJECT_DIR } = getWebpackConfig();
+exports.DEPLOYMENT_DIRECTORY = (_a = getWebpackConfig(), _a.DEPLOYMENT_DIRECTORY), exports.INCLUDE_PATH = _a.INCLUDE_PATH, exports.PROJECT_DIR = _a.PROJECT_DIR;

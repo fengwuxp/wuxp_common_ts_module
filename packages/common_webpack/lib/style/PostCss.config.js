@@ -1,12 +1,14 @@
-import autoprefixer from "autoprefixer";
-export const postCssConfig = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var autoprefixer_1 = require("autoprefixer");
+exports.postCssConfig = {
     // https://webpack.js.org/guides/migrating/#complex-options
     ident: 'postcss',
-    plugins: () => [
+    plugins: function () { return [
         require('postcss-flexbugs-fixes'),
         require('precss'),
         require('postcss-cssnext'),
-        autoprefixer({
+        autoprefixer_1.default({
             browsers: [
                 '>1%',
                 'last 4 versions',
@@ -15,5 +17,5 @@ export const postCssConfig = {
             ],
             flexbox: 'no-2009',
         }),
-    ]
+    ]; }
 };

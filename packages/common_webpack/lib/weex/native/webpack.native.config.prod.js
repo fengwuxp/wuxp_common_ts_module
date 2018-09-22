@@ -1,6 +1,8 @@
-import nativeCOnfig from "./webpack.native.config";
-import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
-const uglifyJsPlugin = new UglifyJsPlugin({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var webpack_native_config_1 = require("./webpack.native.config");
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+var uglifyJsPlugin = new UglifyJsPlugin({
     parallel: true,
     uglifyOptions: {
         /**
@@ -75,5 +77,5 @@ const uglifyJsPlugin = new UglifyJsPlugin({
         safari10: false,
     },
 });
-nativeCOnfig.plugins.unshift(uglifyJsPlugin);
-export default nativeCOnfig;
+webpack_native_config_1.default.plugins.unshift(uglifyJsPlugin);
+exports.default = webpack_native_config_1.default;

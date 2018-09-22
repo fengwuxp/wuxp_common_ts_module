@@ -1,17 +1,19 @@
-import * as path from "path";
-import entry from "./GetNativePackViews";
-import { isExclude } from "../../utils/WebpackUtils";
-import WeexPackConfig from "./WeexPackConfig";
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { IMAGE_PATH, ANDROID_DIR, IOS_DIR } = WeexPackConfig;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
+var GetNativePackViews_1 = require("./GetNativePackViews");
+var WebpackUtils_1 = require("../../utils/WebpackUtils");
+var WeexPackConfig_1 = require("./WeexPackConfig");
+var CleanWebpackPlugin = require("clean-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR;
 /**
  * weex 打包的 base config
  * @author wxup
  * @create 2018-09-22 15:02
  **/
-const config = {
-    entry: entry,
+var config = {
+    entry: GetNativePackViews_1.default,
     output: {
         filename: '[name].js',
     },
@@ -41,7 +43,7 @@ const config = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: isExclude
+                exclude: WebpackUtils_1.isExclude
             },
             {
                 test: /\.vue(\?[^?]+)?$/,
@@ -55,7 +57,7 @@ const config = {
         ]
     },
 };
-const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : "";
+var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : "";
 if (nativeRelease) {
     config.plugins = [];
     //先将打包目录清除
@@ -76,7 +78,7 @@ if (nativeRelease) {
     // flatten 只拷贝文件不管文件夹      默认是false
     // ignore  忽略拷贝指定的文件           可以用模糊匹配
     //将图片资源复制到对应的原始目录
-    let from = path.join(IMAGE_PATH);
+    var from = path.join(IMAGE_PATH);
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(new CopyWebpackPlugin([{
                 from: from,
@@ -90,4 +92,4 @@ if (nativeRelease) {
             }]));
     }
 }
-export default config;
+exports.default = config;
