@@ -3,7 +3,7 @@ import * as path from "path";
 import * as os from "os";
 import * as HappyPack from "happypack";
 import {isExclude} from "../../utils/WebpackUtils";
-
+const {VueLoaderPlugin} = require('vue-loader');
 
 const bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -55,6 +55,7 @@ const webpackConfig: webpack.Configuration = {
 
     plugins: [
         bannerPlugin,
+        new VueLoaderPlugin(),
         new HappyPack({
             id: 'babel',
             verbose: true,
@@ -104,6 +105,4 @@ const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 
 webpackConfig.mode = "development";
 
-export {
-    webpackConfig
-};
+export default webpackConfig

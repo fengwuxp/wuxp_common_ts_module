@@ -42,10 +42,10 @@ var config = {
             }
         ]
     },
+    plugins: []
 };
 var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 if (nativeRelease) {
-    config.plugins = [];
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
         path.join(PROJECT_ROOT_DIR, ANDROID_DIR),

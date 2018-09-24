@@ -1,17 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {VueLoaderPlugin} = require('vue-loader');
-const {webpackConfig} = require('common_webpack/lib/weex/web/webpack.base.config');
+const webpackConfig = require('common_webpack/lib/weex/web/webpack.base.config').default;
 
 const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
 
-webpackConfig.mode = "development";
-// webpackConfig.output.path = path.resolve(__dirname, './dist_web');
-
 webpackConfig.plugins.push(
-    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: "index.html",

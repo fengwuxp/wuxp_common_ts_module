@@ -5,6 +5,7 @@ var path = require("path");
 var os = require("os");
 var HappyPack = require("happypack");
 var WebpackUtils_1 = require("../../utils/WebpackUtils");
+var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
     raw: true
@@ -51,6 +52,7 @@ var webpackConfig = {
     },
     plugins: [
         bannerPlugin,
+        new VueLoaderPlugin(),
         new HappyPack({
             id: 'babel',
             verbose: true,
@@ -65,7 +67,6 @@ var webpackConfig = {
         })
     ]
 };
-exports.webpackConfig = webpackConfig;
 var weexVuePrecompiler = require('weex-vue-precompiler')();
 var postcssPluginWeex = require('postcss-plugin-weex');
 var autoprefixer = require('autoprefixer');
@@ -97,3 +98,4 @@ webpackConfig.module.rules[1].use.push({
     }
 });
 webpackConfig.mode = "development";
+exports.default = webpackConfig;

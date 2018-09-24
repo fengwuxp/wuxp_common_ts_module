@@ -48,13 +48,13 @@ const config: webpack.Configuration = {
             }
         ]
     },
+    plugins:[]
 };
 
 const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
 if (nativeRelease) {
 
-    config.plugins = [];
 
 
     //先将打包目录清除
