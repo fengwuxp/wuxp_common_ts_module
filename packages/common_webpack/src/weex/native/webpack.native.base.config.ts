@@ -7,7 +7,7 @@ import WeexPackConfig from "./WeexPackConfig";
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const {IMAGE_PATH, ANDROID_DIR, IOS_DIR} = WeexPackConfig;
+const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
 
 
 /**
@@ -17,8 +17,9 @@ const {IMAGE_PATH, ANDROID_DIR, IOS_DIR} = WeexPackConfig;
  **/
 
 const config: webpack.Configuration = {
-    entry: entry,
+    entry,
     output: {
+        path: path.resolve("./dist"),
         filename: '[name].js',
     },
     resolve: {
@@ -31,21 +32,6 @@ const config: webpack.Configuration = {
 
     module: {
         rules: [
-            // {
-            //     test: /\.ts[x]?$/,
-            //     exclude: isExclude,
-            //     use: [
-            //         {
-            //             loader: "babel-loader",
-            //             options: {
-            //                 cacheDirectory: true,
-            //                 presets: ['es2015', 'stage-2']
-            //             }
-            //         },
-            //         {loader: "awesome-typescript-loader"}
-            //     ]
-            // }
-            // ,
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -64,7 +50,7 @@ const config: webpack.Configuration = {
     },
 };
 
-const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : "";
+const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
 if (nativeRelease) {
 
@@ -73,8 +59,8 @@ if (nativeRelease) {
 
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
-        path.join(ANDROID_DIR, "",),
-        path.join(IOS_DIR, "")
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR)
     ], {
         //root: __dirname,       　　　　　　　　　　//根目录
         verbose: true,        　　　　　　　　　　//开启在控制台输出信息
@@ -92,12 +78,12 @@ if (nativeRelease) {
     // ignore  忽略拷贝指定的文件           可以用模糊匹配
 
     //将图片资源复制到对应的原始目录
-    let from = path.join(IMAGE_PATH);
+    let from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH);
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(
             new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(ANDROID_DIR, IMAGE_PATH)
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
             }])
         );
     }
@@ -105,7 +91,7 @@ if (nativeRelease) {
         config.plugins.push(
             new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(IOS_DIR, IMAGE_PATH)
+                to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH)
             }])
         );
     }

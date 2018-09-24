@@ -8,7 +8,7 @@ const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
 
 webpackConfig.mode = "development";
-webpackConfig.output.path = path.resolve(__dirname, './dist_web');
+// webpackConfig.output.path = path.resolve(__dirname, './dist_web');
 
 webpackConfig.plugins.push(
     new VueLoaderPlugin(),

@@ -21,7 +21,7 @@ const webpackConfig: webpack.Configuration = {
         app: path.resolve('src', 'Main'),
     },
     output: {
-        path: path.resolve(__dirname, 'dist_web'),
+        path: path.resolve( 'dist_web'),
         filename: '[name].web.js'
     },
     resolve: {

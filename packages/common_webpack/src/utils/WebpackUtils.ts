@@ -1,3 +1,4 @@
+import * as path from "path";
 import {INCLUDE_PATH} from "../config/webpackConfig";
 
 //默认导入的模块
@@ -34,4 +35,10 @@ export const isExclude = function (path) {
     return isNodeModules;
 };
 
+/**
+ * 获取项目跟目录
+ */
+export function getProjectRootDir() {
 
+    return path.resolve("./");
+}

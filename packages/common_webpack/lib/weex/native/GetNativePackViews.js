@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
 var WeexPackConfig_1 = require("./WeexPackConfig");
-var NATIVE_EXCLUDE_FILES = WeexPackConfig_1.default.NATIVE_EXCLUDE_FILES, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR;
+var NATIVE_EXCLUDE_FILES = WeexPackConfig_1.default.NATIVE_EXCLUDE_FILES, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR;
 /**
  *  获取原生要打包的页面
  * @author wxup
@@ -13,7 +13,7 @@ var NATIVE_EXCLUDE_FILES = WeexPackConfig_1.default.NATIVE_EXCLUDE_FILES, ANDROI
 var DEV_DIR = "./dist";
 var walk = function (root, dir, entry, outPath) {
     if (entry === void 0) { entry = {}; }
-    var directory = path.join(__dirname, root, dir);
+    var directory = path.join(PROJECT_ROOT_DIR, root, dir);
     fs.readdirSync(directory)
         .forEach(function (file) {
         var fullPath = path.join(directory, file);
@@ -38,7 +38,9 @@ var walk = function (root, dir, entry, outPath) {
         var stat = fs.statSync(fullPath);
         if (stat.isFile() && path.extname(fullPath) === '.vue' && !isExclude) {
             //dir.substr(6)是在dist里去掉views这层文件夹
-            var name_1 = path.join(outPath, dir.substr(6), path.basename(file, '.vue'));
+            var name_1 = path.join(PROJECT_ROOT_DIR, outPath, dir.substr(6), path.basename(file, '.vue'))
+                .replace(PROJECT_ROOT_DIR, "")
+                .replace("\\dist\\", "");
             entry[name_1] = fullPath + '?entry=true';
         }
         else if (stat.isDirectory()) {
@@ -53,17 +55,17 @@ var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : ""
 if (nativeRelease.trim().length > 0) {
     //是否原生发布的包
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        walk('../../../src', '/views', entry, ANDROID_DIR);
+        walk('./src', '/views', entry, ANDROID_DIR);
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
-        walk('../../../src', '/views', entry, IOS_DIR);
+        walk('./src', '/views', entry, IOS_DIR);
     }
     if (process.env.NOT_USE_DEV == null) {
         //默认会输出到开发环境的目录
-        walk('../../../src', '/views', entry, DEV_DIR);
+        walk('./src', '/views', entry, DEV_DIR);
     }
 }
 else {
-    walk('../../../src', '/views', entry, DEV_DIR);
+    walk('./src', '/views', entry, DEV_DIR);
 }
 exports.default = entry;

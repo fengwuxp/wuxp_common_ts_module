@@ -56,7 +56,7 @@ execSync("tsc");
 
 console.log("编译完成\r\n");
 
-console.log("移除不要文件");
+console.log("移除不要的文件");
 
 const rmList = [
     "GetWebpackBaseConfigOptions",

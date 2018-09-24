@@ -3,6 +3,7 @@
  * @author wxup
  * @create 2018-09-22 14:53
  **/
+import {getProjectRootDir} from "../../utils/WebpackUtils";
 
 interface WeexPackConfig {
     /**
@@ -25,6 +26,11 @@ interface WeexPackConfig {
      */
     IMAGE_PATH: string;
 
+
+    /**
+     * 项目根目录
+     */
+    PROJECT_ROOT_DIR: string;
 }
 
 let {
@@ -32,7 +38,7 @@ let {
     ANDROID_DIR,
     IOS_DIR,
     IMAGE_PATH
-} = require("../../../webpack-config/WebpackConfig");
+} = require("../../../../../webpack-config/WebpackConfig");
 
 
 if (NATIVE_EXCLUDE_FILES === undefined || NATIVE_EXCLUDE_FILES === null) {
@@ -53,11 +59,19 @@ IOS_DIR = IOS_DIR ? IOS_DIR : DEFAULT_IOS_DIR;
 IMAGE_PATH = IMAGE_PATH ? IMAGE_PATH : "./images";
 
 
-const PackConfig: WeexPackConfig={
+/**
+ * 获取项目更目录
+ */
+const PROJECT_ROOT_DIR: string = getProjectRootDir();
+
+console.log("PROJECT_ROOT_DIR",PROJECT_ROOT_DIR)
+
+const PackConfig: WeexPackConfig = {
     NATIVE_EXCLUDE_FILES,
     ANDROID_DIR,
     IOS_DIR,
-    IMAGE_PATH
+    IMAGE_PATH,
+    PROJECT_ROOT_DIR
 };
 
 export default PackConfig;

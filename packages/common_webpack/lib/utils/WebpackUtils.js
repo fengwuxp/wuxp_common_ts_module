@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
 var webpackConfig_1 = require("../config/webpackConfig");
 //默认导入的模块
 var DEFAULT_INCLUDE = [
@@ -27,3 +28,10 @@ exports.isExclude = function (path) {
     }
     return isNodeModules;
 };
+/**
+ * 获取项目跟目录
+ */
+function getProjectRootDir() {
+    return path.resolve("./");
+}
+exports.getProjectRootDir = getProjectRootDir;

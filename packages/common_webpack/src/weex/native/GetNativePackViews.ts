@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import WeexPackConfig from "./WeexPackConfig";
 
-const {NATIVE_EXCLUDE_FILES, ANDROID_DIR, IOS_DIR} = WeexPackConfig;
+const {NATIVE_EXCLUDE_FILES, ANDROID_DIR, PROJECT_ROOT_DIR, IOS_DIR} = WeexPackConfig;
 
 /**
  *  获取原生要打包的页面
@@ -14,7 +14,7 @@ const {NATIVE_EXCLUDE_FILES, ANDROID_DIR, IOS_DIR} = WeexPackConfig;
 const DEV_DIR = "./dist";
 
 const walk = function (root, dir, entry = {}, outPath) {
-    const directory = path.join(__dirname, root, dir);
+    const directory = path.join(PROJECT_ROOT_DIR, root, dir);
     fs.readdirSync(directory)
         .forEach(function (file) {
             const fullPath = path.join(directory, file);
@@ -39,7 +39,9 @@ const walk = function (root, dir, entry = {}, outPath) {
             const stat = fs.statSync(fullPath);
             if (stat.isFile() && path.extname(fullPath) === '.vue' && !isExclude) {
                 //dir.substr(6)是在dist里去掉views这层文件夹
-                const name = path.join(outPath, dir.substr(6), path.basename(file, '.vue'));
+                const name = path.join(PROJECT_ROOT_DIR, outPath, dir.substr(6), path.basename(file, '.vue'))
+                    .replace(PROJECT_ROOT_DIR, "")
+                    .replace("\\dist\\", "");
                 entry[name] = fullPath + '?entry=true'
             } else if (stat.isDirectory()) {
                 const subdir = path.join(dir, file);
@@ -54,17 +56,17 @@ const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : 
 if (nativeRelease.trim().length > 0) {
     //是否原生发布的包
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        walk('../../../src', '/views', entry, ANDROID_DIR);
+        walk('./src', '/views', entry, ANDROID_DIR);
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
-        walk('../../../src', '/views', entry, IOS_DIR);
+        walk('./src', '/views', entry, IOS_DIR);
     }
     if (process.env.NOT_USE_DEV == null) {
         //默认会输出到开发环境的目录
-        walk('../../../src', '/views', entry, DEV_DIR);
+        walk('./src', '/views', entry, DEV_DIR);
     }
 } else {
-    walk('../../../src', '/views', entry, DEV_DIR);
+    walk('./src', '/views', entry, DEV_DIR);
 }
 
 export default entry;

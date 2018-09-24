@@ -6,7 +6,7 @@ var WebpackUtils_1 = require("../../utils/WebpackUtils");
 var WeexPackConfig_1 = require("./WeexPackConfig");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR;
+var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
 /**
  * weex 打包的 base config
  * @author wxup
@@ -15,6 +15,7 @@ var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConf
 var config = {
     entry: GetNativePackViews_1.default,
     output: {
+        path: path.resolve("./dist"),
         filename: '[name].js',
     },
     resolve: {
@@ -25,21 +26,6 @@ var config = {
     },
     module: {
         rules: [
-            // {
-            //     test: /\.ts[x]?$/,
-            //     exclude: isExclude,
-            //     use: [
-            //         {
-            //             loader: "babel-loader",
-            //             options: {
-            //                 cacheDirectory: true,
-            //                 presets: ['es2015', 'stage-2']
-            //             }
-            //         },
-            //         {loader: "awesome-typescript-loader"}
-            //     ]
-            // }
-            // ,
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -57,13 +43,13 @@ var config = {
         ]
     },
 };
-var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : "";
+var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 if (nativeRelease) {
     config.plugins = [];
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
-        path.join(ANDROID_DIR, ""),
-        path.join(IOS_DIR, "")
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR)
     ], {
         //root: __dirname,       　　　　　　　　　　//根目录
         verbose: true,
@@ -78,17 +64,17 @@ if (nativeRelease) {
     // flatten 只拷贝文件不管文件夹      默认是false
     // ignore  忽略拷贝指定的文件           可以用模糊匹配
     //将图片资源复制到对应的原始目录
-    var from = path.join(IMAGE_PATH);
+    var from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH);
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(ANDROID_DIR, IMAGE_PATH)
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
             }]));
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
         config.plugins.push(new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(IOS_DIR, IMAGE_PATH)
+                to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH)
             }]));
     }
 }
