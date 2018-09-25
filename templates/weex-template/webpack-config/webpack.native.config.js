@@ -12,6 +12,4 @@ config.plugins.unshift(new webpack.DefinePlugin({
     }
 }));
 
-// console.log(config);
-
 module.exports = config;
