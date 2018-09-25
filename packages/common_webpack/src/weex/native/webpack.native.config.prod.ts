@@ -36,6 +36,6 @@ config.plugins.unshift(
 //     noEmitOnErrors: true,
 //     usedExports:true
 // };
-config.mode = "production";
+config.mode = "none";
 
 export default config;

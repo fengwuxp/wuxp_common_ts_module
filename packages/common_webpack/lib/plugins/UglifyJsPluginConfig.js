@@ -7,7 +7,7 @@ var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
  * @create 2018-09-24 18:46
  **/
 exports.uglifyJsPlugin = new UglifyJsPlugin({
-    parallel: true,
+    // parallel: true,
     uglifyOptions: {
         /**
          * ecma（默认未定义） - 传递5,6,7或8以覆盖分析，压缩和输出选项。。
@@ -50,10 +50,6 @@ exports.uglifyJsPlugin = new UglifyJsPlugin({
         //
         // },
         /**
-         * sourceMap（默认为false） - 如果您希望指定源地图选项，则传递一个对象。
-         */
-        sourceMap: false,
-        /**
          * toplevel（默认为false） - 如果您希望启用顶级变量和函数名称修改并删除未使用的变量和函数，则设置为true。
          */
         toplevel: false,
@@ -80,4 +76,8 @@ exports.uglifyJsPlugin = new UglifyJsPlugin({
          */
         safari10: false,
     },
+    /**
+     * sourceMap（默认为false） - 如果您希望指定源地图选项，则传递一个对象。
+     */
+    sourceMap: false
 });
