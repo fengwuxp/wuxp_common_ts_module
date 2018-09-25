@@ -28,6 +28,7 @@ const postcssLoader = {
         ident: "postcss-loader"
     }
 };
+const weexVuePrecompiler = require('weex-vue-precompiler')();
 
 const webpackConfig: webpack.Configuration = {
 
@@ -46,7 +47,23 @@ const webpackConfig: webpack.Configuration = {
             babelLoader,
             {
                 test: /\.vue(\?[^?]+)?$/,
-                use: []
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            optimizeSSR: false,
+                            compilerOptions: {
+                                modules: [
+                                    {
+                                        postTransformNode: function (el) {
+                                            weexVuePrecompiler(el);
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
             },
             awesomeTypescriptLoader,
             {
@@ -85,24 +102,6 @@ const webpackConfig: webpack.Configuration = {
     ]
 };
 
-const weexVuePrecompiler = require('weex-vue-precompiler')();
-
-
-(webpackConfig.module.rules[1].use as Array<any>).push({
-    loader: 'vue-loader',
-    options: {
-        optimizeSSR: false,
-        compilerOptions: {
-            modules: [
-                {
-                    postTransformNode: function (el) {
-                        weexVuePrecompiler(el);
-                    }
-                }
-            ]
-        }
-    }
-});
 
 webpackConfig.mode = "development";
 

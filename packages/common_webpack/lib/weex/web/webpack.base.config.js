@@ -26,6 +26,7 @@ var postcssLoader = {
         ident: "postcss-loader"
     }
 };
+var weexVuePrecompiler = require('weex-vue-precompiler')();
 var webpackConfig = {
     entry: {
         app: path.resolve('src', 'Main'),
@@ -42,7 +43,23 @@ var webpackConfig = {
             BabelLoader_1.default,
             {
                 test: /\.vue(\?[^?]+)?$/,
-                use: []
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            optimizeSSR: false,
+                            compilerOptions: {
+                                modules: [
+                                    {
+                                        postTransformNode: function (el) {
+                                            weexVuePrecompiler(el);
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
             },
             TypescriptLoader_1.default,
             {
@@ -78,21 +95,5 @@ var webpackConfig = {
         bannerPlugin
     ]
 };
-var weexVuePrecompiler = require('weex-vue-precompiler')();
-webpackConfig.module.rules[1].use.push({
-    loader: 'vue-loader',
-    options: {
-        optimizeSSR: false,
-        compilerOptions: {
-            modules: [
-                {
-                    postTransformNode: function (el) {
-                        weexVuePrecompiler(el);
-                    }
-                }
-            ]
-        }
-    }
-});
 webpackConfig.mode = "development";
 exports.default = webpackConfig;

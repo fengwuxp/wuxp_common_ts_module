@@ -1,25 +1,27 @@
 /**
- * babel7配置
+ * babel 7 配置
  * @author wxup
  * @create 2018-09-08 10:45
  **/
 module.exports = {
     presets: [
         [
-            "@babel/env",
+            "@babel/preset-env",
             {
-                "targets": {
-                    "browsers": [
-                        "last 2 versions"
-                    ]
-                },
+                "modules": false,
+                // "targets": {
+                //     "browsers": [
+                //         "last 2 versions"
+                //     ]
+                // },
                 // useBuiltins: "entry"
-                useBuiltins:"usage"
+                useBuiltins: "usage"
             },
 
         ],
-        "@babel/preset-react"
-        //    "@babel/typescript"
+        // "@babel/preset-typescript",
+        "@babel/preset-react",
+        "@babel/preset-flow"
     ],
     plugins: [
         [
@@ -37,21 +39,15 @@ module.exports = {
         "@babel/plugin-proposal-json-strings",
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-syntax-import-meta",
-        [
-            "@babel/plugin-transform-regenerator",
-            {
-                asyncGenerators: true,
-                generators: true,
-                async: true
-            }
-        ],
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-transform-regenerator",
         [
             "@babel/plugin-transform-runtime",
             {
-                corejs:2,  //false or 2
+                // corejs: 2,  //false or 2
                 helpers: false,
                 regenerator: true,
             }
-        ],
+        ]
     ]
 };

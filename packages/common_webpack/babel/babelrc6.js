@@ -1,5 +1,5 @@
 /**
- * babel6配置
+ * babel 6 配置
  * @author wxup
  * @create 2018-09-08 10:45
  **/
@@ -10,6 +10,9 @@ module.exports = {
     ],
     plugins: [
         [
+            //装饰器
+            "transform-decorators-legacy",
+            //ES7async的支持
             "transform-runtime",
             {
                 "helpers": false,
