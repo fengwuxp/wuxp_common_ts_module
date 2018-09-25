@@ -12,33 +12,45 @@ module.exports = {
                     "browsers": [
                         "last 2 versions"
                     ]
-                }
-            }
+                },
+                // useBuiltins: "entry"
+                useBuiltins:"usage"
+            },
+
         ],
-        "@babel/react"
+        "@babel/preset-react"
         //    "@babel/typescript"
     ],
     plugins: [
         [
             "@babel/plugin-proposal-class-properties",
             {
-                "loose": false
+                loose: false
             }
         ],
         [
             "@babel/plugin-proposal-decorators",
             {
-                "legacy": true
+                legacy: true
             }
         ],
         "@babel/plugin-proposal-json-strings",
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-syntax-import-meta",
         [
+            "@babel/plugin-transform-regenerator",
+            {
+                asyncGenerators: true,
+                generators: true,
+                async: true
+            }
+        ],
+        [
             "@babel/plugin-transform-runtime",
             {
-                "helpers": false,
-                "regenerator": true
+                corejs:2,  //false or 2
+                helpers: false,
+                regenerator: true,
             }
         ],
     ]

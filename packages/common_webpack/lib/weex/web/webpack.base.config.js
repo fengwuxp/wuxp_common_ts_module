@@ -5,12 +5,27 @@ var path = require("path");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var CssModuleUtils_1 = require("../../style/CssModuleUtils");
-var PostCssLoader_1 = require("../../style/PostCssLoader");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
     raw: true
 });
+var postcssPluginWeex = require('postcss-plugin-weex');
+var autoprefixer = require('autoprefixer');
+var postcssPluginPx2Rem = require('postcss-plugin-px2rem');
+var postcssLoader = {
+    loader: "postcss-loader",
+    options: {
+        plugins: [
+            postcssPluginWeex(),
+            autoprefixer({
+                browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
+            }),
+            postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
+        ],
+        ident: "postcss-loader"
+    }
+};
 var webpackConfig = {
     entry: {
         app: path.resolve('src', 'Main'),
@@ -37,7 +52,7 @@ var webpackConfig = {
                         loader: "style-loader"
                     },
                     CssModuleUtils_1.cssModuleLoader,
-                    PostCssLoader_1.default
+                    postcssLoader
                 ]
             },
             {
@@ -47,7 +62,7 @@ var webpackConfig = {
                         loader: "style-loader"
                     },
                     CssModuleUtils_1.cssModuleLoader,
-                    PostCssLoader_1.default,
+                    postcssLoader,
                     {
                         loader: "sass-loader",
                         options: {
@@ -55,7 +70,7 @@ var webpackConfig = {
                         }
                     }
                 ]
-            },
+            }
         ]
     },
     plugins: [
@@ -64,20 +79,10 @@ var webpackConfig = {
     ]
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();
-var postcssPluginWeex = require('postcss-plugin-weex');
-var autoprefixer = require('autoprefixer');
-var postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 webpackConfig.module.rules[1].use.push({
     loader: 'vue-loader',
     options: {
         optimizeSSR: false,
-        postcss: [
-            postcssPluginWeex(),
-            autoprefixer({
-                browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-            }),
-            postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
-        ],
         compilerOptions: {
             modules: [
                 {
@@ -86,10 +91,6 @@ webpackConfig.module.rules[1].use.push({
                     }
                 }
             ]
-        },
-        loaders: {
-            js: 'happypack/loader?id=babel',
-            scss: 'vue-style-loader!css-loader!sass-loader'
         }
     }
 });

@@ -16,20 +16,12 @@
     "publish:npm": "lerna publish --npm-tag=0.0.1"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.0",
-    "lerna": "^2.11.0",
-    "typescript": "^2.8.3",
-    "typings": "^2.1.1",
-    "webpack-uglify-parallel": "^0.1.4"
+    "lerna": "^2.11.0"
   },
   "config": {
     "version": "0.0.1"
   },
   "dependencies": {
-    "babel-preset-es2018": "^1.0.0",
-    "happypack": "^5.0.0",
-    "node-sass": "^4.9.3",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "webpack-parallel-uglify-plugin": "^1.1.0"
+
   }
 }

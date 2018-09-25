@@ -24,5 +24,7 @@
 <style scoped lang="scss">
     .text_red{
         color: red;
+        height: 100px;
+        background-color: #999999;
     }
 </style>
