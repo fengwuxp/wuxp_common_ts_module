@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
-var path = require("path");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var CssModuleUtils_1 = require("./CssModuleUtils");
+var PostCssLoader_1 = require("./PostCssLoader");
 /**
  * 获取主题配置
  * @param path    文件路径
@@ -33,23 +33,18 @@ function getTheme(path, isPackage) {
     return theme;
 }
 function getLessLoader(options) {
-    var isPackage = options.packagePath !== undefined && options.packagePath !== null;
-    var theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    var isPackage, theme;
+    if (options != null) {
+        isPackage = options.packagePath !== undefined && options.packagePath !== null;
+        theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    }
     return {
         test: /\.less$/,
         use: ExtractTextWebpackPlugin.extract({
             fallback: "style-loader",
             use: [
-                CssModuleUtils_1.lessModuleLoader,
-                {
-                    loader: "postcss-loader",
-                    options: {
-                        config: {
-                            path: path.join(__dirname, './PostCss.config.js')
-                        },
-                        ident: "css-loader"
-                    }
-                },
+                CssModuleUtils_1.cssModuleLoader,
+                PostCssLoader_1.default,
                 {
                     loader: 'less-loader',
                     options: {

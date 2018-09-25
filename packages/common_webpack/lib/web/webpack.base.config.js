@@ -8,6 +8,7 @@ var CssModuleUtils_1 = require("../style/CssModuleUtils");
 var webpackConfig_1 = require("../config/webpackConfig");
 var BabelLoader_1 = require("../loader/BabelLoader");
 var TypescriptLoader_1 = require("../loader/TypescriptLoader");
+var PostCssLoader_1 = require("../style/PostCssLoader");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -41,14 +42,7 @@ exports.getWebpackBaseConfig = function (options) {
                         fallback: "style-loader",
                         use: [
                             CssModuleUtils_1.cssModuleLoader,
-                            {
-                                loader: "postcss-loader",
-                                options: {
-                                    config: {
-                                        path: path.join(__dirname, './postcss.config.js')
-                                    }
-                                }
-                            }
+                            PostCssLoader_1.default
                         ]
                     }),
                 },
@@ -59,16 +53,14 @@ exports.getWebpackBaseConfig = function (options) {
                         fallback: "style-loader",
                         use: [
                             // require.resolve("style-loader"),
-                            CssModuleUtils_1.scssModuleLoader,
+                            CssModuleUtils_1.cssModuleLoader,
+                            PostCssLoader_1.default,
                             {
-                                loader: "postcss-loader",
+                                loader: "sass-loader",
                                 options: {
-                                    config: {
-                                        path: path.join(__dirname, './postcss.config.js')
-                                    }
+                                    ident: "css-loader"
                                 }
-                            },
-                            { loader: "sass-loader" }
+                            }
                         ]
                     })
                 },

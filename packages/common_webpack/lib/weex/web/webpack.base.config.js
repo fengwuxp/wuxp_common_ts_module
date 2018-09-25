@@ -2,19 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var webpack = require("webpack");
 var path = require("path");
-var os = require("os");
-var HappyPack = require("happypack");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
+var CssModuleUtils_1 = require("../../style/CssModuleUtils");
+var PostCssLoader_1 = require("../../style/PostCssLoader");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
     raw: true
 });
-var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
-HappyPack.SERIALIZABLE_OPTIONS = HappyPack.SERIALIZABLE_OPTIONS.concat([
-    'postcss'
-]);
 var webpackConfig = {
     entry: {
         app: path.resolve('src', 'Main'),
@@ -35,35 +31,36 @@ var webpackConfig = {
             },
             TypescriptLoader_1.default,
             {
-                // 配置sass编译规则
-                test: /\.s[a|c]ss$/,
-                loader: ['style-loader', 'css-loader', "sass-loader"]
-            },
-            {
-                test: /\.less/,
-                loader: ['style-loader', 'css-loader', "sass-loader"]
-            },
-            {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader']
-            }
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    CssModuleUtils_1.cssModuleLoader,
+                    PostCssLoader_1.default
+                ]
+            },
+            {
+                test: /\.s[c|a]ss$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    CssModuleUtils_1.cssModuleLoader,
+                    PostCssLoader_1.default,
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            ident: "css-loader"
+                        }
+                    }
+                ]
+            },
         ]
     },
     plugins: [
         new VueLoaderPlugin(),
-        bannerPlugin,
-        new HappyPack({
-            id: 'babel',
-            verbose: true,
-            loaders: ['babel-loader?cacheDirectory=true'],
-            threadPool: happyThreadPool
-        }),
-        new HappyPack({
-            id: 'css',
-            verbose: true,
-            loaders: ['postcss-loader'],
-            threadPool: happyThreadPool
-        })
+        bannerPlugin
     ]
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();

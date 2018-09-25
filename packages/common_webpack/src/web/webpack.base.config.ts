@@ -4,11 +4,12 @@ import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
-import {scssModuleLoader, cssModuleLoader} from "../style/CssModuleUtils";
+import {cssModuleLoader} from "../style/CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "../config/webpackConfig";
 import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
+import PostCssLoader from "../style/PostCssLoader";
 
 
 /**
@@ -49,14 +50,7 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
                         fallback: "style-loader",
                         use: [
                             cssModuleLoader,
-                            {
-                                loader: "postcss-loader",
-                                options: {
-                                    config: {
-                                        path: path.join(__dirname, './postcss.config.js')
-                                    }
-                                }
-                            }
+                            PostCssLoader
                         ]
                     }),
 
@@ -69,16 +63,14 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
                         fallback: "style-loader",
                         use: [
                             // require.resolve("style-loader"),
-                            scssModuleLoader,
+                            cssModuleLoader,
+                            PostCssLoader,
                             {
-                                loader: "postcss-loader",
-                                options: {
-                                    config: {
-                                        path: path.join(__dirname, './postcss.config.js')
-                                    }
+                                loader: "sass-loader",
+                                options:{
+                                    ident: "css-loader"
                                 }
-                            },
-                            {loader: "sass-loader"}
+                            }
                         ]
                     })
                 },

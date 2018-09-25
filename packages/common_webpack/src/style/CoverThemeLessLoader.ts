@@ -1,8 +1,8 @@
 import {existsSync} from "fs";
-import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
-import {lessModuleLoader} from "./CssModuleUtils";
+import {cssModuleLoader} from "./CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
+import PostCssLoader from "./PostCssLoader";
 
 
 /**
@@ -34,25 +34,19 @@ function getTheme(path, isPackage) {
 }
 
 function getLessLoader(options: GetWebpackBaseConfigOptions) {
-
-    const isPackage = options.packagePath !== undefined && options.packagePath !== null;
-    const theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    let isPackage, theme;
+    if (options != null) {
+        isPackage = options.packagePath !== undefined && options.packagePath !== null;
+        theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    }
 
     return {
         test: /\.less$/,
         use: ExtractTextWebpackPlugin.extract({
             fallback: "style-loader",
             use: [
-                lessModuleLoader,
-                {
-                    loader: "postcss-loader",
-                    options: {
-                        config: {
-                            path: path.join(__dirname, './PostCss.config.js')
-                        },
-                        ident: "css-loader"
-                    }
-                },
+                cssModuleLoader,
+                PostCssLoader,
                 {
                     loader: 'less-loader',
                     options: {
