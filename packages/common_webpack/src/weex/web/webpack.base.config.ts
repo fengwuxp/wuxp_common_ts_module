@@ -39,8 +39,8 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "style-loader"
                     },
-                    cssModuleLoader,
-                    PostCssLoader
+                    cssModuleLoader
+                    // PostCssLoader
                 ]
 
             },
@@ -51,7 +51,7 @@ const webpackConfig: webpack.Configuration = {
                         loader: "style-loader"
                     },
                     cssModuleLoader,
-                    PostCssLoader,
+                    // PostCssLoader,
                     {
                         loader: "sass-loader",
                         options:{
