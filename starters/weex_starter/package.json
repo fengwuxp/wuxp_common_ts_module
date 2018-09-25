@@ -23,6 +23,7 @@
   "license": "ISC",
   "keywords": [],
   "dependencies": {
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-import": "^1.9.1",
     "common_starter": "^0.0.1",
     "common_webpack": "^0.0.1",

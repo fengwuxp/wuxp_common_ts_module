@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
-var WebpackUtils_1 = require("../utils/WebpackUtils");
 var CoverThemeLessLoader_1 = require("../style/CoverThemeLessLoader");
 var CssModuleUtils_1 = require("../style/CssModuleUtils");
 var webpackConfig_1 = require("../config/webpackConfig");
+var BabelLoader_1 = require("../loader/BabelLoader");
+var TypescriptLoader_1 = require("../loader/TypescriptLoader");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -32,47 +33,8 @@ exports.getWebpackBaseConfig = function (options) {
         devtool: "source-map",
         module: {
             rules: [
-                {
-                    test: /\.js[x]?$/,
-                    exclude: WebpackUtils_1.isExclude,
-                    use: [
-                        {
-                            loader: "babel-loader",
-                            options: {
-                                "presets": [
-                                    [
-                                        "@babel/preset-env",
-                                        {
-                                            "targets": "last 2 versions, ie 11",
-                                            "modules": false
-                                        }
-                                    ]
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.ts[x]?$/,
-                    exclude: WebpackUtils_1.isExclude,
-                    use: [
-                        {
-                            loader: "babel-loader",
-                            options: {
-                                "presets": [
-                                    [
-                                        "@babel/preset-env",
-                                        {
-                                            "targets": "last 2 versions, ie 11",
-                                            "modules": false
-                                        }
-                                    ]
-                                ]
-                            }
-                        },
-                        { loader: "awesome-typescript-loader" }
-                    ]
-                },
+                BabelLoader_1.default,
+                TypescriptLoader_1.default,
                 {
                     test: /\.css$/,
                     use: ExtractTextWebpackPlugin.extract({

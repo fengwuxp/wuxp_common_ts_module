@@ -1,8 +1,9 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import entry from "./GetNativePackViews";
-import {isExclude} from "../../utils/WebpackUtils";
 import WeexPackConfig from "./WeexPackConfig";
+import babelLoader from "../../loader/BabelLoader";
+import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -32,11 +33,8 @@ const config: webpack.Configuration = {
 
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: isExclude
-            },
+            babelLoader,
+            awesomeTypescriptLoader,
             {
                 test: /\.vue(\?[^?]+)?$/,
                 loaders: [

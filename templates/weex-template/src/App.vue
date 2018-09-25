@@ -10,9 +10,14 @@
 </template>
 
 <script>
+    import {sayHello} from "./utils/Utils";
+
     export default {
         methods: {
 
+        },
+        created(){
+            sayHello()
         }
     }
 </script>

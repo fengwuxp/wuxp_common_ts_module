@@ -3,11 +3,12 @@ import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-import {isExclude} from "../utils/WebpackUtils";
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
 import {scssModuleLoader, cssModuleLoader} from "../style/CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "../config/webpackConfig";
+import babelLoader from "../loader/BabelLoader";
+import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 
 
 /**
@@ -40,47 +41,8 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
         devtool: "source-map",
         module: {
             rules: [
-                {
-                    test: /\.js[x]?$/,
-                    exclude: isExclude,
-                    use: [
-                        {
-                            loader: "babel-loader",
-                            options: {
-                                "presets": [
-                                    [
-                                        "@babel/preset-env",
-                                        {
-                                            "targets": "last 2 versions, ie 11",
-                                            "modules": false
-                                        }
-                                    ]
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.ts[x]?$/,
-                    exclude: isExclude,
-                    use: [
-                        {
-                            loader: "babel-loader",
-                            options: {
-                                "presets": [
-                                    [
-                                        "@babel/preset-env",
-                                        {
-                                            "targets": "last 2 versions, ie 11",
-                                            "modules": false
-                                        }
-                                    ]
-                                ]
-                            }
-                        },
-                        {loader: "awesome-typescript-loader"}
-                    ]
-                },
+                babelLoader,
+                awesomeTypescriptLoader,
                 {
                     test: /\.css$/,
                     use: ExtractTextWebpackPlugin.extract({

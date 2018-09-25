@@ -4,7 +4,8 @@ var webpack = require("webpack");
 var path = require("path");
 var os = require("os");
 var HappyPack = require("happypack");
-var WebpackUtils_1 = require("../../utils/WebpackUtils");
+var BabelLoader_1 = require("../../loader/BabelLoader");
+var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -27,14 +28,12 @@ var webpackConfig = {
     },
     module: {
         rules: [
+            BabelLoader_1.default,
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: WebpackUtils_1.isExclude
-            }, {
                 test: /\.vue(\?[^?]+)?$/,
                 use: []
             },
+            TypescriptLoader_1.default,
             {
                 // 配置sass编译规则
                 test: /\.s[a|c]ss$/,
@@ -51,8 +50,8 @@ var webpackConfig = {
         ]
     },
     plugins: [
-        bannerPlugin,
         new VueLoaderPlugin(),
+        bannerPlugin,
         new HappyPack({
             id: 'babel',
             verbose: true,

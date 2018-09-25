@@ -2,7 +2,8 @@ import * as webpack from "webpack";
 import * as path from "path";
 import * as os from "os";
 import * as HappyPack from "happypack";
-import {isExclude} from "../../utils/WebpackUtils";
+import babelLoader from "../../loader/BabelLoader";
+import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 const {VueLoaderPlugin} = require('vue-loader');
 
 const bannerPlugin = new webpack.BannerPlugin({
@@ -29,14 +30,12 @@ const webpackConfig: webpack.Configuration = {
     },
     module: {
         rules: [
+            babelLoader,
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: isExclude
-            }, {
                 test: /\.vue(\?[^?]+)?$/,
                 use: []
             },
+            awesomeTypescriptLoader,
             {
                 // 配置sass编译规则
                 test: /\.s[a|c]ss$/,
@@ -54,8 +53,8 @@ const webpackConfig: webpack.Configuration = {
     },
 
     plugins: [
-        bannerPlugin,
         new VueLoaderPlugin(),
+        bannerPlugin,
         new HappyPack({
             id: 'babel',
             verbose: true,

@@ -11,8 +11,6 @@
     "sourceMap": true,
     "allowJs": true,
     "compileOnSave": false,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
     "baseUrl": "./src",
     "paths": {
       "@services/*": [

@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var GetNativePackViews_1 = require("./GetNativePackViews");
-var WebpackUtils_1 = require("../../utils/WebpackUtils");
 var WeexPackConfig_1 = require("./WeexPackConfig");
+var BabelLoader_1 = require("../../loader/BabelLoader");
+var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
@@ -26,11 +27,8 @@ var config = {
     },
     module: {
         rules: [
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: WebpackUtils_1.isExclude
-            },
+            BabelLoader_1.default,
+            TypescriptLoader_1.default,
             {
                 test: /\.vue(\?[^?]+)?$/,
                 loaders: [
