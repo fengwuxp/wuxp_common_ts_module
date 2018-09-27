@@ -16,7 +16,9 @@ export interface ResourceConfig {
      */
     remoteDeploymentDirectory: string;
 
-
-
+    /**
+     * 版本号
+     */
+    versionCode:string;
 
 }

@@ -22,7 +22,11 @@
   },
   "keywords": [],
   "types": "./index.d.ts",
+  "dependencies": {
+    "common_core": "^0.0.1",
+    "csstype": "^2.5.7"
+  },
   "devDependencies": {
-    "@types/node": "^9.4.6"
+    "@types/node": "^10.9.4"
   }
 }

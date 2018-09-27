@@ -3,6 +3,8 @@
  * @author wxup
  * @create 2018-09-27 9:58
  **/
+import {LayoutConfig} from "./views/LayoutConfig";
+import {ResourceConfig} from "./resources/ResourceConfig";
 
 
 export interface AppConfig {
@@ -26,6 +28,16 @@ export interface AppConfig {
      * 文件上传地址
      */
     upLoadFileURL?: string;
+
+    /**
+     * 布局配置
+     */
+    layoutConfig:LayoutConfig;
+
+    /**
+     *资源配置
+     */
+    resourceConfig:ResourceConfig;
 
 
 }
