@@ -8,12 +8,13 @@ const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
  * @author wxup
  * @create 2018-09-27 9:54
  **/
-const getWeexBundleJsBasePath = () => {
+const resolveWeexBundleJsBasePath = () => {
 
-    const bundleUrl = weex.config.bundleUrl;
-    let nativeBase;
-    let isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
-    let isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
+    const bundleUrl: string = weex.config.bundleUrl;
+    const isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
+    const isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
+
+    let nativeBase: string;
     if (isAndroidAssets) {
         nativeBase = 'file://assets/js/';
     } else if (isiOSAssets) {

@@ -13,7 +13,10 @@ export const FIXED_PARAM_KEYS: string[] = JSON.parse(process.env.FIXED_PARAM_KEY
 
 const navigator: WeexNavigatorModule = weex.requireModule('navigator');
 
-const argumentsResolve = new URLArgumentsResolve(DEFAULT_PARAM_KEY_NAME, FIXED_PARAM_KEYS);
+/**
+ * 参数解析
+ */
+export const argumentsResolve = new URLArgumentsResolve(DEFAULT_PARAM_KEY_NAME, FIXED_PARAM_KEYS);
 
 
 /**
@@ -32,7 +35,7 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
 
         let {pathname, search, state} = params;
 
-        let queryString = `${argumentsResolve.argumentsToString(state||{})}${search ||''}`;
+        let queryString = `${argumentsResolve.argumentsToString(state || {})}${search || ''}`;
 
         if (pathname.indexOf("?") >= 0) {
             if (pathname.endsWith("&")) {
