@@ -18,8 +18,8 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
 
         if (this.authHelper.isToAuthView(data)) {
-            //是否需要跳转到登录页面
-            return null;
+            //TODO 需要跳转到登录页面
+            return Promise.reject();
         }
         return super.postHandle(data, options);
     }
@@ -27,7 +27,8 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
 
         if (!this.authHelper.autEnhance(params)) {
-            //TODO  鉴权增强失败
+            //TODO  鉴权增强失败，抛出异常
+            return Promise.reject()
         }
 
         return super.preHandle(params);

@@ -6,6 +6,7 @@ import {ReqMethod} from "../../enums/ReqMethod";
 import {isNullOrUndefined} from "util";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";
 import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
+import {HttpFetchException} from "../../../../common_exception/src/http/HttpFetchException";
 
 
 // RequestInit 属性name列表
@@ -38,7 +39,11 @@ export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
                 response['data'] = data;
                 return this.resolveFetchData.resolve(response);
             });
-        });
+        }).catch((response: Response) => {
+            const data = this.resolveFetchData.resolve(response);
+            data.data = response;
+            return data;
+        })
 
     };
 

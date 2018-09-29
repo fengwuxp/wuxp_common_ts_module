@@ -3,8 +3,8 @@ import {FetchOptions, FetchResponse} from "./FetchOptions";
 import {HttpRequestEngine} from "../engine/HttpRequestEngine";
 import {FetchInterceptor} from "../interceptor/FetchInterceptor";
 import FetchInterceptorExecuter from "../interceptor/FetchInterceptorExecuter";
-import {HttpErrorHandler} from "../error/HttpErrorHandler";
-import FetchHttpErrorHandler from "../error/FetchHttpErrorHandler";
+import HttpFetchExceptionHandler from "common_exception/src/http/HttpFetchExceptionHandler";
+import {HttpFetchException} from "common_exception/src/http/HttpFetchException";
 
 /**
  * fetch 客户端
@@ -25,13 +25,13 @@ export default class FetchClientImpl implements FetchClient {
     /**
      * http 请求出错时的错误处理者
      */
-    private httpErrorHandler: HttpErrorHandler;
+    private httpExceptionHandler: HttpFetchExceptionHandler;
 
 
-    constructor(engine: HttpRequestEngine, interceptorList: FetchInterceptor[], httpErrorHandler: HttpErrorHandler) {
+    constructor(engine: HttpRequestEngine, interceptorList: FetchInterceptor[], httpExceptionHandler: HttpFetchExceptionHandler) {
         this.engine = engine;
         this.executor = new FetchInterceptorExecuter(interceptorList);
-        this.httpErrorHandler = httpErrorHandler || new FetchHttpErrorHandler();
+        this.httpExceptionHandler = httpExceptionHandler || new HttpFetchExceptionHandler();
     }
 
     fetch = (options: FetchOptions): Promise<FetchResponse> => {
@@ -46,10 +46,10 @@ export default class FetchClientImpl implements FetchClient {
         }
 
         return executor.preHandle(options)
-            .catch((error: Error) => {
-                //分发错误
+           /* .catch((error: Error) => {
+                //TODO  将异常广播
                 return error;
-            }).then(engine.request)
+            })*/.then(engine.request)
             .then((resp) => {
                 //后置拦截器
                 return executor.postHandle(resp, options)
@@ -60,16 +60,28 @@ export default class FetchClientImpl implements FetchClient {
                             response = transformResponse(response);
                         }
                         return response
-                    }).catch((error) => {
-                        //TODO　分发错误
+                    })/*.catch((error) => {
+                        //TODO  将异常广播
                         return error;
-                    });
+                    });*/
 
-            }).catch((resp) => {
+            }).catch((response: FetchResponse) => {
+
+                //TODO 改为广播模式
+
+                const {message, headers, data, httpCode} = response;
+                const exception: HttpFetchException = {
+                    name: "HttpFetchException",
+                    message,
+                    httpCode,
+                    headers,
+                    response: data,
+                    request: options
+                };
                 //http code错误处理
-                this.httpErrorHandler.handleRequestError(resp, options);
+                this.httpExceptionHandler.handle(exception);
 
-                return resp;
+                return response;
             });
     };
 

@@ -35,6 +35,7 @@ export class WeexAdapter implements FetchAdapter {
                 if (resp.ok) {
                     resolve(data);
                 } else {
+                    data.data = resp;
                     reject(data);
                 }
             }, (response) => {

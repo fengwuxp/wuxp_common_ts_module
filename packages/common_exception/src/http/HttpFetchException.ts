@@ -17,4 +17,14 @@ export interface HttpFetchException extends Exception {
      * 响应头
      */
     headers: any;
+
+    /**
+     * 响应数据
+     */
+    response: any;
+
+    /**
+     * 请求数据
+     */
+    request: any;
 }

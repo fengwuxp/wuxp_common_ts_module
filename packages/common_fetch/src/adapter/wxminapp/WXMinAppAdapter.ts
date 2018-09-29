@@ -40,11 +40,11 @@ export default class WXMinAppAdapter implements FetchAdapter {
                 //     });
                 // },
                 complete: (response: FetchResp) => {
-                    let success = response.statusCode>=200 && response.statusCode<=300;
-                    const {header, data, statusCode} = response;
+                    let success = response.statusCode >= 200 && response.statusCode <= 300;
+                    const {header, data,statusCode} = response;
                     resolve({
                         headers: header,
-                        data,
+                        data: data || response,
                         httpCode: statusCode,
                         success: success
                     });

@@ -40,11 +40,13 @@ export default class FetchInterceptorExecuter {
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
+
             result = await interceptor.preHandle(result);
-            //处理失败
-            if (isNullOrUndefined(result)) {
-                throw new Error("pre handle interceptor execute fail");
-                // console.log("pre handle interceptor execute fail");
+
+            //异常
+            if (result instanceof Error) {
+                console.error("FetchInterceptorExecuter pre handle exception", result);
+                return Promise.reject(result);
             }
         }
         return options;
@@ -84,10 +86,10 @@ export default class FetchInterceptorExecuter {
             }
             result = await interceptor.postHandle(result, options);
 
-            if (isNullOrUndefined(result)) {
-                // return result;
-                //中断
-                throw new Error("post handle interceptor execute fail");
+            //异常
+            if (result instanceof Error) {
+                console.error("FetchInterceptorExecuter post handle exception", result);
+                return Promise.reject(result);
             }
         }
         return result;
