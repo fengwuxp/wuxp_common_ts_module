@@ -1,8 +1,10 @@
 {
-  "name": "wuxp_common_ts_module",
+  "name": "common_exception",
   "version": "0.0.1",
-  "private": true,
-  "author": "wuxp",
+  "description": "common exception",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
@@ -11,18 +13,23 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
   "scripts": {
-    "publish": "node ./scripts/publish.js",
-    "publish:npm": "lerna publish --npm-tag=0.0.1"
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
   },
+  "keywords": [
+    "fetch",
+    "typescript",
+    "weex",
+    "minapp"
+  ],
   "devDependencies": {
-    "lerna": "^2.11.0",
     "@types/node": "^10.11.3"
   },
-  "config": {
-    "version": "0.0.1"
-  },
   "dependencies": {
-
+    "common_core": "0.0.1"
   }
 }

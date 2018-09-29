@@ -46,19 +46,25 @@ export default class FetchClientImpl implements FetchClient {
         }
 
         return executor.preHandle(options)
-            .then(engine.request)
+            .catch((error: Error) => {
+                //分发错误
+                return error;
+            }).then(engine.request)
             .then((resp) => {
                 //后置拦截器
-                let handle = executor.postHandle(resp, options);
-                handle = handle.then((response: FetchResponse) => {
-                    const transformResponse = options.transformResponse;
-                    if (transformResponse) {
-                        //执行 transformResponse
-                        response = transformResponse(response);
-                    }
-                    return response
-                });
-                return handle;
+                return executor.postHandle(resp, options)
+                    .then((response: FetchResponse) => {
+                        const transformResponse = options.transformResponse;
+                        if (transformResponse) {
+                            //执行 transformResponse
+                            response = transformResponse(response);
+                        }
+                        return response
+                    }).catch((error) => {
+                        //TODO　分发错误
+                        return error;
+                    });
+
             }).catch((resp) => {
                 //http code错误处理
                 this.httpErrorHandler.handleRequestError(resp, options);

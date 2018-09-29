@@ -17,7 +17,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
 
-        if (this.authHelper.toLogin(data)) {
+        if (this.authHelper.isToAuthView(data)) {
             //是否需要跳转到登录页面
             return null;
         }
@@ -25,17 +25,26 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     }
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
-        if (this.authHelper.isLogin()) {
 
-            return null;
+        if (!this.authHelper.autEnhance(params)) {
+            //TODO  鉴权增强失败
         }
+
         return super.preHandle(params);
     }
 }
 
 export interface AuthHelper {
 
-    isLogin: () => boolean;
 
-    toLogin: (data: FetchResponse) => boolean;
+    /**
+     * 鉴权增强
+     */
+    autEnhance: (params: FetchOptions) => boolean;
+
+    /**
+     * 是否要跳转到鉴权的视图（登录页面）
+     * @param data
+     */
+    isToAuthView: (data: FetchResponse) => boolean;
 }
