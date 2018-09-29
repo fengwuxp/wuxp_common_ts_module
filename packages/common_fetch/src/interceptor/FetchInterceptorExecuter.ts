@@ -47,6 +47,8 @@ export default class FetchInterceptorExecuter {
             if (result instanceof Error) {
                 console.error("FetchInterceptorExecuter pre handle exception", result);
                 return Promise.reject(result);
+                // throw new Error("pre handle interceptor execute fail");
+                // // console.log("pre handle interceptor execute fail");
             }
         }
         return options;

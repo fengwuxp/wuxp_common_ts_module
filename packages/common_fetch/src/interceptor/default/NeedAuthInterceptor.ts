@@ -26,8 +26,8 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
 
-        if (!this.authHelper.autEnhance(params)) {
-            //TODO  鉴权增强失败，抛出异常
+        if (!this.authHelper.requestParamsEnhance(params)) {
+            //TODO  加上鉴权信息强失败，抛出异常
             return Promise.reject()
         }
 
@@ -39,9 +39,9 @@ export interface AuthHelper {
 
 
     /**
-     * 鉴权增强
+     * 请求参数信息，加上鉴权信息
      */
-    autEnhance: (params: FetchOptions) => boolean;
+    requestParamsEnhance: (params: FetchOptions) => boolean;
 
     /**
      * 是否要跳转到鉴权的视图（登录页面）

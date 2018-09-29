@@ -3,8 +3,9 @@ import {FetchOptions, FetchResponse} from "./FetchOptions";
 import {HttpRequestEngine} from "../engine/HttpRequestEngine";
 import {FetchInterceptor} from "../interceptor/FetchInterceptor";
 import FetchInterceptorExecuter from "../interceptor/FetchInterceptorExecuter";
-import HttpFetchExceptionHandler from "common_exception/src/http/HttpFetchExceptionHandler";
 import {HttpFetchException} from "common_exception/src/http/HttpFetchException";
+import ExceptionBroadcaster from "../../../common_exception/src/subscribe/ExceptionBroadcaster";
+import {HttpFetchExceptionName} from "../../../common_exception/src/http/Const";
 
 /**
  * fetch 客户端
@@ -16,22 +17,15 @@ export default class FetchClientImpl implements FetchClient {
      */
     private engine: HttpRequestEngine;
 
-
     /**
      * 拦截器执行器
      */
     private executor: FetchInterceptorExecuter;
 
-    /**
-     * http 请求出错时的错误处理者
-     */
-    private httpExceptionHandler: HttpFetchExceptionHandler;
 
-
-    constructor(engine: HttpRequestEngine, interceptorList: FetchInterceptor[], httpExceptionHandler: HttpFetchExceptionHandler) {
+    constructor(engine: HttpRequestEngine, interceptorList: FetchInterceptor[]) {
         this.engine = engine;
         this.executor = new FetchInterceptorExecuter(interceptorList);
-        this.httpExceptionHandler = httpExceptionHandler || new HttpFetchExceptionHandler();
     }
 
     fetch = (options: FetchOptions): Promise<FetchResponse> => {
@@ -66,21 +60,17 @@ export default class FetchClientImpl implements FetchClient {
                     });*/
 
             }).catch((response: FetchResponse) => {
-
-                //TODO 改为广播模式
-
                 const {message, headers, data, httpCode} = response;
                 const exception: HttpFetchException = {
-                    name: "HttpFetchException",
+                    name: HttpFetchExceptionName,
                     message,
                     httpCode,
                     headers,
                     response: data,
                     request: options
                 };
-                //http code错误处理
-                this.httpExceptionHandler.handle(exception);
-
+                //http code错误处理，将其广播
+                ExceptionBroadcaster.broadcast(exception);
                 return response;
             });
     };
