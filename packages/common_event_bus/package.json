@@ -1,7 +1,7 @@
 {
-  "name": "common_core",
-  "version": "0.0.1",
-  "description": "common core",
+  "name": "common_event_bus",
+  "version": "1.0.0",
+  "description": "common event bus",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },

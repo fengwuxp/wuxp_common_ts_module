@@ -19,7 +19,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
         if (this.authHelper.isToAuthView(data)) {
             //TODO 需要跳转到登录页面
-            return Promise.reject();
+            return null;
         }
         return super.postHandle(data, options);
     }
@@ -28,7 +28,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
         if (!this.authHelper.requestParamsEnhance(params)) {
             //TODO  加上鉴权信息强失败，抛出异常
-            return Promise.reject()
+            return null;
         }
 
         return super.preHandle(params);
