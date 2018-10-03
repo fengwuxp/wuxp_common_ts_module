@@ -23,6 +23,7 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "@types/node": "^10.9.4"
+    "@types/node": "^10.9.4",
+    "common_core": "^0.0.1"
   }
 }
