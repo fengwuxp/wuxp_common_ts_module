@@ -1,4 +1,6 @@
 import {EventQueue} from "../EventQueue";
+import {EventBroadcaster} from "./EventBroadcaster";
+import {EventReceiver} from "./EventReceiver";
 
 /**
  * 事件广播队列
@@ -16,4 +18,20 @@ export interface EventBroadcastQueue<T = any> extends EventQueue<T> {
      * @param eventName
      */
     register: (category: string, eventName: string) => void;
+
+
+    /**
+     * 获取一个广播者
+     * @param category
+     * @param eventName
+     */
+    getBroadcaster: (category: string, eventName: string) => EventBroadcaster<any>;
+
+
+    /**
+     * 获取一个消息接收者
+     * @param category
+     * @param eventName
+     */
+    getReceiver: (category: string, eventName: string) => EventReceiver<any>;
 }

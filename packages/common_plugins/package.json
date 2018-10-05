@@ -1,7 +1,7 @@
 {
-  "name": "common_weex",
+  "name": "common_plugins",
   "version": "0.0.1",
-  "description": "common weex",
+  "description": "common plugins",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -16,16 +16,14 @@
   "main": "index.js",
   "author": "wuxp",
   "license": "ISC",
+  "keywords": [
+    "typescript"
+  ],
   "scripts": {
     "npm_i": "npm i",
     "npm_publish": "npm publish"
   },
-  "keywords": [
-    "weex",
-    "typescrit"
-  ],
   "dependencies": {
-    "@types/node": "^10.9.4",
-    "@types/weex": "^0.0.1"
+    "@types/node": "^10.9.4"
   }
 }
