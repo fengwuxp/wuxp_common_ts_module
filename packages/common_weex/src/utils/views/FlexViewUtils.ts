@@ -1,4 +1,4 @@
-import {isIos, isIphoneX} from "./WeexEnvUtil";
+import {isIos, isIphoneX} from "../WeexEnvUtil";
 
 /**
  * ios 顶部高度
@@ -38,7 +38,7 @@ const DEFAULT_FOOTER_HEIGHT: number = 83;
  */
 const getViewFooterStyle = (height: number = DEFAULT_FOOTER_HEIGHT): object => {
     const style: any = {height: height};
-    if (isIphoneX()) {
+    if (isIphoneX) {
         //iphone x
         style.height = height + IPHONEX_BOTTOM_HEIGHT;
         style.paddingBottom = IPHONEX_BOTTOM_HEIGHT;
@@ -60,10 +60,10 @@ const getViewHeaderHeight = (): number => {
  * @return {number}
  */
 const getIosTopHeight = (): number => {
-    if (!isIos()) {
+    if (!isIos) {
         return 0;
     }
-    if (isIphoneX()) {
+    if (isIphoneX) {
         return IPHONEX_TOP_HEIGHT;
     } else {
         return IOS_TOP_HEIGHT;

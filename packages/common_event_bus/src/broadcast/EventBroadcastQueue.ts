@@ -9,7 +9,7 @@ import {EventReceiver} from "./EventReceiver";
  * @author wxup
  * @create 2018-10-03 20:07
  **/
-export interface EventBroadcastQueue<T = any> extends EventQueue<T> {
+export interface EventBroadcastQueue<T = any> /*extends EventQueue<T>*/ {
 
 
     /**
