@@ -17,6 +17,7 @@ const isAndroid = WEEX_ENV_PLATFORM_NAME === 'android';
  * @return {boolean}
  */
 const isIos = WEEX_ENV_PLATFORM_NAME === 'ios';
+
 /**
  * 是否为 iphoneX
  * @return {boolean}

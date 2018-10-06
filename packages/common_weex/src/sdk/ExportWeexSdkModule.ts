@@ -16,8 +16,8 @@ import {WeexModalModule} from "weex/src/sdk/model/modal/";
 import {WeexWebSocketModule} from "weex/src/sdk/model/webSocket";
 
 if (process.env.IS_WEB) {
-    require("./sdk/Picker");
-    require("./sdk/Timer");
+    require("./module/Picker");
+    require("./module/Timer");
 }
 
 const animation: WeexAnimationModule = weex.requireModule('animation');

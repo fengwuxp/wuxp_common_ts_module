@@ -1,4 +1,5 @@
 import AppConfigRegistry from "common_config/src/AppConfigRegistry";
+import * as path from "path";
 
 const {resourceDomain, resourceConfig} = AppConfigRegistry.get("");
 
@@ -8,7 +9,7 @@ const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
  * @author wxup
  * @create 2018-09-27 9:54
  **/
-const resolveWeexBundleJsBasePath = () => {
+export const parseWeexBundleJsBasePath = () => {
 
     const bundleUrl: string = weex.config.bundleUrl;
     const isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
@@ -27,4 +28,13 @@ const resolveWeexBundleJsBasePath = () => {
     }
 
     return nativeBase;
+};
+
+/**
+ * 获取资源的完整路径
+ * @param uri
+ */
+export const getWeexResourceUrl = (uri: string) => {
+
+    return path.resolve(parseWeexBundleJsBasePath(), uri);
 };

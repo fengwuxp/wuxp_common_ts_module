@@ -28,7 +28,7 @@
     "@types/node": "^10.9.4",
     "@types/vue": "^2.0.0",
     "@types/weex": "^0.0.1",
-    "common_route": "0.0.1",
+    "common_config": "0.0.1",
     "common_utils": "0.0.1"
   }
 }

@@ -1,9 +1,9 @@
 /**
- * 获取路径
+ * weex路径解析
  * 支持相对地址和绝对地址的写法
  * Created by wuxp on 2017/6/4.
  */
-export default class WeexGetPathUtils {
+export default class WeexPathParseUtil {
 
 
     private constructor() {
@@ -15,7 +15,7 @@ export default class WeexGetPathUtils {
      * @param weex
      * @return {string}
      */
-  static  getNativeGoToURL = (targetURL: string, weex: any) => {
+    static getNativeGoToURL = (targetURL: string, weex: any) => {
 
         const bundleUrl = weex.config.bundleUrl;
 
@@ -23,7 +23,7 @@ export default class WeexGetPathUtils {
         let path = array.pop();                //弹出最后一个url
         let root = array.join("://") + "://";  //根路径
 
-        return WeexGetPathUtils.getTargetURL(targetURL, root, path);
+        return WeexPathParseUtil.getTargetURL(targetURL, root, path);
     };
 
     /**
@@ -32,12 +32,12 @@ export default class WeexGetPathUtils {
      * @param weex
      * @return {string}
      */
-    static  getWebGoToURL = (targetURL: string, weex: any) => {
+    static getWebGoToURL = (targetURL: string, weex: any) => {
         const bundleUrl = window.location.href;
         const urls = bundleUrl.split("#");
         const root = urls[0];
         let path = urls[1];
-        return WeexGetPathUtils.getTargetURL(targetURL, root, path);
+        return WeexPathParseUtil.getTargetURL(targetURL, root, path);
     };
 
     private static getTargetURL(targetURL: string, root: string, path: string) {

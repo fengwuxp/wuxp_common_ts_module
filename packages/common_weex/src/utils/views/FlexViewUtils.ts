@@ -1,4 +1,4 @@
-import {isIos, isIphoneX} from "../WeexEnvUtil";
+import {isIos, isIphoneX} from "../../constant/WeexEnvUtil";
 
 /**
  * ios 顶部高度

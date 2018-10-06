@@ -25,7 +25,7 @@ export default class StringUtils {
      * @param {String} val
      * @return {number}
      */
-    public static  trim = (val: String): string => {
+    public static trim = (val: String): string => {
         if (isNullOrUndefined(val)) {
             return "";
         }
@@ -35,4 +35,33 @@ export default class StringUtils {
         return val.trim();
     };
 
+    /**
+     * 是否为json字符串的格式
+     * @param str
+     */
+    public static isJSONString = (str: string): boolean => {
+
+        if (!isString(str)) {
+            return false;
+        }
+
+        str = str.replace(/\s/g, '')
+            .replace(/\n|\r/, '');
+
+        if (/^\{(.*?)\}$/.test(str)) {
+            return /"(.*?)":(.*?)/g.test(str);
+        }
+
+
+        if (!/^\[(.*?)\]$/.test(str)) {
+            return false;
+        }
+
+        return str.replace(/^\[/, '')
+            .replace(/\]$/, '')
+            .replace(/},{/g, '}\n{')
+            .split(/\n/)
+            .map((s) => StringUtils.isJSONString(s))
+            .reduce((prev, curr) => !!curr);
+    };
 }

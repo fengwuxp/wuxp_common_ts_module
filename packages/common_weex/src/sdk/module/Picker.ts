@@ -1,9 +1,9 @@
-import {isWeb} from "../utils/WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnvUtil";
 /**
  * 自定义picker 保存对象
  * Created by wuxp on 2017/6/6.
  */
-if (isWeb()) {
+if (isWeb) {
 
     const pickerModal:any={
         pickDate(){

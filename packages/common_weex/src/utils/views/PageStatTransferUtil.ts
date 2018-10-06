@@ -3,7 +3,11 @@
  * @author wxup
  * @create 2018-10-06 13:06
  **/
-import {isWeb} from "../WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnvUtil";
+
+
+//页面状态传递key
+const PAGE_VIEW_STATE = "PAGE_VIEW_STATE";
 
 //页面状态
 let VIEW_STATE;

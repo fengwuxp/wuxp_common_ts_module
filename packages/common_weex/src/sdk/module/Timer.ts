@@ -1,6 +1,6 @@
-import {isWeb} from "../utils/WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnvUtil";
 
-if (isWeb()) {
+if (isWeb) {
 
     const timer: any = {
         setTimeout: (callback = () => {

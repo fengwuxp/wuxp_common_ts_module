@@ -1,4 +1,4 @@
-import {modal, timer} from "../ExportWeexSdkModel";
+import {modal, timer} from "../sdk/ExportWeexSdkModule";
 import {isString} from "util";
 
 /**
@@ -7,7 +7,7 @@ import {isString} from "util";
  * @param times    提示的时间长度 单位:秒
  * @param callback 回调
  */
-export const toast = (message: string, times: number = 2, callback?: () => void,) => {
+export const weexToast = (message: string, times: number = 2, callback?: () => void,) => {
     modal.toast({message: message, duration: times});
     if (callback == null) {
         return;
@@ -20,7 +20,7 @@ export const toast = (message: string, times: number = 2, callback?: () => void,
  * @param options
  * @param callback
  */
-export const alert = (options: any = {}, callback) => {
+export const weexAlert = (options: any = {}, callback) => {
     if (isString(options)) {
         options = {message: options}
     }
@@ -39,7 +39,7 @@ export const alert = (options: any = {}, callback) => {
  * @param confirm 确认回调
  * @param cancel  取消回调
  */
-export const confirm = (options: any = {}, confirm = () => {}, cancel = () => {}) => {
+export const weexConfirm = (options: any = {}, confirm = () => {}, cancel = () => {}) => {
     if (isString(options)) {
         options = {message: options}
     }
@@ -64,7 +64,7 @@ export const confirm = (options: any = {}, confirm = () => {}, cancel = () => {}
  * @param confirm 确认回调
  * @param cancel  取消回调
  */
-export const prompt = (options: any = {}, confirm = (data) => {
+export const weexPrompt = (options: any = {}, confirm = (data) => {
 }, cancel = (data) => {
 }) => {
     if (isString(options)) {
