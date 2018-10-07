@@ -27,6 +27,7 @@
     "babel-plugin-import": "^1.9.1",
     "common_starter": "^0.0.1",
     "common_webpack": "^0.0.1",
+    "common_weex": "^0.0.1",
     "postcss-plugin-weex": "^0.1.7",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.1",
