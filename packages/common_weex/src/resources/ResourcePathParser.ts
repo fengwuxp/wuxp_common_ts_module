@@ -30,11 +30,13 @@ export const parseWeexBundleJsBasePath = () => {
     return nativeBase;
 };
 
+export const WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+
 /**
  * 获取资源的完整路径
  * @param uri
  */
 export const getWeexResourceUrl = (uri: string) => {
 
-    return path.resolve(parseWeexBundleJsBasePath(), uri);
+    return path.resolve(WEEX_BUNDLE_JS_BASE_PATH, uri);
 };

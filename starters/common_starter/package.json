@@ -69,7 +69,6 @@
     "http-proxy-middleware": "0.18.0",
     "immutable": "^4.0.0-rc.10",
     "typescript": "^3.0.3",
-    "typings": "^2.1.1",
-    "weex_components": "^0.0.1"
+    "typings": "^2.1.1"
   }
 }
