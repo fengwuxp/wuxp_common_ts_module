@@ -4,6 +4,7 @@ var fs_1 = require("fs");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var CssModuleUtils_1 = require("./CssModuleUtils");
 var PostCssLoader_1 = require("./PostCssLoader");
+var path = require("path");
 /**
  * 获取主题配置
  * @param path    文件路径
@@ -32,12 +33,17 @@ function getTheme(path, isPackage) {
     }
     return theme;
 }
+exports.getTheme = getTheme;
 function getLessLoader(options) {
     var isPackage, theme;
-    if (options != null) {
-        isPackage = options.packagePath !== undefined && options.packagePath !== null;
-        theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+    if (options == null) {
+        options = {
+            themePath: path.resolve("./theme/index.json")
+            // packagePath: path.resolve("./package.json")
+        };
     }
+    isPackage = options.packagePath !== undefined && options.packagePath !== null;
+    theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
     return {
         test: /\.less$/,
         use: ExtractTextWebpackPlugin.extract({

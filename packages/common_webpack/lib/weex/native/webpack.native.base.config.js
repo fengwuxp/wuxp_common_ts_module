@@ -5,9 +5,11 @@ var GetNativePackViews_1 = require("./GetNativePackViews");
 var WeexPackConfig_1 = require("./WeexPackConfig");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
+var CoverThemeLessLoader_1 = require("../../style/CoverThemeLessLoader");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
+var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 /**
  * weex 打包的 base config
  * @author wxup
@@ -16,7 +18,7 @@ var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConf
 var config = {
     entry: GetNativePackViews_1.default,
     output: {
-        path: path.resolve("./dist"),
+        path: nativeRelease ? path.resolve("./") : path.resolve("./dist"),
         filename: '[name].js',
     },
     resolve: {
@@ -37,12 +39,12 @@ var config = {
                         options: {}
                     }
                 ]
-            }
+            },
+            CoverThemeLessLoader_1.default()
         ]
     },
     plugins: []
 };
-var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 if (nativeRelease) {
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([

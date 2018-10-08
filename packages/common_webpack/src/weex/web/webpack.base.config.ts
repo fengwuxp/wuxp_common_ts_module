@@ -3,7 +3,8 @@ import * as path from "path";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {cssModuleLoader} from "../../style/CssModuleUtils";
-
+import coverThemeLessLoader, {getTheme} from "../../style/CoverThemeLessLoader";
+import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 
 const {VueLoaderPlugin} = require('vue-loader');
 
@@ -77,6 +78,26 @@ const webpackConfig: webpack.Configuration = {
                 ]
 
             },
+            // coverThemeLessLoader(),
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    cssModuleLoader,
+                    postcssLoader,
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true,
+                            javascriptEnabled: true,
+                            modifyVars: getTheme(path.resolve("./theme/index.json"), false),
+                            ident: "css-loader"
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.s[c|a]ss$/,
                 use: [
@@ -98,7 +119,11 @@ const webpackConfig: webpack.Configuration = {
 
     plugins: [
         new VueLoaderPlugin(),
-        bannerPlugin
+        bannerPlugin,
+        new ExtractTextWebpackPlugin({
+            filename: "[name].css",
+            allChunks: true
+        }),
     ]
 };
 

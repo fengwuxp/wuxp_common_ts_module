@@ -4,12 +4,14 @@ import entry from "./GetNativePackViews";
 import WeexPackConfig from "./WeexPackConfig";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
+import coverThemeLessLoader from "../../style/CoverThemeLessLoader";
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
 
+const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
 /**
  * weex 打包的 base config
@@ -20,13 +22,12 @@ const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
 const config: webpack.Configuration = {
     entry,
     output: {
-        path: path.resolve("./dist"),
+        path: nativeRelease ? path.resolve("./") : path.resolve("./dist"),
         filename: '[name].js',
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".vue"]
     },
-
     node: {
         global: true
     },
@@ -43,13 +44,13 @@ const config: webpack.Configuration = {
                         options: {}
                     }
                 ]
-            }
+            },
+            coverThemeLessLoader()
         ]
     },
-    plugins:[]
+    plugins: []
 };
 
-const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
 if (nativeRelease) {
 

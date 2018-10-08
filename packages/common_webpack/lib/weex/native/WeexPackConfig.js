@@ -21,7 +21,7 @@ IMAGE_PATH = IMAGE_PATH ? IMAGE_PATH : "./images";
  * 获取项目更目录
  */
 var PROJECT_ROOT_DIR = WebpackUtils_1.getProjectRootDir();
-console.log("PROJECT_ROOT_DIR", PROJECT_ROOT_DIR);
+// console.log("PROJECT_ROOT_DIR",PROJECT_ROOT_DIR)
 var PackConfig = {
     NATIVE_EXCLUDE_FILES: NATIVE_EXCLUDE_FILES,
     ANDROID_DIR: ANDROID_DIR,

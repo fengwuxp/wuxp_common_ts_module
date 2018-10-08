@@ -3,6 +3,7 @@ import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {cssModuleLoader} from "./CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import PostCssLoader from "./PostCssLoader";
+import * as path from "path";
 
 
 /**
@@ -10,7 +11,7 @@ import PostCssLoader from "./PostCssLoader";
  * @param path    文件路径
  * @param isPackage  是否配置在package.json文件中
  */
-function getTheme(path, isPackage) {
+export function getTheme(path, isPackage) {
 
     let theme = {};
     if (isPackage) {
@@ -33,12 +34,18 @@ function getTheme(path, isPackage) {
     return theme;
 }
 
-function getLessLoader(options: GetWebpackBaseConfigOptions) {
+function getLessLoader(options?: GetWebpackBaseConfigOptions) {
     let isPackage, theme;
-    if (options != null) {
-        isPackage = options.packagePath !== undefined && options.packagePath !== null;
-        theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
+
+    if (options == null) {
+        options = {
+            themePath: path.resolve("./theme/index.json")
+            // packagePath: path.resolve("./package.json")
+        }
     }
+
+    isPackage = options.packagePath !== undefined && options.packagePath !== null;
+    theme = getTheme(isPackage ? options.packagePath : options.themePath, isPackage);
 
     return {
         test: /\.less$/,

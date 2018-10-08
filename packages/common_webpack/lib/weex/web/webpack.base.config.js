@@ -5,6 +5,8 @@ var path = require("path");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var CssModuleUtils_1 = require("../../style/CssModuleUtils");
+var CoverThemeLessLoader_1 = require("../../style/CoverThemeLessLoader");
+var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -72,6 +74,26 @@ var webpackConfig = {
                     postcssLoader
                 ]
             },
+            // coverThemeLessLoader(),
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    CssModuleUtils_1.cssModuleLoader,
+                    postcssLoader,
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true,
+                            javascriptEnabled: true,
+                            modifyVars: CoverThemeLessLoader_1.getTheme(path.resolve("./theme/index.json"), false),
+                            ident: "css-loader"
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.s[c|a]ss$/,
                 use: [
@@ -92,7 +114,11 @@ var webpackConfig = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        bannerPlugin
+        bannerPlugin,
+        new ExtractTextWebpackPlugin({
+            filename: "[name].css",
+            allChunks: true
+        }),
     ]
 };
 webpackConfig.mode = "development";

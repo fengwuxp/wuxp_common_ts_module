@@ -17,7 +17,7 @@ import PostCssLoader from "../style/PostCssLoader";
  * @param {GetWebpackBaseConfigOptions} options
  * @return {webpack.Configuration}
  */
-export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptions): webpack.Configuration {
+export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOptions): webpack.Configuration {
 
     console.log("---------初始化打包配置--------", options);
 
@@ -67,7 +67,7 @@ export const getWebpackBaseConfig = function (options: GetWebpackBaseConfigOptio
                             PostCssLoader,
                             {
                                 loader: "sass-loader",
-                                options:{
+                                options: {
                                     ident: "css-loader"
                                 }
                             }

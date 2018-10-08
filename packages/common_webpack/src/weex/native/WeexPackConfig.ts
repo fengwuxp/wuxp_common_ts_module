@@ -64,7 +64,7 @@ IMAGE_PATH = IMAGE_PATH ? IMAGE_PATH : "./images";
  */
 const PROJECT_ROOT_DIR: string = getProjectRootDir();
 
-console.log("PROJECT_ROOT_DIR",PROJECT_ROOT_DIR)
+// console.log("PROJECT_ROOT_DIR",PROJECT_ROOT_DIR)
 
 const PackConfig: WeexPackConfig = {
     NATIVE_EXCLUDE_FILES,
