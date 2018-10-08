@@ -5,8 +5,8 @@ var path = require("path");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var CssModuleUtils_1 = require("../../style/CssModuleUtils");
-var CoverThemeLessLoader_1 = require("../../style/CoverThemeLessLoader");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+var ThemeConfig_1 = require("../../style/ThemeConfig");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -24,8 +24,7 @@ var postcssLoader = {
                 browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
             }),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
-        ],
-        ident: "postcss-loader"
+        ]
     }
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();
@@ -74,7 +73,6 @@ var webpackConfig = {
                     postcssLoader
                 ]
             },
-            // coverThemeLessLoader(),
             {
                 test: /\.less$/,
                 use: [
@@ -88,8 +86,8 @@ var webpackConfig = {
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: CoverThemeLessLoader_1.getTheme(path.resolve("./theme/index.json"), false),
-                            ident: "css-loader"
+                            modifyVars: ThemeConfig_1.getThemeConfig()
+                            // ident: "css-loader"
                         }
                     }
                 ]
@@ -105,7 +103,7 @@ var webpackConfig = {
                     {
                         loader: "sass-loader",
                         options: {
-                            ident: "css-loader"
+                        // ident: "css-loader"
                         }
                     }
                 ]

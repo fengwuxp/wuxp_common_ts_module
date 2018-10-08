@@ -3,8 +3,8 @@ import * as path from "path";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {cssModuleLoader} from "../../style/CssModuleUtils";
-import coverThemeLessLoader, {getTheme} from "../../style/CoverThemeLessLoader";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import {getThemeConfig} from "../../style/ThemeConfig";
 
 const {VueLoaderPlugin} = require('vue-loader');
 
@@ -16,6 +16,7 @@ const bannerPlugin = new webpack.BannerPlugin({
 const postcssPluginWeex = require('postcss-plugin-weex');
 const autoprefixer = require('autoprefixer');
 const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
+
 const postcssLoader = {
     loader: "postcss-loader",
     options: {
@@ -25,10 +26,10 @@ const postcssLoader = {
                 browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
             }),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
-        ],
-        ident: "postcss-loader"
+        ]
     }
 };
+
 const weexVuePrecompiler = require('weex-vue-precompiler')();
 
 const webpackConfig: webpack.Configuration = {
@@ -76,9 +77,7 @@ const webpackConfig: webpack.Configuration = {
                     cssModuleLoader,
                     postcssLoader
                 ]
-
             },
-            // coverThemeLessLoader(),
             {
                 test: /\.less$/,
                 use: [
@@ -92,8 +91,8 @@ const webpackConfig: webpack.Configuration = {
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: getTheme(path.resolve("./theme/index.json"), false),
-                            ident: "css-loader"
+                            modifyVars: getThemeConfig()
+                            // ident: "css-loader"
                         }
                     }
                 ]
@@ -109,7 +108,7 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "sass-loader",
                         options: {
-                            ident: "css-loader"
+                            // ident: "css-loader"
                         }
                     }
                 ]

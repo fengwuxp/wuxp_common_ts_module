@@ -19,4 +19,4 @@
         }
     }
 </script>
-<style scoped lang="scss" src="./style.module.scss"/>
+<style scoped module lang="less" src="./style.module.less"/>
