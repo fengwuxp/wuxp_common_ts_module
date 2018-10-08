@@ -1,7 +1,7 @@
 {
-  "name": "weex_components",
+  "name": "common_style",
   "version": "0.0.1",
-  "description": "weex commonents",
+  "description": "common style",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -14,20 +14,13 @@
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
-  "scripts": {
-    "npm_i": "npm i",
-    "npm_publish": "npm publish",
-    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
-  },
   "author": "wuxp",
   "license": "ISC",
-  "keywords": [],
-  "dependencies": {
-    "@types/node": "^10.9.4",
-    "@types/weex": "0.0.1",
-    "common_route": "^0.0.1",
-    "common_style": "^0.0.1",
-    "common_weex": "^0.0.1",
-    "weex-ui": "^0.6.6"
+  "keywords": [
+    "route",
+    "react-route"
+  ],
+  "scripts": {
+    "npm_publish": "npm publish"
   }
 }
