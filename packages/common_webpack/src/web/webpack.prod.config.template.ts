@@ -2,6 +2,8 @@ import * as path from "path";
 import {getWebpackBaseConfig} from "./webpack.base.config"
 import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const baseConfig = getWebpackBaseConfig({
     themePath: path.resolve("theme", "index.json")
 });
@@ -27,7 +29,8 @@ config.optimization = { // 提取js 第三方库等
 };
 
 config.plugins.push(
-    uglifyJsPlugin
+    uglifyJsPlugin,
+    new BundleAnalyzerPlugin()
 );
 
 export default config;

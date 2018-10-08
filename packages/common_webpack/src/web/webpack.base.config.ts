@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 import coverThemeLessLoader from "../style/CoverThemeLessLoader";
 import {cssModuleLoader} from "../style/CssModuleUtils";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
-import {DEPLOYMENT_DIRECTORY, PROJECT_DIR} from "../config/webpackConfig";
+import {DEPLOYMENT_DIRECTORY, PROJECT_DIR, EXTERNALS} from "../config/webpackConfig";
 import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
@@ -114,13 +114,14 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
         // dependencies, which allows browsers to cache those libraries between builds.
         externals: {
             "react": "React",
-            "react-dom": "ReactDOM"
+            "react-dom": "ReactDOM",
+            ...(EXTERNALS || {})
         },
         plugins: [
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true
-            }),
+            })
             // new WriteFilePlugin({
             //     // test: /^((?!\.hot-update).)*$/,
             //     test: /\.jsp|\.tld|\.xml$/,
