@@ -10,14 +10,13 @@ const config = {
     resolve: {
         ...baseConfig.resolve,
         alias: {
-            '@services': path.resolve(__dirname, './src/services'),
+            "@services": path.resolve(__dirname, './src/services'),
         }
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        // "rxjs": "rxjs"
     }
+    // externals: {
+    //     "react": "React",
+    //     "react-dom": "ReactDOM"
+    // }
 };
 
 global["__RESOURCES_BASE_NAME__"] = "";
@@ -36,8 +35,8 @@ if (process.env.RELEASE === "1") {
     global["__RESOURCES_BASE_NAME__"] = "/h5/views/";
     config.output.publicPath = `${global["__RESOURCES_BASE_NAME__"]}`;
     basePath = "/h5";
-    htmlPluginOptions.template = "./src/index.art";
-    htmlPluginOptions.filename = "../jsp/index.jsp";
+    htmlPluginOptions.template = "./src/index.prod.html";
+    htmlPluginOptions.filename = "index.html";
     htmlPluginOptions.jspArtTemplate = jspArtTemplate;
     htmlPluginOptions.baseBath = "";
     //正式域名

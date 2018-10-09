@@ -13,12 +13,11 @@ const config = {
         alias: {
             '@services': path.resolve(__dirname, './src/services'),
         }
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        // "rxjs": "rxjs"
     }
+    // externals: {
+    //     "react": "React",
+    //     "react-dom": "ReactDOM"
+    // }
 };
 
 global["__RESOURCES_BASE_NAME__"] = "";

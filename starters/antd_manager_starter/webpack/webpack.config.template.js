@@ -1,7 +1,6 @@
-const path=require("path");
-
+const path = require("path");
 const {getWebpackBaseConfig} = require("common_webpack/lib/web/webpack.base.config");
-
+const {externals} = require("./WebpackExternals");
 
 
 const baseConfig = getWebpackBaseConfig({
@@ -9,15 +8,7 @@ const baseConfig = getWebpackBaseConfig({
 });
 const config = {
     ...baseConfig,
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        // "moment": "moment"
-    },
+    externals
 };
 
 
@@ -26,4 +17,4 @@ config.plugins = [
 ];
 config.mode = "development";
 
-module.exports=config;
+module.exports = config;

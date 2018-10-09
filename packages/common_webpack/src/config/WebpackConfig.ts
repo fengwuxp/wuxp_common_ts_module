@@ -26,12 +26,16 @@ interface CustomizeWebpackConfig {
     PROJECT_DIR?: string;
 
     //排除打包的模块
-    EXTERNALS: object;
+    EXTERNALS?: object;
+
+    //webpack dll
+    DLL_LIBS?: string[];
 }
 
 export const {
     DEPLOYMENT_DIRECTORY,
     INCLUDE_PATH,
     PROJECT_DIR,
-    EXTERNALS
+    EXTERNALS,
+    DLL_LIBS
 } = getWebpackConfig();

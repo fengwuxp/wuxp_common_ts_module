@@ -25,7 +25,8 @@ config.optimization = { // 提取js 第三方库等
                 enforce: true      // 强制
             }
         }
-    }
+    },
+    concatenateModules:true
 };
 
 config.plugins.push(
