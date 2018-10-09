@@ -3,6 +3,20 @@
   padding-left: 0 !important;
 }
 
+/*------修复标题过长 文字溢出的问题---------*/
+.am-navbar-title {
+  max-width: 75%;
+}
+
+.am-navbar-title div {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  -webkit-line-clamp: 1;
+}
+
 /*---下拉刷新的容器----*/
 .am-pull-to-refresh-content-wrapper {
   min-height: 100%;

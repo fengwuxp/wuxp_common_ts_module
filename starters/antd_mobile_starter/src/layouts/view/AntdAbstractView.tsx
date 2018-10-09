@@ -47,7 +47,7 @@ export default abstract class AntdAbstractView<P extends AntdAbstractViewProps, 
             mode: navBarProps.mode || "dark",
             ...navBarProps
         };
-        return <NavBar {...props as any}>{navBarTitle}</NavBar>;
+        return <NavBar {...props as any}><div>{navBarTitle}</div></NavBar>;
     };
 
 
