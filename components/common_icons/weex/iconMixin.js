@@ -1,6 +1,7 @@
 import WeexIcon from "./weex-icon";
 
 /**
+ * weex icon
  *
  * @author wxup
  * @create 2018-10-10 11:38
@@ -34,6 +35,11 @@ export default {
         return {
             fontFamily: null,
             glyphMap: null
+        }
+    },
+    methods: {
+        iconClicked(data) {
+            this.$emit('iconClicked', data);
         }
     }
 }

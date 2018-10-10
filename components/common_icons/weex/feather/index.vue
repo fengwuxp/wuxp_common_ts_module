@@ -5,6 +5,7 @@
                :color="color"
                :classNames="classNames"
                :style="style"
+               @iconClicked="iconClicked"
     ></weex-icon>
 </template>
 

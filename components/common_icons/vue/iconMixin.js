@@ -1,7 +1,7 @@
 import BaseIcon from "./base-icon";
 
 /**
- *
+ * vue icon
  * @author wxup
  * @create 2018-10-10 11:38
  **/
