@@ -50,7 +50,7 @@ if (process.env.RELEASE === "1") {
     htmlPluginOptions.inject = true;
     rootDomain = "";
 }
-
+// htmlPluginOptions.favicon="./favicon.ico";
 let htmlWebPackPlugin = new HtmlWebPackPlugin(htmlPluginOptions);
 
 

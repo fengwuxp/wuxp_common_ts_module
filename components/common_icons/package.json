@@ -1,0 +1,31 @@
+{
+  "name": "common_icons",
+  "version": "0.0.1",
+  "description": "common icons",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "keywords": [
+    "icon",
+    "typeScript"
+  ],
+  "author": "wuxp",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "devDependencies": {
+    "@types/weex": "^0.0.1",
+    "common_react": "^0.0.1",
+    "vue": "^2.5.17"
+  }
+}
