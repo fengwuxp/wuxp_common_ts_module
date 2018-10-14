@@ -2,10 +2,10 @@ import BuilderProxyServiceUtil from "../utils/BuilderProxyServiceUtil";
 
 
 /**
- * 标记为FetchClient
+ * 标记为ApiFetchClient
  * @constructor
  */
-export function FetchClient<T extends { new(...args: any[]): any }>() {
+export function ApiFetchClient<T extends { new(...args: any[]): any }>() {
 
     /**
      * @param  {T} clazz
