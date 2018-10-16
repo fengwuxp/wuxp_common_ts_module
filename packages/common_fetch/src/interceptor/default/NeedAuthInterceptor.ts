@@ -9,6 +9,11 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     private authHelper: AuthHelper;
 
+    /**
+     * 是否锁定当前拦截器
+     */
+    private isLock: boolean = false;
+
 
     constructor(authHelper: AuthHelper) {
         super();
@@ -16,18 +21,26 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     }
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+        if (this.isLock) {
+            return null;
+        }
 
         if (this.authHelper.isToAuthView(data)) {
             //TODO 需要跳转到登录页面
+            this.isLock = true;
             return null;
         }
         return super.postHandle(data, options);
     }
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
+        if (this.isLock) {
+            return null;
+        }
 
         if (!this.authHelper.requestParamsEnhance(params)) {
             //TODO  加上鉴权信息强失败，抛出异常
+            this.isLock = true;
             return null;
         }
 
@@ -39,7 +52,7 @@ export interface AuthHelper {
 
 
     /**
-     * 请求参数信息，加上鉴权信息
+     * 请求参数信息增强，加上鉴权信息
      */
     requestParamsEnhance: (params: FetchOptions) => boolean;
 
