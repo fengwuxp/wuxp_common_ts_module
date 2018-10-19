@@ -5,7 +5,7 @@ import {ReqMethod} from "../enums/ReqMethod";
 import {stringify} from "querystring";
 import {SerializeType} from "../enums/http/SerializeType";
 import {isNullOrUndefined} from "util";
-import {ContentType} from "../enums/http/ContentType";
+import {MediaType} from "../enums/http/ContentType";
 
 /**
  * 通用的http请求引擎
@@ -84,16 +84,16 @@ export default class CommonFetchEngine implements HttpRequestEngine {
         const contentType = 'Content-Type';
         switch (serializeType) {
             case SerializeType.FORM_DATA:
-                headers[contentType] = ContentType.FORM_DATA;
+                headers[contentType] = MediaType.FORM_DATA;
                 break;
             case SerializeType.JSON:
-                headers[contentType] = ContentType.JSON;
+                headers[contentType] = MediaType.JSON;
                 break;
             case SerializeType.NONE:
                 break;
             default:
                 //默认以表单的形式提交数据
-                headers[contentType] = ContentType.FORM_DATA;
+                headers[contentType] = MediaType.FORM_DATA;
         }
 
         return options;

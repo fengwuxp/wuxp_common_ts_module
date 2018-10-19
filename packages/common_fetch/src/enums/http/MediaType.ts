@@ -1,7 +1,7 @@
 /**
- * http contentType
+ * http media type
  */
-export enum ContentType {
+export enum MediaType {
 
     /**
      * 表单

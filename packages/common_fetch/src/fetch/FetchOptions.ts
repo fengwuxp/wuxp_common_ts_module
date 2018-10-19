@@ -98,7 +98,7 @@ export interface FetchResponse<T = any> {
     /**
      * 业务代码
      */
-    code?: number | string;
+    // code?: number | string;
 
     /**
      * 返回消息
