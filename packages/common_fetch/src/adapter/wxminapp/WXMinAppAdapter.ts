@@ -40,13 +40,13 @@ export default class WXMinAppAdapter implements FetchAdapter {
                 //     });
                 // },
                 complete: (response: FetchResp) => {
-                    let success = response.statusCode >= 200 && response.statusCode <= 300;
-                    const {header, data,statusCode} = response;
+                    const ok = response.statusCode >= 200 && response.statusCode <= 300;
+                    const {header, data, statusCode} = response;
                     resolve({
                         headers: header,
                         data: data || response,
-                        httpCode: statusCode,
-                        success: success
+                        status: statusCode,
+                        ok
                     });
                 },
             });
@@ -64,17 +64,17 @@ export default class WXMinAppAdapter implements FetchAdapter {
         } = options;
 
 
-        const _dataType: string = dataType;
+        // const _dataType: string = dataType;
         return {
             //请求方法get post
             method,
             //请求url
             url,
             //响应类型,
-            dataType: _dataType,
+            dataType,
             //headers HTTP 请求头
             header: headers,
-            data: (isNullOrUndefined(data) || method === ReqMethod.GET) ? null : isString(data) ? data : JSON.stringify(data),
+            data: (data == null || method === ReqMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data),
         };
     }
 

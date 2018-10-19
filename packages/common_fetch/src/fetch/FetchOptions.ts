@@ -80,14 +80,19 @@ export interface FetchOptions extends BaseFetchOptions {
 export interface FetchResponse<T = any> {
 
     /**
-     * http响应码
+     * http响应码(返回状态)
      */
-    httpCode: number;
+    status: number;
+
+    /**
+     * 返回的状态描述
+     */
+    statusText?: string;
 
     /**
      * 请求是否成功
      */
-    success: boolean;
+    ok: boolean;
 
 
     /**
@@ -95,15 +100,6 @@ export interface FetchResponse<T = any> {
      */
     data: T;
 
-    /**
-     * 业务代码
-     */
-    // code?: number | string;
-
-    /**
-     * 返回消息
-     */
-    message?: string;
 
     /**
      * http响应头

@@ -40,10 +40,10 @@ export default class FetchClientImpl implements FetchClient {
         }
 
         return executor.preHandle(options)
-           /* .catch((error: Error) => {
-                //TODO  将异常广播
-                return error;
-            })*/.then(engine.request)
+        /* .catch((error: Error) => {
+             //TODO  将异常广播
+             return error;
+         })*/.then(engine.request)
             .then((resp) => {
                 //后置拦截器
                 return executor.postHandle(resp, options)
@@ -54,17 +54,18 @@ export default class FetchClientImpl implements FetchClient {
                             response = transformResponse(response);
                         }
                         return response
-                    })/*.catch((error) => {
-                        //TODO  将异常广播
-                        return error;
-                    });*/
+                    })
+                /*.catch((error) => {
+                                        //TODO  将异常广播
+                                        return error;
+                                    });*/
 
             }).catch((response: FetchResponse) => {
-                const {message, headers, data, httpCode} = response;
+                const {statusText, headers, data, status} = response;
                 const exception: HttpFetchException = {
                     name: HttpFetchExceptionName,
-                    message,
-                    httpCode,
+                    message: statusText,
+                    httpCode: status,
                     headers,
                     response: data,
                     request: options

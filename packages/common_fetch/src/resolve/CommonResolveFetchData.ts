@@ -12,11 +12,11 @@ export default class CommonResolveFetchData implements ResolveFetchData<Response
         const {headers, ok, status, statusText} = resp;
 
         return {
-            headers,
-            success: ok,
             data: resp['data'],
-            httpCode: status,
-            message: statusText
+            headers,
+            ok,
+            status,
+            statusText
         }
     };
 

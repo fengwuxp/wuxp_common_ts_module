@@ -75,7 +75,7 @@ export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
 
         RequestInitAttrNames.forEach((name) => {
             const attr = options[name];
-            if (isNullOrUndefined(attr)) {
+            if (attr == null) {
                 return;
             }
             reqOptions[name] = attr;
