@@ -27,18 +27,18 @@ export default abstract class AbstractWebSocketAdapter<T extends WebSocket> impl
     };
 
     onClose = (event: CloseEvent) => {
-        this.handler.onClose(event, this);
+        this.handler.onClose(event);
     };
 
     onError = (event: (Event | any)) => {
-        this.handler.onError(event, this);
+        this.handler.onError(event);
     };
 
     onMessage = (event: MessageEvent) => {
-        this.handler.onMessage(event, this);
+        this.handler.onMessage(event);
     };
 
     onOpen = (event: (Event | any)) => {
-        this.handler.onOpen(event, this);
+        this.handler.onOpen(event);
     };
 }

@@ -22,29 +22,47 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
     //是否允许重新连接
     protected allowReconnect: boolean = true;
 
+    /**
+     * 连接状态，用于标记当前webSocket的连接状态
+     * ios中锁屏后 webSocket连接会被关闭
+     */
+    protected connectionStatus: boolean;
+
+
     constructor(messageRouter: WebSocketMessageRouter, options?: WebSocketOptions,) {
         this.messageRouter = messageRouter;
-
         this.webSocketOptions = {...options};
     }
 
-    abstract onClose: (event: CloseEvent) => void;
+    onClose = (event: CloseEvent) => {
+        //标记 webSocket 连接状态
+        this.connectionStatus = false;
+    };
 
-    abstract onError: (event: Event) => void;
+    onError = (event: Event) => {
+        console.log("webSocket发生错误", event);
+        this.close();
+    };
 
 
     close = (code?: number, reason?: string, allowReconnect?: boolean) => {
-        this.webSocket.close(code, reason);
-        if (isNullOrUndefined(allowReconnect)) {
+        if (this.webSocket != null) {
+            this.webSocket.close(code, reason);
+        }
+        if (allowReconnect != null) {
             this.allowReconnect = allowReconnect;
         }
+        this.connectionStatus = false;
     };
 
 
     connection = (options?: WebSocketOptions) => {
 
-        if (this.allowReconnect) {
+        if (this.allowReconnect == false) {
             throw new Error("不允许重新连接");
+        }
+        if (this.connectionStatus) {
+            return;
         }
 
         if (!isNullOrUndefined(options)) {
@@ -52,10 +70,8 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
         }
 
         this.webSocket = WebSocketFactory.factory(this.webSocketOptions, this);
+        this.connectionStatus = true;
     };
-
-    getWebSocket = () => this.webSocket;
-
 
     onOpen = (event: Event) => {
         //发送心跳
@@ -66,6 +82,10 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
     onMessage = (event: MessageEvent) => {
         this.messageRouter.routes(event, this.webSocket);
     };
+
+
+    getWebSocket = () => this.webSocket;
+
 
     /**
      * 发送心跳包
