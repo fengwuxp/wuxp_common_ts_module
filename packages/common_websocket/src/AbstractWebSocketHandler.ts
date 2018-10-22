@@ -4,6 +4,7 @@ import {WebSocketMessageRouter} from "./core/WebSocketMessageRouter";
 import WebSocketFactory from "./factory/WebSocketFactory";
 import {isNullOrUndefined} from "util";
 import {WebSocketHolder} from "./core/WebSocketHolder";
+import {WebSocketConnectionStatus} from "./enums/WebSocketConnectionStatus";
 
 /**
  * 抽象的webSocket 处理者
@@ -26,7 +27,7 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
      * 连接状态，用于标记当前webSocket的连接状态
      * ios中锁屏后 webSocket连接会被关闭
      */
-    protected connectionStatus: boolean;
+    protected connectionStatus: WebSocketConnectionStatus = WebSocketConnectionStatus.NONE;
 
 
     constructor(messageRouter: WebSocketMessageRouter, options?: WebSocketOptions,) {
@@ -36,7 +37,7 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
 
     onClose = (event: CloseEvent) => {
         //标记 webSocket 连接状态
-        this.connectionStatus = false;
+        this.connectionStatus = WebSocketConnectionStatus.CLOSE;
     };
 
     onError = (event: Event) => {
@@ -52,25 +53,37 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
         if (allowReconnect != null) {
             this.allowReconnect = allowReconnect;
         }
-        this.connectionStatus = false;
+        this.connectionStatus = WebSocketConnectionStatus.CLOSE;
     };
 
 
-    connection = (options?: WebSocketOptions) => {
+    connection = (options?: WebSocketOptions): Promise<WebSocketConnectionStatus> => {
 
         if (this.allowReconnect == false) {
-            throw new Error("不允许重新连接");
+            return Promise.reject(this.connectionStatus);
         }
-        if (this.connectionStatus) {
-            return;
+        if (this.connectionStatus === WebSocketConnectionStatus.CONNECTING ||
+            this.connectionStatus === WebSocketConnectionStatus.RECONNECT) {
+            //将连接状态置为已经连接
+            this.connectionStatus = WebSocketConnectionStatus.RECONNECT;
+            return Promise.resolve(this.connectionStatus);
         }
 
-        if (!isNullOrUndefined(options)) {
+        if (options != null) {
             this.webSocketOptions = options;
         }
-
+        const oldStatus = this.connectionStatus;
+        this.connectionStatus = WebSocketConnectionStatus.WAITING;
+        //连接webSocket
         this.webSocket = WebSocketFactory.factory(this.webSocketOptions, this);
-        this.connectionStatus = true;
+        if (oldStatus === WebSocketConnectionStatus.NONE) {
+            //首次连接
+            this.connectionStatus = WebSocketConnectionStatus.CONNECTING;
+        } else {
+            //发生了重新连接
+            this.connectionStatus = WebSocketConnectionStatus.RECONNECT;
+        }
+        return Promise.resolve(this.connectionStatus);
     };
 
     onOpen = (event: Event) => {

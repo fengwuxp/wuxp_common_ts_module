@@ -1,4 +1,5 @@
-import {WebSocketAdapter, WebSocketOptions} from "../adapter/WebSocketAdapter";
+import {WebSocketAdapter} from "../adapter/WebSocketAdapter";
+import {WebSocketConnectionStatus} from "../enums/WebSocketConnectionStatus";
 
 /**
  * webSocket实例 持有者
@@ -8,9 +9,10 @@ export interface WebSocketHolder {
 
     /**
      * 连接
-     * @param options
+     * 返回Promise对象是为了在webSocket 连接断掉的情况下通过接口去恢复一下数据
+     * @return Promise<WebSocketConnectionStatus>
      */
-    connection: (options?: WebSocketOptions) => void;
+    connection: () => Promise<WebSocketConnectionStatus>;
 
 
     /**
