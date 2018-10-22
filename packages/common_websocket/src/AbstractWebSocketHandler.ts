@@ -65,7 +65,7 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
         if (this.connectionStatus === WebSocketConnectionStatus.CONNECTING ||
             this.connectionStatus === WebSocketConnectionStatus.RECONNECT) {
             //将连接状态置为已经连接
-            this.connectionStatus = WebSocketConnectionStatus.RECONNECT;
+            this.connectionStatus = WebSocketConnectionStatus.CONNECTING;
             return Promise.resolve(this.connectionStatus);
         }
 
