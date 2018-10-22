@@ -59,7 +59,8 @@ export default abstract class AbstractWebSocketHandler implements WebSocketLifeC
 
     connection = (options?: WebSocketOptions): Promise<WebSocketConnectionStatus> => {
 
-        if (this.allowReconnect == false) {
+        if (this.allowReconnect===false || this.connectionStatus === WebSocketConnectionStatus.WAITING) {
+            console.log("连接等待中或不允许该持有者再次连接webSocket");
             return Promise.reject(this.connectionStatus);
         }
         if (this.connectionStatus === WebSocketConnectionStatus.CONNECTING ||
