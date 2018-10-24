@@ -1,43 +1,42 @@
-import {isNullOrUndefined} from "util";
-
-
 /**
  * 从数组中移除一个元素
- * @param {Array<any>} list
+ * @param list
  * @param obj
- * @param {string} equalsKey
+ * @param equalsKey
  */
-export const removeToArray = (list: Array<any>, obj: any, equalsKey = 'key') => {
+export function removeToArray<T, K extends keyof T, E extends T = T>(list: Array<T>, obj: E, equalsKey?: K) {
 
-    let index = indexOfToArray(list, obj, equalsKey);
+    const index = indexOfToArray(list, obj, equalsKey);
 
     if (index > -1) {
         list.splice(index, 1);
     }
-};
+}
+
 
 /**
  * 确定某个元素在数组中的位置
- * @param {Array<any>} list
+ * @param list
  * @param obj
- * @param {string} equalsKey
- * @return {number}
+ * @param equalsKey
  */
-export const indexOfToArray = (list: Array<any>, obj: any, equalsKey = 'key') => {
-    let index = -1;
-    let b = list.some((item, i) => {
-
-        index = i;
-        if (isNullOrUndefined(equalsKey)) {
-            return item === obj;
-        }
-        return item[equalsKey] === obj[equalsKey];
-    });
-
-    if (!b) {
+export function indexOfToArray<T, K extends keyof T, E extends T = T>(list: Array<T>, obj: E, equalsKey?: K) {
+    if (obj == null || list == null || list.length == 0) {
         return -1;
     }
+    if (!(equalsKey in obj)) {
+        return -1;
+    }
+    return list.findIndex((value) => {
+        if (value == null) {
+            return false;
+        }
 
-    return index;
+        if (equalsKey == null) {
+            return value == obj;
+        } else {
+            return value[equalsKey] == obj[equalsKey];
+        }
+    })
 
-};
+}

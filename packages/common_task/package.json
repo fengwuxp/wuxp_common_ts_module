@@ -19,5 +19,8 @@
   "scripts": {
     "npm_i": "npm i",
     "npm_publish": "npm publish"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.4"
   }
 }
