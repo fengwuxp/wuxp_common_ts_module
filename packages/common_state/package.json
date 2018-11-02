@@ -1,7 +1,7 @@
 {
-  "name": "common_env",
+  "name": "common_state",
   "version": "0.0.1",
-  "description": "common env",
+  "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },

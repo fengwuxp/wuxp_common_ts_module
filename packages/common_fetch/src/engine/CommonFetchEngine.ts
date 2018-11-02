@@ -4,8 +4,7 @@ import {FetchOptions, FetchResponse} from "../fetch/FetchOptions";
 import {ReqMethod} from "../enums/ReqMethod";
 import {stringify} from "querystring";
 import {SerializeType} from "../enums/http/SerializeType";
-import {isNullOrUndefined} from "util";
-import {MediaType} from "../enums/http/ContentType";
+import {MediaType} from "../enums/http/MediaType";
 
 /**
  * 通用的http请求引擎
