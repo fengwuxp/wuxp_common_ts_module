@@ -1,0 +1,30 @@
+{
+  "name": "taro_starter",
+  "version": "0.0.1",
+  "description": "taro starter",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "@types/weixin": "0.0.1",
+    "common_fetch": "^0.0.1",
+    "common_starter": "^0.0.1"
+  }
+}

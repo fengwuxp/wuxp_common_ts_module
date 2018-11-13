@@ -1,7 +1,6 @@
 import {ProxyServiceFactory} from "./ProxyServiceFactory";
 import {FetchClient} from "../fetch/FetchClient";
 import {ProxyApiService} from "./ProxyApiService";
-import {isFunction} from "util";
 import {proxyRequest} from "./ProxyBuilderUtil";
 
 
@@ -22,7 +21,7 @@ class Es5PoxyServiceFactory implements ProxyServiceFactory {
 //         enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
 
         for (const key in targetService) {
-            if (!isFunction(targetService[key])) {
+            if (typeof targetService[key] !== "function") {
                 //不是函数 return
                 continue;
             }

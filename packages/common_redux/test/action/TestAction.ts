@@ -1,7 +1,7 @@
-import {ReducerHandler} from "../../src/reducer/ReducerHandler";
+import {ReducerHolder} from "../../src/reducer/ReducerHolder";
 
 
-export default class TestAction implements ReducerHandler<any> {
+export default class TestAction implements ReducerHolder<any> {
 
 
     defaultState: any = {};

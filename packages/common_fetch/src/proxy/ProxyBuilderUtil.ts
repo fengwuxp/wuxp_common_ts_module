@@ -1,10 +1,8 @@
-import {FetchOptions} from "../fetch/FetchOptions";
 import {ProxyApiService} from "./ProxyApiService";
 import {FetchClient} from "../fetch/FetchClient";
 import ResolverRegister, {argumentResolverName, requestURLResolverName} from "../register/ResolverRegister";
 import AbstractArgumentsResolver from "../resolve/arguments/AbstractArgumentsResolver";
 import {ArgumentsResolver} from "../resolve/arguments/ArgumentsResolver";
-import {isFunction, isNullOrUndefined} from "util";
 import RequestURLResolver from "../resolve/url/RequestURLResolver";
 
 
@@ -30,12 +28,12 @@ export const proxyRequest = (fetchClient: FetchClient, apiService: ProxyApiServi
 
     //获取服务方法的默认返回值，一般是请求借口需要的签名参数
     const serviceElement = apiService[serviceMethod];
-    const result: any = isFunction(serviceElement) ? serviceElement() : null;
+    const result: any = typeof serviceElement === "function" ? serviceElement() : null;
 
     let uri;
     if (AbstractArgumentsResolver.enabledDecorator) {
         //启用了装饰器
-        uri = isNullOrUndefined(result.url) ? serviceMethod : result.url;
+        uri = result.url == null ? serviceMethod : result.url;
     } else {
         uri = serviceMethod;
     }

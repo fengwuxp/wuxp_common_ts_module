@@ -10,10 +10,14 @@ module.exports = {
     ],
     plugins: [
         [
+            "transform-object-assign",
+            "transform-class-properties",
+            "transform-object-rest-spread",
             //装饰器
             "transform-decorators-legacy",
             //ES7async的支持
             "transform-runtime",
+
             {
                 "helpers": false,
                 "polyfill": false,

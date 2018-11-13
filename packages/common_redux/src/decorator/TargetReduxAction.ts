@@ -11,7 +11,7 @@ export function TargetAction(action?: Function): Function {
 
     /**
      * decorator
-     * @param  {ReduxActionHandler} target       装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {ReduxActionHandler} target       装饰的属性所述的类的原型
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */

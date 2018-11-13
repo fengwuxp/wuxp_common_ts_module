@@ -37,7 +37,7 @@ export function timedTask(options: TimedTaskOptions): any {
 
     /**
      * decorator
-     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {T} target              装饰的属性所述的类的原型
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
@@ -57,7 +57,7 @@ export function timedTask(options: TimedTaskOptions): any {
 export function onceTask(times: number) {
     /**
      * decorator
-     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
@@ -79,7 +79,7 @@ export function onceTask(times: number) {
 export function clearTask(): any {
     /**
      * decorator
-     * @param  {T} target              装饰的属性所述的类的原型，注意，不是实例后的类。如果装饰的是 SagaHandler 的某个属性，这个 target 的值就是 SagaHandler.prototype
+     * @param  {T} target              装饰的属性所述的类的原型
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
