@@ -55,6 +55,7 @@
     "svg-url-loader": "^2.3.2",
     "typescript": "^3.1.6",
     "url-loader": "^1.1.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.25.0",
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cleanup-plugin": "^0.5.1",
