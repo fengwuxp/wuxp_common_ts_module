@@ -11,7 +11,10 @@
 
     export default {
         mixins:[AppMixin],
-        methods: {}
+        methods: {},
+        beforeMount() {
+
+        }
     }
 </script>
 <style scoped lang="less">
