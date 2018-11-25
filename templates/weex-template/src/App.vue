@@ -19,4 +19,4 @@
         }
     }
 </script>
-<style scoped module lang="less" src="./style.module.less"/>
+<style scoped module lang="less" src="./style.module.less"></style>

@@ -22,9 +22,8 @@ const postcssLoader = {
     options: {
         plugins: [
             postcssPluginWeex(),
-            autoprefixer({
-                browsers: ['> 0.1%', 'ios >= 8', 'not ie < 12']
-            }),
+            //使用.browserslistrc的统一配置
+            autoprefixer(),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
         ]
     }
@@ -62,7 +61,8 @@ const webpackConfig: webpack.Configuration = {
                                         }
                                     }
                                 ]
-                            }
+                            },
+
                         }
                     }
                 ]
@@ -92,7 +92,7 @@ const webpackConfig: webpack.Configuration = {
                             sourceMap: true,
                             javascriptEnabled: true,
                             modifyVars: getThemeConfig(),
-                            ident: "css-loader"
+                            ident: "less-loader"
                         }
                     }
                 ]
@@ -108,7 +108,7 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "sass-loader",
                         options: {
-                            ident: "css-loader"
+                            ident: "sass-loader"
                         }
                     }
                 ]

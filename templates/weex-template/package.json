@@ -21,6 +21,7 @@
     "common_webpack": "0.0.1",
     "common_weex": "0.0.1",
     "sass-resources-loader": "^1.3.3",
+    "vux-loader": "^1.2.9",
     "weex_starter": "0.0.1"
   }
 }

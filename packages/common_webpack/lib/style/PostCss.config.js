@@ -8,8 +8,10 @@ exports.default = {
         require('postcss-flexbugs-fixes'),
         require('precss'),
         require('postcss-cssnext'),
-        autoprefixer_1.default({
-            browsers: ['last 4 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
-        }),
+        //使用.browserslistrc的统一配置
+        autoprefixer_1.default()
+        // autoprefixer({
+        //     browsers: ['last 4 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
+        // }),
     ]; }
 };
