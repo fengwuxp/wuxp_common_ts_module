@@ -38,7 +38,6 @@ export default class FetchClientImpl implements FetchClient {
             //执行 transformRequest
             options = transformRequest(options);
         }
-
         return executor.preHandle(options)
         /* .catch((error: Error) => {
              //TODO  将异常广播
@@ -60,7 +59,8 @@ export default class FetchClientImpl implements FetchClient {
                                         return error;
                                     });*/
 
-            }).catch((response: FetchResponse) => {
+            })
+            .catch((response: FetchResponse) => {
                 const {statusText, headers, data, status} = response;
                 const exception: HttpFetchException = {
                     name: HttpFetchExceptionName,

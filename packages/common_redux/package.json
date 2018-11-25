@@ -21,18 +21,20 @@
     "npm_publish": "npm publish"
   },
   "dependencies": {
-    "@types/react-redux": "^6.0.6",
-    "@types/react-router-redux": "^5.0.15",
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router-redux": "^5.0.16",
+    "@types/redux-actions": "^2.3.0",
+    "@types/redux-thunk": "^2.1.0",
     "common_core": "^0.0.1",
-    "connected-react-router": "^4.4.1",
+    "connected-react-router": "^4.5.0",
     "querystring": "^0.2.0",
-    "react-redux": "^5.0.7",
-    "react-router-redux": "^4.0.8",
-    "redux": "^4.0.0",
+    "react-redux": "^6.0.0-beta.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
-    "redux-observable": "^1.0.0",
-    "rxjs": "^6.2.2",
-    "rxjs-compat": "^6.2.2"
+    "redux-observable": "^1.0.0-beta.2",
+    "rxjs": "^6.3.3",
+    "rxjs-compat": "^6.3.3"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

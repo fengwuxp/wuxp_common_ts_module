@@ -2,7 +2,6 @@ import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
 import {urlParameterParser} from "common_weex/src/utils/views/UrlParameterParser";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
-import {isNullOrUndefined} from "util";
 import {isIos, isAndroid, isIphoneX, isWeb} from "common_weex/src/constant/WeexEnvUtil";
 
 
@@ -47,7 +46,7 @@ const baseMixin: ComponentOptions<any> = {
 
         //初始化页面state
         transferViewState().then((state) => {
-            if (isNullOrUndefined(state)) {
+            if (state == null) {
                 return;
             }
             setParameterToVueInstance(state, this);

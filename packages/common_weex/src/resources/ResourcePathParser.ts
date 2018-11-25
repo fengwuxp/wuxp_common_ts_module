@@ -1,9 +1,24 @@
-import AppConfigRegistry from "common_config/src/AppConfigRegistry";
+import AppConfigRegistry, {APP_CONFIG_NAME} from "common_config/src/AppConfigRegistry";
 import * as path from "path";
 
-const {resourceDomain, resourceConfig} = AppConfigRegistry.get("");
+
+//获取app的配置的信息
+const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get(APP_CONFIG_NAME);
 
 const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
+
+//bundleURL
+const bundleUrl: string = weex.config.bundleUrl;
+
+//android js 目录
+const ANDROID_JS_DIR = process.env.ANDROID_JS_DIR || 'file://assets/';
+
+//ios js 目录
+const IOS_JS_DIR = process.env.IOS_JS_DIR || 'bundlejs';
+
+//web 远程js目录
+const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
+
 /**
  * 路径解析，获取bundle js的根路径
  * @author wxup
@@ -11,25 +26,28 @@ const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
  **/
 export const parseWeexBundleJsBasePath = () => {
 
-    const bundleUrl: string = weex.config.bundleUrl;
-    const isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
+
+    const isAndroidAssets = bundleUrl.indexOf(ANDROID_JS_DIR) >= 0;
     const isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
 
     let nativeBase: string;
     if (isAndroidAssets) {
-        nativeBase = 'file://assets/js/';
+        nativeBase = ANDROID_JS_DIR;
     } else if (isiOSAssets) {
-        nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/bundlejs/`;
+        nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
     } else {
 
         //远程js加入版本控制
-        const host = `${resourceDomain}/weex/${remoteDeploymentDirectory}/${versionCode ? '' : '/v_' + versionCode}/`;
-        nativeBase = "http://" + host;
+        const host = `${resourceDomain}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${versionCode ? '' : '/v_' + versionCode}/`;
+        nativeBase = `${httpProtocol}://` + host;
     }
 
     return nativeBase;
 };
 
+/**
+ * weex bundle js base path
+ */
 export const WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
 
 /**

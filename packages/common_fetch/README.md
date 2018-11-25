@@ -51,3 +51,8 @@
           4 reign prroxy
 
                以接口代理的形式屏蔽远程调用的感知
+
+          5  annation
+
+                注解增强，注解除了RequestMapping 外 还可以增加 CachePut, Task等 来管理本地缓存以及定时作业
+                还可以考虑增加注解直接把请求下来的数据加入状态管理器中 例如redux

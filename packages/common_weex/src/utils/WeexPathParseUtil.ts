@@ -40,6 +40,13 @@ export default class WeexPathParseUtil {
         return WeexPathParseUtil.getTargetURL(targetURL, root, path);
     };
 
+
+    /**
+     * 获取目标的页面的url
+     * @param targetURL
+     * @param root
+     * @param path
+     */
     private static getTargetURL(targetURL: string, root: string, path: string) {
         let newURL = "";
         if (targetURL.indexOf("/") === 0) {

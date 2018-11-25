@@ -8,7 +8,16 @@ import {AppConfig} from "./AppConfig";
  **/
 class AppConfigRegistry extends AbstractRegistrationBean<AppConfig> {
 
+
+
+
 }
 
 const appConfigRegistry = new AppConfigRegistry();
+
 export default appConfigRegistry;
+
+/**
+ * app 配置名称
+ */
+export const APP_CONFIG_NAME: string = "APP_CONFIG_NAME";

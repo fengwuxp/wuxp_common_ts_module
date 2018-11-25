@@ -75,7 +75,7 @@ export default class DefaultRouteLayout extends React.Component<DefaultRouteLayo
         const {supportMediaQuery} = this.props;
 
 
-        let View = <Layout>
+        const View = <Layout>
             <SidebarMenu logo={""} siteName={""} menus={[]}/>
             <Layout>
                 <Header>Header</Header>
