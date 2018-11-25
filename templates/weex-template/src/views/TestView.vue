@@ -6,7 +6,11 @@
 </template>
 
 <script>
+
+    import AppMixin from "weex_starter/src/mixins/AppMixin"
+
     export default {
+        mixins:[AppMixin],
         methods: {}
     }
 </script>

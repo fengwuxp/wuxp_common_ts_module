@@ -6,7 +6,7 @@ import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 
 //约定导入 路由配置
-import route from '../../../../src/router/NavtieRoute';
+import route from '../../../../src/route/NavtieRoute';
 import AppRouter from "../route/AppRouter";
 
 let packageName: string = weex.config.env['appGroup'];
