@@ -91,8 +91,8 @@ const webpackConfig: webpack.Configuration = {
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: getThemeConfig()
-                            // ident: "css-loader"
+                            modifyVars: getThemeConfig(),
+                            ident: "css-loader"
                         }
                     }
                 ]
@@ -108,7 +108,7 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "sass-loader",
                         options: {
-                            // ident: "css-loader"
+                            ident: "css-loader"
                         }
                     }
                 ]

@@ -1,7 +1,6 @@
 import TestView from "../views/TestView";
-import {AppRoute} from "weex_starter/src/route/AppRouter";
 
-const webRoutes: AppRoute = {
+const webRoutes = {
 
     test_view: {
         component: TestView
