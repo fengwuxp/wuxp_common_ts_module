@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var webpack_base_config_1 = require("./webpack.base.config");
 var UglifyJsPluginConfig_1 = require("../plugins/UglifyJsPluginConfig");
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var baseConfig = webpack_base_config_1.getWebpackBaseConfig({
     themePath: path.resolve("theme", "index.json")
 });
@@ -28,7 +29,8 @@ config.optimization = {
                 enforce: true // 强制
             }
         }
-    }
+    },
+    concatenateModules: true
 };
-config.plugins.push(UglifyJsPluginConfig_1.uglifyJsPlugin);
+config.plugins.push(UglifyJsPluginConfig_1.uglifyJsPlugin, new BundleAnalyzerPlugin());
 exports.default = config;

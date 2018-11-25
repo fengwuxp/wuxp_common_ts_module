@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
@@ -101,15 +112,16 @@ exports.getWebpackBaseConfig = function (options) {
         // assume a corresponding global variable exists and use that instead.
         // This is important because it allows us to avoid bundling all of our
         // dependencies, which allows browsers to cache those libraries between builds.
-        externals: {
-            "react": "React",
-            "react-dom": "ReactDOM"
-        },
+        externals: __assign({}, (webpackConfig_1.EXTERNALS || {})),
         plugins: [
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true
-            }),
+            })
+            // new WriteFilePlugin({
+            //     // test: /^((?!\.hot-update).)*$/,
+            //     test: /\.jsp|\.tld|\.xml$/,
+            // })
         ]
     };
     //是否打release包

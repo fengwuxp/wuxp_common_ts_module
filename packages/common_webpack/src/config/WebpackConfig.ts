@@ -18,7 +18,7 @@ interface CustomizeWebpackConfig {
     /**
      * 导入的目录或文件路径
      */
-    INCLUDE_PATH?: string;
+    INCLUDE_PATH?: string[];
 
     /**
      * 项目目录

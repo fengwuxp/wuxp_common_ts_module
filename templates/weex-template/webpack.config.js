@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpackConfig = require('common_webpack/lib/weex/web/webpack.base.config').default;
 
+console.log("webpackConfig",webpackConfig)
 const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
 

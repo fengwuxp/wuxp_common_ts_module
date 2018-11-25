@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var autoprefixer_1 = require("autoprefixer");
-exports.postCssConfig = {
+exports.default = {
     // https://webpack.js.org/guides/migrating/#complex-options
     ident: 'postcss',
     plugins: function () { return [
@@ -9,13 +9,7 @@ exports.postCssConfig = {
         require('precss'),
         require('postcss-cssnext'),
         autoprefixer_1.default({
-            browsers: [
-                '>1%',
-                'last 4 versions',
-                'Firefox ESR',
-                'not ie < 9',
-            ],
-            flexbox: 'no-2009',
+            browsers: ['last 4 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
         }),
     ]; }
 };
