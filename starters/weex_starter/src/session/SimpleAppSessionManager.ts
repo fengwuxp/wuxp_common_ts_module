@@ -10,7 +10,7 @@ class SimpleAppSessionManager<T> implements AppSessionManager<T> {
 
     getMember = (): Promise<T> => {
 
-        return DefaultWeexStroe.getItem(SimpleAppSessionManager.SAVE_MEMBER_KEY)
+        return DefaultWeexStroe.getItem<T>(SimpleAppSessionManager.SAVE_MEMBER_KEY)
             .then((data) => {
                 this.member = data;
                 return data;
@@ -31,7 +31,7 @@ class SimpleAppSessionManager<T> implements AppSessionManager<T> {
 
     saveMember = (memebr: T): Promise<void> => {
 
-        return DefaultWeexStroe.setItem(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
+        return DefaultWeexStroe.saveItem(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
     };
 }
 

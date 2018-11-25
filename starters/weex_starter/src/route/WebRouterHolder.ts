@@ -1,5 +1,5 @@
 import VueRouter, {RouteConfig} from "vue-router";
-import {Vue} from "vue/types/vue";
+import Vue from "vue";
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 import routes from '../../../../src/route/WebRoute';
 import {AppRoute} from "./AppRouter";
@@ -13,7 +13,7 @@ const routeList: Array<RouteConfig> = [
     {
         path: '/',
         redirect: {
-            path: routes.index.path
+            path: "/index"
         }
     }
 ];
@@ -39,6 +39,8 @@ const router = new VueRouter({
     mode: 'history',
     routes: routeList
 });
+
+
 
 
 /**
