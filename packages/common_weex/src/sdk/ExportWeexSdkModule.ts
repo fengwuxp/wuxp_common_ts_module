@@ -17,7 +17,7 @@ import {WeexWebSocketModule} from "weex/src/sdk/model/webSocket";
 
 if (process.env.IS_WEB) {
     require("./module/Picker");
-    require("./module/Timer");
+    // require("./module/Timer");
 }
 
 const animation: WeexAnimationModule = weex.requireModule('animation');
@@ -33,7 +33,7 @@ const storage: WeexStorageModule = weex.requireModule('storage');
 const stream: WeexStreamModule = weex.requireModule('stream');
 const webview: WeexWebviewModule = weex.requireModule('webview');
 
-const timer: WeexTimerModule = weex.requireModule("timer");
+// const timer: WeexTimerModule = weex.requireModule("timer");
 
 
 //此处为了导入地方能够进行结构赋值，不能使用 export defaultState
@@ -48,7 +48,7 @@ export {
     storage,
     stream,
     webview,
-    globalEvent,
-    timer,
+    globalEvent
+    // timer,
 };
 

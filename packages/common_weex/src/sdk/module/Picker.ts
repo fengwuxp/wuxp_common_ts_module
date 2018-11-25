@@ -1,4 +1,4 @@
-import {isWeb} from "../../constant/WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnv";
 /**
  * 自定义picker 保存对象
  * Created by wuxp on 2017/6/6.

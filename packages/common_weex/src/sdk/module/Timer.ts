@@ -1,4 +1,4 @@
-import {isWeb} from "../../constant/WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnv";
 
 if (isWeb) {
 
