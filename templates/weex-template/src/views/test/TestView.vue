@@ -16,7 +16,7 @@
 </script>
 <style scoped lang="less">
 
-    @import "../less/theme";
+    @import "../../less/theme";
 
     .text_red {
         color: @primary-color;
