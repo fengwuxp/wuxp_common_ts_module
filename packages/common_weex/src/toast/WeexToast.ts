@@ -1,5 +1,4 @@
 import {modal, timer} from "../sdk/ExportWeexSdkModule";
-import {isString} from "util";
 
 /**
  * toast
@@ -21,7 +20,7 @@ export const weexToast = (message: string, times: number = 2, callback?: () => v
  * @param callback
  */
 export const weexAlert = (options: any = {}, callback) => {
-    if (isString(options)) {
+    if (typeof options === "string") {
         options = {message: options}
     }
     options = Object.assign({
@@ -39,8 +38,10 @@ export const weexAlert = (options: any = {}, callback) => {
  * @param confirm 确认回调
  * @param cancel  取消回调
  */
-export const weexConfirm = (options: any = {}, confirm = () => {}, cancel = () => {}) => {
-    if (isString(options)) {
+export const weexConfirm = (options: any = {}, confirm = () => {
+}, cancel = () => {
+}) => {
+    if (typeof options === "string") {
         options = {message: options}
     }
     options = Object.assign({
@@ -67,7 +68,7 @@ export const weexConfirm = (options: any = {}, confirm = () => {}, cancel = () =
 export const weexPrompt = (options: any = {}, confirm = (data) => {
 }, cancel = (data) => {
 }) => {
-    if (isString(options)) {
+    if (typeof options === "string") {
         options = {message: options}
     }
     options = Object.assign({

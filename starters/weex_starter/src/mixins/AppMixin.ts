@@ -3,10 +3,29 @@ import {Vue} from "vue/types/vue";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
 import {isIos, isAndroid, isIphoneX, isWeb} from "common_weex/src/constant/WeexEnvUtil";
 import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
+import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+
+//约定导入 路由配置
+import route from '../../../../src/router/NavtieRoute';
+import AppRouter from "../route/AppRouter";
+
+let packageName: string = weex.config.env['appGroup'];
+if (packageName == null || packageName.trim().length === 0) {
+    packageName = weex.config.env.appName;
+}
+
+//注册路由
+AppRouter.registerRouters(route);
 
 
-//默认宽度
-const DEFAULT_WIDTH = 750.0;
+AppRouter.appSessionManager = simpleAppSessionManager;
+
+AppRouter.generateBundleJsURL = function (uri: string, main: boolean) {
+
+    return `weex://${packageName}/${main ? 'main' : 'page'}/${uri}`;
+};
+
+
 
 /**
  * 基础的mix in
@@ -16,49 +35,40 @@ const DEFAULT_WIDTH = 750.0;
 const appMixin: ComponentOptions<any> = {
 
     data() {
-        const deviceWidth = weex.config.env.deviceWidth;
-        const deviceHeight = weex.config.env.deviceHeight;
 
-        const rpx = deviceWidth / DEFAULT_WIDTH;
         return {
-            deviceWidth,
-            deviceHeight,
-            rpx,
             //客户端版本代码
-            appVersionCode: -1
+            appVersionCode: -1,
+            //用户信息
+            member: null
         }
     },
-    methods: {
-        jump(uri){
-
-        }
-    },
+    methods: {},
 
 
     mounted() {
 
     },
-    beforeMount() {
-        // 获取url参数
-        const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
-        //将url参数赋值到vue的实例中
-        setParameterToVueInstance(urlParams, this);
+
+    async beforeMount() {
+
 
         //初始化页面state
-        transferViewState().then((state) => {
-            if (state == null) {
-                return;
-            }
-            setParameterToVueInstance(state, this);
-        });
+        const state = await transferViewState();
+        // 获取url参数
+        const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
+        setParameterToVueInstance(this, state, urlParams);
+
 
         //TODO 获取APP版本信息
 
         //TODO 初始化广播事件
 
-        //TODO 初始化用户鉴权信息
+        //初始化用户鉴权信息
+        this.member = await simpleAppSessionManager.getMember();
 
-        //TODO 调用onRead方法
+        //调用页面的onReady方法
+        this.onReady && this.onReady()
 
     },
     created() {
@@ -68,13 +78,21 @@ const appMixin: ComponentOptions<any> = {
 
 /**
  * 设置参数到vue的实例中
- * @param urlParams
  * @param vueInstance
+ * @param params
  */
-function setParameterToVueInstance(urlParams: object, vueInstance: Vue) {
-    for (const key in urlParams) {
-        vueInstance[key] = urlParams[key];
-    }
+function setParameterToVueInstance(vueInstance: Vue, ...params) {
+
+    params.forEach((item) => {
+        if (item == null) {
+            return;
+        }
+        for (const key in item) {
+            vueInstance[key] = item[key];
+        }
+    })
+
+
 }
 
 export default appMixin;

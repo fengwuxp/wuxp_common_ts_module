@@ -17,6 +17,10 @@ export default abstract class AbstractAuthenticationManager<T> implements Authen
 
     getLocalAuth: () => T;
 
-    refreshToken: (...args) => void;
+    isInvalid: () => (boolean | Promise<boolean>);
+
+    refreshToken: (...args) => Promise<T>;
+
+
 
 }

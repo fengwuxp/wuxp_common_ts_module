@@ -24,11 +24,17 @@ const isIos = WEEX_ENV_PLATFORM_NAME === 'ios';
  */
 const isIphoneX = isIos && weex.config.env.deviceHeight === 2436;
 
+//默认宽度
+const DEFAULT_WIDTH = 750.0;
+const deviceWidth = weex.config.env.deviceWidth;
+// const deviceHeight = weex.config.env.deviceHeight;
 
+export const rpx = deviceWidth / DEFAULT_WIDTH;
 
 export {
     isAndroid,
     isWeb,
     isIos,
-    isIphoneX
+    isIphoneX,
+
 }

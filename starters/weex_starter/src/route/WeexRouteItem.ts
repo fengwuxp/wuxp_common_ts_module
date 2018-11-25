@@ -1,4 +1,3 @@
-
 import {Component} from "vue";
 
 /**
@@ -6,8 +5,9 @@ import {Component} from "vue";
  */
 export interface WeexRouteItem {
 
-    component?: Component | string,
-    meta: {
+    component: Component | string,
+
+    meta?: {
         //缓存 仅支持web环境
         keepAlive?: boolean,
 
@@ -15,6 +15,9 @@ export interface WeexRouteItem {
         main?: boolean,
 
         //需要鉴权
-        requireAuth: boolean
+        requireAuth: boolean,
+
+        //默认参数
+        defaultParams?: {};
     }
 }
