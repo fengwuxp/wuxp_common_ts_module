@@ -1,22 +1,16 @@
-import {NavigatorAdapter, NavigatorParam} from "../NavigatorAdapter";
+import {NavigatorAdapter, NavigatorParam} from "common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
-import URLArgumentsResolve from "../../resolve/URLArgumentsResolve";
+import URLArgumentsResolve from "../resolve/URLArgumentsResolve";
+import weexNavigatorRegistry from "./WeexNavigatorRegistry";
 
 
-export const DEFAULT_PARAM_KEY_NAME: string = "p_hex";
-
-//weex固定参数
-export const FIXED_PARAM_KEYS: string[] = JSON.parse(process.env.FIXED_PARAM_KEYS) || [
-    "weex_refresh",
-    "isCanBack"
-];
-
-const navigator: WeexNavigatorModule = weex.requireModule('navigator');
+//获取一个导航
+const navigator: WeexNavigatorModule = weexNavigatorRegistry.get();
 
 /**
  * 参数解析
  */
-export const argumentsResolve = new URLArgumentsResolve(DEFAULT_PARAM_KEY_NAME, FIXED_PARAM_KEYS);
+export const argumentsResolve = new URLArgumentsResolve();
 
 
 /**
@@ -24,6 +18,11 @@ export const argumentsResolve = new URLArgumentsResolve(DEFAULT_PARAM_KEY_NAME, 
  */
 export default class WeexNavigatorAdapter implements NavigatorAdapter {
 
+    /**
+     * 返回
+     * @param num
+     * @param callback
+     */
     goBack = (num?: number, callback?: (...args) => void) => {
         navigator.pop({
             animated: "true"
@@ -31,6 +30,10 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
     };
 
 
+    /**
+     * push 页面
+     * @param params
+     */
     push = (params: NavigatorParam) => {
 
         let {pathname, search, state} = params;

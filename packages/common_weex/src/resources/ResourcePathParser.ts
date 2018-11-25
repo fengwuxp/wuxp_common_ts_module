@@ -1,5 +1,7 @@
-import AppConfigRegistry, {APP_CONFIG_NAME} from "common_config/src/AppConfigRegistry";
+import AppConfigRegistry from "common_config/src/AppConfigRegistry";
+import {APP_CONFIG_NAME} from "common_config/src/AppConfigRegistry";
 import * as path from "path";
+
 
 
 //获取app的配置的信息

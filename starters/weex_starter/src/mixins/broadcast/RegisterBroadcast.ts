@@ -1,5 +1,5 @@
 import {ComponentOptions} from "vue";
-import StringUtils from "../../../../../packages/common_utils/src/string/StringUtils";
+import StringUtils from "common_utils/src/string/StringUtils";
 
 /**
  * 常用的广播事件分类

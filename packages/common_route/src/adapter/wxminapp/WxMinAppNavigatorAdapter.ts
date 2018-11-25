@@ -1,4 +1,4 @@
-import {NavigatorAdapter, NavigatorParam} from "../NavigatorAdapter";
+import {NavigatorAdapter, NavigatorParam} from "../../NavigatorAdapter";
 
 
 export default class WxMinAppNavigatorAdapter implements NavigatorAdapter {

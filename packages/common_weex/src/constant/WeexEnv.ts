@@ -1,4 +1,4 @@
-const WEEX_ENV_PLATFORM_NAME = weex.config.env.platform.toLocaleLowerCase();
+export const WEEX_ENV_PLATFORM_NAME = weex.config.env.platform.toLocaleLowerCase();
 
 /**
  * 是否为浏览器
@@ -23,6 +23,8 @@ const isIos = WEEX_ENV_PLATFORM_NAME === 'ios';
  * @return {boolean}
  */
 const isIphoneX = isIos && weex.config.env.deviceHeight === 2436;
+
+
 
 export {
     isAndroid,

@@ -26,6 +26,7 @@
     "@types/weex": "0.0.1",
     "babel-plugin-component": "^1.1.1",
     "babel-plugin-import": "^1.9.1",
+    "common_route": "0.0.1",
     "common_starter": "^0.0.1",
     "common_style": "^0.0.1",
     "common_webpack": "^0.0.1",

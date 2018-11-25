@@ -1,8 +1,8 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
-import {urlParameterParser} from "common_weex/src/utils/views/UrlParameterParser";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
 import {isIos, isAndroid, isIphoneX, isWeb} from "common_weex/src/constant/WeexEnvUtil";
+import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
 
 
 //默认宽度
@@ -13,13 +13,9 @@ const DEFAULT_WIDTH = 750.0;
  * @author wxup
  * @create 2018-10-05 17:15
  **/
-const baseMixin: ComponentOptions<any> = {
+const appMixin: ComponentOptions<any> = {
 
     data() {
-        // let newNavigator = navigator;
-        // if (isIos) {
-        //     newNavigator = weex.requireModule("nav");
-        // }
         const deviceWidth = weex.config.env.deviceWidth;
         const deviceHeight = weex.config.env.deviceHeight;
 
@@ -32,7 +28,11 @@ const baseMixin: ComponentOptions<any> = {
             appVersionCode: -1
         }
     },
-    methods: {},
+    methods: {
+        jump(uri){
+
+        }
+    },
 
 
     mounted() {
@@ -40,7 +40,7 @@ const baseMixin: ComponentOptions<any> = {
     },
     beforeMount() {
         // 获取url参数
-        const urlParams = urlParameterParser();
+        const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
         //将url参数赋值到vue的实例中
         setParameterToVueInstance(urlParams, this);
 
@@ -66,10 +66,15 @@ const baseMixin: ComponentOptions<any> = {
     }
 };
 
+/**
+ * 设置参数到vue的实例中
+ * @param urlParams
+ * @param vueInstance
+ */
 function setParameterToVueInstance(urlParams: object, vueInstance: Vue) {
     for (const key in urlParams) {
         vueInstance[key] = urlParams[key];
     }
 }
 
-export default baseMixin;
+export default appMixin;

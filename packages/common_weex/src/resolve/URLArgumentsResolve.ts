@@ -8,19 +8,8 @@ import StringUtils from "common_utils/src/string/StringUtils";
  */
 export default class URLArgumentsResolve {
 
-    /**
-     * 默认url 参数转16进制key
-     * @type {string}
-     */
-    private encodeParamKey: string;
 
-    //固定参数key
-    private FixedPramKeys: string[];
-
-
-    constructor(encodeParamKey: string, FixedPramKeys: string[] = []) {
-        this.encodeParamKey = encodeParamKey;
-        this.FixedPramKeys = FixedPramKeys;
+    constructor() {
     }
 
     /**
@@ -34,26 +23,14 @@ export default class URLArgumentsResolve {
 
         let queryString: string = "";
 
-
         if (hexEncoding) {
             //转为16进制数据
-
-            //固定参数
-            const fixedParams = {};
-
-            //需要进行编码的参数
             const encodePrams = {};
-
             for (let key in params) {
-                let param = params[key];
-                if (this.isFixedParamKey(key)) {
-                    //跳过固定参数
-                    fixedParams[key] = param;
-                } else {
-                    encodePrams[key] = param;
-                }
+                //对所有的值都进行16进制的转化
+                encodePrams[key] = StringToHexUtil.encode(queryString);
             }
-            queryString = this.encodeParamKey + "=" + StringToHexUtil.encode(queryString) + "&" + stringify(fixedParams);
+            queryString = stringify(encodePrams);
 
         } else {
             queryString = stringify(params);
@@ -72,7 +49,6 @@ export default class URLArgumentsResolve {
      */
     public parseArguments = (url: string, hexDecoding: boolean = true): any => {
 
-        const DEFAULT_PARAM_KEY_NAME: string = this.encodeParamKey;
 
         //查询字符串
         const queryString: string = url.split("?")[0];
@@ -80,16 +56,16 @@ export default class URLArgumentsResolve {
         if (!StringUtils.hasText(queryString)) {
             return {};
         }
-        let params: object = parse(queryString);
-        const s: string = params[DEFAULT_PARAM_KEY_NAME];
-        if (hexDecoding && s != null) {
-            //查询字符串解析
-            params = {
-                ...params,
-                ...parse(StringToHexUtil.decode(s))
-            };
+        //查询字符串解析
+        const params: object = parse(queryString);
+        if (hexDecoding) {
+            for (const key in params) {
+                //16进制解码
+                params[key] = StringToHexUtil.decode(params[key]);
+            }
         }
         const result = {};
+        //布尔值转化
         for (const key in params) {
             let param = params[key];
             if (param === "true" || param === "false") {
@@ -99,17 +75,8 @@ export default class URLArgumentsResolve {
             }
         }
 
-        delete result[DEFAULT_PARAM_KEY_NAME];
         return result;
     };
 
-    /**
-     * 是否为固定的参数
-     * @param key
-     */
-    private isFixedParamKey = (key) => {
-
-        return this.FixedPramKeys.some((item) => item === key);
-    };
 
 }

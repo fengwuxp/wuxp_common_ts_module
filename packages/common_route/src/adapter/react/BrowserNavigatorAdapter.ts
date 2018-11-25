@@ -1,4 +1,4 @@
-import {NavigatorAdapter} from "../NavigatorAdapter";
+import {NavigatorAdapter} from "../../NavigatorAdapter";
 import {History} from "history";
 import HistoryRegistry from "../../registry/HistoryRegistry";
 

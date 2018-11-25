@@ -15,4 +15,6 @@ class HistoryRegistry implements Registry<History> {
     };
 }
 
-export default new HistoryRegistry()
+const historyRegistry = new HistoryRegistry();
+
+export default historyRegistry;

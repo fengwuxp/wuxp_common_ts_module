@@ -1,9 +1,10 @@
 {
   "packages": [
+    "components/*",
     "packages/*",
-    "types/*",
     "starters/*",
-    "components/*"
+    "templates/*",
+    "types/*"
   ],
   "version": "0.0.1",
   "commands": {

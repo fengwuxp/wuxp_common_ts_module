@@ -1,9 +1,9 @@
 /**
- * TODO 用于多个页面传递state数据，数据保存在内存中
+ * 用于多个页面传递state数据，数据保存在内存中
  * @author wxup
  * @create 2018-10-06 13:06
  **/
-import {isWeb} from "../../constant/WeexEnvUtil";
+import {isWeb} from "../../constant/WeexEnv";
 
 
 //页面状态传递key

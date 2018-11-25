@@ -1,7 +1,6 @@
 /**
  * weex路径解析
  * 支持相对地址和绝对地址的写法
- * Created by wuxp on 2017/6/4.
  */
 export default class WeexPathParseUtil {
 
@@ -11,11 +10,10 @@ export default class WeexPathParseUtil {
 
     /**
      * 获取native 下的go to url
-     * @param targetURL
-     * @param weex
+     * @param targetURL 目标url
      * @return {string}
      */
-    static getNativeGoToURL = (targetURL: string, weex: any) => {
+    static getNativeGoToURL = (targetURL: string) => {
 
         const bundleUrl = weex.config.bundleUrl;
 
@@ -29,10 +27,9 @@ export default class WeexPathParseUtil {
     /**
      * 获取 web下的go to url
      * @param targetURL
-     * @param weex
      * @return {string}
      */
-    static getWebGoToURL = (targetURL: string, weex: any) => {
+    static getWebGoToURL = (targetURL: string) => {
         const bundleUrl = window.location.href;
         const urls = bundleUrl.split("#");
         const root = urls[0];

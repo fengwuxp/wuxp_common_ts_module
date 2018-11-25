@@ -4,7 +4,7 @@ import {WeexModule} from "../../../../index";
  * weex 导航模块
  * https://weex.apache.org/cn/references/modules/navigator.html
  */
-export interface WeexNavigatorModule extends WeexModule{
+export interface WeexNavigatorModule extends WeexModule {
 
     /**
      * 把一个weex页面URL压入导航堆栈中，可指定在页面跳转时是否需要动画，以及操作完成后需要执行的回调函数
@@ -19,7 +19,7 @@ export interface WeexNavigatorModule extends WeexModule{
      * @param {Function} callback
      * @return {{}}
      */
-    readonly  pop: (options: WeexNavigatorPopOptions, callback: Function) => {}
+    readonly  pop: (options: WeexNavigatorPopOptions, callback: Function) => void;
 }
 
 

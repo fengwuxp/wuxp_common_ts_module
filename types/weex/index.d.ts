@@ -26,14 +26,17 @@ interface WeexDocument {
 }
 
 export interface WeexModule {
-    readonly [k: string]: Function
+
 }
 
 
 declare global {
     namespace weex {
+
+        // @ts-ignore
         const config: WeexConfigAPI;
 
+        // @ts-ignore
         const document: WeexDocument;
 
         function registerModule(name: string, module: WeexModule): void
