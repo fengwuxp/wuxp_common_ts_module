@@ -80,5 +80,5 @@ export interface NavBarStyleOptions {
     /**
      * 沉浸式状态栏颜色
      */
-    immersiveStatusBarColor?: string;
+    immersiveStatusBarColor?: CSS.BackgroundColorProperty;
 }

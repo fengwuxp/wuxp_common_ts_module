@@ -24,8 +24,6 @@
   "keywords": [],
   "dependencies": {
     "@types/weex": "0.0.1",
-    "babel-plugin-component": "^1.1.1",
-    "babel-plugin-import": "^1.9.1",
     "common_route": "0.0.1",
     "common_starter": "^0.0.1",
     "common_style": "^0.0.1",
@@ -38,12 +36,12 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "weex-devtool": "^0.3.8",
-    "weex-loader": "~0.7.9",
-    "weex-ui": "^0.6.6",
-    "weex-vue-framework": "^2.5.16-weex.3",
-    "weex-vue-loader": "~0.6.12",
+    "weex-loader": "~0.7.12",
+    "weex-ui": "^0.6.7",
+    "weex-vue-framework": "^2.5.16-weex.5",
+    "weex-vue-loader": "~0.7.0",
     "weex-vue-precompiler": "^0.1.23",
-    "weex-vue-render": "^1.0.31",
+    "weex-vue-render": "^1.0.33",
     "weex_components": "^0.0.1"
   }
 }

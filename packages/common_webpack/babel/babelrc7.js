@@ -8,8 +8,8 @@ module.exports = {
         [
             "@babel/preset-env",
             {
-                "modules": false,
-                useBuiltins: "usage"
+                "modules": false
+                // useBuiltins: "usage"
             },
 
         ],
@@ -18,6 +18,7 @@ module.exports = {
         "@babel/preset-flow"
     ],
     plugins: [
+        "@babel/plugin-proposal-object-rest-spread",
         [
             "@babel/plugin-proposal-class-properties",
             {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var WebpackUtils_1 = require("../utils/WebpackUtils");
+var babelrc7_1 = require("../../babel/babelrc7");
 /**
  * babel-loader
  * @author wxup
@@ -12,6 +13,14 @@ var babelLoader = {
     use: [
         {
             loader: "babel-loader",
+            options: babelrc7_1.default
+            // options: {
+            //     presets: [
+            //         [
+            //             "@babel/preset-env"
+            //         ]
+            //     ]
+            // }
         }
     ]
 };

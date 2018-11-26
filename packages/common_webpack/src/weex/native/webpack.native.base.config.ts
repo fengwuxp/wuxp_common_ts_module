@@ -41,10 +41,10 @@ const config: webpack.Configuration = {
                 test: /\.vue(\?[^?]+)?$/,
                 loaders: [
                     {
-                        // loader: "weex-loader",
                         loader: "weex-vue-loader",
                         options: {
                             loaders: {
+
                                 //覆盖默认的 less-loader，必须要配置成数组，否则不生效
                                 less: [
                                     {

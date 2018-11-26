@@ -1,13 +1,23 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
+import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
 import {isIos, isAndroid, isIphoneX, isWeb} from "common_weex/src/constant/WeexEnv";
 import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 
+//约定导入 app配置
+import {appConfig} from '../../../../src/config/WeexAppConfig';
+
+
 //约定导入 路由配置
 import route from '../../../../src/route/NavtieRoute';
 import AppRouter from "../route/AppRouter";
+
+
+//初始化app 配置
+AppConfigRegistry.register(appConfig);
+
 
 let packageName: string = weex.config.env['appGroup'];
 if (packageName == null || packageName.trim().length === 0) {
@@ -24,7 +34,6 @@ AppRouter.generateBundleJsURL = function (uri: string, main: boolean) {
 
     return `weex://${packageName}/${main ? 'main' : 'page'}/${uri}`;
 };
-
 
 
 /**

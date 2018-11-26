@@ -1,5 +1,5 @@
 import {isIos, isIphoneX} from "common_weex/src/constant/WeexEnv";
-import {isWeb} from "../../../../../packages/common_weex/src/constant/WeexEnv";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 
 /**
@@ -59,7 +59,9 @@ export const getViewHeaderHeight = async (): Promise<number> => {
     return Promise.resolve(DEFAULT_HEADER_HEIGHT + height);
 };
 
+//android需要
 let appStatusBarHelper: AppStatusBarHelper;
+
 /**
  * 获取StatusBar顶部高度
  * @param appStatusBarHelper

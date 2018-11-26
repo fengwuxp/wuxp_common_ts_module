@@ -1,4 +1,4 @@
-import {supportUMeng} from "common_weex/src/utils/NativeSupportUtils";
+import {supportUMeng} from "common_weex/src/utils/NativeSupportUtil";
 
 const umeng = weex.requireModule("umeng");
 

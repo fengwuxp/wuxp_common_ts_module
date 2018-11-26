@@ -1,4 +1,5 @@
 import {isExclude} from "../utils/WebpackUtils";
+import babel7Options from "../../babel/babelrc7";
 
 /**
  * babel-loader
@@ -6,20 +7,17 @@ import {isExclude} from "../utils/WebpackUtils";
  * @create 2018-09-25 9:37
  **/
 
-const babelLoader= {
+const babelLoader = {
     test: /\.js[x]?$/,
     exclude: isExclude,
     use: [
         {
             loader: "babel-loader",
+            options: babel7Options
             // options: {
-            //     "presets": [
+            //     presets: [
             //         [
-            //             "@babel/preset-env",
-            //             {
-            //                 "targets": "last 2 versions, ie 11",
-            //                 "modules": false
-            //             }
+            //             "@babel/preset-env"
             //         ]
             //     ]
             // }
@@ -27,4 +25,4 @@ const babelLoader= {
     ]
 };
 
-export  default babelLoader
+export default babelLoader

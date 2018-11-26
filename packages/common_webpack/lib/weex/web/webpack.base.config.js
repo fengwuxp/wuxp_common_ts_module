@@ -23,7 +23,8 @@ var postcssLoader = {
             //使用.browserslistrc的统一配置
             autoprefixer(),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
-        ]
+        ],
+        ident: "css-loader"
     }
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();
@@ -36,7 +37,7 @@ var webpackConfig = {
         filename: '[name].web.js'
     },
     resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".vue"]
+        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
     },
     module: {
         rules: [
@@ -85,8 +86,7 @@ var webpackConfig = {
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: ThemeConfig_1.getThemeConfig(),
-                            ident: "less-loader"
+                            modifyVars: ThemeConfig_1.getThemeConfig()
                         }
                     }
                 ]

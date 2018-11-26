@@ -6,10 +6,10 @@ import * as path from "path";
  * @create 2018-09-25 11:15
  **/
 
-const PostCssLoader= {
+const PostCssLoader = {
     loader: "postcss-loader",
     options: {
-        ident: "css-loader",
+        // ident: "css-loader",
         config: {
             path: path.join(__dirname, './PostCss.config.js')
         }

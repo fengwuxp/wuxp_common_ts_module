@@ -2,7 +2,6 @@ import {FetchAdapter} from "../FetchAdapter";
 import {FetchOptions, FetchResponse} from "../../fetch/FetchOptions";
 import {WeexStreamModule, WeexStreamOption, WeexStreamResponse} from "weex/src/sdk/model/stream";
 import {ReqMethod} from "../../enums/ReqMethod";
-import {isFunction, isNullOrUndefined, isString} from "util";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";
 import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
 
@@ -63,9 +62,7 @@ export class WeexAdapter implements FetchAdapter {
             headers
         } = reqParams;
 
-        if (isNullOrUndefined(headers)) {
-            headers = {};
-        }
+        headers = headers || {};
 
         //WEEX stream对象 https://weex.apache.org/cn/references/modules/stream.html
 

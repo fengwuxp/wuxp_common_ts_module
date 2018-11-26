@@ -35,7 +35,6 @@ var config = {
                 test: /\.vue(\?[^?]+)?$/,
                 loaders: [
                     {
-                        // loader: "weex-loader",
                         loader: "weex-vue-loader",
                         options: {
                             loaders: {

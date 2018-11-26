@@ -2,7 +2,6 @@ import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
 
 
-
 //获取app的配置的信息
 const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get();
 
