@@ -5,9 +5,9 @@
         <!--背景-->
         <slot name="header-bg"></slot>
         <div class="nav-bar">
-            <slot class="nav-bar-left" name="nav-bar-left"></slot>
-            <slot class="nav-bar-center" name="nav-bar-center"></slot>
-            <slot class="nav-bar-right" name="nav-bar-right"></slot>
+            <slot name="nav-bar-left"></slot>
+            <slot name="nav-bar-center"></slot>
+            <slot name="nav-bar-right"></slot>
         </div>
     </div>
 </template>
@@ -26,9 +26,7 @@
         },
         data() {
 
-            return {
-
-            }
+            return {}
         },
         computed: {
             containerStyle() {

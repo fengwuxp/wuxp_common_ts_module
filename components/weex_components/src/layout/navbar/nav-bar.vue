@@ -11,10 +11,14 @@
                   :leftStyle="leftStyle"
                   :centerStyle="centerStyle"
                   :rightStyle="rightStyle">
-        <div slot="header-left">
-            <image :src="backIcon" @click="clickLeft"></image>
+        <div slot="nav-bar-left"
+             class="nav-bar-left">
+            <image :src="backIcon"
+                   :style="backIconStyle"
+                   @click="clickLeft"></image>
         </div>
-        <div slot="header-center">
+        <div class="nav-bar-center"
+             slot="nav-bar-center">
             <text class="nav-bar-title" :value="navTitle"></text>
         </div>
     </nav-base-bar>
@@ -43,6 +47,4 @@
     }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped lang="less" src="./style.less"></style>

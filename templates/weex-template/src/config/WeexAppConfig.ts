@@ -5,9 +5,10 @@ import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
 
 
 const navBarStyleOptions: NavBarStyleOptions = {
+
     backIcon: "",
 
-    backIconStyle: {},
+    backIconStyle: null,
 
     backgroundImage: "",
 
@@ -19,7 +20,9 @@ const navBarStyleOptions: NavBarStyleOptions = {
 
     rightStyle: {},
 
-    style: {}
+    style: {
+        backgroundColor:"#4cbfff"
+    }
 
 };
 

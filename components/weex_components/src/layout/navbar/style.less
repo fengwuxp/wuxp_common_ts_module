@@ -1,25 +1,25 @@
 @import "../../theme/defualt_theme";
 
 //导航栏高度
-@nav-bar-height: 100;
+@nav-bar-height: 100px;
 
 //导航栏背景色
 @nav-bar-background-color: @fill-base;
 
 //导航栏左侧宽度
-@nav-bar-left-width: 140;
+@nav-bar-left-width: 140px;
 
 //导航栏中间宽度
 @nav-bar-center-width: @nav-bar-height - @nav-bar-left-width * 2;
 
 //导航栏右侧宽度
-@nav-bar-right-width: 140;
+@nav-bar-right-width: 140px;
 
 //标题字号
-@nav-bar-title-font-size: 36;
+@nav-bar-title-font-size: 36px;
 
-//标题颜色
-@nav-bar-title-color: #30303;
+//标题默认颜色
+@nav-bar-title-color: #303030;
 
 .nav-container {
   background-color: @nav-bar-background-color;
@@ -52,12 +52,11 @@
 }
 
 .nav-bar-title {
-  height: @nav-bar-height;
-  //width: @nav-bar-center-width - 20;
-  flex: 1;
+  width: @nav-bar-center-width - 20;
   font-size: @nav-bar-title-font-size;
   color: @nav-bar-title-color;
   text-overflow: ellipsis;
+  font-weight: 500;
   //weex 特有  绝望
   lines: 1;
 

@@ -18,8 +18,8 @@ const appHeaderBaseProps = {
      */
     backIconStyle: {
         default: navBarOptions.backIconStyle || {
-            width: 80,
-            height: 80
+            width: "80px",
+            height: "80px"
         }
     },
 

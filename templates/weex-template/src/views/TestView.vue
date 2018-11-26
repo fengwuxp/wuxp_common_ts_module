@@ -40,6 +40,7 @@
 
     .flex_1 {
         flex: 1;
+        background-color: @fill-body;
     }
 
     .app_footer {
