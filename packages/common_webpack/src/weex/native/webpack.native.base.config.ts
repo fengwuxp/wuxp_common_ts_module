@@ -46,7 +46,7 @@ const config: webpack.Configuration = {
                         options: {
                             babel: {
                                 //support babel7
-                                query: babel7
+                                query: babel7Options
                             },
                             loaders: {
 

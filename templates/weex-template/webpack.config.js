@@ -17,9 +17,7 @@ webpackConfig.plugins.push(
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            IS_WEB: true,
             // NODE_ENV: '"dev"',
-            API_ROOT: JSON.stringify(DEV_API_ADDRESS)
         }
     })
 );
