@@ -5,6 +5,7 @@ import WeexPackConfig from "./WeexPackConfig";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {getThemeConfig} from "../../style/ThemeConfig";
+import babel7Options from "../../../babel/babelrc7";
 
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -27,7 +28,7 @@ const config: webpack.Configuration = {
         filename: '[name].js',
     },
     resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".vue"]
+        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
     },
     node: {
         global: true
@@ -43,6 +44,10 @@ const config: webpack.Configuration = {
                     {
                         loader: "weex-vue-loader",
                         options: {
+                            babel: {
+                                //support babel7
+                                query: babel7
+                            },
                             loaders: {
 
                                 //覆盖默认的 less-loader，必须要配置成数组，否则不生效
@@ -68,7 +73,6 @@ const config: webpack.Configuration = {
 
 
 if (nativeRelease) {
-
 
 
     //先将打包目录清除

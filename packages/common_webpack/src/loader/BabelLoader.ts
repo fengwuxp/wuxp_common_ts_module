@@ -14,13 +14,6 @@ const babelLoader = {
         {
             loader: "babel-loader",
             options: babel7Options
-            // options: {
-            //     presets: [
-            //         [
-            //             "@babel/preset-env"
-            //         ]
-            //     ]
-            // }
         }
     ]
 };
