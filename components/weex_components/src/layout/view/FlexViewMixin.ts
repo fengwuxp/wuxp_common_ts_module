@@ -6,7 +6,7 @@ export default {
     mixins: [umengMixin],
     props: {
         viewStyle: {
-            default: {}
+            default: ()=>({})
         }
     },
     data() {
