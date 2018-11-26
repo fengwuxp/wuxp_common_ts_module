@@ -1,6 +1,6 @@
 <!-- 通用的 nav bar-->
 <template>
-    <nav-base-bar :style="style"
+    <nav-base-bar :navBarStyle="navBarStyle"
                   :backIcon="backIcon"
                   :backIconStyle="backIconStyle"
                   :navTitle="navTitle"
@@ -35,7 +35,7 @@
             ...appHeaderBaseProps
         },
         data() {
-
+            return {};
         },
         methods: {
             clickLeft(event) {

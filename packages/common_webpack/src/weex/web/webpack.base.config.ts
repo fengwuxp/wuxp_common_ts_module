@@ -2,7 +2,7 @@ import * as webpack from "webpack";
 import * as path from "path";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
-import {cssModuleLoader} from "../../style/CssModuleUtils";
+
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {getThemeConfig} from "../../style/ThemeConfig";
 
@@ -16,6 +16,19 @@ const bannerPlugin = new webpack.BannerPlugin({
 const postcssPluginWeex = require('postcss-plugin-weex');
 const autoprefixer = require('autoprefixer');
 const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
+
+const cssLoader = ({resource}) => ({
+    ident: "css-loader",
+    loader: 'css-loader',
+    options: {
+        minimize: true,
+        importLoaders: 2,
+        // //判断是否需要css module
+        // modules: /\.module\.css/.test(resource),
+        // localIdentName: '[name]__[local]___[hash:base64:5]',
+        ident: "css-loader"
+    }
+});
 
 const postcssLoader = {
     loader: "postcss-loader",
@@ -42,7 +55,7 @@ const webpackConfig: webpack.Configuration = {
         filename: '[name].web.js'
     },
     resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js",".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
     },
     module: {
         rules: [
@@ -75,7 +88,7 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "style-loader"
                     },
-                    cssModuleLoader,
+                    cssLoader,
                     postcssLoader
                 ]
             },
@@ -85,14 +98,15 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "style-loader"
                     },
-                    cssModuleLoader,
+                    cssLoader,
                     postcssLoader,
                     {
                         loader: 'less-loader',
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: getThemeConfig()
+                            modifyVars: getThemeConfig(),
+                            ident: "css-loader"
                         }
                     }
                 ]
@@ -103,12 +117,12 @@ const webpackConfig: webpack.Configuration = {
                     {
                         loader: "style-loader"
                     },
-                    cssModuleLoader,
+                    cssLoader,
                     postcssLoader,
                     {
                         loader: "sass-loader",
                         options: {
-                            ident: "sass-loader"
+                            ident: "css-loader"
                         }
                     }
                 ]

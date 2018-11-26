@@ -10,79 +10,90 @@ const appHeaderBaseProps = {
      * 返回图标
      */
     backIcon: {
-        default: navBarOptions.backIcon
+        default: navBarOptions.backIcon,
+        type: String
     },
 
     /**
      * 返回图标样式
      */
     backIconStyle: {
-        default: navBarOptions.backIconStyle || {
+        default: () => (navBarOptions.backIconStyle || {
             width: "80px",
             height: "80px"
-        }
+        }),
+        type: Object
     },
 
     navTitle: {
-        default: null
+        default: null,
+        type: String
     },
 
     /**
      * 背景图
      */
     backgroundImage: {
-        default: navBarOptions.backgroundImage
+        default: navBarOptions.backgroundImage,
+        type: String
     },
 
     /**
      * 沉浸式导航栏颜色
      */
     immersiveStatusBarColor: {
-        default: navBarOptions.immersiveStatusBarColor
+        default: navBarOptions.immersiveStatusBarColor,
+        type: String
     },
 
     /**
      * 沉浸式导航栏高度
      */
     immersiveStatusBarHeight: {
-        default: 0
+        default: 0,
+        type: Number
     },
 
     /**
      * 是否开启沉浸式导航栏
      */
     enableImmersive: {
-        default: enableImmersiveNavBar()
+        default: enableImmersiveNavBar(),
+        type: Boolean
     },
 
     /**
      * 样式
      */
-    style: {
-        default: navBarOptions.style || {}
+    navBarStyle: {
+        default: ()=>( {}),
+        type: Object
     },
 
     /**
      * 左侧样式
      */
     leftStyle: {
-        default: navBarOptions.leftStyle || {
+        default:()=>( navBarOptions.leftStyle || {
             height: 100,
             width: 120
-        }
+        }),
+        type: Object
     },
 
     /**
      * 中间样式
      */
     centerStyle: {
-        default: navBarOptions.centerStyle
+        default: ()=>(navBarOptions.centerStyle),
+        type: Object
     },
     /**
      * 右侧样式
      */
     rightStyle: {
-        default: navBarOptions.rightStyle
+        default: ()=>(navBarOptions.rightStyle),
+        type: Object
     }
 };
 

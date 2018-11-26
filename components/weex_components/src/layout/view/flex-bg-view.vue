@@ -1,7 +1,7 @@
 <!--flex bg view-->
 <template>
     <div class="app"
-         :style="style"
+         :style="viewStyle"
          @viewappear="viewAppear"
          @viewdisappear="viewDisappear">
         <image :src="bgSrc" :style="bgStyle"></image>

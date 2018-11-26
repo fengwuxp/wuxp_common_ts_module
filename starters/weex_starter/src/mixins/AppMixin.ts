@@ -2,7 +2,6 @@ import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
-import {isIos, isAndroid, isIphoneX, isWeb} from "common_weex/src/constant/WeexEnv";
 import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 

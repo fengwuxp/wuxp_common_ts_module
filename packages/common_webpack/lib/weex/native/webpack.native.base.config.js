@@ -6,6 +6,7 @@ var WeexPackConfig_1 = require("./WeexPackConfig");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var ThemeConfig_1 = require("../../style/ThemeConfig");
+var babelrc7_1 = require("../../../babel/babelrc7");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
@@ -22,7 +23,7 @@ var config = {
         filename: '[name].js',
     },
     resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".vue"]
+        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
     },
     node: {
         global: true
@@ -37,6 +38,10 @@ var config = {
                     {
                         loader: "weex-vue-loader",
                         options: {
+                            babel: {
+                                //support babel7
+                                query: babelrc7_1.default
+                            },
                             loaders: {
                                 //覆盖默认的 less-loader，必须要配置成数组，否则不生效
                                 less: [

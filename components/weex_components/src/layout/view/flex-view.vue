@@ -1,7 +1,7 @@
 <!--flex view-->
 <template>
     <div class="app"
-         :style="style"
+         :style="viewStyle"
          @viewappear="viewAppear"
          @viewdisappear="viewDisappear">
         <slot name="app-header"></slot>

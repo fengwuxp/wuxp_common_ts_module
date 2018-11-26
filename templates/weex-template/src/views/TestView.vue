@@ -1,5 +1,5 @@
 <template>
-    <flex-view>
+    <flex-view :viewStyle="viewStyle">
         <nav-bar slot="app-header" :navTitle="navTitle"></nav-bar>
         <div slot="app-body" class="flex_1"></div>
         <div slot="app-footer" class="app_footer"></div>
@@ -19,6 +19,11 @@
         props: {
             navTitle: {
                 default: "测试页面"
+            },
+            viewStyle: {
+                default: () => ({
+                    backgroundColor:"#ff0000"
+                })
             }
         },
         data() {

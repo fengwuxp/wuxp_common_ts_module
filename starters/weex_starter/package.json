@@ -29,6 +29,7 @@
     "common_style": "^0.0.1",
     "common_webpack": "^0.0.1",
     "common_weex": "0.0.1",
+    "postcss-plugin-px2rem": "^0.8.0",
     "postcss-plugin-weex": "^0.1.7",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.1",
@@ -40,7 +41,7 @@
     "weex-ui": "^0.6.7",
     "weex-vue-framework": "^2.5.16-weex.5",
     "weex-vue-loader": "~0.7.0",
-    "weex-vue-precompiler": "^0.1.23",
+    "weex-vue-precompiler": "^0.1.23.bate",
     "weex-vue-render": "^1.0.33",
     "weex_components": "^0.0.1"
   }

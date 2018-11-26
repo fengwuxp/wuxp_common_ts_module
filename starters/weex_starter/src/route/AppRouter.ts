@@ -65,10 +65,10 @@ export default class AppRouter {
                             //登录成功的重定向地址
                             redirect: param.pathname,
                             //重定向参数
-                            redirectParam: {
+                            redirectParam: JSON.stringify({
                                 ...parse(param.search),
                                 ...param.state
-                            }
+                            })
                         }
                     });
                     return;

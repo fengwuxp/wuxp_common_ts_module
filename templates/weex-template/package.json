@@ -17,13 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "ts-loader": "^5.3.0",
-    "weex-loader": "^0.7.12",
-    "weex_components": "0.0.1",
+    "vue-loader": "^12.2.0",
     "weex_starter": "0.0.1"
-  },
-  "devDependencies": {
-    "postcss-plugin-px2rem": "^0.8.0",
-    "weex-vue-precompiler": "^0.1.23"
   }
 }

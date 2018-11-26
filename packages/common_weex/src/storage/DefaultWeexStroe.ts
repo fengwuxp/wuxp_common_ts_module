@@ -5,7 +5,7 @@ import AbstractWeexStorage from "./WeexStorage";
 /**
  * 默认的 weexStore
  */
- class DefaultWeexStroe extends AbstractWeexStorage {
+class DefaultWeexStroe extends AbstractWeexStorage {
 
 
     constructor() {

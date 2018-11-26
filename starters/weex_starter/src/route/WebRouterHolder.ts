@@ -41,8 +41,6 @@ const router = new VueRouter({
 });
 
 
-
-
 /**
  * 登陆统一拦截
  */
@@ -61,7 +59,11 @@ router.beforeEach(async function (to, from, next) {
         if (!isLogin) {
             next({
                 path: '/login',
-                query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                query: {
+                    // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                    redirect: to.fullPath,
+                    redirectParam: JSON.stringify(to.params)
+                }
             });
         } else {
             next();

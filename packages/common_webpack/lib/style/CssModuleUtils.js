@@ -7,11 +7,11 @@ exports.cssModuleLoader = function (_a) {
         loader: 'css-loader',
         options: {
             minimize: true,
-            importLoaders: 1,
+            importLoaders: 2,
             //判断是否需要css module
             modules: /\.module\.css/.test(resource),
             localIdentName: '[name]__[local]___[hash:base64:5]',
-            ident: "postcss-loader",
+            ident: "css-loader"
         }
     });
 };

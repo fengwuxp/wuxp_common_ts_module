@@ -17,6 +17,11 @@
     import appHeaderBaseProps from "./props/AppHeaderBaseProps";
     import {getStatusBarHeight} from "../view/FlexVIewHelper";
     import WeexThemeControl from "../../theme/WeexThemeControl";
+    import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+
+    const navBarOptions = AppConfigRegistry.getNavBarOptions();
+
+    const defaultStyle = navBarOptions.style || {};
 
     export default {
         name: "nav-base-bar",
@@ -30,14 +35,20 @@
         },
         computed: {
             containerStyle() {
-                const style = this.style;
+                const style = {
+                    ...defaultStyle
+                };
                 if (this.enableImmersive) {
                     //开启沉浸式导航
                     style.paddingTop = this.immersiveStatusBarHeight;
                 }
-                return WeexThemeControl.resolveStyle({
+                WeexThemeControl.resolveStyle({
                     backgroundColor: "nav-bar-background-color"
                 }, style);
+                return {
+                    ...style,
+                    ...this.navBarStyle
+                };
             }
         },
         beforeMount() {
