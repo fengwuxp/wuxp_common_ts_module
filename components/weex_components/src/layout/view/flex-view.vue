@@ -17,8 +17,4 @@
     export default FlexViewMixin;
 </script>
 
-<style scoped lang="less">
-
-    @import "./styles";
-
-</style>
+<style scoped lang="less" src="./styles.less"></style>

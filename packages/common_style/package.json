@@ -22,5 +22,8 @@
   ],
   "scripts": {
     "npm_publish": "npm publish"
+  },
+  "dependencies": {
+    "csstype": "^2.5.7"
   }
 }

@@ -1,11 +1,10 @@
-import AppConfigRegistry from "common_config/src/AppConfigRegistry";
-import {APP_CONFIG_NAME} from "common_config/src/AppConfigRegistry";
+import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
 
 
 
 //获取app的配置的信息
-const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get(APP_CONFIG_NAME);
+const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get();
 
 const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 

@@ -27,7 +27,8 @@
     "@types/weex": "0.0.1",
     "common_route": "^0.0.1",
     "common_style": "^0.0.1",
-    "common_weex": "^0.0.1",
+    "common_weex": "0.0.1",
+    "csstype": "^2.5.7",
     "weex-ui": "^0.6.6"
   }
 }

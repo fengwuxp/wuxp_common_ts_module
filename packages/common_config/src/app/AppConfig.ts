@@ -3,8 +3,8 @@
  * @author wxup
  * @create 2018-09-27 9:58
  **/
-import {LayoutConfig} from "./views/LayoutConfig";
-import {ResourceConfig} from "./resources/ResourceConfig";
+import {LayoutConfig} from "../views/LayoutConfig";
+import {ResourceConfig} from "../resources/ResourceConfig";
 
 
 export interface AppConfig {

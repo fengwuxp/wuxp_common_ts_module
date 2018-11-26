@@ -14,15 +14,13 @@ export default {
     },
     computed: {
         style() {
-            let view = {
+            const viewStyle = {
                 ...this.viewStyle
             };
 
-            const backgroundColor = WeexThemeControl.getColorByName("fill-body");
-            if (backgroundColor) {
-                view.backgroundColor = backgroundColor;
-            }
-            return view;
+            return WeexThemeControl.resolveStyle({
+                backgroundColor: "fill-body"
+            }, viewStyle);
         }
     },
     methods: {

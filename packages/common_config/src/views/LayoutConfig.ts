@@ -25,9 +25,9 @@ export interface LayoutConfig {
     viewBackgroundImage?: string;
 
     /**
-     * 头部配置
+     * 导航栏配置
      */
-    headerOptions: HeaderOptions;
+    navBarStyleOptions: NavBarStyleOptions;
 
     /**
      * 页面主体的样式
@@ -37,12 +37,12 @@ export interface LayoutConfig {
 
 
 /**
- * 头部配置
+ * 导航栏配置
  */
-interface HeaderOptions {
+export interface NavBarStyleOptions {
 
     /**
-     * 头部背景图
+     * 导航栏背景图
      */
     backgroundImage?: string;
 
@@ -52,28 +52,33 @@ interface HeaderOptions {
     backIcon?: string;
 
     /**
+     * 返回图标样式
+     */
+    backIconStyle?: CSS.Properties<string | number>;
+
+    /**
      * 样式
      */
-    style: CSS.Properties<string | number>;
+    style?: CSS.Properties<string | number>;
 
 
     /**
      * 左侧区域样式
      */
-    leftStyle: CSS.Properties<string | number>;
+    leftStyle?: CSS.Properties<string | number>;
 
     /**
      * 中间区域
      */
-    centerStyle: CSS.Properties<string | number>;
+    centerStyle?: CSS.Properties<string | number>;
 
     /**
      * 右侧区域样式
      */
-    rightStyle: CSS.Properties<string | number>;
+    rightStyle?: CSS.Properties<string | number>;
 
     /**
-     * ios 顶部样式
+     * 沉浸式状态栏颜色
      */
-    iosTopStyle: CSS.Properties<string | number>;
+    immersiveStatusBarColor?: string;
 }
