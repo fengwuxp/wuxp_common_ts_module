@@ -42,11 +42,11 @@
                     //开启沉浸式导航
                     style.paddingTop = this.immersiveStatusBarHeight;
                 }
-                WeexThemeControl.resolveStyle({
-                    backgroundColor: "nav-bar-background-color"
-                }, style);
+
                 return {
-                    ...style,
+                    ...WeexThemeControl.resolveStyle({
+                        backgroundColor: "nav-bar-background-color"
+                    }, style),
                     ...this.navBarStyle
                 };
             }
