@@ -16,7 +16,7 @@
 
     import appHeaderBaseProps from "./props/AppHeaderBaseProps";
     import {getStatusBarHeight} from "../view/FlexVIewHelper";
-    import WeexThemeControl from "../../theme/WeexThemeControl";
+    import CommonThemeControl from "common_style/src/CommonThemeControl";
     import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
     const navBarOptions = AppConfigRegistry.getNavBarOptions();
@@ -44,7 +44,7 @@
                 }
 
                 return {
-                    ...WeexThemeControl.resolveStyle({
+                    ...CommonThemeControl.resolveStyle({
                         backgroundColor: "nav-bar-background-color"
                     }, style),
                     ...this.navBarStyle

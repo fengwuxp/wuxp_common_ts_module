@@ -1,13 +1,11 @@
 import TestView from "../views/TestView";
 
-const webRoutes = {
+export default{
 
     index: {
-        component: TestView
+        component: resolve => require(["../views/test/TestView"], resolve)
     },
     test_view: {
         component: TestView
     }
 };
-
-export default webRoutes;

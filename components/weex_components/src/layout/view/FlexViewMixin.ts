@@ -1,5 +1,5 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
-import WeexThemeControl from "../../theme/WeexThemeControl";
+import CommonThemeControl from "common_style/src/CommonThemeControl";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
 const layoutConfig = AppConfigRegistry.getLayoutConfig();
@@ -20,7 +20,7 @@ export default {
     },
     computed: {
         viewStyle() {
-            const style = WeexThemeControl.resolveStyle({
+            const style = CommonThemeControl.resolveStyle({
                 backgroundColor: "fill-body"
             }, defaultStyle);
 

@@ -17,7 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "vue-loader": "^12.2.0",
+    "vue-loader": "^15.4.1",
     "weex_starter": "0.0.1"
   }
 }
