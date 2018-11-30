@@ -13,8 +13,6 @@ interface WeexAppContext {
 
     router: AppRouter;
 
-    appRegistry: AppConfigRegistry;
-
     appConfig: AppConfig
 }
 

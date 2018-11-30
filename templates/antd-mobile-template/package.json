@@ -15,6 +15,6 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_mobile_starter": "0.0.1"
+    "antd_mobile_starter": "^0.0.1"
   }
 }

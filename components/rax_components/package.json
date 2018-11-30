@@ -27,8 +27,8 @@
   "dependencies": {
     "@types/node": "^9.4.6",
     "@types/react": "^16.4.9",
-    "@types/weex": "0.0.1",
-    "common_view": "0.0.1",
+    "@types/weex": "^0.0.1",
+    "common_view": "^0.0.1",
     "rax": "^0.6.4"
   }
 }

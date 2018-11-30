@@ -33,7 +33,7 @@ const setRouteList = function (appRoute: AppRoute) {
         });
     }
 };
-setRouteList(routes);
+setRouteList(routes as any);
 
 const router = new VueRouter({
     mode: 'history',

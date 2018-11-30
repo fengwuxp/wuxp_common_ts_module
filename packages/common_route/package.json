@@ -27,7 +27,7 @@
   "dependencies": {
     "@types/history": "^4.7.0",
     "@types/node": "^10.9.4",
-    "@types/weex": "0.0.1",
+    "@types/weex": "^0.0.1",
     "@types/weixin": "0.0.1",
     "common_core": "^0.0.1",
     "common_env": "^0.0.1",

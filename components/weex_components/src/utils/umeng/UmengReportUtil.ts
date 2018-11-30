@@ -1,6 +1,6 @@
 import {supportUMeng} from "common_weex/src/utils/NativeSupportUtil";
 
-const umeng = weex.requireModule("umeng");
+const umeng: any = weex.requireModule("umeng");
 
 /**
  * 上报页面进入事件到友盟

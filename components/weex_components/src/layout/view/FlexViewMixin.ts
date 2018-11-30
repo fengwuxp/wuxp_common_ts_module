@@ -2,6 +2,7 @@ import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
 
 //获取bootStarter
+// @ts-ignore
 const weexSimpleBootStarter = require("weex_starter/src/bootstartup/WeexSimpleBootStarter").default;
 
 /**
@@ -11,26 +12,31 @@ export default {
     name: "flex-view",
     mixins: [umengMixin],
     props: {
-        viewStyle: {
+        flexViewStyle: {
             default: () => ({}),
             type: Object
         }
     },
     data() {
         return {
-            defaultStyle: null
+            defaultStyle: null,
         };
     },
     computed: {
-        viewStyle() {
-            const style = CommonThemeControl.resolveStyle({
-                backgroundColor: "fill-body"
-            }, this.defaultStyle);
+        viewStyle: {
+            set(style) {
+                this.flexViewStyle = style;
+            },
+            get() {
+                const style = CommonThemeControl.resolveStyle({
+                    backgroundColor: "fill-body"
+                }, this.defaultStyle);
 
-            return {
-                ...style,
-                ...this.viewStyle
-            };
+                return {
+                    ...style,
+                    ...this.flexViewStyle
+                };
+            }
         }
     },
     methods: {
@@ -43,15 +49,33 @@ export default {
         viewDisappear() {
             this.$emit("viewDisappear");
             this.reportUMengByDestroy();
+        },
+
+        fadeInView(opacity) {
+            if (opacity === 1) {
+                return;
+            }
+            opacity += 0.15;
+            setTimeout(() => {
+                this.defaultStyle.opacity = opacity;
+                this.fadeInView(opacity);
+            }, 20);
         }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.fadeInView(0.1);
+        });
     },
     beforeMount() {
 
         //初始化应用的的数据
-        weexSimpleBootStarter.statrup().then(({router, appConfig, appRegistry}) => {
+        weexSimpleBootStarter.startup().then(({router, appConfig, appRegistry}) => {
             const layoutConfig = appRegistry.getLayoutConfig();
-
-            this.defaultStyle = layoutConfig.style || {} as any;
+            this.defaultStyle = {
+                ...(layoutConfig.style || {}),
+                opacity: 0
+            }
         });
 
 

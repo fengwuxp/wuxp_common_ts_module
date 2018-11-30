@@ -14,6 +14,6 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_manager_starter": "0.0.1"
+    "antd_manager_starter": "^0.0.1"
   }
 }
