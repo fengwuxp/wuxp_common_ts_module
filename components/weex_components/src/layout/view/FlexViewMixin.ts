@@ -1,11 +1,12 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
-const layoutConfig = AppConfigRegistry.getLayoutConfig();
+//获取bootStarter
+const weexSimpleBootStarter = require("weex_starter/src/bootstartup/WeexSimpleBootStarter").default;
 
-const defaultStyle = layoutConfig.style || {} as any;
-
+/**
+ * 由于weex是多页应用，所有在 跟页面入口要做 bootStartUp
+ */
 export default {
     name: "flex-view",
     mixins: [umengMixin],
@@ -16,13 +17,15 @@ export default {
         }
     },
     data() {
-        return {};
+        return {
+            defaultStyle: null
+        };
     },
     computed: {
         viewStyle() {
             const style = CommonThemeControl.resolveStyle({
                 backgroundColor: "fill-body"
-            }, defaultStyle);
+            }, this.defaultStyle);
 
             return {
                 ...style,
@@ -41,5 +44,16 @@ export default {
             this.$emit("viewDisappear");
             this.reportUMengByDestroy();
         }
+    },
+    beforeMount() {
+
+        //初始化应用的的数据
+        weexSimpleBootStarter.statrup().then(({router, appConfig, appRegistry}) => {
+            const layoutConfig = appRegistry.getLayoutConfig();
+
+            this.defaultStyle = layoutConfig.style || {} as any;
+        });
+
+
     }
 }

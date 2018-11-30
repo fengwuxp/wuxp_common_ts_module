@@ -1,11 +1,6 @@
-import TestView from "../views/TestView";
-
-export default{
+export default {
 
     index: {
-        component: resolve => require(["../views/test/TestView"], resolve)
+        component: resolve => require(["../views/WebIndexView"], resolve)
     },
-    test_view: {
-        component: TestView
-    }
 };

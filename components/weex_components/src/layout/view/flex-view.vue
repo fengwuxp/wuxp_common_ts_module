@@ -1,4 +1,4 @@
-<!--flex view-->
+<!-- root view, flex view-->
 <template>
     <div class="app"
          :style="viewStyle"

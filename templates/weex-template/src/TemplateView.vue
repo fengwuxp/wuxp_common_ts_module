@@ -1,9 +1,11 @@
+<!--template view-->
 <template>
-    <flex-view>
+    <flex-view :viewStyle="viewStyle">
         <nav-bar slot="app-header" :navTitle="navTitle"></nav-bar>
         <div slot="app-body" class="flex_1"></div>
         <div slot="app-footer" class="app_footer"></div>
     </flex-view>
+
 </template>
 
 <script>
@@ -18,7 +20,12 @@
         mixins: [AppMixin],
         props: {
             navTitle: {
-                default: "测试页面-2"
+                default: ""
+            },
+            viewStyle: {
+                default: () => ({
+                    backgroundColor: "#ff0000"
+                })
             }
         },
         data() {
@@ -26,13 +33,13 @@
         },
         methods: {},
         beforeMount() {
-
+            console.log(this._px2rem)
         }
     }
 </script>
 <style scoped lang="less">
 
-    @import "../../less/theme";
+    @import "../less/theme";
 
     .text_red {
         color: @primary-color;
@@ -40,6 +47,7 @@
 
     .flex_1 {
         flex: 1;
+        background-color: @fill-body;
     }
 
     .app_footer {
