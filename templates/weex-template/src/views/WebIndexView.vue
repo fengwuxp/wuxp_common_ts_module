@@ -1,7 +1,9 @@
 <!--web 首页导航-->
 <template>
     <flex-view :flexViewStyle="flexViewStyle">
-
+        <div slot="app-header">
+            <text style="font-size: 36px" value="">23</text>
+        </div>
     </flex-view>
 </template>
 
@@ -15,7 +17,7 @@
         props: {
             flexViewStyle: {
                 default: () => ({
-                    backgroundColor: "#ff0000"
+                    // backgroundColor: "#ff0000"
                 })
             }
         },
