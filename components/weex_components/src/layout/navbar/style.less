@@ -12,7 +12,7 @@
 @nav-bar-left-width: 140px;
 
 /*--导航栏中间宽度--*/
-@nav-bar-center-width: @nav-bar-height - @nav-bar-left-width * 2;
+@nav-bar-center-width: @screen-width - @nav-bar-left-width * 2;
 
 /*--导航栏右侧宽度--*/
 @nav-bar-right-width: 140px;
@@ -48,17 +48,18 @@
 
 .nav-bar-center {
   height: @nav-bar-height;
-  width: @nav-bar-center-width;
+  width: @screen-width;
   justify-content: center;
   align-items: center;
 }
 
 .nav-bar-title {
-  width: @nav-bar-center-width - 20;
+  width: @nav-bar-center-width - 20px;
   font-size: @nav-bar-title-font-size;
   color: @nav-bar-title-color;
   text-overflow: ellipsis;
   font-weight: 500;
+  text-align: center;
   //weex 特有  绝望
   lines: 1;
 

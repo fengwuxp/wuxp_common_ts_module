@@ -14,29 +14,29 @@
 
 <script>
 
-    import appHeaderBaseProps from "./props/AppHeaderBaseProps";
+    import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
     import {getStatusBarHeight} from "../view/FlexVIewHelper";
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
-    const navBarOptions = AppConfigRegistry.getNavBarOptions();
 
-    const defaultStyle = navBarOptions.style || {};
 
     export default {
         name: "nav-base-bar",
         props: {
-            ...appHeaderBaseProps,
+            ...getAppHeaderBaseProps(),
 
         },
         data() {
 
-            return {}
+            return {
+                defaultStyle:null
+            }
         },
         computed: {
             containerStyle() {
                 const style = {
-                    ...defaultStyle
+                    ...this.defaultStyle
                 };
                 if (this.enableImmersive) {
                     //开启沉浸式导航
@@ -55,6 +55,9 @@
 
         },
         created() {
+            const navBarOptions = AppConfigRegistry.getNavBarOptions();
+
+            this.defaultStyle = navBarOptions.style || {};
             //初始化状态栏
             getStatusBarHeight().then((height) => {
                 this.immersiveStatusBarHeight = height;

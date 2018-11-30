@@ -26,13 +26,13 @@
 
 <script>
     import NavBaseBar from "./nav-base-bar";
-    import appHeaderBaseProps from "./props/AppHeaderBaseProps";
+    import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
 
     export default {
         name: "nav-bar",
         components: {NavBaseBar},
         props: {
-            ...appHeaderBaseProps
+            ...getAppHeaderBaseProps()
         },
         data() {
             return {};
