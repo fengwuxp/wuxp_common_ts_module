@@ -7,7 +7,13 @@ module.exports = {
         '^.+\\.tsx?$': 'ts-jest',
     },
     testRegex: '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?|ts?)$',
+    // testRegex: "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     testPathIgnorePatterns: ["/lib/", "/node_modules/"],
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    collectCoverage: true
+    collectCoverage: false,
+    globals: {
+        'ts-jest': {
+            tsConfig: './tsconfig.test.json',
+        },
+    },
 };

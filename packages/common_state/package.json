@@ -18,14 +18,18 @@
   "license": "ISC",
   "scripts": {
     "npm_i": "npm i",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm publish",
+    "test": "jest --env=node --colors --coverage test"
   },
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "common_test": "^0.0.1"
+    "common_test": "^0.0.1",
+    "log4js": "^3.0.6",
+    "jest": "^23.6.0"
   },
   "dependencies": {
+
     "rxjs": "^6.3.3"
   }
 }
