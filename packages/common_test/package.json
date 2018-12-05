@@ -1,7 +1,7 @@
 {
-  "name": "common_state",
+  "name": "common_test",
   "version": "0.0.1",
-  "description": "",
+  "description": "common test",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -17,15 +17,16 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
+    "build_ts": "rm -rf ./lib && node ./scripts/build.js",
     "npm_i": "npm i",
-    "npm_publish": "npm publish"
-  },
-  "keywords": [],
-  "types": "./index.d.ts",
-  "devDependencies": {
-    "common_test": "^0.0.1"
+    "npm_publish": "npm publish",
+    "npm_build_publish": "npm run build_ts && npm publish"
   },
   "dependencies": {
-    "rxjs": "^6.3.3"
+    "@types/node": "^10.12.12",
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.1"
   }
 }
