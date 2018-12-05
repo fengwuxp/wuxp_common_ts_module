@@ -9,6 +9,8 @@ export const jestConfig: InitialOptions = {
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
     },
-    testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    testRegex: '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?|ts?)$',
+    testPathIgnorePatterns: ["/lib/", "/node_modules/"],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+    collectCoverage: true
 };
