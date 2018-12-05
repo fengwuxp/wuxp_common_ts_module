@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 通用的测试配置
+ * 通用的jest测试初始化配置
  */
 exports.jestConfig = {
     transform: {
