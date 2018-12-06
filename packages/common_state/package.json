@@ -24,12 +24,10 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "common_test": "^0.0.1",
-    "log4js": "^3.0.6",
+    "common_test": "0.0.1",
     "jest": "^23.6.0"
   },
   "dependencies": {
-
     "rxjs": "^6.3.3"
   }
 }
