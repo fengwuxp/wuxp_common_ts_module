@@ -53,8 +53,9 @@
                 }, 1000);
             },
             toIndex() {
-                this.toView("index").then(() => {
-                    console.log("跳转完成")
+                this.toView("/index").then(() => {
+                    console.log("跳转完成");
+                    this.back();
                 });
             }
         },

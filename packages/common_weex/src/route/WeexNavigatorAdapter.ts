@@ -57,8 +57,8 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
             }, () => {
                 if (!!params.callback) {
                     params.callback();
-                    resolve();
                 }
+                resolve();
             });
         })
 
