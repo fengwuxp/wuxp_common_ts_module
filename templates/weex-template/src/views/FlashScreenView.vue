@@ -13,7 +13,7 @@
 <script>
     import FlexView from "weex_components/src/layout/view/flex-view";
     import AppMixin from "weex_starter/src/mixins/AppMixin";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import {isAndroid} from "common_weex/src/constant/WeexEnv";
 
     export default {
         props: {
@@ -54,7 +54,7 @@
             },
             toIndex() {
                 this.toView("/index").then(() => {
-                    if (isWeb) {
+                    if (isAndroid) {
                         this.back();
                     }
                 });
