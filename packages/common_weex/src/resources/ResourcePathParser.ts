@@ -2,10 +2,14 @@ import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
 
 
-//获取app的配置的信息
-const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get();
+const pathPrefix = {
 
-const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
+    web: "",
+
+    android: "file://",
+
+    ios: "file:///"
+}
 
 //bundleURL
 const bundleUrl: string = weex.config.bundleUrl;
@@ -26,23 +30,31 @@ const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
  **/
 export const parseWeexBundleJsBasePath = () => {
 
+    //获取app的配置的信息
+    console.log("AppConfigRegistry.get()", AppConfigRegistry.get())
+    const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get();
+
+    const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
+
 
     const isAndroidAssets = bundleUrl.indexOf(ANDROID_JS_DIR) >= 0;
     const isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
 
-    let nativeBase: string;
+    let nativeBasePaht: string;
     if (isAndroidAssets) {
-        nativeBase = ANDROID_JS_DIR;
+        nativeBasePaht = ANDROID_JS_DIR;
     } else if (isiOSAssets) {
-        nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
+        nativeBasePaht = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
     } else {
 
         //远程js加入版本控制
-        const host = `${resourceDomain}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${versionCode ? '' : '/v_' + versionCode}/`;
-        nativeBase = `${httpProtocol}://` + host;
+        const host = `${resourceDomain}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
+        pathPrefix.web = `${httpProtocol}://`;
+        nativeBasePaht = `${pathPrefix.web}${host}`;
+
     }
 
-    return nativeBase;
+    return nativeBasePaht;
 };
 
 /**
@@ -55,6 +67,6 @@ export const WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
  * @param uri
  */
 export const getWeexResourceUrl = (uri: string) => {
-
-    return path.resolve(WEEX_BUNDLE_JS_BASE_PATH, uri);
+    const prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
+    return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), uri);
 };

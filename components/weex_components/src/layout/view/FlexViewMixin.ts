@@ -6,7 +6,7 @@ import CommonThemeControl from "common_style/src/CommonThemeControl";
 const weexSimpleBootStarter = require("weex_starter/src/bootstartup/WeexSimpleBootStarter").default;
 
 /**
- * 由于weex是多页应用，所有在 跟页面入口要做 bootStartUp
+ * 由于weex是多页应用，所以在根页面入口要做 bootStartUp
  */
 export default {
     name: "flex-view",

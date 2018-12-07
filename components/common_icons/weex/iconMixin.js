@@ -27,7 +27,7 @@ export default {
             default: null,
             type: String
         },
-        style: {
+        iconStyle: {
             default: null
         }
     },

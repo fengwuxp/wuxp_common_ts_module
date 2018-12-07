@@ -4,7 +4,7 @@
                :name="name"
                :color="color"
                :classNames="classNames"
-               :style="style"
+               :iconStyle="iconStyle"
                @iconClicked="iconClicked"
     ></weex-icon>
 </template>
@@ -26,6 +26,6 @@
     }
 </script>
 
-<style scoped lang="less">
-    @import "../../src/feather/style.less";
-</style>
+<!--<style scoped lang="less">-->
+    <!--@import "../../src/feather/style.less";-->
+<!--</style>-->

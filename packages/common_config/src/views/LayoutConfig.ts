@@ -73,6 +73,11 @@ export interface NavBarStyleOptions {
     centerStyle?: CSS.Properties<string | number>;
 
     /**
+     * 导航标题样式
+     */
+    navTitleStyle: CSS.Properties<string | number>;
+
+    /**
      * 右侧区域样式
      */
     rightStyle?: CSS.Properties<string | number>;

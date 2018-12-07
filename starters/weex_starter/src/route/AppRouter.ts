@@ -4,6 +4,7 @@ import {WeexRouteItem} from "./WeexRouteItem";
 import {NavigatorParam} from "common_route/src/NavigatorAdapter";
 import {parse} from "querystring";
 import {AppSessionManager} from "../session/AppSessionManager";
+import {ViewConfigByRoute} from "./ViewConfigByRoute";
 
 
 const navigator: NavigatorAdapter = new WeexNavigatorAdapter();
@@ -31,15 +32,16 @@ export default class AppRouter {
     //这个方法需要具体的项目区实现
     static generateBundleJsURL: (uri: string, main: boolean) => string;
 
-    //需要注入
+    //app的会话管理器,需要注入
     static appSessionManager: AppSessionManager<any>;
 
 
     /**
      * to view
      * @param param
+     * @param viewConfig
      */
-    static async toView(param: NavigatorParam): Promise<void> {
+    static async toView(param: NavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
 
         const route: WeexRouteItem = AppRouter.appRoutes[param.pathname];
         if (route == null) {
@@ -85,12 +87,13 @@ export default class AppRouter {
         }
 
         //安卓状态栏颜色
-        const androidStatusColor = `${process.env.ANDROID_STATUS_COLOR}`;
+        const androidStatusColor = `${process.env.ANDROID_STATUS_COLOR}` || viewConfig.androidStatusColor;
         if (androidStatusColor) {
             //安卓状态栏颜色
             param.state.statusBarColor = androidStatusColor;
         }
 
+        //跳转
         navigator.push({
             ...param,
             pathname
@@ -101,3 +104,4 @@ export default class AppRouter {
 
 
 }
+

@@ -1,5 +1,6 @@
 import {enableImmersiveNavBar} from "../../../condition/EnableImmersiveNavBar";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
 
 
 /**
@@ -7,7 +8,7 @@ import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
  */
 export const getAppHeaderBaseProps = () => {
 
-    const navBarOptions = AppConfigRegistry.getNavBarOptions() || {};
+    const navBarOptions = AppConfigRegistry.getNavBarOptions() || {} as NavBarStyleOptions;
     return {
 
 
@@ -91,6 +92,11 @@ export const getAppHeaderBaseProps = () => {
          */
         centerStyle: {
             default: () => (navBarOptions.centerStyle),
+            type: Object
+        },
+
+        navTitleStyle:{
+            default: () => (navBarOptions.navTitleStyle),
             type: Object
         },
         /**

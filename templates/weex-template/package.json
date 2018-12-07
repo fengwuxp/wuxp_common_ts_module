@@ -17,8 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "weex-vue-precompiler": "^0.1.2-3.bate",
-    "weex_components": "^0.0.1",
-    "weex_starter": "^0.0.1"
+    "weex_components": "0.0.1",
+    "weex_starter": "0.0.1"
   }
 }

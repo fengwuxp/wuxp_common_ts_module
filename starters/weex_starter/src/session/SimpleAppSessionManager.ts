@@ -1,7 +1,9 @@
 import {AppSessionManager} from "./AppSessionManager";
 import DefaultWeexStroe from "common_weex/src/storage/DefaultWeexStroe";
 
-
+/**
+ * 默认提供的简单的用户会话管理器
+ */
 class SimpleAppSessionManager<T> implements AppSessionManager<T> {
 
     public static SAVE_MEMBER_KEY: string = "APP_MEMBER_INFO";
@@ -9,6 +11,10 @@ class SimpleAppSessionManager<T> implements AppSessionManager<T> {
     private member: T = null;
 
     getMember = (): Promise<T> => {
+
+        if (this.member != null) {
+            return Promise.resolve(this.member);
+        }
 
         return DefaultWeexStroe.getItem<T>(SimpleAppSessionManager.SAVE_MEMBER_KEY)
             .then((data) => {

@@ -6,13 +6,35 @@ import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
 
 const navBarStyleOptions: NavBarStyleOptions = {
 
-    backIcon: "",
+    /**
+     * 支持配置字体图标和图标地址
+     * 如果是字体图标则配置的是字体图标的名字
+     * 字体图标库：https://oblador.github.io/react-native-vector-icons/
+     * 默认使用的字体图标类型：Feather
+     * 默认使用的字体图标名称: chevron-left
+     */
+    backIcon: "chevron-left",
 
-    backIconStyle: null,
+    backIconStyle: {
+        fontSize: 32,
+        fontWeight: 500,
+        color: "#ffffff"
+    },
 
-    backgroundImage: "",
+    /**
+     * 如果需要背景图则设置
+     */
+    backgroundImage: null,
+
 
     centerStyle: {},
+
+    navTitleStyle: {
+        fontSize: 36,
+        color: "#ffffff",
+        fontWeight: 500,
+    },
+
 
     immersiveStatusBarColor: "#ffffff",
 
@@ -21,7 +43,7 @@ const navBarStyleOptions: NavBarStyleOptions = {
     rightStyle: {},
 
     style: {
-        backgroundColor:"#4cbfff"
+        backgroundColor: "#4cbfff"
     }
 
 };
@@ -44,7 +66,7 @@ const layoutConfig: LayoutConfig = {
 const resourceConfig: ResourceConfig = {
     iosProjectName: "",
 
-    remoteDeploymentDirectory: "",
+    remoteDeploymentDirectory: "templates",
 
     versionCode: ""
 
@@ -61,7 +83,7 @@ export const appConfig: AppConfig = {
 
     resourceConfig,
 
-    resourceDomain: "",
+    resourceDomain: "test.meazoo.com",
 
     upLoadFileURL: ""
 

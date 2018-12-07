@@ -5,15 +5,19 @@ import {appConfig} from '../../../../src/config/WeexAppConfig';
 //约定导入 路由配置
 import route from '../../../../src/route/NavtieRoute';
 import AppRouter from "../route/AppRouter";
+
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
+import {Registry} from "common_core/src/registry/Registry";
 
 
 interface WeexAppContext {
 
-    router: AppRouter;
+    appRouter: AppRouter;
 
-    appConfig: AppConfig
+    appConfig: AppConfig;
+
+    appRegistry:Registry<AppConfig>
 }
 
 /**
@@ -21,30 +25,37 @@ interface WeexAppContext {
  */
 class WeexSimpleBootStarter implements AppBootStarter<WeexAppContext> {
 
+    private static appContext: WeexAppContext = null;
+
     startup = (...args): Promise<WeexAppContext> => {
-        //初始化app 配置
-        AppConfigRegistry.register(appConfig);
-        let packageName: string = weex.config.env['appGroup'];
-        if (packageName == null || packageName.trim().length === 0) {
-            packageName = weex.config.env.appName;
+        if (WeexSimpleBootStarter.appContext == null) {
+            //初始化app 配置
+            AppConfigRegistry.register(appConfig);
+            let packageName: string = weex.config.env['appGroup'];
+            if (packageName == null || packageName.trim().length === 0) {
+                packageName = weex.config.env.appName;
+            }
+
+            //注册路由
+            AppRouter.registerRouters(route);
+
+
+            AppRouter.appSessionManager = simpleAppSessionManager;
+
+            AppRouter.generateBundleJsURL = function (uri: string, main: boolean) {
+
+                return `weex://${packageName}/${main ? 'main' : 'page'}/${uri}`;
+            };
+
+            WeexSimpleBootStarter.appContext={
+                appRouter: AppRouter,
+                appRegistry: AppConfigRegistry,
+                appConfig
+            }
         }
 
-        //注册路由
-        AppRouter.registerRouters(route);
 
-
-        AppRouter.appSessionManager = simpleAppSessionManager;
-
-        AppRouter.generateBundleJsURL = function (uri: string, main: boolean) {
-
-            return `weex://${packageName}/${main ? 'main' : 'page'}/${uri}`;
-        };
-
-        return Promise.resolve({
-            router: AppRouter,
-            appRegistry: AppConfigRegistry,
-            appConfig
-        });
+        return Promise.resolve(WeexSimpleBootStarter.appContext);
     };
 
 }

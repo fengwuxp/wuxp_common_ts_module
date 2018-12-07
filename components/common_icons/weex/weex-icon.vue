@@ -1,12 +1,14 @@
 <!--weex 基础的字体图标组件-->
 <template>
-    <text :style="iconStyle"
+    <text :style="fontIconStyle"
           :class="classNames"
           :value="iconContent"
           @click="itemClicked"/>
 </template>
 
 <script>
+    import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+
     const dom = weex.requireModule('dom');
 
     export default {
@@ -49,11 +51,8 @@
                 default: null,
                 type: String
             },
-            style: {
+            iconStyle: {
                 default: {
-                    size: "inherit",
-                    allowFontScaling: false,
-                    color: "currentColor",
                     fontWeight: 'normal',
                     fontStyle: 'normal'
                 }
@@ -66,19 +65,20 @@
             }
         },
         computed: {
-            iconStyle() {
-                const {size, color, style} = this.props;
+            fontIconStyle() {
+                const {size, color, iconStyle} = this;
                 return {
                     fontFamily: this.fontFamily,
                     fontSize: size,
+                    width: size,
                     color,
-                    ...style
+                    ...iconStyle
                 }
             }
         },
         methods: {
             itemClicked() {
-                const {name, charCode} = this.props;
+                const {name, charCode} = this;
                 this.$emit('iconClicked', {
                     name,
                     charCode
@@ -86,7 +86,21 @@
             }
         },
         created() {
-            const {name, charCode, glyphMap} = this.props;
+            //加载字体图标文件
+            console.log("this.props",this);
+            let {fontFamily, fontUrl} = this;
+
+            //根据fontFamily加载字体图标文件
+            if (!fontUrl) {
+                fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);
+            }
+            dom.addRule('fontFace', {
+                'fontFamily': fontFamily,
+                'src': `url('${fontUrl}')`
+            });
+        },
+        beforeMount() {
+            const {name, charCode, glyphMap} = this;
             let glyph = charCode ? charCode : name ? glyphMap[name] || '?' : '';
 
             if (typeof glyph === "number") {
@@ -94,14 +108,6 @@
             }
             this.iconContent = glyph;
 
-        },
-        beforeCreate() {
-            //加载字体图标文件
-            const {fontFamily, fontUrl} = this.props;
-            dom.addRule('fontFace', {
-                'fontFamily': fontFamily,
-                'src': `url('${fontUrl}')`
-            });
         },
     }
 </script>

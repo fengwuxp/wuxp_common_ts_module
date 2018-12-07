@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/weex": "^0.0.1",
     "common_react": "^0.0.1",
+    "common_weex": "^0.0.1",
     "vue": "^2.5.17"
   }
 }

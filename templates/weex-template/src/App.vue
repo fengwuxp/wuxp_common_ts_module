@@ -16,7 +16,7 @@
             }
         },
         beforeMount() {
-            console.log(this)
+
         }
     }
 </script>

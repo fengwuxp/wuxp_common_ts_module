@@ -4,7 +4,7 @@
         <nar-bar @back="back" slot="app-header" :navTitle="navTitle"></nar-bar>
         <div slot="app-body"
              class="app_body">
-            <text @click="toTest">body</text>
+            <text>test</text>
             <text value="body11"></text>
         </div>
     </flex-view>
@@ -16,7 +16,7 @@
 
 
     export default {
-        name: "WebIndexView",
+        name: "TestView",
         components: {FlexView,NarBar},
         props: {
             flexViewStyle: {
@@ -25,7 +25,7 @@
                 })
             },
             navTitle: {
-                default: "首页"
+                default: "测试"
             }
         },
         data() {
@@ -34,9 +34,6 @@
         methods: {
             back(){
                 // console.log("back")
-                this.$router.push("/test")
-            },
-            toTest(){
                 this.$router.push("/test")
             }
         },
