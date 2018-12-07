@@ -43,7 +43,7 @@ const navBarStyleOptions: NavBarStyleOptions = {
     rightStyle: {},
 
     style: {
-        backgroundColor: "#ff2b3c"
+        // backgroundColor: "#ff2b3c"
     }
 
 };

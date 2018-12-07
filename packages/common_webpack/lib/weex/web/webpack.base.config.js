@@ -22,10 +22,6 @@ var cssLoader = function (_a) {
         options: {
             minimize: true,
             importLoaders: 2,
-            // //判断是否需要css module
-            // modules: /\.module\.css/.test(resource),
-            // localIdentName: '[name]__[local]___[hash:base64:5]',
-            ident: "css-loader"
         }
     });
 };
@@ -38,7 +34,6 @@ var postcssLoader = {
             autoprefixer(),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
         ],
-        ident: "css-loader"
     }
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();
@@ -101,7 +96,6 @@ var webpackConfig = {
                             sourceMap: true,
                             javascriptEnabled: true,
                             modifyVars: ThemeConfig_1.getThemeConfig(),
-                            ident: "css-loader"
                         }
                     }
                 ]
@@ -117,7 +111,7 @@ var webpackConfig = {
                     {
                         loader: "sass-loader",
                         options: {
-                            ident: "css-loader"
+                        // ident: "css-loader"
                         }
                     }
                 ]

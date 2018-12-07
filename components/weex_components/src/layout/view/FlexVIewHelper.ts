@@ -24,7 +24,7 @@ export const IPHONEX_BOTTOM_HEIGHT: number = 68;
  * 默认顶部高度
  * @type {number}
  */
-export const DEFAULT_HEADER_HEIGHT: number = 100;
+export const DEFAULT_HEADER_HEIGHT: number = (process.env.DEFAULT_HEADER_HEIGHT || 100) as number;
 
 /**
  * 默认底部高度
@@ -64,18 +64,17 @@ let appStatusBarHelper: AppStatusBarHelper;
 
 /**
  * 获取StatusBar顶部高度
- * @param appStatusBarHelper
  * @return {number}
  */
 export const getStatusBarHeight = async (): Promise<number> => {
 
-    if (isIos) {
-        return IOS_TOP_HEIGHT;
-    } else if (isIphoneX) {
+    if (isIphoneX) {
         return IPHONEX_TOP_HEIGHT;
+    } else if (isIos) {
+        return IOS_TOP_HEIGHT;
     }
 
-    if (appStatusBarHelper == null || isWeb) {
+    if (appStatusBarHelper == null) {
         return 0;
     }
 
