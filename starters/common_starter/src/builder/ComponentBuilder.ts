@@ -1,10 +1,8 @@
 /**
- * 组件builder
+ * 组件构建者
  */
 export interface ComponentBuilder<T> {
 
-
-    props:(...args)=>this;
 
     build: () => T
 }
