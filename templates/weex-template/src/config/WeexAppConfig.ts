@@ -16,7 +16,7 @@ const navBarStyleOptions: NavBarStyleOptions = {
     backIcon: "chevron-left",
 
     backIconStyle: {
-        fontSize: 32,
+        fontSize: "64px",
         fontWeight: 500,
         color: "#ffffff"
     },

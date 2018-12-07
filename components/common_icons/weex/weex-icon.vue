@@ -1,7 +1,6 @@
 <!--weex 基础的字体图标组件-->
 <template>
     <text :style="fontIconStyle"
-          :class="classNames"
           :value="iconContent"
           @click="itemClicked"/>
 </template>
@@ -47,10 +46,6 @@
                 default: null,
                 type: String
             },
-            classNames: {
-                default: null,
-                type: String
-            },
             iconStyle: {
                 default: {
                     fontWeight: 'normal',
@@ -69,10 +64,10 @@
                 const {size, color, iconStyle} = this;
                 return {
                     fontFamily: this.fontFamily,
-                    fontSize: size,
+                    fontSize: `${size}px`,
                     width: size || iconStyle.fontSize,
                     color,
-                    ...iconStyle
+                    ...iconStyle,
                 }
             }
         },
@@ -91,7 +86,6 @@
 
             if (typeof glyph === "number") {
                 glyph = String.fromCharCode(glyph);
-                console.log("glyph", glyph)
             }
             this.iconContent = glyph;
 
@@ -104,7 +98,7 @@
             if (!fontUrl) {
                 fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);
             }
-            console.log("fontUrl", fontUrl);
+            // console.log("fontUrl", fontUrl);
             dom.addRule('fontFace', {
                 'fontFamily': fontFamily,
                 'src': `url('${fontUrl}')`

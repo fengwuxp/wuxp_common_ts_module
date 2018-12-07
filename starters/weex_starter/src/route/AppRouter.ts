@@ -53,21 +53,19 @@ export default class AppRouter {
         }
         param.state = param.state || {};
 
-        const {component, meta} = route;
-        if (!isWeb) {
-            //拼接完整的url
-            pathname = `${AppRouter.generateBundleJsURL(component as string, meta == null ? false : meta.main)}`;
-        }
+        const {meta} = route;
+        console.log("-isWeb--", isWeb);
+
 
         if (meta) {
             //需要登录
             if (meta.requireAuth) {
                 //需要登录,验证是否登录
-                const isLogin = AppRouter.appSessionManager.isLogin();
+                const isLogin = await AppRouter.appSessionManager.isLogin();
                 if (!isLogin) {
                     //未登录
                     navigator.push({
-                        pathname: "/login",
+                        pathname: generateBundleJsURL(AppRouter.appRoutes["lgoin"]),
                         state: {
                             //登录成功的重定向地址
                             redirect: pathname,
@@ -91,6 +89,11 @@ export default class AppRouter {
             }
         }
 
+        if (!isWeb) {
+            //拼接完整的url
+            pathname = generateBundleJsURL(route);
+        }
+
         //安卓状态栏颜色
         const androidStatusColor = process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor;
         if (!!androidStatusColor) {
@@ -108,5 +111,10 @@ export default class AppRouter {
     static back = navigator.goBack;
 
 
+}
+
+const generateBundleJsURL = (route) => {
+    const {component, meta} = route;
+    return `${AppRouter.generateBundleJsURL(component, meta == null ? false : meta.main)}`;
 }
 

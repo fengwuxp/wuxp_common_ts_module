@@ -31,7 +31,6 @@ const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
 export const parseWeexBundleJsBasePath = () => {
 
     //获取app的配置的信息
-    console.log("AppConfigRegistry.get()", AppConfigRegistry.get())
     const {resourceDomain, resourceConfig, httpProtocol} = AppConfigRegistry.get();
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
@@ -46,7 +45,6 @@ export const parseWeexBundleJsBasePath = () => {
     } else if (isiOSAssets) {
         nativeBasePaht = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
     } else {
-
         //远程js加入版本控制
         const host = `${resourceDomain}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
         pathPrefix.web = `${httpProtocol}://`;
@@ -67,6 +65,12 @@ export const WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
  * @param uri
  */
 export const getWeexResourceUrl = (uri: string) => {
-    const prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
+    let prefix = "";
+    if (bundleUrl.startsWith("http")) {
+        //远程
+        prefix = "http://";
+    } else {
+        prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
+    }
     return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), uri);
 };

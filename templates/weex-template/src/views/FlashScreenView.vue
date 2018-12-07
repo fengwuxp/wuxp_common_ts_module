@@ -32,7 +32,7 @@
         data() {
             return {
                 images: [],
-                maxCount: 3
+                maxCount: 4
             }
         },
         computed: {
@@ -48,7 +48,6 @@
                         this.toIndex();
                     }
                     this.maxCount--;
-
                     this.countDown();
                 }, 1000);
             },
