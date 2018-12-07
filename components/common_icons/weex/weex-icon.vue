@@ -70,7 +70,7 @@
                 return {
                     fontFamily: this.fontFamily,
                     fontSize: size,
-                    width: size,
+                    width: size || iconStyle.fontSize,
                     color,
                     ...iconStyle
                 }
@@ -85,27 +85,30 @@
                 });
             }
         },
-        created() {
-            //加载字体图标文件
-            let {fontFamily, fontUrl} = this;
-            //根据fontFamily加载字体图标文件
-            if (!fontUrl) {
-                fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);
-            }
-            dom.addRule('fontFace', {
-                'fontFamily': fontFamily,
-                'src': `url('${fontUrl}')`
-            });
-        },
         beforeMount() {
             const {name, charCode, glyphMap} = this;
             let glyph = charCode ? charCode : name ? glyphMap[name] || '?' : '';
 
             if (typeof glyph === "number") {
                 glyph = String.fromCharCode(glyph);
+                console.log("glyph", glyph)
             }
             this.iconContent = glyph;
 
+        },
+        created() {
+            //加载字体图标文件
+            let {fontFamily, fontUrl} = this;
+
+            //根据fontFamily加载字体图标文件
+            if (!fontUrl) {
+                fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);
+            }
+            console.log("fontUrl", fontUrl);
+            dom.addRule('fontFace', {
+                'fontFamily': fontFamily,
+                'src': `url('${fontUrl}')`
+            });
         },
     }
 </script>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFf67475</color>
+    <color name="colorPrimaryDark">#FFf67475</color>
+    <color name="colorAccent">#FFf67475</color>
+
+
+    <color name="black_overlay">#66000000</color>
+    <color name="page_default_background_color">#ffffff</color>
+
+    <color name="black_333">#ff333333</color>
+    <color name="txt_title">#ffffffff</color>
+    <color name="white">#ffffffff</color>
+
+
+    <color name="myinfo_edit_address_poi">#ffc06d4c</color>
+    <color name="myinfo_selector_dividor">#ffe8e8e8</color>
+    <color name="myinfo_selector_sub">#ff999999</color>
+    <color name="myinfo_top_bar_background">#fff9f8f5</color>
+<!--
+    ● colorPrimary: 主题色
+    ● colorAccent: 辅助色（或强调色）
+    ● textColorPrimary: 主要的文字颜色，一般TextView的文字都是这个颜色
+    ● textColorSecondary: 辅助的文字颜色，一般比textColorPrimary的颜色弱一点，用于一些弱化的表示
+    ● windowBackground: Window的背景色
+
+    -->
+
+</resources>

@@ -1,0 +1,131 @@
+import java.security.MessageDigest
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        // maven { url "http://mvnrepo.alibaba-inc.com/mvn/repository" }
+        mavenLocal()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        mavenCentral()
+//        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5' // Add this line
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // 远程布署插件
+        classpath 'org.hidetake:gradle-ssh-plugin:1.0.1'
+    }
+}
+
+ext {
+    apply from: 'helper.gradle'
+
+    defaultBuildToolsVersion = Helpers.findRequireInstalledBuildTools("25.3")
+
+    cfg = [
+            // SDK And Tools
+            minifyEnabled        : false,
+            minSdkVersion        : 19,
+            targetSdkVersion     : 21,
+            compileSdkVersion    : 25,
+            buildToolsVersion    : defaultBuildToolsVersion,
+            supportLibraryVersion: "25.3.1",
+            mavenDepolyUrl       : "",
+            mavenUserName        : "",
+            mavenUserPassowrd    : ""
+    ]
+}
+
+def localProps = new File("local.properties");
+if (localProps.exists()) {
+    localProps.withReader { reader ->
+        Properties p = new Properties()
+        p.load(reader)
+
+        p.keySet().each { name ->
+            ext.cfg[name] = p.getProperty(name)
+            println "****** [" + name + "] = " + ext.cfg[name]
+        }
+    }
+}
+
+// 全局配置，对所有工程有效
+allprojects {
+
+//    apply plugin: "java"
+
+    apply plugin: "idea"
+    apply plugin: "maven"
+//    apply plugin: 'com.novoda.bintray-release'
+
+//    apply plugin: 'com.novoda.bintray-release'
+//    apply plugin: 'com.github.dcendents.android-maven'
+//    apply plugin: 'com.jfrog.bintray'
+
+    group = "com.oaknt.hdkt.teacher"
+    version = "1.0.0"
+
+    repositories {
+
+        mavenLocal()
+
+        maven {
+            url "http://nexus.oaknt.com:18081/repository/maven-public"
+            credentials {
+                username = "anonymous"
+                password = ""
+            }
+        }
+
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+
+//        maven {
+        //可以设置为本地库
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        // url "$rootDir/module_name/libs/android"
+//        }
+
+        //指定全局的目录
+//        flatDir {
+//            dirs 'libs'
+//        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        sourceCompatibility = JavaVersion.VERSION_1_7
+        targetCompatibility = JavaVersion.VERSION_1_7
+    }
+
+    configurations.all {
+
+        // 有效期10分钟
+        resolutionStrategy.cacheDynamicVersionsFor 0, java.util.concurrent.TimeUnit.MINUTES
+
+        // 有效期4小时
+        resolutionStrategy.cacheChangingModulesFor 0, java.util.concurrent.TimeUnit.HOURS
+
+    }
+
+
+
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+task getWrapperDiskCacheName << {
+
+    distribution = 'https://services.gradle.org/distributions/gradle-3.5-all.zip'
+
+    MessageDigest messageDigest = MessageDigest.getInstance('MD5')
+    messageDigest.update(distribution.bytes)
+    name = new BigInteger(1, messageDigest.digest()).toString(32)
+    println("source: $distribution")
+    println("wrapper disk cache name : $name")
+
+}

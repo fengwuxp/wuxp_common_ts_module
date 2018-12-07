@@ -1,5 +1,7 @@
 export default {
-
+    start: {
+        component: resolve => require(["../views/FlashScreenView"], resolve)
+    },
     index: {
         component: resolve => require(["../views/WebIndexView"], resolve)
     },

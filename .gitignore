@@ -1,5 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
+.gradle
+*.iml
+gen
+build
+*.properties
 node_modules
 package-lock.json
 lerna-debug.log

@@ -29,7 +29,7 @@ export class WeexWebNavigatorModule implements WeexNavigatorModule {
     readonly push = (options: WeexNavigatorPushOptions, callback: Function) => {
         const paths = options.url.split("?");
         const params = (paths[1] ? parse(paths[1]) : {}) as any;
-        const name = paths[0].substr(1, paths[0].length);
+        const name = paths[0].startsWith("/") ? paths[0].substr(1, paths[0].length) : paths[0];
         const location = {
             name,
             params

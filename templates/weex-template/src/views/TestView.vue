@@ -17,12 +17,12 @@
 
     export default {
         name: "TestView",
-        mixins:[AppMixin],
-        components: {FlexView,NarBar},
+        mixins: [AppMixin],
+        components: {FlexView, NarBar},
         props: {
             flexViewStyle: {
                 default: () => ({
-                    // backgroundColor: "#ff0000"
+                    backgroundColor: "transports"
                 })
             },
             navTitle: {
@@ -32,11 +32,9 @@
         data() {
             return {}
         },
+
         methods: {
-            back(){
-                // console.log("back")
-                this.$router.push("/test")
-            }
+
         },
         beforeMount() {
 

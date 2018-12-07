@@ -1,0 +1,223 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'android-apt'  //1处添加
+
+def AAVersion = '4.2.0' // change this to your desired version, for example the latest stable: 4.2.0
+
+// PLUGIN GRADLE EXTENSIONS START
+// PLUGIN GRADLE EXTENSIONS END
+
+def hasBuildExtras = file('build-extras.gradle').exists()
+if (hasBuildExtras) {
+    apply from: 'build-extras.gradle'
+}
+
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+
+//   配置顺序
+//   1 defaultConfig{ }
+//   2 productFlavors{ }
+//   3 buildTypes{ }
+
+
+    defaultConfig {
+
+        applicationId "com.oaknt.template.app"
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode 1
+        versionName "1.0.1"
+
+        buildConfigField 'String','DOMAIN_URL','"test.shangmengtv.com"'
+
+        buildConfigField 'String','API_URL','"http://test.shangmengtv.com/api"'
+
+        buildConfigField 'String','LOCAL_LAUNCH_URL','"file://assets/js/FlashScreenView.js"'
+
+        buildConfigField 'String','REMOTE_LAUNCH_URL','"http://test.meazoo.com/weex/templates/WebIndexView.js"'
+
+      //  manifestPlaceholders = [APP_NAME : "美在海峡"]
+
+        ndk {
+//            abiFilters "x86"
+            abiFilters "armeabi"
+//            abiFilters "armeabi-v7a"
+        }
+
+        multiDexEnabled true
+    }
+
+    productFlavors {
+
+
+
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("tools/oak_2018_0105.keystore")
+            storePassword "oak666"
+            keyAlias "oak_android"
+            keyPassword "oak666"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        debug {
+            // no keystore
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+
+    buildTypes {
+        //生产环境
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        //开发环境
+        debug {
+            testCoverageEnabled true
+//            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+
+            def oldFile = output.outputFile
+
+            def timeLabel = new java.text.SimpleDateFormat("MMddHHmm").format(new Date())
+
+            def offline = file("src/main/assets/js/FlashScreenView.js").exists()
+
+            println "offline:" + offline + " ," + variant.buildType.debuggable + " " + variant.name
+
+
+            if (!variant.buildType.debuggable)
+                output.outputFile = new File(oldFile.parent, "${applicationId}_" + variant.versionName + "_b${timeLabel}_" + (offline ? "" : "dynamic_") + "release.apk");
+        }
+    }
+
+
+    dexOptions {
+        //jumboMode = true
+        javaMaxHeapSize = "3g"
+        preDexLibraries = false
+    }
+
+    defaultConfig {
+        multiDexEnabled true
+
+        jackOptions {
+            // enabled true
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ["src/main/java"];
+            }
+            jniLibs.srcDirs = ['libs']
+        }
+        // manifest
+    }
+
+    lintOptions {
+        abortOnError false;
+    }
+
+
+    repositories {
+        flatDir { dirs 'libs' }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+apt {  //3处添加
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile//new style
+        //androidManifestFile variant.processResources.manifestFile           //old style
+        //resourcePackageName android.defaultConfig.applicationId            //your pakcage name 与 mainfest中的一样才可生成androidannotations类
+        resourcePackageName "com.oaknt.base.app"
+    }
+}
+dependencies {
+
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+    // SUB-PROJECT DEPENDENCIES START
+
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    //揭示框
+    compile 'com.bigkoo:alertview:1.0.3'
+    //  compile 'com.mcxiaoke.volley:library:1.0.19'
+//    compile group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.7.5.201505241946'
+    //json
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // 多进程SharedPreferences
+    // https://github.com/grandcentrix/tray
+    compile('net.grandcentrix.tray:tray:0.12.0') {
+        exclude module: 'support-annotations'
+    }
+
+    compile("com.levin.android.weex.support:weex-plugin:1.17.7-SNAPSHOT")
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    compile("com.android.support:recyclerview-v7:$cfg.supportLibraryVersion") {
+        force = true
+    }
+
+    compile("com.android.support:support-v4:$cfg.supportLibraryVersion") {
+        force = true
+    }
+    compile("com.android.support:appcompat-v7:$cfg.supportLibraryVersion") {
+        force = true
+    }
+    compile("com.android.support:design:$cfg.supportLibraryVersion") {
+        force = true
+    }
+    compile("com.android.support:support-annotations:$cfg.supportLibraryVersion") {
+        force = true
+    }
+
+    compile("com.android.support:palette-v7:$cfg.supportLibraryVersion") {
+        force = true
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+//    compile 'com.android.support:multidex:1.0.1'
+
+
+}
+
+// This can be defined within build-extras.gradle as:
+//     ext.postBuildExtras = { ... code here ... }
+if (hasProperty('postBuildExtras')) {
+    postBuildExtras()
+}

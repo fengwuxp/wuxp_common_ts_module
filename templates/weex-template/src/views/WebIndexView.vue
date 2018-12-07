@@ -18,8 +18,8 @@
 
     export default {
         name: "WebIndexView",
-        mixins:[AppMixin],
-        components: {FlexView,NarBar},
+        mixins: [AppMixin],
+        components: {FlexView, NarBar},
         props: {
             flexViewStyle: {
                 default: () => ({
@@ -34,8 +34,7 @@
             return {}
         },
         methods: {
-            toTest(){
-                console.log("--------")
+            toTest() {
                 this.toView("/test_view");
             }
         },

@@ -1,0 +1,4 @@
+//setting.gradle 的作用就是一些模块被包含后，会在这里进行申明
+
+include ':app'
+//include ':kf5sdkModule'

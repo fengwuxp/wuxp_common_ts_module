@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.levin.android.weex.support" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+
+    <name>Weex</name>
+
+    <description>
+        weex default plugin .
+    </description>
+
+    <author email="" href="">
+        Weex Team
+    </author>
+
+    <feature name="AppMainModule">
+        <param name="category" value="module" />
+        <param name="android-package" value="com.oaknt.base.app.weexmodule.AppMainModule" />
+        <param name="api" value="appMain" />
+    </feature>
+
+    <feature name="CacheModule">
+        <param name="category" value="module" />
+        <param name="android-package" value="com.levin.weex.plugin.common.CommonModule" />
+        <param name="api" value="cache" />
+    </feature>
+
+
+    <!--gcanvas-->
+    <feature name="gcanvasModule">
+        <param name="category" value="module" />
+        <param name="android-package" value="com.taobao.gcanvas.bridges.weex.GCanvasWeexModule" />
+        <param name="api" value="gcanvas" />
+    </feature>
+
+    <feature name="WXGCanvasWeexComponent">
+        <param name="category" value="component" />
+        <param name="android-package" value="com.taobao.gcanvas.bridges.weex.WXGCanvasWeexComponent" />
+        <param name="api" value="gcanvas" />
+    </feature>
+
+</widget>

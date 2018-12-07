@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:id="@+id/titleraylout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorPrimary">
+
+            <RelativeLayout
+                android:id="@+id/rl_webview_operate"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:id="@+id/tv_webview_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:drawableLeft="@drawable/btn_back"
+                    android:drawablePadding="5.0dip"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5.0dip"
+                    android:text="返回"
+                    android:textColor="@color/txt_title"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_webview_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10.0dip"
+                    android:layout_toRightOf="@+id/tv_webview_back"
+                    android:gravity="center"
+                    android:text="关闭"
+                    android:textColor="@color/txt_title"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="48.0dip"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="15.0dip"
+                    android:src="@drawable/btn_back" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/rl_webview_operate"
+                android:layout_toLeftOf="@+id/rl_webview_act"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/txt_title"
+                android:textSize="18.0sp"
+                android:text=""/>
+
+            <RelativeLayout
+                android:id="@+id/rl_webview_act"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/menu_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:padding="5.0dip"
+                    android:text=""
+                    android:textColor="#ff333333"
+                    android:textSize="14.0sp"
+                    android:visibility="gone" />
+                
+                <ImageButton
+                    android:id="@+id/menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/toolbar_refresh_seletor"
+                    android:background="@android:color/transparent"
+                    android:layout_marginRight="@dimen/dp_3"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </RelativeLayout>
+</merge>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_poi_search_box"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-2.0dip"
+    android:background="@color/page_default_background_color"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8.0dip"
+        android:layout_marginLeft="@dimen/myinfo_address_margin_hor"
+        android:layout_marginRight="@dimen/myinfo_address_margin_hor"
+        android:layout_marginTop="8.0dip"
+        android:layout_weight="1.0">
+
+        <EditText
+            android:id="@+id/autotxt_myinfo_ea_poi"
+            style="@style/myinfo_poi_edit_style" />
+
+        <ImageButton
+            android:id="@+id/btn_delete_content"
+            android:layout_width="30.0dip"
+            android:layout_height="30.0dip"
+            android:layout_gravity="center|right"
+            android:background="@color/white"
+            android:src="@drawable/home_search_delete_key"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txt_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="取消"
+        android:textColor="@drawable/common_btn_white_bg"
+        android:textSize="17.0sp"
+        android:visibility="gone" />
+</LinearLayout>

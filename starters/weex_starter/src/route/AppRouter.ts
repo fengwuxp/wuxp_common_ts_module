@@ -44,8 +44,8 @@ export default class AppRouter {
      */
     static async toView(param: NavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
 
-        let pathname = param.pathname;
-        const route: WeexRouteItem = AppRouter.appRoutes[pathname.substr(1, pathname.length)];
+        let pathname = param.pathname.startsWith("/") ? param.pathname.substr(1, param.pathname.length) : param.pathname;
+        const route: WeexRouteItem = AppRouter.appRoutes[pathname];
 
         if (route == null) {
             console.error("not fount view", pathname);
@@ -54,7 +54,6 @@ export default class AppRouter {
         param.state = param.state || {};
 
         const {component, meta} = route;
-
         if (!isWeb) {
             //拼接完整的url
             pathname = `${AppRouter.generateBundleJsURL(component as string, meta == null ? false : meta.main)}`;
@@ -94,7 +93,7 @@ export default class AppRouter {
 
         //安卓状态栏颜色
         const androidStatusColor = process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor;
-        if (androidStatusColor) {
+        if (!!androidStatusColor) {
             //安卓状态栏颜色
             param.state.statusBarColor = androidStatusColor;
         }

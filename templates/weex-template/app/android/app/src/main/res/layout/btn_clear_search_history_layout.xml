@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/page_default_background_color"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.6dip"
+        android:background="@color/myinfo_selector_dividor" />
+
+    <TextView
+        android:id="@+id/txtDelete"
+        android:layout_width="130.0dip"
+        android:layout_height="36.0dip"
+        android:layout_margin="16.0dip"
+        android:background="@drawable/btn_clear_search_history"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="清除搜索历史"
+        android:textColor="#ff47b34f"
+        android:textSize="15.0sp" />
+</LinearLayout>

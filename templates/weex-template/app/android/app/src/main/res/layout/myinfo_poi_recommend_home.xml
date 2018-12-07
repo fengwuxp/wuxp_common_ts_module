@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="@color/colorPrimary"
+        android:paddingTop="4.0dip">
+
+        <ImageButton
+            android:id="@+id/btn_top_bar_left"
+            android:layout_width="48.0dip"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:padding="3.0dip"
+            android:src="@drawable/btn_back" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="@drawable/pdj_login_top_line" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200.0dip">
+
+        <com.baidu.mapapi.map.TextureMapView
+            android:id="@+id/map_poi_nearby_map"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <ImageView
+            android:id="@+id/img_myinfo_mappicker_marker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20.0dip"
+            android:src="@drawable/red_location" />
+
+        <ImageButton
+            android:id="@+id/btn_myinfo_my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|right"
+            android:layout_margin="16.0dip"
+            android:background="@null"
+            android:src="@drawable/map_current_location" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+        <ListView
+            android:id="@+id/list_myinfo_all_poi"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="26.0dip"
+            android:divider="@color/myinfo_selector_dividor"
+            android:dividerHeight="0.6px" />
+
+        <LinearLayout
+            android:id="@+id/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pdj_home_layout_search"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"></LinearLayout>
+    </FrameLayout>
+</LinearLayout>
