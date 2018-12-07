@@ -37,7 +37,7 @@ android {
 
         buildConfigField 'String','LOCAL_LAUNCH_URL','"file://assets/js/FlashScreenView.js"'
 
-        buildConfigField 'String','REMOTE_LAUNCH_URL','"http://test.meazoo.com/weex/templates/WebIndexView.js"'
+        buildConfigField 'String','REMOTE_LAUNCH_URL','"http://test.meazoo.com/weex/templates/FlashScreenView.js"'
 
       //  manifestPlaceholders = [APP_NAME : "美在海峡"]
 

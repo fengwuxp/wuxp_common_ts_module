@@ -43,7 +43,7 @@ const navBarStyleOptions: NavBarStyleOptions = {
     rightStyle: {},
 
     style: {
-        backgroundColor: "#4cbfff"
+        backgroundColor: "#ff2b3c"
     }
 
 };
@@ -64,6 +64,7 @@ const layoutConfig: LayoutConfig = {
 };
 
 const resourceConfig: ResourceConfig = {
+
     iosProjectName: "",
 
     remoteDeploymentDirectory: "templates",

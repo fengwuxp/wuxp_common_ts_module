@@ -35,7 +35,7 @@
         },
         methods: {
             toTest() {
-                this.toView("/test_view");
+                this.toView("test_view");
             }
         },
         beforeMount() {

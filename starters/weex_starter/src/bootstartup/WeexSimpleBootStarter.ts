@@ -17,7 +17,7 @@ interface WeexAppContext {
 
     appConfig: AppConfig;
 
-    appRegistry:Registry<AppConfig>
+    appRegistry: Registry<AppConfig>
 }
 
 /**
@@ -42,12 +42,14 @@ class WeexSimpleBootStarter implements AppBootStarter<WeexAppContext> {
 
             AppRouter.appSessionManager = simpleAppSessionManager;
 
+            //自定义的生成bundle js url的方式
             AppRouter.generateBundleJsURL = function (uri: string, main: boolean) {
 
-                return `weex://${packageName}/${main ? 'main' : 'page'}/${uri}`;
+                //自定义的
+                return `weex://${packageName}/${main ? 'main' : 'page'}/${appConfig.resourceDomain}/weex/${appConfig.resourceConfig.remoteDeploymentDirectory}/${uri}`;
             };
 
-            WeexSimpleBootStarter.appContext={
+            WeexSimpleBootStarter.appContext = {
                 appRouter: AppRouter,
                 appRegistry: AppConfigRegistry,
                 appConfig
