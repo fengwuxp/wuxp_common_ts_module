@@ -5,6 +5,7 @@ import {NavigatorParam} from "common_route/src/NavigatorAdapter";
 import {parse} from "querystring";
 import {AppSessionManager} from "../session/AppSessionManager";
 import {ViewConfigByRoute} from "./ViewConfigByRoute";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 
 const navigator: NavigatorAdapter = new WeexNavigatorAdapter();
@@ -43,16 +44,21 @@ export default class AppRouter {
      */
     static async toView(param: NavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
 
-        const route: WeexRouteItem = AppRouter.appRoutes[param.pathname];
+        let pathname = param.pathname;
+        const route: WeexRouteItem = AppRouter.appRoutes[pathname.substr(1, pathname.length)];
+
         if (route == null) {
+            console.error("not fount view", pathname);
             return;
         }
         param.state = param.state || {};
 
         const {component, meta} = route;
 
-        //拼接完整的url
-        const pathname = `${AppRouter.generateBundleJsURL(component as string, meta == null ? false : meta.main)}`;
+        if (!isWeb) {
+            //拼接完整的url
+            pathname = `${AppRouter.generateBundleJsURL(component as string, meta == null ? false : meta.main)}`;
+        }
 
         if (meta) {
             //需要登录
@@ -65,7 +71,7 @@ export default class AppRouter {
                         pathname: "/login",
                         state: {
                             //登录成功的重定向地址
-                            redirect: param.pathname,
+                            redirect: pathname,
                             //重定向参数
                             redirectParam: JSON.stringify({
                                 ...parse(param.search),
@@ -87,7 +93,7 @@ export default class AppRouter {
         }
 
         //安卓状态栏颜色
-        const androidStatusColor = `${process.env.ANDROID_STATUS_COLOR}` || viewConfig.androidStatusColor;
+        const androidStatusColor = process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor;
         if (androidStatusColor) {
             //安卓状态栏颜色
             param.state.statusBarColor = androidStatusColor;

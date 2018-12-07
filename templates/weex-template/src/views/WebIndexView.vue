@@ -13,10 +13,12 @@
 <script>
     import FlexView from "weex_components/src/layout/view/flex-view";
     import NarBar from "weex_components/src/layout/navbar/nav-bar";
+    import AppMixin from "weex_starter/src/mixins/AppMixin";
 
 
     export default {
         name: "WebIndexView",
+        mixins:[AppMixin],
         components: {FlexView,NarBar},
         props: {
             flexViewStyle: {
@@ -32,12 +34,9 @@
             return {}
         },
         methods: {
-            back(){
-                // console.log("back")
-                this.$router.push("/test")
-            },
             toTest(){
-                this.$router.push("/test")
+                console.log("--------")
+                this.toView("/test_view");
             }
         },
         beforeMount() {

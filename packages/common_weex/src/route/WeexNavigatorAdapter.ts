@@ -1,11 +1,10 @@
 import {NavigatorAdapter, NavigatorParam} from "common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import URLArgumentsResolve from "../resolve/URLArgumentsResolve";
-import weexNavigatorRegistry from "./WeexNavigatorRegistry";
 
 
 //获取一个导航
-const navigator: WeexNavigatorModule = weexNavigatorRegistry.get();
+const navigator: WeexNavigatorModule = weex.requireModule("navigator");
 
 /**
  * 参数解析

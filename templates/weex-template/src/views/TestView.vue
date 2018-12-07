@@ -13,10 +13,11 @@
 <script>
     import FlexView from "weex_components/src/layout/view/flex-view";
     import NarBar from "weex_components/src/layout/navbar/nav-bar";
-
+    import AppMixin from "weex_starter/src/mixins/AppMixin";
 
     export default {
         name: "TestView",
+        mixins:[AppMixin],
         components: {FlexView,NarBar},
         props: {
             flexViewStyle: {

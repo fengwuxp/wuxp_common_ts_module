@@ -87,9 +87,7 @@
         },
         created() {
             //加载字体图标文件
-            console.log("this.props",this);
             let {fontFamily, fontUrl} = this;
-
             //根据fontFamily加载字体图标文件
             if (!fontUrl) {
                 fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);

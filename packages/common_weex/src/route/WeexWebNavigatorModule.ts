@@ -1,6 +1,6 @@
 import {WeexNavigatorModule, WeexNavigatorPopOptions, WeexNavigatorPushOptions} from "weex/src/sdk/model/navigator";
-import createBrowserHistory from "history/createBrowserHistory";
-import {History} from "history";
+import {VueRouter} from "vue-router/types/router";
+import {parse} from "querystring";
 
 
 /**
@@ -8,31 +8,38 @@ import {History} from "history";
  */
 export class WeexWebNavigatorModule implements WeexNavigatorModule {
 
-    private history: History;
+    private vueRouter: VueRouter;
 
 
     //默认使用BrowserHistory
-    constructor(history?: History) {
-        this.history = history || createBrowserHistory();
+    constructor(router?: VueRouter) {
+        this.vueRouter = router;
     }
 
+
+    // @ts-ignore
     readonly pop = (options: WeexNavigatorPopOptions, callback: Function) => {
-        this.history.goBack();
+        this.vueRouter.back();
         if (callback) {
             callback();
         }
     };
 
+    // @ts-ignore
     readonly push = (options: WeexNavigatorPushOptions, callback: Function) => {
         const paths = options.url.split("?");
-        this.history.push({
-            pathname: paths[0],
-            search: paths[1]
+        const params = (paths[1] ? parse(paths[1]) : {}) as any;
+        const name = paths[0].substr(1, paths[0].length);
+        const location = {
+            name,
+            params
+        };
+        this.vueRouter.push(location, () => {
+            if (callback) {
+                callback();
+            }
         });
-        if (callback) {
-            callback();
-        }
-    };
 
+    };
 
 }

@@ -11,12 +11,14 @@
                   :rightStyle="rightStyle">
         <div slot="nav-bar-left"
              :style="leftStyle"
-             class="nav-bar-left">
+             class="nav-bar-left"
+             @click="clickLeft">
             <image v-if="!isFontIcon(backIcon)"
                    :src="backIcon"
-                   :style="backIconStyle"
-                   @click="clickLeft"></image>
+                   :style="backIconStyle"></image>
             <feather-icon v-if="isFontIcon(backIcon)"
+                          @iconClicked="clickLeft"
+                          :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>
         </div>
         <text slot="nav-bar-center"
