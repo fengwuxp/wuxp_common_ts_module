@@ -1,4 +1,3 @@
-
 import {LocationDescriptorObject} from "history";
 
 /**
@@ -7,7 +6,7 @@ import {LocationDescriptorObject} from "history";
 export interface NavigatorAdapter {
 
 
-    push: (params: NavigatorParam) => void;
+    push: (params: NavigatorParam) => void | Promise<void>;
 
     /**
      * 返回

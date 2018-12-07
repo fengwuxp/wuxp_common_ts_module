@@ -19,7 +19,8 @@
         props: {
             flexViewStyle: {
                 default: () => ({
-                    // backgroundColor: "#ff0000"
+                    //transparent
+                    backgroundColor: "transparent"
                 })
             },
         },

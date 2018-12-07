@@ -22,7 +22,7 @@
         props: {
             flexViewStyle: {
                 default: () => ({
-                    backgroundColor: "transports"
+                    backgroundColor: "#fafafa"
                 })
             },
             navTitle: {

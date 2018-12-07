@@ -30,10 +30,11 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
 
 
     /**
-     * push 页面
+     *  push 页面
      * @param params
      */
-    push = (params: NavigatorParam) => {
+    push = (params: NavigatorParam): Promise<void> => {
+
 
         let {pathname, search, state} = params;
 
@@ -49,10 +50,18 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
             pathname += `?${queryString}`;
         }
 
-        navigator.push({
-            url: pathname,
-            animated: params.animated == null ? "true" : params.animated + ""
-        }, params.callback);
+        return new Promise<void>((resolve, reject) => {
+            navigator.push({
+                url: pathname,
+                animated: params.animated == null ? "true" : params.animated + ""
+            }, () => {
+                if (!!params.callback) {
+                    params.callback();
+                    resolve();
+                }
+            });
+        })
+
 
     }
 
