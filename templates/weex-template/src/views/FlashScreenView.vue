@@ -33,7 +33,7 @@
         data() {
             return {
                 images: [],
-                maxCount: 4
+                maxCount: 3
             }
         },
         computed: {
@@ -53,7 +53,9 @@
                 }, 1000);
             },
             toIndex() {
-                this.toView("index");
+                this.toView("index").then(() => {
+                    console.log("跳转完成")
+                });
             }
         },
         mounted() {

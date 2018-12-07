@@ -15,7 +15,7 @@ export interface WeexRouteItem {
         main?: boolean,
 
         //需要鉴权
-        requireAuth: boolean,
+        requireAuth?: boolean,
 
         //默认参数
         defaultParams?: {};
