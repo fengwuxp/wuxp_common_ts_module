@@ -48,14 +48,11 @@ export default class AppRouter {
         const route: WeexRouteItem = AppRouter.appRoutes[pathname];
 
         if (route == null) {
-            console.error("not fount view", pathname);
-            return;
+            return Promise.reject(`not fount view-> ${pathname}`);
         }
         param.state = param.state || {};
 
         const {meta} = route;
-        console.log("-isWeb--", isWeb);
-
 
         if (meta) {
             //需要登录
@@ -64,7 +61,7 @@ export default class AppRouter {
                 const isLogin = await AppRouter.appSessionManager.isLogin();
                 if (!isLogin) {
                     //未登录
-                    navigator.push({
+                    return navigator.push({
                         pathname: generateBundleJsURL(AppRouter.appRoutes["lgoin"]),
                         state: {
                             //登录成功的重定向地址
@@ -76,7 +73,6 @@ export default class AppRouter {
                             })
                         }
                     });
-                    return;
                 }
             }
 
@@ -94,6 +90,7 @@ export default class AppRouter {
             pathname = generateBundleJsURL(route);
         }
 
+
         //安卓状态栏颜色
         const androidStatusColor = process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor;
         if (!!androidStatusColor) {
@@ -102,7 +99,7 @@ export default class AppRouter {
         }
 
         //跳转
-        navigator.push({
+        return navigator.push({
             ...param,
             pathname
         });
@@ -113,8 +110,12 @@ export default class AppRouter {
 
 }
 
+/**
+ * 根据路由生成 jsurl
+ * @param route
+ */
 const generateBundleJsURL = (route) => {
     const {component, meta} = route;
     return `${AppRouter.generateBundleJsURL(component, meta == null ? false : meta.main)}`;
-}
+};
 

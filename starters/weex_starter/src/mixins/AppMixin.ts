@@ -1,85 +1,93 @@
-import umengMixin from "../../mixins/umeng/UmengMixin";
-import CommonThemeControl from "common_style/src/CommonThemeControl";
+import {ComponentOptions} from "vue";
+import {Vue} from "vue/types/vue";
+import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
+import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
+import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+import AppRouter from "../route/AppRouter";
 
-//获取bootStarter
-// @ts-ignore
-const weexSimpleBootStarter = require("weex_starter/src/bootstartup/WeexSimpleBootStarter").default;
 
-//初始化
-weexSimpleBootStarter.startup();
 /**
- * 由于weex是多页应用，所以在根页面入口要做 bootStartUp
- */
-export default {
-    name: "flex-view",
-    mixins: [umengMixin],
-    props: {
-        flexViewStyle: {
-            default: () => ({}),
-            type: Object
-        }
-    },
-    data() {
-        return {
-            defaultStyle: null,
-        };
-    },
-    computed: {
-        viewStyle: {
-            set(style) {
-                this.flexViewStyle = style;
-            },
-            get() {
-                const style = CommonThemeControl.resolveStyle({
-                    backgroundColor: "fill-body"
-                }, this.defaultStyle);
+ * 基础的mix in
+ * @author wxup
+ * @create 2018-10-05 17:15
+ **/
+const appMixin: ComponentOptions<any> = {
 
-                return {
-                    ...style,
-                    ...this.flexViewStyle
-                };
-            }
+    data() {
+
+        return {
+            //客户端版本代码
+            appVersionCode: -1,
+            //用户信息
+            member: null,
+            appRouter: AppRouter
         }
     },
     methods: {
-
-        viewAppear() {
-            this.reportUMengByIntoPage();
-            this.$emit("viewAppear");
-
+        toView(pathname: string, params) {
+            return AppRouter.toView({
+                pathname,
+                state: params
+            });
         },
-        viewDisappear() {
-            this.$emit("viewDisappear");
-            this.reportUMengByDestroy();
-        },
-
-        fadeInView(opacity) {
-            if (opacity === 1) {
-                return;
-            }
-            opacity += 0.15;
-            setTimeout(() => {
-                this.defaultStyle.opacity = opacity;
-                this.fadeInView(opacity);
-            }, 20);
+        back() {
+            AppRouter.back();
         }
     },
+
+
     mounted() {
-        this.$nextTick(() => {
-            this.fadeInView(0.1);
-        });
+
     },
-    beforeMount() {
 
-        //初始化应用的的数据
-        weexSimpleBootStarter.startup().then(({router, appConfig, appRegistry}) => {
-            const layoutConfig = appRegistry.getLayoutConfig();
-            this.defaultStyle = {
-                ...(layoutConfig.style || {}),
-                opacity: 0
-            }
-        });
+    async beforeMount() {
 
+
+        //初始化页面state
+        const state = await transferViewState();
+        // 获取url参数
+        const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
+        setParameterToVueInstance(this, state, urlParams);
+
+
+        //TODO 获取APP版本信息
+
+        //TODO 初始化广播事件
+
+
+        try {
+            //初始化用户鉴权信息
+            this.member = await simpleAppSessionManager.getMember();
+        } catch (e) {
+            console.debug("获取用户信息失败", e);
+        }
+
+        //调用页面的onReady方法
+        this.onReady && this.onReady()
+
+    },
+    created() {
 
     }
+};
+
+/**
+ * 设置参数到vue的实例中
+ * @param vueInstance
+ * @param params
+ */
+function setParameterToVueInstance(vueInstance: Vue, ...params) {
+
+    params.forEach((item) => {
+        if (item == null) {
+            return;
+        }
+        for (const key in item) {
+            vueInstance[key] = item[key];
+        }
+    })
+
+
 }
+
+export default appMixin;
