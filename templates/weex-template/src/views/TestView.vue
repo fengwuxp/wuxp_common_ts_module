@@ -6,6 +6,7 @@
              class="app_body">
             <text>test</text>
             <text value="body11"></text>
+
         </div>
     </flex-view>
 </template>
@@ -15,8 +16,9 @@
     import NarBar from "weex_components/src/layout/navbar/nav-bar";
     import AppMixin from "weex_starter/src/mixins/AppMixin";
 
+
     export default {
-        name: "TestView",
+        // name: "TestView",
         mixins: [AppMixin],
         components: {FlexView, NarBar},
         props: {

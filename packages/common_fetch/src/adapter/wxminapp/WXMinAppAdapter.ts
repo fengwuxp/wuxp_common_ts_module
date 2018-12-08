@@ -2,7 +2,7 @@ import {FetchAdapter} from "../FetchAdapter";
 import {FetchOptions, FetchResponse} from "../../fetch/FetchOptions";
 import {FetchResp, RequestReq} from "weixin/src/minapp/network/request";
 import {isNullOrUndefined, isString} from "util";
-import {ReqMethod} from "../../enums/ReqMethod";
+import {ReqMethod} from "../../constant/ReqMethod";
 
 
 /**

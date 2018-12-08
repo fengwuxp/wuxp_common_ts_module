@@ -1,9 +1,9 @@
-import {ReqMethod} from "../../enums/ReqMethod";
+import {ReqMethod} from "../../constant/ReqMethod";
 import {isNullOrUndefined} from "util";
-import {DataType} from "../../enums/DataType";
+import {DataType} from "../../constant/DataType";
 import {FetchOptions} from "../../fetch/FetchOptions";
 import {ArgumentsResolver} from "./ArgumentsResolver";
-import {RequestMappingOptions} from "../../decorator/RequestMapping";
+import {Mapping} from "../../decorator/mapping/RequestMapping";
 
 
 /**

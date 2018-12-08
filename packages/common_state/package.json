@@ -24,7 +24,7 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "common_test": "0.0.1",
+    "common_test": "^0.0.1",
     "jest": "^23.6.0"
   },
   "dependencies": {

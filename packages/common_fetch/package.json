@@ -28,7 +28,7 @@
   ],
   "devDependencies": {
     "@types/node": "^10.9.4",
-    "common_test": "0.0.1",
+    "common_test": "^0.0.1",
     "jest": "^23.6.0"
   },
   "dependencies": {

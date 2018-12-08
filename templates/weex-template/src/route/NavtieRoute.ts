@@ -4,12 +4,15 @@ const webRoutes: AppRoute = {
 
     index: {
         component: "WebIndexView.js",
-        meta:{
-            main:true
+        meta: {
+            main: true
         }
     },
     test_view: {
         component: "TestView.js"
+    },
+    member: {
+        component: "member/MemberIndexView.js"
     }
 };
 

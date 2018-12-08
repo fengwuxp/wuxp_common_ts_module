@@ -1,5 +1,4 @@
-import {ExecuteMethod} from "../enums/ExecuteMethod";
-import {BaseFetchOptions} from "../BaseFetchOptions";
+import {ExecuteMethod} from "../constant/ExecuteMethod";
 import {FetchResponse} from "../fetch/FetchOptions";
 
 /**

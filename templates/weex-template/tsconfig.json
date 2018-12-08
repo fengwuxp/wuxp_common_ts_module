@@ -14,6 +14,9 @@
     "paths": {
       "@services/*": [
         "./services/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
       ]
     },
     "types": [

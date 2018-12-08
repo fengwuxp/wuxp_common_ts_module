@@ -9,7 +9,7 @@ const pathPrefix = {
     android: "file://",
 
     ios: "file:///"
-}
+};
 
 //bundleURL
 const bundleUrl: string = weex.config.bundleUrl;

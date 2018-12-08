@@ -48,7 +48,7 @@
           3: rest template
                固化了一系列的请求相关的内容 例如 超时时间定定义，统一拦截，统一异常处理
 
-          4 reign prroxy
+          4 feign prroxy
 
                以接口代理的形式屏蔽远程调用的感知
 

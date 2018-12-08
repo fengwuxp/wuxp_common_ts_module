@@ -1,27 +1,6 @@
-import {ProxyApiService} from "../proxy/ProxyApiService";
-import {ReqMethod} from "../enums/ReqMethod";
-import {DataType} from "../enums/DataType";
-import {SerializeType} from "../enums/http/SerializeType";
+import {ProxyApiService} from "../../proxy/ProxyApiService";
+import {mappingMethod, RequestMappingOptions} from "./Mapping";
 
-
-export interface RequestMappingOptions {
-
-    url?: string;
-
-    method?: ReqMethod
-
-    dataType?: DataType,
-
-    /**
-     * 请求参数序列化类型
-     */
-    serializeType?: SerializeType,
-
-    /**
-     * 其他参数
-     */
-    other?: any
-}
 
 /**
  * RequestMapping
@@ -38,9 +17,10 @@ export function RequestMapping<T extends ProxyApiService>(options: RequestMappin
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): any {
 
-        target[name] = function () {
-            return options;
-        };
+        if (typeof target[name]==="function") {
+
+        }
+        target[name] = mappingMethod(options);
 
         return target;
 

@@ -1,10 +1,10 @@
 import {HttpRequestEngine} from "./HttpRequestEngine";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import {FetchOptions, FetchResponse} from "../fetch/FetchOptions";
-import {ReqMethod} from "../enums/ReqMethod";
+import {ReqMethod} from "../constant/ReqMethod";
 import {stringify} from "querystring";
-import {SerializeType} from "../enums/http/SerializeType";
-import {MediaType} from "../enums/http/MediaType";
+import {SerializeType} from "../constant/http/SerializeType";
+import {MediaType} from "../constant/http/MediaType";
 
 /**
  * 通用的http请求引擎

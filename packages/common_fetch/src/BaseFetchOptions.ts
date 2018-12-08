@@ -1,6 +1,6 @@
-import {ReqMethod} from "./enums/ReqMethod";
-import {DataType} from "./enums/DataType";
-import {SerializeType} from "./enums/http/SerializeType";
+import {ReqMethod} from "./constant/ReqMethod";
+import {DataType} from "./constant/DataType";
+import {SerializeType} from "./constant/http/SerializeType";
 import {FetchResponse} from "./fetch/FetchOptions";
 
 /**
@@ -38,6 +38,11 @@ export interface BaseFetchOptions {
      */
     headers?: object;
 
+    /**
+     * 请求超时
+     */
+    timeout?: number;
+
 
     /**
      * 提交的数据序列化处理
@@ -49,10 +54,10 @@ export interface BaseFetchOptions {
 
 
     /**
-     * 请求之前的执行的函数，在拦截器执行之钱执行
+     * 请求之前的执行的函数，在拦截器执行之前执行
      * @param options
      */
-    transformRequest<T extends BaseFetchOptions>(options: BaseFetchOptions): T;
+    transformRequest?<T extends BaseFetchOptions>(options: BaseFetchOptions): T;
 
     /**
      * 响应之后执行的函数 在拦截器执行之后执行

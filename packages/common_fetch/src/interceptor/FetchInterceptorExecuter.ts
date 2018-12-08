@@ -1,7 +1,7 @@
 import {FetchInterceptor} from "./FetchInterceptor";
 import {BaseFetchOptions} from "../BaseFetchOptions";
 import {FetchResponse} from "../fetch/FetchOptions";
-import {ExecuteMethod} from "../enums/ExecuteMethod";
+import {ExecuteMethod} from "../constant/ExecuteMethod";
 import {isNullOrUndefined} from "util";
 
 /**

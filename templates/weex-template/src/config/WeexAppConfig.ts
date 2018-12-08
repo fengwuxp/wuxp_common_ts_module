@@ -27,7 +27,9 @@ const navBarStyleOptions: NavBarStyleOptions = {
     backgroundImage: null,
 
 
-    centerStyle: {},
+    centerStyle: {
+
+    },
 
     navTitleStyle: {
         fontSize: 36,
