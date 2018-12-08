@@ -18,6 +18,6 @@
 
         如果要设置为自己的私服只要替换镜像地址就可以了
 
-        npm config set  xxxx (例如：http://nexus.oaknt.com:18081/repository/oak_npm_hosted/)
+        npm config set  xxxx (例如：http://nexus.oaknt.com:18081/repository/oak_npm_group/)
 
         可以通过npm config list 来查看所有配置
