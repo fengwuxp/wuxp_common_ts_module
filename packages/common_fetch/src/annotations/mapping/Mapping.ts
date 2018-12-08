@@ -40,13 +40,3 @@ export interface RequestMappingOptions {
     produces?: string[];
 
 }
-
-export function mappingMethod<T extends RequestMappingOptions = RequestMappingOptions>(mapping: T): any {
-
-    return function <F extends FetchOptions>(request: any, options: FetchOptions) {
-        return {
-            requestMapping:options
-        };
-    };
-
-}

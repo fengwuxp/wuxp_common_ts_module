@@ -1,8 +1,9 @@
-
-import {RequestMapping} from "../src/decorator/mapping/RequestMapping";
-import {Feign} from "../src/decorator/Feign";
+import {RequestMapping} from "../src/annotations/mapping/RequestMapping";
+import {Feign, FeignOptions} from "../src/annotations/Feign";
 import {FetchOptions} from "../src/fetch/FetchOptions";
-import {Signature} from "../src/decorator/security/Signature";
+import {Signature} from "../src/annotations/security/Signature";
+import {FeignProxy, ProxyApiService, ProxyApiServiceConfig} from "../src/proxy/ProxyApiService";
+import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
 
 
 /**
@@ -11,10 +12,16 @@ import {Signature} from "../src/decorator/security/Signature";
  * @create 2018-11-03 9:34
  **/
 @Feign({
-    apiModule: "member"
+    apiModule: "member",
+    value: "test"
 })
-export default class TestService {
+export default class TestService extends FeignProxy {
 
+
+    //禁止外部实例化
+    // private constructor() {
+    //     super();
+    // }
 
     @Signature({fields: []})
     @RequestMapping({value: "/test"})
@@ -25,5 +32,9 @@ export default class TestService {
     findMember: (
         userName: string,
         memberId: number,
-        options: FetchOptions) => Promise<any>
+        options: FetchOptions) => Promise<any>;
+
+    @Signature({fields: ["memberId"]})
+    @DeleteMapping({value: "/delete_member"})
+    deleteMember: (memberId: number, options: FetchOptions) => Promise<number>;
 }

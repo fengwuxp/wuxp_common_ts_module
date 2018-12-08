@@ -1,5 +1,21 @@
-// import {ServiceEvt} from "../model/ServiceEvt";
 import {FetchOptions} from "../fetch/FetchOptions";
+import {RequestMappingOptions} from "../annotations/mapping/Mapping";
+import {SignatureOptions} from "../annotations/security/Signature";
+import {FeignOptions} from "../annotations/Feign";
+
+
+export interface ProxyApiServiceConfig {
+
+    /**
+     * 请求配置
+     */
+    requestMapping?: RequestMappingOptions;
+
+    /**
+     * 签名相关
+     */
+    signature?: SignatureOptions;
+}
 
 /**
  * 代理的服务 定义
@@ -7,13 +23,18 @@ import {FetchOptions} from "../fetch/FetchOptions";
 export interface ProxyApiService {
 
 
+    /**
+     * feign配置
+     */
+    feign?: FeignOptions;
 
     /**
-     * 获取api服务的根路径，需要带上最后的的 "/"
-     * 例如：http://xxx.xx.com/api/或 /member
-     * 或者在压缩打包的时候没有保存 class的名称则需要使用这个
+     * 代理服务配置
+     * key：方法名称,
+     * value：ProxyApiServiceConfig
      */
-    basePath?: string;
+    configs?: Map<string, ProxyApiServiceConfig>;
+
 
     /**
      * 服务方法
@@ -21,7 +42,21 @@ export interface ProxyApiService {
     // [prop: string]: ServiceMethod<any> | string;
 }
 
+
 /**
- * 服务方法定义
+ * 抽象的feign proxy
  */
-type ServiceMethod<R> = (req: R, options?: FetchOptions) => any;
+export abstract class FeignProxy implements ProxyApiService {
+
+    configs: Map<string, ProxyApiServiceConfig> = new Map<string, ProxyApiServiceConfig>();
+
+    feign: FeignOptions = null;
+
+
+}
+
+/**
+ * 代理的服务方法定义
+ * @param args,参数列表中最后一个名字为 options的为 BaseFetchOptions的子类
+ */
+export type ProxyServiceMethod<E = any> = (...args) => Promise<E>;

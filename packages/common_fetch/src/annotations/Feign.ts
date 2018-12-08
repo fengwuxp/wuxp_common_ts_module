@@ -1,4 +1,5 @@
 import BuilderProxyServiceUtil from "../utils/BuilderProxyServiceUtil";
+import {FeignProxy} from "../proxy/ProxyApiService";
 
 
 export interface FeignOptions {
@@ -11,22 +12,25 @@ export interface FeignOptions {
     apiModule?: string;
 
     /**
-     * api 请求根路径
+     * 请求uri
      */
-    // apiBasePath?: string;
+    value?: string;
+
 }
+
+type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
 /**
  * 标记为feign proxy
- * @constructor
+ * @constructor T extends { new(...args: any[]): any }
  */
-export function Feign<T extends { new(...args: any[]): any }>(feignOptions?: FeignOptions): any {
+export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
 
     /**
      * @param  {T} clazz
      */
-    return (clazz: T): T => {
-        const apiProxyService = BuilderProxyServiceUtil.build(new clazz());
+    return (clazz: any): T => {
+        const apiProxyService: T = BuilderProxyServiceUtil.build<any>(new clazz());
         if (feignOptions) {
             apiProxyService.feign = feignOptions;
         }

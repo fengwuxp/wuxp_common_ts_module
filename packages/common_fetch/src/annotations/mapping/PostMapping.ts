@@ -1,24 +1,15 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
-
-/**
- * 签名配置
- */
-export interface SignatureOptions {
-
-    /**
-     * 要签名的字段名称
-     */
-    fields: Array<string>;
-}
+import {RequestMappingOptions} from "./Mapping";
+import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {ReqMethod} from "../../constant/ReqMethod";
 
 
 /**
- * 签名配置
+ * PostMapping
  * @param options
  * @constructor
  */
-export function Signature<T extends ProxyApiService>(options: SignatureOptions):any {
-
+export function PostMapping<T extends ProxyApiService>(options: RequestMappingOptions): Function {
 
     /**
      * decorator
@@ -28,10 +19,12 @@ export function Signature<T extends ProxyApiService>(options: SignatureOptions):
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): any {
 
-        if (typeof target[name] === "function") {
-
-        }
-
+        defaultGenerateAnnotationMethodConfig(target, name, {
+            requestMapping: {
+                ...options,
+                method: ReqMethod.POST
+            }
+        });
 
         return target;
 

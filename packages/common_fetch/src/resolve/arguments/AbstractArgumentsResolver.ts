@@ -3,7 +3,7 @@ import {isNullOrUndefined} from "util";
 import {DataType} from "../../constant/DataType";
 import {FetchOptions} from "../../fetch/FetchOptions";
 import {ArgumentsResolver} from "./ArgumentsResolver";
-import {Mapping} from "../../decorator/mapping/RequestMapping";
+import {Mapping} from "../../annotations/mapping/RequestMapping";
 
 
 /**

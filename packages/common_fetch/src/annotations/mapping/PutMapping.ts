@@ -1,13 +1,15 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
-import {mappingMethod, RequestMappingOptions} from "./Mapping";
+import {RequestMappingOptions} from "./Mapping";
+import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {ReqMethod} from "../../constant/ReqMethod";
 
 
 /**
- * RequestMapping
+ * PutMapping
  * @param options
  * @constructor
  */
-export function RequestMapping<T extends ProxyApiService>(options: RequestMappingOptions): Function {
+export function PutMapping<T extends ProxyApiService>(options: RequestMappingOptions): Function {
 
     /**
      * decorator
@@ -17,10 +19,12 @@ export function RequestMapping<T extends ProxyApiService>(options: RequestMappin
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): any {
 
-        if (typeof target[name]==="function") {
-
-        }
-        target[name] = mappingMethod(options);
+        defaultGenerateAnnotationMethodConfig(target, name, {
+            requestMapping: {
+                ...options,
+                method: ReqMethod.PUT
+            }
+        });
 
         return target;
 
