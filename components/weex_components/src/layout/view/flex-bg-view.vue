@@ -4,7 +4,9 @@
          :style="viewStyle"
          @viewappear="viewAppear"
          @viewdisappear="viewDisappear">
-        <image :src="bgSrc" :style="bgStyle"></image>
+        <image v-if="bgSrc"
+               :src="bgSrc"
+               :style="bgStyle"></image>
         <div class="bg_image">
             <slot name="app-header"></slot>
             <slot name="app-body"></slot>

@@ -27,7 +27,9 @@
     "minapp"
   ],
   "devDependencies": {
-    "@types/node": "^10.9.4"
+    "@types/node": "^10.9.4",
+    "common_test": "0.0.1",
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "@types/weex": "^0.0.1",

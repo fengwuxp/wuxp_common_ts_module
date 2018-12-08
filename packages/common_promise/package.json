@@ -1,0 +1,31 @@
+{
+  "name": "common_promise",
+  "version": "0.0.1",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish",
+    "test": "jest --env=node --colors --coverage test"
+  },
+  "keywords": [],
+  "types": "./index.d.ts",
+  "devDependencies": {
+    "common_test": "0.0.1",
+    "jest": "^23.6.0"
+  },
+  "dependencies": {}
+}

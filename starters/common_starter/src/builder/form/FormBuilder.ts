@@ -3,6 +3,7 @@ import {ComponentBuilder} from "../ComponentBuilder";
 
 /**
  * 表单构建者
+ * @param T 表单预期的组件组合
  */
 export interface FormBuilder<T> extends ComponentBuilder<T> {
 
