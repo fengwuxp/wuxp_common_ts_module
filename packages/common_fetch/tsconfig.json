@@ -10,6 +10,7 @@
     "allowJs":true,
     "types": [
       "node",
+      "jest",
       "weex",
       "weixin"
     ],

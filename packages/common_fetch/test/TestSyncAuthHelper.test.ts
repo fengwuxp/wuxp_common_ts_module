@@ -32,6 +32,7 @@ class LockExecutor {
         }
 
         return new Promise((resolve, reject) => {
+            console.log("等待锁释放->");
             //等待锁释放
             this.lockTask.then(resolve).catch(reject);
         });
@@ -66,9 +67,10 @@ class TestSyncAuthHelper implements SyncAuthHelper<Member> {
             //释放执行器
             this.lockExecutor = null;
         }
-        console.log("this.member.id", this.member.id);
+        logger.debug("this.member.id", this.member.id);
         logger.debug("fetch options", params);
 
+        params.data = this.member;
         return true;
     };
 
@@ -81,22 +83,49 @@ describe("sync auth helper test", () => {
     const syncAuthHelper: SyncAuthHelper = new TestSyncAuthHelper();
 
     test("auth test", async () => {
+        const time = new Date().getTime();
+        logger.debug("开始时间", time);
+        const options = [
+            {
+                url: "0"
+            },
+            {
+                url: "1"
+            },
+            {
+                url: "2"
+            },
+            {
+                url: "3"
+            },
+            {
+                url: "4"
+            }
+        ];
+        syncAuthHelper.requestParamsEnhance(options[0] as any).then(() => {
+            logger.debug("options[0]", options[0]);
+        });
 
-        syncAuthHelper.requestParamsEnhance({
-            url: "124"
-        } as any);
+        syncAuthHelper.requestParamsEnhance(options[1] as any).then(() => {
+            logger.debug("options[0]", options[1]);
+        });
 
-        syncAuthHelper.requestParamsEnhance({
-            url: "234"
-        } as any);
+        syncAuthHelper.requestParamsEnhance(options[2] as any).then(() => {
+            logger.debug("options[0]", options[2]);
+        });
 
-        syncAuthHelper.requestParamsEnhance({
-            url: "456"
-        } as any);
+        syncAuthHelper.requestParamsEnhance(options[3] as any).then(() => {
+            logger.debug("options[0]", options[3]);
+        });
 
-        syncAuthHelper.requestParamsEnhance({
-            url: "678"
-        } as any);
+        await syncAuthHelper.requestParamsEnhance(options[4] as any).then(() => {
+            logger.debug("options[0]", options[4]);
+        });
 
-    }, 20 * 1000)
+        let endTime = new Date().getTime();
+        logger.debug("结束时间", endTime);
+        logger.debug("耗时", (endTime - time) / 1000);
+
+
+    }, 20 * 1000);
 });
