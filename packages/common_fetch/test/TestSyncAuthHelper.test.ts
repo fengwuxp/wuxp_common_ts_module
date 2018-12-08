@@ -32,7 +32,7 @@ class LockExecutor {
         }
 
         return new Promise((resolve, reject) => {
-            console.log("等待锁释放->");
+            logger.debug("等待锁释放->");
             //等待锁释放
             this.lockTask.then(resolve).catch(reject);
         });
@@ -59,6 +59,7 @@ class TestSyncAuthHelper implements SyncAuthHelper<Member> {
 
         const flag = parseInt(Math.random() * 100 + "") % 2;
         if (this.member.id == flag) {
+            logger.warn("token 失效，刷新token");
             if (this.lockExecutor == null) {
                 this.lockExecutor = new LockExecutor();
             }
