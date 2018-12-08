@@ -16,11 +16,24 @@ class LockExecutor {
 
     protected lockTask: Promise<Member>;
 
+    protected member: Member = {
+        id: 0,
+        token: "0"
+    };
+
     execute = (): Promise<Member> => {
+
+        const flag = parseInt(Math.random() * 100 + "") % 2;
+        if (this.member.id === flag) {
+            return Promise.resolve(this.member);
+        }
+
+        logger.warn("token 失效，刷新token", this.member);
 
         if (this.lockTask == null) {
             this.lockTask = new Promise<Member>((resolve, reject) => {
 
+                logger.info("开始刷新token");
                 //模拟网络请求
                 setTimeout(() => {
                     resolve({
@@ -42,12 +55,8 @@ class LockExecutor {
 
 class TestSyncAuthHelper implements SyncAuthHelper<Member> {
 
-    protected lockExecutor: LockExecutor;
+    protected lockExecutor: LockExecutor = new LockExecutor();
 
-    protected member: Member = {
-        id: 0,
-        token: "0"
-    };
 
     isToAuthView: (data: FetchResponse) => Promise<boolean>;
 
@@ -57,21 +66,7 @@ class TestSyncAuthHelper implements SyncAuthHelper<Member> {
 
     async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
 
-        const flag = parseInt(Math.random() * 100 + "") % 2;
-        if (this.member.id == flag) {
-            logger.warn("token 失效，刷新token");
-            if (this.lockExecutor == null) {
-                this.lockExecutor = new LockExecutor();
-            }
-            //锁定执行
-            this.member = await this.lockExecute();
-            //释放执行器
-            this.lockExecutor = null;
-        }
-        logger.debug("this.member.id", this.member.id);
-        logger.debug("fetch options", params);
-
-        params.data = this.member;
+        params.data = await this.lockExecute();
         return true;
     };
 
@@ -108,19 +103,19 @@ describe("sync auth helper test", () => {
         });
 
         syncAuthHelper.requestParamsEnhance(options[1] as any).then(() => {
-            logger.debug("options[0]", options[1]);
+            logger.debug("options[1]", options[1]);
         });
 
         syncAuthHelper.requestParamsEnhance(options[2] as any).then(() => {
-            logger.debug("options[0]", options[2]);
+            logger.debug("options[2]", options[2]);
         });
 
         syncAuthHelper.requestParamsEnhance(options[3] as any).then(() => {
-            logger.debug("options[0]", options[3]);
+            logger.debug("options[3]", options[3]);
         });
 
         await syncAuthHelper.requestParamsEnhance(options[4] as any).then(() => {
-            logger.debug("options[0]", options[4]);
+            logger.debug("options[4]", options[4]);
         });
 
         let endTime = new Date().getTime();
