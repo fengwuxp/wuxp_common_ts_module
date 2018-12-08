@@ -21,18 +21,21 @@ class LockExecutor {
         token: "0"
     };
 
+    protected count = 0;
+
     execute = (): Promise<Member> => {
 
         const flag = parseInt(Math.random() * 100 + "") % 2;
         if (this.member.id === flag) {
+            logger.debug("直接返回本地的token", this.member.id);
             return Promise.resolve(this.member);
         }
 
-        logger.warn("token 失效，刷新token", this.member);
+        logger.warn("token 失效，刷新token", this.member.token);
 
+        this.count++;
         if (this.lockTask == null) {
             this.lockTask = new Promise<Member>((resolve, reject) => {
-
                 logger.info("开始刷新token");
                 //模拟网络请求
                 setTimeout(() => {
@@ -47,7 +50,14 @@ class LockExecutor {
         return new Promise((resolve, reject) => {
             logger.debug("等待锁释放->");
             //等待锁释放
-            this.lockTask.then(resolve).catch(reject);
+            this.lockTask.then((data) => {
+                resolve(data);
+                this.count--;
+                if (this.count === 0) {
+                    this.lockTask = null;
+                    logger.debug("clear task")
+                }
+            }).catch(reject);
         });
     };
 
