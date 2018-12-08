@@ -1,5 +1,4 @@
 import {ReqMethod} from "../../constant/ReqMethod";
-import {FetchOptions} from "../../FetchOptions";
 
 export interface RequestMappingOptions {
 

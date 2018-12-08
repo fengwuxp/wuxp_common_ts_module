@@ -1,4 +1,3 @@
-import {FetchOptions} from "../FetchOptions";
 import {RequestMappingOptions} from "../annotations/mapping/Mapping";
 import {SignatureOptions} from "../annotations/security/Signature";
 import {FeignOptions} from "../annotations/Feign";

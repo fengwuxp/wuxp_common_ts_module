@@ -1,5 +1,4 @@
 import {RestTemplate} from "./RestTemplate";
-import {getApiModuleName} from "../utils/FeignUtil";
 
 
 /**

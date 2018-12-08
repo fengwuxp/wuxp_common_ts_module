@@ -24,13 +24,13 @@ export default abstract class AbstractArgumentsResolver<T extends FetchOptions> 
             useProgressBar: true
         }, args[1]);
 
-        if (AbstractArgumentsResolver.enabledDecorator) {
-            const {url, method, dataType, other, serializeType} = data;
-            options.method = method;
-            options.dataType = dataType;
-            options.serializeType = serializeType;
-            data = other;
-        }
+        // if (AbstractArgumentsResolver.enabledDecorator) {
+        //     const {url, method, dataType, other, serializeType} = data;
+        //     options.method = method;
+        //     options.dataType = dataType;
+        //     options.serializeType = serializeType;
+        //     data = other;
+        // }
 
 
         //请求的数据
@@ -44,7 +44,7 @@ export default abstract class AbstractArgumentsResolver<T extends FetchOptions> 
 
         options.headers = options.headers == null ? {} : options.headers;
 
-        return this.buildOptions(options, data);
+        return this.buildOptions(options, {});
     };
 
     /**

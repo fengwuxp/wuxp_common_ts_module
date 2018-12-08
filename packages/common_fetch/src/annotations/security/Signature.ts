@@ -1,6 +1,5 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
-import {ReqMethod} from "../../constant/ReqMethod";
 
 /**
  * 签名配置

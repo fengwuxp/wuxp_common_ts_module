@@ -3,7 +3,6 @@ import {ProxyApiService} from "../ProxyApiService";
 import {ProxyServiceExecutor} from "../ProxyServiceExecutor";
 
 
-
 /**
  * 代理服务工厂
  * es6版本

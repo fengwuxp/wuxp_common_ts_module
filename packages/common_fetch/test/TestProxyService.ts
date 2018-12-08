@@ -10,6 +10,10 @@ import {ProxyApiService} from "../src/proxy/ProxyApiService";
 import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
 import TestService from "./TestService";
 import {setProxyFactory} from "../src/annotations/Feign";
+import * as log4js from "log4js";
+
+const logger = log4js.getLogger();
+logger.level = 'debug';
 
 
 const routingMapping = {};
@@ -51,8 +55,8 @@ describe("test proxy api service", () => {
     //设置代理工厂
     setProxyFactory(es6PoxyServiceFactory);
 
-    test("test",()=>{
-        console.log("TestService", TestService);
+    test("test", () => {
+        logger.debug("TestService", TestService);
 
         // const testService = new TestService();
         // const proxyService = es6PoxyServiceFactory.factory(testService);

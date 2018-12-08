@@ -3,10 +3,8 @@ import {FetchResponse} from "../../FetchOptions";
 import {DataType} from "../../constant/DataType";
 import {WebFetchOptions} from "./WebFetchOptions";
 import {ReqMethod} from "../../constant/ReqMethod";
-import {isNullOrUndefined} from "util";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";
 import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
-import {HttpFetchException} from "../../../../common_exception/src/http/HttpFetchException";
 
 
 // RequestInit 属性name列表

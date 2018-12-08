@@ -1,8 +1,4 @@
 import {ProxyApiService} from "../ProxyApiService";
-import {RestTemplate} from "../../template/RestTemplate";
-import {RestTemplateLoader} from "../../template/RestTemplateLoader";
-import {FeignOptions} from "../../annotations/Feign";
-import {getApiModuleName} from "../../utils/FeignUtil";
 import {ProxyServiceExecutor} from "../ProxyServiceExecutor";
 
 
