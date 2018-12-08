@@ -117,6 +117,10 @@ describe("sync auth helper test", () => {
             count++;
             if (count === options.length) {
                 resolve();
+
+                const endTime = new Date().getTime();
+                logger.debug("结束时间", endTime);
+                logger.debug("耗时", (endTime - time) / 1000);
             }
         };
         return new Promise((resolve, reject) => {
@@ -149,9 +153,6 @@ describe("sync auth helper test", () => {
 
         });
 
-        const endTime = new Date().getTime();
-        logger.debug("结束时间", endTime);
-        logger.debug("耗时", (endTime - time) / 1000);
 
 
     }, 20 * 1000);
