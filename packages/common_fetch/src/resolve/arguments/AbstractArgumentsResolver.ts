@@ -1,9 +1,7 @@
 import {ReqMethod} from "../../constant/ReqMethod";
-import {isNullOrUndefined} from "util";
 import {DataType} from "../../constant/DataType";
-import {FetchOptions} from "../../fetch/FetchOptions";
+import {FetchOptions} from "../../FetchOptions";
 import {ArgumentsResolver} from "./ArgumentsResolver";
-import {Mapping} from "../../annotations/mapping/RequestMapping";
 
 
 /**
@@ -12,17 +10,13 @@ import {Mapping} from "../../annotations/mapping/RequestMapping";
 export default abstract class AbstractArgumentsResolver<T extends FetchOptions> implements ArgumentsResolver<T> {
 
 
-    //启动装饰器
-    public static enabledDecorator: boolean = false;
-
-
     /**
      * 解析参数
      * @param url  接口请求url
      * @param data 服务方法的默认返回值，一般是请求借口需要的签名参数
      * @param args 接口请求数据，请求配置等
      */
-    resolve = (url: string, data: (string[] | RequestMappingOptions | any), ...args): T => {
+    resolve = (url: string, ...args): T => {
 
         //T
         let options: T = Object.assign({
@@ -40,7 +34,7 @@ export default abstract class AbstractArgumentsResolver<T extends FetchOptions> 
 
 
         //请求的数据
-        options.data = isNullOrUndefined(args[0]) ? {} : Object.assign({}, args[0]);
+        options.data = typeof args[0] === "undefined" ? {} : Object.assign({}, args[0]);
 
         //请求方法
         options.method = options.method as ReqMethod || ReqMethod.POST;

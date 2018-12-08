@@ -1,5 +1,5 @@
 import {ResolveFetchData} from "./ResolveFetchData";
-import {FetchResponse} from "../fetch/FetchOptions";
+import {FetchResponse} from "../FetchOptions";
 
 /**
  * 通用的响应数据解析

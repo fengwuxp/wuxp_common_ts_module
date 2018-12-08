@@ -1,4 +1,4 @@
-import {BaseFetchOptions} from "../BaseFetchOptions";
+import {BaseFetchOptions} from "./BaseFetchOptions";
 
 /**
  * 请求配置

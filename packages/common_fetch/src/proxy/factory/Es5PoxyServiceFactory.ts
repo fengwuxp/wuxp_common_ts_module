@@ -1,17 +1,20 @@
-import {ProxyServiceFactory} from "./ProxyServiceFactory";
-import {FetchClient} from "../fetch/FetchClient";
-import {ProxyApiService} from "./ProxyApiService";
-import {proxyRequest} from "./ProxyBuilderUtil";
+import {AbstractProxyServiceFactory} from "./ProxyServiceFactory";
+import {ProxyApiService} from "../ProxyApiService";
+import {ProxyServiceExecutor} from "../ProxyServiceExecutor";
 
 
 /**
  * 代理服务工厂
  * es5版本
  */
-class Es5PoxyServiceFactory implements ProxyServiceFactory {
+export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
 
 
-    factory<T extends ProxyApiService>(targetService: T, fetchClient: FetchClient): T {
+    constructor(proxyServiceExecutor: ProxyServiceExecutor) {
+        super(proxyServiceExecutor);
+    }
+
+    factory<T extends ProxyApiService>(targetService: T): T {
 
         const proxy: T = {} as T;
 
@@ -31,7 +34,7 @@ class Es5PoxyServiceFactory implements ProxyServiceFactory {
                 },
                 get: () => {
                     return (...p) => {
-                        return proxyRequest(fetchClient, targetService, key, ...p);
+                        return this.proxyServiceExecutor.execute(targetService,key,...p);
                     }
                 }
             });
@@ -41,5 +44,4 @@ class Es5PoxyServiceFactory implements ProxyServiceFactory {
     }
 }
 
-//导出唯一实例
-export default new Es5PoxyServiceFactory();
+

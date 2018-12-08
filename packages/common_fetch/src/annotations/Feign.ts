@@ -1,5 +1,5 @@
-import BuilderProxyServiceUtil from "../utils/BuilderProxyServiceUtil";
 import {FeignProxy} from "../proxy/ProxyApiService";
+import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
 
 
 export interface FeignOptions {
@@ -20,6 +20,14 @@ export interface FeignOptions {
 
 type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
+
+let proxyFactory: ProxyServiceFactory;
+
+export function setProxyFactory(factory: ProxyServiceFactory) {
+    proxyFactory = factory;
+}
+
+
 /**
  * 标记为feign proxy
  * @constructor T extends { new(...args: any[]): any }
@@ -30,7 +38,10 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
      * @param  {T} clazz
      */
     return (clazz: any): T => {
-        const apiProxyService: T = BuilderProxyServiceUtil.build<any>(new clazz());
+        if (proxyFactory == null) {
+            new Error("proxyFactory is not init，please use setProxyFactory");
+        }
+        const apiProxyService: T = proxyFactory.factory(new clazz());
         if (feignOptions) {
             apiProxyService.feign = feignOptions;
         }

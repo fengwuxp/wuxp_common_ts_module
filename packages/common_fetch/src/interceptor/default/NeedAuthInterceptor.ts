@@ -1,5 +1,5 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
-import {FetchOptions, FetchResponse} from "../../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../../FetchOptions";
 
 /**
  * 需要鉴权的拦截器

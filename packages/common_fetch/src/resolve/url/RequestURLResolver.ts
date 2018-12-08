@@ -8,6 +8,8 @@ import {ProxyApiService} from "../../proxy/ProxyApiService";
 export default abstract class RequestURLResolver implements Resolver<string> {
 
 
+
+
     abstract resolve: (apiService: ProxyApiService, serviceMethod: string) => string;
 
 

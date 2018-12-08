@@ -1,6 +1,6 @@
-import {HttpRequestEngine} from "./HttpRequestEngine";
+import {FetchClient} from "./FetchClient";
 import {FetchAdapter} from "../adapter/FetchAdapter";
-import {FetchOptions, FetchResponse} from "../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {ReqMethod} from "../constant/ReqMethod";
 import {stringify} from "querystring";
 import {SerializeType} from "../constant/http/SerializeType";
@@ -9,7 +9,7 @@ import {MediaType} from "../constant/http/MediaType";
 /**
  * 通用的http请求引擎
  */
-export default class CommonFetchEngine implements HttpRequestEngine {
+export default class CommonFetchClient implements FetchClient {
 
     /**
      * 请求数据的适配器

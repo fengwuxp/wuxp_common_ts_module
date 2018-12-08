@@ -1,4 +1,4 @@
-import {FetchOptions, FetchResponse} from "../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 
 /**
  * fetch 适配器

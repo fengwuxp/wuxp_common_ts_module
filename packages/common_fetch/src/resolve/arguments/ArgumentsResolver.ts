@@ -1,5 +1,5 @@
 import {BaseFetchOptions} from "../../BaseFetchOptions";
-import {FetchOptions} from "../../fetch/FetchOptions";
+import {FetchOptions} from "../../FetchOptions";
 import {Resolver} from "../Resolver";
 
 /**

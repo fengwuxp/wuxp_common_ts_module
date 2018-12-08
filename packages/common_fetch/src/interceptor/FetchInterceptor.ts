@@ -1,5 +1,4 @@
-import {ExecuteMethod} from "../constant/ExecuteMethod";
-import {FetchResponse} from "../fetch/FetchOptions";
+import {FetchResponse} from "../FetchOptions";
 
 /**
  * 拦截器
@@ -7,10 +6,6 @@ import {FetchResponse} from "../fetch/FetchOptions";
 export interface FetchInterceptor<T = any> {
 
 
-    /**
-     * 执行方式默认为 ALL
-     */
-    executeMethod?: ExecuteMethod
 
     /**
      * 请求之前的处理

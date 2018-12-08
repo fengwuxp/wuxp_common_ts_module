@@ -1,5 +1,5 @@
 import {FetchAdapter} from "../FetchAdapter";
-import {FetchOptions, FetchResponse} from "../../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {WeexStreamModule, WeexStreamOption, WeexStreamResponse} from "weex/src/sdk/model/stream";
 import {ReqMethod} from "../../constant/ReqMethod";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";

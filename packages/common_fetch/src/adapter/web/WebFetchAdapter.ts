@@ -1,5 +1,5 @@
 import {FetchAdapter} from "../FetchAdapter";
-import {FetchResponse} from "../../fetch/FetchOptions";
+import {FetchResponse} from "../../FetchOptions";
 import {DataType} from "../../constant/DataType";
 import {WebFetchOptions} from "./WebFetchOptions";
 import {ReqMethod} from "../../constant/ReqMethod";

@@ -1,9 +1,10 @@
 import {RequestMapping} from "../src/annotations/mapping/RequestMapping";
-import {Feign, FeignOptions} from "../src/annotations/Feign";
-import {FetchOptions} from "../src/fetch/FetchOptions";
+import {Feign} from "../src/annotations/Feign";
+import {FetchOptions} from "../src/FetchOptions";
 import {Signature} from "../src/annotations/security/Signature";
-import {FeignProxy, ProxyApiService, ProxyApiServiceConfig} from "../src/proxy/ProxyApiService";
+import {FeignProxy} from "../src/proxy/ProxyApiService";
 import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
+
 
 
 /**
@@ -38,3 +39,5 @@ export default class TestService extends FeignProxy {
     @DeleteMapping({value: "/delete_member"})
     deleteMember: (memberId: number, options: FetchOptions) => Promise<number>;
 }
+
+

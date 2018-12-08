@@ -1,5 +1,5 @@
 import {SyncAuthHelper} from "../src/interceptor/default/NeedAuthInterceptor";
-import {FetchOptions, FetchResponse} from "../src/fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../src/FetchOptions";
 import * as log4js from "log4js";
 
 const logger = log4js.getLogger();

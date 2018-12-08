@@ -1,4 +1,4 @@
-import {FetchOptions} from "../../fetch/FetchOptions";
+import {FetchOptions} from "../../FetchOptions";
 
 
 export interface WebFetchOptions extends FetchOptions{

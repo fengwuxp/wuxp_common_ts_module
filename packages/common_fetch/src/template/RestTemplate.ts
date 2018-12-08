@@ -1,31 +1,98 @@
-import {FetchClient} from "./FetchClient";
-import {FetchOptions, FetchResponse} from "./FetchOptions";
-import {HttpRequestEngine} from "../engine/HttpRequestEngine";
-import {FetchInterceptor} from "../interceptor/FetchInterceptor";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 import FetchInterceptorExecuter from "../interceptor/FetchInterceptorExecuter";
+import {FetchClient} from "../fetch/FetchClient";
+import {FetchInterceptor} from "../interceptor/FetchInterceptor";
 import {HttpFetchException} from "common_exception/src/http/HttpFetchException";
-import ExceptionBroadcaster from "../../../common_exception/src/subscribe/ExceptionBroadcaster";
 import {HttpFetchExceptionName} from "../../../common_exception/src/http/Const";
+import ExceptionBroadcaster from "../../../common_exception/src/subscribe/ExceptionBroadcaster";
+import {ReqMethod} from "../constant/ReqMethod";
+import {ApiRoutingStrategy} from "../route/ApiRoutingStrategy";
+
 
 /**
- * fetch 客户端
+ * rest template
+ *
+ * 接口请求模板，固化请求的一些行为和配置
+ * <pre>
+ *    1. 固化请求的入口地址（路由策略） @模块名/接口地址 => http://域名/webContext/接口地址
+ *    2. 固化拦截器和统一错误处理
+ *
+ *
+ * <pre>
  */
-export default class FetchClientImpl implements FetchClient {
+export interface RestTemplate {
+
+    fetch: (options: FetchOptions) => Promise<FetchResponse>;
+}
+
+/**
+ * rest template 配置
+ */
+export interface RestTemplateConfig {
+
+    /**
+     * 默认要带上的请求头
+     */
+    headers?: object;
+
+    /**
+     * 超时时间，
+     * 单位：毫秒
+     * 默认 10*1000 毫秒
+     */
+    timeout?: number;
+
+    /**
+     * 请求 method
+     */
+    method?: ReqMethod;
+
+    /**
+     * 提交的数据类型
+     * @see {@link ../constant/http/MediaType}
+     * 默认 MediaType.JSON
+     */
+    consumes?: string[];
+
+    /**
+     * 响应的数据类型
+     * @see {@link ../constant/http/MediaType}
+     */
+    produces?: string[];
+}
+
+
+/**
+ * 抽象的 rest template实现
+ */
+export abstract class AbstractRestTemplate implements RestTemplate {
+
+    /**
+     * 模板配置
+     */
+    protected templateConfig: RestTemplateConfig;
+
+    /**
+     * 路由策略
+     */
+    protected routingStrategy: ApiRoutingStrategy;
 
     /**
      * 请求引擎
      */
-    private engine: HttpRequestEngine;
+    protected engine: FetchClient;
 
     /**
      * 拦截器执行器
      */
-    private executor: FetchInterceptorExecuter;
+    protected executor: FetchInterceptorExecuter;
 
 
-    constructor(engine: HttpRequestEngine, interceptorList: FetchInterceptor[]) {
+    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecuter) {
+        this.templateConfig = templateConfig;
+        this.routingStrategy = routingStrategy;
         this.engine = engine;
-        this.executor = new FetchInterceptorExecuter(interceptorList);
+        this.executor = executor;
     }
 
     fetch = (options: FetchOptions): Promise<FetchResponse> => {

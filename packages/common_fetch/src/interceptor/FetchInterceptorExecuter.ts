@@ -1,8 +1,7 @@
 import {FetchInterceptor} from "./FetchInterceptor";
 import {BaseFetchOptions} from "../BaseFetchOptions";
-import {FetchResponse} from "../fetch/FetchOptions";
+import {FetchResponse} from "../FetchOptions";
 import {ExecuteMethod} from "../constant/ExecuteMethod";
-import {isNullOrUndefined} from "util";
 
 /**
  * 拦截器执行器
@@ -63,29 +62,10 @@ export default class FetchInterceptorExecuter {
         const interceptorList = this.interceptorList;
         let index = 0;
 
-        const {success} = data;
         let result: FetchResponse = data;
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
-
-            if (interceptor.executeMethod === ExecuteMethod.ONLY_PREV) {
-                //跳过
-                continue;
-            }
-            if (success) {
-                //请求成功
-                if (interceptor.executeMethod === ExecuteMethod.ONLY_ERROR) {
-                    //跳过只在请求失败时才执行的filter
-                    continue;
-                }
-            } else {
-                //请求失败
-                if (interceptor.executeMethod === ExecuteMethod.ONLY_SUCCESS) {
-                    //跳过只在请求成功时才执行的filter
-                    continue;
-                }
-            }
             result = await interceptor.postHandle(result, options);
 
             //异常

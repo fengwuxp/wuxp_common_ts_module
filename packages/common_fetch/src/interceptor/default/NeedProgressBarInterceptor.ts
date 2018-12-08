@@ -1,5 +1,5 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
-import {FetchOptions, FetchResponse} from "../../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {Timer} from "common_task/src/timer/Timer";
 
 /**

@@ -1,4 +1,4 @@
-import {FetchResponse} from "../fetch/FetchOptions";
+import {FetchResponse} from "../FetchOptions";
 
 /**
  * 解析请求的结果数据

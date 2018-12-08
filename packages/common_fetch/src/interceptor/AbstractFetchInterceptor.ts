@@ -1,5 +1,5 @@
 import {FetchInterceptor} from "./FetchInterceptor";
-import {FetchOptions, FetchResponse} from "../fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {BaseFetchOptions} from "../BaseFetchOptions";
 
 /**
