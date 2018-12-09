@@ -21,13 +21,13 @@ export default class TestService {
 
     @Signature({fields: []})
     @RequestMapping({
-        value: "/test",
+        value: "testQuery",
         method: ReqequestMethod.GET,
     })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})
-    @GetMapping({value: "/test", headers: {myHeader: "tk_{memberId}"}})
+    @GetMapping({headers: {myHeader: "tk_{memberId}"}})
     findMember: (
         request: {
             userName: string,
@@ -36,7 +36,7 @@ export default class TestService {
         options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["memberId"]})
-    @DeleteMapping({value: "/delete_member/{memberId}"})
+    @DeleteMapping({value: "delete_member/{memberId}"})
     deleteMember: (
         request: {
             memberId: number

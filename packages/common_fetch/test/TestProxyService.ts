@@ -7,7 +7,7 @@ import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
 import FetchInterceptorExecutor from "../src/interceptor/FetchInterceptorExecutor";
 import {ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
 import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
-// import TestService from "./TestService";
+
 import {setProxyFactory} from "../src/annotations/Feign";
 import * as log4js from "log4js";
 import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServiceExecutor";
@@ -39,28 +39,36 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 class TestProxyServiceExecutor extends DefaultProxyServiceExecutor {
 }
 
+const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
+
+const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate);
+
+const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
+//设置代理工厂
+setProxyFactory(es6PoxyServiceFactory);
+
+
+import TestService from "./TestService";
+
 describe("test proxy api service", () => {
 
-    const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
-
-    const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate);
-
-    const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
 
 
     test("test", () => {
-        //设置代理工厂
-        setProxyFactory(es6PoxyServiceFactory);
-        const TestService = require("./TestService").default;
+
 
         const testService = new TestService();
-        const promise = testService.findMember({
+        testService.findMember({
             userName: "12",
             memberId: 2
-        });
-        logger.debug(promise);
-        // logger.debug("testService", testService);
+        }).then(() => {
 
-        // const proxyService = es6PoxyServiceFactory.factory(testService);
+        }).catch((e) => {
+            logger.debug(e);
+        });
+
+        testService.testQuery({memberId: 1});
+
+        testService.deleteMember({memberId: 1});
     })
 });
