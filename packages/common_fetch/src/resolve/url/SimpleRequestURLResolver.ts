@@ -1,4 +1,4 @@
-import {ProxyApiService} from "../../proxy/ProxyApiService";
+import {FeignProxy, ProxyApiService} from "../../proxy/ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
 import {getApiModuleName} from "../../utils/FeignUtil";
 import {RequestURLResolver} from "./RequestURLResolver";
@@ -19,9 +19,9 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
         this.matchRuleResolver = matchRuleResolver || new DefaultMatchRuleResolver();
     }
 
-    resolve = (apiService: ProxyApiService, methodName: string, data: object): string => {
+    resolve = (apiService: FeignProxy, methodName: string, data: object): string => {
 
-        const feignOptions = apiService.feign || {};
+        const feignOptions = apiService.feign;
 
         //生成 例如 @member/member/queryMember 或 @default/member/{memberId}
         const url = `${getApiUriByApiService(apiService, feignOptions)}/${getApiUriByApiServiceMethod(apiService, methodName)}`;
@@ -37,7 +37,7 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
  * @param apiService
  * @param feignOptions
  */
-const getApiUriByApiService = (apiService: ProxyApiService, feignOptions: FeignOptions) => {
+const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOptions) => {
 
     const apiModule = getApiModuleName(feignOptions);
 
@@ -49,11 +49,11 @@ const getApiUriByApiService = (apiService: ProxyApiService, feignOptions: FeignO
  * @param apiService
  * @param methodName
  */
-const getApiUriByApiServiceMethod = (apiService: ProxyApiService, methodName: string) => {
+const getApiUriByApiServiceMethod = (apiService: FeignProxy, methodName: string) => {
 
-    const apiServiceConfig = apiService.configs.get(methodName);
+    const apiServiceConfig = apiService.getServiceMethodConfig(methodName);
 
-    if (apiServiceConfig == null || apiServiceConfig.requestMapping == null || !apiServiceConfig.requestMapping.value) {
+    if (apiServiceConfig.requestMapping == null || !apiServiceConfig.requestMapping.value) {
         return methodName;
     }
     return apiServiceConfig.requestMapping.value;

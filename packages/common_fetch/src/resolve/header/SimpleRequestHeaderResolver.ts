@@ -1,5 +1,5 @@
 import {RequestHeaderResolver} from "./RequestHeaderResolver";
-import {ProxyApiService} from "../../proxy/ProxyApiService";
+import {FeignProxy, ProxyApiService} from "../../proxy/ProxyApiService";
 import {MatchRuleResolver} from "../match/MatchRuleResolver";
 import DefaultMatchRuleResolver from "../match/DefaultMatchRuleResolver";
 
@@ -17,10 +17,10 @@ export default class SimpleRequestHeaderResolver implements RequestHeaderResolve
         this.matchRuleResolver = matchRuleResolver || new DefaultMatchRuleResolver();
     }
 
-    resolve = (apiService: ProxyApiService, methodName: string, headers: HeadersInit, data: object): HeadersInit => {
+    resolve = (apiService: FeignProxy, methodName: string, headers: HeadersInit, data: object): HeadersInit => {
 
-        const apiServiceConfig = apiService.configs.get(methodName);
-        if (apiServiceConfig == null || apiServiceConfig.requestMapping == null || apiServiceConfig.requestMapping.headers == null) {
+        const apiServiceConfig = apiService.getServiceMethodConfig(methodName);
+        if (apiServiceConfig.requestMapping == null || apiServiceConfig.requestMapping.headers == null) {
             return headers;
         }
 

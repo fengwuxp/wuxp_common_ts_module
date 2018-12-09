@@ -2,7 +2,7 @@ import {RestTemplate} from "../template/RestTemplate";
 import {RestTemplateLoader} from "../template/RestTemplateLoader";
 import {FeignOptions} from "../annotations/Feign";
 import {getApiModuleName} from "../utils/FeignUtil";
-import {ProxyApiService} from "./ProxyApiService";
+import {FeignProxy} from "./ProxyApiService";
 
 /**
  * 代理服务执行器
@@ -15,7 +15,7 @@ export interface ProxyServiceExecutor {
      * @param methodName  方法名称
      * @param args        方法参数
      */
-    execute<T extends ProxyApiService>(apiService: T, methodName: string, ...args): Promise<any>;
+    execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any>;
 }
 
 export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecutor {
@@ -38,7 +38,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
         return this.restTemplateLoader.load(apiModuleName);
     };
 
-    abstract execute<T extends ProxyApiService>(apiService: T, methodName: string, ...args): Promise<any>;
+    abstract execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any>;
 
 
 }

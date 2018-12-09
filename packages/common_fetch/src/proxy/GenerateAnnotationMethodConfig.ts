@@ -1,11 +1,11 @@
-import {ProxyApiService, ProxyApiServiceConfig} from "./ProxyApiService";
+import {ProxyApiService, ProxyApiServiceMethodConfig} from "./ProxyApiService";
 
 
 /**
  * 根据annotation生成代理服务方法的配置
  */
 export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiService,
-    O extends ProxyApiServiceConfig = ProxyApiServiceConfig> =
+    O extends ProxyApiServiceMethodConfig = ProxyApiServiceMethodConfig> =
     (targetService: T, methodName: string, options: O) => void;
 
 
@@ -16,9 +16,9 @@ export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiS
  * @param options
  */
 export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConfig<ProxyApiService,
-    ProxyApiServiceConfig> = (targetService: ProxyApiService,
-                              methodName: string,
-                              options: ProxyApiServiceConfig) => {
+    ProxyApiServiceMethodConfig> = (targetService: ProxyApiService,
+                                    methodName: string,
+                                    options: ProxyApiServiceMethodConfig) => {
 
     let config = targetService.configs.get(methodName);
     if (config == null) {

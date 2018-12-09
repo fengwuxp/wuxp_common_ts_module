@@ -3,7 +3,7 @@ import {SignatureOptions} from "../annotations/security/Signature";
 import {FeignOptions} from "../annotations/Feign";
 
 
-export interface ProxyApiServiceConfig {
+export interface ProxyApiServiceMethodConfig {
 
     /**
      * 请求配置
@@ -25,14 +25,14 @@ export interface ProxyApiService {
     /**
      * feign配置
      */
-    feign?: FeignOptions;
+    // feign?: FeignOptions;
 
     /**
      * 代理服务配置
      * key：方法名称,
-     * value：ProxyApiServiceConfig
+     * value：ProxyApiServiceMethodConfig
      */
-    configs?: Map<string, ProxyApiServiceConfig>;
+    // configs?: Map<string, ProxyApiServiceMethodConfig>;
 
 
     /**
@@ -47,11 +47,32 @@ export interface ProxyApiService {
  */
 export abstract class FeignProxy implements ProxyApiService {
 
-    configs: Map<string, ProxyApiServiceConfig> = new Map<string, ProxyApiServiceConfig>();
+    /**
+     * 接口方法配置列表
+     * key 接口方法名称
+     * value 接口方法配置
+     */
+    protected configs: Map<string, ProxyApiServiceMethodConfig> = new Map<string, ProxyApiServiceMethodConfig>();
 
-    feign: FeignOptions = null;
+    /**
+     * feign代理的相关配置
+     */
+    private _feign: FeignOptions = null;
 
 
+    /**
+     * 获取获取接口方法的配置
+     * @param serviceMethod
+     */
+    getServiceMethodConfig = (serviceMethod: string): ProxyApiServiceMethodConfig => {
+
+        return this.configs.get(serviceMethod) || {};
+    };
+
+
+    get feign(): FeignOptions {
+        return this._feign || {};
+    }
 }
 
 /**
