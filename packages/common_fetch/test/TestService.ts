@@ -5,7 +5,6 @@ import {Signature} from "../src/annotations/security/Signature";
 import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
 import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {GetMapping} from "../src/annotations/mapping/GetMapping";
-import {FeignProxy} from "../src/proxy/feign/FeignProxy";
 
 
 /**
@@ -17,12 +16,12 @@ import {FeignProxy} from "../src/proxy/feign/FeignProxy";
     apiModule: "member",
     value: "test"
 })
-export default class TestService /*extends FeignProxy*/ {
+export default class TestService {
 
 
     @Signature({fields: []})
     @RequestMapping({
-        value:"/test",
+        value: "/test",
         method: ReqequestMethod.GET,
     })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;

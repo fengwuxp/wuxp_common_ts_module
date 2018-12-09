@@ -23,13 +23,14 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
     buildRestTemplate = (apiModuleName: string) => {
         if (apiModuleName === defaultApiModuleName) {
+            //TODO
 
-            return new DefaultRestTemplate({}, new DefaultApiRoutingStrategy(routingMapping),
-                new DefaultFetchClient(new WebFetchAdapter()),
-                new FetchInterceptorExecutor([]));
         }
 
-        return null;
+        const restTemplate = new DefaultRestTemplate({}, new DefaultApiRoutingStrategy(routingMapping),
+            new DefaultFetchClient(new WebFetchAdapter()),
+            new FetchInterceptorExecutor([]));
+        return restTemplate;
     };
 
 
