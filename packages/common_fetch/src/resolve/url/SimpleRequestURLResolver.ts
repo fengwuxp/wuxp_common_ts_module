@@ -1,22 +1,33 @@
-import RequestURLResolver from "./RequestURLResolver";
 import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
 import {getApiModuleName} from "../../utils/FeignUtil";
+import {RequestURLResolver} from "./RequestURLResolver";
+import {MatchRuleResolver} from "../match/MatchRuleResolver";
+import DefaultMatchRuleResolver from "../match/DefaultMatchRuleResolver";
 
 /**
  * 简单的url解析者
+ * 通过服务接口实例和服务方法名称以及注解的配置生成url
  */
-export default class SimpleRequestURLResolver extends RequestURLResolver {
+export default class SimpleRequestURLResolver implements RequestURLResolver {
 
 
-    resolve = (apiService: ProxyApiService, serviceMethod: string): string => {
+    private matchRuleResolver: MatchRuleResolver;
 
+
+    constructor(matchRuleResolver?: MatchRuleResolver) {
+        this.matchRuleResolver = matchRuleResolver || new DefaultMatchRuleResolver();
+    }
+
+    resolve = (apiService: ProxyApiService, methodName: string, data: object): string => {
 
         const feignOptions = apiService.feign || {};
 
+        //生成 例如 @member/member/queryMember 或 @default/member/{memberId}
+        const url = `${getApiUriByApiService(apiService, feignOptions)}/${getApiUriByApiServiceMethod(apiService, methodName)}`;
 
-        //生成 例如 @member/member/queryMember 或 @default/member/queryMembe
-        return `${getApiUriByApiService(apiService, feignOptions)}/${getApiUriByApiServiceMethod(apiService, serviceMethod)}`;
+        //替换路径参数
+        return this.matchRuleResolver.resolve(url, data);
     };
 
 }
@@ -28,7 +39,7 @@ export default class SimpleRequestURLResolver extends RequestURLResolver {
  */
 const getApiUriByApiService = (apiService: ProxyApiService, feignOptions: FeignOptions) => {
 
-    const apiModule =getApiModuleName(feignOptions);
+    const apiModule = getApiModuleName(feignOptions);
 
     return `@${apiModule}/${(feignOptions.value || apiService.constructor.name || apiService['serviceName'])}`;
 };

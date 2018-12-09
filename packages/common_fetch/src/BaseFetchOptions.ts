@@ -36,7 +36,7 @@ export interface BaseFetchOptions {
     /**
      * 请求头
      */
-    headers?: object;
+    headers?: HeadersInit;
 
     /**
      * 请求超时

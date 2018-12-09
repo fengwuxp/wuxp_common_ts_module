@@ -6,7 +6,6 @@ import {FeignProxy} from "../src/proxy/ProxyApiService";
 import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
 
 
-
 /**
  * 测试服务
  * @author wxup
@@ -26,18 +25,24 @@ export default class TestService extends FeignProxy {
 
     @Signature({fields: []})
     @RequestMapping({value: "/test"})
-    testQuery: (evt: any, options: FetchOptions) => Promise<any>;
+    testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})
-    @RequestMapping({value: "/test"})
+    @RequestMapping({value: "/test",headers:{myHeader:"tk_{memberId}"}})
     findMember: (
-        userName: string,
-        memberId: number,
-        options: FetchOptions) => Promise<any>;
+        request: {
+            userName: string,
+            memberId: number,
+        },
+        options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["memberId"]})
-    @DeleteMapping({value: "/delete_member"})
-    deleteMember: (memberId: number, options: FetchOptions) => Promise<number>;
+    @DeleteMapping({value: "/delete_member/{memberId}"})
+    deleteMember: (
+        request: {
+            memberId: number
+        },
+        options?: FetchOptions) => Promise<number>;
 }
 
 
