@@ -1,5 +1,5 @@
 import {FetchOptions, FetchResponse} from "../FetchOptions";
-import FetchInterceptorExecuter from "../interceptor/FetchInterceptorExecuter";
+import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";
 import {FetchClient} from "../fetch/FetchClient";
 import {HttpFetchException} from "common_exception/src/http/HttpFetchException";
 import {HttpFetchExceptionName} from "common_exception/src/http/Const";
@@ -84,10 +84,10 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     /**
      * 拦截器执行器
      */
-    protected executor: FetchInterceptorExecuter;
+    protected executor: FetchInterceptorExecutor;
 
 
-    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecuter) {
+    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecutor) {
         this.templateConfig = templateConfig;
         this.routingStrategy = routingStrategy;
         this.engine = engine;

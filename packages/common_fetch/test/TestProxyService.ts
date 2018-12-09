@@ -4,7 +4,7 @@ import DefaultRestTemplate from "../src/template/DefaultRestTemplate";
 import DefaultApiRoutingStrategy from "../src/route/DefaultApiRoutingStrategy";
 import CommonFetchClient from "../src/fetch/CommonFetchClient";
 import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
-import FetchInterceptorExecuter from "../src/interceptor/FetchInterceptorExecuter";
+import FetchInterceptorExecutor from "../src/interceptor/FetchInterceptorExecutor";
 import {AbstractProxyServiceExecutor, ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
 import {FeignProxy, ProxyApiService} from "../src/proxy/ProxyApiService";
 import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
@@ -31,7 +31,7 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
             return new DefaultRestTemplate({}, new DefaultApiRoutingStrategy(routingMapping),
                 new CommonFetchClient(new WebFetchAdapter()),
-                new FetchInterceptorExecuter([]));
+                new FetchInterceptorExecutor([]));
         }
 
         return null;

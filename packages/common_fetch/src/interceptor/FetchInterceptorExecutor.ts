@@ -1,12 +1,11 @@
 import {FetchInterceptor} from "./FetchInterceptor";
 import {BaseFetchOptions} from "../BaseFetchOptions";
 import {FetchResponse} from "../FetchOptions";
-import {ExecuteMethod} from "../constant/ExecuteMethod";
 
 /**
  * 拦截器执行器
  */
-export default class FetchInterceptorExecuter {
+export default class FetchInterceptorExecutor {
 
     /**
      * 拦截器列表
@@ -44,7 +43,7 @@ export default class FetchInterceptorExecuter {
 
             //异常
             if (result instanceof Error) {
-                console.error("FetchInterceptorExecuter pre handle exception", result);
+                console.error("FetchInterceptorExecutor pre handle exception", result);
                 return Promise.reject(result);
                 // throw new Error("pre handle interceptor execute fail");
                 // // console.log("pre handle interceptor execute fail");
@@ -70,7 +69,7 @@ export default class FetchInterceptorExecuter {
 
             //异常
             if (result instanceof Error) {
-                console.error("FetchInterceptorExecuter post handle exception", result);
+                console.error("FetchInterceptorExecutor post handle exception", result);
                 return Promise.reject(result);
             }
         }
