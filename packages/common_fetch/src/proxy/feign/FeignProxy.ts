@@ -47,7 +47,7 @@ export abstract class FeignProxy implements ProxyApiService {
      * 获取获取接口方法的配置
      * @param serviceMethod  服务方法名称
      */
-    getServiceMethodConfig = (serviceMethod: string): FeignProxyApiServiceMethodConfig => {
+   public getServiceMethodConfig = (serviceMethod: string): FeignProxyApiServiceMethodConfig => {
 
         return this.configs.get(serviceMethod) || {};
     };
@@ -57,7 +57,7 @@ export abstract class FeignProxy implements ProxyApiService {
      * @param serviceMethodName
      * @param config
      */
-    setServiceMethodConfig = (serviceMethodName: string, config: FeignProxyApiServiceMethodConfig) => {
+    public  setServiceMethodConfig = (serviceMethodName: string, config: FeignProxyApiServiceMethodConfig) => {
         this.configs.set(serviceMethodName, config);
     };
 

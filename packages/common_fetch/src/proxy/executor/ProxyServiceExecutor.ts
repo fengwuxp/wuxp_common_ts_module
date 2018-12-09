@@ -6,11 +6,12 @@ import SimpleRequestURLResolver from "../../resolve/url/SimpleRequestURLResolver
 import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver";
 import SimpleRequestHeaderResolver from "../../resolve/header/SimpleRequestHeaderResolver";
 import {FeignProxy} from "../feign/FeignProxy";
+import {ProxyApiService} from "../ProxyApiService";
 
 /**
  * 代理服务执行器
  */
-export interface ProxyServiceExecutor {
+export interface ProxyServiceExecutor<T extends ProxyApiService> {
 
     /**
      * 执行代理服务
@@ -18,10 +19,10 @@ export interface ProxyServiceExecutor {
      * @param methodName  方法名称
      * @param args        方法参数
      */
-    execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any>;
+    execute<T>(apiService: T, methodName: string, ...args): Promise<any>;
 }
 
-export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecutor {
+export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecutor<FeignProxy> {
 
 
     //url 解析
@@ -51,7 +52,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
         return this.restTemplateLoader.load(apiModuleName);
     };
 
-    abstract execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any>;
+    abstract execute<FeignProxy>(apiService: FeignProxy, methodName: string, ...args): Promise<any>;
 
 
 }

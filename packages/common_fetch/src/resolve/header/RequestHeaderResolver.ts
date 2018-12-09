@@ -1,5 +1,5 @@
 import {Resolver} from "../Resolver";
-import {FeignProxy} from "../../proxy/feign/FeignProxy";
+import {ProxyApiService} from "../../proxy/ProxyApiService";
 
 
 /**
@@ -15,7 +15,7 @@ export interface RequestHeaderResolver extends Resolver<HeadersInit> {
      * @param headers     默认的请求头
      * @param data        服务请求数据
      */
-    resolve: (apiService: FeignProxy, methodName: string,headers:HeadersInit, data: object) => HeadersInit;
+    resolve: (apiService: ProxyApiService, methodName: string,headers:HeadersInit, data: object) => HeadersInit;
 
 
 }

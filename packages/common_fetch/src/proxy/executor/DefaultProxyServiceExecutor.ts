@@ -1,8 +1,8 @@
 import {AbstractProxyServiceExecutor} from "./ProxyServiceExecutor";
 import {FetchOptions} from "../../FetchOptions";
-import {FeignProxy} from "../feign/FeignProxy";
 import {MediaType} from "../../constant/http/MediaType";
 import {DataType} from "../../constant/DataType";
+import {FeignProxy} from "../feign/FeignProxy";
 
 
 /**
@@ -11,7 +11,7 @@ import {DataType} from "../../constant/DataType";
 export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
 
-    execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any> {
+    execute<FeignProxy>(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
 
         //解析参数
         const data = args[0] || {};
@@ -25,7 +25,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
 
         //获取请求template
-        const restTemplate = this.getTemplate(apiService.feign);
+        const restTemplate = this.getTemplate(apiService);
 
         //请求requestMapping
         const requestMapping = apiService.getServiceMethodConfig(methodName).requestMapping;
