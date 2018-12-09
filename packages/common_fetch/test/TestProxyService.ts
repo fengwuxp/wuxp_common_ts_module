@@ -51,11 +51,13 @@ describe("test proxy api service", () => {
         //设置代理工厂
         setProxyFactory(es6PoxyServiceFactory);
         const TestService = require("./TestService").default;
-        // logger.debug("TestService", TestService);
 
-        logger.debug(typeof TestService);
-
-        const testService =  new TestService();
+        const testService = new TestService();
+        const promise = testService.findMember({
+            userName: "12",
+            memberId: 2
+        });
+        logger.debug(promise);
         // logger.debug("testService", testService);
 
         // const proxyService = es6PoxyServiceFactory.factory(testService);

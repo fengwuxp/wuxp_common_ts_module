@@ -24,8 +24,6 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //处理请求头
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
 
-        //获取请求template
-        const restTemplate = this.getTemplate(apiService.feign);
 
 
         //请求requestMapping
@@ -56,6 +54,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         }
+        //获取请求template
+        const restTemplate = this.getTemplate(apiService.feign);
 
 
         return restTemplate.fetch(fetchOptions);
