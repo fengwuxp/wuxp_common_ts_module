@@ -20,11 +20,6 @@ import {GetMapping} from "../src/annotations/mapping/GetMapping";
 export default class TestService extends FeignProxy {
 
 
-    //禁止外部实例化
-    // private constructor() {
-    //     super();
-    // }
-
     @Signature({fields: []})
     @RequestMapping({value: "/test", method: ReqMethod.GET})
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;

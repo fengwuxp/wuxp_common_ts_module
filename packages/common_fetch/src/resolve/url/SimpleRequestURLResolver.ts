@@ -1,6 +1,5 @@
-import {FeignProxy, ProxyApiService} from "../../proxy/ProxyApiService";
+import {FeignProxy} from "../../proxy/ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
-import {getApiModuleName} from "../../utils/FeignUtil";
 import {RequestURLResolver} from "./RequestURLResolver";
 import {MatchRuleResolver} from "../match/MatchRuleResolver";
 import DefaultMatchRuleResolver from "../match/DefaultMatchRuleResolver";
@@ -39,7 +38,7 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
  */
 const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOptions) => {
 
-    const apiModule = getApiModuleName(feignOptions);
+    const apiModule = feignOptions.apiModule;
 
     return `@${apiModule}/${(feignOptions.value || apiService.constructor.name || apiService['serviceName'])}`;
 };

@@ -1,7 +1,6 @@
 import {RestTemplate} from "../template/RestTemplate";
 import {RestTemplateLoader} from "../template/RestTemplateLoader";
 import {FeignOptions} from "../annotations/Feign";
-import {getApiModuleName} from "../utils/FeignUtil";
 import {FeignProxy} from "./ProxyApiService";
 import {RequestURLResolver} from "../resolve/url/RequestURLResolver";
 import SimpleRequestURLResolver from "../resolve/url/SimpleRequestURLResolver";
@@ -45,10 +44,10 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
 
     /**
      * 获取api模块的缓存
-     * @param feign
+     * @param feignOptions
      */
-    protected getTemplate = (feign: FeignOptions): RestTemplate => {
-        const apiModuleName = getApiModuleName(feign);
+    protected getTemplate = (feignOptions: FeignOptions): RestTemplate => {
+        const apiModuleName = feignOptions.apiModule;
         return this.restTemplateLoader.load(apiModuleName);
     };
 
