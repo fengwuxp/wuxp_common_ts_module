@@ -7,7 +7,7 @@ import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
 import FetchInterceptorExecutor from "../src/interceptor/FetchInterceptorExecutor";
 import {ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
 import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
-import TestService from "./TestService";
+// import TestService from "./TestService";
 import {setProxyFactory} from "../src/annotations/Feign";
 import * as log4js from "log4js";
 import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServiceExecutor";
@@ -45,14 +45,18 @@ describe("test proxy api service", () => {
     const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate);
 
     const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
-    //设置代理工厂
-    setProxyFactory(es6PoxyServiceFactory);
+
 
     test("test", () => {
-        logger.debug("TestService", TestService);
+        //设置代理工厂
+        setProxyFactory(es6PoxyServiceFactory);
+        const TestService = require("./TestService").default;
+        // logger.debug("TestService", TestService);
 
+        logger.debug(typeof TestService);
 
-        // const testService = new TestService();
+        const testService =  new TestService();
+        // logger.debug("testService", testService);
 
         // const proxyService = es6PoxyServiceFactory.factory(testService);
     })

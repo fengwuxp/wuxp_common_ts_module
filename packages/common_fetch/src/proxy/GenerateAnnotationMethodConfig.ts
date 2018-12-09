@@ -17,19 +17,9 @@ export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiS
  * @param options
  */
 export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConfig<ProxyApiService,
-    FeignProxyApiServiceMethodConfig> = (targetService: any,
+    FeignProxyApiServiceMethodConfig> = (targetService: FeignProxy,
                                          methodName: string,
                                          options: FeignProxyApiServiceMethodConfig) => {
-
-
-    // const prototype = targetService.prototype;
-    // const config = prototype.getServiceMethodConfig(methodName);
-    //
-    // prototype.setServiceMethodConfig(methodName, {
-    //     ...config,
-    //     ...options
-    // });
-
     const oldFn = targetService[methodName];
 
     targetService[methodName] = function (...args) {
@@ -37,6 +27,7 @@ export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConf
             oldFn(...args);
         }
         const methodConfig = this.getServiceMethodConfig(methodName);
+        console.debug("set method config", methodConfig);
         this.setServiceMethodConfig(methodName, {
             ...methodConfig,
             ...options

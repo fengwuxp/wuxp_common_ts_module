@@ -21,9 +21,16 @@ export interface FeignOptions {
 type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
 
-let proxyFactory: ProxyServiceFactory;
+let proxyFactory: ProxyServiceFactory = {
+    factory() {
+        // throw  new Error("this is empty factory");
+        // console.error("this is empty factory")
+        return null;
+    }
+};
 
 export function setProxyFactory(factory: ProxyServiceFactory) {
+    console.log("set proxy factory");
     proxyFactory = factory;
 }
 
@@ -38,10 +45,18 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
      * 创建feign代理的实例
      * @param  {T} clazz
      */
-    return (clazz: any): T => {
+    return (clazz: any): any => {
+        console.log("feign proxy init");
         if (proxyFactory == null) {
             new Error("proxyFactory is not init，please use setProxyFactory");
         }
-        return proxyFactory.factory(new clazz(feignOptions));
+
+        return class extends clazz {
+
+            constructor() {
+                super(feignOptions);
+                return proxyFactory.factory(this);
+            }
+        }
     }
 }
