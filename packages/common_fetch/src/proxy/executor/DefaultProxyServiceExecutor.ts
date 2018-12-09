@@ -13,6 +13,12 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
     execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
 
+        const serviceMethod: Function = apiService[methodName];
+        if (serviceMethod) {
+            serviceMethod.apply(apiService,[...args])
+        }
+
+
         //解析参数
         const data = args[0] || {};
 
@@ -23,7 +29,6 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         //处理请求头
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
-
 
 
         //请求requestMapping

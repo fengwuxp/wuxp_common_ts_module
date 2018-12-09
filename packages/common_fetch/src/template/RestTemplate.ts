@@ -104,6 +104,11 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             //执行 transformRequest
             options = transformRequest(options);
         }
+
+        //路由
+        //TODO 进制值复制处理
+        options.url = this.routingStrategy.route(options.url);
+
         return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {
              //TODO  将异常广播
@@ -128,6 +133,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             })
             .catch((response: FetchResponse) => {
                 const {statusText, headers, data, status} = response;
+                console.debug("请求异常", status, statusText);
                 const exception: HttpFetchException = {
                     name: HttpFetchExceptionName,
                     message: statusText,

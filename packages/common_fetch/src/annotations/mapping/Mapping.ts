@@ -63,8 +63,9 @@ export type Mapping<T extends BaseRequestMappingOptions = BaseRequestMappingOpti
  */
 export function generateMapping<T extends BaseRequestMappingOptions>(method?: ReqequestMethod): Mapping<T> {
 
-
     return function <E extends ProxyApiService>(options: T): Function {
+
+
 
         /**
          * decorator
@@ -72,7 +73,7 @@ export function generateMapping<T extends BaseRequestMappingOptions>(method?: Re
          * @param  {string} name                     装饰的属性的 key
          * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
          */
-        return function (target: E, name: string, descriptor: PropertyDescriptor): any {
+        return function (target: E, name: string, descriptor: PropertyDescriptor): E {
 
             //通过注解生成feign的代理配置
             const requestMapping: RequestMappingOptions = {
@@ -86,7 +87,6 @@ export function generateMapping<T extends BaseRequestMappingOptions>(method?: Re
             if (requestMapping.produces == null) {
                 requestMapping.produces = [MediaType.JSON]
             }
-
             defaultGenerateAnnotationMethodConfig(target, name, {
                 requestMapping
             });

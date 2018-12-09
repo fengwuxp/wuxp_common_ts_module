@@ -4,50 +4,19 @@ import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
+import AbstractFetchClient from "./AbstractFetchClient";
 
 const contentTypeName = 'Content-Type';
 
 /**
- * 默认的请求客户端
+ * 抽象的
  */
-export default class DefaultFetchClient implements FetchClient {
-
-    /**
-     * 请求数据的适配器
-     */
-    private fetchAdapter: FetchAdapter;
+export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions> {
 
 
     constructor(fetchAdapter: FetchAdapter) {
-        this.fetchAdapter = fetchAdapter;
+        super(fetchAdapter)
     }
-
-
-    delete = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.DELETE;
-        return this.request(options);
-    };
-
-    get = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.GET;
-        return this.request(options);
-    };
-
-    post = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.POST;
-        return this.request(options);
-    };
-
-    put = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.PUT;
-        return this.request(options);
-    };
-
-
-    request = (options: FetchOptions): Promise<FetchResponse> => {
-
-        return this.fetchAdapter.request(this.handleFetchOptions(options));
-    };
 
 
     /**
@@ -84,7 +53,7 @@ export default class DefaultFetchClient implements FetchClient {
             }
         }
 
-
+        console.debug("发起请求", options);
         return options;
 
     }

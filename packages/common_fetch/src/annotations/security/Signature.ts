@@ -18,7 +18,7 @@ export interface SignatureOptions {
  * @param options
  * @constructor
  */
-export function Signature<T extends ProxyApiService>(options: SignatureOptions): any {
+export function Signature<T extends ProxyApiService>(options: SignatureOptions): Function {
 
 
     /**
@@ -27,7 +27,7 @@ export function Signature<T extends ProxyApiService>(options: SignatureOptions):
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function (target: T, name: string, descriptor: PropertyDescriptor): any {
+    return function (target: T, name: string, descriptor: PropertyDescriptor): T {
         defaultGenerateAnnotationMethodConfig(target, name, {
             signature: options
         });

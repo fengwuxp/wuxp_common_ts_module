@@ -24,10 +24,10 @@ export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConf
 
     targetService[methodName] = function (...args) {
         if (typeof oldFn === "function") {
-            oldFn(...args);
+            //保证this 不丢失
+            oldFn.apply(this, [...args]);
         }
         const methodConfig = this.getServiceMethodConfig(methodName);
-        console.debug("set method config", methodConfig);
         this.setServiceMethodConfig(methodName, {
             ...methodConfig,
             ...options
