@@ -1,13 +1,14 @@
 import {AbstractProxyServiceExecutor} from "./ProxyServiceExecutor";
 import {FetchOptions} from "../../FetchOptions";
 import {FeignProxy} from "../feign/FeignProxy";
+import {MediaType} from "../../constant/http/MediaType";
+import {DataType} from "../../constant/DataType";
 
 
 /**
  * 默认的代理执行器
  */
-export default  class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
-
+export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
 
     execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any> {
@@ -40,7 +41,19 @@ export default  class DefaultProxyServiceExecutor extends AbstractProxyServiceEx
             //进行数据合并
             fetchOptions.method = requestMapping.method;
             fetchOptions.timeout = requestMapping.timeout;
-            // fetchOptions.dataType=requestMapping.consumes
+            fetchOptions.contentType = requestMapping.produces[0];
+
+            const consume = requestMapping.consumes[0];
+            if (consume === MediaType.JSON) {
+                fetchOptions.dataType = DataType.JSON
+            } else if (consume === MediaType.TEXT) {
+                fetchOptions.dataType = DataType.TEXT
+            } else {
+                //默认使用json
+                // fetchOptions.dataType = DataType.JSON;
+            }
+
+
         }
 
 

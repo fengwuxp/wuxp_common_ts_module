@@ -8,8 +8,13 @@ export enum MediaType {
      */
     FORM_DATA = "application/x-www-form-urlencoded",
 
+
     /**
      * json
      */
-    JSON = "application/json;charset=UTF-8"
+    JSON = "application/json;charset=UTF-8",
+
+    TEXT = "text/plain",
+
+    HTML = "text/html"
 }

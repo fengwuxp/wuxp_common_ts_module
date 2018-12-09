@@ -1,4 +1,7 @@
 import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {ProxyApiService} from "../../proxy/ProxyApiService";
+import {MediaType} from "../../constant/http/MediaType";
 
 
 export interface BaseRequestMappingOptions {
@@ -34,12 +37,13 @@ export interface BaseRequestMappingOptions {
     /**
      * 响应的数据类型
      * @see {@link ../constant/http/MediaType}
+     * 默认 MediaType.JSON
      */
     produces?: string[];
 
 }
 
-export interface RequestMappingOptions extends BaseRequestMappingOptions{
+export interface RequestMappingOptions extends BaseRequestMappingOptions {
 
 
     /**
@@ -48,4 +52,47 @@ export interface RequestMappingOptions extends BaseRequestMappingOptions{
     method: ReqequestMethod;
 
 
+}
+
+//url mapping 类型
+export type Mapping<T extends BaseRequestMappingOptions = BaseRequestMappingOptions> = (options: T) => Function;
+
+/**
+ * 生成Mapping注解 的方法
+ * @param method
+ */
+export function generateMapping<T extends BaseRequestMappingOptions>(method?: ReqequestMethod): Mapping<T> {
+
+
+    return function <E extends ProxyApiService>(options: T): Function {
+
+        /**
+         * decorator
+         * @param  {E} target                        装饰的属性所属的类的原型，注意，不是实例后的类。如果装饰的是 T 的某个属性，这个 target 的值就是 T.prototype
+         * @param  {string} name                     装饰的属性的 key
+         * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
+         */
+        return function (target: E, name: string, descriptor: PropertyDescriptor): any {
+
+            //通过注解生成feign的代理配置
+            const requestMapping: RequestMappingOptions = {
+                method,
+                ...(options as any)
+            };
+
+            if (requestMapping.consumes == null) {
+                requestMapping.consumes = [MediaType.JSON]
+            }
+            if (requestMapping.produces == null) {
+                requestMapping.produces = [MediaType.JSON]
+            }
+
+            defaultGenerateAnnotationMethodConfig(target, name, {
+                requestMapping
+            });
+
+            return target;
+
+        };
+    }
 }
