@@ -1,5 +1,5 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
-import {RequestMappingOptions} from "./Mapping";
+import {BaseRequestMappingOptions} from "./Mapping";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
 import {ReqMethod} from "../../constant/ReqMethod";
 
@@ -9,7 +9,7 @@ import {ReqMethod} from "../../constant/ReqMethod";
  * @param options
  * @constructor
  */
-export function PostMapping<T extends ProxyApiService>(options: RequestMappingOptions): Function {
+export function PostMapping<T extends ProxyApiService>(options: BaseRequestMappingOptions): Function {
 
     /**
      * decorator

@@ -50,10 +50,8 @@ class TestProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
     execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any> {
 
-
         //解析参数
         const data = args[0] || {};
-
 
         const options: FetchOptions = args[1] || {};
 
@@ -66,14 +64,25 @@ class TestProxyServiceExecutor extends AbstractProxyServiceExecutor {
         //获取请求template
         const restTemplate = this.getTemplate(apiService.feign);
 
+        //请求requestMapping
+        const requestMapping = apiService.getServiceMethodConfig(methodName).requestMapping;
 
         //解析参数生成 options，并提交请求
-        return restTemplate.fetch({
+        const fetchOptions = {
             ...options,
             url: requestURL,
             headers,
             data: data
-        });
+        };
+        if (requestMapping) {
+            //进行数据合并
+            fetchOptions.method = requestMapping.method;
+            fetchOptions.timeout = requestMapping.timeout;
+            // fetchOptions.dataType=requestMapping.consumes
+        }
+
+
+        return restTemplate.fetch(fetchOptions);
     }
 
 

@@ -1,7 +1,7 @@
 import {ReqMethod} from "../../constant/ReqMethod";
 
-export interface RequestMappingOptions {
 
+export interface BaseRequestMappingOptions {
     /**
      * 请求的uri地址
      * 支持path variable 例如：getMember/{memberId}，表明参数中的memberId将作为路径参数，命名要保持一致
@@ -23,10 +23,6 @@ export interface RequestMappingOptions {
      */
     timeout?: number;
 
-    /**
-     * 请求 method
-     */
-    method?: ReqMethod;
 
     /**
      * 提交的数据类型
@@ -41,6 +37,15 @@ export interface RequestMappingOptions {
      */
     produces?: string[];
 
+}
+
+export interface RequestMappingOptions extends BaseRequestMappingOptions{
+
+
+    /**
+     * 请求 method
+     */
+    method: ReqMethod;
 
 
 }
