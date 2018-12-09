@@ -1,5 +1,4 @@
-import {ReqMethod} from "../../constant/ReqMethod";
-import {DataType} from "../../constant/DataType";
+
 import {FetchOptions} from "../../FetchOptions";
 import {ArgumentsResolver} from "./ArgumentsResolver";
 

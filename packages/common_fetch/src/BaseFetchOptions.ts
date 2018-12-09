@@ -1,6 +1,5 @@
 import {ReqMethod} from "./constant/ReqMethod";
 import {DataType} from "./constant/DataType";
-import {SerializeType} from "./constant/http/SerializeType";
 import {FetchResponse} from "./FetchOptions";
 
 /**

@@ -7,28 +7,6 @@ export interface FetchOptions extends BaseFetchOptions {
 
 
     /**
-     * 请求成功
-     * @param resp
-     */
-    // onSuccess: (resp: FetchResponse) => void;
-
-    /**
-     * 请求失败
-     * @param error
-     */
-    // onError?: (error: FetchError) => void;
-
-    /**
-     * 请求完成
-     * @param data
-     */
-    // onCompleted?: (data: {
-    //     isSuccess: boolean,
-    //     result: any | FetchError
-    // }) => void;
-
-
-    /**
      * 请求进度
      * @param data
      */
