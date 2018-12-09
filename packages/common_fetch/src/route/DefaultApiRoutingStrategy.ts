@@ -1,6 +1,9 @@
 import {ApiRoutingMapping, ApiRoutingStrategy} from "./ApiRoutingStrategy";
 
 
+/**
+ * 默认的路由解析策略
+ */
 export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
 
     protected routeMapping: ApiRoutingMapping;
@@ -15,7 +18,7 @@ export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
             return url;
         }
         if (!/^(@)/.test(url)) {
-            throw  new Error(`Illegal routing url -> ${url}`);
+            throw  new Error(`illegal routing url -> ${url}`);
         }
 
         //抓取api模块名称并且进行替换

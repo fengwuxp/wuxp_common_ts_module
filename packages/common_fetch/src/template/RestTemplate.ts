@@ -77,41 +77,41 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     protected routingStrategy: ApiRoutingStrategy;
 
     /**
-     * 请求引擎
+     * 请求客户端工具
      */
-    protected engine: FetchClient;
+    protected fetchClient: FetchClient;
 
     /**
      * 拦截器执行器
      */
-    protected executor: FetchInterceptorExecutor;
+    protected interceptorExecutor: FetchInterceptorExecutor;
 
 
-    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecutor) {
+    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, fetchClient: FetchClient, interceptorExecutor: FetchInterceptorExecutor) {
         this.templateConfig = templateConfig;
         this.routingStrategy = routingStrategy;
-        this.engine = engine;
-        this.executor = executor;
+        this.fetchClient = fetchClient;
+        this.interceptorExecutor = interceptorExecutor;
     }
 
     fetch = (options: FetchOptions): Promise<FetchResponse> => {
 
-        const executor = this.executor;
-        const engine = this.engine;
+        const interceptorExecutor = this.interceptorExecutor;
+        const fetchClient = this.fetchClient;
 
         const transformRequest = options.transformRequest;
         if (transformRequest) {
             //执行 transformRequest
             options = transformRequest(options);
         }
-        return executor.preHandle(options)
+        return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {
              //TODO  将异常广播
              return error;
-         })*/.then(engine.request)
+         })*/.then(fetchClient.request)
             .then((resp) => {
                 //后置拦截器
-                return executor.postHandle(resp, options)
+                return interceptorExecutor.postHandle(resp, options)
                     .then((response: FetchResponse) => {
                         const transformResponse = options.transformResponse;
                         if (transformResponse) {

@@ -3,13 +3,14 @@ import {FetchAdapter} from "../adapter/FetchAdapter";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {ReqMethod} from "../constant/ReqMethod";
 import {stringify} from "querystring";
-import {SerializeType} from "../constant/http/SerializeType";
 import {MediaType} from "../constant/http/MediaType";
 
+const contentTypeName = 'Content-Type';
+
 /**
- * 通用的http请求引擎
+ * 默认的请求客户端
  */
-export default class CommonFetchClient implements FetchClient {
+export default class DefaultFetchClient implements FetchClient {
 
     /**
      * 请求数据的适配器
@@ -45,7 +46,6 @@ export default class CommonFetchClient implements FetchClient {
 
     request = (options: FetchOptions): Promise<FetchResponse> => {
 
-
         return this.fetchAdapter.request(this.handleFetchOptions(options));
     };
 
@@ -55,8 +55,7 @@ export default class CommonFetchClient implements FetchClient {
      * @param options
      */
     protected handleFetchOptions = (options: FetchOptions) => {
-        let {serializeType, data, method, queryPrams, url, headers} = options;
-
+        const {contentType, data, method, queryPrams, url, headers} = options;
 
         if (method === ReqMethod.GET) {
             //处理查询参数
@@ -70,30 +69,21 @@ export default class CommonFetchClient implements FetchClient {
 
         } else if (method === ReqMethod.POST) {
             //POST请求
-            if (serializeType === SerializeType.FORM_DATA) {
+            if (contentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据
                 options.data = stringify(data);
-            } else if (serializeType === SerializeType.JSON) {
+            } else if (contentType === MediaType.JSON) {
                 //json
                 options.data = JSON.stringify(data);
             } else {
             }
+
+            if (headers[contentTypeName] == null) {
+                //默认以表单的形式提交数据
+                headers[contentType] = (contentType || MediaType.FORM_DATA);
+            }
         }
 
-        const contentType = 'Content-Type';
-        switch (serializeType) {
-            case SerializeType.FORM_DATA:
-                headers[contentType] = MediaType.FORM_DATA;
-                break;
-            case SerializeType.JSON:
-                headers[contentType] = MediaType.JSON;
-                break;
-            case SerializeType.NONE:
-                break;
-            default:
-                //默认以表单的形式提交数据
-                headers[contentType] = MediaType.FORM_DATA;
-        }
 
         return options;
 

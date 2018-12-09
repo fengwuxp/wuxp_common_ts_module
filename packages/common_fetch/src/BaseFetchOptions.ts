@@ -45,12 +45,11 @@ export interface BaseFetchOptions {
 
 
     /**
-     * 提交的数据序列化处理
-     * none:不做任何处理
-     * defaultState：以表单的方式处理
-     * 默认值：defaultState
+     * content type
+     * 默认值："application/x-www-form-urlencoded"
+     * @see {@link ./constant/http/MediaType}
      */
-    serializeType?: SerializeType
+    contentType?: string
 
 
     /**

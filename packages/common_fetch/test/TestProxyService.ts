@@ -2,7 +2,7 @@ import {AbstractRestTemplateLoader, RestTemplateLoader} from "../src/template/Re
 import {defaultApiModuleName} from "../src/constant/FeignConstVar";
 import DefaultRestTemplate from "../src/template/DefaultRestTemplate";
 import DefaultApiRoutingStrategy from "../src/route/DefaultApiRoutingStrategy";
-import CommonFetchClient from "../src/fetch/CommonFetchClient";
+import DefaultFetchClient from "../src/fetch/DefaultFetchClient";
 import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
 import FetchInterceptorExecutor from "../src/interceptor/FetchInterceptorExecutor";
 import {AbstractProxyServiceExecutor, ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
@@ -30,7 +30,7 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
         if (apiModuleName === defaultApiModuleName) {
 
             return new DefaultRestTemplate({}, new DefaultApiRoutingStrategy(routingMapping),
-                new CommonFetchClient(new WebFetchAdapter()),
+                new DefaultFetchClient(new WebFetchAdapter()),
                 new FetchInterceptorExecutor([]));
         }
 

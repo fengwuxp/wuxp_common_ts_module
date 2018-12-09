@@ -1,12 +1,10 @@
-import {Exception} from "../Exception";
-
 
 /**
  * http fetch exception
  * @author wxup
  * @create 2018-09-29 17:28
  **/
-export interface HttpFetchException extends Exception {
+export interface HttpFetchException extends Error {
 
     /**
      * http 响应码
