@@ -38,6 +38,12 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
     request = (options: T): Promise<FetchResponse> => {
 
+        //设置超时时间
+        if (options.timeout == null) {
+            //默认为10秒
+            options.timeout = 10000;
+        }
+
         return this.fetchAdapter.request(this.handleFetchOptions(options));
     };
 

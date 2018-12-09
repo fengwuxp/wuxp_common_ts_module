@@ -16,7 +16,9 @@ const logger = log4js.getLogger();
 logger.level = 'debug';
 
 
-const routingMapping = {};
+const routingMapping = {
+    member:"https://test.oaknt.com/api"
+};
 
 class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
