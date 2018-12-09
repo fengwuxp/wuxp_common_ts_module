@@ -1,4 +1,4 @@
-import {ReqMethod} from "./constant/ReqMethod";
+import {ReqequestMethod} from "./constant/ReqequestMethod";
 import {DataType} from "./constant/DataType";
 import {FetchResponse} from "./FetchOptions";
 
@@ -25,7 +25,7 @@ export interface BaseFetchOptions {
     /**
      * 请求方法
      */
-    method?: ReqMethod;
+    method?: ReqequestMethod;
 
     /**
      * 结果数据类型

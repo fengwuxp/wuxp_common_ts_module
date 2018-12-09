@@ -1,7 +1,7 @@
 import {FetchClient} from "./FetchClient";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
-import {ReqMethod} from "../constant/ReqMethod";
+import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
 
@@ -24,22 +24,22 @@ export default class DefaultFetchClient implements FetchClient {
 
 
     delete = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqMethod.DELETE;
+        options.method = ReqequestMethod.DELETE;
         return this.request(options);
     };
 
     get = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqMethod.GET;
+        options.method = ReqequestMethod.GET;
         return this.request(options);
     };
 
     post = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqMethod.POST;
+        options.method = ReqequestMethod.POST;
         return this.request(options);
     };
 
     put = (options: FetchOptions): Promise<FetchResponse> => {
-        options.method = ReqMethod.PUT;
+        options.method = ReqequestMethod.PUT;
         return this.request(options);
     };
 
@@ -57,7 +57,7 @@ export default class DefaultFetchClient implements FetchClient {
     protected handleFetchOptions = (options: FetchOptions) => {
         const {contentType, data, method, queryPrams, url, headers} = options;
 
-        if (method === ReqMethod.GET) {
+        if (method === ReqequestMethod.GET) {
             //处理查询参数
             let queryParams = {
                 ...data,
@@ -67,7 +67,7 @@ export default class DefaultFetchClient implements FetchClient {
             delete options.data;
             delete options.queryPrams;
 
-        } else if (method === ReqMethod.POST) {
+        } else if (method === ReqequestMethod.POST) {
             //POST请求
             if (contentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据

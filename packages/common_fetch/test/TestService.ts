@@ -4,7 +4,7 @@ import {FetchOptions} from "../src/FetchOptions";
 import {Signature} from "../src/annotations/security/Signature";
 import {FeignProxy} from "../src/proxy/ProxyApiService";
 import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
-import {ReqMethod} from "../src/constant/ReqMethod";
+import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {GetMapping} from "../src/annotations/mapping/GetMapping";
 
 
@@ -21,7 +21,7 @@ export default class TestService extends FeignProxy {
 
 
     @Signature({fields: []})
-    @RequestMapping({value: "/test", method: ReqMethod.GET})
+    @RequestMapping({value: "/test", method: ReqequestMethod.GET})
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})

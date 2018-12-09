@@ -1,7 +1,7 @@
 import {FetchOptions, FetchResponse} from "../FetchOptions";
 import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";
 import {FetchClient} from "../fetch/FetchClient";
-import {ReqMethod} from "../constant/ReqMethod";
+import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {ApiRoutingStrategy} from "../route/ApiRoutingStrategy";
 import {HttpFetchException} from "../exception/HttpFetchException";
 import {HttpFetchExceptionName} from "../exception/Const";
@@ -44,7 +44,7 @@ export interface RestTemplateConfig {
     /**
      * 请求 method
      */
-    method?: ReqMethod;
+    method?: ReqequestMethod;
 
     /**
      * 提交的数据类型

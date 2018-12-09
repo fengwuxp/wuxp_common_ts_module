@@ -1,4 +1,4 @@
-import {ReqMethod} from "../../constant/ReqMethod";
+import {ReqequestMethod} from "../../constant/ReqequestMethod";
 
 
 export interface BaseRequestMappingOptions {
@@ -45,7 +45,7 @@ export interface RequestMappingOptions extends BaseRequestMappingOptions{
     /**
      * 请求 method
      */
-    method: ReqMethod;
+    method: ReqequestMethod;
 
 
 }

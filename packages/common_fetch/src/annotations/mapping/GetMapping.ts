@@ -1,7 +1,7 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {BaseRequestMappingOptions} from "./Mapping";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
-import {ReqMethod} from "../../constant/ReqMethod";
+import {ReqequestMethod} from "../../constant/ReqequestMethod";
 
 
 /**
@@ -22,7 +22,7 @@ export function GetMapping<T extends ProxyApiService>(options: BaseRequestMappin
         defaultGenerateAnnotationMethodConfig(target, name, {
             requestMapping: {
                 ...options,
-                method: ReqMethod.GET
+                method: ReqequestMethod.GET
             }
         });
 

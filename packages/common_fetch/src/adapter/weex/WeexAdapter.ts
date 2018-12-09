@@ -1,7 +1,7 @@
 import {FetchAdapter} from "../FetchAdapter";
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {WeexStreamModule, WeexStreamOption, WeexStreamResponse} from "weex/src/sdk/model/stream";
-import {ReqMethod} from "../../constant/ReqMethod";
+import {ReqequestMethod} from "../../constant/ReqequestMethod";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";
 import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
 
@@ -66,7 +66,7 @@ export class WeexAdapter implements FetchAdapter {
 
         //WEEX stream对象 https://weex.apache.org/cn/references/modules/stream.html
 
-        let reqMethod = ReqMethod[method];
+        let reqMethod = ReqequestMethod[method];
 
         return {
             //请求方法get post
@@ -78,7 +78,7 @@ export class WeexAdapter implements FetchAdapter {
             //headers HTTP 请求头
             headers,
             //参数仅支持 string 类型的参数，请勿直接传递 JSON，必须先将其转为字符串。GET请求不支持 body 方式传递参数，请使用 url 传参。
-            body: (data == null || method === ReqMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data)
+            body: (data == null || method === ReqequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data)
         };
     }
 
