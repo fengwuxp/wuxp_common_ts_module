@@ -22,47 +22,23 @@ export interface FeignProxyApiServiceMethodConfig {
 }
 
 /**
- * 抽象的feign proxy
+ * feign proxy
  */
-export abstract class FeignProxy implements ProxyApiService {
+export interface FeignProxy extends ProxyApiService {
 
-    /**
-     * 接口方法配置列表
-     * key 接口方法名称
-     * value 接口方法配置
-     */
-    protected configs: Map<string, FeignProxyApiServiceMethodConfig> = new Map<string, FeignProxyApiServiceMethodConfig>();
-
-    /**
-     * feign代理的相关配置
-     */
-    protected _feign: FeignOptions = null;
-
-
-    constructor(feign: FeignOptions = {apiModule: defaultApiModuleName}) {
-        this._feign = feign;
-    }
-
+    feign: FeignOptions
     /**
      * 获取获取接口方法的配置
      * @param serviceMethod  服务方法名称
      */
-   public getServiceMethodConfig = (serviceMethod: string): FeignProxyApiServiceMethodConfig => {
-
-        return this.configs.get(serviceMethod) || {};
-    };
+    getServiceMethodConfig: (serviceMethod: string) => FeignProxyApiServiceMethodConfig;
 
     /**
      * 设置服务方法的配置config
      * @param serviceMethodName
      * @param config
      */
-    public  setServiceMethodConfig = (serviceMethodName: string, config: FeignProxyApiServiceMethodConfig) => {
-        this.configs.set(serviceMethodName, config);
-    };
+    setServiceMethodConfig: (serviceMethodName: string, config: FeignProxyApiServiceMethodConfig) => void;
 
 
-    get feign(): FeignOptions {
-        return this._feign;
-    }
 }

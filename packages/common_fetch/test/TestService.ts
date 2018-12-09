@@ -17,7 +17,7 @@ import {FeignProxy} from "../src/proxy/feign/FeignProxy";
     apiModule: "member",
     value: "test"
 })
-export default class TestService extends FeignProxy {
+export default class TestService /*extends FeignProxy*/ {
 
 
     @Signature({fields: []})

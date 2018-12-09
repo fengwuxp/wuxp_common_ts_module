@@ -1,5 +1,6 @@
 import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
-import {FeignProxy} from "../proxy/feign/FeignProxy";
+import {FeignProxy, FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
+import {defaultApiModuleName} from "../constant/FeignConstVar";
 
 
 export interface FeignOptions {
@@ -46,17 +47,59 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
      * @param  {T} clazz
      */
     return (clazz: any): any => {
-        console.log("feign proxy init");
         if (proxyFactory == null) {
             new Error("proxyFactory is not init，please use setProxyFactory");
         }
 
-        return class extends clazz {
+        const feign: FeignOptions = {
+            apiModule: defaultApiModuleName,
+            ...feignOptions
+        };
+
+        return class extends clazz implements FeignProxy {
 
             constructor() {
-                super(feignOptions);
+                super();
                 return proxyFactory.factory(this);
             }
+
+
+            /**
+             * 接口方法配置列表
+             * key 接口方法名称
+             * value 接口方法配置
+             */
+            protected configs: Map<string, FeignProxyApiServiceMethodConfig> = new Map<string, FeignProxyApiServiceMethodConfig>();
+
+            /**
+             * feign代理的相关配置
+             */
+            protected _feign: FeignOptions = feign;
+
+
+            /**
+             * 获取获取接口方法的配置
+             * @param serviceMethod  服务方法名称
+             */
+            public getServiceMethodConfig = (serviceMethod: string): FeignProxyApiServiceMethodConfig => {
+
+                return this.configs.get(serviceMethod) || {};
+            };
+
+            /**
+             * 设置服务方法的配置config
+             * @param serviceMethodName
+             * @param config
+             */
+            public setServiceMethodConfig = (serviceMethodName: string, config: FeignProxyApiServiceMethodConfig) => {
+                this.configs.set(serviceMethodName, config);
+            };
+
+
+            get feign(): FeignOptions {
+                return this._feign;
+            }
+
         }
     }
 }
