@@ -1,7 +1,2 @@
-/**
- *
- * @author wxup
- * @create 2018-09-29 19:00
- **/
-
+// fetch 异常的名称
 export const HttpFetchExceptionName: string = "HttpFetchException";

@@ -37,6 +37,7 @@
     "common_auth": "^0.0.1",
     "common_core": "^0.0.1",
     "common_env": "^0.0.1",
+    "common_exception": "0.0.1",
     "common_task": "^0.0.1",
     "es5-shim": "^4.5.9",
     "es6-promise": "^4.1.1",

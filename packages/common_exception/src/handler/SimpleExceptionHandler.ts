@@ -1,6 +1,6 @@
 import {ExceptionHandler} from "./ExceptionHandler";
-import ExceptionRepairRegistry from "../ExceptionRepairRegistry";
 import {Exception} from "../Exception";
+import {ExceptionRepairer} from "../ExceptionRepairer";
 
 /**
  * 简单异常处理者
@@ -9,16 +9,17 @@ import {Exception} from "../Exception";
  **/
 export default class SimpleExceptionHandler implements ExceptionHandler {
 
-    protected repairRegistry: ExceptionRepairRegistry;
+
+    protected repairerMap: Map<any, ExceptionRepairer>;
 
 
-    constructor(repairRegistry: ExceptionRepairRegistry) {
-        this.repairRegistry = repairRegistry;
+    constructor(repairerMap: Map<any, ExceptionRepairer>) {
+        this.repairerMap = repairerMap || new Map<any, ExceptionRepairer>();
     }
 
     handle = (exception: Exception) => {
 
-        const repairer = this.repairRegistry.get(exception.name);
+        const repairer = this.repairerMap.get(exception.message);
         if (repairer == null) {
             console.warn(`未找到异常${exception.name}的修复者`);
             return;
