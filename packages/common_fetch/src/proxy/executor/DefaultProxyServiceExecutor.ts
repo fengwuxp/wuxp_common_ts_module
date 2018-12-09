@@ -11,7 +11,7 @@ import {FeignProxy} from "../feign/FeignProxy";
 export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
 
-    execute<FeignProxy>(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
+    execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
 
         //解析参数
         const data = args[0] || {};
@@ -25,7 +25,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
 
         //获取请求template
-        const restTemplate = this.getTemplate(apiService);
+        const restTemplate = this.getTemplate(apiService.feign);
+
 
         //请求requestMapping
         const requestMapping = apiService.getServiceMethodConfig(methodName).requestMapping;

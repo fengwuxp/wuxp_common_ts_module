@@ -11,7 +11,7 @@ import {ProxyApiService} from "../ProxyApiService";
 /**
  * 代理服务执行器
  */
-export interface ProxyServiceExecutor<T extends ProxyApiService> {
+export interface ProxyServiceExecutor<T extends ProxyApiService=ProxyApiService> {
 
     /**
      * 执行代理服务
@@ -19,7 +19,7 @@ export interface ProxyServiceExecutor<T extends ProxyApiService> {
      * @param methodName  方法名称
      * @param args        方法参数
      */
-    execute<T>(apiService: T, methodName: string, ...args): Promise<any>;
+    execute(apiService: T, methodName: string, ...args): Promise<any>;
 }
 
 export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecutor<FeignProxy> {
@@ -52,7 +52,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
         return this.restTemplateLoader.load(apiModuleName);
     };
 
-    abstract execute<FeignProxy>(apiService: FeignProxy, methodName: string, ...args): Promise<any>;
+    abstract execute(apiService: FeignProxy, methodName: string, ...args): Promise<any>;
 
 
 }
