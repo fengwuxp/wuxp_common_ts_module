@@ -43,10 +43,6 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 class TestProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
 
-    protected requestURLResolver: RequestURLResolver = new SimpleRequestURLResolver();
-
-    protected requestHeaderResolver: RequestHeaderResolver = new SimpleRequestHeaderResolver();
-
 
     execute<T extends FeignProxy>(apiService: T, methodName: string, ...args): Promise<any> {
 
@@ -101,7 +97,9 @@ describe("test proxy api service", () => {
     test("test", () => {
         logger.debug("TestService", TestService);
 
-        // const testService = new TestService();
+
+        const testService = new TestService();
+
         // const proxyService = es6PoxyServiceFactory.factory(testService);
     })
 });

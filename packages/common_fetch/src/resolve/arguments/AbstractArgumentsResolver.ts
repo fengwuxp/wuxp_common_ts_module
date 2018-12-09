@@ -18,33 +18,8 @@ export default abstract class AbstractArgumentsResolver<T extends FetchOptions> 
      */
     resolve = (url: string, ...args): T => {
 
-        //T
-        let options: T = Object.assign({
-            url,
-            useProgressBar: true
-        }, args[1]);
 
-        // if (AbstractArgumentsResolver.enabledDecorator) {
-        //     const {url, method, dataType, other, serializeType} = data;
-        //     options.method = method;
-        //     options.dataType = dataType;
-        //     options.serializeType = serializeType;
-        //     data = other;
-        // }
-
-
-        //请求的数据
-        options.data = typeof args[0] === "undefined" ? {} : Object.assign({}, args[0]);
-
-        //请求方法
-        options.method = options.method as ReqMethod || ReqMethod.POST;
-
-        //结果数据类型
-        options.dataType = options.dataType as DataType || DataType.JSON;
-
-        options.headers = options.headers == null ? {} : options.headers;
-
-        return this.buildOptions(options, {});
+        return null;
     };
 
     /**

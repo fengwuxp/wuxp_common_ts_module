@@ -1,6 +1,7 @@
 import {RequestMappingOptions} from "../annotations/mapping/Mapping";
 import {SignatureOptions} from "../annotations/security/Signature";
 import {FeignOptions} from "../annotations/Feign";
+import {defaultApiModuleName} from "../constant/FeignConstVar";
 
 
 export interface ProxyApiServiceMethodConfig {
@@ -60,18 +61,22 @@ export abstract class FeignProxy implements ProxyApiService {
     private _feign: FeignOptions = null;
 
 
+    constructor(feign?: FeignOptions) {
+        this._feign = feign || {apiModule: defaultApiModuleName};
+    }
+
     /**
      * 获取获取接口方法的配置
      * @param serviceMethod
      */
     getServiceMethodConfig = (serviceMethod: string): ProxyApiServiceMethodConfig => {
 
-        return this.configs.get(serviceMethod) || {};
+        return this.configs.get(serviceMethod);
     };
 
 
     get feign(): FeignOptions {
-        return this._feign || {};
+        return this._feign;
     }
 }
 

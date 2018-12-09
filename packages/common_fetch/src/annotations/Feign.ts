@@ -35,16 +35,13 @@ export function setProxyFactory(factory: ProxyServiceFactory) {
 export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
 
     /**
+     * 创建feign代理的实例
      * @param  {T} clazz
      */
     return (clazz: any): T => {
         if (proxyFactory == null) {
             new Error("proxyFactory is not init，please use setProxyFactory");
         }
-        const apiProxyService: T = proxyFactory.factory(new clazz());
-        if (feignOptions) {
-            apiProxyService.feign = feignOptions;
-        }
-        return apiProxyService;
+        return proxyFactory.factory(new clazz(feignOptions));
     }
 }
