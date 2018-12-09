@@ -1,5 +1,5 @@
 import {Resolver} from "../Resolver";
-import {FeignProxy, ProxyApiService} from "../../proxy/ProxyApiService";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 
 /**

@@ -5,7 +5,7 @@ import DefaultApiRoutingStrategy from "../src/route/DefaultApiRoutingStrategy";
 import CommonFetchClient from "../src/fetch/CommonFetchClient";
 import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
 import FetchInterceptorExecuter from "../src/interceptor/FetchInterceptorExecuter";
-import {AbstractProxyServiceExecutor, ProxyServiceExecutor} from "../src/proxy/ProxyServiceExecutor";
+import {AbstractProxyServiceExecutor, ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
 import {FeignProxy, ProxyApiService} from "../src/proxy/ProxyApiService";
 import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
 import TestService from "./TestService";

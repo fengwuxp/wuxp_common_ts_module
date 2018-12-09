@@ -1,11 +1,12 @@
-import {ProxyApiService, ProxyApiServiceMethodConfig} from "./ProxyApiService";
+import {ProxyApiService} from "./ProxyApiService";
+import {FeignProxy, FeignProxyApiServiceMethodConfig} from "./feign/FeignProxy";
 
 
 /**
  * 根据annotation生成代理服务方法的配置
  */
 export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiService,
-    O extends ProxyApiServiceMethodConfig = ProxyApiServiceMethodConfig> =
+    O extends FeignProxyApiServiceMethodConfig = FeignProxyApiServiceMethodConfig> =
     (targetService: T, methodName: string, options: O) => void;
 
 
@@ -16,16 +17,13 @@ export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiS
  * @param options
  */
 export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConfig<ProxyApiService,
-    ProxyApiServiceMethodConfig> = (targetService: ProxyApiService,
-                                    methodName: string,
-                                    options: ProxyApiServiceMethodConfig) => {
+    FeignProxyApiServiceMethodConfig> = (targetService: FeignProxy,
+                                         methodName: string,
+                                         options: FeignProxyApiServiceMethodConfig) => {
 
-    let config = targetService.configs.get(methodName);
-    if (config == null) {
-        config = {};
-    }
+    const config = targetService.getServiceMethodConfig(methodName);
 
-    targetService.configs.set(methodName, {
+    targetService.setServiceMethodConfig(methodName, {
         ...config,
         ...options
     });

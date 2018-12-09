@@ -1,6 +1,6 @@
 import {AbstractProxyServiceFactory} from "./ProxyServiceFactory";
 import {ProxyApiService} from "../ProxyApiService";
-import {ProxyServiceExecutor} from "../ProxyServiceExecutor";
+import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
 
 
 /**

@@ -1,8 +1,8 @@
-import {FeignProxy} from "../../proxy/ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
 import {RequestURLResolver} from "./RequestURLResolver";
 import {MatchRuleResolver} from "../match/MatchRuleResolver";
 import DefaultMatchRuleResolver from "../match/DefaultMatchRuleResolver";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 /**
  * 简单的url解析者

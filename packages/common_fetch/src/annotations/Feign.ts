@@ -1,5 +1,5 @@
-import {FeignProxy} from "../proxy/ProxyApiService";
 import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
+import {FeignProxy} from "../proxy/feign/FeignProxy";
 
 
 export interface FeignOptions {

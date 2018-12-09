@@ -1,7 +1,7 @@
 import {RequestHeaderResolver} from "./RequestHeaderResolver";
-import {FeignProxy, ProxyApiService} from "../../proxy/ProxyApiService";
 import {MatchRuleResolver} from "../match/MatchRuleResolver";
 import DefaultMatchRuleResolver from "../match/DefaultMatchRuleResolver";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 
 /**

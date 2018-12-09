@@ -1,11 +1,11 @@
-import {RestTemplate} from "../template/RestTemplate";
-import {RestTemplateLoader} from "../template/RestTemplateLoader";
-import {FeignOptions} from "../annotations/Feign";
-import {FeignProxy} from "./ProxyApiService";
-import {RequestURLResolver} from "../resolve/url/RequestURLResolver";
-import SimpleRequestURLResolver from "../resolve/url/SimpleRequestURLResolver";
-import {RequestHeaderResolver} from "../resolve/header/RequestHeaderResolver";
-import SimpleRequestHeaderResolver from "../resolve/header/SimpleRequestHeaderResolver";
+import {RestTemplate} from "../../template/RestTemplate";
+import {RestTemplateLoader} from "../../template/RestTemplateLoader";
+import {FeignOptions} from "../../annotations/Feign";
+import {RequestURLResolver} from "../../resolve/url/RequestURLResolver";
+import SimpleRequestURLResolver from "../../resolve/url/SimpleRequestURLResolver";
+import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver";
+import SimpleRequestHeaderResolver from "../../resolve/header/SimpleRequestHeaderResolver";
+import {FeignProxy} from "../feign/FeignProxy";
 
 /**
  * 代理服务执行器
