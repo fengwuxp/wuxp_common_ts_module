@@ -1,4 +1,3 @@
-
 import {FetchOptions} from "../../FetchOptions";
 import {ArgumentsResolver} from "./ArgumentsResolver";
 
