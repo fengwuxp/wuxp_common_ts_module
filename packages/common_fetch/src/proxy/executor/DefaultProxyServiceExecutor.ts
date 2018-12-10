@@ -15,7 +15,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         const serviceMethod: Function = apiService[methodName];
         if (serviceMethod) {
-            serviceMethod.apply(apiService,[...args])
+            //执行原本的服务方法 @see {@link ../GenerateAnnotationMethodConfig.ts}
+            serviceMethod.apply(apiService, [...args])
         }
 
 

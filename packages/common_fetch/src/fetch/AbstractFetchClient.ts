@@ -4,6 +4,9 @@ import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 
 
+/**
+ * 抽象的fetch client 实现
+ */
 export default abstract class AbstractFetchClient<T extends FetchOptions> implements FetchClient<T> {
 
     /**
@@ -48,6 +51,9 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
     };
 
 
+    /**
+     * 处理 fetchOptions
+     */
     protected abstract handleFetchOptions: (options: T) => T;
 
 

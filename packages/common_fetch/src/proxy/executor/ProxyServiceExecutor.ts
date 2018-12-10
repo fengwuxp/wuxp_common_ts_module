@@ -52,6 +52,12 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
         return this.restTemplateLoader.load(apiModuleName);
     };
 
+    /**
+     * 执行请求
+     * @param apiService  服务实例
+     * @param methodName  服务方法名称
+     * @param args        参数列表
+     */
     abstract execute(apiService: FeignProxy, methodName: string, ...args): Promise<any>;
 
 

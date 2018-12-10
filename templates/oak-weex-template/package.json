@@ -1,5 +1,5 @@
 {
-  "name": "weex-template",
+  "name": "oak-weex-template",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -18,6 +18,6 @@
   "license": "ISC",
   "dependencies": {
     "weex_components": "^0.0.1",
-    "weex_starter": "^0.0.1"
+    "weex_starter": "0.0.1"
   }
 }

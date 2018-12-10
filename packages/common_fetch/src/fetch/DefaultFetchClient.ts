@@ -1,6 +1,5 @@
-import {FetchClient} from "./FetchClient";
 import {FetchAdapter} from "../adapter/FetchAdapter";
-import {FetchOptions, FetchResponse} from "../FetchOptions";
+import {FetchOptions} from "../FetchOptions";
 import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
@@ -9,7 +8,7 @@ import AbstractFetchClient from "./AbstractFetchClient";
 const contentTypeName = 'Content-Type';
 
 /**
- * 抽象的
+ * 默认的 fetch client实现
  */
 export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions> {
 
