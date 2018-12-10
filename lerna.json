@@ -10,7 +10,10 @@
   "command": {
     "publish": {
       "skipGit": false,
-      "allowBranch": "master"
+      "allowBranch": "master",
+      "ignoreChanges": [
+        "templates/*"
+      ]
     }
   }
 }

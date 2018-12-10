@@ -17,7 +17,8 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "weex_components": "0.0.1",
-    "oak_weex_stater": "0.0.1"
-  }
+    "oak_weex_stater": "0.0.1",
+    "weex_components": "^0.0.1"
+  },
+  "gitHead": "c8fa868e9bf6b044bec4cf5f246b6a607711f3b5"
 }

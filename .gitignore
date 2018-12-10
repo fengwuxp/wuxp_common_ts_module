@@ -11,3 +11,4 @@ lerna-debug.log
 dist
 dist_web
 coverage
+*.tgz
