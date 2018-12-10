@@ -1,6 +1,7 @@
 import VueRouter, {RouteConfig} from "vue-router";
 import Vue from "vue";
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+// @ts-ignore
 import routes from '../../../../src/route/WebRoute';
 import {AppRoute} from "./AppRouter";
 import {WeexRouteItem} from "./WeexRouteItem";

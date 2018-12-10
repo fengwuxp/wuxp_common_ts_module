@@ -1,8 +1,12 @@
+// @ts-ignore
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+// @ts-ignore
 import {AppConfig} from "common_config/src/app/AppConfig";
 //约定导入 app配置
+// @ts-ignore
 import {appConfig} from '../../../../src/config/WeexAppConfig';
 //约定导入 路由配置
+// @ts-ignore
 import route from '../../../../src/route/NavtieRoute';
 import AppRouter from "../route/AppRouter";
 
@@ -26,7 +30,6 @@ export interface WeexAppContext {
 export default abstract class AbstractBootStarter<T extends WeexAppContext> implements AppBootStarter<T> {
 
     protected static appContext: WeexAppContext = null;
-
 
 
     startup = (...args): Promise<T> => {

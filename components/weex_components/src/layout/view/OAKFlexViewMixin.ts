@@ -1,12 +1,10 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
-
-
 // @ts-ignore
-const weexBootStarterLoader = require("weex_starter/src/bootstartup/WeexBootStarterLoader").default;
+import WeexOAKBootStarter from "oak_weex_starter/src/bootstartup/WeexOAKBootStarter"
 
-//获取bootStarter，通过加载器
-const weexSimpleBootStarter = weexBootStarterLoader.load();
+//获取bootStarter
+const weexSimpleBootStarter = new WeexOAKBootStarter();
 
 //初始化
 weexSimpleBootStarter.startup();

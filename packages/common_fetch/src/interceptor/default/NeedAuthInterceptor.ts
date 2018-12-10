@@ -6,16 +6,15 @@ import {FetchOptions, FetchResponse} from "../../FetchOptions";
  */
 export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
-
     /**
      * 鉴权处理者
      */
     private authHelper: SyncAuthHelper;
 
 
-    private postLockPromise: Promise<boolean>;
-
-    private prevLockPromise: Promise<boolean>;
+    // private postLockPromise: Promise<boolean>;
+    //
+    // private prevLockPromise: Promise<boolean>;
 
 
     constructor(authHelper: SyncAuthHelper) {
@@ -25,65 +24,47 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
 
-
-        if (this.postLockPromise == null) {
-            this.postLockPromise = this.authHelper.isToAuthView(data);
-        }
-
-        return new Promise<FetchResponse>((resolve, reject) => {
-
-            this.postLockPromise.then((result)=>{
-                resolve(data)
-            }).catch(()=>{
-
-            })
-        });
-
-
-        // if (this.authHelper.isToAuthView(data)) {
-        //     //TODO 需要跳转到登录页面
-        //     return null;
-        // }
-        return super.postHandle(data, options);
+        return this.authHelper.isToAuthView(data).then((result) => result ? data : null);
     }
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
 
         //初始化锁
-        if (this.prevLockPromise == null) {
-            this.prevLockPromise = this.authHelper.requestParamsEnhance(params);
-        }
+        // if (this.prevLockPromise == null) {
+        //     this.prevLockPromise = this.authHelper.requestParamsEnhance(params);
+        // }
+        //
+        // //锁等待
+        // return new Promise<FetchOptions>((resolve, reject) => {
+        //
+        //     //锁释放
+        //     this.prevLockPromise.then((result) => {
+        //         resolve(params)
+        //     }).catch(() => {
+        //
+        //     })
+        // });
 
-        //锁等待
-        return new Promise<FetchOptions>((resolve, reject) => {
-
-            //锁释放
-            this.prevLockPromise.then((result)=>{
-                resolve(params)
-            }).catch(()=>{
-
-            })
-        });
-
+        return this.authHelper.requestParamsEnhance(params).then((result) => result ? params : null);
 
     }
 
 
 }
 
-interface SyncLock<T=any> {
+interface SyncLock<T = any> {
     /**
      * 锁定
      */
-    lockExecute: ()=>Promise<T>;
+    lockExecute: () => Promise<T>;
 
     /**
      * 解锁
      */
-    unLock:()=>Promise<T>;
+    unLock: () => Promise<T>;
 }
 
-export interface SyncAuthHelper<T=any> extends SyncLock<T>{
+export interface SyncAuthHelper<T = any> extends SyncLock<T> {
 
 
     /**

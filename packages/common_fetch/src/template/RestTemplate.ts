@@ -137,6 +137,9 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         //TODO 进制值复制处理
         options.url = this.routingStrategy.route(options.url);
 
+
+        //enable
+
         return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {
              //TODO  将异常广播

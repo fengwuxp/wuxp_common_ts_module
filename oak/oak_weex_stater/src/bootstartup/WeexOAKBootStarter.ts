@@ -1,6 +1,7 @@
-import AbstractBootStarter, {WeexAppContext} from "./AbstractBootStarter";
-import AppRouter from "../route/AppRouter";
-import DefaultFetchFeignProxyInitializer, {FetchFeignProxyInitializer} from "../fetch/FetchFeignProxyInitializer";
+// @ts-ignore
+import AbstractBootStarter, {WeexAppContext} from "weex_starter/src/bootstartup/AbstractBootStarter";
+// @ts-ignore
+import DefaultFetchFeignProxyInitializer, {FetchFeignProxyInitializer} from "weex_starter/src/fetch/FetchFeignProxyInitializer";
 
 
 /**
@@ -13,7 +14,7 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
 
     protected initStatus: boolean = false;
 
-    startup = (...args): Promise<WeexAppContext> => super.startup(...args).then((context) => {
+    startup = (...args): Promise<WeexAppContext> => super.startup(...args).then((context: WeexAppContext) => {
 
         if (this.initStatus) {
             return context;
@@ -36,7 +37,8 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
          * @param uri
          * @param main 是否为主页
          */
-        AppRouter.generateBundleJsURL = (uri: string, main: boolean) => {
+        // @ts-ignore
+        context.appRouter.generateBundleJsURL = (uri: string, main: boolean) => {
 
             //自定义的
             return `weex://${packageName}/${main ? 'main' : 'page'}/${context.appConfig.resourceDomain}/weex/${context.appConfig.resourceConfig.remoteDeploymentDirectory}/${uri}`;
@@ -47,3 +49,4 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
     });
 
 }
+
