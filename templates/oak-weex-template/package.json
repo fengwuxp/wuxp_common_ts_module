@@ -2,6 +2,17 @@
   "name": "oak-weex-template",
   "version": "0.0.1",
   "description": "weex template",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
     "serve-dev": "webpack-dev-server  --config ./webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",

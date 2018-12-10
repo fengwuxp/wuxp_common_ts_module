@@ -16,6 +16,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "scripts": {
     "publish": "node ./scripts/publish.js",
+    "learn_publish": "lerna publish --skip-git --repo-version",
     "publish:npm": "lerna publish --npm-tag=0.0.1"
   },
   "devDependencies": {
