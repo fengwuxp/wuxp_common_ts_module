@@ -10,6 +10,10 @@
      启动
 
      （私服）在安装依赖之前要登录 npm login --registry  http://nexus.oaknt.com:18081/repository/oak_npm_group/
+            在发布模块之前要执行 npm adduser --registry http://nexus.oaknt.com:18081/repository/oak_npm_hosted/
+
+            npm i --loglevel=silly
+
 
      lerna bootstrap
      切记使用这个指令代替 npm install。默认使用npm安装，如果需要使用yarn或者cnpm可参考4.
