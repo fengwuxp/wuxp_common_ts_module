@@ -68,7 +68,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             fetchOptions.data = {
                 ...data,
                 ...sign
-            }
+            };
         }
 
 

@@ -23,7 +23,9 @@ export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions
      * @param options
      */
     protected handleFetchOptions = (options: FetchOptions) => {
+        options.headers = options.headers || {};
         const {contentType, data, method, queryPrams, url, headers} = options;
+
 
         if (method === ReqequestMethod.GET) {
             //处理查询参数
@@ -48,7 +50,7 @@ export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions
 
             if (headers[contentTypeName] == null) {
                 //默认以表单的形式提交数据
-                headers[contentType] = (contentType || MediaType.FORM_DATA);
+                headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
             }
         }
 

@@ -30,7 +30,7 @@ const setRouteList = function (appRoute: AppRoute) {
             path: `/${name}`,
             meta,
             component: (component as Component)
-        });
+        } as any);
     }
 };
 setRouteList(routes as any);

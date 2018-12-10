@@ -64,9 +64,9 @@ class TestApiSignatureStrategy implements SimpleApiSignatureStrategy {
         sign['clientId'] = this.clientId;
         sign['timestamp'] = new Date().getTime().toString();
         sign['channelCode'] = this.channelCode;
-        sign['sign'] = apiSign(fields, data, this.clientSecret,this.channelCode);
+        sign['sign'] = apiSign(fields, data, this.clientSecret, this.channelCode);
 
-        logger.debug("--签名结果->", sign);
+        // logger.debug("--签名结果->", sign);
         return sign;
     };
 
@@ -107,8 +107,12 @@ describe("test proxy api service", () => {
             logger.debug(e);
         });
 
-        testService.testQuery({memberId: 1});
+        testService.testQuery({memberId: 1}).then((data) => {
+            console.log(data);
+        }).catch((e) => {
+            console.log(e);
+        });
 
-        testService.deleteMember({memberId: 1});
+        // testService.deleteMember({memberId: 1});
     })
 });
