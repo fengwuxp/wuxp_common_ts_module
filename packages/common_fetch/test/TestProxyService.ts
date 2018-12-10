@@ -17,7 +17,7 @@ logger.level = 'debug';
 
 
 const routingMapping = {
-    member:"https://test.oaknt.com/api"
+    member: "https://test.oaknt.com/api"
 };
 
 class TestRestTemplateLoader extends AbstractRestTemplateLoader {
@@ -34,16 +34,53 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
             new FetchInterceptorExecutor([]));
         return restTemplate;
     };
+}
+
+
+class TestApiSignatureStrategy implements SimpleApiSignatureStrategy {
+
+    private clientId: string;
+
+    /**
+     * 签名秘钥
+     */
+    private clientSecret: string;
+
+
+    private channelCode: string;
+
+
+    constructor(clientId: string, clientSecret: string, channelCode: string) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.channelCode = channelCode;
+    }
+
+    sign = (fields: string[], data: (object | any)) => {
+
+        let sign = {};
+
+        //签名处理
+        sign['clientId'] = this.clientId;
+        sign['timestamp'] = new Date().getTime().toString();
+        sign['channelCode'] = this.channelCode;
+        sign['sign'] = apiSign(fields, data, this.clientSecret);
+
+        logger.debug("--签名结果->", sign);
+        return sign;
+    };
 
 
 }
+
 
 class TestProxyServiceExecutor extends DefaultProxyServiceExecutor {
 }
 
 const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
 
-const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate);
+const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate,
+    new TestApiSignatureStrategy("a", "b", "node"));
 
 const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
 //设置代理工厂
@@ -51,9 +88,10 @@ setProxyFactory(es6PoxyServiceFactory);
 
 
 import TestService from "./TestService";
+import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
+import {apiSign} from "./utils/ApiSginUtils";
 
 describe("test proxy api service", () => {
-
 
 
     test("test", () => {

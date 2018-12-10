@@ -7,11 +7,12 @@ import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver"
 import SimpleRequestHeaderResolver from "../../resolve/header/SimpleRequestHeaderResolver";
 import {FeignProxy} from "../feign/FeignProxy";
 import {ProxyApiService} from "../ProxyApiService";
+import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
 
 /**
  * 代理服务执行器
  */
-export interface ProxyServiceExecutor<T extends ProxyApiService=ProxyApiService> {
+export interface ProxyServiceExecutor<T extends ProxyApiService = ProxyApiService> {
 
     /**
      * 执行代理服务
@@ -31,14 +32,19 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
     //请求头解析
     protected requestHeaderResolver: RequestHeaderResolver;
 
+    //签名策略
+    protected apiSignatureStrategy: ApiSignatureStrategy;
+
     //加载器
     private restTemplateLoader: RestTemplateLoader;
 
 
     constructor(restTemplateLoader: RestTemplateLoader,
+                apiSignatureStrategy: ApiSignatureStrategy,
                 requestURLResolver?: RequestURLResolver,
                 requestHeaderResolver?: RequestHeaderResolver) {
         this.restTemplateLoader = restTemplateLoader;
+        this.apiSignatureStrategy = apiSignatureStrategy;
         this.requestHeaderResolver = requestHeaderResolver || new SimpleRequestHeaderResolver();
         this.requestURLResolver = requestURLResolver || new SimpleRequestURLResolver();
     }

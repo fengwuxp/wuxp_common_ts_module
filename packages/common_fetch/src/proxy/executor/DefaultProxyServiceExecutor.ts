@@ -33,7 +33,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         //请求requestMapping
-        const requestMapping = apiService.getServiceMethodConfig(methodName).requestMapping;
+        const {requestMapping, signature} = apiService.getServiceMethodConfig(methodName);
 
         //解析参数生成 options，并提交请求
         const fetchOptions = {
@@ -57,9 +57,18 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 //默认使用json
                 // fetchOptions.dataType = DataType.JSON;
             }
-
-
         }
+
+        if (signature) {
+            //签名处理
+            const sign = this.apiSignatureStrategy.sign(signature.fields, data);
+            options.data = {
+                ...data,
+                ...sign
+            }
+        }
+
+
         //获取请求template
         const restTemplate = this.getTemplate(apiService.feign);
 
