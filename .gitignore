@@ -10,6 +10,7 @@ package-lock.json
 yarn.lock
 lerna-debug.log
 *-debug.log
+*-error.log
 dist
 dist_web
 coverage

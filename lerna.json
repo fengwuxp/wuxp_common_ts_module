@@ -7,7 +7,7 @@
     "types/*"
   ],
   "version": "0.0.1",
-  "npmClient": "yarn",
+  "npmClient": "npm",
   "command": {
     "publish": {
       "skipGit": false,
