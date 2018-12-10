@@ -5,6 +5,7 @@ import {Signature} from "../src/annotations/security/Signature";
 import {DeleteMapping} from "../src/annotations/mapping/DeleteMapping";
 import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {GetMapping} from "../src/annotations/mapping/GetMapping";
+import {PostMapping} from "../src/annotations/mapping/PostMapping";
 
 
 /**
@@ -27,7 +28,7 @@ export default class TestService {
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})
-    @GetMapping({headers: {myHeader: "tk_{memberId}"}})
+    @PostMapping({headers: {myHeader: "tk_{memberId}"}})
     findMember: (
         request: {
             userName: string,

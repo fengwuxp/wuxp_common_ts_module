@@ -26,7 +26,7 @@ const cssLoader = ({resource}) => ({
         // //判断是否需要css module
         // modules: /\.module\.css/.test(resource),
         // localIdentName: '[name]__[local]___[hash:base64:5]',
-        // ident: "css-loader"
+        ident: "css-loader"
     }
 });
 
@@ -39,7 +39,7 @@ const postcssLoader = {
             autoprefixer(),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
         ],
-        // ident: "css-loader"
+        ident: "css-loader"
     }
 };
 
@@ -104,7 +104,7 @@ const webpackConfig: webpack.Configuration = {
                         options: {
                             sourceMap: true,
                             javascriptEnabled: true,
-                            modifyVars: getThemeConfig(),
+                            modifyVars: getThemeConfig()
                             // ident: "css-loader"
                         }
                     }
