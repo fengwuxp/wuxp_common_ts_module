@@ -20,8 +20,11 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         }
 
 
-        //解析参数
-        const data = args[0] || {};
+        //原始参数
+        const originalParameter = args[0] || {};
+
+        //解析参数，复制一份值
+        const data = {...originalParameter};
 
         const options: FetchOptions = args[1] || {};
 
@@ -61,7 +64,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         if (signature) {
             //签名处理
-            const sign = this.apiSignatureStrategy.sign(signature.fields, data);
+            const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter);
             fetchOptions.data = {
                 ...data,
                 ...sign

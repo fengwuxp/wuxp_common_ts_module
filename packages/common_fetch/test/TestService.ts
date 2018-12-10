@@ -22,7 +22,7 @@ export default class TestService {
     @Signature({fields: []})
     @RequestMapping({
         value: "testQuery",
-        method: ReqequestMethod.GET,
+        method: ReqequestMethod.POST,
     })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
@@ -35,11 +35,11 @@ export default class TestService {
         },
         options?: FetchOptions) => Promise<any>;
 
-    @Signature({fields: ["memberId"]})
+    @Signature({fields: ["userName"]})
     @DeleteMapping({value: "delete_member/{memberId}"})
     deleteMember: (
         request: {
-            memberId: number
+            memberId: number,
         },
         options?: FetchOptions) => Promise<number>;
 }
