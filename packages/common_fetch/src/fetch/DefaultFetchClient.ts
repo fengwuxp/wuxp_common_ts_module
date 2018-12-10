@@ -23,13 +23,14 @@ export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions
      * @param options
      */
     protected handleFetchOptions = (options: FetchOptions) => {
-        options.headers = options.headers || {};
-        const {contentType, data, method, queryPrams, url, headers} = options;
 
+        options.headers = options.headers || {};
+
+        const {contentType, data, method, queryPrams, url, headers} = options;
 
         if (method === ReqequestMethod.GET) {
             //处理查询参数
-            let queryParams = {
+            const queryParams = {
                 ...data,
                 ...queryPrams
             };

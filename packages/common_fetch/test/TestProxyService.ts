@@ -11,6 +11,11 @@ import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
 import {setProxyFactory} from "../src/annotations/Feign";
 import * as log4js from "log4js";
 import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServiceExecutor";
+import TestService from "./TestService";
+import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
+import {apiSign} from "./utils/ApiSginUtils";
+import {ReqequestMethod} from "../src/constant/ReqequestMethod";
+import {MediaType} from "../src/constant/http/MediaType";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -29,7 +34,10 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
         }
 
-        const restTemplate = new DefaultRestTemplate({}, new DefaultApiRoutingStrategy(routingMapping),
+        const restTemplate = new DefaultRestTemplate({
+                method: ReqequestMethod.POST,
+                consumes: [MediaType.JSON]
+            }, new DefaultApiRoutingStrategy(routingMapping),
             new DefaultFetchClient(new WebFetchAdapter()),
             new FetchInterceptorExecutor([]));
         return restTemplate;
@@ -87,10 +95,6 @@ const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
 setProxyFactory(es6PoxyServiceFactory);
 
 
-import TestService from "./TestService";
-import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
-import {apiSign} from "./utils/ApiSginUtils";
-
 describe("test proxy api service", () => {
 
 
@@ -98,14 +102,14 @@ describe("test proxy api service", () => {
 
 
         const testService = new TestService();
-        testService.findMember({
-            userName: "12",
-            memberId: 2
-        }).then(() => {
-
-        }).catch((e) => {
-            logger.debug(e);
-        });
+        // testService.findMember({
+        //     userName: "12",
+        //     memberId: 2
+        // }).then(() => {
+        //
+        // }).catch((e) => {
+        //     logger.debug(e);
+        // });
 
         testService.testQuery({memberId: 1}).then((data) => {
             console.log(data);
@@ -113,6 +117,6 @@ describe("test proxy api service", () => {
             console.log(e);
         });
 
-        testService.deleteMember({memberId: 1});
+        // testService.deleteMember({memberId: 1});
     });
 });

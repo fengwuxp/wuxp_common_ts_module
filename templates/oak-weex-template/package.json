@@ -11,7 +11,7 @@
     "build:native-prod": "webpack --config webpack-config/webpack.native.config.prod.js --progress --colors",
     "build:native-release": "cross-env NATIVE_RELEASE=ANDROID_AND_IOS NOT_USE_DEV=1 webpack --config webpack-config/webpack.native.config.prod.js --progress --colors",
     "build:two-prod": "npm run build:web-prod & npm run build:native-prod --progress --colors",
-    "npm_i": "npm i weex_components@0.0.1",
+    "npm_i": "npm i",
     "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
   "author": "wuxp",

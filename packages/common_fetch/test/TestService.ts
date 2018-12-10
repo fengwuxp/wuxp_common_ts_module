@@ -19,11 +19,11 @@ import {GetMapping} from "../src/annotations/mapping/GetMapping";
 export default class TestService {
 
 
-    @Signature({fields: []})
-    @RequestMapping({
-        value: "testQuery",
-        method: ReqequestMethod.POST,
-    })
+    // @Signature({fields: []})
+    // @RequestMapping({
+    //     value: "testQuery",
+    //     method: ReqequestMethod.POST,
+    // })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})
