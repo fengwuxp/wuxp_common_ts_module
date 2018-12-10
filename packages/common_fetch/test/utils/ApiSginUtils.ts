@@ -15,8 +15,7 @@ export const apiSign = (fields: Array<string>, params: any, clientSecret: string
     if (fields != null) {
         fields.sort().forEach(function (item) {
             let param = params[item.toString()];
-            if (param==null || (param && param.trim().length === 0)) {
-                // console.warn("参与签名的参数：" + item + " 未传入!");
+            if (param == null) {
                 throw new Error("参与签名的参数：" + item + " 未传入或值无效!");
             }
             value += `${item}=${param}&`;

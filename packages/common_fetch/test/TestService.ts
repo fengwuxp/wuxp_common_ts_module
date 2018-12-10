@@ -35,7 +35,7 @@ export default class TestService {
         },
         options?: FetchOptions) => Promise<any>;
 
-    @Signature({fields: ["userName"]})
+    @Signature({fields: ["memberId"]})
     @DeleteMapping({value: "delete_member/{memberId}"})
     deleteMember: (
         request: {
