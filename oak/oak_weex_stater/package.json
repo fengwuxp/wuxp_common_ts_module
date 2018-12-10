@@ -27,16 +27,10 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "common_test": "^0.0.1",
-    "@types/weex": "^0.0.1",
-    "common_weex": "^0.0.1",
-    "common_core": "^0.0.1",
-    "common_fetch": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_starter": "^0.0.1",
-    "common_style": "^0.0.1",
-    "oak_weex_common": "^0.0.1"
+    "@types/weex": "^0.0.1"
   },
   "dependencies": {
-    "weex_starter": "^0.0.1"
+    "weex_starter": "^0.0.1",
+    "oak_weex_common": "^0.0.1"
   }
 }

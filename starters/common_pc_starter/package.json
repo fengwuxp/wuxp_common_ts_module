@@ -16,5 +16,6 @@
   "main": "index.js",
   "scripts": {},
   "author": "wuxp",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "801363900db8e6cfdb3ebb374a27a3f01facf74f"
 }

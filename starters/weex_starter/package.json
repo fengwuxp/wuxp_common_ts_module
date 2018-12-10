@@ -50,5 +50,6 @@
     "weex-vue-precompiler": "^0.1.23.bate",
     "weex-vue-render": "^1.0.33",
     "weex_components": "^0.0.1"
-  }
+  },
+  "gitHead": "801363900db8e6cfdb3ebb374a27a3f01facf74f"
 }

@@ -1,4 +1,4 @@
-import {FetchOptions, FetchResponse} from "../FetchOptions";
+import {FetchContext, FetchOptions, FetchResponse} from "../FetchOptions";
 import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";
 import {FetchClient} from "../fetch/FetchClient";
 import {ReqequestMethod} from "../constant/ReqequestMethod";
@@ -138,7 +138,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         options.url = this.routingStrategy.route(options.url);
 
 
-        //enable
+
 
         return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {

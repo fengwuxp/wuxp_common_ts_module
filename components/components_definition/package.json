@@ -26,5 +26,6 @@
     "@types/node": "^9.4.6",
     "common_core": "^0.0.1",
     "typescript": "^2.8.3"
-  }
+  },
+  "gitHead": "801363900db8e6cfdb3ebb374a27a3f01facf74f"
 }

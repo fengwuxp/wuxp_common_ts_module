@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "author": "wuxp",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
@@ -20,8 +23,5 @@
   },
   "config": {
     "version": "0.0.1"
-  },
-  "dependencies": {
-
   }
 }

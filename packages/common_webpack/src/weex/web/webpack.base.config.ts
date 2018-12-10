@@ -10,7 +10,8 @@ const {VueLoaderPlugin} = require('vue-loader');
 
 const bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
-    raw: true
+    raw: true,
+    exclude: /\.css$/
 });
 
 const postcssPluginWeex = require('postcss-plugin-weex');
@@ -38,8 +39,8 @@ const postcssLoader = {
             //使用.browserslistrc的统一配置
             autoprefixer(),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
-        ],
-        ident: "css-loader"
+        ]
+        // ident: "css-loader"
     }
 };
 
@@ -83,59 +84,69 @@ const webpackConfig: webpack.Configuration = {
             awesomeTypescriptLoader,
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    cssLoader,
-                    postcssLoader
-                ]
+                use: ExtractTextWebpackPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "style-loader"
+                        },
+                        cssLoader,
+                        postcssLoader
+
+                    ]
+                })
             },
             {
                 test: /\.less$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    cssLoader,
-                    postcssLoader,
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: true,
-                            javascriptEnabled: true,
-                            modifyVars: getThemeConfig()
-                            // ident: "css-loader"
+                use: ExtractTextWebpackPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "style-loader"
+                        },
+                        cssLoader,
+                        postcssLoader,
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: true,
+                                javascriptEnabled: true,
+                                modifyVars: getThemeConfig()
+                                // ident: "css-loader"
+                            }
                         }
-                    }
-                ]
+                    ]
+                })
             },
             {
                 test: /\.s[c|a]ss$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    cssLoader,
-                    postcssLoader,
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            // ident: "css-loader"
+                use: ExtractTextWebpackPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "style-loader"
+                        },
+                        cssLoader,
+                        postcssLoader,
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                // ident: "css-loader"
+                            }
                         }
-                    }
-                ]
+                    ]
+                })
             }
         ]
     },
 
     plugins: [
         new VueLoaderPlugin(),
-        bannerPlugin,
         new ExtractTextWebpackPlugin({
             filename: "[name].css",
             allChunks: true
         }),
+        bannerPlugin
     ],
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.

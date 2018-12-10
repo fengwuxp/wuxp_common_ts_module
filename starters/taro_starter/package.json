@@ -26,5 +26,6 @@
     "@types/weixin": "0.0.1",
     "common_fetch": "^0.0.1",
     "common_starter": "^0.0.1"
-  }
+  },
+  "gitHead": "801363900db8e6cfdb3ebb374a27a3f01facf74f"
 }

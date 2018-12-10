@@ -6,11 +6,10 @@
     "types/*"
   ],
   "version": "0.0.1",
-  "commands": {
+  "command": {
     "publish": {
       "skipGit": false,
       "allowBranch": "master"
     }
-  },
-  "lerna": "3.6.0"
+  }
 }

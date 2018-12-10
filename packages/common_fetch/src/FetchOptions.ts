@@ -92,7 +92,7 @@ export interface FetchResponse<T = any> {
  */
 export interface FetchContext<T = any> {
 
-    [key: string]: any
+    // [key: string]: any
 
 
     /**

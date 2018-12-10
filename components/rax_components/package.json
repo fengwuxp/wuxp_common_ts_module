@@ -30,5 +30,6 @@
     "@types/weex": "^0.0.1",
     "common_view": "^0.0.1",
     "rax": "^0.6.4"
-  }
+  },
+  "gitHead": "801363900db8e6cfdb3ebb374a27a3f01facf74f"
 }

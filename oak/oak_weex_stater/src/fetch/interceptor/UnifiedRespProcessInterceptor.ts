@@ -16,17 +16,24 @@ export default class UnifiedRespProcessInterceptor extends AbstractFetchIntercep
 
         if (resp.code !== 0) {
 
+            //TODO 加入错误提示
+
             return Promise.reject(resp.message);
         }
 
-        let oldTransform = options.transformResponse;
+        const oldTransform = options.transformResponse;
 
         //响应数据转换
         options.transformResponse = (response: FetchResponse) => {
+            let result = null;
             if (typeof oldTransform == "function") {
-                return oldTransform(resp as any) as any;
+                //将原始响应传递给 transformResponse
+                result = oldTransform(resp as any) as any;
+            } else {
+                //默认返回服务中的data
+                result = response.data;
             }
-            return resp;
+            return result;
         };
 
         return data;
