@@ -62,6 +62,14 @@ export interface RestTemplateConfig {
     produces?: string[];
 }
 
+const defaultTemplateConfig: RestTemplateConfig = {
+    method: ReqequestMethod.POST,
+    consumes: [MediaType.JSON],
+    produces: [MediaType.JSON],
+    timeout: 10 * 1000,
+    headers: {}
+};
+
 
 /**
  * 抽象的 rest template实现
@@ -90,7 +98,10 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
 
     constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, fetchClient: FetchClient, interceptorExecutor: FetchInterceptorExecutor) {
-        this.templateConfig = templateConfig;
+        this.templateConfig = {
+            ...templateConfig,
+            ...defaultTemplateConfig
+        };
         this.routingStrategy = routingStrategy;
         this.fetchClient = fetchClient;
         this.interceptorExecutor = interceptorExecutor;
@@ -118,6 +129,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
         if (!options.dataType == null) {
             //默认使用json
+            //let mediaType = this.templateConfig.produces[0] || MediaType.JSON;
             options.dataType = DataType.JSON;
         }
 

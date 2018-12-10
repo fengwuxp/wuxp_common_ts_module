@@ -36,7 +36,10 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
         const restTemplate = new DefaultRestTemplate({
                 method: ReqequestMethod.POST,
-                consumes: [MediaType.JSON]
+                consumes: [MediaType.JSON],
+                produces: [MediaType.JSON],
+                timeout: 10 * 1000,
+                headers: {}
             }, new DefaultApiRoutingStrategy(routingMapping),
             new DefaultFetchClient(new WebFetchAdapter()),
             new FetchInterceptorExecutor([]));
