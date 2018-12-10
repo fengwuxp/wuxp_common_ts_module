@@ -64,7 +64,7 @@ class TestApiSignatureStrategy implements SimpleApiSignatureStrategy {
         sign['clientId'] = this.clientId;
         sign['timestamp'] = new Date().getTime().toString();
         sign['channelCode'] = this.channelCode;
-        sign['sign'] = apiSign(fields, data, this.clientSecret);
+        sign['sign'] = apiSign(fields, data, this.clientSecret,this.channelCode);
 
         logger.debug("--签名结果->", sign);
         return sign;
