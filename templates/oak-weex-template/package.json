@@ -18,7 +18,6 @@
   "license": "ISC",
   "dependencies": {
     "weex_components": "0.0.1",
-    "weex_starter": "0.0.1",
     "oak_weex_stater": "0.0.1"
   }
 }
