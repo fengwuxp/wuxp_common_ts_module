@@ -7,7 +7,9 @@ build
 *.properties
 node_modules
 package-lock.json
+yarn.lock
 lerna-debug.log
+*-debug.log
 dist
 dist_web
 coverage
