@@ -1,6 +1,7 @@
 {
   "name": "oak_weex_common",
   "version": "0.0.1",
+  "description": "oak weex common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -12,7 +13,6 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-  "description": "oak weex common",
   "main": "index.js",
   "scripts": {
     "npm_i": "npm i",
@@ -27,6 +27,5 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "common_test": "^0.0.1"
-  },
-  "dependencies": {}
+  }
 }

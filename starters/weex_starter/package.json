@@ -42,7 +42,6 @@
     "vue-router": "^3.0.1",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
-    "weex-devtool": "^0.3.8",
     "weex-loader": "~0.7.12",
     "weex-ui": "^0.6.7",
     "weex-vue-framework": "^2.5.16-weex.5",
@@ -51,5 +50,7 @@
     "weex-vue-render": "^1.0.33",
     "weex_components": "^0.0.1"
   },
-  "gitHead": "c8fa868e9bf6b044bec4cf5f246b6a607711f3b5"
+  "optionalDependencies": {
+    "weex-devtool": "^0.3.8"
+  }
 }

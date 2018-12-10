@@ -21,3 +21,8 @@
         npm config set  xxxx (例如：http://nexus.oaknt.com:18081/repository/oak_npm_group/)
 
         可以通过npm config list 来查看所有配置
+
+
+##### node 安装失败的处理 参见[整理 node-sass 安装失败的原因及解决办法](https://segmentfault.com/a/1190000010984731)
+
+##### npm的包依赖管理 [npm 依赖包管理](https://blog.csdn.net/u011584949/article/details/80449802)

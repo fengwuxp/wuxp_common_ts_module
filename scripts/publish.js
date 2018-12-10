@@ -8,10 +8,7 @@ if (version) {
     //  "publish": "lerna publish --skip-git",
     execSync(
         'lerna publish --skip-git --repo-version=' + version, {
-            stdio: 'inherit',
-            ignoreChanges: [
-                "templates/*"
-            ]
+            stdio: 'inherit'
         }
     );
 } else {
