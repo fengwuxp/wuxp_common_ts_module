@@ -47,11 +47,10 @@ export default class DefaultFetchClient extends AbstractFetchClient<FetchOptions
                 options.data = JSON.stringify(data);
             } else {
             }
-
-            if (headers[contentTypeName] == null) {
-                //默认以表单的形式提交数据
-                headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
-            }
+        }
+        if (headers[contentTypeName] == null) {
+            //默认以表单的形式提交数据
+            headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
         }
 
         console.debug("发起请求", options);

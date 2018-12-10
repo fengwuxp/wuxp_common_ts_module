@@ -113,6 +113,6 @@ describe("test proxy api service", () => {
             console.log(e);
         });
 
-        // testService.deleteMember({memberId: 1});
-    })
+        testService.deleteMember({memberId: 1});
+    });
 });
