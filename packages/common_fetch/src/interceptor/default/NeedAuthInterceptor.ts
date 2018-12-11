@@ -52,23 +52,15 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
 }
 
-interface SyncLock<T = any> {
-    /**
-     * 锁定
-     */
-    lockExecute: () => Promise<T>;
 
-    /**
-     * 解锁
-     */
-    unLock: () => Promise<T>;
-}
-
-export interface SyncAuthHelper<T = any> extends SyncLock<T> {
+export interface SyncAuthHelper<T = any> {
 
 
     /**
      * 请求参数信息增强，加上鉴权信息
+     * 改方法实现时可以考虑在本地鉴权信息失效时，同步去服务端请求新的的token是，进行同步阻塞，保证后面的请求得到相同的token
+     * 同步阻塞实现 @see {@link /test/TestSyncAuthHelper.test.ts}
+     * 也可在服务端做多个版本的token支持
      */
     requestParamsEnhance: (params: FetchOptions) => Promise<boolean>;
 

@@ -1,3 +1,3 @@
-import MemberSpaceService from "@services/member/MemberSpaceService";
+import MemberSpaceService from "./MemberSpaceService";
 
-export default MemberSpaceService;
+export default new MemberSpaceService()

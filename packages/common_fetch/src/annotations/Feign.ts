@@ -56,13 +56,25 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
             ...feignOptions
         };
 
-        return class extends clazz implements FeignProxy {
+        /**
+         * 返回一个实现了FeignProxy接口的匿名类
+         */
+        return  class extends clazz implements FeignProxy {
+
 
             constructor() {
                 super();
+                //通过代理工厂创建实例
                 return proxyFactory.factory(this);
             }
 
+            serviceName: string = feign.value || clazz.name;
+
+
+            /**
+             * feign代理的相关配置
+             */
+            feign: FeignOptions = feign;
 
             /**
              * 接口方法配置列表
@@ -70,11 +82,6 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
              * value 接口方法配置
              */
             protected configs: Map<string, FeignProxyApiServiceMethodConfig> = new Map<string, FeignProxyApiServiceMethodConfig>();
-
-            /**
-             * feign代理的相关配置
-             */
-            protected _feign: FeignOptions = feign;
 
 
             /**
@@ -95,10 +102,6 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
                 this.configs.set(serviceMethodName, config);
             };
 
-
-            get feign(): FeignOptions {
-                return this._feign;
-            }
 
         }
     }

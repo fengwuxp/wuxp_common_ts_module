@@ -25,7 +25,16 @@ export interface FeignProxyApiServiceMethodConfig {
  */
 export interface FeignProxy extends ProxyApiService {
 
-    feign: FeignOptions
+    /**
+     * 服务方法的名称或者是访问路径
+     */
+    serviceName: string;
+
+    /**
+     * feign的代理配置
+     */
+    feign: FeignOptions;
+
     /**
      * 获取获取接口方法的配置
      * @param serviceMethod  服务方法名称

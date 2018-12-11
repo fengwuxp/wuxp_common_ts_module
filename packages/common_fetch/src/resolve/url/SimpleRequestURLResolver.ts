@@ -40,7 +40,8 @@ const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOption
 
     const apiModule = feignOptions.apiModule;
 
-    return `@${apiModule}/${(feignOptions.value || apiService.constructor.name || apiService['serviceName'])}`;
+    //使用serviceName serviceName的值=feignOptions.value或类的名称
+    return `@${apiModule}/${apiService.serviceName}`;
 };
 
 /**

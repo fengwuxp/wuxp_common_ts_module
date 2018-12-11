@@ -17,11 +17,10 @@ interface MemberSpaceService {
 
 }
 
-@Feign()
+@Feign({
+    value: "MemberSpaceService"
+})
 export default class MemberSpaceServiceImpl implements MemberSpaceService {
-
-    public serviceName: string = "MemberSpaceService";
-
 
     queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]> = undefined;
 
