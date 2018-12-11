@@ -5,13 +5,13 @@ export enum ResponseType {
 
     JSON = "JSON",
 
-    // JSONP = "JSONP",
+    JSONP = "JSONP",
 
     XML = "XML",
 
     HTML = "HTML",
 
-    // SCRIPT="SCRIPT",
+    SCRIPT="SCRIPT",
 
     TEXT = "TEXT",
 

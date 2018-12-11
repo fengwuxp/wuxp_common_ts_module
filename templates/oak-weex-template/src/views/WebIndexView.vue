@@ -14,7 +14,7 @@
     import FlexView from "weex_components/src/layout/view/flex-view";
     import NarBar from "weex_components/src/layout/navbar/nav-bar";
     import AppMixin from "weex_starter/src/mixins/AppMixin";
-    import MemberSpaceService from "../services/MemberSpaceService";
+    import MemberSpaceService from "../services/member/";
 
 
     export default {
@@ -40,9 +40,9 @@
             }
         },
         beforeMount() {
-            const memberSpaceService = new MemberSpaceService();
-            console.log(memberSpaceService);
-            memberSpaceService.queryLikeStore({
+            // const memberSpaceService = new MemberSpaceService();
+            // console.log(memberSpaceService);
+            MemberSpaceService.queryLikeStore({
                 memberId: 1
             }).then(() => {
 
