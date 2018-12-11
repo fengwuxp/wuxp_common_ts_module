@@ -41,7 +41,7 @@
         },
         beforeMount() {
             const memberSpaceService = new MemberSpaceService();
-            console.log(MemberSpaceService);
+            console.log("memberSpaceService", memberSpaceService);
             memberSpaceService.queryLikeStore({
                 memberId: 1
             }).then(() => {
@@ -53,6 +53,7 @@
             }).finally(() => {
                 console.log("3")
             })
+
         }
     }
 </script>

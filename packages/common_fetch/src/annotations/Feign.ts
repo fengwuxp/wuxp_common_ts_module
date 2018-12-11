@@ -24,14 +24,13 @@ type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
 let proxyFactory: ProxyServiceFactory = {
     factory() {
-        // throw  new Error("this is empty factory");
+        throw  new Error("this is empty factory，please set");
         // console.error("this is empty factory")
-        return null;
+        // return null;
     }
 };
 
 export function setProxyFactory(factory: ProxyServiceFactory) {
-    console.log("set proxy factory");
     proxyFactory = factory;
 }
 
@@ -59,7 +58,7 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
         /**
          * 返回一个实现了FeignProxy接口的匿名类
          */
-        return  class extends clazz implements FeignProxy {
+        return class extends clazz implements FeignProxy {
 
 
             constructor() {

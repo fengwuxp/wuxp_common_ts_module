@@ -55,9 +55,9 @@
             toIndex() {
                 this.toView("index").then(() => {
                     console.log("跳转完成", isAndroid);
-                    // if (isAndroid) {
-                    //     this.back();
-                    // }
+                    if (isAndroid) {
+                        this.back();
+                    }
                 });
             }
         },
