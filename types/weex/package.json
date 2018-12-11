@@ -23,6 +23,5 @@
   ],
   "types": "./index.d.ts",
   "author": "wuxp",
-  "license": "BSD-3-Clause",
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  "license": "BSD-3-Clause"
 }

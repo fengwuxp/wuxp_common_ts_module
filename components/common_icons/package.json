@@ -28,6 +28,5 @@
     "common_react": "^0.0.1",
     "common_weex": "^0.0.1",
     "vue": "^2.5.17"
-  },
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  }
 }

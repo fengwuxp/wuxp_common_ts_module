@@ -31,6 +31,5 @@
   },
   "dependencies": {
     "common_core": "^0.0.1"
-  },
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  }
 }

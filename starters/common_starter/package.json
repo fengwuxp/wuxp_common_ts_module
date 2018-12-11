@@ -80,6 +80,5 @@
     "immutable": "^4.0.0-rc.10",
     "typescript": "^3.2.2",
     "typings": "^2.1.1"
-  },
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  }
 }

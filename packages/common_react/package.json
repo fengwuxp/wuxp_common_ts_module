@@ -37,6 +37,5 @@
     "react-router": "^4.4.0-beta.6",
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.4.0-beta.6"
-  },
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  }
 }

@@ -34,6 +34,5 @@
     "common_utils": "^0.0.1",
     "history": "^4.7.2",
     "querystring": "^0.2.0"
-  },
-  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
+  }
 }
