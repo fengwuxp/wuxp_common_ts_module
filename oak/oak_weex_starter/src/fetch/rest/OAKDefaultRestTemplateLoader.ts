@@ -20,7 +20,7 @@ import UnifiedRespProcessInterceptor from "../interceptor/UnifiedRespProcessInte
 
 const routeMapping = {};
 
-routeMapping[defaultApiModuleName] = `${appConfig.httpProtocol}://${appConfig.apiDomain}/api`;
+routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
 
 const interceptorList = [
     new NeedProgressBarInterceptor(new OAKFetchProgressBar()),

@@ -39,7 +39,7 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
         context.appRouter.generateBundleJsURL = (uri: string, main: boolean) => {
 
             //自定义的
-            return `weex://${packageName}/${main ? 'main' : 'page'}/${context.appConfig.resourceDomain}/weex/${context.appConfig.resourceConfig.remoteDeploymentDirectory}/${uri}`;
+            return `weex://${packageName}/${main ? 'main' : 'page'}/${context.appConfig.staticResourcesRootPath}/weex/${context.appConfig.resourceConfig.remoteDeploymentDirectory}/${uri}`;
         };
 
 

@@ -12,17 +12,17 @@ export interface AppConfig {
     /**
      * http 协议
      */
-    httpProtocol: string | "http" | "https";
+    httpProtocol: | "http" | "https";
 
     /**
-     * api接口域名
+     * api入口地址
      */
-    apiDomain: string;
+    apiEntryAddress: string;
 
     /**
-     * 静态资源的域名，如果没有则使用api域名
+     * 静态资源的根路径，如果没有则使用apiEntryAddress
      */
-    resourceDomain?: string;
+    staticResourcesRootPath?: string;
 
     /**
      * 文件上传地址
@@ -32,12 +32,12 @@ export interface AppConfig {
     /**
      * 布局配置
      */
-    layoutConfig:LayoutConfig;
+    layoutConfig: LayoutConfig;
 
     /**
      *资源配置
      */
-    resourceConfig:ResourceConfig;
+    resourceConfig: ResourceConfig;
 
 
 }

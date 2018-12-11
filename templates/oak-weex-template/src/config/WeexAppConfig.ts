@@ -73,18 +73,18 @@ const resourceConfig: ResourceConfig = {
 
 
 };
-
+const httpProtocol = "http";
 export const appConfig: AppConfig = {
 
-    apiDomain: process.env.API_DOMAIN,
+    apiEntryAddress: process.env.API_ROOT_PATH,
 
-    httpProtocol: "http",
+    httpProtocol,
 
     layoutConfig,
 
     resourceConfig,
 
-    resourceDomain: "test.meazoo.com",
+    staticResourcesRootPath: process.env.STATIC_RESOURCE_ROOT_PATH,
 
     upLoadFileURL: ""
 

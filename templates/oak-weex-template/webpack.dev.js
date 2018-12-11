@@ -18,10 +18,13 @@ const proxyTarget = `http://${DEV_API_DOMAIN}/api/`;
  */
 const proxyServerWebContext = 'api';
 
+//移除掉最后一个插件，即DefinePlugin
+config.plugins.pop();
 config.plugins.push(
     new webpack.DefinePlugin({
         'process.env': {
-            API_DOMAIN: "/",
+            API_DOMAIN: JSON.stringify(`/api`),
+            STATIC_RESOURCE_ROOT_PATH: JSON.stringify(`http://${DEV_API_DOMAIN}/weex`)
         }
     })
 );
