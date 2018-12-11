@@ -3,16 +3,18 @@ import {ProxyServiceExecutor} from "common_fetch/src/proxy/executor/ProxyService
 import {setProxyFactory} from "common_fetch/src/annotations/Feign";
 import Es5PoxyServiceFactory from "common_fetch/src/proxy/factory/Es5PoxyServiceFactory";
 import {FetchFeignProxyInitializer} from "weex_starter/src/fetch/FetchFeignProxyInitializer";
-
+import OAKDefaultRestTemplateLoader from "./rest/OAKDefaultRestTemplateLoader";
+import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
+import OakApiSignatureStrategy from "./sign/OakApiSignatureStrategy";
 
 
 export default class DefaultFetchFeignProxyInitializer implements FetchFeignProxyInitializer {
 
     // RestTemplateLoader class 对象
-    public static RestTemplateLoader: any = null;
+    // public static RestTemplateLoader: any = null;
 
     // RestTemplateLoader class 对象
-    public static ProxyServiceExecutor: any = null;
+    // public static ProxyServiceExecutor: any = null;
 
     protected initStatus: boolean = false;
 
@@ -22,9 +24,11 @@ export default class DefaultFetchFeignProxyInitializer implements FetchFeignProx
         }
         this.initStatus = true;
 
-        const restTemplate: RestTemplateLoader = new DefaultFetchFeignProxyInitializer.RestTemplateLoader();
+        const templateLoader: RestTemplateLoader = new OAKDefaultRestTemplateLoader();
 
-        const proxyServiceExecutor: ProxyServiceExecutor = new DefaultFetchFeignProxyInitializer.ProxyServiceExecutor(restTemplate);
+        const proxyServiceExecutor: ProxyServiceExecutor = new DefaultProxyServiceExecutor(
+            templateLoader, new
+            OakApiSignatureStrategy());
 
         const es6PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
 

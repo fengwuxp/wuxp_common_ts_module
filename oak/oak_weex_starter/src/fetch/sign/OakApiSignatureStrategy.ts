@@ -1,6 +1,6 @@
 import {SimpleApiSignatureStrategy} from "common_fetch/src/signature/ApiSignatureStrategy";
-import {oakEnv} from "../../oak/OAKEnvVar";
-import {isAndroid, isWeb} from "../../../../../packages/common_weex/src/constant/WeexEnv";
+import {oakEnv} from "../../env/OAKEnvVar";
+import {isAndroid, isWeb} from "common_weex/src/constant/WeexEnv";
 
 const md5 = require("md5");
 

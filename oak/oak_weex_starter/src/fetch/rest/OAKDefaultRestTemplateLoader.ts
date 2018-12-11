@@ -11,8 +11,8 @@ import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
 import NeedProgressBarInterceptor from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
 import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
 
-// @ts-ignore
-import {appConfig} from '../../../../src/config/WeexAppConfig';
+//@ts-ignore
+import {appConfig} from '../../../../../src/config/WeexAppConfig';
 import OAKFetchProgressBar from "../OAKFetchProgressBar";
 
 import OAKSimpleSyncAuthHelper from "../OAKSimpleSyncAuthHelper";

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "oak_weex_common": "^0.0.1",
-    "weex_starter": "^0.0.1"
+    "weex_starter": "^0.0.1",
+    "md5": "^2.2.1"
   }
 }

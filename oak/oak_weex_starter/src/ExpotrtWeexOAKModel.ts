@@ -1,6 +1,4 @@
-import {WeexModule} from "../../../types/weex";
-
-
+import {WeexModule} from "weex";
 
 
 const broadcast: WeexModule = weex.requireModule("broadcast");  //自定义广播对象

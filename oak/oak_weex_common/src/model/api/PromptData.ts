@@ -1,4 +1,4 @@
-import {PromptType} from "../enums/PromptType";
+import {PromptType} from "../../enums/PromptType";
 
 /**
  * 提示数据
