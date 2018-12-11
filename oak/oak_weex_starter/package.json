@@ -1,5 +1,5 @@
 {
-  "name": "oak_weex_stater",
+  "name": "oak_weex_starter",
   "version": "0.0.1",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -12,7 +12,7 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-  "description": "oak weex stater",
+  "description": "oak weex starter",
   "main": "index.js",
   "scripts": {
     "npm_i": "npm i",

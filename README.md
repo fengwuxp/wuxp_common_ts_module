@@ -3,9 +3,9 @@
 
      1：需要安装nodejs环境，lerna 以及yarn
 
-- [node_installation](./docs/node_installation.md)
-- [lerna_installation](./docs/lerna_installation.md)
-- [yarn_installation](./docs/yarn_installation.md)
+- [node installation](./docs/node_installation.md)
+- [lerna installation](./docs/lerna_installation.md)
+- [yarn installation](./docs/yarn_installation.md)
 
 #### common typescript module
 
