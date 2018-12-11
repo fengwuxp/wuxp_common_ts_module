@@ -5,7 +5,7 @@ const pathTo = require('path');
 const chalk = require('chalk');
 const port = 9088;
 const {DEV_API_DOMAIN} = require('./webpack-config/WebpackConfig');
-
+const {rewriteCooke} = require('common_webpack/lib/utils/DevProxyRewriteCookie');
 /**
  * 接口请求被代理的入口地址
  * @type {string}
@@ -38,24 +38,10 @@ config.devServer = {
             pathRewrite: {'^/api': '/'},
             changeOrigin: true,
             secure: false,
-            //重写cookie
+            //代理结果响应处理
             onProxyRes: function (proxyRes, req, res) {
-                // console.log("重写cookie");
-                let cookies = proxyRes.headers['set-cookie'];
-                let cookieRegex = new RegExp(`Path=\\/${proxyServerWebContext}\\/`, "i");
-                // let cookieRegex = /Path=\/udf\//i;
-                //修改cookie Path
-                if (cookies) {
-                    let newCookie = cookies.map(function (cookie) {
-                        if (cookieRegex.test(cookie)) {
-                            return cookie.replace(cookieRegex, 'Path=/');
-                        }
-                        return cookie;
-                    });
-                    //修改cookie path
-                    delete proxyRes.headers['set-cookie'];
-                    proxyRes.headers['set-cookie'] = newCookie;
-                }
+                //重写cookie
+                rewriteCooke(proxyRes, req, res)(proxyServerWebContext);
             }
         }
 

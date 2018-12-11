@@ -83,9 +83,6 @@ var webpackConfig = {
                 use: ExtractTextWebpackPlugin.extract({
                     fallback: "style-loader",
                     use: [
-                        {
-                            loader: "style-loader"
-                        },
                         cssLoader,
                         postcssLoader
                     ]
@@ -96,9 +93,6 @@ var webpackConfig = {
                 use: ExtractTextWebpackPlugin.extract({
                     fallback: "style-loader",
                     use: [
-                        {
-                            loader: "style-loader"
-                        },
                         cssLoader,
                         postcssLoader,
                         {
