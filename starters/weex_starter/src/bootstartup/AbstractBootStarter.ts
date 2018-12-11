@@ -1,7 +1,6 @@
-// @ts-ignore
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
-// @ts-ignore
+import appConfigRegistry, {AppConfigRegistry} from "common_config/src/app/AppConfigRegistry";
 import {AppConfig} from "common_config/src/app/AppConfig";
+
 //约定导入 app配置
 // @ts-ignore
 import {appConfig} from '../../../../src/config/WeexAppConfig';
@@ -12,7 +11,6 @@ import AppRouter from "../route/AppRouter";
 
 import simpleAppSessionManager from "../session/SimpleAppSessionManager";
 import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
-import {Registry} from "common_core/src/registry/Registry";
 
 
 export interface WeexAppContext {
@@ -21,7 +19,7 @@ export interface WeexAppContext {
 
     appConfig: AppConfig;
 
-    appRegistry: Registry<AppConfig>
+    appRegistry: AppConfigRegistry
 }
 
 /**
@@ -32,10 +30,13 @@ export default abstract class AbstractBootStarter<T extends WeexAppContext> impl
     protected static appContext: WeexAppContext = null;
 
 
-    startup = (...args): Promise<T> => {
+    abstract startup: (...args) => (void | Promise<T>);
+
+
+    protected baseStartup = (...args): Promise<T> => {
         if (AbstractBootStarter.appContext == null) {
             //初始化app 配置
-            AppConfigRegistry.register(appConfig);
+            appConfigRegistry.register(appConfig);
 
             //注册路由
             AppRouter.registerRouters(route);
@@ -44,7 +45,7 @@ export default abstract class AbstractBootStarter<T extends WeexAppContext> impl
 
             AbstractBootStarter.appContext = {
                 appRouter: AppRouter,
-                appRegistry: AppConfigRegistry,
+                appRegistry: appConfigRegistry,
                 appConfig
             }
         }

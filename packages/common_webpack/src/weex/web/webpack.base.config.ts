@@ -39,8 +39,8 @@ const postcssLoader = {
             //使用.browserslistrc的统一配置
             autoprefixer(),
             postcssPluginPx2Rem({rootValue: 75, minPixelValue: 1.01})
-        ]
-        // ident: "css-loader"
+        ],
+        ident: "css-loader"
     }
 };
 
@@ -111,8 +111,8 @@ const webpackConfig: webpack.Configuration = {
                             options: {
                                 sourceMap: true,
                                 javascriptEnabled: true,
-                                modifyVars: getThemeConfig()
-                                // ident: "css-loader"
+                                modifyVars: getThemeConfig(),
+                                ident: "css-loader"
                             }
                         }
                     ]
@@ -131,7 +131,7 @@ const webpackConfig: webpack.Configuration = {
                         {
                             loader: "sass-loader",
                             options: {
-                                // ident: "css-loader"
+                                ident: "css-loader"
                             }
                         }
                     ]

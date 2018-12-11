@@ -38,8 +38,8 @@ var postcssLoader = {
             //使用.browserslistrc的统一配置
             autoprefixer(),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
-        ]
-        // ident: "css-loader"
+        ],
+        ident: "css-loader"
     }
 };
 var weexVuePrecompiler = require('weex-vue-precompiler')();
@@ -106,8 +106,8 @@ var webpackConfig = {
                             options: {
                                 sourceMap: true,
                                 javascriptEnabled: true,
-                                modifyVars: ThemeConfig_1.getThemeConfig()
-                                // ident: "css-loader"
+                                modifyVars: ThemeConfig_1.getThemeConfig(),
+                                ident: "css-loader"
                             }
                         }
                     ]
@@ -126,7 +126,7 @@ var webpackConfig = {
                         {
                             loader: "sass-loader",
                             options: {
-                            // ident: "css-loader"
+                                ident: "css-loader"
                             }
                         }
                     ]

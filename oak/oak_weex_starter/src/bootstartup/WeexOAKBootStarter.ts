@@ -1,6 +1,4 @@
-// @ts-ignore
 import AbstractBootStarter, {WeexAppContext} from "weex_starter/src/bootstartup/AbstractBootStarter";
-// @ts-ignore
 import DefaultFetchFeignProxyInitializer, {FetchFeignProxyInitializer} from "weex_starter/src/fetch/FetchFeignProxyInitializer";
 
 
@@ -14,7 +12,8 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
 
     protected initStatus: boolean = false;
 
-    startup = (...args): Promise<WeexAppContext> => super.startup(...args).then((context: WeexAppContext) => {
+
+    startup = (...args): Promise<WeexAppContext> => super.baseStartup(...args).then((context: WeexAppContext) => {
 
         if (this.initStatus) {
             return context;
