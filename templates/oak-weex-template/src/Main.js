@@ -8,14 +8,17 @@ import {WeexWebNavigatorModule} from "common_weex/src/route/WeexWebNavigatorModu
 
 weex.init(Vue);
 
-weex.registerModule("navigator",new WeexWebNavigatorModule(router));
+weex.registerModule("navigator", new WeexWebNavigatorModule(router));
+
+
+console.log("--->", router);
 
 App.el = '#root';
-const vue = new Vue(Vue.util.extend({el: '#root', router}, App));
-// const vue = new Vue({
-//     el: '#app',
-//     router,
-//     render: h => h(App)
-// });
+// const vue = new Vue(Vue.util.extend({el: '#root', router}, App));
+const vue = new Vue({
+    el: '#app',
+    router,
+    render: h => h(App)
+});
 
 // router.push("/test_view");

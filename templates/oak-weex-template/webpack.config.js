@@ -13,7 +13,7 @@ webpackConfig.plugins.push(
         filename: "index.html",
         title: "template demo",
         chunks: ["app"],
-        inject: false,
+        inject: false
     }),
     new webpack.DefinePlugin({
         'process.env': {
