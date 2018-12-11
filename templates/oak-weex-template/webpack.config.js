@@ -16,7 +16,7 @@ webpackConfig.plugins.push(
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            API_DOMAIN:DEV_API_DOMAIN,
+            API_DOMAIN:JSON.stringify(DEV_API_DOMAIN),
         }
     })
 );
