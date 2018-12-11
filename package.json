@@ -17,6 +17,8 @@
   "scripts": {
     "publish": "node ./scripts/publish.js",
     "publish:npm": "lerna publish --npm-tag=0.0.1",
+    "module_init": "npm run learn_init && npm run learn_bootstrap",
+    "learn_init": "lerna init",
     "learn_bootstrap": "lerna bootstrap --npm-client=yarn ",
     "learn_publish": "lerna publish --skip-git --repo-version=0.0.1"
   },
