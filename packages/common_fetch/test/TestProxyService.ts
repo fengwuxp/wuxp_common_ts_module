@@ -106,14 +106,14 @@ describe("test proxy api service", () => {
 
 
         const testService = new TestService();
-        // testService.findMember({
-        //     userName: "12",
-        //     memberId: 2
-        // }).then(() => {
-        //
-        // }).catch((e) => {
-        //     logger.debug(e);
-        // });
+        testService.findMember({
+            userName: "12",
+            memberId: 2
+        }).then(() => {
+
+        }).catch((e) => {
+            logger.debug(e);
+        });
 
         testService.testQuery({memberId: 1}).then((data) => {
             console.log(data);

@@ -21,7 +21,7 @@ interface MemberSpaceService {
 @Feign({
     value: "MemberSpaceService"
 })
-export default class MemberSpaceServiceImpl implements MemberSpaceService {
+class MemberSpaceServiceImpl implements MemberSpaceService {
 
 
     // constructor(proxyServiceFactory: ProxyServiceFactory) {
@@ -32,3 +32,5 @@ export default class MemberSpaceServiceImpl implements MemberSpaceService {
 
 
 }
+
+export default new MemberSpaceServiceImpl()

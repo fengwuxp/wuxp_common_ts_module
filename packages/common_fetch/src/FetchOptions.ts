@@ -97,7 +97,7 @@ export interface FetchContext<T = any> {
     /**
      * 是否使用 progressBar
      */
-    useProgressBar?: boolean;
+    // useProgressBar?: boolean;
 
     /**
      * 响应的完整数据

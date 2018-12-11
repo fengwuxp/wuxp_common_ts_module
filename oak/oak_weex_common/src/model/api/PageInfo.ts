@@ -1,10 +1,10 @@
 /**
  * 统一分页对象
  */
-import {QueryType} from "../enums/QueryType";
+import {QueryType} from "../../enums/QueryType";
 
 
-export interface PageInfo<T=any> {
+export interface PageInfo<T = any> {
 
     readonly  total: number;
 

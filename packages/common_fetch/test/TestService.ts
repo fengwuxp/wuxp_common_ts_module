@@ -14,7 +14,7 @@ import {PostMapping} from "../src/annotations/mapping/PostMapping";
  * @create 2018-11-03 9:34
  **/
 @Feign({
-    apiModule: "member",
+    // apiModule: "member",
     value: "test"
 })
 export default class TestService {

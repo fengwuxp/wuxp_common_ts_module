@@ -9,10 +9,8 @@
 </template>
 
 <script>
-
-
-    import AppMixin from "weex_starter/src/mixins/AppMixin"
     import FlexView from "weex_components/src/layout/view/flex-view";
+    import AppMixin from "weex_starter/src/mixins/AppMixin"
     import NavBar from "weex_components/src/layout/navbar/nav-bar";
 
     export default {
