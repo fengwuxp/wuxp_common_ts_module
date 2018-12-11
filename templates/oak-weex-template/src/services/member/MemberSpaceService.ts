@@ -21,7 +21,7 @@ interface MemberSpaceService {
 })
 class MemberSpaceServiceImpl implements MemberSpaceService {
 
-    
+
 
     queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]> = undefined;
 
