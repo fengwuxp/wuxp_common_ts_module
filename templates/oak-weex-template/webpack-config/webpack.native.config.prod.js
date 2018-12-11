@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const config = require("common_webpack/lib/weex/native/webpack.native.config.prod").default;
-const {PROD_H5_WEB_CONTEXT} = require("./WebpackConfig");
+const {PROD_API_DOMAIN} = require("./WebpackConfig");
 
 config.plugins.unshift(
     new webpack.DefinePlugin({
         'process.env': {
-            NODE_ENV: '"prod"',
-            H5_WEB_CONTEXT: JSON.stringify(PROD_H5_WEB_CONTEXT)
+            API_ROOT_PATH: JSON.stringify(`http://${PROD_API_DOMAIN}/api`),
+            STATIC_RESOURCE_ROOT_PATH: JSON.stringify(`http://${PROD_API_DOMAIN}`)
         }
     })
 );
-// console.log(config.plugins)
+
 module.exports = config;
