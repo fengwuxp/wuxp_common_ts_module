@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "keywords": [

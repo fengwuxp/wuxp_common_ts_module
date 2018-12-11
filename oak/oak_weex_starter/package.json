@@ -15,7 +15,7 @@
   "description": "oak weex starter",
   "main": "index.js",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "keywords": [

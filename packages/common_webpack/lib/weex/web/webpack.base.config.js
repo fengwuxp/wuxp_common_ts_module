@@ -39,6 +39,9 @@ var postcssLoader = {
             autoprefixer(),
             postcssPluginPx2Rem({ rootValue: 75, minPixelValue: 1.01 })
         ],
+        // config: {
+        //     path: path.join(__dirname, '../PostCss.config.js')
+        // },
         ident: "css-loader"
     }
 };
@@ -112,9 +115,6 @@ var webpackConfig = {
                 use: ExtractTextWebpackPlugin.extract({
                     fallback: "style-loader",
                     use: [
-                        {
-                            loader: "style-loader"
-                        },
                         cssLoader,
                         postcssLoader,
                         {
