@@ -27,9 +27,7 @@ const navBarStyleOptions: NavBarStyleOptions = {
     backgroundImage: null,
 
 
-    centerStyle: {
-
-    },
+    centerStyle: {},
 
     navTitleStyle: {
         fontSize: 36,
@@ -78,7 +76,7 @@ const resourceConfig: ResourceConfig = {
 
 export const appConfig: AppConfig = {
 
-    apiDomain: "api.meazoo.com",
+    apiDomain: process.env.API_DOMAIN,
 
     httpProtocol: "http",
 

@@ -3,8 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpackConfig = require('common_webpack/lib/weex/web/webpack.base.config').default;
 
-// console.log("webpackConfig",webpackConfig)
-const {DEV_API_ADDRESS} = require('./webpack-config/WebpackConfig');
+const {DEV_API_DOMAIN} = require('./webpack-config/WebpackConfig');
 
 
 webpackConfig.plugins.push(
@@ -17,7 +16,7 @@ webpackConfig.plugins.push(
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            // NODE_ENV: '"dev"',
+            API_DOMAIN:DEV_API_DOMAIN,
         }
     })
 );
