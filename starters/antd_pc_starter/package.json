@@ -41,5 +41,6 @@
     "common_react": "^0.0.1",
     "common_redux": "^0.0.1",
     "common_starter": "^0.0.1"
-  }
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

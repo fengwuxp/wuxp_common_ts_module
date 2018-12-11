@@ -27,8 +27,8 @@
     "common_test": "^0.0.1"
   },
   "dependencies": {
-    "common_core": "^0.0.1",
     "common_config": "^0.0.1",
+    "common_core": "^0.0.1",
     "common_fetch": "^0.0.1",
     "common_route": "^0.0.1",
     "common_starter": "^0.0.1",
@@ -53,5 +53,6 @@
   },
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"
-  }
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

@@ -66,5 +66,6 @@
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4",
     "webpack-uglify-parallel": "^0.1.4"
-  }
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

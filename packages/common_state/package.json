@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "rxjs": "^6.3.3"
-  }
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

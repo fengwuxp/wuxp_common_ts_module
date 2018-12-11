@@ -45,5 +45,6 @@
     "fetch-detector": "^1.0.1",
     "fetch-ie8": "^1.5.0",
     "isomorphic-fetch": "^2.2.1"
-  }
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }
