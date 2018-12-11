@@ -3,7 +3,8 @@ import {INCLUDE_PATH} from "../config/webpackConfig";
 
 //默认导入的模块
 const DEFAULT_INCLUDE: string[] = [
-    "common_"
+    "common_",
+    "oak_"
 ];
 
 const list: string[] = [...DEFAULT_INCLUDE];

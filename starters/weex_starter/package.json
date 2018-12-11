@@ -46,7 +46,8 @@
     "weex-loader": "~0.7.12",
     "weex-ui": "^0.6.7",
     "weex-vue-framework": "^2.5.16-weex.5",
-    "weex-vue-loader": "~0.7.2018",
+    "weex-vue-loader": "~0.7.0-bate",
+    "weex-vue-precompiler": "^0.1.23-bate",
     "weex-vue-render": "^1.0.33",
     "weex_components": "^0.0.1"
   },
