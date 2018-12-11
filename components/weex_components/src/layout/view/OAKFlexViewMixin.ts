@@ -1,5 +1,7 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
+
+// @ts-ignore
 import WeexOAKBootStarter from "oak_weex_starter/src/bootstartup/WeexOAKBootStarter";
 
 //获取bootStarter

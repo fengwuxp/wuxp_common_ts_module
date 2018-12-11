@@ -3,12 +3,22 @@ import {Registry} from "common_core/src/registry/Registry";
 import {LayoutConfig, NavBarStyleOptions} from "../views/LayoutConfig";
 import {ResourceConfig} from "../resources/ResourceConfig";
 
+
+export interface AppConfigRegistry extends Registry<AppConfig> {
+
+    getLayoutConfig: () => LayoutConfig;
+
+    getResourceConfig: () => ResourceConfig;
+
+    getNavBarOptions: () => NavBarStyleOptions;
+}
+
 /**
  * app 配置注册器
  * @author wxup
  * @create 2018-09-27 21:29
  **/
-class AppConfigRegistry implements Registry<AppConfig> {
+class AppConfigRegistryImpl implements AppConfigRegistry {
 
     private appConfig: AppConfig;
 
@@ -44,6 +54,6 @@ class AppConfigRegistry implements Registry<AppConfig> {
 
 }
 
-const appConfigRegistry = new AppConfigRegistry();
+const appConfigRegistry = new AppConfigRegistryImpl();
 
 export default appConfigRegistry;

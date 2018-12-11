@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn i",
     "npm_publish": "npm publish",
     "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "common_core": "^0.0.1",
+    "common_config": "^0.0.1",
     "common_fetch": "^0.0.1",
     "common_route": "^0.0.1",
     "common_starter": "^0.0.1",
