@@ -24,7 +24,7 @@ config.plugins.push(
     new webpack.DefinePlugin({
         'process.env': {
             API_ROOT_PATH: JSON.stringify(`/api`),
-            STATIC_RESOURCE_ROOT_PATH: JSON.stringify(`http://${DEV_API_DOMAIN}/weex`)
+            STATIC_RESOURCE_ROOT_PATH: JSON.stringify(`http://${DEV_API_DOMAIN}`)
         }
     })
 );

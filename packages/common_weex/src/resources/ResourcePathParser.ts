@@ -47,8 +47,7 @@ export const parseWeexBundleJsBasePath = () => {
     } else {
         //远程js加入版本控制
         const host = `${staticResourcesRootPath}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
-        pathPrefix.web = `${httpProtocol}://`;
-        nativeBasePaht = `${pathPrefix.web}${host}`;
+        nativeBasePaht = `${host}`;
 
     }
 

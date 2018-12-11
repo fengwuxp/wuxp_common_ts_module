@@ -2,10 +2,10 @@
  * webpack 打包配置
  * @type {[string,string]}
  */
-const INCLUDE_PATH = ["weex_components","common_icons"];  //需要从node_modules引入的自己的源码模块
+const INCLUDE_PATH = ["weex_components", "common_icons"];  //需要从node_modules引入的自己的源码模块
 
 //开发环境请求域名
-const DEV_API_DOMAIN = "dev.oaknt.com";
+const DEV_API_DOMAIN = "test.meazoo.com";//"dev.oaknt.com";
 
 
 //正式环境请求域名

@@ -109,7 +109,7 @@ const webpackConfig: webpack.Configuration = {
                                 sourceMap: true,
                                 javascriptEnabled: true,
                                 modifyVars: getThemeConfig(),
-                                ident: "css-loader"
+                                // ident: "css-loader"
                             }
                         }
                     ]
@@ -125,7 +125,7 @@ const webpackConfig: webpack.Configuration = {
                         {
                             loader: "sass-loader",
                             options: {
-                                ident: "css-loader"
+                                // ident: "css-loader"
                             }
                         }
                     ]
