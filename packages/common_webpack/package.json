@@ -33,6 +33,8 @@
     "@types/webpack-dev-server": "^3.1.0",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
+    "@babel/core": "^7.0.0",
+    "babel-loader": "^8.0.2",
     "browserslist": "^4.3.5",
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.5.2",
@@ -66,8 +68,6 @@
     "webpack-uglify-parallel": "^0.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "babel-loader": "^8.0.2"
   },
   "gitHead": "c8fa868e9bf6b044bec4cf5f246b6a607711f3b5"
 }
