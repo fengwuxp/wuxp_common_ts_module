@@ -27,9 +27,17 @@ export default class OAKSimpleSyncAuthHelper implements SyncAuthHelper<any> {
 
     async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
 
-        const member: any = await simpleAppSessionManager.getMember();
+        try {
+            const member: any = await simpleAppSessionManager.getMember();
+            params.data["token"] = member.token;
+        } catch (e) {
 
-        params.data["token"] = member.token;
+            //TODO 加入鉴权判断逻辑
+
+            return true;
+
+        }
+
 
         return true;
 

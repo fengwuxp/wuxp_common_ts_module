@@ -78,7 +78,7 @@ const resourceConfig: ResourceConfig = {
 
 export const appConfig: AppConfig = {
 
-    apiDomain: "",
+    apiDomain: "api.meazoo.com",
 
     httpProtocol: "http",
 

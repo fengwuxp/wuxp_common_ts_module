@@ -26,7 +26,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
     /**
      * 当前执行的定时器
      */
-    protected timerId: number;
+    protected timerId;
 
 
     /**
@@ -35,39 +35,39 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
     public static LAZY_TIMES: number = 200;
 
 
-    constructor(progressBar: FetchProgressBar, timer: Timer) {
+    constructor(progressBar: FetchProgressBar, timer?: Timer) {
         super();
         this.progressBar = progressBar;
         this.timer = timer;
     }
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
-        const {context} = params;
-        let {count, timer, progressBar} = this;
-        if (context.useProgressBar) {
-            if (count === 0) {
-                //显示加载进度条
-                this.timerId = timer.setTimeout(progressBar.showProgressBar, NeedProgressBarInterceptor.LAZY_TIMES);
-            }
-            //计数器加一
-            count++;
+        if (params.context && params.useProgressBar == false) {
+            return params;
         }
+        let {count, progressBar} = this;
+        if (count === 0) {
+            //显示加载进度条
+            this.timerId = setTimeout(progressBar.showProgressBar, NeedProgressBarInterceptor.LAZY_TIMES);
+        }
+        //计数器加一
+        count++;
         return params;
     }
 
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
-        const {context} = options;
-        let {count, timer, timerId, progressBar} = this;
-        if (context.useProgressBar) {
-            //计数器减一
-            count--;
-            if (count === 0) {
-                //清除定时器
-                timer.clearTimeout(timerId);
-                //隐藏加载进度条
-                progressBar.hideProgressBar();
-            }
+        if (options.context && options.useProgressBar == false) {
+            return data;
+        }
+        let {count, timerId, progressBar} = this;
+        //计数器减一
+        count--;
+        if (count === 0) {
+            //清除定时器
+            clearTimeout(timerId);
+            //隐藏加载进度条
+            progressBar.hideProgressBar();
         }
 
         return data;

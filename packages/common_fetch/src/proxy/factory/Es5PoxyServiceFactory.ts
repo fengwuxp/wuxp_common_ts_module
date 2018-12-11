@@ -9,6 +9,11 @@ import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
  */
 export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
 
+    private ignorePropertyNames: string[] = [
+        "getServiceMethodConfig",
+        "setServiceMethodConfig",
+        "feign"
+    ];
 
     constructor(proxyServiceExecutor: ProxyServiceExecutor) {
         super(proxyServiceExecutor);
@@ -24,8 +29,7 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
 //         enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
 
         for (const key in targetService) {
-            if (typeof targetService[key] !== "function") {
-                //不是函数 return
+            if (this.isIgnore(targetService, key)) {
                 continue;
             }
             Object.defineProperty(proxy, key, {
@@ -34,13 +38,24 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
                 },
                 get: () => {
                     return (...p) => {
-                        return this.proxyServiceExecutor.execute(targetService,key,...p);
+                        return this.proxyServiceExecutor.execute(targetService, key, ...p);
                     }
                 }
             });
         }
 
         return proxy;
+    }
+
+    private isIgnore = (targetService, key: string) => {
+        const element = targetService[key];
+        if (element == null) {
+            return false;
+        }
+        if (typeof element != "function") {
+            return true;
+        }
+        return this.ignorePropertyNames.findIndex((item) => item === key) >= 0;
     }
 }
 

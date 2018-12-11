@@ -57,20 +57,20 @@ export default class WXMinAppAdapter implements FetchAdapter {
         const {
             url,
             data,
-            dataType,
+            responseType,
             method,
             headers
         } = options;
 
 
-        // const _dataType: string = dataType;
+        // const _dataType: string = responseType;
         return {
             //请求方法get post
             method,
             //请求url
             url,
             //响应类型,
-            dataType,
+            responeType: responseType,
             //headers HTTP 请求头
             header: headers,
             data: (data == null || method === ReqequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data),

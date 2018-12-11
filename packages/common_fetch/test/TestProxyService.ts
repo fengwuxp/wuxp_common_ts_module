@@ -16,6 +16,7 @@ import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy"
 import {apiSign} from "./utils/ApiSginUtils";
 import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
+import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -93,9 +94,9 @@ const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
 const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate,
     new TestApiSignatureStrategy("a", "b", "node"));
 
-const es6PoxyServiceFactory = new Es6PoxyServiceFactory(proxyServiceExecutor);
+const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
 //设置代理工厂
-setProxyFactory(es6PoxyServiceFactory);
+setProxyFactory(es5PoxyServiceFactory);
 
 
 describe("test proxy api service", () => {

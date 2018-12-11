@@ -1,6 +1,6 @@
 import {FetchAdapter} from "../FetchAdapter";
 import {FetchResponse} from "../../FetchOptions";
-import {DataType} from "../../constant/DataType";
+import {ResponseType} from "../../constant/ResponseType";
 import {WebFetchOptions} from "./WebFetchOptions";
 import {ReqequestMethod} from "../../constant/ReqequestMethod";
 import {ResolveFetchData} from "../../resolve/ResolveFetchData";
@@ -33,7 +33,7 @@ export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
 
         return fetch(this.buildRequest(options)).then((response: Response) => {
 
-            return this.parse(response, options.dataType).then((data) => {
+            return this.parse(response, options.responseType).then((data) => {
                 response['data'] = data;
                 return this.resolveFetchData.resolve(response);
             });
@@ -88,7 +88,7 @@ export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
      * @param dataType
      * @return {any}
      */
-    private parse(response: Response, dataType: DataType): Promise<any> {
+    private parse(response: Response, dataType: ResponseType): Promise<any> {
 
         if (!response.ok) {
             return Promise.reject(null);
@@ -96,15 +96,15 @@ export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
 
         //TODO 请求进度
         switch (dataType) {
-            case DataType.JSON:
+            case ResponseType.JSON:
                 return this.parseJSON(response);
-            case DataType.TEXT:
+            case ResponseType.TEXT:
                 return this.parseText(response);
-            case DataType.HTML:
+            case ResponseType.HTML:
                 return this.parseText(response);
-            case DataType.SCRIPT:
+            case ResponseType.SCRIPT:
                 return this.parseJSON(response);
-            case DataType.BLOB:
+            case ResponseType.BLOB:
                 return this.paresBlob(response);
             default:
                 const error = new Error("不支持的结果数据类型：" + dataType);

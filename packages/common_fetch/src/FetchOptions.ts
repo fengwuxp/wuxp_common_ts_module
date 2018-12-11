@@ -94,6 +94,10 @@ export interface FetchContext<T = any> {
 
     // [key: string]: any
 
+    /**
+     * 是否使用 progressBar
+     */
+    useProgressBar?: boolean;
 
     /**
      * 响应的完整数据

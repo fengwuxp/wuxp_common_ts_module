@@ -6,7 +6,7 @@ import {ApiRoutingStrategy} from "../route/ApiRoutingStrategy";
 import {HttpFetchException} from "../exception/HttpFetchException";
 import {HttpFetchExceptionName} from "../exception/Const";
 import ExceptionBroadcaster from "../exception/ExceptionBroadcaster";
-import {DataType} from "../constant/DataType";
+import {ResponseType} from "../constant/ResponseType";
 import {MediaType} from "../constant/http/MediaType";
 
 
@@ -127,10 +127,10 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             options.contentType = this.templateConfig.consumes[0] || MediaType.JSON;
         }
 
-        if (!options.dataType == null) {
+        if (options.responseType == null) {
             //默认使用json
             //let mediaType = this.templateConfig.produces[0] || MediaType.JSON;
-            options.dataType = DataType.JSON;
+            options.responseType = ResponseType.JSON;
         }
 
         //路由

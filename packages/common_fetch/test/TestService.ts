@@ -25,7 +25,7 @@ export default class TestService {
     //     value: "testQuery",
     //     method: ReqequestMethod.POST,
     // })
-    testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
+    testQuery: (evt: any, options?: FetchOptions) => Promise<any> = undefined;
 
     @Signature({fields: ["userName"]})
     @PostMapping({headers: {myHeader: "tk_{memberId}"}})

@@ -1,7 +1,7 @@
 import {AbstractProxyServiceExecutor} from "./ProxyServiceExecutor";
 import {FetchOptions} from "../../FetchOptions";
 import {MediaType} from "../../constant/http/MediaType";
-import {DataType} from "../../constant/DataType";
+import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
 
 
@@ -53,12 +53,12 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
             const consume = requestMapping.consumes[0];
             if (consume === MediaType.JSON) {
-                fetchOptions.dataType = DataType.JSON
+                fetchOptions.responseType = ResponseType.JSON
             } else if (consume === MediaType.TEXT) {
-                fetchOptions.dataType = DataType.TEXT
+                fetchOptions.responseType = ResponseType.TEXT
             } else {
                 //默认使用json
-                // fetchOptions.dataType = DataType.JSON;
+                // fetchOptions.responseType = ResponseType.JSON;
             }
         }
         if (signature) {

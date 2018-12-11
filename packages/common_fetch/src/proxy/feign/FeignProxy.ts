@@ -1,6 +1,5 @@
 import {ProxyApiService} from "../ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
-import {defaultApiModuleName} from "../../constant/FeignConstVar";
 import {RequestMappingOptions} from "../../annotations/mapping/Mapping";
 import {SignatureOptions} from "../../annotations/security/Signature";
 

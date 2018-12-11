@@ -1,5 +1,5 @@
 import {ReqequestMethod} from "./constant/ReqequestMethod";
-import {DataType} from "./constant/DataType";
+import {ResponseType} from "./constant/ResponseType";
 import {FetchResponse} from "./FetchOptions";
 
 /**
@@ -29,8 +29,9 @@ export interface BaseFetchOptions {
 
     /**
      * 结果数据类型
+     * 默认json
      */
-    dataType?: DataType;
+    responseType?: ResponseType;
 
     /**
      * 请求头

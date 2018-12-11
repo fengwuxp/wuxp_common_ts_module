@@ -58,7 +58,7 @@ export class WeexAdapter implements FetchAdapter {
             url,
             data,
             method,
-            dataType,
+            responseType,
             headers
         } = reqParams;
 
@@ -74,7 +74,7 @@ export class WeexAdapter implements FetchAdapter {
             //请求url
             url,
             //响应类型, json,text 或是 jsonp {在原生实现中其实与 json 相同)
-            type: dataType.toString().toLowerCase(),
+            type: responseType.toString().toLowerCase(),
             //headers HTTP 请求头
             headers,
             //参数仅支持 string 类型的参数，请勿直接传递 JSON，必须先将其转为字符串。GET请求不支持 body 方式传递参数，请使用 url 传参。
