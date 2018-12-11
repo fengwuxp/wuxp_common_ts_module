@@ -40,9 +40,7 @@
             }
         },
         beforeMount() {
-            const memberSpaceService = new MemberSpaceService();
-            console.log("memberSpaceService", memberSpaceService);
-            memberSpaceService.queryLikeStore({
+            MemberSpaceService.queryLikeStore({
                 memberId: 1
             }).then(() => {
 

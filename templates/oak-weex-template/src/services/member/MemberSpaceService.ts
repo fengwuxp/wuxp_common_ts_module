@@ -1,7 +1,5 @@
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {Feign} from "common_fetch/src/annotations/Feign";
-import {ProxyServiceFactory} from "common_fetch/src/proxy/factory/ProxyServiceFactory";
-
 
 /**
  * 会员空间
@@ -23,10 +21,7 @@ interface MemberSpaceService {
 })
 class MemberSpaceServiceImpl implements MemberSpaceService {
 
-
-    // constructor(proxyServiceFactory: ProxyServiceFactory) {
-    //     return proxyServiceFactory.factory(this);
-    // }
+    
 
     queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]> = undefined;
 
