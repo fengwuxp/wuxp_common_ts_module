@@ -15,9 +15,9 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "yarn_i": "yarn i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
-    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run yarn_i"
   },
   "author": "wuxp",
   "license": "ISC",

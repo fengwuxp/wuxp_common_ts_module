@@ -17,7 +17,7 @@
   "scripts": {
     "yarn_i": "yarn install",
     "npm_publish": "npm publish",
-    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run yarn_i"
   },
   "author": "wuxp",
   "license": "ISC",
