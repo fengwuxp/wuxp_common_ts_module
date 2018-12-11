@@ -1,11 +1,16 @@
 import App from "./App.vue";
 import router from "weex_starter/src/route/WebRouterHolder";
 import {WeexWebNavigatorModule} from "common_weex/src/route/WeexWebNavigatorModule";
+import {registerWeexModuleByWeb} from "oak_weex_starter/src/RegisterWeexModuleByWeb";
 
 /**
- * 入口
+ * App入口
  */
 
+//注册weex模块
+registerWeexModuleByWeb();
+
+//初始化Vue
 weex.init(Vue);
 
 weex.registerModule("navigator", new WeexWebNavigatorModule(router));

@@ -1,14 +1,6 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
-
-// @ts-ignore
-import WeexOAKBootStarter from "oak_weex_starter/src/bootstartup/WeexOAKBootStarter";
-
-//获取bootStarter
-const weexSimpleBootStarter = new WeexOAKBootStarter();
-
-//初始化
-weexSimpleBootStarter.startup();
+import {weexSimpleBootStarter} from "../../boot/WeexViewBootstrap";
 
 /**
  * 由于weex是多页应用，所以在根页面入口要做 bootStartUp

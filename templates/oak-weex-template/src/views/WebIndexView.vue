@@ -50,7 +50,7 @@
                 console.log("2")
             }).finally(() => {
                 console.log("3")
-            })
+            });
 
         }
     }
