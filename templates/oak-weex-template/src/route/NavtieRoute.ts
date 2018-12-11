@@ -8,6 +8,9 @@ const webRoutes: AppRoute = {
             main: true
         }
     },
+    login: {
+        component: "account/Login.js"
+    },
     test_view: {
         component: "TestView.js"
     },
