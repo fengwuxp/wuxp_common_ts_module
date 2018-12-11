@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
     "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
@@ -32,5 +32,8 @@
     "common_weex": "^0.0.1",
     "weex-ui": "^0.6.6"
   },
-  "gitHead": "c8fa868e9bf6b044bec4cf5f246b6a607711f3b5"
+  "devDependencies": {
+    "oak_weex_starter": "^0.0.1"
+  },
+  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
 }

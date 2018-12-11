@@ -52,5 +52,6 @@
   },
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"
-  }
+  },
+  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
 }

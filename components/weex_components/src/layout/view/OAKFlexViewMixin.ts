@@ -1,6 +1,5 @@
 import umengMixin from "../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
-// @ts-ignore
 import WeexOAKBootStarter from "oak_weex_starter/src/bootstartup/WeexOAKBootStarter";
 
 //获取bootStarter
@@ -74,7 +73,7 @@ export default {
     beforeMount() {
 
         //初始化应用的的数据
-        weexSimpleBootStarter.startup().then(({router, appConfig, appRegistry}) => {
+        weexSimpleBootStarter.startup().then(({appRouter, appConfig, appRegistry}) => {
             const layoutConfig = appRegistry.getLayoutConfig();
             this.defaultStyle = {
                 ...(layoutConfig.style || {}),

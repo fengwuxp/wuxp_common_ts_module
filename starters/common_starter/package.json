@@ -24,8 +24,8 @@
   "keywords": [],
   "peerDependencies": {
     "@babel/core": "^7.0.0",
-    "babel-loader": "^8.0.2",
     "awesome-typescript-loader": "^5.2.0",
+    "babel-loader": "^8.0.2",
     "typescript": "^3.2.2",
     "typings": "^2.1.1"
   },
@@ -81,5 +81,5 @@
     "typescript": "^3.2.2",
     "typings": "^2.1.1"
   },
-  "gitHead": "c8fa868e9bf6b044bec4cf5f246b6a607711f3b5"
+  "gitHead": "f90a2ccf767cd02142a9fac243ef0823ca957340"
 }
