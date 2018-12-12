@@ -6,7 +6,7 @@ import {FetchAdapter} from "../adapter/FetchAdapter";
 import "../fetch.promise";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
-import {FetchRetryOptions} from "../FetchRetryOptions";
+
 
 const contentTypeName = 'Content-Type';
 
@@ -48,6 +48,10 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
     abstract request: (options: T) => Promise<FetchResponse>;
 
 
+    /**
+     * 请求数据
+     * @param options
+     */
     protected fetch = (options: T) => {
         //设置超时时间
         if (options.timeout == null) {
@@ -97,7 +101,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
             headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
         }
 
-        console.debug("发起请求", options);
+        console.debug("--发起请求--->", options);
         return options;
 
     }

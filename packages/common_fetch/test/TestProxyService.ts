@@ -24,7 +24,7 @@ logger.level = 'debug';
 
 
 const routingMapping = {
-    member: "https://test.oaknt.com/api"
+    default: "https://test.oaknt.com/api"
 };
 
 class TestRestTemplateLoader extends AbstractRestTemplateLoader {
@@ -103,7 +103,7 @@ setProxyFactory(es5PoxyServiceFactory);
 describe("test proxy api service", () => {
 
 
-    test("test", () => {
+    test("test", async () => {
 
 
         const testService = new TestService();
@@ -116,12 +116,12 @@ describe("test proxy api service", () => {
         //     logger.debug(e);
         // });
 
-        testService.testQuery({memberId: 1}).then((data) => {
-            console.log(data);
+        await testService.testQuery({memberId: 1}).then((data) => {
+            logger.debug("--请求结束，成功->", data);
         }).catch((e) => {
-            console.log(e);
+            logger.debug("--请求结束，失败-->", e);
         });
 
         // testService.deleteMember({memberId: 1});
-    });
+    }, 30 * 1000);
 });

@@ -39,6 +39,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //请求requestMapping
         const {requestMapping, signature, retryOptions} = apiService.getServiceMethodConfig(methodName);
 
+
         //解析参数生成 options，并提交请求
         const fetchOptions = {
             ...options,
@@ -71,14 +72,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             };
         }
 
-        if (retryOptions) {
-            //需要重试
-            (options as FetchRetryOptions).retries = retryOptions.retries;
-            (options as FetchRetryOptions).maxTimeout = retryOptions.maxTimeout;
-            (options as FetchRetryOptions).delay = retryOptions.delay;
-            (options as FetchRetryOptions).when = retryOptions.when;
-            (options as FetchRetryOptions).onRetry = retryOptions.onRetry;
-        }
+        //需要重试
+        (fetchOptions as FetchRetryOptions).retryOptions = retryOptions;
 
 
         //获取请求template

@@ -31,13 +31,16 @@ export interface RetryOptions {
      * @param options  请求配置
      * @param response 上一次请求的结果
      */
-    onRetry?<E>(options: FetchRetryOptions, response): Promise<E>;
+    onRetry?<E>(options: FetchOptions, response): Promise<E>;
 }
 
 /**
  * 请求重试配置
  */
-export interface FetchRetryOptions extends FetchOptions, RetryOptions {
+export interface FetchRetryOptions extends FetchOptions {
 
-
+    /**
+     * 请求重试配置
+     */
+    retryOptions?: RetryOptions;
 }

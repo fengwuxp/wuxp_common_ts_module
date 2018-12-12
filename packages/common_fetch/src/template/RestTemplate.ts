@@ -152,6 +152,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         //获取请求客户端
         const fetchClient = this.getFetchClient(options);
 
+
         return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {
              //TODO  将异常广播

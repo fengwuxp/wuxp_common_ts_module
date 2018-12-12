@@ -21,8 +21,9 @@ export default class DefaultRestTemplate extends AbstractRestTemplate {
     }
 
     protected getFetchClient = (options: FetchOptions) => {
-        let retries = (options as FetchRetryOptions).retries;
-        if (retries != null && retries > 0) {
+
+        const retryOptions = (options as FetchRetryOptions).retryOptions;
+        if (!!retryOptions && retryOptions.retries > 0) {
             if (this.retryClient == null) {
                 //初始化一个客户端
                 this.retryClient = new RetryFetchClient(this.fetchClient);

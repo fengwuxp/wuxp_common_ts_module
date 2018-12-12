@@ -30,7 +30,7 @@ export default class TestService {
         retries: 2,
         maxTimeout: 30000
     })
-    testQuery: (evt: any, options?: FetchOptions) => Promise<any> = undefined;
+    testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
     @Signature({fields: ["userName"]})
     @PostMapping({headers: {myHeader: "tk_{memberId}"}})

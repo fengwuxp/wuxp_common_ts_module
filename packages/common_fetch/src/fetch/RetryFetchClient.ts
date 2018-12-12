@@ -1,6 +1,5 @@
-import {FetchResponse} from "../FetchOptions";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {FetchRetryOptions, RetryOptions} from "../FetchRetryOptions";
-import DefaultFetchClient from "./DefaultFetchClient";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import AbstractFetchClient from "./AbstractFetchClient";
 import {defaultOptions} from "../annotations/retry/FetchRetry";
@@ -21,22 +20,29 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
             ...defaultOptions,
             ...(retryOptions || {}),
         };
-        if (retryOptions.onRetry == null) {
+        if (this.retryOptions.onRetry == null) {
             this.retryOptions.onRetry = this.onRetry;
         }
     }
 
     request = (options: FetchRetryOptions): Promise<FetchResponse> => {
 
-        const retries = options.retries || this.retryOptions.retries;
+        console.log("retry client request", options);
+        const retryOptions = options.retryOptions;
 
-        const _maxTimeout = options.maxTimeout || this.retryOptions.maxTimeout;
+        const retries = retryOptions.retries || this.retryOptions.retries;
+
+        const _maxTimeout = retryOptions.maxTimeout || this.retryOptions.maxTimeout;
+
+        const fetchOptions = this.resolveOptions(options);
 
         return new Promise<FetchResponse>((resolve, reject) => {
             let count = 0;
-            this.fetch(options).then(resolve).catch((response) => {
+
+            this.fetch(fetchOptions).then(resolve).catch((response) => {
                 //尝试去重试请求
-                this.tryRetry(options, count, response).then(resolve).catch(reject);
+                console.debug("--失败准备重试->", response);
+                this.tryRetry(fetchOptions, retryOptions, count, response).then(resolve).catch(reject);
             });
 
             setTimeout(() => {
@@ -49,11 +55,12 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
     /**
      * 尝试去重试
+     * @param fetchOptions
      * @param options
      * @param count
      * @param response
      */
-    private tryRetry = (options: FetchRetryOptions, count, response): Promise<FetchResponse> => {
+    private tryRetry = (fetchOptions: FetchOptions, options: RetryOptions, count, response): Promise<FetchResponse> => {
 
         const _onRetry = options.onRetry || this.retryOptions.onRetry;
 
@@ -63,22 +70,25 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
         return new Promise((resolve, reject) => {
 
-            const errorHandle = () => {
+            const errorHandle = (resp) => {
                 if (count === retries) {
+                    console.debug("请求达到最大重试次数", retries);
                     reject(new Error(`retry ${retries}`));
                     return
                 }
+                console.debug(`延时${_delay}毫秒后在请求，重试次数：${count}`,resp);
+
                 setTimeout(() => {
-                    _onRetry(options, response).then(resolve).catch(() => {
+                    _onRetry(fetchOptions, resp).then(resolve).catch((errorResp) => {
                         //再次进行重试
-                        errorHandle()
+                        errorHandle(errorResp)
                     }).finally(() => {
                         count++;
                     });
                 }, _delay);
             };
 
-            errorHandle();
+            errorHandle(response);
         });
     };
 
@@ -87,9 +97,18 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
      * @param options
      * @param response
      */
-    private onRetry<FetchResponse>(options: FetchRetryOptions, response): Promise<FetchResponse> {
-        console.debug("请求错误，准备进行重试", response);
+    private onRetry = <FetchResponse>(options: FetchOptions, response): Promise<FetchResponse> => {
         return this.fetch(options) as any;
-    }
+    };
 
+
+    private resolveOptions = (retryOptions: FetchRetryOptions): FetchOptions => {
+
+        const options = {
+            ...retryOptions
+        };
+        delete options.retryOptions;
+
+        return options;
+    }
 }

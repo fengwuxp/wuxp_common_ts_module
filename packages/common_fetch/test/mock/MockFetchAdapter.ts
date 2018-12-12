@@ -18,19 +18,19 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
 
     request = (options: MocKFetchOptions): Promise<FetchResponse> => {
 
-
         return new Promise<FetchResponse>((resolve, reject) => {
 
             setTimeout(() => {
-
-                if (parseInt(Math.random() * 100 + "") % 2 == 0) {
+                const result = parseInt(Math.random() * 100 + "") % 2 === 0;
+                console.debug("mock request result--> ", result);
+                if (result) {
                     resolve({data: 1} as any);
                 } else {
                     reject({data: 0})
                 }
 
 
-            }, this.responseTime)
+            }, 2 * 1000);
         });
     };
 
