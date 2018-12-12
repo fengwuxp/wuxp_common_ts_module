@@ -28,7 +28,7 @@ const interceptorList = [
     new UnifiedRespProcessInterceptor()
 ];
 
-export default class OAKDefaultRestTemplateLoader extends AbstractRestTemplateLoader {
+export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTemplateLoader {
 
 
     buildRestTemplate = (apiModuleName: string): RestTemplate => {

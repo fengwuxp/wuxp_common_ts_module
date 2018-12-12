@@ -3,7 +3,7 @@ import {ProxyServiceExecutor} from "common_fetch/src/proxy/executor/ProxyService
 import {setProxyFactory} from "common_fetch/src/annotations/Feign";
 import Es5PoxyServiceFactory from "common_fetch/src/proxy/factory/Es5PoxyServiceFactory";
 import {FetchFeignProxyInitializer} from "weex_starter/src/fetch/FetchFeignProxyInitializer";
-import OAKDefaultRestTemplateLoader from "./rest/OAKDefaultRestTemplateLoader";
+import OAKWeexDefaultRestTemplateLoader from "./rest/OAKWeexDefaultRestTemplateLoader";
 import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
 import OakApiSignatureStrategy from "./sign/OakApiSignatureStrategy";
 
@@ -24,7 +24,7 @@ export default class DefaultFetchFeignProxyInitializer implements FetchFeignProx
         }
         this.initStatus = true;
 
-        const templateLoader: RestTemplateLoader = new OAKDefaultRestTemplateLoader();
+        const templateLoader: RestTemplateLoader = new OAKWeexDefaultRestTemplateLoader();
 
         const proxyServiceExecutor: ProxyServiceExecutor = new DefaultProxyServiceExecutor(
             templateLoader, new

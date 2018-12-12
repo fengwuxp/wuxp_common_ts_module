@@ -1,7 +1,6 @@
 import AbstractFetchAdapter from "common_fetch/src/adapter/AbstractFetchAdapter";
 import {WebFetchOptions} from "common_fetch/src/adapter/web/WebFetchOptions";
 import {FetchResponse} from "common_fetch/src/FetchOptions";
-import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {ReqequestMethod} from "common_fetch/src/constant/ReqequestMethod";
 import * as Taro from "@tarojs/taro";
 import {request} from "@tarojs/taro";
