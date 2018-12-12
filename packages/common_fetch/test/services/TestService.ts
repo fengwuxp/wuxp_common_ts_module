@@ -31,7 +31,7 @@ export default class TestService {
     })
     @FetchRetry({
         retries: 5,
-        maxTimeout: 30 * 1000
+        maxTimeout: 25 * 1000
     })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
