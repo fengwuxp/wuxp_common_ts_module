@@ -174,8 +174,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
                                         return error;
                                     });*/
 
-            })
-            .catch((response: FetchResponse) => {
+            }).catch((response: FetchResponse) => {
                 const {statusText, headers, data, status} = response;
                 console.debug("请求异常", status, statusText);
                 const exception: HttpFetchException = {

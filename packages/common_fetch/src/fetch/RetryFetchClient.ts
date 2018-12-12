@@ -17,7 +17,7 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
     private countRetry: number = 0;
 
 
-    constructor(fetchAdapter: FetchAdapter, retryOptions?: RetryOptions) {
+    constructor(fetchAdapter: FetchAdapter, retryOptions: RetryOptions) {
         super(fetchAdapter);
         this.retryOptions = {
             ...defaultOptions,
@@ -139,9 +139,11 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
     private resolveOptions = (retryOptions: FetchRetryOptions): FetchOptions => {
 
+        //值复制
         const options = {
             ...retryOptions
         };
+        //移除重试配置
         delete options.retryOptions;
 
         return options;

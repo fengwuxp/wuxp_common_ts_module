@@ -20,7 +20,7 @@ export default class DefaultRestTemplate extends AbstractRestTemplate {
 
         const retryOptions = (options as FetchRetryOptions).retryOptions;
         if (!!retryOptions && retryOptions.retries > 0) {
-            return new RetryFetchClient(this.fetchClient["fetchAdapter"]);
+            return new RetryFetchClient(this.fetchClient["fetchAdapter"], retryOptions);
         } else {
             return this.fetchClient;
         }
