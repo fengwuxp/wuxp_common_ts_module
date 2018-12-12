@@ -2,13 +2,13 @@ import {RestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
 import {ProxyServiceExecutor} from "common_fetch/src/proxy/executor/ProxyServiceExecutor";
 import {setProxyFactory} from "common_fetch/src/annotations/Feign";
 import Es5PoxyServiceFactory from "common_fetch/src/proxy/factory/Es5PoxyServiceFactory";
-import {FetchFeignProxyInitializer} from "weex_starter/src/fetch/FetchFeignProxyInitializer";
 import OAKWeexDefaultRestTemplateLoader from "./rest/OAKWeexDefaultRestTemplateLoader";
 import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
 import OakApiSignatureStrategy from "./sign/OakApiSignatureStrategy";
+import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
 
 
-export default class DefaultFetchFeignProxyInitializer implements FetchFeignProxyInitializer {
+export default class DefaultFetchFeignProxyInitializer implements FeignProxyInitializer {
 
     // RestTemplateLoader class 对象
     // public static RestTemplateLoader: any = null;
@@ -18,7 +18,7 @@ export default class DefaultFetchFeignProxyInitializer implements FetchFeignProx
 
     protected initStatus: boolean = false;
 
-    init = () => {
+    initFeignProxyFactory = () => {
         if (this.initStatus) {
             return;
         }
