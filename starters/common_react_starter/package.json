@@ -1,0 +1,31 @@
+{
+  "name": "common_react_starter",
+  "version": "1.0.0",
+  "description": "common react starter",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_publish": "npm publish",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run yarn_i"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "common_test": "^0.0.1"
+  },
+  "dependencies": {
+    "react-icons": "^3.2.2"
+  }
+}

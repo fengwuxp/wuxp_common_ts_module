@@ -24,7 +24,7 @@ export interface FeignProxyApiServiceMethodConfig {
     /**
      * 重试相关配置
      */
-    retryOptions:RetryOptions;
+    retryOptions?: RetryOptions;
 }
 
 /**
