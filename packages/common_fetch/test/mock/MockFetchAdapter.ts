@@ -24,10 +24,10 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
                 const result = parseInt(Math.random() * 100 + "") % 6 === 0;
                 console.debug("mock request result--> ", result);
                 if (result) {
-                    resolve({data: 1} as any);
+                    resolve({result} as any);
                 } else {
                     reject({
-                        data: 0,
+                        result,
                         status: 200
                     });
                 }

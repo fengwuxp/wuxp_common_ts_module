@@ -13,8 +13,8 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
     //重试的配置
     protected retryOptions: RetryOptions;
 
-    //重试的请求次数
-    private countRetry: number;
+    //统计重试的请求次数
+    private countRetry: number = 0;
 
 
     constructor(fetchAdapter: FetchAdapter, retryOptions?: RetryOptions) {
@@ -58,6 +58,7 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
             }, _maxTimeout + retries * 10);
 
             p.finally((data) => {
+                console.log("清除定时器", timerId);
                 clearTimeout(timerId);
                 return data;
             }).then(resolve)
