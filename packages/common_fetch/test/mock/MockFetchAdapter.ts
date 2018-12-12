@@ -21,7 +21,7 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
         return new Promise<FetchResponse>((resolve, reject) => {
 
             setTimeout(() => {
-                const result = parseInt(Math.random() * 100 + "") % 4 === 0;
+                const result = parseInt(Math.random() * 100 + "") % 6 === 0;
                 console.debug("mock request result--> ", result);
                 if (result) {
                     resolve({data: 1} as any);

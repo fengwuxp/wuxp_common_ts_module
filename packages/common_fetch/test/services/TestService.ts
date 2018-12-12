@@ -21,14 +21,17 @@ import {FetchRetry} from "../../src/annotations/retry/FetchRetry";
 export default class TestService {
 
 
-    // @Signature({fields: []})
-    // @RequestMapping({
-    //     value: "testQuery",
-    //     method: ReqequestMethod.POST,
-    // })
+    queryList: (evt: any, options?: FetchOptions) => Promise<any> = undefined;
+
+
+    @Signature({fields: []})
+    @RequestMapping({
+        value: "testQuery",
+        method: ReqequestMethod.POST,
+    })
     @FetchRetry({
-        retries: 2,
-        maxTimeout: 30000
+        retries: 5,
+        maxTimeout: 5000
     })
     testQuery: (evt: any, options?: FetchOptions) => Promise<any>;
 
