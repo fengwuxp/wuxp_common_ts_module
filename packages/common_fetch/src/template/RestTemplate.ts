@@ -8,6 +8,9 @@ import {HttpFetchExceptionName} from "../exception/Const";
 import ExceptionBroadcaster from "../exception/ExceptionBroadcaster";
 import {ResponseType} from "../constant/ResponseType";
 import {MediaType} from "../constant/http/MediaType";
+import {FetchRetryOptions, RetryOptions} from "../FetchRetryOptions";
+import RetryFetchClient from "../fetch/RetryFetchClient";
+import {FetchAdapter} from "../adapter/FetchAdapter";
 
 
 /**
@@ -29,7 +32,7 @@ export interface RestTemplate {
 /**
  * rest template 配置
  */
-export interface RestTemplateConfig {
+export interface RestTemplateConfig extends RetryOptions {
 
     /**
      * 默认要带上的请求头
@@ -63,10 +66,15 @@ export interface RestTemplateConfig {
 }
 
 const defaultTemplateConfig: RestTemplateConfig = {
+
     method: ReqequestMethod.POST,
+
     consumes: [MediaType.JSON],
+
     produces: [MediaType.JSON],
+
     timeout: 10 * 1000,
+
     headers: {}
 };
 
@@ -86,10 +94,12 @@ export abstract class AbstractRestTemplate implements RestTemplate {
      */
     protected routingStrategy: ApiRoutingStrategy;
 
+
     /**
-     * 请求客户端工具
+     * 默认的骑过去呢客户端
      */
     protected fetchClient: FetchClient;
+
 
     /**
      * 拦截器执行器
@@ -110,7 +120,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     fetch = (options: FetchOptions): Promise<FetchResponse> => {
 
         const interceptorExecutor = this.interceptorExecutor;
-        const fetchClient = this.fetchClient;
+
 
         const transformRequest = options.transformRequest;
         if (transformRequest) {
@@ -137,8 +147,10 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         //TODO 进制值复制处理
         options.url = this.routingStrategy.route(options.url);
 
+        //TODO 进行重试的参数设置
 
-
+        //获取请求客户端
+        const fetchClient = this.getFetchClient(options);
 
         return interceptorExecutor.preHandle(options)
         /* .catch((error: Error) => {
@@ -179,5 +191,9 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             });
     };
 
+    /**
+     * 获取请求的客户端工具
+     */
+    protected abstract getFetchClient: (options: FetchOptions) => FetchClient;
 
 }

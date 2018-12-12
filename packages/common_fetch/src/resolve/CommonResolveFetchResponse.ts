@@ -1,10 +1,10 @@
-import {ResolveFetchData} from "./ResolveFetchData";
+import {ResolveFetchResponse} from "./ResolveFetchResponse";
 import {FetchResponse} from "../FetchOptions";
 
 /**
  * 通用的响应数据解析
  */
-export default class CommonResolveFetchData implements ResolveFetchData<Response> {
+export default class CommonResolveFetchResponse implements ResolveFetchResponse<Response> {
 
 
     resolve = (resp: Response): FetchResponse => {

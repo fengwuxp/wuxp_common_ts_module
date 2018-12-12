@@ -2,6 +2,7 @@ import {ProxyApiService} from "../ProxyApiService";
 import {FeignOptions} from "../../annotations/Feign";
 import {RequestMappingOptions} from "../../annotations/mapping/Mapping";
 import {SignatureOptions} from "../../annotations/security/Signature";
+import {RetryOptions} from "../../FetchRetryOptions";
 
 
 /**
@@ -18,6 +19,12 @@ export interface FeignProxyApiServiceMethodConfig {
      * 签名相关
      */
     signature?: SignatureOptions;
+
+
+    /**
+     * 重试相关配置
+     */
+    retryOptions:RetryOptions;
 }
 
 /**

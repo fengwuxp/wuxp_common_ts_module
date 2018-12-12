@@ -1,10 +1,11 @@
-import {SimpleView} from "./SimpleView";
+import {BaseAppView} from "./BaseAppView";
 
 
 /**
  * 带刷新的视图
  */
-export interface RefreshView/*<T> extends SimpleView<T>*/ {
+export interface RefreshView<T> /*extends BaseAppView<T>*/
+{
 
 
     /**

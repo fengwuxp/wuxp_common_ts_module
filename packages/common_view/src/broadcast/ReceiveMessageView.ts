@@ -3,6 +3,9 @@
  */
 export interface ReceiveMessageView {
 
-    // @ts-ignore
-    onMessage: (...p) => void;
+    /**
+     * 接收事件消息
+     * @param p
+     */
+    receiveEvent: (...p) => void;
 }

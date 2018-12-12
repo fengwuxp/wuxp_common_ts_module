@@ -3,6 +3,7 @@ import {FetchOptions} from "../../FetchOptions";
 import {MediaType} from "../../constant/http/MediaType";
 import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
+import {FetchRetryOptions} from "../../FetchRetryOptions";
 
 
 /**
@@ -36,7 +37,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         //请求requestMapping
-        const {requestMapping, signature} = apiService.getServiceMethodConfig(methodName);
+        const {requestMapping, signature, retryOptions} = apiService.getServiceMethodConfig(methodName);
 
         //解析参数生成 options，并提交请求
         const fetchOptions = {
@@ -68,6 +69,15 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 ...data,
                 ...sign
             };
+        }
+
+        if (retryOptions) {
+            //需要重试
+            (options as FetchRetryOptions).retries = retryOptions.retries;
+            (options as FetchRetryOptions).maxTimeout = retryOptions.maxTimeout;
+            (options as FetchRetryOptions).delay = retryOptions.delay;
+            (options as FetchRetryOptions).when = retryOptions.when;
+            (options as FetchRetryOptions).onRetry = retryOptions.onRetry;
         }
 
 

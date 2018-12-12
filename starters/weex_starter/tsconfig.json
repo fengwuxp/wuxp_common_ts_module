@@ -22,8 +22,7 @@
     ]
   },
   "include": [
-    "./src/**/*",
-    "node_modules/common_core/types/PromiseExt"
+    "./src/**/*"
   ],
   "exclude": [
     "dist",

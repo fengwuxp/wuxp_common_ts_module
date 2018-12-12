@@ -1,10 +1,11 @@
 import {AppView} from "./AppView";
+import {RouteView} from "./RouteView";
 
 
 /**
  * simple view
  */
-export interface SimpleView<T> extends AppView<T> {
+export interface BaseAppView<T, V> extends AppView<T>, RouteView<V> {
 
     /**
      * 渲染页面头部

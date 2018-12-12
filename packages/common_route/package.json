@@ -21,10 +21,11 @@
     "react-route"
   ],
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@tarojs/taro": "^1.2.0-beta.12",
     "@types/history": "^4.7.0",
     "@types/node": "^10.9.4",
     "@types/weex": "^0.0.1",

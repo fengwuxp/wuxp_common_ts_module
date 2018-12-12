@@ -79,6 +79,7 @@
     "http-proxy-middleware": "0.18.0",
     "immutable": "^4.0.0-rc.10",
     "typescript": "^3.2.2",
+    "tslib": "^1.9.3",
     "typings": "^2.1.1"
   },
   "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"

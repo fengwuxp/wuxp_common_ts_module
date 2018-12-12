@@ -17,13 +17,11 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
-  "dependencies": {
-    "@types/node": "^9.4.6",
-    "@types/weex": "^0.0.1",
-    "@types/weixin": "^0.0.1"
+  "devDependencies": {
+    "@types/node": "^10.12.12"
   },
   "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

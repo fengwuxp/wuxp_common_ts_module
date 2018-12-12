@@ -1,22 +1,17 @@
 {
   "compilerOptions": {
-    "importHelpers": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop":true,
     "allowSyntheticDefaultImports": true,
     "compileOnSave": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
     "types": [
-      "node",
-      "react",
-      "react-dom"
+      "node"
     ],
     "lib": [
       "dom",
@@ -27,7 +22,7 @@
   },
   "include": [
     "./src/**/*",
-    "node_modules/common_core/types/PromiseExt"
+    "node_modules/common_fetch/types/index.d.ts"
   ],
   "exclude": [
     "dist",

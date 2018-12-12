@@ -1,9 +1,8 @@
-import {FetchAdapter} from "../FetchAdapter";
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {WeexStreamModule, WeexStreamOption, WeexStreamResponse} from "weex/src/sdk/model/stream";
 import {ReqequestMethod} from "../../constant/ReqequestMethod";
-import {ResolveFetchData} from "../../resolve/ResolveFetchData";
-import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
+import AbstractFetchAdapter from "../AbstractFetchAdapter";
+import {WebFetchOptions} from "../web/WebFetchOptions";
 
 
 const stream: WeexStreamModule = weex.requireModule('stream');
@@ -11,13 +10,7 @@ const stream: WeexStreamModule = weex.requireModule('stream');
 /**
  * weex 请求适配器
  */
-export class WeexAdapter implements FetchAdapter {
-
-
-    /**
-     * 解析请求结果数据
-     */
-    private resolveFetchData: ResolveFetchData = new CommonResolveFetchData();
+export class WeexAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
 
     request = (options: FetchOptions): Promise<FetchResponse> => {
@@ -30,7 +23,7 @@ export class WeexAdapter implements FetchAdapter {
         return new Promise<FetchResponse>((resolve, reject) => {
             stream.fetch(req, (resp: WeexStreamResponse) => {
                 //解析数据
-                const data = this.resolveFetchData.resolve(resp);
+                const data = this.resolveResponse.resolve(resp);
                 if (resp.ok) {
                     resolve(data);
                 } else {

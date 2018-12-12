@@ -3,6 +3,6 @@
  */
 export interface SendMessageView {
 
-    // @ts-ignore
+
     sendMessage:(...args)=>void;
 }

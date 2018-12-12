@@ -1,10 +1,8 @@
-import {FetchAdapter} from "../FetchAdapter";
 import {FetchResponse} from "../../FetchOptions";
 import {ResponseType} from "../../constant/ResponseType";
 import {WebFetchOptions} from "./WebFetchOptions";
 import {ReqequestMethod} from "../../constant/ReqequestMethod";
-import {ResolveFetchData} from "../../resolve/ResolveFetchData";
-import CommonResolveFetchData from "../../resolve/CommonResolveFetchData";
+import AbstractFetchAdapter from "../AbstractFetchAdapter";
 
 
 // RequestInit 属性name列表
@@ -22,26 +20,27 @@ const RequestInitAttrNames: string[] = [
 /**
  * web端fetchAdapter
  */
-export default class WebFetchAdapter implements FetchAdapter<WebFetchOptions> {
+export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
-    /**
-     * 解析请求结果数据
-     */
-    private resolveFetchData: ResolveFetchData = new CommonResolveFetchData();
+
+
+
+
 
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
         return fetch(this.buildRequest(options)).then((response: Response) => {
 
             return this.parse(response, options.responseType).then((data) => {
+                //为了适配
                 response['data'] = data;
-                return this.resolveFetchData.resolve(response);
+                return this.resolveResponse.resolve(response);
             });
         }).catch((response: Response) => {
-            const data = this.resolveFetchData.resolve(response);
+            const data = this.resolveResponse.resolve(response);
             data.data = response;
             return data;
-        })
+        });
 
     };
 

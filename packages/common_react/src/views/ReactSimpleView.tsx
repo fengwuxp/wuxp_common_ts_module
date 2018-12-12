@@ -1,4 +1,4 @@
-import {SimpleView} from "common_view/src/SimpleView";
+import {BaseAppView} from "common_view/src/SimpleView";
 import * as React from "react";
 import {ErrorInfo} from "react";
 import FlexView from "../components/FlexView";
@@ -27,7 +27,7 @@ const viewBuilderStyle: React.CSSProperties = {
  */
 export default abstract class ReactSimpleView<P extends ReactSimpleViewProps, S extends ReactSimpleViewState>
     extends React.Component<P, S>
-    implements SimpleView<React.ReactNode> {
+    implements BaseAppView<React.ReactNode> {
 
 
     state: S;

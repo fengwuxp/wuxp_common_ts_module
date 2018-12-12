@@ -42,7 +42,8 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
     }
 
     preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
-        if (params.context && params.useProgressBar == false) {
+        if (params.useProgressBar == false) {
+            //不使用进度条
             return params;
         }
         let {count, progressBar} = this;
@@ -57,7 +58,8 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
 
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
-        if (options.context && options.useProgressBar == false) {
+        if (options.useProgressBar == false) {
+            //不使用进度条
             return data;
         }
         let {count, timerId, progressBar} = this;

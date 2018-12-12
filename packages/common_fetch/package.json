@@ -17,7 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "keywords": [
@@ -27,17 +27,16 @@
     "minapp"
   ],
   "devDependencies": {
-    "@types/node": "^10.9.4",
+    "@types/node": "^10.12.12",
+    "@types/weex": "^0.0.1",
+    "@types/weixin": "^0.0.1",
     "common_test": "^0.0.1",
     "jest": "^23.6.0",
     "md5": "^2.2.1"
   },
   "dependencies": {
-    "@types/weex": "^0.0.1",
-    "@types/weixin": "^0.0.1",
     "common_auth": "^0.0.1",
     "common_core": "^0.0.1",
-    "common_env": "^0.0.1",
     "common_exception": "^0.0.1",
     "common_task": "^0.0.1",
     "es5-shim": "^4.5.9",
