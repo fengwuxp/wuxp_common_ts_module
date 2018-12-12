@@ -76,15 +76,11 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
                     reject(`retry ${retries}`);
                     return
                 }
-                console.debug(`延时${_delay}毫秒后在请求，重试次数：${count}`,resp);
+                console.debug(`在${_delay}毫秒后准备开始第${count}次重试`,resp);
 
                 setTimeout(() => {
-                    _onRetry(fetchOptions, resp).then(resolve).catch((errorResp) => {
-                        //再次进行重试
-                        errorHandle(errorResp)
-                    }).finally(() => {
-                        count++;
-                    });
+                    count++;
+                    _onRetry(fetchOptions, resp).then(resolve).catch(errorHandle);
                 }, _delay);
             };
 
