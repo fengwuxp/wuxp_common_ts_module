@@ -84,20 +84,19 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
         const when = options.when || this.retryOptions.when;
 
-        let countRetry = this.countRetry;
 
         return new Promise<FetchResponse>((resolve, reject) => {
 
             const errorHandle = (resp) => {
-                if (countRetry === retries) {
+                if (this.countRetry === retries) {
                     console.debug("请求达到最大重试次数", retries);
                     reject(`retry ${retries}`);
                     return
                 }
-                console.debug(`在${_delay}毫秒后准备开始第${countRetry + 1}次重试`, resp);
+                console.debug(`在${_delay}毫秒后准备开始第${this.countRetry + 1}次重试`, resp);
 
                 setTimeout(() => {
-                    countRetry++;
+                    this.countRetry++;
                     _onRetry(fetchOptions, resp).then(resolve).catch((error) => {
                         if (when(error)) {
                             errorHandle(error);
