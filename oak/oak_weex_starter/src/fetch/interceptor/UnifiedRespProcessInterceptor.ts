@@ -1,7 +1,7 @@
 import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
 import {FetchResponse} from "common_fetch/src/FetchOptions";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
-import {ApiResp} from "../../../../oak_weex_common/src/model/api/ApiResp";
+import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 
 
 /**

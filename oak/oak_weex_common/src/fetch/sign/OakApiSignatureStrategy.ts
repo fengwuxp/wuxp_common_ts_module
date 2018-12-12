@@ -1,30 +1,32 @@
 import {SimpleApiSignatureStrategy} from "common_fetch/src/signature/ApiSignatureStrategy";
-import {oakEnv} from "../../env/OAKEnvVar";
-import {isAndroid, isWeb} from "common_weex/src/constant/WeexEnv";
 
 const md5 = require("md5");
 
-//从环境变量中获取
-const OAK = oakEnv;
 
 export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
 
     /**
      * 客户端id
      */
-    private clientId: string = OAK.clientId;
+    private clientId: string;
 
     /**
      * 签名秘钥
      */
-    private clientSecret: string = OAK.clientSecret;
+    private clientSecret: string;
 
 
     /**
      * 渠道编号
      */
-    private channelCode: string = isWeb ? "web" : isAndroid ? "android" : "ios";
+    private channelCode: string;
 
+
+    constructor(clientId: string, clientSecret: string, channelCode: string) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.channelCode = channelCode;
+    }
 
     sign = (fields: string[], data: (object | any)) => {
 
