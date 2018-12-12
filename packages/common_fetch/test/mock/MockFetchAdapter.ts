@@ -1,5 +1,5 @@
-import AbstractFetchAdapter from "../src/adapter/AbstractFetchAdapter";
-import {FetchOptions, FetchResponse} from "../src/FetchOptions";
+import AbstractFetchAdapter from "../../src/adapter/AbstractFetchAdapter";
+import {FetchOptions, FetchResponse} from "../../src/FetchOptions";
 
 
 interface MocKFetchOptions extends FetchOptions {

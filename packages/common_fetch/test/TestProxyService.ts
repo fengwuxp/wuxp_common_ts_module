@@ -11,13 +11,13 @@ import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
 import {setProxyFactory} from "../src/annotations/Feign";
 import * as log4js from "log4js";
 import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServiceExecutor";
-import TestService from "./TestService";
+import TestService from "./services/TestService";
 import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
 import {apiSign} from "./utils/ApiSginUtils";
 import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
 import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
-import {MockFetchAdapter} from "./MockFetchAdapter";
+import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
