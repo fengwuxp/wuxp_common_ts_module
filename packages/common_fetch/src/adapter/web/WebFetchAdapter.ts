@@ -40,6 +40,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
             });
             //超时控制
             const timeId = setTimeout(() => {
+                console.debug("web fetch adapter request timeout");
                 reject(`request timeout`);
             }, options.timeout || 5000);
 

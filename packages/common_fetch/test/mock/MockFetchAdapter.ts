@@ -33,7 +33,7 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
                 }
 
 
-            }, 2 * 1000);
+            }, 11 * 1000);
         });
     };
 
