@@ -11,10 +11,6 @@ import RetryFetchClient from "../fetch/RetryFetchClient";
  */
 export default class DefaultRestTemplate extends AbstractRestTemplate {
 
-    /**
-     * 重试的请求客户端
-     */
-    protected retryClient: FetchClient;
 
     constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecutor) {
         super(templateConfig, routingStrategy, engine, executor);
@@ -24,11 +20,7 @@ export default class DefaultRestTemplate extends AbstractRestTemplate {
 
         const retryOptions = (options as FetchRetryOptions).retryOptions;
         if (!!retryOptions && retryOptions.retries > 0) {
-            if (this.retryClient == null) {
-                //初始化一个客户端
-                this.retryClient = new RetryFetchClient(this.fetchClient["fetchAdapter"]);
-            }
-            return this.retryClient;
+            return new RetryFetchClient(this.fetchClient["fetchAdapter"]);
         } else {
             return this.fetchClient;
         }

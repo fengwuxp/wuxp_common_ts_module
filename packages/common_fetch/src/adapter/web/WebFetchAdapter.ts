@@ -25,18 +25,31 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
 
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
-        return fetch(this.buildRequest(options)).then((response: Response) => {
+        return new Promise((resolve, reject) => {
 
-            return this.parse(response, options.responseType).then((data) => {
-                //为了适配
-                response['data'] = data;
-                return this.resolveResponse.resolve(response);
+            const p = fetch(this.buildRequest(options)).then((response: Response) => {
+                return this.parse(response, options.responseType).then((data) => {
+                    //为了适配
+                    response['data'] = data;
+                    return this.resolveResponse.resolve(response)
+                });
+            }).catch((response: Response) => {
+                const data = this.resolveResponse.resolve(response);
+                data.data = response;
+                return data;
             });
-        }).catch((response: Response) => {
-            const data = this.resolveResponse.resolve(response);
-            data.data = response;
-            return data;
-        });
+            //超时控制
+            const timeId = setTimeout(() => {
+                reject(`request timeout`);
+            }, options.timeout || 5000);
+
+            p.finally((data) => {
+                //清除定时器
+                clearTimeout(timeId);
+                return data;
+            }).then(resolve)
+                .catch(reject);
+        })
 
     };
 
