@@ -73,7 +73,7 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
             const errorHandle = (resp) => {
                 if (count === retries) {
                     console.debug("请求达到最大重试次数", retries);
-                    reject(new Error(`retry ${retries}`));
+                    reject(`retry ${retries}`);
                     return
                 }
                 console.debug(`延时${_delay}毫秒后在请求，重试次数：${count}`,resp);

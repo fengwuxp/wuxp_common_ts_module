@@ -26,7 +26,7 @@ export default class DefaultRestTemplate extends AbstractRestTemplate {
         if (!!retryOptions && retryOptions.retries > 0) {
             if (this.retryClient == null) {
                 //初始化一个客户端
-                this.retryClient = new RetryFetchClient(this.fetchClient);
+                this.retryClient = new RetryFetchClient(this.fetchClient["fetchAdapter"]);
             }
             return this.retryClient;
         } else {
