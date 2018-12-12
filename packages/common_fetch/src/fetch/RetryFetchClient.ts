@@ -23,6 +23,9 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
         if (this.retryOptions.onRetry == null) {
             this.retryOptions.onRetry = this.onRetry;
         }
+        if (this.retryOptions.when == null) {
+            this.retryOptions.when = this.whenRetry;
+        }
     }
 
     request = (options: FetchRetryOptions): Promise<FetchResponse> => {
@@ -68,6 +71,8 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
         const retries = options.retries || this.retryOptions.retries;
 
+        const when = options.when || this.retryOptions.when;
+
         return new Promise((resolve, reject) => {
 
             const errorHandle = (resp) => {
@@ -76,11 +81,18 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
                     reject(`retry ${retries}`);
                     return
                 }
-                console.debug(`在${_delay}毫秒后准备开始第${count}次重试`,resp);
+                console.debug(`在${_delay}毫秒后准备开始第${count + 1}次重试`, resp);
 
                 setTimeout(() => {
                     count++;
-                    _onRetry(fetchOptions, resp).then(resolve).catch(errorHandle);
+                    _onRetry(fetchOptions, resp).then(resolve).catch((error) => {
+                        if (when(error)) {
+                            errorHandle(error);
+                        } else {
+                            console.debug("放弃重试");
+                            reject(error);
+                        }
+                    });
                 }, _delay);
             };
 
@@ -97,6 +109,15 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
         return this.fetch(options) as any;
     };
 
+
+    /**
+     * 是否进行重试
+     * @param response
+     */
+    private whenRetry = (response: FetchResponse) => {
+        console.log("when retry", response);
+        return response.status && response.status < 400;
+    };
 
     private resolveOptions = (retryOptions: FetchRetryOptions): FetchOptions => {
 

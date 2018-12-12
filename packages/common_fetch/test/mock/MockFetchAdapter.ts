@@ -26,7 +26,10 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
                 if (result) {
                     resolve({data: 1} as any);
                 } else {
-                    reject({data: 0})
+                    reject({
+                        data: 0,
+                        status: 200
+                    });
                 }
 
 
