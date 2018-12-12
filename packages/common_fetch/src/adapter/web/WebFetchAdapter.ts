@@ -23,10 +23,6 @@ const RequestInitAttrNames: string[] = [
 export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
 
-
-
-
-
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
         return fetch(this.buildRequest(options)).then((response: Response) => {

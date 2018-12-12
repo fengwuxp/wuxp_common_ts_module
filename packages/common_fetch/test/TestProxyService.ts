@@ -17,6 +17,7 @@ import {apiSign} from "./utils/ApiSginUtils";
 import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
 import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
+import {MockFetchAdapter} from "./MockFetchAdapter";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -42,7 +43,7 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
                 timeout: 10 * 1000,
                 headers: {}
             }, new DefaultApiRoutingStrategy(routingMapping),
-            new DefaultFetchClient(new WebFetchAdapter()),
+            new DefaultFetchClient(new MockFetchAdapter()),
             new FetchInterceptorExecutor([]));
         return restTemplate;
     };

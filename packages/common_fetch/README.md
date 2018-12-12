@@ -40,6 +40,9 @@
                 //接口签名注解
                 Signature: 可以标记那些参数需要加入签名
 
+                //接口重试
+                FetchRetry
+
 
                 注解除了RequestMapping 外 还可以增加 CachePut, Task等 来管理本地缓存以及定时作业
                 还可以考虑增加注解直接把请求下来的数据加入状态管理器中 例如redux
