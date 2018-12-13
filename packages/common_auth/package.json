@@ -17,13 +17,14 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "keywords": [],
   "types": "./index.d.ts",
   "dependencies": {
-    "common_core": "^0.0.1"
+    "common_core": "^0.0.1",
+    "common_utils": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

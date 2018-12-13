@@ -1,14 +1,22 @@
 import {AppSessionManager} from "./AppSessionManager";
-import DefaultWeexStroe from "common_weex/src/storage/DefaultWeexStroe";
+import {LocalStorage} from "common_utils/src/storage/LocalStorage";
 
 /**
  * 默认提供的简单的用户会话管理器
+ * 依赖localStorage
  */
-class SimpleAppSessionManager<T> implements AppSessionManager<T> {
+export default class SimpleAppSessionManager<T> implements AppSessionManager<T> {
 
     public static SAVE_MEMBER_KEY: string = "APP_MEMBER_INFO";
 
     private member: T = null;
+
+    private storage: LocalStorage;
+
+
+    constructor(storage: LocalStorage) {
+        this.storage = storage;
+    }
 
     getMember = (): Promise<T> => {
 
@@ -16,7 +24,7 @@ class SimpleAppSessionManager<T> implements AppSessionManager<T> {
             return Promise.resolve(this.member);
         }
 
-        return DefaultWeexStroe.getItem<T>(SimpleAppSessionManager.SAVE_MEMBER_KEY)
+        return this.storage.getStorage<T>(SimpleAppSessionManager.SAVE_MEMBER_KEY)
             .then((data) => {
                 this.member = data;
                 return data;
@@ -32,15 +40,11 @@ class SimpleAppSessionManager<T> implements AppSessionManager<T> {
     };
 
     removeMember = (): Promise<boolean> => {
-        return DefaultWeexStroe.removeItem(SimpleAppSessionManager.SAVE_MEMBER_KEY);
+        return this.storage.removeStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY).then(() => true);
     };
 
     saveMember = (memebr: T): Promise<void> => {
 
-        return DefaultWeexStroe.saveItem(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
+        return this.storage.setStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
     };
 }
-
-const simpleAppSessionManager = new SimpleAppSessionManager();
-
-export default simpleAppSessionManager;

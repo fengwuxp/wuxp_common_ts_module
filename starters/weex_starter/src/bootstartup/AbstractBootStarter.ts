@@ -2,7 +2,7 @@ import appConfigRegistry, {AppConfigRegistry} from "common_config/src/app/AppCon
 import {AppConfig} from "common_config/src/app/AppConfig";
 import AppRouter from "../route/AppRouter";
 
-import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
 
 
@@ -42,7 +42,7 @@ export default abstract class AbstractBootStarter<T extends WeexAppContext> impl
             //注册路由
             AppRouter.registerRouters(route);
 
-            AppRouter.appSessionManager = simpleAppSessionManager;
+            AppRouter.appSessionManager = weexDefaultSessionManager;
 
             AbstractBootStarter.appContext = {
                 appRouter: AppRouter,

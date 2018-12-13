@@ -19,7 +19,7 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
     async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
 
         try {
-            // const member: any = await simpleAppSessionManager.getMember();
+            // const member: any = await weexDefaultSessionManager.getMember();
             // params.data["token"] = member.token;
         } catch (e) {
 

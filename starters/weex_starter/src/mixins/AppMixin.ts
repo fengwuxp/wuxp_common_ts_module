@@ -2,7 +2,7 @@ import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
 import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
-import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouter from "../route/AppRouter";
 
 
@@ -57,7 +57,7 @@ const appMixin: ComponentOptions<any> = {
 
         try {
             //初始化用户鉴权信息
-            this.member = await simpleAppSessionManager.getMember();
+            this.member = await weexDefaultSessionManager.getMember();
         } catch (e) {
             console.debug("获取用户信息失败", e);
         }

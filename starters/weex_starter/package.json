@@ -27,6 +27,7 @@
     "common_test": "^0.0.1"
   },
   "dependencies": {
+    "common_auth": "^0.0.1",
     "common_config": "^0.0.1",
     "common_core": "^0.0.1",
     "common_fetch": "^0.0.1",

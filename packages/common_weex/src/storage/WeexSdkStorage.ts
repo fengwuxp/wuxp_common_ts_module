@@ -1,5 +1,6 @@
 import {storage} from "../sdk/ExportWeexSdkModule";
 import AbstractWeexLocalStorage from "./AbstractWeexLocalStorage";
+import DefaultLocalStorage from "common_utils/src/storage/DefaultLocalStorage";
 
 
 /**
@@ -17,4 +18,7 @@ class WeexSdkStorage extends AbstractWeexLocalStorage {
 
 }
 
-export default new WeexSdkStorage();
+//导出一个weex sdk model的storage
+const weexSdkStorage = new DefaultLocalStorage(new WeexSdkStorage());
+
+export default weexSdkStorage;

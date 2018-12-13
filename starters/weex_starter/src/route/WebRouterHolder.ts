@@ -1,6 +1,6 @@
 import VueRouter, {RouteConfig} from "vue-router";
 import Vue from "vue";
-import simpleAppSessionManager from "../session/SimpleAppSessionManager";
+import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 // @ts-ignore
 import routes from '../../../../src/route/WebRoute';
 import {AppRoute} from "./AppRouter";
@@ -56,7 +56,7 @@ router.beforeEach(async function (to, from, next) {
     }
     try {
         //用户是否已经登陆
-        const isLogin = await simpleAppSessionManager.isLogin();
+        const isLogin = await weexDefaultSessionManager.isLogin();
         if (!isLogin) {
             next({
                 path: '/login',
