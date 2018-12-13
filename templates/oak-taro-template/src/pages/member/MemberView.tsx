@@ -1,7 +1,8 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {View, Button, Text} from '@tarojs/components'
 import {observer, inject} from '@tarojs/mobx'
-import styles from './styles.less';
+
+import './index.less'
 
 
 interface IndexProps {
@@ -10,7 +11,7 @@ interface IndexProps {
 
 @inject('counterStore')
 @observer
-class HomeView extends Component<IndexProps, {}> {
+class Index extends Component<IndexProps, {}> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -63,14 +64,14 @@ class HomeView extends Component<IndexProps, {}> {
   render() {
     const {counterStore: {counter}} = this.props
     return (
-      <View className={styles.view}>
-        <Button onClick={this.increment}>+</Button>
+      <View className='index'>
+      <Button onClick={this.increment}>+</Button>
         <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-      </View>
-    )
+      <Button onClick={this.incrementAsync}>Add Async</Button>
+    <Text>{counter}</Text>
+    </View>
+  )
   }
 }
 
-export default HomeView
+export default Index
