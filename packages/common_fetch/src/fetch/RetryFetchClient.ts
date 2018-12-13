@@ -6,7 +6,7 @@ import {defaultOptions} from "../annotations/retry/FetchRetry";
 
 
 /**
- * 带重试的fetchClient
+ * 带重试的fetchClient，使用此client时每次都需要重新创建
  */
 export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOptions> {
 
@@ -37,32 +37,32 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
         console.debug("retry client request", options, retryOptions);
 
-        const _maxTimeout = retryOptions.maxTimeout || this.retryOptions.maxTimeout;
+        const _maxTimeout = retryOptions.maxTimeout;
 
-        const fetchOptions = this.resolveOptions(options);
 
         return new Promise<FetchResponse>((resolve, reject) => {
 
 
-            const retries = retryOptions.retries || this.retryOptions.retries;
+            const retries = retryOptions.retries;
 
-            const p: Promise<FetchResponse> = this.fetch(fetchOptions).catch((response) => {
+            const p: Promise<FetchResponse> = this.fetch(options).catch((response) => {
                 //尝试去重试请求
                 console.debug("--失败准备重试->", response);
-                return this.tryRetry(fetchOptions, retryOptions, response);
+                return this.tryRetry(options, retryOptions, response);
             });
 
             //超时控制
-            let timerId = setTimeout(() => {
+            const timerId = setTimeout(() => {
                 reject(new Error(`重试超时，已重试${this.countRetry}次`));
             }, _maxTimeout + retries * 10);
 
-            p.finally((data) => {
-                console.log("清除定时器", timerId);
-                clearTimeout(timerId);
-                return data;
-            }).then(resolve)
-                .catch(reject);
+            p.then(resolve)
+                .catch(reject)
+                .finally((data) => {
+                    console.log("清除定时器", timerId);
+                    clearTimeout(timerId);
+                    return data;
+                });
         });
 
     };
@@ -86,11 +86,10 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
 
         return new Promise<FetchResponse>((resolve, reject) => {
-
             const errorHandle = (resp) => {
                 if (this.countRetry === retries) {
                     console.debug("请求达到最大重试次数", retries);
-                    reject(`retry ${retries}`);
+                    reject(`retry end，count ${retries}`);
                     return
                 }
                 console.debug(`在${_delay}毫秒后准备开始第${this.countRetry + 1}次重试`, resp);
@@ -135,16 +134,4 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
         //响应码大于400没有重试的必要了
         return response.status && response.status < 400;
     };
-
-    private resolveOptions = (retryOptions: FetchRetryOptions): FetchOptions => {
-
-        //值复制
-        const options = {
-            ...retryOptions
-        };
-        //移除重试配置
-        delete options.retryOptions;
-
-        return options;
-    }
 }

@@ -24,5 +24,8 @@
   "keywords": [],
   "devDependencies": {
     "@types/weixin": "0.0.1"
+  },
+  "dependencies": {
+    "taro_starter": "^0.0.1"
   }
 }

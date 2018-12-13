@@ -6,6 +6,9 @@ import * as Taro from "@tarojs/taro";
 import {request} from "@tarojs/taro";
 
 
+/**
+ * 基于taro的请求适配器
+ */
 export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
 

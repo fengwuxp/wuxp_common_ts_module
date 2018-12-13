@@ -1,5 +1,5 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
-import {FetchOptions, FetchResponse} from "../../FetchOptions";
+import {FetchOptions, FetchResponse, ProgressBarOptions} from "../../FetchOptions";
 import {Timer} from "common_task/src/timer/Timer";
 
 /**
@@ -28,16 +28,19 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
      */
     protected timerId;
 
-
     /**
-     * 延迟显示的毫秒数
+     * 进度条的相关配置
      */
-    public static LAZY_TIMES: number = 200;
+    protected progressBarOptions: ProgressBarOptions;
 
 
-    constructor(progressBar: FetchProgressBar, timer?: Timer) {
+    constructor(progressBar: FetchProgressBar, progressBarOptions?: ProgressBarOptions, timer?: Timer) {
         super();
         this.progressBar = progressBar;
+        this.progressBarOptions = progressBarOptions || {
+            duration: 300,
+            mask: false
+        };
         this.timer = timer;
     }
 
@@ -49,7 +52,12 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
         let {count, progressBar} = this;
         if (count === 0) {
             //显示加载进度条
-            this.timerId = setTimeout(progressBar.showProgressBar, NeedProgressBarInterceptor.LAZY_TIMES);
+            this.timerId = setTimeout(() => {
+                progressBar.showProgressBar({
+                    ...this.progressBarOptions,
+                    ...(params.progressBarOptions || {})
+                });
+            }, this.progressBarOptions.duration);
         }
         //计数器加一
         count++;
@@ -81,7 +89,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
  */
 export interface FetchProgressBar {
 
-    showProgressBar: () => void;
+    showProgressBar: (progressBarOptions?: ProgressBarOptions) => void;
 
     hideProgressBar: () => void;
 

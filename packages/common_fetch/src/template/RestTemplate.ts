@@ -154,10 +154,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
 
         return interceptorExecutor.preHandle(options)
-        /* .catch((error: Error) => {
-             //TODO  将异常广播
-             return error;
-         })*/.then(fetchClient.request)
+            .then(fetchClient.request)
             .then((resp) => {
                 //后置拦截器
                 return interceptorExecutor.postHandle(resp, options)
@@ -168,12 +165,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
                             response = transformResponse(response);
                         }
                         return response
-                    })
-                /*.catch((error) => {
-                                        //TODO  将异常广播
-                                        return error;
-                                    });*/
-
+                    });
             }).catch((response: FetchResponse) => {
                 const {statusText, headers, data, status} = response;
                 console.debug("请求异常", status, statusText);
@@ -187,7 +179,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
                 };
                 //http code错误处理，将其广播
                 ExceptionBroadcaster.broadcast(exception);
-                return response;
+                return Promise.reject(response);
             });
     };
 

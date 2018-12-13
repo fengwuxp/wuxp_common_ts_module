@@ -46,11 +46,47 @@ export interface FetchOptions extends BaseFetchOptions {
      */
     context?: FetchContext;
 
+
     /**
      * 是否使用进度条
      */
-    useProgressBar: boolean;
+    useProgressBar?: boolean;
+
+    /**
+     * 进度条配置
+     * 建议进度条使用拦截器实现
+     */
+    progressBarOptions?: ProgressBarOptions;
+
 }
+
+
+export interface ProgressBarOptions {
+
+
+    /**
+     * 是否使用蒙版
+     */
+    mask?: boolean;
+
+    /**
+     * 提示的延迟时间，
+     * 单位毫秒，默认：500
+     */
+    duration?: number;
+
+    /**
+     * 进度条提示标题
+     */
+    title?: string;
+
+    /**
+     * 进度条提示图标
+     * 图标，字体图标名称或图片url
+     */
+    icon?: string;
+}
+
 
 /**
  * 请求响应

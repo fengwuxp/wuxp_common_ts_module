@@ -1,5 +1,7 @@
 import AbstractFetchAdapter from "../../src/adapter/AbstractFetchAdapter";
 import {FetchOptions, FetchResponse} from "../../src/FetchOptions";
+import {WebFetchOptions} from "../../src/adapter/web/WebFetchOptions";
+import {ReqequestMethod} from "../../src/constant/ReqequestMethod";
 
 
 interface MocKFetchOptions extends FetchOptions {
@@ -18,6 +20,7 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
 
     request = (options: MocKFetchOptions): Promise<FetchResponse> => {
 
+        console.debug(this.buildRequest(options));
         return new Promise<FetchResponse>((resolve, reject) => {
 
             setTimeout(() => {
@@ -36,6 +39,34 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
             }, this.responseTime);
         });
     };
+
+    /**
+     * 构建请求对象
+     * @param {WebFetchOptions} options
+     * @return {Request}
+     */
+    private buildRequest(options: WebFetchOptions): any {
+        let {
+            url,
+            method,
+            headers,
+            data,
+            mode
+        } = options;
+
+
+        const reqMethodElement = ReqequestMethod[method];
+
+        //构建Request请求对象
+        const reqOptions = {
+            method: reqMethodElement,
+            headers,
+            body: data,
+            mode
+        };
+
+        return reqOptions;
+    }
 
 
 }
