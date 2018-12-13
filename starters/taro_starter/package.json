@@ -45,6 +45,7 @@
     "babel-plugin-transform-jsx-stylesheet": "^0.6.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "common_config": "^0.0.1",
     "common_fetch": "^0.0.1",
     "common_route": "^0.0.1",
     "common_style": "^0.0.1",

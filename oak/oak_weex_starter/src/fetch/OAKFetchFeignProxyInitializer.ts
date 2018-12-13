@@ -37,10 +37,10 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
             )
         );
 
-        const es6PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
+        const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
 
         //设置代理工厂
-        setProxyFactory(es6PoxyServiceFactory);
+        setProxyFactory(es5PoxyServiceFactory);
     }
 
 

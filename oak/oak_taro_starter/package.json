@@ -26,6 +26,7 @@
     "@types/weixin": "0.0.1"
   },
   "dependencies": {
+    "oak_weex_common": "^0.0.1",
     "taro_starter": "^0.0.1"
   }
 }

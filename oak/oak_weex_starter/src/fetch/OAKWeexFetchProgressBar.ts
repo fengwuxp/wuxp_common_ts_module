@@ -2,7 +2,7 @@ import {FetchProgressBar} from "common_fetch/src/interceptor/default/NeedProgres
 import {appMain} from "../ExpotrtWeexOAKModel";
 
 
-export default class OAKFetchProgressBar implements FetchProgressBar {
+export default class OAKWeexFetchProgressBar implements FetchProgressBar {
 
     private count: number = 0;
 

@@ -13,19 +13,19 @@ import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthIn
 
 //@ts-ignore
 import {appConfig} from '../../../../../src/config/WeexAppConfig';
-import OAKFetchProgressBar from "../OAKFetchProgressBar";
+import OAKWeexFetchProgressBar from "../OAKWeexFetchProgressBar";
 
-import OAKSimpleSyncAuthHelper from "../OAKSimpleSyncAuthHelper";
-import UnifiedRespProcessInterceptor from "../interceptor/UnifiedRespProcessInterceptor";
+import OAKWeexSyncAuthHelper from "../OAKWeexSyncAuthHelper";
+import WeexUnifiedRespProcessInterceptor from "../interceptor/WeexUnifiedRespProcessInterceptor";
 
 const routeMapping = {};
 
 routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
 
 const interceptorList = [
-    new NeedProgressBarInterceptor(new OAKFetchProgressBar()),
-    new NeedAuthInterceptor(new OAKSimpleSyncAuthHelper()),
-    new UnifiedRespProcessInterceptor()
+    new NeedProgressBarInterceptor(new OAKWeexFetchProgressBar()),
+    new NeedAuthInterceptor(new OAKWeexSyncAuthHelper()),
+    new WeexUnifiedRespProcessInterceptor()
 ];
 
 export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTemplateLoader {

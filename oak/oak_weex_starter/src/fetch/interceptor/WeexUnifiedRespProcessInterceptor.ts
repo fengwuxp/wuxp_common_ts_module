@@ -7,7 +7,7 @@ import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 /**
  * 统一数据处理
  */
-export default class UnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
+export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {

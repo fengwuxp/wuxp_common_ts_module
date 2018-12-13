@@ -1,15 +1,60 @@
 import {LocalStorage, LocalStorageOptions} from "./LocalStorage";
+import StringUtils from "../string/StringUtils";
 
 
-export default abstract class AbstractLocalStorage implements LocalStorage {
+/**
+ * 默认的LocalStorage的实现
+ */
+export default class DefaultLocalStorage implements LocalStorage {
 
-    abstract getKeys: () => Promise<string[]>;
 
-    abstract getStorage<T>(key: string): Promise<T> ;
+    protected storage: LocalStorage;
 
-    abstract removeStorage(key: string | string[]): Promise<string[]>
 
-    abstract setStorage<T>(key: string, data: T, options?: LocalStorageOptions): Promise<void>
+    constructor(storage: LocalStorage) {
+        this.storage = storage;
+    }
+
+    getKeys = () => this.storage.getKeys();
+
+    getStorage = <T>(key: string): Promise<T> => {
+        return this.storage.getStorage<string>(key).then((data) => {
+            if (data == null) {
+                return Promise.reject(null);
+            }
+            if (!StringUtils.isJSONString(data)) {
+                return data as any;
+            }
+            const object = JSON.parse(data);
+            if ("_localStorageOptions_" in object) {
+                //如果存在配置
+                if (this.isItEffective(object["_localStorageOptions_"].expireDate)) {
+                    return object.data;
+                } else {
+                    return Promise.reject(null);
+                }
+
+            }
+            return object as T;
+        });
+    };
+
+    removeStorage = (key: string | string[]): Promise<string[]> => this.storage.removeStorage(key);
+
+    setStorage = <T>(key: string, data: T, options?: LocalStorageOptions): Promise<void> => {
+
+        let d: any = data;
+        if (options) {
+            d = {
+                data: d,
+                _localStorageOptions_: {
+                    expireDate: options.effectiveTime + new Date().getTime()
+                }
+            };
+        }
+
+        return this.setStorage<string>(key, JSON.stringify(d));
+    };
 
 
     /**

@@ -5,7 +5,7 @@ import simpleAppSessionManager from "weex_starter/src/session/SimpleAppSessionMa
 
 import AppRouter from "weex_starter/src/route/AppRouter";
 
-export default class OAKSimpleSyncAuthHelper implements SyncAuthHelper<any> {
+export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
     async isToAuthView(data: FetchResponse) {
 
