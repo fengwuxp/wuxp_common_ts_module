@@ -47,7 +47,13 @@ export default abstract class AbstractWeexLocalStorage implements LocalStorage {
     }
 
     setStorage = <T>(key: string, data: T): Promise<void> => new Promise((resolve, reject) => {
-        this.weexStorage.removeItem(key, (result) => {
+        let d: string;
+        if (typeof data != "string") {
+            d = JSON.stringify(data);
+        } else {
+            d = data;
+        }
+        this.weexStorage.setItem(key, d, (result) => {
             this.handleResult(result, resolve, reject);
         });
     });
