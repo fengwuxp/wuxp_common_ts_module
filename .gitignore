@@ -15,3 +15,5 @@ dist
 dist_web
 coverage
 *.tgz
+lib
+

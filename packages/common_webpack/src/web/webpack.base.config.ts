@@ -10,6 +10,7 @@ import {DEPLOYMENT_DIRECTORY, PROJECT_DIR, EXTERNALS} from "../config/webpackCon
 import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
+import {TsConfigPathsPlugin} from "awesome-typescript-loader";
 
 
 /**
@@ -120,7 +121,9 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true
-            })
+            }),
+            //tsconfig.ts 中就可以愉快的使用baseUrl, paths
+            new TsConfigPathsPlugin()
             // new WriteFilePlugin({
             //     // test: /^((?!\.hot-update).)*$/,
             //     test: /\.jsp|\.tld|\.xml$/,

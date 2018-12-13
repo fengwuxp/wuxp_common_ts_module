@@ -81,7 +81,9 @@ const config = {
     },
     compile: {
       include: [
-        "taro_starter"
+        "taro_starter",
+        "oak_taro_starter",
+        "common_fetch",
       ]
     }
   },

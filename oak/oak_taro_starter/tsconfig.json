@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    //    "esModuleInterop":true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": false,
-    //    "compileOnSave": false,
-    //    "emitDecoratorMetadata": true,
-    //    "experimentalDecorators": true,
+    "compileOnSave": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "module": "esnext",
-    "target": "es6",
+    "target": "es5",
     "sourceMap": false,
-    //    "allowJs": true,
     "baseUrl": "./src",
     "outDir": "./lib",
-//    "outFile": "./lib/index.js",
     "declaration": true,
     "importHelpers": true,
-    "types": [
-      "node",
-      "jest",
-      "weex",
-      "weixin"
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "lib": [
       "dom",
@@ -30,13 +25,13 @@
   },
   "include": [
     "./src/**/*",
-//    "./test/**/*",
-    "./types/**/*.d.ts"
-
+    "./types/**/*.d.ts",
+    "node_modules/common_fetch/src/**/*",
+    "node_modules/common_fetch/types/index.d.ts",
+    "node_modules/@tarojs/**/*"
   ],
   "exclude": [
     "dist",
-    "node_modules",
     "**/*.spec.ts"
   ]
 }

@@ -4,7 +4,6 @@ import { Component } from "@tarojs/taro-h5";
 import Nerv from "nervjs";
 import { View, Text } from '@tarojs/components';
 import { observer } from "@tarojs/mobx-h5";
-import { TaroView } from "taro_starter/src/annotations/TaroBaseView";
 let ShopCartView = class ShopCartView extends Component {
   constructor(props, context) {
     super(props, context);
@@ -35,5 +34,5 @@ let ShopCartView = class ShopCartView extends Component {
     navigationBarTitleText: '购物车'
   };
 };
-ShopCartView = tslib_1.__decorate([observer, TaroView()], ShopCartView);
+ShopCartView = tslib_1.__decorate([observer], ShopCartView);
 export default ShopCartView;

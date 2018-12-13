@@ -2,8 +2,6 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import {View, Text} from '@tarojs/components'
 import {observer} from '@tarojs/mobx'
 
-import {TaroView, TaroBaseView} from "taro_starter/src/annotations/TaroBaseView";
-import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
 
 // import styles from './styles.less';
 
@@ -16,12 +14,11 @@ interface ShopCartViewState {
 
 }
 
+
 @observer
-@TaroView()
-export default class ShopCartView extends Component<ShopCartViewProps, ShopCartViewState> implements TaroBaseView {
+export default class ShopCartView extends Component<ShopCartViewProps, ShopCartViewState> {
 
 
-    navigator: NavigatorAdapter;
 
     constructor(props: ShopCartViewProps, context: any) {
         super(props, context);

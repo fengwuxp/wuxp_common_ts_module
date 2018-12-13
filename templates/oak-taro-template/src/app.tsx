@@ -3,8 +3,13 @@ import {Provider} from '@tarojs/mobx'
 import Index from './pages/index'
 
 import counterStore from './store/counter'
+import OAKTaroFeignProxyInitializer from "oak_taro_starter/src/fetch/OAKTaroFeignProxyInitializer";
 
 import './app.less'
+const oakTaroFeignProxyInitializer = new OAKTaroFeignProxyInitializer({
+  apiEntryAddress: "http://test"
+} as any);
+oakTaroFeignProxyInitializer.initFeignProxyFactory();
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
