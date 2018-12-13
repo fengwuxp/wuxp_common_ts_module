@@ -15,7 +15,7 @@ export interface BaseAppView<T, V> extends AppView<T>, RouteView<V> {
     /**
      * 渲染页面主体
      */
-    renderBody: () => T;
+    renderBody?: () => T;
 
     /**
      * 渲染页面底部

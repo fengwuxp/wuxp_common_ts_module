@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
+    "module": "esnext",
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
@@ -19,9 +19,24 @@
     "jsxFactory": "Taro.createElement",
     "allowJs": true,
     "typeRoots": [
-      "node_modules/@types",
-      "global.d.ts"
+      "node_modules/@types"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "es6",
+      "es2015",
+      "es2015.promise"
     ]
   },
-  "compileOnSave": false
+  "include": [
+    "src/**/*",
+    "types/index.d.ts",
+    "node_modules/common_fetch/types/index.d.ts",
+    "node_modules/taro_starter/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

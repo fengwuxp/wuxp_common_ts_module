@@ -1,9 +1,13 @@
 module.exports = {
-  env: {
-    NODE_ENV: '"development"'
-  },
-  defineConstants: {
-  },
-  weapp: {},
-  h5: {}
-}
+    env: {
+        NODE_ENV: '"development"'
+    },
+    defineConstants: {},
+    weapp: {},
+    h5: {
+        devServer: {
+            port: 9026
+        }
+    },
+
+};

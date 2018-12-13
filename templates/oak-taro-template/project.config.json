@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "taro-example",
+  "projectname": "oak-taro-template",
   "description": "",
   "appid": "touristappid",
   "setting": {

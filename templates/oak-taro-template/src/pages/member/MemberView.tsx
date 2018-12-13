@@ -1,17 +1,18 @@
-import Taro, {Component, Config} from '@tarojs/taro'
-import {View, Button, Text} from '@tarojs/components'
-import {observer, inject} from '@tarojs/mobx'
-
-import './index.less'
+import Taro, {Config,Component} from '@tarojs/taro'
+import {View, Text} from '@tarojs/components'
 
 
-interface IndexProps {
-  counterStore?: any
+
+interface MemberViewProps {
+
 }
 
-@inject('counterStore')
-@observer
-class Index extends Component<IndexProps, {}> {
+interface MemberViewState {
+
+}
+
+
+export default class MemberView extends Component<MemberViewProps, MemberViewState> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -21,7 +22,7 @@ class Index extends Component<IndexProps, {}> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '个人中心'
   };
 
   componentWillMount() {
@@ -33,7 +34,6 @@ class Index extends Component<IndexProps, {}> {
 
   componentDidMount() {
 
-    Taro.navigateBack()
   }
 
   componentWillUnmount() {
@@ -46,32 +46,13 @@ class Index extends Component<IndexProps, {}> {
   componentDidHide() {
   }
 
-  increment = () => {
-    const {counterStore} = this.props;
-    counterStore.increment()
-  }
-
-  decrement = () => {
-    const {counterStore} = this.props;
-    counterStore.decrement()
-  }
-
-  incrementAsync = () => {
-    const {counterStore} = this.props;
-    counterStore.incrementAsync()
-  }
 
   render() {
-    const {counterStore: {counter}} = this.props
     return (
-      <View className='index'>
-      <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-      <Button onClick={this.incrementAsync}>Add Async</Button>
-    <Text>{counter}</Text>
-    </View>
-  )
+      <View>
+        <Text>个人中心</Text>
+      </View>
+    )
   }
 }
 
-export default Index

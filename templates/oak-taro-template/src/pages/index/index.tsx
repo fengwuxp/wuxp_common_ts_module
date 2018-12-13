@@ -1,76 +1,75 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {View, Button, Text} from '@tarojs/components'
 import {observer, inject} from '@tarojs/mobx'
-import styles from './styles.less';
 
 
 interface IndexProps {
-  counterStore?: any
+    counterStore?: any
 }
 
 @inject('counterStore')
 @observer
-class HomeView extends Component<IndexProps, {}> {
+class Index extends Component<IndexProps, {}> {
 
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
-  config: Config = {
-    navigationBarTitleText: '首页'
-  };
+    /**
+     * 指定config的类型声明为: Taro.Config
+     *
+     * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
+     * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
+     * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
+     */
+    config: Config = {
+        navigationBarTitleText: '首页'
+    };
 
-  componentWillMount() {
-  }
+    componentWillMount() {
+    }
 
-  componentWillReact() {
-    console.log('componentWillReact')
-  }
+    componentWillReact() {
+        console.log('componentWillReact')
+    }
 
-  componentDidMount() {
+    componentDidMount() {
 
-    Taro.navigateBack()
-  }
+        Taro.navigateBack()
+    }
 
-  componentWillUnmount() {
-  }
+    componentWillUnmount() {
+    }
 
-  componentDidShow() {
+    componentDidShow() {
 
-  }
+    }
 
-  componentDidHide() {
-  }
+    componentDidHide() {
+    }
 
-  increment = () => {
-    const {counterStore} = this.props;
-    counterStore.increment()
-  }
+    increment = () => {
+        const {counterStore} = this.props;
+        counterStore.increment()
+    }
 
-  decrement = () => {
-    const {counterStore} = this.props;
-    counterStore.decrement()
-  }
+    decrement = () => {
+        const {counterStore} = this.props;
+        counterStore.decrement()
+    }
 
-  incrementAsync = () => {
-    const {counterStore} = this.props;
-    counterStore.incrementAsync()
-  }
+    incrementAsync = () => {
+        const {counterStore} = this.props;
+        counterStore.incrementAsync()
+    }
 
-  render() {
-    const {counterStore: {counter}} = this.props
-    return (
-      <View className={styles.view}>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-      </View>
-    )
-  }
+    render() {
+        const {counterStore: {counter}} = this.props;
+        return (
+            <View>
+                <Button onClick={this.increment}>+</Button>
+                <Button onClick={this.decrement}>-</Button>
+                <Button onClick={this.incrementAsync}>Add Async</Button>
+                <Text>{counter}</Text>
+            </View>
+        )
+    }
 }
 
-export default HomeView
+export default Index

@@ -27,7 +27,9 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/cart/ShopCartView',
+      'pages/member/MemberView'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -39,29 +41,23 @@ class App extends Component {
     tabBar: {
       list: [
         {
-          pagePath: "pages/home/index",
+          pagePath: "pages/index/index",
           text: "首页",
-          iconPath: "../static_resources/images/tab/home.png",
-          selectedIconPath: "../static_resources/images/tab/home-active.png"
+          iconPath: "./static_resources/images/tab/home.png",
+          selectedIconPath: "./static_resources/images/tab/home-active.png"
         },
 
         {
-          pagePath: "pages/cart/index",
+          pagePath: "pages/cart/ShopCartView",
           text: "衣袋",
-          iconPath: "../static_resources/images/tab/cart.png",
-          selectedIconPath: "../static_resources/images/tab/cart-active.png"
+          iconPath: "./static_resources/images/tab/cart.png",
+          selectedIconPath: "./static_resources/images/tab/cart-active.png"
         },
         {
-          pagePath: "pages/cart/index",
-          text: "衣袋",
-          iconPath: "../static_resources/images/tab/cart.png",
-          selectedIconPath: "../static_resources/images/tab/cart-active.png"
-        },
-        {
-          pagePath: "pages/user/index",
+          pagePath: "pages/member/MemberView",
           text: "我的",
-          iconPath: "../static_resources/images/tab/user.png",
-          selectedIconPath: "../static_resources/images/tab/user-active.png"
+          iconPath: "./static_resources/images/tab/user.png",
+          selectedIconPath: "./static_resources/images/tab/user-active.png"
         }
       ],
       color: '#333333',

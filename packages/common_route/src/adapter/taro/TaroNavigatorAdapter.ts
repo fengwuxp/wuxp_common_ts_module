@@ -40,11 +40,11 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
 
         const {pathname, state, search} = locationDescriptorObject;
 
-        const paths = pathname.split("?");
+        const paths = pathname ? pathname.split("?") : [];
 
         const params = {
-            ...(parse(search) || {}),
-            ...(parse(paths[0]) || {}),
+            ...(parse(search as string)),
+            ...(parse(paths[0])),
             ...(state || {})
         };
 

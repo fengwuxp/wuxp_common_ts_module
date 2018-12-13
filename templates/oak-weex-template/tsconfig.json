@@ -37,6 +37,7 @@
     "node_modules/common_starter/types/index.d.ts"
   ],
   "exclude": [
+    "node_modules",
     "**/*.spec.ts"
   ]
 }
