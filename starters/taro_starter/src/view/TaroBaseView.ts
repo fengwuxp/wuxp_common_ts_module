@@ -14,8 +14,6 @@ export default abstract class TaroBaseView<P, S> extends Taro.Component<P, S> im
     protected navigator: NavigatorAdapter = new TaroNavigatorAdapter();
 
 
-    abstract renderBody?: () => any;
-
 
     backView = () => this.navigator.goBack();
 

@@ -71,9 +71,9 @@ export interface ProgressBarOptions {
 
     /**
      * 提示的延迟时间，
-     * 单位毫秒，默认：500
+     * 单位毫秒，默认：300
      */
-    duration?: number;
+    delay?: number;
 
     /**
      * 进度条提示标题

@@ -3,7 +3,7 @@ import {LocalStorageOptions} from "common_utils/src/storage/LocalStorage";
 import * as Taro from "@tarojs/taro";
 
 
-export default class TaroLocalStorage implements LocalStorage {
+class TaroLocalStorage implements LocalStorage {
 
 
     getKeys = (): Promise<string[]> => Promise.reject("not support get keys");
@@ -36,3 +36,5 @@ export default class TaroLocalStorage implements LocalStorage {
     }
 
 }
+
+export default new TaroLocalStorage();

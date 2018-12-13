@@ -2,6 +2,7 @@ import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetch
 import {FetchResponse} from "common_fetch/src/FetchOptions";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
+import * as  Taro from "@tarojs/taro";
 
 
 /**
@@ -16,7 +17,15 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
 
         if (resp.code !== 0) {
 
-            //TODO 加入错误提示
+            //加入错误提示
+            if (!!resp.message) {
+                //自动提示
+                Taro.showToast({
+                    title: resp.message,
+                    mask: true
+                });
+            }
+
 
             return Promise.reject(resp.message);
         }

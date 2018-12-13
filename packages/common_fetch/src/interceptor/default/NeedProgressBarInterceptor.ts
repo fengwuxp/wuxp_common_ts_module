@@ -38,7 +38,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
         super();
         this.progressBar = progressBar;
         this.progressBarOptions = progressBarOptions || {
-            duration: 300,
+            delay: 300,
             mask: false
         };
         this.timer = timer;
@@ -57,7 +57,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
                     ...this.progressBarOptions,
                     ...(params.progressBarOptions || {})
                 });
-            }, this.progressBarOptions.duration);
+            }, this.progressBarOptions.delay);
         }
         //计数器加一
         count++;
