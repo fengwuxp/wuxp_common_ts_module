@@ -4,14 +4,18 @@
 
 - [Taro](https://github.com/NervJS/taro)
 
+- [官方文档](https://nervjs.github.io/taro/docs/GETTING-STARTED.html)
+
 
 #### 启动步骤
 
      1：确认 node环境和yarn工具已经安装（npm需要设置成私服）
 
-     2：安装依赖 (yarn install 或者运行package.json定义的yarn_i命令)
+     2：安装Taro:  yarn global add @tarojs/cli
 
-     3：npm run dev:h5 (idea可以直接在package.json点击命令运行)
+     3：安装依赖 (yarn install 或者运行package.json定义的yarn_i命令)
+
+     4：npm run dev:h5 (idea可以直接在package.json点击命令运行)
 
 
 #### 环境安装参考
