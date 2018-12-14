@@ -1,14 +1,10 @@
+import * as OakTaro from "oak_taro_starter/lib";
 import { Component } from "@tarojs/taro-h5";
 import Nerv from "nervjs";
 import { Provider } from "@tarojs/mobx-h5";
 
 import counterStore from './store/counter';
 import './app.less';
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
 import { View, Tabbar, TabbarContainer, TabbarPanel } from '@tarojs/components';
 import Taro from '@tarojs/taro-h5';
 import { Router } from '@tarojs/router';
@@ -20,6 +16,16 @@ Taro.initPxTransform({
     "828": 0.905
   }
 });
+new OakTaro.OAKTaroFeignProxyInitializer(Taro, {
+  apiEntryAddress: "http://test.meazoo.com"
+}).initFeignProxyFactory();
+//在feign代理初始化后倒入代理服务
+// import MemberSpaceService from "./services/member/MemberSpaceService";
+// 如果需要在 h5 环境中开启 React Devtools
+// 取消以下注释：
+// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
+//   require('nerv-devtools')
+// }
 const store = {
   counterStore
 };
@@ -61,6 +67,10 @@ class App extends Component {
     Taro._set$app(this);
   }
   componentDidMount() {
+    const MemberSpaceService = require("./services/member/MemberSpaceService").default;
+    MemberSpaceService.queryLikeStore({
+      memberId: 1
+    });
     this.componentDidShow();
   }
   componentDidShow() {}

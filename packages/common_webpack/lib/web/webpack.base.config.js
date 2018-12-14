@@ -20,6 +20,7 @@ var webpackConfig_1 = require("../config/webpackConfig");
 var BabelLoader_1 = require("../loader/BabelLoader");
 var TypescriptLoader_1 = require("../loader/TypescriptLoader");
 var PostCssLoader_1 = require("../style/PostCssLoader");
+var awesome_typescript_loader_1 = require("awesome-typescript-loader");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -117,7 +118,9 @@ exports.getWebpackBaseConfig = function (options) {
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true
-            })
+            }),
+            //tsconfig.ts 中就可以愉快的使用baseUrl, paths
+            new awesome_typescript_loader_1.TsConfigPathsPlugin()
             // new WriteFilePlugin({
             //     // test: /^((?!\.hot-update).)*$/,
             //     test: /\.jsp|\.tld|\.xml$/,

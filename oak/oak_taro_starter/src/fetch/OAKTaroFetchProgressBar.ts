@@ -1,7 +1,5 @@
 import {FetchProgressBar} from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
-import * as Taro from "@tarojs/taro";
 import {ProgressBarOptions} from "common_fetch/src/FetchOptions";
-
 
 export default class OAKTaroFetchProgressBar implements FetchProgressBar {
 
@@ -10,9 +8,14 @@ export default class OAKTaroFetchProgressBar implements FetchProgressBar {
 
     private progressBarOptions: ProgressBarOptions;
 
+    private taro: any;
 
-    constructor(progressBarOptions?: ProgressBarOptions) {
-        this.progressBarOptions = progressBarOptions||{};
+
+    constructor(taro: any, progressBarOptions?: ProgressBarOptions) {
+        this.taro = taro;
+        this.progressBarOptions = progressBarOptions || {
+            title: "数据加载中..."
+        };
     }
 
     hideProgressBar = () => {
@@ -20,7 +23,7 @@ export default class OAKTaroFetchProgressBar implements FetchProgressBar {
         OAKTaroFetchProgressBar.count--;
         if (OAKTaroFetchProgressBar.count === 0) {
             //隐藏加载进度条
-            Taro.hideLoading();
+            this.taro.hideLoading();
         }
     };
 
@@ -28,7 +31,7 @@ export default class OAKTaroFetchProgressBar implements FetchProgressBar {
 
         if (OAKTaroFetchProgressBar.count === 0) {
             //显示加载进度条
-            Taro.showLoading({
+            this.taro.showLoading({
                 ...this.progressBarOptions,
                 ...(progressBarOptions || {})
             } as any);

@@ -5,7 +5,7 @@
 gen
 build
 *.properties
-node_modules
+oak/oak_taro_starter/lib/modules
 package-lock.json
 yarn.lock
 lerna-debug.log

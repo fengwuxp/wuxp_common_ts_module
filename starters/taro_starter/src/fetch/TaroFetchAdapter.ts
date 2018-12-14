@@ -2,7 +2,6 @@ import AbstractFetchAdapter from "common_fetch/src/adapter/AbstractFetchAdapter"
 import {WebFetchOptions} from "common_fetch/src/adapter/web/WebFetchOptions";
 import {FetchResponse} from "common_fetch/src/FetchOptions";
 import {ReqequestMethod} from "common_fetch/src/constant/ReqequestMethod";
-import * as Taro from "@tarojs/taro";
 import {request} from "@tarojs/taro";
 
 
@@ -11,10 +10,17 @@ import {request} from "@tarojs/taro";
  */
 export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
+    private taro: any;
+
+
+    constructor(taro: any) {
+        super();
+        this.taro = taro;
+    }
 
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
-        return Taro.request(this.buildRequest(options)).then((response) => {
+        return this.taro.request(this.buildRequest(options)).then((response) => {
             return this.resolveResponse.resolve(response);
         });
     };

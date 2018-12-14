@@ -32,6 +32,7 @@
     "@types/weex": "^0.0.1",
     "@types/weixin": "^0.0.1",
     "common_test": "^0.0.1",
+    "common_webpack": "^0.0.1",
     "jest": "^23.6.0",
     "md5": "^2.2.1",
     "tslib": "^1.9.3"

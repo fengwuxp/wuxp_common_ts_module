@@ -15,11 +15,9 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "build_ts": "node ./scripts/build.js",
-    "build:lib": "cross-env _self=1 webpack --config webpack.config.js --progress --colors",
+    "build:lib": "rm -rf ./lib && cross-env _self=1 webpack --config webpack.config.js --progress --colors",
     "yarn_i": "yarn install",
-    "npm_publish": "npm publish",
-    "npm_rest_dependencies": "rm -rf ./node_modules && npm run yarn_i"
+    "npm_publish": "build:lib & npm publish"
   },
   "author": "wuxp",
   "license": "ISC",

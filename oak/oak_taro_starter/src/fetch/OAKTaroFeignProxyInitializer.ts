@@ -29,23 +29,26 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
     private interceptorList: FetchInterceptor[];
 
+    private taro: any;
 
-    constructor(appConfig: AppConfig, interceptorList?: FetchInterceptor[]) {
+    constructor(taro: any, appConfig: AppConfig, interceptorList?: FetchInterceptor[]) {
 
         const routeMapping = {};
         routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
         this.routeMapping = routeMapping;
         this.interceptorList = interceptorList || [
-            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar()),
+            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(taro)),
             new NeedAuthInterceptor(new OAKTaroSyncAuthHelper()),
-            new TaroUnifiedRespProcessInterceptor()
+            new TaroUnifiedRespProcessInterceptor(taro)
         ];
+        this.taro = taro;
     }
 
     initFeignProxyFactory = () => {
 
 
         const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
+            this.taro,
             this.routeMapping,
             this.interceptorList);
 
@@ -57,6 +60,8 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
                 "wxMinApp"
             )
         );
+
+        console.log("taro init feign proxy factory");
 
         const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
 

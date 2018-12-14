@@ -11,8 +11,6 @@ import FetchInterceptorExecutor from "common_fetch/src/interceptor/FetchIntercep
 import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
 
 
-
-
 export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTemplateLoader {
 
 
@@ -21,10 +19,13 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
     private interceptorList: FetchInterceptor[];
 
 
-    constructor(routeMapping: ApiRoutingMapping, interceptorList: FetchInterceptor[]) {
+    private taro: any;
+
+    constructor(taro, routeMapping: ApiRoutingMapping, interceptorList: FetchInterceptor[]) {
         super();
         this.routeMapping = routeMapping;
         this.interceptorList = interceptorList;
+        this.taro = taro;
     }
 
     buildRestTemplate = (apiModuleName: string): RestTemplate => {
@@ -37,7 +38,7 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
                 timeout: 10 * 1000,
                 headers: {}
             }, new DefaultApiRoutingStrategy(this.routeMapping),
-            new DefaultFetchClient(new TaroFetchAdapter()),
+            new DefaultFetchClient(new TaroFetchAdapter(this.taro)),
             new FetchInterceptorExecutor(this.interceptorList));
     };
 
