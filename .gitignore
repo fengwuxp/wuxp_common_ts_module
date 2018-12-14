@@ -1,9 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
+node_modules
 .idea
 .gradle
 *.iml
 .temp
-gen
+genode
 build
 *.properties
 oak/oak_taro_starter/lib/modules

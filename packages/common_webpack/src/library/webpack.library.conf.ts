@@ -10,6 +10,11 @@ interface GetLibraryTargetConfigOptions {
     entry: string | string[] | Entry | EntryFunc;
 
     production: boolean;
+
+    /**
+     * 输出目录 默认 lib
+     */
+    outputDir?: string;
 }
 
 
@@ -19,7 +24,7 @@ interface GetLibraryTargetConfigOptions {
  */
 export const getWebpackLibraryTargetConfig = function (options: GetLibraryTargetConfigOptions): webpack.Configuration {
 
-    const packPath = path.resolve(__dirname, './lib');
+    const packPath = path.resolve(options.outputDir || "./lib");
 
     return {
         mode: options.production ? "production" : "development",

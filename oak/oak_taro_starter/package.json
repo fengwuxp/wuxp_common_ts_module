@@ -16,8 +16,10 @@
   "main": "index.js",
   "scripts": {
     "build:lib": "rm -rf ./lib && cross-env _self=1 webpack --config webpack.config.js --progress --colors",
+    "build:lib-production": "rm -rf ./lib && cross-env _self=1 production=true webpack --config webpack.config.js --progress --colors",
     "yarn_i": "yarn install",
-    "npm_publish": "build:lib & npm publish"
+    "npm_build_publish": "build:lib & npm publish",
+    "npm_publish": "npm publish"
   },
   "author": "wuxp",
   "license": "ISC",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@types/react": "^16.7.17",
     "@types/weixin": "^0.0.1",
+    "common_route": "^0.0.1",
     "common_starter": "^0.0.1",
     "common_webpack": "^0.0.1",
     "tslib": "^1.9.3"

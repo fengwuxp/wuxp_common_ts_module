@@ -1,42 +1,23 @@
 const path = require("path");
-// const {getWebpackLibraryTargetConfig} = require("common_webpack/lib/library/webpack.library.conf");
-const TypescriptLoader = require("common_webpack/lib/loader/TypescriptLoader").default;
-const BabelLoader = require("common_webpack/lib/loader/BabelLoader").default;
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const {getWebpackLibraryTargetConfig} = require("common_webpack/lib/library/webpack.library.conf");
 
 
-// module.exports = getWebpackLibraryTargetConfig({
-//     entry: {
-//         index: path.resolve('src', 'index'),
-//     },
-//     production: true
-// });
-
-
-const packPath = path.resolve(__dirname, './lib');
-module.exports = {
-
-    // mode: "production",
-    mode:"development",
+const config = getWebpackLibraryTargetConfig({
     entry: {
-        index: path.resolve('src', 'index'),
+        index: path.resolve('src', 'index.ts'),
     },
-    output: {
-        filename: '[name].js',
-        chunkFilename: '[name].js',
-        path: packPath,
-        libraryTarget: "commonjs"
-    },
-    resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js"],
-    },
-    devtool: "source-map",
-    module: {
-        rules: [
-            BabelLoader,
-            TypescriptLoader
-        ]
-    },
+    production: process.env.production || false
+});
 
-    plugins: []
+config.plugins = [
+    //复制
+    new CopyWebpackPlugin([
+        {
+            from: path.resolve(__dirname, "./src/index.d.ts"),
+            to: path.resolve(__dirname, "./lib/index.d.ts"),
+        }
+    ])
+];
 
-};
+module.exports = config;

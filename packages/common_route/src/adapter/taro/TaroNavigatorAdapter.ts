@@ -1,10 +1,10 @@
 import {NavigatorAdapter} from "../../NavigatorAdapter";
 import {LocationDescriptorObject} from "history";
-import Taro from '@tarojs/taro'
 import {parse, stringify} from "querystring";
 
 /**
  * 基于京东taro的导航适配器
+ * 原本的提供的不好用
  */
 export class TaroNavigatorAdapter implements NavigatorAdapter {
 
@@ -12,24 +12,27 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     private prefix: string;
 
 
-    constructor(prefix: string = "pages") {
+    protected taro: any;
+
+    constructor(taro: any, prefix: string = "pages") {
+        this.taro = taro;
         this.prefix = prefix;
     }
 
-    goBack = (num?: number) => Taro.navigateBack({delta: num});
+    goBack = (num?: number) => this.taro.navigateBack({delta: num});
 
 
     push = (params: LocationDescriptorObject): Promise<void> => {
 
 
-        return Taro.navigateTo({
+        return this.taro.navigateTo({
             url: this.generateURL(params)
         });
 
     };
 
     redirect = (params: LocationDescriptorObject) => {
-        return Taro.redirectTo({
+        return this.taro.redirectTo({
             url: this.generateURL(params)
         });
     };
@@ -55,7 +58,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         }
 
 
-        console.log("--url-->", url);
+        console.debug("--url-->", url);
 
         return url;
     }

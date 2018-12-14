@@ -1,29 +1,35 @@
 {
-	"name": "rax_components",
-	"version": "0.0.1",
-	"description": "common web icon",
-	"main": "index.js",
-	"publishConfig": {
-		"registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/fengwuxp/wuxp_common_ts_module"
-	},
-	"bugs": {
-		"url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
-	},
-	"homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-	"keywords": [
-		"rax",
-		"weex",
-		"typeScript"
-	],
-	"author": "wuxp",
-	"dependencies": {
-		"@types/node": "^9.4.6",
-		"@types/react": "^16.4.9",
-		"rax": "^0.6.4"
-	},
-	"gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
+  "name": "rax_components",
+  "version": "0.0.1",
+  "description": "common web icon",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "keywords": [
+    "rax",
+    "weex",
+    "typeScript"
+  ],
+  "author": "wuxp",
+  "scripts": {
+    "npm_i": "npm i",
+    "npm_publish": "npm publish"
+  },
+  "dependencies": {
+    "@types/node": "^9.4.6",
+    "@types/react": "^16.4.9",
+    "@types/weex": "^0.0.1",
+    "common_view": "^0.0.1",
+    "rax": "^0.6.4"
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

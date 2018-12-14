@@ -14,6 +14,7 @@ import {FetchRetryOptions, RetryOptions} from "common_fetch/src/FetchRetryOption
 /*-------------------------------------------------------------*/
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
+import {TaroNavigatorAdapter} from "common_route/src/adapter/taro/TaroNavigatorAdapter";
 
 
 export {
@@ -31,5 +32,6 @@ export {
     OAKTaroFeignProxyInitializer,
 
     TaroLocalStorage,
-    taroDefaultSessionManager
+    taroDefaultSessionManager,
+    TaroNavigatorAdapter
 }
