@@ -1,6 +1,7 @@
 import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
 import {FeignProxy, FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
+import Es5PoxyServiceFactory from "../proxy/factory/Es5PoxyServiceFactory";
 
 
 export interface FeignOptions {
@@ -22,14 +23,10 @@ export interface FeignOptions {
 type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
 
-let proxyFactory: ProxyServiceFactory = {
-    factory() {
-        throw  new Error("this is empty factory，please set");
-        // console.error("this is empty factory")
-        // return null;
-    }
-};
+//默认使用es5的代理工厂
+let proxyFactory: ProxyServiceFactory = new Es5PoxyServiceFactory();
 
+//替换掉默认的代理工厂
 export function setProxyFactory(factory: ProxyServiceFactory) {
     proxyFactory = factory;
 }

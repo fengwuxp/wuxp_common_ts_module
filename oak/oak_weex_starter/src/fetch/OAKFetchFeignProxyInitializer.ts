@@ -8,6 +8,7 @@ import OakApiSignatureStrategy from "oak_weex_common/src/fetch/sign/OakApiSignat
 import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
 import {oakEnv} from "oak_weex_common/src/env/OAKEnvVar";
 import {isWeb, isAndroid} from "common_weex/src/constant/WeexEnv";
+import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 
 
 export default class DefaultFetchFeignProxyInitializer implements FeignProxyInitializer {
@@ -28,7 +29,9 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
 
         const templateLoader: RestTemplateLoader = new OAKWeexDefaultRestTemplateLoader();
 
-        const proxyServiceExecutor: ProxyServiceExecutor = new DefaultProxyServiceExecutor(
+
+        //设置代理持有者
+        FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
@@ -37,10 +40,10 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
             )
         );
 
-        const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
-
-        //设置代理工厂
-        setProxyFactory(es5PoxyServiceFactory);
+        // const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
+        //
+        // //设置代理工厂
+        // setProxyFactory(es5PoxyServiceFactory);
     }
 
 

@@ -1,6 +1,5 @@
 import {AbstractProxyServiceFactory} from "./ProxyServiceFactory";
 import {ProxyApiService} from "../ProxyApiService";
-import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
 
 
 /**
@@ -15,9 +14,6 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
         "feign"
     ];
 
-    constructor(proxyServiceExecutor: ProxyServiceExecutor) {
-        super(proxyServiceExecutor);
-    }
 
     factory<T extends ProxyApiService>(targetService: T): T {
 
@@ -38,7 +34,7 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
                 },
                 get: () => {
                     return (...p) => {
-                        return this.proxyServiceExecutor.execute(targetService, key, ...p);
+                        return this.getProxyServiceExecutor().execute(targetService, key, ...p);
                     }
                 }
             });

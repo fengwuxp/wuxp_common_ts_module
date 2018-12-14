@@ -1,6 +1,5 @@
 import {AbstractProxyServiceFactory} from "./ProxyServiceFactory";
 import {ProxyApiService} from "../ProxyApiService";
-import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
 
 
 /**
@@ -10,16 +9,13 @@ import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
 export default class Es6PoxyServiceFactory extends AbstractProxyServiceFactory {
 
 
-    constructor(proxyServiceExecutor: ProxyServiceExecutor) {
-        super(proxyServiceExecutor);
-    }
 
     factory<T extends ProxyApiService>(targetService: T): T {
 
         const proxyHandler: ProxyHandler<any> = {
             get: (target: ProxyApiService, serviceMethod: PropertyKey, receiver: any): any => {
                 return (...p) => {
-                    return this.proxyServiceExecutor.execute(targetService, serviceMethod as string, ...p);
+                    return this.getProxyServiceExecutor().execute(targetService, serviceMethod as string, ...p);
                 }
             },
             set: function (target, key, value, receiver): boolean {

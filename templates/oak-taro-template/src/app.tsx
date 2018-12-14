@@ -1,16 +1,16 @@
 import * as OakTaro from "oak_taro_starter/lib";
+new OakTaro.OAKTaroFeignProxyInitializer(Taro, {
+    apiEntryAddress: "http://test.meazoo.com"
+} as any).initFeignProxyFactory();
+
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Provider} from '@tarojs/mobx'
 import Index from './pages/index'
 import counterStore from './store/counter'
 import './app.less'
 
-new OakTaro.OAKTaroFeignProxyInitializer(Taro, {
-    apiEntryAddress: "http://test.meazoo.com"
-} as any).initFeignProxyFactory();
 
-//在feign代理初始化后倒入代理服务
-// import MemberSpaceService from "./services/member/MemberSpaceService";
+
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -21,6 +21,9 @@ new OakTaro.OAKTaroFeignProxyInitializer(Taro, {
 const store = {
     counterStore
 };
+
+
+
 
 class App extends Component {
 
@@ -73,11 +76,11 @@ class App extends Component {
     };
 
     componentDidMount() {
-        const MemberSpaceService = require("./services/member/MemberSpaceService").default;
+        // const MemberSpaceService = require("./services/member/MemberSpaceService").default;
 
-        MemberSpaceService.queryLikeStore({
-            memberId: 1
-        })
+        // MemberSpaceService.queryLikeStore({
+        //     memberId: 1
+        // })
     }
 
     componentDidShow() {

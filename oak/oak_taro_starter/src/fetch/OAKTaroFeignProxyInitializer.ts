@@ -16,6 +16,7 @@ import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthIn
 import OAKTaroFetchProgressBar from "./OAKTaroFetchProgressBar";
 import OAKTaroSyncAuthHelper from "./OAKTaroSyncAuthHelper";
 import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessInterceptor";
+import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 
 
 /**
@@ -52,7 +53,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             this.routeMapping,
             this.interceptorList);
 
-        const proxyServiceExecutor: ProxyServiceExecutor = new DefaultProxyServiceExecutor(
+        FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
@@ -60,13 +61,6 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
                 "wxMinApp"
             )
         );
-
-        console.log("taro init feign proxy factory");
-
-        const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
-
-        //设置代理工厂
-        setProxyFactory(es5PoxyServiceFactory);
 
     };
 

@@ -1,6 +1,8 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {View, Button, Text} from '@tarojs/components'
 import {observer, inject} from '@tarojs/mobx'
+//在feign代理初始化后导入代理服务
+import MemberSpaceService from "../../services/member/MemberSpaceService";
 
 
 interface IndexProps {
@@ -23,6 +25,9 @@ class Index extends Component<IndexProps, {}> {
     };
 
     componentWillMount() {
+        MemberSpaceService.queryLikeStore({
+            memberId: 1
+        })
     }
 
     componentWillReact() {

@@ -11,10 +11,10 @@ interface MemberSpaceService {
      * @param option 请求配置
      */
     queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]>;
-
-
+    
 }
 
+console.log("---");
 
 @Feign({
     value: "MemberSpaceService"

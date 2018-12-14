@@ -1,5 +1,6 @@
 import {ProxyApiService} from "../ProxyApiService";
 import {ProxyServiceExecutor} from "../executor/ProxyServiceExecutor";
+import FeignProxyExecutorHolder from "../feign/FeignProxyExecutorHolder";
 
 
 /**
@@ -17,21 +18,14 @@ export interface ProxyServiceFactory {
 export abstract class AbstractProxyServiceFactory implements ProxyServiceFactory {
 
 
-
-    /**
-     * 代理执行者
-     */
-    protected proxyServiceExecutor:ProxyServiceExecutor;
-
-
-    constructor( proxyServiceExecutor: ProxyServiceExecutor) {
-        this.proxyServiceExecutor = proxyServiceExecutor;
-    }
-
     abstract factory<T extends ProxyApiService>(target: T): T;
 
 
+    protected getProxyServiceExecutor = (): ProxyServiceExecutor => {
 
+        //返回默认的代理执行器
+        return FeignProxyExecutorHolder.DEFAULT_EXECUTOR;
+    }
 
 
 }
