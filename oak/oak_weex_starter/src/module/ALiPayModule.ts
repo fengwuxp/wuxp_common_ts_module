@@ -1,6 +1,4 @@
-import {isWeb} from "common_weex/src/constant/WeexEnv";;
-
-
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 /**
  * 自定义videoPlayer 保存对象
  * Created by wuxp on 2017/6/6.

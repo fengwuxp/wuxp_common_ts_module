@@ -105,7 +105,7 @@ android {
 
 
             if (!variant.buildType.debuggable)
-                output.outputFile = new File(oldFile.parent, "${applicationId}_" + variant.versionName + "_b${timeLabel}_" + (offline ? "" : "dynamic_") + "release.apk");
+                output.outputFile = new File(oldFile.parent, "${applicationId}_" + variant.versionName + "_b${timeLabel}_" + (offline ? "" : "dynamic_") + "release.apk")
         }
     }
 
@@ -127,7 +127,7 @@ android {
     sourceSets {
         main {
             java {
-                srcDirs = ["src/main/java"];
+                srcDirs = ["src/main/java"]
             }
             jniLibs.srcDirs = ['libs']
         }
@@ -135,7 +135,7 @@ android {
     }
 
     lintOptions {
-        abortOnError false;
+        abortOnError false
     }
 
 

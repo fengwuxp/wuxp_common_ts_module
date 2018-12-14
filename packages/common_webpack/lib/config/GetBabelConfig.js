@@ -40,4 +40,4 @@ function getBabelConfig(modules) {
     };
 }
 exports.getBabelConfig = getBabelConfig;
-;
+

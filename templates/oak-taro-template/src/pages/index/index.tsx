@@ -47,17 +47,17 @@ class Index extends Component<IndexProps, {}> {
     increment = () => {
         const {counterStore} = this.props;
         counterStore.increment()
-    }
+    };
 
     decrement = () => {
         const {counterStore} = this.props;
         counterStore.decrement()
-    }
+    };
 
     incrementAsync = () => {
         const {counterStore} = this.props;
         counterStore.incrementAsync()
-    }
+    };
 
     render() {
         const {counterStore: {counter}} = this.props;

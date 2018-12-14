@@ -13,4 +13,4 @@ const PROJECT_DIR = path.join(__dirname, "../");
 module.exports = {
     DEPLOYMENT_DIRECTORY,
     PROJECT_DIR
-}
+};

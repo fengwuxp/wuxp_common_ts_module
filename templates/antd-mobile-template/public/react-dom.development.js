@@ -6007,13 +6007,13 @@
                     // callbackConfig is somewhere in the middle of a list of 3 or more nodes.
                     prev.next = next;
                     next.prev = prev;
-                    return;
+
                 } else {
                     // there is a next but not a previous one;
                     // callbackConfig is the head of a list of 2 or more other nodes.
                     next.prev = null;
                     headOfPendingCallbacksLinkedList = next;
-                    return;
+
                 }
             } else {
                 // there is no next callback config; this must the tail of the list
@@ -6024,14 +6024,14 @@
                     // callbackConfig is the tail of a list of 2 or more other nodes.
                     prev.next = null;
                     tailOfPendingCallbacksLinkedList = prev;
-                    return;
+
                 } else {
                     // there is no previous callback config;
                     // callbackConfig is the only thing in the linked list,
                     // so both head and tail point to it.
                     headOfPendingCallbacksLinkedList = null;
                     tailOfPendingCallbacksLinkedList = null;
-                    return;
+
                 }
             }
         };
@@ -10918,7 +10918,7 @@
                 // The earliest remaining time is earlier than all the suspended work.
                 // Treat it as a pending update.
                 markPendingPriorityLevel(root, earliestRemainingTime);
-                return;
+
             }
 
             // The earliest remaining time falls within the range of known suspended
@@ -15565,7 +15565,7 @@
             // stack, rather than searching on every suspend.
             var _workInProgress = returnFiber;
             var earliestTimeoutMs = -1;
-            searchForEarliestTimeout: do {
+            do {
                 if (_workInProgress.tag === TimeoutComponent) {
                     var current = _workInProgress.alternate;
                     if (current !== null && current.memoizedState === true) {
@@ -15573,13 +15573,13 @@
                         // need to handle this promise immediately. In other words, we
                         // should never suspend inside a tree that already expired.
                         earliestTimeoutMs = 0;
-                        break searchForEarliestTimeout;
+                        break;
                     }
                     var timeoutPropMs = _workInProgress.pendingProps.ms;
                     if (typeof timeoutPropMs === 'number') {
                         if (timeoutPropMs <= 0) {
                             earliestTimeoutMs = 0;
-                            break searchForEarliestTimeout;
+                            break;
                         } else if (earliestTimeoutMs === -1 || timeoutPropMs < earliestTimeoutMs) {
                             earliestTimeoutMs = timeoutPropMs;
                         }
@@ -16351,7 +16351,7 @@
                 } else if (returnFiber !== null) {
                     // If there's no more work in this returnFiber. Complete the returnFiber.
                     workInProgress = returnFiber;
-                    continue;
+
                 } else {
                     // We've reached the root.
                     isRootReadyForCommit = true;
@@ -16403,7 +16403,7 @@
                 } else if (returnFiber !== null) {
                     // If there's no more work in this returnFiber. Complete the returnFiber.
                     workInProgress = returnFiber;
-                    continue;
+
                 } else {
                     return null;
                 }

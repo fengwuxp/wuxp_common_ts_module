@@ -39,7 +39,7 @@ ext {
     ]
 }
 
-def localProps = new File("local.properties");
+def localProps = new File("local.properties")
 if (localProps.exists()) {
     localProps.withReader { reader ->
         Properties p = new Properties()

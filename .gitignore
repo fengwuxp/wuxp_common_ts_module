@@ -2,6 +2,7 @@
 .idea
 .gradle
 *.iml
+.temp
 gen
 build
 *.properties
@@ -16,4 +17,4 @@ dist_web
 coverage
 *.tgz
 lib
-
+*.lock

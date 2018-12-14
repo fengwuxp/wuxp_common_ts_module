@@ -145,8 +145,8 @@ def doPromptForPassword(msg) {
                     label(text: msg)
                     def input = passwordField()
                     button(defaultButton: true, text: 'OK', actionPerformed: {
-                        ret = input.password;
-                        dispose();
+                        ret = input.password
+                        dispose()
                     })
                 }
             }
@@ -156,7 +156,7 @@ def doPromptForPassword(msg) {
         }
         return new String(ret)
     } else {
-        return System.console().readPassword('\n' + msg);
+        return System.console().readPassword('\n' + msg)
     }
 }
 

@@ -3304,7 +3304,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
             'a'
         ],
         bindingStyleNamesForPx2Rem: allStyles
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -3457,17 +3457,17 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 return [
                     rect.top < ctRect.bottom && rect.bottom > ctRect.top,
                     rect.top < ctRect.bottom + offset && rect.bottom > ctRect.top - offset
-                ]
+                ];
             case 'down':
                 return [
                     rect.bottom > ctRect.top && rect.top < ctRect.bottom,
                     rect.bottom > ctRect.top - offset && rect.top < ctRect.bottom + offset
-                ]
+                ];
             case 'left':
                 return [
                     rect.left < ctRect.right && rect.right > ctRect.left,
                     rect.left < ctRect.right + offset && rect.right > ctRect.left - offset
-                ]
+                ];
             case 'right':
                 return [
                     rect.right > ctRect.left && rect.left < ctRect.right,
@@ -4297,7 +4297,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
             var args = [], len = arguments.length;
             while (len--) args[len] = arguments[len];
 
-            return (ref = this).registerApiModule.apply(ref, args)
+            return (ref = this).registerApiModule.apply(ref, args);
             var ref;
         },
 
@@ -4313,7 +4313,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 switch (type) {
                     case 'component':
                         return typeof this._components[mod] !== 'undefined'
-                            || config.weexBuiltInComponents.indexOf(mod) >= 0
+                            || config.weexBuiltInComponents.indexOf(mod) >= 0;
                     case 'module':
                         var module = weexModules[mod];
                         return module && method ? !!module[method] : !!module
@@ -4358,7 +4358,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
             while (len--) args[len] = arguments[len];
 
             console.log("[Vue Render] \"weex.require\" is deprecated, please use \"weex.requireModule\" instead.");
-            return (ref = this).requireModule.apply(ref, args)
+            return (ref = this).requireModule.apply(ref, args);
             var ref;
         },
 
@@ -4441,7 +4441,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
             if (!this._vue) {
                 this._vue = new this.__vue__();
             }
-            return (ref = this._vue)[("$" + method)].apply(ref, args)
+            return (ref = this._vue)[("$" + method)].apply(ref, args);
             var ref;
         };
     });
@@ -5090,7 +5090,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 getThrottleLazyload(25, el || document.body)();
             }
         }
-    }
+    };
 
     var event$1 = {
         methods: {
@@ -5113,7 +5113,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 }
             }
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -5182,7 +5182,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 return parent && parent.getBoundingClientRect()
             }
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -5273,7 +5273,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 return events
             }
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -5333,7 +5333,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 this._placeholder = null;
             }
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -5436,7 +5436,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 return _render.call(this)
             };
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -5899,7 +5899,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 delete this._touchParams;
             }
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6000,7 +6000,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('list', getList(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6108,7 +6108,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('scroller', getScroller(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6509,7 +6509,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('waterfall', getWaterfall(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6556,7 +6556,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('header', getHeader(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6669,7 +6669,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('loading', getLoading(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6789,7 +6789,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('refresh', getRefresh(weex));
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -6912,7 +6912,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
             getStyleSheetById$1 = weex.utils.getStyleSheetById;
             weex.registerComponent('loading-indicator', loadingIndicator);
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -7020,7 +7020,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerComponent('recycle-list', getList$1(weex));
         }
-    }
+    };
 
     __$styleInject("/*\r\n * Licensed to the Apache Software Foundation (ASF) under one\r\n * or more contributor license agreements.  See the NOTICE file\r\n * distributed with this work for additional information\r\n * regarding copyright ownership.  The ASF licenses this file\r\n * to you under the Apache License, Version 2.0 (the\r\n * \"License\"); you may not use this file except in compliance\r\n * with the License.  You may obtain a copy of the License at\r\n *\r\n *   http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing,\r\n * software distributed under the License is distributed on an\r\n * \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\r\n * KIND, either express or implied.  See the License for the\r\n * specific language governing permissions and limitations\r\n * under the License.\r\n */\r\n\r\nbody > .weex-list,\r\nbody > .weex-recycle,\r\nbody > .weex-scroller,\r\nbody > .weex-waterfall {\r\n  max-height: 100%;\r\n}\r\n\r\n.weex-list-wrapper,\r\n.weex-recycle-wrapper,\r\n.weex-scroller-wrapper,\r\n.weex-waterfall-wrapper {\r\n  -webkit-overflow-scrolling: touch;\r\n}\r\n\r\n.weex-list-wrapper,\r\n.weex-waterfall-wrapper {\r\n  overflow-y: scroll !important;\r\n  overflow-x: hidden !important;\r\n}\r\n\r\n.weex-list-inner,\r\n.weex-recycle-inner,\r\n.weex-scroller-inner,\r\n.weex-waterfall-inner {\r\n  -webkit-overflow-scrolling: touch;\r\n}\r\n\r\n.weex-waterfall-inner-columns {\r\n  -webkit-flex-direction: row;\r\n  -moz-box-orient: horizontal;\r\n  -moz-box-direction: normal;\r\n  -ms-flex-direction: row;\r\n  flex-direction: row;\r\n  -webkit-box-orient: horizontal;\r\n}\r\n\r\n.weex-scroller-wrapper.weex-scroller-vertical,\r\n.weex-recycle-wrapper.weex-recycle-vertical  {\r\n  overflow-x: hidden;\r\n  overflow-y: scroll;\r\n}\r\n\r\n.weex-scroller-wrapper.weex-scroller-horizontal,\r\n.weex-recycle-wrapper.weex-recycle-horizontal {\r\n  overflow-x: scroll;\r\n  overflow-y: hidden;\r\n}\r\n\r\n.weex-scroller-wrapper.weex-scroller-disabled {\r\n  overflow-x: hidden;\r\n  overflow-y: hidden;\r\n}\r\n\r\n.weex-scroller-horizontal .weex-scroller-inner,\r\n.weex-recycle-horizontal .weex-recycle-inner {\r\n  -webkit-flex-direction: row;\r\n  -ms-flex-direction: row;\r\n  -moz-box-orient: horizontal;\r\n  -moz-box-direction: normal;\r\n  flex-direction: row;\r\n  -webkit-box-orient: horizontal;\r\n  height: 100%;\r\n}\r\n\r\n.weex-cell {\r\n  width: 100%;\r\n}\r\n\r\n.weex-refresh,\r\n.weex-loading {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n  -moz-box-align: center;\r\n  -ms-flex-align: center;\r\n  align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n  -moz-box-pack: center;\r\n  -ms-flex-pack: center;\r\n  justify-content: center;\r\n  width: 100%;\r\n  overflow: hidden;\r\n}\r\n", {});
 
@@ -7062,7 +7062,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 weex.install(mod);
             });
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -7107,7 +7107,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
                 el.style.backgroundSize = valMap[value];
             });
         }
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -7129,7 +7129,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
  */
     var directives = {
         resize: resize
-    }
+    };
 
     /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -7172,7 +7172,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         init: function init(weex) {
             weex.registerModule('meta', meta);
         }
-    }
+    };
 
     var preInit = weex.init;
 
@@ -7181,7 +7181,7 @@ console.log('START WEEX VUE RENDER CORE: 1.0.33, Build 2018-12-07 12:14.');
         weex.install(scrollable);
         weex.install(meta$1);
         for (var k in directives) {
-            console.log(directives)
+            console.log(directives);
             weex.install(directives[k]);
         }
     };

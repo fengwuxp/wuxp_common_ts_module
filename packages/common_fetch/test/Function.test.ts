@@ -50,7 +50,7 @@ describe("function test", () => {
             delete map[$2];
             return s;
         });
-        logger.debug(map)
+        logger.debug(map);
         logger.debug(routingUrl)
 
     });

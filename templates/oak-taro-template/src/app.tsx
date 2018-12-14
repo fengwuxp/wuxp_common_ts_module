@@ -100,4 +100,4 @@ class App extends Component {
     }
 }
 
-Taro.render(<App/>, document.getElementById('app'))
+Taro.render(<App/>, document.getElementById('app'));
