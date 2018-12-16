@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    //    "esModuleInterop":true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": false,
-    //    "compileOnSave": false,
-    //    "emitDecoratorMetadata": true,
-    //    "experimentalDecorators": true,
+    "compileOnSave": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "module": "esnext",
     "target": "es6",
     "sourceMap": false,
-    //    "allowJs": true,
     "baseUrl": "./src",
-    "outDir": "./lib",
-//    "outFile": "./lib/index.js",
     "declaration": true,
     "importHelpers": true,
     "types": [
@@ -30,9 +27,8 @@
   },
   "include": [
     "./src/**/*",
-//    "./test/**/*",
+    "./test/**/*",
     "./types/**/*.d.ts"
-
   ],
   "exclude": [
     "dist",

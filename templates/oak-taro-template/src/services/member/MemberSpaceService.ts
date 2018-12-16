@@ -14,7 +14,6 @@ interface MemberSpaceService {
     
 }
 
-console.log("---");
 
 @Feign({
     value: "MemberSpaceService"

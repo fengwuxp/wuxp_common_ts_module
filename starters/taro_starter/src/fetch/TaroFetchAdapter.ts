@@ -1,7 +1,6 @@
 import AbstractFetchAdapter from "common_fetch/src/adapter/AbstractFetchAdapter";
 import {WebFetchOptions} from "common_fetch/src/adapter/web/WebFetchOptions";
 import {FetchResponse} from "common_fetch/src/FetchOptions";
-import {ReqequestMethod} from "common_fetch/src/constant/ReqequestMethod";
 import {request} from "@tarojs/taro";
 
 
@@ -20,9 +19,9 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
 
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
-        return this.taro.request(this.buildRequest(options)).then((response) => {
-            return this.resolveResponse.resolve(response);
-        });
+        const param = this.buildRequest(options);
+        console.debug("--request options-->", param);
+        return this.taro.request(param).then(this.resolveResponse.resolve);
     };
 
     private buildRequest = (options: WebFetchOptions): request.Param<any> => {
@@ -38,6 +37,7 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
             cache
         } = options;
 
+
         return {
             //请求方法get post
             method,
@@ -50,7 +50,7 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
             mode: (mode as any),
             //headers HTTP 请求头
             header: headers,
-            data: (data == null || method === ReqequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data),
+            data,
         };
     }
 

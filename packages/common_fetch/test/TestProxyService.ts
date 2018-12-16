@@ -95,7 +95,7 @@ const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
 const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate,
     new TestApiSignatureStrategy("a", "b", "node"));
 
-const es5PoxyServiceFactory = new Es5PoxyServiceFactory(proxyServiceExecutor);
+const es5PoxyServiceFactory = new Es5PoxyServiceFactory();
 //设置代理工厂
 setProxyFactory(es5PoxyServiceFactory);
 

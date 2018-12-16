@@ -71,7 +71,7 @@ export class WeexAdapter extends AbstractFetchAdapter<WebFetchOptions> {
             //headers HTTP 请求头
             headers,
             //参数仅支持 string 类型的参数，请勿直接传递 JSON，必须先将其转为字符串。GET请求不支持 body 方式传递参数，请使用 url 传参。
-            body: (data == null || method === ReqequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data)
+            body: data
         };
     }
 
