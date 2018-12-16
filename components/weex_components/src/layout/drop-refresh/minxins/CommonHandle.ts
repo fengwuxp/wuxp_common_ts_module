@@ -3,13 +3,20 @@ import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 
 export default {
     components: {},
-    props: Object.assign({
-
+    // props: Object.assign({
+    //
+    //     //是否立即刷新
+    //     refreshNow: {
+    //         default: false
+    //     }
+    // }, DropRefreshProps),
+    props: {
         //是否立即刷新
         refreshNow: {
             default: false
-        }
-    }, DropRefreshProps),
+        },
+        ...DropRefreshProps
+    },
     data() {
         return {
             showTip: false,

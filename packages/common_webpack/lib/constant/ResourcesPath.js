@@ -7,4 +7,4 @@ var themeJSONFilePath = path.resolve("./theme/index.json");
  * 默认的样式主题变量文件
  * 支持js文件和json文件
  */
-exports.DEFAULT_THEME_PATH = fs_1.existsSync(themeJSONFilePath) ? themeJSONFilePath : path.resolve("./theme/CommonHandle.js");
+exports.DEFAULT_THEME_PATH = fs_1.existsSync(themeJSONFilePath) ? themeJSONFilePath : path.resolve("./theme/CommonHandle.ts");
