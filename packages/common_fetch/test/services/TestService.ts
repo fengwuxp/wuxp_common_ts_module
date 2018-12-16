@@ -4,7 +4,6 @@ import {FetchOptions} from "../../src/FetchOptions";
 import {Signature} from "../../src/annotations/security/Signature";
 import {DeleteMapping} from "../../src/annotations/mapping/DeleteMapping";
 import {ReqequestMethod} from "../../src/constant/ReqequestMethod";
-import {GetMapping} from "../../src/annotations/mapping/GetMapping";
 import {PostMapping} from "../../src/annotations/mapping/PostMapping";
 import {FetchRetry} from "../../src/annotations/retry/FetchRetry";
 
