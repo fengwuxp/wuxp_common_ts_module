@@ -1,9 +1,9 @@
-import {NavigatorAdapter, NavigatorParam} from "common_route/src/NavigatorAdapter";
+import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import URLArgumentsResolve from "../resolve/URLArgumentsResolve";
+import {LocationDescriptorObject} from "history";
 
-
-//获取一个导航
+//获取weex导航器
 const navigator: WeexNavigatorModule = weex.requireModule("navigator");
 
 /**
@@ -11,11 +11,17 @@ const navigator: WeexNavigatorModule = weex.requireModule("navigator");
  */
 export const argumentsResolve = new URLArgumentsResolve();
 
+export interface WeexNavigatorParam extends LocationDescriptorObject {
+
+    animated?: boolean;
+
+    callback?: () => void;
+}
 
 /**
  * weex 导航器适配
  */
-export default class WeexNavigatorAdapter implements NavigatorAdapter {
+export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNavigatorParam> {
 
     /**
      * 返回
@@ -33,7 +39,7 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
      *  push 页面
      * @param params
      */
-    push = (params: NavigatorParam): Promise<void> => {
+    push = (params: WeexNavigatorParam): Promise<void> => {
 
 
         let {pathname, search, state} = params;
@@ -62,8 +68,10 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter {
             });
         })
 
+    };
 
-    }
+
+    redirect = this.push;
 
 
 }

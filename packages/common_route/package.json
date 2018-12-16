@@ -33,8 +33,10 @@
     "common_core": "^0.0.1",
     "common_env": "^0.0.1",
     "common_utils": "^0.0.1",
-    "history": "^4.7.2",
     "querystring": "^0.2.0"
+  },
+  "dependencies": {
+    "history": "^4.7.2"
   },
   "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

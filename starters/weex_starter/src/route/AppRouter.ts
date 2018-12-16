@@ -1,11 +1,10 @@
 import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
-import WeexNavigatorAdapter from "common_weex/src/route/WeexNavigatorAdapter";
+import WeexNavigatorAdapter, {WeexNavigatorParam} from "common_weex/src/route/WeexNavigatorAdapter";
 import {WeexRouteItem} from "./WeexRouteItem";
-import {NavigatorParam} from "common_route/src/NavigatorAdapter";
 import {parse} from "querystring";
-import {AppSessionManager} from "../session/AppSessionManager";
 import {ViewConfigByRoute} from "./ViewConfigByRoute";
 import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {AppSessionManager} from "common_auth/src/session/AppSessionManager";
 
 
 const navigator: NavigatorAdapter = new WeexNavigatorAdapter();
@@ -42,7 +41,7 @@ export default class AppRouter {
      * @param param
      * @param viewConfig
      */
-    static async toView(param: NavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
+    static async toView(param: WeexNavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
 
         let pathname = param.pathname.startsWith("/") ? param.pathname.substr(1, param.pathname.length) : param.pathname;
         const route: WeexRouteItem = AppRouter.appRoutes[pathname];

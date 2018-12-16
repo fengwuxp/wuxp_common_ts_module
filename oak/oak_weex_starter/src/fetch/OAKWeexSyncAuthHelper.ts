@@ -1,7 +1,7 @@
 import {SyncAuthHelper} from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 
-import simpleAppSessionManager from "weex_starter/src/session/SimpleAppSessionManager";
+import simpleAppSessionManager from "weex_starter/src/session/WeexDefaultSessionManager";
 
 import AppRouter from "weex_starter/src/route/AppRouter";
 
