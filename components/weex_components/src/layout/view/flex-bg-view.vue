@@ -18,10 +18,11 @@
 
 <script>
 
-    import FlexViewMixin from "./mixins";
+    import CommonHandle from "./mixins";
 
     export default {
-        mixins: [FlexViewMixin],
+        name: "flex-bg-view",
+        mixins: [CommonHandle],
         props: {
             bgSrc: {
                 default: null

@@ -1,24 +1,43 @@
 <!--下拉刷新视图-->
 <template>
-    <flex-view :flexViewStyle="flexViewStyle">
-        <scroller slot="app-body"
-                  style="flex: 1;"
-                  :loadmoreoffset="loadmoreoffset"
-                  @scroll="viewScroll"
-                  @loadmore="loadmore">
-            <refresh-control v-if="indicatorModel!=='custom'"
-                             ref="refresh-control"
-                             @viewOnRefresh="viewOnRefresh"
-                             @viewOnPullingDown="viewOnPullingDown"
-                             :indicatorModel="indicatorModel"></refresh-control>
-            <slot v-if="indicatorModel==='custom'" name="refresh-view"></slot>
-            <slot></slot>
-        </scroller>
-    </flex-view>
+    <scroller style="flex: 1;"
+              :loadmoreoffset="loadmoreoffset"
+              @scroll="viewScroll"
+              @loadmore="loadMore">
+        <refresh class="flex_row"
+                 :style="refreshContainerStyle"
+                 @refresh="viewOnRefresh"
+                 @pullingdown="viewOnPullingDown"
+                 :display="showRefresh ? 'show' : 'hide'">
+            <div v-if="indicatorModel==='default'"
+                 class="flex_row flex_v_center"
+                 :style="refreshContentStyle">
+                <image :src="images[currentAnimationFrame]"
+                       :style="refreshImageStyle"></image>
+                <div style="margin-left: 5px;">
+                    <text class="loading_text" v-if="refreshTitle">{{refreshTitle}}</text>
+                    <text class="loading_text" v-if="showTip===false">{{pullDownTipText}}</text>
+                    <text class="loading_text" v-if="showTip">{{refreshTipText}}</text>
+                </div>
+            </div>
+            <div v-if="indicatorModel==='indicator'"
+                 class="flex_row flex_v_center"
+                 :style="refreshContentStyle">
+                <text class="loading_text" :value="refreshTitle"></text>
+                <loading-indicator :style="indicatorStyle"></loading-indicator>
+            </div>
+        </refresh>
+        <slot></slot>
+    </scroller>
 </template>
 <script>
-    import RefreshControl from "./minxins";
+    import CommonHandle from "./minxins/CommonHandle";
 
-    export default RefreshControl;
+    export default {
+        name: "drop-refresh-view",
+        mixins: [
+            CommonHandle
+        ]
+    };
 </script>
 <style scoped lang="less" src="./style.less"></style>

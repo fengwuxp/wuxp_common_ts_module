@@ -12,9 +12,12 @@
 
 <script>
 
-    import FlexViewMixin from "./mixins";
+    import CommonHandle from "./mixins";
 
-    export default FlexViewMixin;
+    export default {
+        name: "flex-view",
+        mixins: [CommonHandle],
+    };
 </script>
 
 <style scoped lang="less" src="./styles.less"></style>

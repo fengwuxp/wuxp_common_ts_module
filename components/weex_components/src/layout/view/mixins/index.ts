@@ -6,7 +6,7 @@ import {weexSimpleBootStarter} from "../../../boot/WeexViewBootstrap";
  * 由于weex是多页应用，所以在根页面入口要做 bootStartUp
  */
 export default {
-    name: "flex-view",
+
     mixins: [umengMixin],
     props: {
         flexViewStyle: {
