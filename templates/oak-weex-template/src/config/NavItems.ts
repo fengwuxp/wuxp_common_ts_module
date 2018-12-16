@@ -18,7 +18,7 @@ const NAV_ITEMS: Array<NavItem> = [
     {
         icon: getWeexResourceUrl("images/nav/pdj_my_category.png"),
         text: "分类",
-        url: getWeexResourceUrl("category/CategoryListView.js"),
+        url: getWeexResourceUrl("category/CategoryView.js"),
         showType: NavShowType.DEFAULT,
         targetType: NavItemType.VIEW
     },
@@ -40,7 +40,7 @@ const NAV_ITEMS: Array<NavItem> = [
     {
         icon: getWeexResourceUrl("images/nav/pdj_my.png"),
         text: "我的",
-        url: getWeexResourceUrl("member/MemberIndex.js"),
+        url: getWeexResourceUrl("member/MemberIndexView.js"),
         showType: NavShowType.DEFAULT,
         targetType: NavItemType.VIEW
     }

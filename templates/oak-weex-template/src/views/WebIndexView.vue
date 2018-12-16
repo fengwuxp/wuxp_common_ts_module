@@ -1,15 +1,15 @@
 <!--web 首页导航-->
 <template>
     <tab-bar-view @pageChange="pageChange"
-                  defaultViewIndex="0"
+                  :defaultViewIndex="0"
                   :viewItems="viewItems"
                   itemSelectedColor="#16b356"
                   itemDefaultColor="#989898"
                   ref="index_view">
-        <member-index-view slot="view_0"></member-index-view>
-        <member-index-view slot="view_1"></member-index-view>
-        <member-index-view slot="view_2"></member-index-view>
-        <member-index-view slot="view_3"></member-index-view>
+        <home-view slot="view_0"></home-view>
+        <category-view slot="view_1"></category-view>
+        <find-view slot="view_2"></find-view>
+        <shop-cart-view slot="view_3"></shop-cart-view>
         <member-index-view slot="view_4"></member-index-view>
     </tab-bar-view>
 </template>
@@ -19,12 +19,16 @@
     import AppMixin from "weex_starter/src/mixins/AppMixin";
     import {NAV_ITEMS} from "../config/NavItems";
     import MemberIndexView from "./member/MemberIndexView";
+    import HomeView from "./HomeView";
+    import CategoryView from "./category/CategoryView";
+    import ShopCartView from "./shopcart/ShopCartView";
+    import FindView from "./find/FindView";
 
 
     export default {
         name: "WebIndexView",
         mixins: [AppMixin],
-        components: {MemberIndexView, TabBarView},
+        components: {FindView, ShopCartView, CategoryView, HomeView, MemberIndexView, TabBarView},
         props: {
             flexViewStyle: {
                 default: () => ({

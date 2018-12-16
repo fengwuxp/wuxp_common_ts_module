@@ -1,7 +1,7 @@
 <!--原生首页导航-->
 <template>
     <tab-bar-view @pageChange="pageChange"
-                  defaultViewIndex="0"
+                  :defaultViewIndex="0"
                   :viewItems="viewItems"
                   itemSelectedColor="#16b356"
                   itemDefaultColor="#989898"
