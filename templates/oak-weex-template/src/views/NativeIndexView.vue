@@ -1,4 +1,4 @@
-<!--web 首页导航-->
+<!--原生首页导航-->
 <template>
     <tab-bar-view @pageChange="pageChange"
                   defaultViewIndex="0"
@@ -6,11 +6,6 @@
                   itemSelectedColor="#16b356"
                   itemDefaultColor="#989898"
                   ref="index_view">
-        <member-index-view slot="view_0"></member-index-view>
-        <member-index-view slot="view_1"></member-index-view>
-        <member-index-view slot="view_2"></member-index-view>
-        <member-index-view slot="view_3"></member-index-view>
-        <member-index-view slot="view_4"></member-index-view>
     </tab-bar-view>
 </template>
 
@@ -47,17 +42,6 @@
             }
         },
         beforeMount() {
-            // MemberSpaceService.queryLikeStore({
-            //     memberId: 1
-            // }).then(() => {
-            //
-            //     console.log("1")
-            //
-            // }).catch(() => {
-            //     console.log("2")
-            // }).finally(() => {
-            //     console.log("3")
-            // });
 
         }
     }
