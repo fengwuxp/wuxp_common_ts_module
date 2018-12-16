@@ -1,7 +1,7 @@
 <!--tabbar view 且底部导航带背景图片-->
 <template>
     <flex-view class="flex_cell default_bg_color">
-        <div class="flex_cell" v-if="isWeb">
+        <div slot="app-body" class="flex_cell" v-if="isWeb">
             <div v-for="(item,i ) in viewItems"
                  v-if="item.targetType===NavItemType.VIEW && isLoad(i)"
                  v-show="i===currentViewIndex"
@@ -9,7 +9,8 @@
                 <slot :name="'view_'+i"></slot>
             </div>
         </div>
-        <div class="flex_cell"
+        <div slot="app-body"
+             class="flex_cell"
              v-else>
             <!--加入单个加载-->
             <embed class="view_content"
@@ -22,7 +23,8 @@
             <!--扩展-->
             <slot name="extend"></slot>
         </div>
-        <tab-bar ref="bar-nav"
+        <tab-bar slot="app-footer"
+                 ref="bar-nav"
                  :viewItems="viewItems"
                  :beforeChange="beforeChange"
                  :defaultViewIndex="defaultViewIndex"
@@ -36,7 +38,7 @@
                  :navIconStyle="navIconStyle"
                  :numberDotStyle="numberDotStyle"
                  :transformNavIcon="transformNavIcon"
-                 @change="navChange"></tab-bar>
+                 @navChange="navChange"></tab-bar>
     </flex-view>
 </template>
 <script>
@@ -67,13 +69,7 @@
         },
         //方法列表
         methods: {
-            navChange(
-                {
-                    index,
-                    targetType,
-                    viewItems
-                }
-            ) {
+            navChange({index, targetType, viewItems}) {
 
                 this.currentViewIndex = index;
                 this.loadStatus[index] = true;
@@ -118,3 +114,4 @@
 
 
 </style>
+s
