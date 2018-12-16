@@ -9,14 +9,14 @@ export default class CommonResolveFetchResponse implements ResolveFetchResponse<
 
     resolve = (resp: Response): FetchResponse => {
 
-        const {headers, ok, status, statusText} = resp;
+        const {headers, ok, status} = resp;
 
         return {
             data: resp['data'],
             headers,
             ok,
             status,
-            statusText
+            statusText: resp["statusText"] || null
         }
     };
 
