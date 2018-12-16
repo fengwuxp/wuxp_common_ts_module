@@ -1,5 +1,5 @@
 import umengMixin from "../../../mixins/umeng/UmengMixin";
-import CommonThemeControl from "../../../../../../packages/common_style/src/CommonThemeControl";
+import CommonThemeControl from "common_style/src/CommonThemeControl";
 import {weexSimpleBootStarter} from "../../../boot/WeexViewBootstrap";
 
 /**
