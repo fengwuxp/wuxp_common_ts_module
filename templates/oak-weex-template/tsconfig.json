@@ -19,8 +19,8 @@
         "./utils/*"
       ]
     },
-    "types": [
-      "node"
+    "typeRoots":  [
+      "node_modules/@types"
     ],
     "lib": [
       "esnext",

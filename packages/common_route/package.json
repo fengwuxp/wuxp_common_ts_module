@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@tarojs/taro": "^1.2.0-beta.12",
-    "@types/history": "^4.7.0",
     "@types/node": "^10.9.4",
     "@types/weex": "^0.0.1",
     "@types/weixin": "0.0.1",
@@ -36,6 +35,7 @@
     "querystring": "^0.2.0"
   },
   "dependencies": {
+    "@types/history": "^4.7.2",
     "history": "^4.7.2"
   },
   "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"

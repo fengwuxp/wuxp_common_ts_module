@@ -43,6 +43,7 @@ export default class AppRouter {
      */
     static async toView(param: WeexNavigatorParam, viewConfig: ViewConfigByRoute = {} as any): Promise<void> {
 
+
         let pathname = param.pathname.startsWith("/") ? param.pathname.substr(1, param.pathname.length) : param.pathname;
         const route: WeexRouteItem = AppRouter.appRoutes[pathname];
 

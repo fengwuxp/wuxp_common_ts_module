@@ -12,7 +12,8 @@
     "allowJs": true,
     "types": [
       "node",
-      "weex"
+      "weex",
+      "history"
     ],
     "lib": [
       "dom",
