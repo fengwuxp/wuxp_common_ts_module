@@ -185,7 +185,7 @@
         height: 40px;
         font-size: 22px;
         border-radius: 40px;
-        background-color: red;
+        background-color: #ff0000;
         color: #ffffff;
         text-align: center;
         line-height: 40px;
