@@ -1,20 +1,17 @@
-<!--template view-->
+<!--首页-->
 <template>
-    <flex-view :viewStyle="viewStyle">
-        <div slot="app-body" class="flex_1">
-            <text value="首页"></text>
-        </div>
-        <div slot="app-footer" class="app_footer"></div>
-    </flex-view>
-
+    <drop-refresh-view :viewStyle="viewStyle"
+                       @viewOnRefresh="viewOnRefresh">
+        <text>首页</text>
+    </drop-refresh-view>
 </template>
 
 <script>
-    import FlexView from "weex_components/src/layout/view/flex-view";
     import AppMixin from "weex_starter/src/mixins/AppMixin"
+    import DropRefreshView from "weex_components/src/layout/drop-refresh/drop-refresh-view";
 
     export default {
-        components: { FlexView},
+        components: {DropRefreshView},
         mixins: [AppMixin],
         props: {
             viewStyle: {
@@ -26,7 +23,13 @@
         data() {
             return {};
         },
-        methods: {},
+        methods: {
+            viewOnRefresh(end) {
+                setTimeout(() => {
+                    end();
+                }, 2000)
+            }
+        },
         beforeMount() {
             console.log(this._px2rem)
         }

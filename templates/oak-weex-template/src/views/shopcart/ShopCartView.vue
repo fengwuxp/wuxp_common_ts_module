@@ -1,4 +1,4 @@
-<!--template view-->
+<!--购物车-->
 <template>
     <flex-view :viewStyle="viewStyle">
         <div slot="app-body" class="flex_1">

@@ -33,11 +33,11 @@
 
 <script>
 
-    import {NavItemType} from "./NavItemType";
-    import {NavShowType} from "./NavShowType";
-    import DefaultNavProps from "./DefaultNavProps";
+    import {NavItemType} from "./props/NavItemType";
+    import {NavShowType} from "./props/NavShowType";
+    import DefaultNavProps from "./props/DefaultNavProps";
     import {isIphoneX} from "common_weex/src/constant/WeexEnv";
-    import {IPHONEX_BOTTOM_HEIGHT} from "../view/FlexVIewHelper";
+    import {IPHONEX_BOTTOM_HEIGHT} from "../../helper/FlexViewHelper";
 
     /**
      * 原生下的页面样式

@@ -1,4 +1,4 @@
-<!--template view-->
+<!--个人中心-->
 <template>
     <flex-view :viewStyle="viewStyle">
         <nav-bar slot="app-header" :navTitle="navTitle"></nav-bar>

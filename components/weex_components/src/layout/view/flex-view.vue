@@ -12,7 +12,7 @@
 
 <script>
 
-    import FlexViewMixin from "./OAKFlexViewMixin";
+    import FlexViewMixin from "./mixins";
 
     export default FlexViewMixin;
 </script>

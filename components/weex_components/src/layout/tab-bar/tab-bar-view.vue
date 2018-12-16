@@ -44,8 +44,8 @@
 <script>
     import TabBar from "./tab-bar";
 
-    import {NavItemType} from "./NavItemType";
-    import DefaultNavProps from "./DefaultNavProps";
+    import {NavItemType} from "./props/NavItemType";
+    import DefaultNavProps from "./props/DefaultNavProps";
     import {isWeb} from "common_weex/src/constant/WeexEnv";
     import FlexView from "../view/flex-view";
 

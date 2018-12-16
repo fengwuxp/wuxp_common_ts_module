@@ -1,5 +1,4 @@
 import {isIos, isIphoneX} from "common_weex/src/constant/WeexEnv";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 
 /**

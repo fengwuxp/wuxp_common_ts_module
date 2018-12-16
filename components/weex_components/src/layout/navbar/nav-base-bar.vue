@@ -15,7 +15,7 @@
 <script>
 
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
-    import {getStatusBarHeight} from "../view/FlexVIewHelper";
+    import {getStatusBarHeight} from "../../helper/FlexViewHelper";
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 

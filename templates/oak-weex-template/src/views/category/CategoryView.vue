@@ -1,4 +1,4 @@
-<!--template view-->
+<!--分类-->
 <template>
     <flex-view :viewStyle="viewStyle">
         <div slot="app-body" class="flex_1">
@@ -14,7 +14,7 @@
     import AppMixin from "weex_starter/src/mixins/AppMixin"
 
     export default {
-        components: { FlexView},
+        components: {FlexView},
         mixins: [AppMixin],
         props: {
             viewStyle: {
