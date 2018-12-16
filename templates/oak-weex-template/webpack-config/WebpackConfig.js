@@ -9,7 +9,7 @@ const DEV_API_DOMAIN = "test.meazoo.com";//"dev.oaknt.com";
 
 
 //正式环境请求域名
-const PROD_API_DOMAIN = "prod.oaknt.com";
+const PROD_API_DOMAIN = "test.meazoo.com";
 
 //测试h5部署目录
 const TEST_H5_WEB_CONTEXT = "test_h5";

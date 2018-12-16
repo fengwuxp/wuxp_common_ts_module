@@ -19,15 +19,14 @@ if (process.env._self !== "1") {
  * @return {boolean} true 忽略 false 不忽略
  */
 exports.isExclude = function (path) {
-    //是否为node_modules中的模块
-    var isNodeModules = path.indexOf("node_modules") >= 0;
     var isWxpComponents = list.some(function (item) {
         return path.indexOf(item) >= 0;
     });
     if (isWxpComponents || path.endsWith("_starter")) {
         return false;
     }
-    return isNodeModules;
+    //是否为node_modules中的模块
+    return path.indexOf("node_modules") >= 0;
 };
 /**
  * 获取项目跟目录

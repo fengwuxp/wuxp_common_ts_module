@@ -1,5 +1,5 @@
 import {isExclude} from "../utils/WebpackUtils";
-import babel7Options from "../../babel/babelrc7";
+const babel7Options = require("../../babel/babelrc7");
 
 /**
  * babel-loader
