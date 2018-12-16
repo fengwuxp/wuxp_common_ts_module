@@ -3,23 +3,17 @@ import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 
 export default {
     components: {},
-    props: {
-        flexViewStyle: {
-            default: null
-        },
+    props: Object.assign({
 
-        /**
-         * 是立即刷新
-         */
+        //是否立即刷新
         refreshNow: {
             default: false
-        },
-
-        ...DropRefreshProps
-    },
+        }
+    }, DropRefreshProps),
     data() {
         return {
             showTip: false,
+            //是否处于刷新状态
             refreshing: false,
             //当前下拉刷新动画的帧
             currentAnimationFrame: 0,

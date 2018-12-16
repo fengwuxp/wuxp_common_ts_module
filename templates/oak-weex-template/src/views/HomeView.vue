@@ -11,9 +11,9 @@
 </template>
 
 <script>
+    import FlexView from "weex_components/src/layout/view/flex-view";
     import AppMixin from "weex_starter/src/mixins/AppMixin"
     import DropRefreshView from "weex_components/src/layout/drop-refresh/drop-refresh-view";
-    import FlexView from "weex_components/src/layout/view/flex-view";
 
 
     export default {
@@ -29,7 +29,6 @@
         },
         methods: {
             viewOnRefresh(end) {
-                console.log("准备开始请求")
                 setTimeout(() => {
                     end();
                     console.log("请求结束")
@@ -37,7 +36,7 @@
             }
         },
         beforeMount() {
-            console.log(this._px2rem)
+
         }
     }
 </script>

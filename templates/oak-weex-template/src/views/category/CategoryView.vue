@@ -28,7 +28,7 @@
         },
         methods: {},
         beforeMount() {
-            console.log(this._px2rem)
+
         }
     }
 </script>

@@ -23,17 +23,15 @@ if (process.env._self !== "1") {
  */
 export const isExclude = function (path) {
 
-    //是否为node_modules中的模块
-    let isNodeModules = path.indexOf("node_modules") >= 0;
-
-    let isWxpComponents = list.some((item) => {
+    const isWxpComponents = list.some((item) => {
         return path.indexOf(item) >= 0;
     });
 
     if (isWxpComponents || path.endsWith("_starter")) {
         return false;
     }
-    return isNodeModules;
+    //是否为node_modules中的模块
+    return path.indexOf("node_modules") >= 0;
 };
 
 /**

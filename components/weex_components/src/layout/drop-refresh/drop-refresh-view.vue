@@ -8,7 +8,7 @@
                  :style="refreshContainerStyle"
                  @refresh="viewOnRefresh"
                  @pullingdown="viewOnPullingDown"
-                 :display="showRefresh ? 'show' : 'hide'">
+                 :display="refreshing ? 'show' : 'hide'">
             <div v-if="indicatorModel==='default'"
                  class="flex_row flex_v_center"
                  :style="refreshContentStyle">
