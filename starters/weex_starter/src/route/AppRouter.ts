@@ -102,7 +102,7 @@ export default class AppRouter {
         return navigator.push({
             ...param,
             pathname
-        });
+        } as WeexNavigatorParam);
     };
 
     static back = navigator.goBack;
