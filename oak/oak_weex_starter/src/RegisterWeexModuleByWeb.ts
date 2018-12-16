@@ -14,5 +14,5 @@ export const registerWeexModuleByWeb = () => {
     require("./module/Photo");
     require("./module/Location");
     require("./module/ThirdLogin");
-    require("./module/aliPay");
+    require("./module/ALiPayModule");
 };
