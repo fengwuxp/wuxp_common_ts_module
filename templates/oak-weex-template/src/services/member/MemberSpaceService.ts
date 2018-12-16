@@ -1,5 +1,7 @@
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {Feign} from "common_fetch/src/annotations/Feign";
+import {Signature} from "common_fetch/src/annotations/security/Signature";
+import {PostMapping} from "common_fetch/src/annotations/mapping/PostMapping";
 
 /**
  * 会员空间
@@ -22,8 +24,9 @@ interface MemberSpaceService {
 class MemberSpaceServiceImpl implements MemberSpaceService {
 
 
-
-    queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]> = undefined;
+    @Signature({fields: []})
+    @PostMapping({})
+    queryLikeStore: (req: any, option?: FetchOptions) => Promise<any[]>;
 
 
 }
