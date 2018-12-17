@@ -11,7 +11,7 @@
 
      1：确认 node环境和yarn工具已经安装（npm需要设置成私服）
 
-     2：安装Taro:  yarn global add @tarojs/cli
+     2：安装Taro:  yarn global add @tarojs/cli  安装typescript npm i typescript -g
 
      3：安装依赖 (yarn install 或者运行package.json定义的yarn_i命令)
 
@@ -36,7 +36,21 @@
 
                3: taroDefaultSessionManager   默认的会话管理器 基于TaroLocalStorage的实现
 
-               3: TaroNavigatorAdapter        提供和浏览器一直的Api
+               3: TaroNavigatorAdapter        提供和浏览器一致的Api
+
+                   使用：
+                  //创建一个导航器
+                   const navigator=new TaroNavigatorAdapter(Taro);
+                  //页面跳转
+                   navigator.push({
+                      pathname:"/goods/list"  // 这个"/goods/list" 是 app.tsx中的pages 中的 "/pages/goods/list" 去掉"/pages"来的
+
+                      //页面参数
+                      state:{
+                        goodsId:1
+                      }
+                   })
+
 
 
 #### 使用方式（需要注意）

@@ -2,7 +2,8 @@ import {FetchAdapter} from "./FetchAdapter";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {ResolveFetchResponse} from "../resolve/ResolveFetchResponse";
 import CommonResolveFetchResponse from "../resolve/CommonResolveFetchResponse";
-
+//promise 扩展
+import "../fetch.promise";
 /**
  *  abstract fetch adapter
  */

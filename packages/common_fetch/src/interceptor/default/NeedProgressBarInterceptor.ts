@@ -11,7 +11,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
      * 进度条计数器，用于在同时发起多个请求时，
      * 统一控制加载进度条
      */
-    private count: number = 0;
+    private static count: number = 0;
 
     /**
      * 进度条
@@ -49,8 +49,8 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
             //不使用进度条
             return params;
         }
-        let {count, progressBar} = this;
-        if (count === 0) {
+        let {progressBar} = this;
+        if (NeedProgressBarInterceptor.count === 0) {
             //显示加载进度条
             this.timerId = setTimeout(() => {
                 progressBar.showProgressBar({
@@ -59,8 +59,9 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
                 });
             }, this.progressBarOptions.delay);
         }
+
         //计数器加一
-        count++;
+        NeedProgressBarInterceptor.count++;
         return params;
     }
 
@@ -70,10 +71,10 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
             //不使用进度条
             return data;
         }
-        let {count, timerId, progressBar} = this;
+        let {timerId, progressBar} = this;
         //计数器减一
-        count--;
-        if (count === 0) {
+        NeedProgressBarInterceptor.count--;
+        if (NeedProgressBarInterceptor.count === 0) {
             //清除定时器
             clearTimeout(timerId);
             //隐藏加载进度条

@@ -18,6 +18,7 @@ import {ReqequestMethod} from "../src/constant/ReqequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
 import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
 import {MockFetchAdapter} from "./mock/MockFetchAdapter";
+import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -95,9 +96,9 @@ const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
 const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate,
     new TestApiSignatureStrategy("a", "b", "node"));
 
-const es5PoxyServiceFactory = new Es5PoxyServiceFactory();
-//设置代理工厂
-setProxyFactory(es5PoxyServiceFactory);
+
+//设置代理执行器
+FeignProxyExecutorHolder.DEFAULT_EXECUTOR = proxyServiceExecutor;
 
 
 describe("test proxy api service", () => {

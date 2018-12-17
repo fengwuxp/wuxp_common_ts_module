@@ -12,9 +12,15 @@ export default abstract class AbstractFetchInterceptor<T extends BaseFetchOption
         return data;
     }
 
+    preExecutionCondition = (params: T) => params != null;
+
+
     preHandle(params: T): Promise<T> | T | null | undefined {
         return params;
     }
+
+
+    postExecutionCondition = (data: FetchResponse, options: T) => data != null;
 
 
 }

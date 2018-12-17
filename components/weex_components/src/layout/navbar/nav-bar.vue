@@ -9,10 +9,10 @@
              :style="leftStyle"
              class="nav-bar-left"
              @click="clickLeft">
-            <image v-if="!isFontIcon(backIcon)"
+            <image v-if="backIcon && !isFontIcon(backIcon)"
                    :src="backIcon"
                    :style="backIconStyle"></image>
-            <feather-icon v-if="isFontIcon(backIcon)"
+            <feather-icon v-if="backIcon && isFontIcon(backIcon)"
                           @iconClicked="clickLeft"
                           :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>

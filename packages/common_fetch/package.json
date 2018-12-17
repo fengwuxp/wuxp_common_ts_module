@@ -18,7 +18,6 @@
   "license": "ISC",
   "scripts": {
     "yarn_i": "yarn install",
-    "build_ts": "node ./scripts/build.js",
     "npm_publish": "npm publish"
   },
   "keywords": [

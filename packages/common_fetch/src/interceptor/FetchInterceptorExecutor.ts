@@ -38,18 +38,18 @@ export default class FetchInterceptorExecutor {
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
-
-            result = await interceptor.preHandle(result);
-
-            //异常
-            if (result instanceof Error) {
-                console.error("FetchInterceptorExecutor pre handle exception", result);
-                return Promise.reject(result);
-                // throw new Error("pre handle interceptor execute fail");
-                // // console.log("pre handle interceptor execute fail");
+            if (!interceptor.preExecutionCondition(result)) {
+                continue;
             }
+            try {
+                result = await interceptor.preHandle(result);
+            } catch (e) {
+                //异常，跳过
+                console.error("FetchInterceptorExecutor pre handle exception", e);
+            }
+
         }
-        return options;
+        return result;
     }
 
     /**
@@ -65,13 +65,16 @@ export default class FetchInterceptorExecutor {
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
-            result = await interceptor.postHandle(result, options);
-
-            //异常
-            if (result instanceof Error) {
-                console.error("FetchInterceptorExecutor post handle exception", result);
-                return Promise.reject(result);
+            if (!interceptor.postExecutionCondition(result, options)) {
+                continue;
             }
+            try {
+                result = await interceptor.postHandle(result, options);
+            } catch (e) {
+                //异常，跳过
+                console.error("FetchInterceptorExecutor post handle exception", e);
+            }
+
         }
         return result;
     }

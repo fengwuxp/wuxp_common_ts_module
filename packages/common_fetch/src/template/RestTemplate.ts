@@ -8,9 +8,7 @@ import {HttpFetchExceptionName} from "../exception/Const";
 import ExceptionBroadcaster from "../exception/ExceptionBroadcaster";
 import {ResponseType} from "../constant/ResponseType";
 import {MediaType} from "../constant/http/MediaType";
-import {FetchRetryOptions, RetryOptions} from "../FetchRetryOptions";
-import RetryFetchClient from "../fetch/RetryFetchClient";
-import {FetchAdapter} from "../adapter/FetchAdapter";
+import {RetryOptions} from "../FetchRetryOptions";
 
 
 /**
@@ -117,16 +115,9 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         this.interceptorExecutor = interceptorExecutor;
     }
 
-    fetch = (options: FetchOptions): Promise<FetchResponse> => {
+    async fetch(options: FetchOptions): Promise<FetchResponse> {
 
         const interceptorExecutor = this.interceptorExecutor;
-
-
-        const transformRequest = options.transformRequest;
-        if (transformRequest) {
-            //执行 transformRequest
-            options = transformRequest(options);
-        }
 
         //参数检查
         if (!options.method) {
@@ -149,38 +140,96 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
         //TODO 进行重试的参数设置
 
+
+        const transformRequest = options.transformRequest;
+        if (transformRequest) {
+            //执行 transformRequest
+            options = transformRequest(options);
+        }
+
+
+        let fetchOptions, resp, response, fetchIsError;
+        try {
+            //执行前置拦截器
+            fetchOptions = await interceptorExecutor.preHandle(options);
+        } catch (e) {
+            console.error("interceptor pre handle error", e);
+        }
+
         //获取请求客户端
         const fetchClient = this.getFetchClient(options);
 
+        try {
+            //请求数据
+            resp = await fetchClient.request(fetchOptions);
+        } catch (e) {
+            const {statusText, headers, data, status} = e;
+            console.debug("请求异常", status, statusText);
+            const exception: HttpFetchException = {
+                name: HttpFetchExceptionName,
+                message: statusText,
+                httpCode: status,
+                headers,
+                response: data,
+                request: options
+            };
+            //http code错误处理，将其广播
+            ExceptionBroadcaster.broadcast(exception);
+            //请求错误
+            fetchIsError = true;
+            resp = e;
+        }
+        try {
+            //执行后置拦截器
+            response = await interceptorExecutor.postHandle(resp, options);
+        } catch (e) {
+            console.error("interceptor post handle error", e);
+            return e;
+        }
 
-        return interceptorExecutor.preHandle(options)
-            .then(fetchClient.request)
-            .then((resp) => {
-                //后置拦截器
-                return interceptorExecutor.postHandle(resp, options)
-                    .then((response: FetchResponse) => {
-                        const transformResponse = options.transformResponse;
-                        if (transformResponse) {
-                            //执行 transformResponse
-                            response = transformResponse(response);
-                        }
-                        return response
-                    });
-            }).catch((response: FetchResponse) => {
-                const {statusText, headers, data, status} = response;
-                console.debug("请求异常", status, statusText);
-                const exception: HttpFetchException = {
-                    name: HttpFetchExceptionName,
-                    message: statusText,
-                    httpCode: status,
-                    headers,
-                    response: data,
-                    request: options
-                };
-                //http code错误处理，将其广播
-                ExceptionBroadcaster.broadcast(exception);
-                return Promise.reject(response);
-            });
+        if (fetchIsError) {
+            //请求错误
+            return Promise.reject(resp)
+        }
+
+        //执行数据装换
+        const transformResponse = options.transformResponse;
+
+        if (transformResponse) {
+            //执行 transformResponse
+            response = transformResponse(response);
+        }
+
+        return response;
+
+        // return interceptorExecutor.preHandle(options)
+        //     .then(fetchClient.request)
+        //     .then((resp) => {
+        //         //后置拦截器
+        //         return interceptorExecutor.postHandle(resp, options)
+        //             .then((response: FetchResponse) => {
+        //                 const transformResponse = options.transformResponse;
+        //                 if (transformResponse) {
+        //                     //执行 transformResponse
+        //                     response = transformResponse(response);
+        //                 }
+        //                 return response
+        //             });
+        //     }).catch((response: FetchResponse) => {
+        //         const {statusText, headers, data, status} = response;
+        //         console.debug("请求异常", status, statusText);
+        //         const exception: HttpFetchException = {
+        //             name: HttpFetchExceptionName,
+        //             message: statusText,
+        //             httpCode: status,
+        //             headers,
+        //             response: data,
+        //             request: options
+        //         };
+        //         //http code错误处理，将其广播
+        //         ExceptionBroadcaster.broadcast(exception);
+        //         return Promise.reject(response);
+        //     });
     };
 
     /**

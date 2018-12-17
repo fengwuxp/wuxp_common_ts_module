@@ -2,8 +2,6 @@ import {FetchClient} from "./FetchClient";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {ReqequestMethod} from "../constant/ReqequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
-//promise 扩展
-import "../fetch.promise";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
 

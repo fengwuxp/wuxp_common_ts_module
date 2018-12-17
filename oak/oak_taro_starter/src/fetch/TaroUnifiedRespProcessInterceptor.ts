@@ -1,6 +1,5 @@
 import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
-import {FetchResponse} from "common_fetch/src/FetchOptions";
-import {FetchOptions} from "common_fetch/src/FetchOptions";
+import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 
 
@@ -19,6 +18,7 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
     }
 
     postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+
 
         const resp: ApiResp = data.data;
 

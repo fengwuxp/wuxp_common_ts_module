@@ -3,8 +3,6 @@ import {ProgressBarOptions} from "common_fetch/src/FetchOptions";
 
 export default class OAKTaroFetchProgressBar implements FetchProgressBar {
 
-    //计数器，全局共享
-    private static count: number = 0;
 
     private progressBarOptions: ProgressBarOptions;
 
@@ -19,25 +17,16 @@ export default class OAKTaroFetchProgressBar implements FetchProgressBar {
     }
 
     hideProgressBar = () => {
-        //计数器减一
-        OAKTaroFetchProgressBar.count--;
-        if (OAKTaroFetchProgressBar.count === 0) {
-            //隐藏加载进度条
-            this.taro.hideLoading();
-        }
+        //隐藏加载进度条
+        this.taro.hideLoading();
     };
 
     showProgressBar = (progressBarOptions?: ProgressBarOptions) => {
 
-        if (OAKTaroFetchProgressBar.count === 0) {
-            //显示加载进度条
-            this.taro.showLoading({
-                ...this.progressBarOptions,
-                ...(progressBarOptions || {})
-            } as any);
-        }
-        //计数器加一
-        OAKTaroFetchProgressBar.count++;
+        this.taro.showLoading({
+            ...this.progressBarOptions,
+            ...(progressBarOptions || {})
+        } as ProgressBarOptions);
     };
 
 

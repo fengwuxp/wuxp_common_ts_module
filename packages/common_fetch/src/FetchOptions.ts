@@ -48,13 +48,22 @@ export interface FetchOptions extends BaseFetchOptions {
 
 
     /**
+     * 是否使用统一的提示
+     * 默认：true
+     */
+    useUnifiedToast?: boolean;
+
+    /**
      * 是否使用进度条
+     * 默认：true
      */
     useProgressBar?: boolean;
 
     /**
      * 进度条配置
-     * 建议进度条使用拦截器实现
+     * 进度条控制可以在拦截器实现
+     *
+     * @see {@link  /src/interceptor/default/NeedProgressBarInterceptor.ts}
      */
     progressBarOptions?: ProgressBarOptions;
 
@@ -130,10 +139,6 @@ export interface FetchContext<T = any> {
 
     // [key: string]: any
 
-    /**
-     * 是否使用 progressBar
-     */
-    // useProgressBar?: boolean;
 
     /**
      * 响应的完整数据
