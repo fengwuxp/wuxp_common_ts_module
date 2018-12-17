@@ -79,8 +79,9 @@ export default class FetchInterceptorExecutor {
             try {
                 result = await postHandle(result, options);
             } catch (e) {
-                //异常，跳过
-                console.error("FetchInterceptorExecutor post handle exception", e);
+                console.debug("FetchInterceptorExecutor post handle exception", e);
+                //异常，中断执行，并抛出错误
+                return Promise.reject(e);
             }
 
         }

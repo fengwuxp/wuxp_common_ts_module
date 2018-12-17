@@ -1,6 +1,7 @@
 import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
+import StringUtils from "common_utils/src/string/StringUtils";
 
 
 /**
@@ -11,10 +12,12 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
 
     private taro: any;
 
+    private toastImageUrl: string;
 
-    constructor(taro: any) {
+    constructor(taro: any, toastImageUrl?: string) {
         super();
         this.taro = taro;
+        this.toastImageUrl = toastImageUrl;
     }
 
 
@@ -26,12 +29,19 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
         if (resp.code !== 0) {
 
             //加入错误提示
-            if (!!resp.message && options.useUnifiedToast !== false) {
+            if (StringUtils.hasText(resp.message) && options.useUnifiedToast !== false) {
                 //使用统一提示
-                this.taro.showToast({
+                const config: any = {
                     title: resp.message,
-                    mask: true
-                });
+                    mask: true,
+                    duration: 2000
+                };
+                if (this.toastImageUrl) {
+                    config.image = this.toastImageUrl;
+                } else {
+                    config.icon = "none";
+                }
+                this.taro.showToast(config);
             }
 
 

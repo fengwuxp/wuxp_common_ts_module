@@ -44,7 +44,7 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
             //请求url
             url,
             //响应类型,
-            dataType: responseType,
+            dataType: responseType.toLocaleLowerCase(),
             cache: (cache as any),
             credentials,
             mode: (mode as any),

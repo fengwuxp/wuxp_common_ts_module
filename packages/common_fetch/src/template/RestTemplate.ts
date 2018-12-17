@@ -186,7 +186,6 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             response = await interceptorExecutor.postHandle(resp, options, fetchIsError);
         } catch (e) {
             //明确是reject
-            console.debug("interceptor post handle error", e);
             return Promise.reject(e);
         }
 
