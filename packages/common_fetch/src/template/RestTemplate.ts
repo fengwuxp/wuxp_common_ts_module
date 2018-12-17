@@ -179,17 +179,15 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             fetchIsError = true;
             resp = e;
         }
-        try {
-            //执行后置拦截器
-            response = await interceptorExecutor.postHandle(resp, options);
-        } catch (e) {
-            console.error("interceptor post handle error", e);
-            return e;
-        }
 
-        if (fetchIsError) {
-            //请求错误
-            return Promise.reject(resp)
+        try {
+            //执行拦截器后置处理
+            //如果有发生异常，拦截其中需要处理，并根据自己的逻辑对相应作出装换，决定请求最终是成功还是失败
+            response = await interceptorExecutor.postHandle(resp, options, fetchIsError);
+        } catch (e) {
+            //明确是reject
+            console.debug("interceptor post handle error", e);
+            return Promise.reject(e);
         }
 
         //执行数据装换

@@ -8,19 +8,11 @@ import {BaseFetchOptions} from "../BaseFetchOptions";
 export default abstract class AbstractFetchInterceptor<T extends BaseFetchOptions = FetchOptions> implements FetchInterceptor<T> {
 
 
-    postHandle(data: FetchResponse, options: T): FetchResponse | Promise<FetchResponse> | null | undefined {
-        return data;
-    }
+    preHandle = (params: T): Promise<T> | T | null | undefined => params;
 
-    preExecutionCondition = (params: T) => params != null;
+    postHandle = (response: FetchResponse, options: T): FetchResponse | Promise<FetchResponse> | undefined | null => response
 
-
-    preHandle(params: T): Promise<T> | T | null | undefined {
-        return params;
-    }
-
-
-    postExecutionCondition = (data: FetchResponse, options: T) => data != null;
+    postHandleError = <R>(response: R, options: T): R | undefined | null => response
 
 
 }

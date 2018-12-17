@@ -44,7 +44,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
         this.timer = timer;
     }
 
-    preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
+    preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
         if (params.useProgressBar == false) {
             //不使用进度条
             return params;
@@ -63,13 +63,13 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
         //计数器加一
         NeedProgressBarInterceptor.count++;
         return params;
-    }
+    };
 
 
-    postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+    postHandleCompleted = (response, options: FetchOptions) => {
         if (options.useProgressBar == false) {
             //不使用进度条
-            return data;
+            return response;
         }
         let {timerId, progressBar} = this;
         //计数器减一
@@ -81,7 +81,7 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
             progressBar.hideProgressBar();
         }
 
-        return data;
+        return response;
     }
 }
 

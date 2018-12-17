@@ -10,15 +10,18 @@ import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
 
-    postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+    postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
         const resp: ApiResp = data.data;
 
         if (resp.code !== 0) {
 
-            //TODO 加入错误提示
 
-            return Promise.reject(resp.message);
+            if (!!resp.message && options.useUnifiedToast !== false) {
+                //TODO 加入错误提示
+            }
+
+            return Promise.reject(resp);
         }
 
         const oldTransform = options.transformResponse;

@@ -17,7 +17,8 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
         this.taro = taro;
     }
 
-    postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+
+    postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
 
         const resp: ApiResp = data.data;
@@ -25,8 +26,8 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
         if (resp.code !== 0) {
 
             //加入错误提示
-            if (!!resp.message) {
-                //自动提示
+            if (!!resp.message && options.useUnifiedToast !== false) {
+                //使用统一提示
                 this.taro.showToast({
                     title: resp.message,
                     mask: true
@@ -34,7 +35,7 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
             }
 
 
-            return Promise.reject(resp.message);
+            return Promise.reject(resp);
         }
 
         const oldTransform = options.transformResponse;

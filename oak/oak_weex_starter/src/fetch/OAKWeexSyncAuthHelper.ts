@@ -7,10 +7,10 @@ import AppRouter from "weex_starter/src/route/AppRouter";
 
 export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
-    async isToAuthView(data: FetchResponse) {
+    async isToAuthView(response: FetchResponse) {
 
 
-        if (data.data.code == 99) {
+        if (response.data.code == 99) {
 
             //跳转到登录页面
             AppRouter.toView({

@@ -22,12 +22,12 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
         this.authHelper = authHelper;
     }
 
-    postHandle(data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined {
+    postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
         return this.authHelper.isToAuthView(data).then((result) => result ? data : null);
-    }
+    };
 
-    preHandle(params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined {
+    preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
         //初始化锁
         // if (this.prevLockPromise == null) {

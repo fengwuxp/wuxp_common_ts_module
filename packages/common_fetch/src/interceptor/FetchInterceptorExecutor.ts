@@ -22,8 +22,8 @@ export default class FetchInterceptorExecutor {
         return this.executePreHandle(params);
     }
 
-    postHandle(data: FetchResponse, options: BaseFetchOptions): Promise<FetchResponse | null | undefined> {
-        return this.executePostHandle(data, options);
+    postHandle(response: FetchResponse, options: BaseFetchOptions, fetchError: boolean): Promise<FetchResponse | null | undefined> {
+        return this.executePostHandle(response, options, fetchError);
     }
 
 
@@ -38,9 +38,6 @@ export default class FetchInterceptorExecutor {
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
-            if (!interceptor.preExecutionCondition(result)) {
-                continue;
-            }
             try {
                 result = await interceptor.preHandle(result);
             } catch (e) {
@@ -56,8 +53,9 @@ export default class FetchInterceptorExecutor {
      * 执行拦截器后置处理
      * @param data
      * @param options
+     * @param fetchError 请求是否发生错误
      */
-    private async executePostHandle(data: FetchResponse, options: BaseFetchOptions): Promise<FetchResponse | null | undefined> {
+    private async executePostHandle(data: FetchResponse, options: BaseFetchOptions, fetchError: boolean): Promise<FetchResponse | null | undefined> {
         const interceptorList = this.interceptorList;
         let index = 0;
 
@@ -65,11 +63,21 @@ export default class FetchInterceptorExecutor {
         while (index < interceptorList.length) {
             let interceptor = interceptorList[index];
             index++;
-            if (!interceptor.postExecutionCondition(result, options)) {
-                continue;
+
+            let postHandle: Function = interceptor.postHandleCompleted;
+            if (postHandle == null) {
+                if (fetchError) {
+                    //请求错误
+                    postHandle = interceptor.postHandleError;
+                } else {
+                    //请求成功
+                    postHandle = interceptor.postHandle;
+                }
             }
+
+
             try {
-                result = await interceptor.postHandle(result, options);
+                result = await postHandle(result, options);
             } catch (e) {
                 //异常，跳过
                 console.error("FetchInterceptorExecutor post handle exception", e);
