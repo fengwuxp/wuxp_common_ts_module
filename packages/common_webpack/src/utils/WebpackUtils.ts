@@ -4,7 +4,8 @@ import {INCLUDE_PATH} from "../config/webpackConfig";
 //默认导入的模块
 const DEFAULT_INCLUDE: string[] = [
     "common_",
-    "oak_"
+    "oak_",
+    "_starter"
 ];
 
 const list: string[] = [...DEFAULT_INCLUDE];
@@ -27,7 +28,7 @@ export const isExclude = function (path) {
         return path.indexOf(item) >= 0;
     });
 
-    if (isWxpComponents || path.endsWith("_starter")) {
+    if (isWxpComponents) {
         return false;
     }
     //是否为node_modules中的模块

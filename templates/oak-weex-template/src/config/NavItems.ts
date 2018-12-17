@@ -1,6 +1,6 @@
-import {NavItem} from "weex_components/src/layout/tab-bar/NavItem";
-import {NavShowType} from "weex_components/src/layout/tab-bar/NavShowType";
-import {NavItemType} from "weex_components/src/layout/tab-bar/NavItemType";
+import {NavItem} from "weex_components/src/layout/tab-bar/props/NavItem";
+import {NavShowType} from "weex_components/src/layout/tab-bar/props/NavShowType";
+import {NavItemType} from "weex_components/src/layout/tab-bar/props/NavItemType";
 import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 
 

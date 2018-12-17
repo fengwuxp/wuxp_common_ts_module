@@ -5,7 +5,8 @@ var webpackConfig_1 = require("../config/webpackConfig");
 //默认导入的模块
 var DEFAULT_INCLUDE = [
     "common_",
-    "oak_"
+    "oak_",
+    "_starter"
 ];
 var list = DEFAULT_INCLUDE.slice();
 if (process.env._self !== "1") {
@@ -22,7 +23,7 @@ exports.isExclude = function (path) {
     var isWxpComponents = list.some(function (item) {
         return path.indexOf(item) >= 0;
     });
-    if (isWxpComponents || path.endsWith("_starter")) {
+    if (isWxpComponents) {
         return false;
     }
     //是否为node_modules中的模块
