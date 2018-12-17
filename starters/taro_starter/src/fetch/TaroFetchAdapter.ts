@@ -20,7 +20,7 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
     request = (options: WebFetchOptions): Promise<FetchResponse> => {
 
         const param = this.buildRequest(options);
-        console.debug("--request options-->", param);
+        // console.debug("--request options-->", param);
         return this.taro.request(param).then(this.resolveResponse.resolve);
     };
 
