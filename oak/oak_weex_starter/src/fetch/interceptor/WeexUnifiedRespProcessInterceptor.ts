@@ -17,7 +17,7 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
         if (resp.code !== 0) {
 
 
-            if (StringUtils.hasText(resp.message) && options.useUnifiedToast !== false) {
+            if (StringUtils.hasText(resp.message) && (options.useUnifiedToast !== false || options.useProgressBar == false)) {
                 //TODO 加入错误提示
             }
 

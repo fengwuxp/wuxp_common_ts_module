@@ -54,7 +54,7 @@ export interface FetchOptions extends BaseFetchOptions {
     useUnifiedToast?: boolean;
 
     /**
-     * 是否使用进度条
+     * 是否使用进度条,如果该值为false 则不会使用统一的提示
      * 默认：true
      */
     useProgressBar?: boolean;
