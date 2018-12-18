@@ -1,6 +1,6 @@
 import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
-import URLArgumentsResolve from "../resolve/URLArgumentsResolve";
+import DefaultURLArgumentsResolve from "../resolve/DefaultURLArgumentsResolve";
 import {LocationDescriptorObject} from "history";
 
 //获取weex导航器
@@ -9,7 +9,7 @@ const navigator: WeexNavigatorModule = weex.requireModule("navigator");
 /**
  * 参数解析
  */
-export const argumentsResolve = new URLArgumentsResolve();
+export const argumentsResolve = new DefaultURLArgumentsResolve();
 
 export interface WeexNavigatorParam extends LocationDescriptorObject {
 

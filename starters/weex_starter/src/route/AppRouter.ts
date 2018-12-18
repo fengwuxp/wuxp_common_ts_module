@@ -111,7 +111,7 @@ export default class AppRouter {
 }
 
 /**
- * 根据路由生成 jsurl
+ * 根据路由生成 js url
  * @param route
  */
 const generateBundleJsURL = (route) => {

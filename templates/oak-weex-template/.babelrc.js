@@ -3,7 +3,8 @@ config.plugins.push([
     "component",
     {
         "libraryName": "weex-ui",
-        "libDir": "packages"
+        "libDir": "packages",
+        "style": false
     }
 ]);
 
