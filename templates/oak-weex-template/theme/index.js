@@ -5,6 +5,7 @@
  **/
 module.exports = {
     "primary-color": "#ff2b3c",
+    "fill-body": "#ffffff",
     "nav-bar-background-color": "#ff2b3c",
     "nav-bar-left-width": "100px"
 };

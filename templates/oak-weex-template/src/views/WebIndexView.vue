@@ -17,12 +17,12 @@
 <script>
     import TabBarView from "weex_components/src/layout/tab-bar/tab-bar-view";
     import AppMixin from "weex_starter/src/mixins/AppMixin";
-    import {NAV_ITEMS} from "../config/NavItems";
     import MemberIndexView from "./member/MemberIndexView";
     import HomeView from "./HomeView";
     import CategoryView from "./category/CategoryView";
     import ShopCartView from "./shopcart/ShopCartView";
     import FindView from "./find/FindView";
+    import {NAV_ITEMS} from "../config/NavItems";
 
 
     export default {

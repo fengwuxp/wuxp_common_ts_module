@@ -39,6 +39,7 @@
 </script>
 <style scoped lang="less">
 
+    /*@import "~common_style/src/theme/mobile/weex/index";*/
     @import "../../less/theme";
 
     .text_red {

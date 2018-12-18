@@ -96,7 +96,7 @@
 
             //根据fontFamily加载字体图标文件
             if (!fontUrl) {
-                fontUrl = getWeexResourceUrl(`../fonts/${fontFamily}.ttf`);
+                fontUrl = getWeexResourceUrl(`${fontFamily}.ttf`);
             }
             // console.log("fontUrl", fontUrl);
             dom.addRule('fontFace', {

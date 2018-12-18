@@ -23,6 +23,12 @@ const IOS_JS_DIR = process.env.IOS_JS_DIR || 'bundlejs';
 //web 远程js目录
 const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
 
+//图片目录
+const IMAGES_DIR = process.env.IMAGES_JS_DIR || 'images';
+
+//字体图标目标
+const FONTS_DIR = process.env.FONTS_DIR || 'fonts';
+
 /**
  * 路径解析，获取bundle js的根路径
  * @author wxup
@@ -31,7 +37,7 @@ const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
 export const parseWeexBundleJsBasePath = () => {
 
     //获取app的配置的信息
-    const {staticResourcesRootPath, resourceConfig, httpProtocol} = AppConfigRegistry.get();
+    const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get();
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 
@@ -46,7 +52,7 @@ export const parseWeexBundleJsBasePath = () => {
         nativeBasePaht = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
     } else {
         //远程js加入版本控制
-        const host = `${staticResourcesRootPath}/${WEB_JS_DIR}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
+        const host = `${staticResourcesRootPath}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
         nativeBasePaht = `${host}`;
 
     }
@@ -57,7 +63,7 @@ export const parseWeexBundleJsBasePath = () => {
 /**
  * weex bundle js base path
  */
-export const WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+let WEEX_BUNDLE_JS_BASE_PATH = "";
 
 /**
  * 获取资源的完整路径
@@ -71,5 +77,21 @@ export const getWeexResourceUrl = (uri: string) => {
     } else {
         prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
     }
-    return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), uri);
+    let _uri = uri;
+    if (uri.endsWith(".js")) {
+        //是js ,默认放在weex目录下
+        _uri = `${WEB_JS_DIR}/${uri}`;
+    } else if (/\.(png|jpg|jpeg|webp)$/i.test(uri)) {
+        //是图片 默认放在images目录下
+        _uri = `${IMAGES_DIR}/${uri}`;
+    } else if (/\.(ttf)$/i.test(uri)) {
+        //字体文件 默认放在fons目录下
+        _uri = `${FONTS_DIR}/${uri}`;
+    }
+
+    if (WEEX_BUNDLE_JS_BASE_PATH === "") {
+        WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+    }
+
+    return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), _uri);
 };

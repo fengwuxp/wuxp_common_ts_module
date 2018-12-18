@@ -103,7 +103,8 @@ var webpackConfig = {
                             options: {
                                 sourceMap: true,
                                 javascriptEnabled: true,
-                                modifyVars: ThemeConfig_1.getThemeConfig(),
+                                modifyVars: ThemeConfig_1.getThemeConfig()
+                                // ident: "css-loader"
                             }
                         }
                     ]

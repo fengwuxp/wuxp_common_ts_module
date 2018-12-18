@@ -5,15 +5,15 @@
                            class="flex_1"
                            @onRefresh="viewOnRefresh"
                            :refreshNow="true">
-            <text>首页</text>
+            <text class="text_red">首页</text>
         </drop-refresh-view>
     </flex-view>
 </template>
 
 <script>
     import FlexView from "weex_components/src/layout/view/flex-view";
-    import AppMixin from "weex_starter/src/mixins/AppMixin"
     import DropRefreshView from "weex_components/src/layout/drop-refresh/drop-refresh-view";
+    import AppMixin from "weex_starter/src/mixins/AppMixin"
 
 
     export default {

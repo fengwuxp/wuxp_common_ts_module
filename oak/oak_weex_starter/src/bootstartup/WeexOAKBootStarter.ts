@@ -1,5 +1,6 @@
 import AbstractBootStarter, {WeexAppContext} from "weex_starter/src/bootstartup/AbstractBootStarter";
 import OAKFetchFeignProxyInitializer from "../fetch/OAKFetchFeignProxyInitializer";
+import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 
 //初始化feignProxy
 new OAKFetchFeignProxyInitializer().initFeignProxyFactory();
@@ -34,7 +35,7 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
         context.appRouter.generateBundleJsURL = (uri: string, main: boolean) => {
 
             //自定义的
-            return `weex://${packageName}/${main ? 'main' : 'page'}/${context.appConfig.staticResourcesRootPath}/weex/${context.appConfig.resourceConfig.remoteDeploymentDirectory}/${uri}`;
+            return `weex://${packageName}/${main ? 'main' : 'page'}/${context.appConfig.staticResourcesRootPath}/${getWeexResourceUrl(uri)}`;
         };
 
 
