@@ -109,7 +109,7 @@ export default {
         const imagesLength = this.imagesLength;
         const images = [];
         for (let i = 0; i < imagesLength; i++) {
-            images[i] = getWeexResourceUrl(`images/animation/pull_to_refresh_people_${i}.png`);
+            images[i] = getWeexResourceUrl(`animation/pull_to_refresh_people_${i}.png`);
         }
         this.images = images;
     }

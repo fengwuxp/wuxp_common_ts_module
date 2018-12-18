@@ -9,7 +9,7 @@ import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
  */
 const NAV_ITEMS: Array<NavItem> = [
     {
-        icon: getWeexResourceUrl("nav/pdj_home.png"),
+        icon: getWeexResourceUrl("nav/home_icon.png"),
         text: "首页",
         url: getWeexResourceUrl("HomeView.js?isHome=1"),
         showType: NavShowType.DEFAULT,
