@@ -77,8 +77,9 @@ export const getWeexResourceUrl = (uri: string) => {
     } else {
         prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
     }
-    let _uri = uri;
-    if (uri.endsWith(".js")) {
+    const uris = uri.split("?");
+    let _uri = uris[0];
+    if (_uri.endsWith(".js")) {
         //是js ,默认放在weex目录下
         _uri = `${WEB_JS_DIR}/${uri}`;
     } else if (/\.(png|jpg|jpeg|webp)$/i.test(uri)) {
