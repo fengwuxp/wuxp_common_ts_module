@@ -1,11 +1,13 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
 import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
-import {argumentsResolve} from "common_weex/src/route/WeexNavigatorAdapter";
+import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
+import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouter from "../route/AppRouter";
 
-
+//使用默认的参数器解析参数
+const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
 /**
  * 基础的mix in
  * @author wxup
