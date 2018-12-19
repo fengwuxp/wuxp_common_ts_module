@@ -3,6 +3,7 @@
                :glyphMap="glyphMap"
                :name="name"
                :color="color"
+               :size="size"
                :classNames="classNames"
                :iconStyle="iconStyle"
                @iconClicked="iconClicked"
