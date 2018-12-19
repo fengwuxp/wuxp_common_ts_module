@@ -62,12 +62,13 @@
         computed: {
             fontIconStyle() {
                 const {size, color, iconStyle} = this;
+                const style = iconStyle || {};
                 return {
                     fontFamily: this.fontFamily,
                     fontSize: `${size}px`,
-                    width: size || iconStyle.fontSize,
+                    width: size || style.fontSize,
                     color,
-                    ...iconStyle,
+                    ...style,
                 }
             }
         },
