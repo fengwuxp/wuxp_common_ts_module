@@ -55,7 +55,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
                 oakEnv.clientSecret,
-                "wxMinApp"
+                "WX_MIN_APP"
             )
         );
 
