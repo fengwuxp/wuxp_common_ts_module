@@ -62,12 +62,12 @@ export default class AppRouter {
                 if (!isLogin) {
                     //未登录
                     return navigator.push({
-                        pathname: generateBundleJsURL(AppRouter.appRoutes["lgoin"]),
+                        pathname: generateBundleJsURL(AppRouter.appRoutes["login"]),
                         state: {
                             //登录成功的重定向地址
-                            redirect: pathname,
+                            redirectUrl: pathname,
                             //重定向参数
-                            redirectParam: JSON.stringify({
+                            redirectParams: JSON.stringify({
                                 ...parse(param.search),
                                 ...param.state
                             })
