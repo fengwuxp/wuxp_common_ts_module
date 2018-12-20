@@ -34,9 +34,10 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
 
         //签名处理
         sign['clientId'] = this.clientId;
-        sign['timestamp'] = new Date().getTime().toString();
+        const timestamp = new Date().getTime();
+        sign['timestamp'] = timestamp.toString();
         sign['channelCode'] = this.channelCode;
-        sign['sign'] = apiSign(fields, data, this.clientSecret, this.channelCode);
+        sign['sign'] = apiSign(fields, data, this.clientId, this.clientSecret, this.channelCode, timestamp);
 
         // logger.debug("--签名结果->", sign);
         return sign;
@@ -48,13 +49,15 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
 
 /**
  * ap请求时签名
- * @param fields 需要签名的列
- * @param params 请求参数
- * @param clientSecret
- * @param channelCode
- * @return {string}
+ * @param fields             需要签名的列
+ * @param params             请求参数
+ * @param clientId           接入客户端ID
+ * @param clientSecret       接入客户端秘钥
+ * @param channelCode        接入客户端代码
+ * @param timestamp          请求时间戳
+ * @return {string}          返回内容
  */
-const apiSign = (fields: Array<string>, params: any, clientSecret: string, channelCode: string): string => {
+const apiSign = (fields: Array<string>, params: any, clientId: string, clientSecret: string, channelCode: string, timestamp: number): string => {
     console.log("需要签名的列->", fields);
 
     let value = "";
@@ -69,7 +72,7 @@ const apiSign = (fields: Array<string>, params: any, clientSecret: string, chann
     }
 
     //加入clientId 、clientSecret 时间戳参与签名
-    value += `clientId=${params.clientId}&clientSecret=${clientSecret}&timestamp=${params.timestamp}&channelCode=${channelCode}`;
+    value += `clientId=${clientId}&clientSecret=${clientSecret}&timestamp=${timestamp}&channelCode=${channelCode}`;
 
     return md5(value);
 };

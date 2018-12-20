@@ -50,6 +50,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             this.routeMapping,
             this.interceptorList);
 
+        console.log("--oakEnv.clientId-->", oakEnv.clientId);
         FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(

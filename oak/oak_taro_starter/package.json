@@ -18,7 +18,6 @@
     "build:lib": "rm -rf ./lib && cross-env _self=1 webpack --config webpack.config.js --progress --colors",
     "build:lib-production": "rm -rf ./lib && cross-env _self=1 production=true webpack --config webpack.config.js --progress --colors",
     "yarn_i": "yarn install",
-    "npm_build_publish": "build:lib & npm publish",
     "npm_publish": "npm publish"
   },
   "author": "wuxp",
