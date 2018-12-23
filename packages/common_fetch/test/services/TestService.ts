@@ -27,6 +27,7 @@ export default class TestService {
     @RequestMapping({
         value: "testQuery",
         method: RequestMethod.POST,
+        headers:{}
     })
     @FetchRetry({
         retries: 5,
