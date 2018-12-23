@@ -1,8 +1,8 @@
 import {BaseRequestMappingOptions, generateMapping, Mapping} from "./Mapping";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 
 
 /**
  * DeleteMapping
  */
-export const DeleteMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(ReqequestMethod.DELETE);
+export const DeleteMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(RequestMethod.DELETE);

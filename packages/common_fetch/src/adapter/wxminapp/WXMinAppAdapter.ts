@@ -1,6 +1,6 @@
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {FetchResp, RequestReq} from "weixin/src/minapp/network/request";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
 import {WebFetchOptions} from "../web/WebFetchOptions";
 
@@ -73,7 +73,7 @@ export default class WXMinAppAdapter extends AbstractFetchAdapter<WebFetchOption
             dataType: responseType,
             //headers HTTP 请求头
             header: headers,
-            data: (data == null || method === ReqequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data),
+            data: (data == null || method === RequestMethod.GET) ? null : typeof data === "string" ? data : JSON.stringify(data),
         };
     }
 

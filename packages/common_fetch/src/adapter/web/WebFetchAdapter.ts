@@ -1,7 +1,7 @@
 import {FetchResponse} from "../../FetchOptions";
 import {ResponseType} from "../../constant/ResponseType";
 import {WebFetchOptions} from "./WebFetchOptions";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
 
 
@@ -70,7 +70,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
         } = options;
 
 
-        const reqMethodElement = ReqequestMethod[method];
+        const reqMethodElement = RequestMethod[method];
 
         //构建Request请求对象
         const reqOptions = {

@@ -1,7 +1,7 @@
 import AbstractFetchAdapter from "../../src/adapter/AbstractFetchAdapter";
 import {FetchOptions, FetchResponse} from "../../src/FetchOptions";
 import {WebFetchOptions} from "../../src/adapter/web/WebFetchOptions";
-import {ReqequestMethod} from "../../src/constant/ReqequestMethod";
+import {RequestMethod} from "../../src/constant/RequestMethod";
 
 
 interface MocKFetchOptions extends FetchOptions {
@@ -55,7 +55,7 @@ export class MockFetchAdapter extends AbstractFetchAdapter<MocKFetchOptions> {
         } = options;
 
 
-        const reqMethodElement = ReqequestMethod[method];
+        const reqMethodElement = RequestMethod[method];
 
         //构建Request请求对象
         const reqOptions = {

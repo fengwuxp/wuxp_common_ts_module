@@ -1,6 +1,6 @@
 import {FetchClient} from "./FetchClient";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
-import {ReqequestMethod} from "../constant/ReqequestMethod";
+import {RequestMethod} from "../constant/RequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
@@ -24,22 +24,22 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
     }
 
     delete = (options: T): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.DELETE;
+        options.method = RequestMethod.DELETE;
         return this.request(options);
     };
 
     get = (options: T): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.GET;
+        options.method = RequestMethod.GET;
         return this.request(options);
     };
 
     post = (options: T): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.POST;
+        options.method = RequestMethod.POST;
         return this.request(options);
     };
 
     put = (options: T): Promise<FetchResponse> => {
-        options.method = ReqequestMethod.PUT;
+        options.method = RequestMethod.PUT;
         return this.request(options);
     };
 
@@ -73,7 +73,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         const {contentType, data, method, queryPrams, url, headers} = options;
 
-        if (method === ReqequestMethod.GET) {
+        if (method === RequestMethod.GET) {
             //处理查询参数
             const queryParams = {
                 ...data,
@@ -83,7 +83,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
             delete options.data;
             delete options.queryPrams;
 
-        } else if (method === ReqequestMethod.POST) {
+        } else if (method === RequestMethod.POST) {
             //POST请求
             if (contentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据

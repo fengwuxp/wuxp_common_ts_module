@@ -3,7 +3,7 @@ import {Feign} from "../../src/annotations/Feign";
 import {FetchOptions} from "../../src/FetchOptions";
 import {Signature} from "../../src/annotations/security/Signature";
 import {DeleteMapping} from "../../src/annotations/mapping/DeleteMapping";
-import {ReqequestMethod} from "../../src/constant/ReqequestMethod";
+import {RequestMethod} from "../../src/constant/RequestMethod";
 import {PostMapping} from "../../src/annotations/mapping/PostMapping";
 import {FetchRetry} from "../../src/annotations/retry/FetchRetry";
 
@@ -26,7 +26,7 @@ export default class TestService {
     @Signature({fields: []})
     @RequestMapping({
         value: "testQuery",
-        method: ReqequestMethod.POST,
+        method: RequestMethod.POST,
     })
     @FetchRetry({
         retries: 5,

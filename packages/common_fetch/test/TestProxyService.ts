@@ -14,7 +14,7 @@ import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServi
 import TestService from "./services/TestService";
 import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
 import {apiSign} from "./utils/ApiSginUtils";
-import {ReqequestMethod} from "../src/constant/ReqequestMethod";
+import {RequestMethod} from "../src/constant/RequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
 import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
 import {MockFetchAdapter} from "./mock/MockFetchAdapter";
@@ -38,7 +38,7 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
         }
 
         const restTemplate = new DefaultRestTemplate({
-                method: ReqequestMethod.POST,
+                method: RequestMethod.POST,
                 consumes: [MediaType.JSON],
                 produces: [MediaType.JSON],
                 timeout: 10 * 1000,

@@ -1,4 +1,4 @@
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
 import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {MediaType} from "../../constant/http/MediaType";
@@ -49,7 +49,7 @@ export interface RequestMappingOptions extends BaseRequestMappingOptions {
     /**
      * 请求 method
      */
-    method: ReqequestMethod;
+    method: RequestMethod;
 
 
 }
@@ -61,7 +61,7 @@ export type Mapping<T extends BaseRequestMappingOptions = BaseRequestMappingOpti
  * 生成Mapping注解 的方法
  * @param method
  */
-export function generateMapping<T extends BaseRequestMappingOptions>(method?: ReqequestMethod): Mapping<T> {
+export function generateMapping<T extends BaseRequestMappingOptions>(method?: RequestMethod): Mapping<T> {
 
     return function <E extends ProxyApiService>(options: T): Function {
 

@@ -1,7 +1,7 @@
 import {BaseRequestMappingOptions, generateMapping, Mapping} from "./Mapping";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 
 /**
  * PostMapping
  */
-export const PostMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(ReqequestMethod.POST);
+export const PostMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(RequestMethod.POST);

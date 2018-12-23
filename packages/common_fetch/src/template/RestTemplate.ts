@@ -1,7 +1,7 @@
 import {FetchContext, FetchOptions, FetchResponse} from "../FetchOptions";
 import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";
 import {FetchClient} from "../fetch/FetchClient";
-import {ReqequestMethod} from "../constant/ReqequestMethod";
+import {RequestMethod} from "../constant/RequestMethod";
 import {ApiRoutingStrategy} from "../route/ApiRoutingStrategy";
 import {HttpFetchException} from "../exception/HttpFetchException";
 import {HttpFetchExceptionName} from "../exception/Const";
@@ -47,7 +47,7 @@ export interface RestTemplateConfig extends RetryOptions {
     /**
      * 请求 method
      */
-    method?: ReqequestMethod;
+    method?: RequestMethod;
 
     /**
      * 提交的数据类型
@@ -65,7 +65,7 @@ export interface RestTemplateConfig extends RetryOptions {
 
 const defaultTemplateConfig: RestTemplateConfig = {
 
-    method: ReqequestMethod.POST,
+    method: RequestMethod.POST,
 
     consumes: [MediaType.JSON],
 

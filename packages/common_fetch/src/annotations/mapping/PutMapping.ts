@@ -1,8 +1,8 @@
 import {BaseRequestMappingOptions, generateMapping, Mapping} from "./Mapping";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 
 
 /**
  * PutMapping
  */
-export const PutMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(ReqequestMethod.PUT);
+export const PutMapping: Mapping<BaseRequestMappingOptions> = generateMapping<BaseRequestMappingOptions>(RequestMethod.PUT);

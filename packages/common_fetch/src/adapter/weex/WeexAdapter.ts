@@ -1,6 +1,6 @@
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {WeexStreamModule, WeexStreamOption, WeexStreamResponse} from "weex/src/sdk/model/stream";
-import {ReqequestMethod} from "../../constant/ReqequestMethod";
+import {RequestMethod} from "../../constant/RequestMethod";
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
 import {WebFetchOptions} from "../web/WebFetchOptions";
 
@@ -59,7 +59,7 @@ export class WeexAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
         //WEEX stream对象 https://weex.apache.org/cn/references/modules/stream.html
 
-        let reqMethod = ReqequestMethod[method];
+        let reqMethod = RequestMethod[method];
 
         return {
             //请求方法get post

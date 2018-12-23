@@ -1,7 +1,7 @@
 /**
  * 请求类型枚举
  */
-export enum ReqequestMethod {
+export enum RequestMethod {
 
     GET = "GET",
 
