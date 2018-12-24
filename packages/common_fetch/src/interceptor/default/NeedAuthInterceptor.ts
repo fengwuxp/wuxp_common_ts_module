@@ -24,7 +24,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
-        return this.authHelper.isToAuthView(data).then((result) => result ? data : null);
+        return this.authHelper.isToAuthView(data).then((result) => !result ? data : null);
     };
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {

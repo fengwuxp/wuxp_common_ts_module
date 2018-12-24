@@ -9,7 +9,13 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
 
     private taro: any;
 
-    protected static noticeStatus: boolean = false;
+    protected static loginNoticeTimerId;
+
+    //登录成功事件
+    public static LOGIN_SUCCESS_EVENT: string = "login_success_notice";
+
+    //需要登录事件通知
+    public static NEED_LOGIN_EVENT: string = "login_success_notice";
 
     constructor(taro: any) {
         this.taro = taro;
@@ -19,18 +25,29 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
 
 
         if (data.data.code != 99) {
-            return false;
+            return true;
         }
-        if (OAKTaroSyncAuthHelper.noticeStatus === false) {
-            OAKTaroSyncAuthHelper.noticeStatus = true;
+
+        return new Promise<boolean>((resolve, reject) => {
             //发出一个需要登录的通知
-            this.taro.eventCenter.trigger("need_login_notice", true);
-            //5秒内只发送一次登录通知
-            setTimeout(() => {
-                OAKTaroSyncAuthHelper.noticeStatus = false;
-            }, 5000);
-        }
-        return false;
+            this.taro.eventCenter.trigger(OAKTaroSyncAuthHelper.NEED_LOGIN_EVENT, true);
+
+            //监听登录成功
+            this.taro.eventCenter.on(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT, () => {
+                //清除定时器
+                clearTimeout(OAKTaroSyncAuthHelper.loginNoticeTimerId);
+                //取消事件监听
+                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+                resolve(false);
+            });
+
+            //20秒内没有得到登录成功的通知，则认为失败
+            OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
+                reject(true);
+                //取消事件监听
+                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+            }, 20000);
+        });
 
     };
 

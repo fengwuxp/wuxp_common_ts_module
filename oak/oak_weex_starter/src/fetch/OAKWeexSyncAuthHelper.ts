@@ -7,20 +7,26 @@ import AppRouter from "weex_starter/src/route/AppRouter";
 
 export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
+    protected static toLoginStatus: boolean = false;
+
     async isToAuthView(response: FetchResponse) {
 
-
-        if (response.data.code == 99) {
-
+        if (response.data.code != 99) {
+            return true;
+        }
+        if (OAKWeexSyncAuthHelper.toLoginStatus === false) {
+            OAKWeexSyncAuthHelper.toLoginStatus = true;
             //跳转到登录页面
             AppRouter.toView({
                 pathname: "login"
             });
-
-            return false;
+            //5秒内只跳转一次到登录页面
+            setTimeout(() => {
+                OAKWeexSyncAuthHelper.toLoginStatus = false;
+            }, 5000);
         }
 
-        return true;
+        return false;
 
     };
 
