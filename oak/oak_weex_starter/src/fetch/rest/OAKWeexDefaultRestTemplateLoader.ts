@@ -1,7 +1,7 @@
 import {AbstractRestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
 import {RestTemplate} from "common_fetch/src/template/RestTemplate";
 import DefaultRestTemplate from "common_fetch/src/template/DefaultRestTemplate";
-import {ReqequestMethod} from "common_fetch/src/constant/ReqequestMethod";
+import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
 import {MediaType} from "common_fetch/src/constant/http/MediaType";
 import DefaultApiRoutingStrategy from "common_fetch/src/route/DefaultApiRoutingStrategy";
 import DefaultFetchClient from "common_fetch/src/fetch/DefaultFetchClient";
@@ -35,7 +35,7 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
 
 
         return new DefaultRestTemplate({
-                method: ReqequestMethod.POST,
+                method: RequestMethod.POST,
                 consumes: [MediaType.JSON],
                 produces: [MediaType.JSON],
                 timeout: 10 * 1000,

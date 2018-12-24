@@ -1,8 +1,8 @@
 {
   "packages": [
     "components/*",
-    "packages/*",
     "oak/*",
+    "packages/*",
     "starters/*",
     "templates/*",
     "types/*"
