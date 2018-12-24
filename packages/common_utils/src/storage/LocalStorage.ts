@@ -9,7 +9,7 @@ export interface LocalStorage {
      * @param key
      * @return Promise<T>
      */
-    getStorage<T>(key: string): Promise<T>;
+    getStorage: <T>(key: string) => Promise<T>;
 
     /**
      * 设置到storage
@@ -18,7 +18,7 @@ export interface LocalStorage {
      * @param options
      * @return Promise<void>
      */
-    setStorage<T>(key: string, data: T, options?: LocalStorageOptions): Promise<void>;
+    setStorage: <T>(key: string, data: T, options?: LocalStorageOptions) => Promise<void>;
 
 
     /**
@@ -26,7 +26,7 @@ export interface LocalStorage {
      * @param key
      * @return Promise<string[]> 返回设置成功的keys
      */
-    removeStorage(key: string | string[]): Promise<string[]>;
+    removeStorage: (key: string | string[]) => Promise<string[]>;
 
     /**
      * 获取keys列表

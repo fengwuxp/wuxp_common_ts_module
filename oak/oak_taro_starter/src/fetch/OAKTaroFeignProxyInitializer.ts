@@ -36,7 +36,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
         this.routeMapping = routeMapping;
         this.interceptorList = interceptorList || [
             new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(taro)),
-            new NeedAuthInterceptor(new OAKTaroSyncAuthHelper()),
+            new NeedAuthInterceptor(new OAKTaroSyncAuthHelper(taro)),
             new TaroUnifiedRespProcessInterceptor(taro)
         ];
         this.taro = taro;
