@@ -23,12 +23,25 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
 
     async isToAuthView(data: FetchResponse) {
 
-
         if (data.data.code != 99) {
             return true;
         }
 
+        if (OAKTaroSyncAuthHelper.loginNoticeTimerId != null) {
+            //处于等待状态
+            return Promise.reject(false);
+        }
+
         return new Promise<boolean>((resolve, reject) => {
+
+            //20秒内没有得到登录成功的通知，则认为失败
+            OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
+                OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
+                reject(true);
+                //取消事件监听
+                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+            }, 20000);
+
             //发出一个需要登录的通知
             this.taro.eventCenter.trigger(OAKTaroSyncAuthHelper.NEED_LOGIN_EVENT, true);
 
@@ -36,17 +49,13 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
             this.taro.eventCenter.on(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT, () => {
                 //清除定时器
                 clearTimeout(OAKTaroSyncAuthHelper.loginNoticeTimerId);
+                OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
                 //取消事件监听
                 this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
                 resolve(false);
             });
 
-            //20秒内没有得到登录成功的通知，则认为失败
-            OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
-                reject(true);
-                //取消事件监听
-                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
-            }, 20000);
+
         });
 
     };
