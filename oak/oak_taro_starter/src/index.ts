@@ -8,6 +8,7 @@ import {GetMapping} from "common_fetch/src/annotations/mapping/GetMapping";
 import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
 import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
 import {Signature} from "common_fetch/src/annotations/security/Signature";
+import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
 import OAKTaroFeignProxyInitializer from "./fetch/OAKTaroFeignProxyInitializer";
 
 import {FetchOptions} from "common_fetch/src/FetchOptions";
@@ -32,8 +33,9 @@ export {
     PutMapping,
     FetchRetry,
     Signature,
-    OAKTaroFeignProxyInitializer,
+    RequestMethod,
 
+    OAKTaroFeignProxyInitializer,
     TaroLocalStorage,
     taroDefaultSessionManager,
     TaroNavigatorAdapter
