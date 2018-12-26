@@ -65,22 +65,22 @@ class LockExecutor {
 
 }
 
-class TestSyncAuthHelper implements SyncAuthHelper<Member> {
+class TestSyncAuthHelper implements SyncAuthHelper {
 
     protected lockExecutor: LockExecutor = new LockExecutor();
 
 
-    isToAuthView: (data: FetchResponse) => Promise<boolean>;
+    isToAuthView: (data: FetchResponse, options: FetchOptions) => Promise<FetchResponse>;
 
     lockExecute = (): Promise<Member> => {
         return this.lockExecutor.execute();
     };
 
-    async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
+    async requestParamsEnhance(params: FetchOptions): Promise<FetchOptions> {
 
         //获取鉴权信息
         params.data = await this.lockExecute();
-        return true;
+        return params;
     };
 
     unLock: () => Promise<Member>;
@@ -152,7 +152,6 @@ describe("sync auth helper test", () => {
             });
 
         });
-
 
 
     }, 20 * 1000);

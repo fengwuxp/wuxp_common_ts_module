@@ -12,11 +12,6 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     private authHelper: SyncAuthHelper;
 
 
-    // private postLockPromise: Promise<boolean>;
-    //
-    // private prevLockPromise: Promise<boolean>;
-
-
     constructor(authHelper: SyncAuthHelper) {
         super();
         this.authHelper = authHelper;
@@ -25,26 +20,12 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
 
-        return this.authHelper.isToAuthView(data);
+        return this.authHelper.isToAuthView(data, options);
     };
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
-        //初始化锁
-        // if (this.prevLockPromise == null) {
-        //     this.prevLockPromise = this.authHelper.requestParamsEnhance(params);
-        // }
-        //
-        // //锁等待
-        // return new Promise<FetchOptions>((resolve, reject) => {
-        //
-        //     //锁释放
-        //     this.prevLockPromise.then((result) => {
-        //         resolve(params)
-        //     }).catch(() => {
-        //
-        //     })
-        // });
+        //初始化请求头
         params.headers = params.headers || {};
         return this.authHelper.requestParamsEnhance(params);
 
@@ -68,6 +49,7 @@ export interface SyncAuthHelper<T = FetchOptions, R = FetchResponse> {
     /**
      * 是否要跳转到鉴权的视图（登录页面）
      * @param data
+     * @param options
      */
-    isToAuthView: (data: R) => Promise<R>;
+    isToAuthView: (data: R, options: T) => Promise<R>;
 }
