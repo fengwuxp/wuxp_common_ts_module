@@ -46,10 +46,8 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
             //20秒内没有得到登录成功的通知，则认为失败
             OAKWeexSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
-                OAKWeexSyncAuthHelper.loginNoticeTimerId = null;
+                this.clearStatus();
                 reject(true);
-                //取消事件监听
-                broadcast.unregister(OAKWeexSyncAuthHelper.LOGIN_EVENT, OAKWeexSyncAuthHelper.LOGIN_SUCCESS_EVENT);
             }, 20000);
 
             //发出一个需要登录的通知
@@ -57,11 +55,9 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
             //监听登录成功
             broadcast.register(OAKWeexSyncAuthHelper.LOGIN_EVENT, OAKWeexSyncAuthHelper.LOGIN_SUCCESS_EVENT, () => {
-                //清除定时器
+                //移除定时器
                 clearTimeout(OAKWeexSyncAuthHelper.loginNoticeTimerId);
-                OAKWeexSyncAuthHelper.loginNoticeTimerId = null;
-                //取消事件监听
-                broadcast.unregister(OAKWeexSyncAuthHelper.LOGIN_EVENT, OAKWeexSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+                this.clearStatus();
                 resolve(false);
             });
 
@@ -83,10 +79,15 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
         }
 
-
         return true;
-
     };
+
+    private clearStatus = () => {
+        //清除定时器
+        OAKWeexSyncAuthHelper.loginNoticeTimerId = null;
+        //取消事件监听
+        broadcast.unregister(OAKWeexSyncAuthHelper.LOGIN_EVENT, OAKWeexSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+    }
 
 
 }

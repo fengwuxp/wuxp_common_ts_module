@@ -2,6 +2,7 @@ import {SyncAuthHelper} from "common_fetch/src/interceptor/default/NeedAuthInter
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import {TaroInterface} from "taro_starter/src/TaroJsHolder";
+import {broadcast} from "../../../oak_weex_starter/src/ExpotrtWeexOAKModel";
 
 /**
  * 同步鉴权处理者
@@ -37,10 +38,8 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
 
             //20秒内没有得到登录成功的通知，则认为失败
             OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
-                OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
+                this.clearStatus();
                 reject(true);
-                //取消事件监听
-                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
             }, 20000);
 
             //发出一个需要登录的通知
@@ -50,9 +49,7 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
             this.taro.eventCenter.on(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT, () => {
                 //清除定时器
                 clearTimeout(OAKTaroSyncAuthHelper.loginNoticeTimerId);
-                OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
-                //取消事件监听
-                this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+                this.clearStatus();
                 resolve(false);
             });
 
@@ -75,6 +72,13 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
         return true;
 
     };
+
+    private clearStatus = () => {
+        //清除定时器
+        OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
+        //取消事件监听
+        this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
+    }
 
 
 }
