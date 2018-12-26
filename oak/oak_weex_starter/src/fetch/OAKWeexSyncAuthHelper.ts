@@ -4,7 +4,9 @@ import simpleAppSessionManager from "weex_starter/src/session/WeexDefaultSession
 import AppRouter from "weex_starter/src/route/AppRouter";
 import {broadcast} from "../ExpotrtWeexOAKModel";
 
-
+/**
+ * weex 同步鉴权helper
+ */
 export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
 
     protected static toLoginStatus: boolean = false;
@@ -30,17 +32,6 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
             return Promise.reject(false);
         }
 
-        if (OAKWeexSyncAuthHelper.toLoginStatus === false) {
-            OAKWeexSyncAuthHelper.toLoginStatus = true;
-            //跳转到登录页面
-            AppRouter.toView({
-                pathname: "login"
-            });
-            //5秒内只跳转一次到登录页面
-            setTimeout(() => {
-                OAKWeexSyncAuthHelper.toLoginStatus = false;
-            }, 5000);
-        }
 
         return new Promise<boolean>((resolve, reject) => {
 
@@ -59,6 +50,11 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
                 clearTimeout(OAKWeexSyncAuthHelper.loginNoticeTimerId);
                 this.clearStatus();
                 resolve(false);
+            });
+
+            //跳转到登录页面
+            AppRouter.toView({
+                pathname: "login"
             });
 
         });
