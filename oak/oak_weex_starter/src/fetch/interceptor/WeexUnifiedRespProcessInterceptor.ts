@@ -3,6 +3,7 @@ import {FetchResponse} from "common_fetch/src/FetchOptions";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 import StringUtils from "common_utils/src/string/StringUtils";
+import {weexToast} from "common_weex/src/toast/WeexToast";
 
 /**
  * 统一数据处理
@@ -16,9 +17,11 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
 
         if (resp.code !== 0) {
 
-
-            if (StringUtils.hasText(resp.message) && (options.useUnifiedToast !== false || options.useProgressBar == false)) {
-                //TODO 加入错误提示
+            const message = resp.message;
+            const useUnifiedToast = StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar == false);
+            if (useUnifiedToast) {
+                // 加入错误提示
+                weexToast(message);
             }
 
             return Promise.reject(resp);

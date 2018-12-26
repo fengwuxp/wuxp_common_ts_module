@@ -7,7 +7,7 @@ import {broadcast} from "../ExpotrtWeexOAKModel";
 /**
  * weex 同步鉴权helper
  */
-export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
+export default class OAKWeexSyncAuthHelper implements SyncAuthHelper {
 
     protected static toLoginStatus: boolean = false;
 
@@ -22,23 +22,23 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
     //需要登录事件通知
     public static NEED_LOGIN_EVENT: string = "need";
 
-    async isToAuthView(response: FetchResponse) {
+    async isToAuthView(response: FetchResponse): Promise<FetchResponse> {
 
         if (response.data.code != 99) {
-            return true;
+            return response;
         }
         if (OAKWeexSyncAuthHelper.loginNoticeTimerId != null) {
             //处于等待状态
-            return Promise.reject(false);
+            return Promise.reject(response);
         }
 
 
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<FetchResponse>((resolve, reject) => {
 
             //20秒内没有得到登录成功的通知，则认为失败
             OAKWeexSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
                 this.clearStatus();
-                reject(true);
+                reject(response);
             }, 20000);
 
             //发出一个需要登录的通知
@@ -49,7 +49,7 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
                 //移除定时器
                 clearTimeout(OAKWeexSyncAuthHelper.loginNoticeTimerId);
                 this.clearStatus();
-                resolve(false);
+                resolve(response);
             });
 
             //跳转到登录页面
@@ -62,20 +62,20 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper<any> {
     };
 
 
-    async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
+    async requestParamsEnhance(params: FetchOptions): Promise<FetchOptions> {
 
         try {
             const member: any = await simpleAppSessionManager.getMember();
-            params.data["token"] = member.token;
+            params.headers["token"] = member.token;
         } catch (e) {
 
             //TODO 加入鉴权判断逻辑
 
-            return true;
+            return params;
 
         }
 
-        return true;
+        return params;
     };
 
     private clearStatus = () => {

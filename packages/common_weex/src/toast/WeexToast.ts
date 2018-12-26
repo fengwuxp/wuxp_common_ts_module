@@ -1,4 +1,4 @@
-import {modal, timer} from "../sdk/ExportWeexSdkModule";
+import {modal} from "../sdk/ExportWeexSdkModule";
 
 /**
  * toast
@@ -11,7 +11,7 @@ export const weexToast = (message: string, times: number = 2, callback?: () => v
     if (callback == null) {
         return;
     }
-    timer.setTimeout(callback, times * 1000);
+    setTimeout(callback, times * 1000);
 };
 
 /**

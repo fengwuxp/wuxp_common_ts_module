@@ -2,12 +2,11 @@ import {SyncAuthHelper} from "common_fetch/src/interceptor/default/NeedAuthInter
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import {TaroInterface} from "taro_starter/src/TaroJsHolder";
-import {broadcast} from "../../../oak_weex_starter/src/ExpotrtWeexOAKModel";
 
 /**
  * 同步鉴权处理者
  */
-export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
+export default class OAKTaroSyncAuthHelper implements SyncAuthHelper {
 
     private taro: TaroInterface;
 
@@ -23,23 +22,23 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
         this.taro = taro;
     }
 
-    async isToAuthView(data: FetchResponse) {
+    async isToAuthView(data: FetchResponse): Promise<FetchResponse> {
 
         if (data.data.code != 99) {
-            return true;
+            return data;
         }
 
         if (OAKTaroSyncAuthHelper.loginNoticeTimerId != null) {
             //处于等待状态
-            return Promise.reject(false);
+            return Promise.reject(data);
         }
 
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<FetchResponse>((resolve, reject) => {
 
             //20秒内没有得到登录成功的通知，则认为失败
             OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
                 this.clearStatus();
-                reject(true);
+                reject(data);
             }, 20000);
 
             //发出一个需要登录的通知
@@ -50,7 +49,7 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
                 //清除定时器
                 clearTimeout(OAKTaroSyncAuthHelper.loginNoticeTimerId);
                 this.clearStatus();
-                resolve(false);
+                resolve(data);
             });
 
         });
@@ -58,18 +57,18 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
     };
 
 
-    async requestParamsEnhance(params: FetchOptions): Promise<boolean> {
+    async requestParamsEnhance(params: FetchOptions): Promise<FetchOptions> {
 
         try {
             const member: any = await taroDefaultSessionManager.getMember();
-            params.data["token"] = member.token;
+            params.headers["token"] = member.token;
         } catch (e) {
             //TODO 加入鉴权判断逻辑
-            return true;
+            return params;
         }
 
 
-        return true;
+        return params;
 
     };
 

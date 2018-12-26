@@ -24,7 +24,8 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
-        return this.authHelper.isToAuthView(data).then((result) => !result ? data : null);
+
+        return this.authHelper.isToAuthView(data);
     };
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
@@ -44,8 +45,8 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
         //
         //     })
         // });
-
-        return this.authHelper.requestParamsEnhance(params).then((result) => result ? params : null);
+        params.headers = params.headers || {};
+        return this.authHelper.requestParamsEnhance(params);
 
     }
 
@@ -53,7 +54,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 }
 
 
-export interface SyncAuthHelper<T = any> {
+export interface SyncAuthHelper<T = FetchOptions, R = FetchResponse> {
 
 
     /**
@@ -62,11 +63,11 @@ export interface SyncAuthHelper<T = any> {
      * 同步阻塞实现 @see {@link /test/helper/TestSyncAuthHelper.test.ts}
      * 也可在服务端做多个版本的token支持
      */
-    requestParamsEnhance: (params: FetchOptions) => Promise<boolean>;
+    requestParamsEnhance: (params: T) => Promise<T>;
 
     /**
      * 是否要跳转到鉴权的视图（登录页面）
      * @param data
      */
-    isToAuthView: (data: FetchResponse) => Promise<boolean>;
+    isToAuthView: (data: R) => Promise<R>;
 }
