@@ -14,6 +14,7 @@ import OAKTaroFetchProgressBar from "./OAKTaroFetchProgressBar";
 import OAKTaroSyncAuthHelper from "./OAKTaroSyncAuthHelper";
 import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessInterceptor";
 import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
+import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
 
 
 /**
@@ -27,10 +28,15 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
     private interceptorList: FetchInterceptor[];
 
-    private taro: any;
+    private taro: TaroInterface;
 
-    constructor(taro: any, appConfig: AppConfig, interceptorList?: FetchInterceptor[]) {
+    constructor(taro: TaroInterface, appConfig: AppConfig, interceptorList?: FetchInterceptor[],) {
+        if (taro) {
+            //设置taro的持有者
+            TaroJsHolder.TARO = taro;
+            this.taro = taro;
 
+        }
         const routeMapping = {};
         routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
         this.routeMapping = routeMapping;
@@ -39,7 +45,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             new NeedAuthInterceptor(new OAKTaroSyncAuthHelper(taro)),
             new TaroUnifiedRespProcessInterceptor(taro)
         ];
-        this.taro = taro;
+
     }
 
     initFeignProxyFactory = () => {

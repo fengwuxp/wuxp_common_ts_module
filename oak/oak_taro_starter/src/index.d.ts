@@ -12,6 +12,7 @@ import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
 import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
+import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 
 /*-------------------------------------------------------------*/
 import {FetchOptions} from "common_fetch/src/FetchOptions";
@@ -45,5 +46,6 @@ export {
     OAKTaroFeignProxyInitializer,
     TaroLocalStorage,
     taroDefaultSessionManager,
-    TaroNavigatorAdapter
+    TaroNavigatorAdapter,
+    TaroJsHolder
 };

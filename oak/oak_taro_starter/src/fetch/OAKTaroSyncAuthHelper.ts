@@ -1,13 +1,14 @@
 import {SyncAuthHelper} from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
+import {TaroInterface} from "taro_starter/src/TaroJsHolder";
 
 /**
  * 同步鉴权处理者
  */
 export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
 
-    private taro: any;
+    private taro: TaroInterface;
 
     protected static loginNoticeTimerId;
 
@@ -17,7 +18,7 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
     //需要登录事件通知
     public static NEED_LOGIN_EVENT: string = "login_success_notice";
 
-    constructor(taro: any) {
+    constructor(taro: TaroInterface) {
         this.taro = taro;
     }
 

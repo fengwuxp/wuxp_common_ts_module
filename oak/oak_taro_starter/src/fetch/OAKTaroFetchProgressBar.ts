@@ -1,15 +1,16 @@
 import {FetchProgressBar} from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
 import {ProgressBarOptions} from "common_fetch/src/FetchOptions";
+import {TaroInterface} from "taro_starter/src/TaroJsHolder";
 
 export default class OAKTaroFetchProgressBar implements FetchProgressBar {
 
 
     private progressBarOptions: ProgressBarOptions;
 
-    private taro: any;
+    private taro: TaroInterface;
 
 
-    constructor(taro: any, progressBarOptions?: ProgressBarOptions) {
+    constructor(taro: TaroInterface, progressBarOptions?: ProgressBarOptions) {
         this.taro = taro;
         this.progressBarOptions = progressBarOptions || {
             title: "数据加载中..."
@@ -26,7 +27,7 @@ export default class OAKTaroFetchProgressBar implements FetchProgressBar {
         this.taro.showLoading({
             ...this.progressBarOptions,
             ...(progressBarOptions || {})
-        } as ProgressBarOptions);
+        } as any);
     };
 
 

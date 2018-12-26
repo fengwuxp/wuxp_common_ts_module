@@ -2,6 +2,7 @@ import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetch
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 import StringUtils from "common_utils/src/string/StringUtils";
+import {TaroInterface} from "taro_starter/src/TaroJsHolder";
 
 
 /**
@@ -10,11 +11,11 @@ import StringUtils from "common_utils/src/string/StringUtils";
 export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
 
-    private taro: any;
+    private taro: TaroInterface;
 
     private toastImageUrl: string;
 
-    constructor(taro: any, toastImageUrl?: string) {
+    constructor(taro: TaroInterface, toastImageUrl?: string) {
         super();
         this.taro = taro;
         this.toastImageUrl = toastImageUrl;
