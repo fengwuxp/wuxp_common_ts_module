@@ -49,17 +49,17 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
             return Promise.reject(resp);
         }
 
-        const oldTransform = options.transformResponse;
+        const transformResponse = options.transformResponse;
 
-        //响应数据转换
+        //设置默认的响应数据转换
         options.transformResponse = (response: FetchResponse) => {
             let result = null;
-            if (typeof oldTransform == "function") {
+            if (typeof transformResponse == "function") {
                 //将原始响应传递给 transformResponse
-                result = oldTransform(resp as any) as any;
+                result = transformResponse(response);
             } else {
                 //默认返回服务中的data
-                result = response.data;
+                result = resp.data;
             }
             return result;
         };

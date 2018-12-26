@@ -189,10 +189,10 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             return Promise.reject(e);
         }
 
-        //执行数据装换
+        //执行数据转化
         const transformResponse = options.transformResponse;
 
-        if (transformResponse) {
+        if (typeof transformResponse === "function") {
             //执行 transformResponse
             response = transformResponse(response);
         }
