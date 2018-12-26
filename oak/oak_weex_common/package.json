@@ -26,6 +26,7 @@
   "author": "wuxp",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "@types/node": "^10.12.18",
     "common_fetch": "^0.0.1",
     "common_test": "^0.0.1",
     "md5": "^2.2.1"

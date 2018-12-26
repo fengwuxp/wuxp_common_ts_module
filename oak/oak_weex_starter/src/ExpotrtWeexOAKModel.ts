@@ -1,7 +1,25 @@
 import {WeexModule} from "weex";
 
 
-const broadcast: WeexModule = weex.requireModule("broadcast");  //自定义广播对象
+/**
+ * 广播模块
+ */
+export interface WeexBoradcastModule extends WeexModule {
+
+    register: (category: string,
+               eventName: string,
+               succFn: (data) => void,
+               errorFn?: (data) => void,) => void;
+
+    send: (category: string,
+           eventName: string,
+           data,
+           error?) => void;
+
+    unregister: (category: string, eventName: string) => void;
+}
+
+const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");  //自定义广播对象
 const cache: any = weex.requireModule("cache");
 const appMain: any = weex.requireModule("appMain");
 const imageLoader: any = weex.requireModule("image");

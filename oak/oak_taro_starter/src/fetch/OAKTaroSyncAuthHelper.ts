@@ -16,7 +16,7 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
     public static LOGIN_SUCCESS_EVENT: string = "login_success_notice";
 
     //需要登录事件通知
-    public static NEED_LOGIN_EVENT: string = "login_success_notice";
+    public static NEED_LOGIN_EVENT: string = "need_login_notice";
 
     constructor(taro: TaroInterface) {
         this.taro = taro;
@@ -55,7 +55,6 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper<any> {
                 this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_SUCCESS_EVENT);
                 resolve(false);
             });
-
 
         });
 

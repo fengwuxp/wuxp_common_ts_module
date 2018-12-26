@@ -82,6 +82,15 @@ export default class BroadcastPlugin implements EsPlugin {
         this.broadcast(key);
     };
 
+    /**
+     * 取消广播
+     * @param category
+     * @param eventName
+     */
+    public unregister = (category: string, eventName: string) => {
+        const key: string = this.getEventName(category, eventName);
+        delete this.eventData[key];
+    };
 
     /**
      * 广播
