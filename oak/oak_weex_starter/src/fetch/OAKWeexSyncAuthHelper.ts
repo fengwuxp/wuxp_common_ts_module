@@ -82,7 +82,7 @@ export default class OAKWeexSyncAuthHelper implements SyncAuthHelper {
             return false;
         }
 
-        if (token.length < 10) {
+        if (token.toString().trim().length < 10) {
             return false;
         }
         return true;
