@@ -7,6 +7,7 @@ import StringUtils from "../string/StringUtils";
  */
 export default class DefaultLocalStorage implements LocalStorage {
 
+    public static LOCAL_STORAGE_OPTIONS_NAME = "_localStorageOptions_";
 
     protected storage: LocalStorage;
 
@@ -26,9 +27,10 @@ export default class DefaultLocalStorage implements LocalStorage {
                 return data as any;
             }
             const object = JSON.parse(data);
-            if ("_localStorageOptions_" in object) {
+
+            if (DefaultLocalStorage.LOCAL_STORAGE_OPTIONS_NAME in object) {
                 //如果存在配置
-                if (this.isItEffective(object["_localStorageOptions_"].expireDate)) {
+                if (this.isItEffective(object[DefaultLocalStorage.LOCAL_STORAGE_OPTIONS_NAME].expireDate)) {
                     return object.data;
                 } else {
                     return Promise.reject(null);
@@ -47,13 +49,13 @@ export default class DefaultLocalStorage implements LocalStorage {
         if (options) {
             d = {
                 data: d,
-                _localStorageOptions_: {
+                [DefaultLocalStorage.LOCAL_STORAGE_OPTIONS_NAME]: {
                     expireDate: options.effectiveTime + new Date().getTime()
                 }
             };
         }
 
-        return this.setStorage<string>(key, JSON.stringify(d));
+        return this.storage.setStorage<string>(key, JSON.stringify(d));
     };
 
 

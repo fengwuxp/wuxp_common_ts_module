@@ -28,7 +28,7 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
                 oakEnv.clientSecret,
-                isWeb ? "web" : isAndroid ? "android" : "ios"
+                isWeb ? "WEB" : isAndroid ? "ANDROID" : "IOS"
             )
         );
 
