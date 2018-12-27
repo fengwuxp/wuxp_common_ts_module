@@ -54,7 +54,11 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper {
 
         try {
             const member: any = await taroDefaultSessionManager.getMember();
-            params.headers["token"] = member.token;
+            const token = member.token;
+            if (!this.verifyToken(token)) {
+                return params;
+            }
+            params.headers["token"] = token;
         } catch (e) {
             //TODO 加入鉴权判断逻辑
             return params;
@@ -65,6 +69,20 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper {
 
     };
 
+    /**
+     * 简单验证token有效性
+     * @param token
+     */
+    private verifyToken = (token: string): boolean => {
+        if (token == null) {
+            return false;
+        }
+
+        if (token.length < 10) {
+            return false;
+        }
+        return true;
+    };
 
     /**
      * 开始等待登录结果，最大等待 MAX_WAIT_LOGIN_NOTICE_TIMES 时长
