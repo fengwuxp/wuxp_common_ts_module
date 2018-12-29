@@ -1,6 +1,6 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
-import {transferViewState} from "common_weex/src/utils/views/PageStatTransferUtil";
+import {transferViewState} from "common_weex/src/route/PageStatTransferUtil";
 import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
 import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
