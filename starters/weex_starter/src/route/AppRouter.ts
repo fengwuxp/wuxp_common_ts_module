@@ -50,7 +50,8 @@ export default class AppRouter {
         if (route == null) {
             return Promise.reject(`not fount view-> ${pathname}`);
         }
-        param.state = param.state || {};
+
+        const queryParams = param.queryParams || {};
 
         const {meta} = route;
 
@@ -63,25 +64,25 @@ export default class AppRouter {
                     //未登录
                     return navigator.push({
                         pathname: generateBundleJsURL(AppRouter.appRoutes["login"]),
-                        state: {
+                        queryParams: {
                             //登录成功的重定向地址
                             redirectUrl: pathname,
                             //重定向参数
                             redirectParams: JSON.stringify({
                                 ...parse(param.search),
-                                ...param.state
+                                ...queryParams
                             })
                         }
-                    });
+                    } as any);
                 }
             }
 
             //默认参数
             if (meta.defaultParams) {
-                param.state = {
+                param.queryParams = {
                     ...meta.defaultParams,
-                    ...param.state
-                }
+                    ...queryParams
+                };
             }
         }
 

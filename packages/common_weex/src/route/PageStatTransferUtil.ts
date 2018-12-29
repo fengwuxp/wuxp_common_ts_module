@@ -3,7 +3,8 @@
  * @author wxup
  * @create 2018-10-06 13:06
  **/
-import {isWeb} from "../../constant/WeexEnv";
+import {isWeb} from "../constant/WeexEnv";
+import weexSdkStorage from "../storage/WeexSdkStorage";
 
 
 //页面状态传递key
@@ -19,10 +20,8 @@ export async function transferViewState() {
         //web环境
         return await VIEW_STATE;
     }
-    //TODO 依赖原生实现的内存模块
-
-
-    return {};
+    //依赖原生实现的模块
+    return weexSdkStorage.getStorage(PAGE_VIEW_STATE);
 }
 
 /**
@@ -31,5 +30,11 @@ export async function transferViewState() {
  */
 export async function setNextViewState(viewState: any) {
 
-    VIEW_STATE = viewState;
+    if (viewState == null) {
+        //清空 页面
+        await weexSdkStorage.setStorage(PAGE_VIEW_STATE, null);
+    } else {
+        await weexSdkStorage.setStorage(PAGE_VIEW_STATE, viewState);
+    }
+
 }

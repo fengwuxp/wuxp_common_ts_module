@@ -8,6 +8,21 @@ import AppRouter from "../route/AppRouter";
 
 //使用默认的参数器解析参数
 const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
+
+
+interface ViewParams {
+
+    /**
+     * 查询参数
+     */
+    queryParams?: {},
+
+    /**
+     * 页面状态
+     */
+    state?: {}
+}
+
 /**
  * 基础的mix in
  * @author wxup
@@ -26,10 +41,10 @@ const appMixin: ComponentOptions<any> = {
         }
     },
     methods: {
-        toView(pathname: string, params) {
+        toView(pathname: string, viewPrams: ViewParams) {
             return AppRouter.toView({
                 pathname,
-                state: params
+                ...(viewPrams || {})
             });
         },
         back() {
@@ -80,12 +95,15 @@ const appMixin: ComponentOptions<any> = {
  */
 function setParameterToVueInstance(vueInstance: Vue, ...params) {
 
-    params.forEach((item) => {
-        if (item == null) {
-            return;
-        }
+    params.filter((item) => {
+        return item != null;
+    }).forEach((item) => {
+
         for (const key in item) {
-            vueInstance[key] = item[key];
+            if (key in vueInstance) {
+                vueInstance[key] = item[key];
+            }
+
         }
     })
 

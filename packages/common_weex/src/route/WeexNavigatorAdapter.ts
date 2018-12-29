@@ -3,12 +3,18 @@ import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import DefaultURLArgumentsResolve from "../resolve/DefaultURLArgumentsResolve";
 import {LocationDescriptorObject} from "history";
 import {URLArgumentsResolve} from "../resolve/URLArgumentsResolve";
+import {setNextViewState} from "./PageStatTransferUtil";
 
 //获取weex导航器
 const navigator: WeexNavigatorModule = weex.requireModule("navigator");
 
 
 export interface WeexNavigatorParam extends LocationDescriptorObject {
+
+    //查询参数
+    queryParams?: {
+        [k: string]: any
+    };
 
     animated?: boolean;
 
@@ -49,9 +55,12 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
     push = (params: WeexNavigatorParam): Promise<void> => {
 
 
-        let {pathname, search, state} = params;
+        let {pathname, search, queryParams, state} = params;
 
-        let queryString = `${this.argumentsResolve.argumentsToString(state || {})}${search || ''}`;
+        setNextViewState(state);
+
+        let queryString = `${this.argumentsResolve.argumentsToString(queryParams || {})}${search || ''}`;
+
 
         if (pathname.indexOf("?") >= 0) {
             if (pathname.endsWith("&")) {
