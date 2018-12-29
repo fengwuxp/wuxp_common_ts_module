@@ -15,12 +15,16 @@ interface ViewParams {
     /**
      * 查询参数
      */
-    queryParams?: {},
+    queryParams?: {
+        [k: string]: any
+    },
 
     /**
      * 页面状态
      */
-    state?: {}
+    state?: {
+        [k: string]: any
+    }
 }
 
 /**
@@ -41,7 +45,7 @@ const appMixin: ComponentOptions<any> = {
         }
     },
     methods: {
-        toView(pathname: string, viewPrams: ViewParams) {
+        toView(pathname: string, viewPrams?: ViewParams) {
             return AppRouter.toView({
                 pathname,
                 ...(viewPrams || {})
