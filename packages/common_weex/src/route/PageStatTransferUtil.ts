@@ -10,18 +10,14 @@ import weexSdkStorage from "../storage/WeexSdkStorage";
 //页面状态传递key
 const PAGE_VIEW_STATE = "PAGE_VIEW_STATE";
 
-//页面状态
-let VIEW_STATE;
 
 export async function transferViewState() {
 
 
-    if (isWeb) {
-        //web环境
-        return await VIEW_STATE;
-    }
-    //依赖原生实现的模块
-    return weexSdkStorage.getStorage(PAGE_VIEW_STATE);
+    //依赖环境实现的模块
+    return weexSdkStorage.getStorage(PAGE_VIEW_STATE)
+        .catch(() => {
+        });
 }
 
 /**
@@ -29,7 +25,6 @@ export async function transferViewState() {
  * @param viewState
  */
 export async function setNextViewState(viewState: any) {
-
     if (viewState == null) {
         //清空 页面
         await weexSdkStorage.setStorage(PAGE_VIEW_STATE, null);
