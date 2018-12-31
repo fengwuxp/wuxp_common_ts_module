@@ -61,13 +61,15 @@ const appMixin: ComponentOptions<any> = {
 
     },
 
-    async beforeMount() {
+    beforeMount() {
 
-
+    },
+    async created() {
         //初始化页面state
         const state = await transferViewState();
         // 获取url参数
         const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
+        //将url参数和页面state初始化到vue的实例中
         setParameterToVueInstance(this, state, urlParams);
 
 
@@ -85,10 +87,6 @@ const appMixin: ComponentOptions<any> = {
 
         //调用页面的onReady方法
         this.onReady && this.onReady()
-
-    },
-    created() {
-
     }
 };
 
