@@ -11,6 +11,7 @@ import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
 import {TsConfigPathsPlugin} from "awesome-typescript-loader";
+import {pathAlias} from "../config/CommonpPathAlias";
 
 
 /**
@@ -38,6 +39,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
         },
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+            alias: pathAlias
         },
 
         devtool: "source-map",

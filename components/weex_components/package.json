@@ -32,5 +32,8 @@
     "common_weex": "^0.0.1",
     "weex-ui": "^0.6.6"
   },
+  "devDependencies": {
+    "csstype": "^2.6.0"
+  },
   "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
 }

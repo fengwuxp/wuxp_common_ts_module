@@ -1,6 +1,10 @@
 import umengMixin from "../../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
 import {weexSimpleBootStarter} from "../../../boot/WeexViewBootstrap";
+import {weexTheme} from "../../../theme/js_default_theme";
+
+//注入默认的主题变量
+CommonThemeControl.injectThemes(weexTheme);
 
 /**
  * 由于weex是多页应用，所以在根页面入口要做 bootStartUp
@@ -74,7 +78,5 @@ export default {
                 opacity: 0
             }
         });
-
-
     }
 }

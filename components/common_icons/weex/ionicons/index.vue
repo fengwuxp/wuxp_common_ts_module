@@ -12,18 +12,19 @@
 
 <script>
 
-    import Feather from "../../src/feather/Feather.json";
+    import Ionicons from "../../src/ionicons/Ionicons.json";
     import iconMixin from "../iconMixin";
 
     export default {
-        name: "feather-icon",
+        name: "ionicon-icon",
         mixins: [iconMixin],
         data() {
             return {
-                fontFamily: "Feather",
-                glyphMap: Feather
+                fontFamily: "Ionicons",
+                glyphMap: Ionicons
             }
         }
     }
 </script>
+
 

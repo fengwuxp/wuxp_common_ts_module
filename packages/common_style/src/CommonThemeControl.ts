@@ -7,15 +7,18 @@ import * as CSS from 'csstype';
 export default class CommonThemeControl {
 
     //主题样式
-    private static themes: WeexThemeStyle = {};
+    private static THEME_MAP: StyleTheme = {};
 
 
     /**
      * 注入主题配置列表
      * @param themes
      */
-    static injectThemes = (themes: WeexThemeStyle) => {
-        CommonThemeControl.themes = themes;
+    static injectThemes = (themes: StyleTheme) => {
+        CommonThemeControl.THEME_MAP = {
+            ...CommonThemeControl.THEME_MAP,
+            ...themes
+        };
     };
 
     /**
@@ -23,7 +26,7 @@ export default class CommonThemeControl {
      * @param cssAttrName
      */
     static getStyleAttrByName = (cssAttrName: string) => {
-        return CommonThemeControl.themes[cssAttrName];
+        return CommonThemeControl.THEME_MAP[cssAttrName];
     };
 
     /**
@@ -37,7 +40,7 @@ export default class CommonThemeControl {
         const themeStyle: CSS.Properties<string | number> = {};
 
         for (const cssAttrName in themes) {
-            const styleValue = CommonThemeControl.themes[themes[cssAttrName]];
+            const styleValue = CommonThemeControl.THEME_MAP[themes[cssAttrName]];
             if (styleValue) {
                 themeStyle[cssAttrName] = styleValue;
             }
@@ -50,7 +53,7 @@ export default class CommonThemeControl {
 
 }
 
-export interface WeexThemeStyle {
+export interface StyleTheme {
     [key: string]: string | number;
 }
 

@@ -5,6 +5,7 @@ import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {getThemeConfig} from "../../style/ThemeConfig";
+import {pathAlias} from "../../config/CommonpPathAlias";
 
 const {VueLoaderPlugin} = require('vue-loader');
 
@@ -60,7 +61,9 @@ const webpackConfig: webpack.Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        alias:pathAlias
     },
+
     module: {
         rules: [
             babelLoader,

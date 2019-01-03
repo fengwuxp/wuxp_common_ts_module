@@ -5,6 +5,7 @@ import WeexPackConfig from "./WeexPackConfig";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {getThemeConfig} from "../../style/ThemeConfig";
+import {pathAlias} from "../../config/CommonpPathAlias";
 const babel7Options =require( "../../../babel/babelrc7");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
@@ -28,6 +29,7 @@ const config: webpack.Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        alias:pathAlias
     },
     node: {
         global: true
