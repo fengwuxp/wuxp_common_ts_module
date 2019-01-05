@@ -7,8 +7,6 @@
 </template>
 <script>
 
-    // import {isAndroid} from "common_weex/src/constant/WeexEnv";
-
     export default {
         props: {
             src: {default: ""},
@@ -35,9 +33,9 @@
         beforeMount() {
             this.radius = parseInt(this.radius);
             this.style = Object.assign(this.imageStyle, {
-                width: this.width,
-                height: this.width,
-                borderRadius: this.radius
+                width: this.width + "px",
+                height: this.width + "px",
+                borderRadius: this.radius + "px"
             });
         }
     }
