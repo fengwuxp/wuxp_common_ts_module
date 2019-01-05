@@ -18,13 +18,18 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
         if (resp.code !== 0) {
 
             const message = resp.message;
-            const useUnifiedToast = StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar == false);
+            const useUnifiedToast = StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar !== false);
             if (useUnifiedToast) {
                 // 加入错误提示
                 weexToast(message);
             }
 
             return Promise.reject(resp);
+        }
+
+        if (options.useUnifiedTransformResponse == false) {
+            //不使用统一的响应转换
+            return data;
         }
 
         const transformResponse = options.transformResponse;

@@ -40,4 +40,8 @@ export interface AppConfig {
     resourceConfig: ResourceConfig;
 
 
+    /**
+     * androidAppCode 检查更新需要
+     */
+    androidAppCode: string;
 }

@@ -1,7 +1,36 @@
 @import "../../theme/defualt_theme";
 
-.one_border{
-  border-width: 1px;
-  border-style: solid;
-  border-color: @border-color-base;
+@defaultBorderWidth: 1px;
+@defaultBorderColor: #e6e6e6;
+@defaultBorderStyle: @border-color-base;
+
+.one_border {
+  border-width: @defaultBorderWidth;
+  border-style: @defaultBorderStyle;
+  border-color: @defaultBorderWidth;
+}
+
+
+.border_left {
+  border-left-width: @defaultBorderWidth;
+  border-left-color: @defaultBorderColor;
+  border-left-style: @defaultBorderStyle;
+}
+
+.border_right {
+  border-right-width: @defaultBorderWidth;
+  border-right-color: @defaultBorderColor;
+  border-right-style: @defaultBorderStyle;
+}
+
+.border_top {
+  border-top-width: @defaultBorderWidth;
+  border-top-color: @defaultBorderColor;
+  border-top-style: @defaultBorderStyle;
+}
+
+.border_bottom {
+  border-bottom-width: @defaultBorderWidth;
+  border-bottom-color: @defaultBorderColor;
+  border-bottom-style: @defaultBorderStyle;
 }

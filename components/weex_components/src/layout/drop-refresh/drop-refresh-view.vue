@@ -1,7 +1,7 @@
 <!--下拉刷新视图-->
 <template>
     <scroller style="flex: 1;"
-              :loadmoreoffset="loadmoreoffset"
+              :loadmoreoffset="loadMoreOffset"
               @scroll="viewScroll"
               @loadmore="loadMore">
         <refresh class="flex_row"

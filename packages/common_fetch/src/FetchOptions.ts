@@ -60,6 +60,12 @@ export interface FetchOptions extends BaseFetchOptions {
     useProgressBar?: boolean;
 
     /**
+     * 使用统一响应转换
+     * 默认：true
+     */
+    useUnifiedTransformResponse?: boolean;
+
+    /**
      * 进度条配置
      * 进度条控制可以在拦截器实现
      *

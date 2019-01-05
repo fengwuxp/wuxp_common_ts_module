@@ -51,7 +51,11 @@ export default class AppRouter {
             return Promise.reject(`not fount view-> ${pathname}`);
         }
 
-        const queryParams = param.queryParams || {};
+        if (param.queryParams == null) {
+            param.queryParams = {};
+        }
+
+        const queryParams = param.queryParams;
 
         const {meta} = route;
 
@@ -93,10 +97,10 @@ export default class AppRouter {
 
 
         //安卓状态栏颜色
-        const androidStatusColor = process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor;
+        const androidStatusColor = (process.env.ANDROID_STATUS_COLOR || viewConfig.androidStatusColor || null);
         if (!!androidStatusColor) {
             //安卓状态栏颜色
-            param.state.statusBarColor = androidStatusColor;
+            param.queryParams.statusBarColor = androidStatusColor;
         }
 
         //跳转
