@@ -21,6 +21,11 @@
               class="nav-bar-title"
               :style="navTitleStyle"
               :value="navTitle"></text>
+        <div slot="nav-bar-right"
+             class="nav-bar-right"
+             :style="rightStyle">
+            <slot name="nav-bar-right"></slot>
+        </div>
     </nav-base-bar>
 </template>
 

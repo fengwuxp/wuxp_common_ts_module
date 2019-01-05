@@ -1,5 +1,6 @@
 import {ComponentOptions} from "vue";
 import StringUtils from "common_utils/src/string/StringUtils";
+import {WeexBoradcastModule} from "oak_weex_starter/src/ExpotrtWeexOAKModel";
 
 /**
  * 常用的广播事件分类
@@ -9,17 +10,17 @@ export enum BroadcastViewEventType {
     /**
      * 刷新
      */
-    REFRESH,
+    REFRESH = "REFRESH",
 
     /**
      * 选中
      */
-    SELECTED,
+    SELECTED = "SELECTED",
 
     /**
      * 删除
      */
-    DELETED
+    DELETED = "DELETED"
 }
 
 /**
@@ -70,7 +71,7 @@ const registerBroadcast: ComponentOptions<any> = {
 };
 
 //广播模块
-const broadcast = weex.requireModule("broadcast");
+const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");
 
 /**
  * 注册广播事件

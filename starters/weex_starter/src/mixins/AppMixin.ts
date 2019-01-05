@@ -4,28 +4,11 @@ import {transferViewState} from "common_weex/src/route/PageStatTransferUtil";
 import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
 import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
-import AppRouter from "../route/AppRouter";
+import AppRouterHelper from "../route/AppRouterHelper";
 
 //使用默认的参数器解析参数
 const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
 
-
-interface ViewParams {
-
-    /**
-     * 查询参数
-     */
-    queryParams?: {
-        [k: string]: any
-    },
-
-    /**
-     * 页面状态
-     */
-    state?: {
-        [k: string]: any
-    }
-}
 
 /**
  * 基础的mix in
@@ -41,21 +24,14 @@ const appMixin: ComponentOptions<any> = {
             appVersionCode: -1,
             //用户信息
             member: null,
-            appRouter: AppRouter
+
         }
     },
     methods: {
-        toView(pathname: string, viewPrams?: ViewParams) {
-            return AppRouter.toView({
-                pathname,
-                ...(viewPrams || {})
-            });
-        },
-        back() {
-            AppRouter.back();
-        }
-    },
+        toView: AppRouterHelper.toView,
 
+        backView: AppRouterHelper.backView,
+    },
 
     mounted() {
 

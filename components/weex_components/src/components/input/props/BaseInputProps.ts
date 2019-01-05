@@ -116,8 +116,8 @@ export default {
      */
     clearIconStyle: {
         default: () => ({
-            width: 40,
-            height: 40
+            fontSize: 46,
+            color: "#cccccc"
         })
     }
 }

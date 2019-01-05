@@ -9,13 +9,13 @@
 @nav-bar-background-color: @fill-base;
 
 /*--导航栏左侧宽度--*/
-@nav-bar-left-width: 140px;
+@nav-bar-left-width: 120px;
 
 /*--导航栏中间宽度--*/
 @nav-bar-center-width: @screen-width - @nav-bar-left-width * 2;
 
 /*--导航栏右侧宽度--*/
-@nav-bar-right-width: 140px;
+@nav-bar-right-width: 120px;
 
 /*--标题字号--*/
 @nav-bar-title-font-size: 36px;
@@ -62,8 +62,11 @@
 }
 
 .nav-bar-right {
-  height: @nav-bar-height;
-  width: @nav-bar-center-width;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  height: @nav-bar-height;
+  width: @nav-bar-right-width;
+  right: 0;
+  top: 0;
 }
