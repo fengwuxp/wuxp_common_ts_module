@@ -6,6 +6,7 @@ var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var ThemeConfig_1 = require("../../style/ThemeConfig");
+var CommonpPathAlias_1 = require("../../config/CommonpPathAlias");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -56,6 +57,7 @@ var webpackConfig = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        alias: CommonpPathAlias_1.pathAlias
     },
     module: {
         rules: [

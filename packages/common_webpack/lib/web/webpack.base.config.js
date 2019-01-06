@@ -21,6 +21,7 @@ var BabelLoader_1 = require("../loader/BabelLoader");
 var TypescriptLoader_1 = require("../loader/TypescriptLoader");
 var PostCssLoader_1 = require("../style/PostCssLoader");
 var awesome_typescript_loader_1 = require("awesome-typescript-loader");
+var CommonpPathAlias_1 = require("../config/CommonpPathAlias");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -42,6 +43,7 @@ exports.getWebpackBaseConfig = function (options) {
         },
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+            alias: CommonpPathAlias_1.pathAlias
         },
         devtool: "source-map",
         module: {

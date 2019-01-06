@@ -57,7 +57,7 @@ export default {
 
 
     /**
-     * 在 indicatorModel='indicator' 是生效
+     * 在 indicatorModel='indicator' 时生效
      */
     indicatorStyle: {
         default: {

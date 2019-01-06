@@ -22,7 +22,7 @@
             <div v-for="(item,i) in tabTitles"
                  :key="i"
                  class="view_content">
-                <slot :name="'tab_item_'+i"></slot>
+                <slot v-if="showStatus[i]" :name="'tab_item_'+i"></slot>
             </div>
         </slider>
     </div>
@@ -40,13 +40,15 @@
         },
         data() {
             return {
-                selectedIndex: isWeb ? parseInt(this.defaultIndex) || 0 : 0
+                selectedIndex: isWeb ? parseInt(this.defaultIndex) || 0 : 0,
+                //记录显示的状态
+                showStatus: this.tabTitles.map(() => false)
             };
         },
         computed: {
             sliderStyle() {
                 return {
-                    top: this.tabStyles.height+"px"
+                    top: this.tabStyles.height + "px"
                 };
             }
         },
@@ -66,6 +68,7 @@
              * @param index
              */
             changeSlider({index}) {
+                this.showStatus[index] = true;
                 if (index !== this.selectedIndex) {
                     this.emitEvent(index);
                 }
@@ -85,13 +88,10 @@
     .list-view {
         flex: 1;
         height: 100%;
-        position: relative;
     }
 
 
     .view_wrapper {
-        justify-content: flex-end;
-        position: relative;
         flex: 1;
     }
 

@@ -6,6 +6,7 @@ var WeexPackConfig_1 = require("./WeexPackConfig");
 var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var ThemeConfig_1 = require("../../style/ThemeConfig");
+var CommonpPathAlias_1 = require("../../config/CommonpPathAlias");
 var babel7Options = require("../../../babel/babelrc7");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -24,6 +25,7 @@ var config = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        alias: CommonpPathAlias_1.pathAlias
     },
     node: {
         global: true
