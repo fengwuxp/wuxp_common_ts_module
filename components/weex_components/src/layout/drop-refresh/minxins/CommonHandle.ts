@@ -50,7 +50,7 @@ export default {
          * 加载更多
          */
         loadMore(e) {
-            this.$emit("onLoadMore",e);
+            this.$emit("onLoadMore");
         },
         resetLoadMore(e){
             this.loadMore(e);

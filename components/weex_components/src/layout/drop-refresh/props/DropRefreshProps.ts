@@ -52,7 +52,7 @@ export default {
     },
 
     loadMoreOffset: {
-        default: 120
+        default: 200
     },
 
 
