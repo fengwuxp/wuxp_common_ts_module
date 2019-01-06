@@ -49,8 +49,11 @@ export default {
         /**
          * 加载更多
          */
-        loadMore() {
-            this.$emit("loadMore");
+        loadMore(e) {
+            this.$emit("onLoadMore",e);
+        },
+        resetLoadMore(e){
+            this.loadMore(e);
         },
 
         /**
@@ -112,5 +115,6 @@ export default {
             images[i] = getWeexResourceUrl(`animation/pull_to_refresh_people_${i}.png`);
         }
         this.images = images;
+        console.log("---loadMoreOffset---->",this.loadMoreOffset);
     }
 }

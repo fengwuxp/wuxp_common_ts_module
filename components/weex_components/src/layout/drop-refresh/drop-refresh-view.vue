@@ -1,7 +1,8 @@
 <!--下拉刷新视图-->
 <template>
-    <scroller style="flex: 1;"
+    <scroller class="flex_1"
               :loadmoreoffset="loadMoreOffset"
+              @resetLoadmore="resetLoadMore"
               @scroll="viewScroll"
               @loadmore="loadMore">
         <refresh class="flex_row"

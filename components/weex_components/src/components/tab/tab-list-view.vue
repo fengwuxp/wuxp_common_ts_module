@@ -1,24 +1,25 @@
 <!--tab listView 基于slider实现-->
 <template>
-    <div class="list-view">
-        <tab-scroll-header :tabTitles="tabTitles"
-                           :tabStyles="tabStyles"
-                           :titleType="titleType"
-                           :titleUseSlot="titleUseSlot"
-                           :defaultIndex="selectedIndex"
-                           :startScrollIndex="startScrollIndex"
-                           ref="tab-scroll-header"
-                           @changeTab="changeSlider">
-            <slot v-if="titleUseSlot"
-                  v-for="(item,index) in tabTitles"
-                  :name="`tab_title_${index}`"
-                  :slot="`tab-title-${index}`"></slot>
-        </tab-scroll-header>
+    <div class="list-view flex_1">
+        <div :style="headerStyle">
+            <tab-scroll-header :tabTitles="tabTitles"
+                               :tabStyles="tabStyles"
+                               :titleType="titleType"
+                               :titleUseSlot="titleUseSlot"
+                               :defaultIndex="selectedIndex"
+                               :startScrollIndex="startScrollIndex"
+                               ref="tab-scroll-header"
+                               @change="changeSlider">
+                <slot v-if="titleUseSlot"
+                      v-for="(item,index) in tabTitles"
+                      :name="`tab_title_${index}`"
+                      :slot="`tab-title-${index}`"></slot>
+            </tab-scroll-header>
+        </div>
         <slider :infinite="false"
                 :index="selectedIndex"
                 @change="changeSlider"
-                :style="sliderStyle"
-                class="view_wrapper view_content">
+                class="flex_1">
             <div v-for="(item,i) in tabTitles"
                  :key="i"
                  class="view_content">
@@ -41,15 +42,15 @@
         data() {
             return {
                 selectedIndex: isWeb ? parseInt(this.defaultIndex) || 0 : 0,
-                //记录显示的状态
                 showStatus: this.tabTitles.map(() => false)
             };
         },
         computed: {
-            sliderStyle() {
+            headerStyle() {
                 return {
-                    top: this.tabStyles.height + "px"
-                };
+                    width: 750,
+                    height: this.tabStyles.height
+                }
             }
         },
         mounted() {
@@ -85,14 +86,15 @@
     }
 </script>
 <style scoped>
-    .list-view {
+
+    .flex_1 {
         flex: 1;
-        height: 100%;
     }
 
-
-    .view_wrapper {
-        flex: 1;
+    .list-view {
+        position: relative;
+        height: 100%;
+        flex-direction: column;
     }
 
     .view_content {

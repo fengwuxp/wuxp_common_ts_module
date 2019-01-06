@@ -1,7 +1,8 @@
 <!--下拉刷新列表视图-->
 <template>
-    <list style="flex: 1;"
+    <list class="flex_1"
           :loadmoreoffset="loadMoreOffset"
+          @resetLoadmore="resetLoadMore"
           @scroll="viewScroll"
           @loadmore="loadMore">
         <refresh class="flex_row"
