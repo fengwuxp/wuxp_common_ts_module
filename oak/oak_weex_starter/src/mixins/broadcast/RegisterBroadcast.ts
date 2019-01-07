@@ -1,6 +1,6 @@
 import {ComponentOptions} from "vue";
 import StringUtils from "common_utils/src/string/StringUtils";
-import {WeexBoradcastModule} from "oak_weex_starter/src/ExpotrtWeexOAKModel";
+import {broadcast} from "../../ExpotrtWeexOAKModel";
 
 /**
  * 常用的广播事件分类
@@ -52,12 +52,10 @@ const registerBroadcast: ComponentOptions<any> = {
     mounted() {
         const events: Array<BroadcastViewEvent> = [];
 
-        const onBroadcastMessage = this.onBroadcastMessage;
-        for (const key in onBroadcastMessage) {
-            const event: Object = onBroadcastMessage[key];
+        const onMessage = this.onMessage;
+        for (const category in onMessage) {
+            const event: Object = onMessage[category];
             for (const eventName in event) {
-                const category = key;//.toString().toUpperCase();
-
                 events.push({
                     category,
                     eventName,
@@ -70,8 +68,6 @@ const registerBroadcast: ComponentOptions<any> = {
     }
 };
 
-//广播模块
-const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");
 
 /**
  * 注册广播事件
