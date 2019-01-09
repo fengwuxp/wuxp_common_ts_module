@@ -6,9 +6,10 @@ import * as path from "path";
 export const pathAlias = {
     "@src": path.resolve("src/"),
     "@services": path.resolve("src/services/"),
+    "@api": path.resolve("src/api/"),
     "@enums": path.resolve("src/enums/"),
     "@config": path.resolve("src/config/"),
-    "@const": path.resolve("src/const/"),
+    "@constant": path.resolve("src/constant/"),
     "@components": path.resolve("src/components/"),
     "@views": path.resolve("src/views/"),
     "@utils": path.resolve("src/utils/"),

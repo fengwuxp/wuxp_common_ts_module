@@ -47,12 +47,16 @@ export default {
     refreshTipText: {
         default: "正在加载中"
     },
+
+    /**
+     * 下拉刷新动画帧的切换间隔
+     */
     frameTimes: {
         default: 130
     },
 
     loadMoreOffset: {
-        default: 200
+        default: 120
     },
 
 

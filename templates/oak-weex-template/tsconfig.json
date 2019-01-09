@@ -12,8 +12,29 @@
     "compileOnSave": false,
     "baseUrl": "./src",
     "paths": {
+      "@src/*": [
+        "./*"
+      ],
+      "@api/*": [
+        "./api/*"
+      ],
       "@services/*": [
         "./services/*"
+      ],
+      "@enums/*": [
+        "./enums/*"
+      ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@constant/*": [
+        "./constant/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@views/*": [
+        "./views/*"
       ],
       "@utils/*": [
         "./utils/*"
