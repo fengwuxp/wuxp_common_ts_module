@@ -1,12 +1,16 @@
+
+import {LayoutConfig} from "../views/LayoutConfig";
+import {ResourceConfig} from "../resources/ResourceConfig";
+
+// @ts-ignore
+import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
+
+
 /**
  * app的配置
  * @author wxup
  * @create 2018-09-27 9:58
  **/
-import {LayoutConfig} from "../views/LayoutConfig";
-import {ResourceConfig} from "../resources/ResourceConfig";
-
-
 export interface AppConfig {
 
     /**
@@ -44,4 +48,9 @@ export interface AppConfig {
      * androidAppCode 检查更新需要
      */
     androidAppCode: string;
+
+    /**
+     * feign proxy 的初始化器
+     */
+    feignProxyInitializer?: FeignProxyInitializer;
 }

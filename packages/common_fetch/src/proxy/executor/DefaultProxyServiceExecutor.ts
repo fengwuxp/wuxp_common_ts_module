@@ -63,7 +63,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 // fetchOptions.responseType = ResponseType.JSON;
             }
         }
-        if (signature) {
+        if (signature && this.apiSignatureStrategy != null) {
             //签名处理
             const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter);
             fetchOptions.data = {

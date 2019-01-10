@@ -2,8 +2,6 @@ import AbstractBootStarter, {WeexAppContext} from "weex_starter/src/bootstartup/
 import OAKFetchFeignProxyInitializer from "../fetch/OAKFetchFeignProxyInitializer";
 import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 
-//初始化feignProxy
-new OAKFetchFeignProxyInitializer().initFeignProxyFactory();
 
 /**
  * weex 自定义的loader
@@ -14,6 +12,16 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
     protected initStatus: boolean = false;
 
     startup = (...args): Promise<WeexAppContext> => this.baseStartup(...args).then((context: WeexAppContext) => {
+
+
+        if (context.feignProxyInitializer == null) {
+            //默认的初始化feignProxy
+            new OAKFetchFeignProxyInitializer().initFeignProxyFactory();
+        } else {
+            //使用自定义的代理初始化器，初始化
+            context.feignProxyInitializer.initFeignProxyFactory();
+        }
+
 
         if (this.initStatus) {
             return context;

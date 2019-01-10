@@ -12,15 +12,30 @@ import {appConfig} from '../../../../src/config/WeexAppConfig';
 //约定导入 路由配置
 // @ts-ignore
 import route from '../../../../src/route/NavtieRoute';
+import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
 
 
 export interface WeexAppContext {
 
+    /**
+     * APP router
+     */
     appRouter: AppRouter;
 
+    /**
+     * app 配置
+     */
     appConfig: AppConfig;
 
-    appRegistry: AppConfigRegistry
+    /**
+     * app 配置注册器
+     */
+    appRegistry: AppConfigRegistry;
+
+    /**
+     * feign proxy 初始化器
+     */
+    feignProxyInitializer?: FeignProxyInitializer;
 }
 
 /**
