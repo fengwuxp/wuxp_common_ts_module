@@ -14,12 +14,13 @@ export default class WeexOAKBootStarter extends AbstractBootStarter<WeexAppConte
     startup = (...args): Promise<WeexAppContext> => this.baseStartup(...args).then((context: WeexAppContext) => {
 
 
-        if (context.feignProxyInitializer == null) {
+        const appConfig = context.appConfig;
+        if (appConfig.feignProxyInitializer == null) {
             //默认的初始化feignProxy
             new OAKFetchFeignProxyInitializer().initFeignProxyFactory();
         } else {
             //使用自定义的代理初始化器，初始化
-            context.feignProxyInitializer.initFeignProxyFactory();
+            appConfig.feignProxyInitializer.initFeignProxyFactory();
         }
 
 

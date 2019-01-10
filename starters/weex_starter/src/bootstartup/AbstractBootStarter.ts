@@ -32,10 +32,6 @@ export interface WeexAppContext {
      */
     appRegistry: AppConfigRegistry;
 
-    /**
-     * feign proxy 初始化器
-     */
-    feignProxyInitializer?: FeignProxyInitializer;
 }
 
 /**
