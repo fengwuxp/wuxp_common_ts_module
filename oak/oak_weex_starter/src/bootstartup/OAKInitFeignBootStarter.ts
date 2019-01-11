@@ -14,7 +14,7 @@ export default class OAKInitFeignBootStarter implements AppBootStarter<WeexAppCo
 
     protected initStatus: boolean = false;
 
-    startup = (context: WeexAppContext): Promise<WeexAppContext> => {
+    async startup (context: WeexAppContext): Promise<WeexAppContext>  {
 
         const appConfig = context.appConfig;
         if (appConfig.feignProxyInitializer != null) {

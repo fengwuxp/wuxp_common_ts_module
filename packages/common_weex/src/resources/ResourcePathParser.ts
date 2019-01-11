@@ -1,5 +1,6 @@
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
+import {WeexAppConfig} from "weex_starter/src/config/WeexAppConfig";
 
 
 const pathPrefix = {
@@ -37,7 +38,7 @@ const FONTS_DIR = process.env.FONTS_DIR || 'fonts';
 export const parseWeexBundleJsBasePath = () => {
 
     //获取app的配置的信息
-    const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get();
+    const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get() as WeexAppConfig;
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 

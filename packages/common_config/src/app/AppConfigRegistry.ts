@@ -1,14 +1,11 @@
 import {AppConfig} from "./AppConfig";
 import {Registry} from "common_core/src/registry/Registry";
 import {LayoutConfig, NavBarStyleOptions} from "../views/LayoutConfig";
-import {ResourceConfig} from "../resources/ResourceConfig";
 
 
 export interface AppConfigRegistry extends Registry<AppConfig> {
 
     getLayoutConfig: () => LayoutConfig;
-
-    getResourceConfig: () => ResourceConfig;
 
     getNavBarOptions: () => NavBarStyleOptions;
 }
@@ -40,11 +37,7 @@ class AppConfigRegistryImpl implements AppConfigRegistry {
      * 获取布局配置
      */
     getLayoutConfig = (): LayoutConfig => this.appConfig == null ? null : this.appConfig.layoutConfig;
-
-    /**
-     * 获取资源配置
-     */
-    getResourceConfig = (): ResourceConfig => this.appConfig == null ? null : this.appConfig.resourceConfig;
+    
 
     /**
      * 获取导航栏配置

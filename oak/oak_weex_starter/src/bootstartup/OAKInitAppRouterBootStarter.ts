@@ -16,7 +16,7 @@ AppRouter.navigator = new WeexNavigatorAdapter(null, navigator);
  */
 export default class OAKInitAppRouterBootStarter implements AppBootStarter<WeexAppContext> {
 
-    startup = (context): Promise<WeexAppContext> => {
+    async startup(context): Promise<WeexAppContext> {
 
         //获取包名
         let packageName: string = weex.config.env['appGroup'];

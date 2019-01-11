@@ -1,6 +1,5 @@
 
 import {LayoutConfig} from "../views/LayoutConfig";
-import {ResourceConfig} from "../resources/ResourceConfig";
 
 // @ts-ignore
 import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
