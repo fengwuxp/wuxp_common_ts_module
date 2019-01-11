@@ -1,7 +1,16 @@
 import AbstractBootStarter, {WeexAppContext} from "weex_starter/src/bootstartup/AbstractBootStarter";
 import OAKFetchFeignProxyInitializer from "../fetch/OAKFetchFeignProxyInitializer";
 import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+import AppRouter from "weex_starter/src/route/AppRouter";
+import WeexNavigatorAdapter from "common_weex/src/route/WeexNavigatorAdapter";
+import {isIos} from "common_weex/src/constant/WeexEnv";
+import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 
+
+const navigator: WeexNavigatorModule = isIos ? weex.requireModule("nav") : weex.requireModule("navigator");
+
+//初始化自定义的路由导航
+AppRouter.navigator = new WeexNavigatorAdapter(null, navigator);
 
 /**
  * weex 自定义的loader

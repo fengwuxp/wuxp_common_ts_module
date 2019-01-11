@@ -7,9 +7,6 @@ import {isWeb} from "common_weex/src/constant/WeexEnv";
 import {AppSessionManager} from "common_auth/src/session/AppSessionManager";
 
 
-const navigator: NavigatorAdapter = new WeexNavigatorAdapter();
-
-
 export interface AppRoute {
     [key: string]: WeexRouteItem;
 }
@@ -35,6 +32,8 @@ export default class AppRouter {
     //app的会话管理器,需要注入
     static appSessionManager: AppSessionManager<any>;
 
+    //导航器 可以覆盖
+    static navigator: NavigatorAdapter = new WeexNavigatorAdapter();
 
     /**
      * to view
@@ -66,7 +65,7 @@ export default class AppRouter {
                 const isLogin = await AppRouter.appSessionManager.isLogin();
                 if (!isLogin) {
                     //未登录
-                    return navigator.push({
+                    return AppRouter.navigator.push({
                         pathname: generateBundleJsURL(AppRouter.appRoutes["login"]),
                         queryParams: {
                             //登录成功的重定向地址
@@ -104,13 +103,13 @@ export default class AppRouter {
         }
 
         //跳转
-        return navigator.push({
+        return AppRouter.navigator.push({
             ...param,
             pathname
         } as WeexNavigatorParam);
     };
 
-    static back = navigator.goBack;
+    static back = AppRouter.navigator.goBack;
 
 
 }

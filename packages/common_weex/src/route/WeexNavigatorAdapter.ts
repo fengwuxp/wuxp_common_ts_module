@@ -5,9 +5,6 @@ import {LocationDescriptorObject} from "history";
 import {URLArgumentsResolve} from "../resolve/URLArgumentsResolve";
 import {setNextViewState} from "./PageStatTransferUtil";
 
-//获取weex导航器
-const navigator: WeexNavigatorModule = weex.requireModule("navigator");
-
 
 export interface WeexNavigatorParam extends LocationDescriptorObject {
 
@@ -31,9 +28,14 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
      */
     protected argumentsResolve: URLArgumentsResolve;
 
+    //获取weex导航器
+    protected navigator: WeexNavigatorModule = weex.requireModule("navigator");
 
-    constructor(argumentsResolve?: URLArgumentsResolve) {
+    constructor(argumentsResolve?: URLArgumentsResolve, navigator?: WeexNavigatorModule) {
         this.argumentsResolve = argumentsResolve || new DefaultURLArgumentsResolve();
+        if (navigator != null) {
+            this.navigator = navigator;
+        }
     }
 
     /**
@@ -42,7 +44,7 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
      * @param callback
      */
     goBack = (num?: number, callback?: (...args) => void) => {
-        navigator.pop({
+        this.navigator.pop({
             animated: "true"
         }, callback);
     };
@@ -73,7 +75,7 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
         }
 
         return new Promise<void>((resolve, reject) => {
-            navigator.push({
+            this.navigator.push({
                 url: pathname,
                 animated: params.animated == null ? "true" : params.animated + ""
             }, () => {
