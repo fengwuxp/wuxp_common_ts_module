@@ -9,7 +9,7 @@ export interface ResourceConfig {
     /**
      * ios的项目名称
      */
-    iosProjectName: string;
+    iosProjectName?: string;
 
     /**
      * 远程js的部署目录
@@ -19,6 +19,6 @@ export interface ResourceConfig {
     /**
      * 版本号
      */
-    versionCode:string;
+    versionCode: string;
 
 }

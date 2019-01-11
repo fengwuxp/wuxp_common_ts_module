@@ -38,10 +38,7 @@ export interface AppConfig {
      */
     layoutConfig: LayoutConfig;
 
-    /**
-     *资源配置
-     */
-    resourceConfig: ResourceConfig;
+
 
 
     /**

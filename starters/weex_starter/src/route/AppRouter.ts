@@ -32,7 +32,7 @@ export default class AppRouter {
     //app的会话管理器,需要注入
     static appSessionManager: AppSessionManager<any>;
 
-    //导航器 可以覆盖
+    //默认使用weex自带的导航器，可以覆盖
     static navigator: NavigatorAdapter = new WeexNavigatorAdapter();
 
     /**

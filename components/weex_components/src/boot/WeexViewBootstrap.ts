@@ -1,10 +1,11 @@
-// @ts-ignore
-import WeexOAKBootStarter from "oak_weex_starter/src/bootstartup/WeexOAKBootStarter";
+import WeexApplicationBootstrap from "weex_starter/src/bootstartup/WeexApplicationBootstrap";
+import OAKInitAppRouterBootStarter from "oak_weex_starter/src/bootstartup/OAKInitAppRouterBootStarter";
+import OAKInitFeignBootStarter from "oak_weex_starter/src/bootstartup/OAKInitFeignBootStarter";
 
-//weex 页面的根组件需要导入改文件
+//默认的启动器列表
+const defaultStarters = [new OAKInitFeignBootStarter(), new OAKInitAppRouterBootStarter()];
 
-//获取bootStarter
-export const weexSimpleBootStarter = new WeexOAKBootStarter();
+export const applicationBootstrap = new WeexApplicationBootstrap(defaultStarters);
 
-//初始化
-weexSimpleBootStarter.startup();
+//默认先启动一次
+applicationBootstrap.startup();

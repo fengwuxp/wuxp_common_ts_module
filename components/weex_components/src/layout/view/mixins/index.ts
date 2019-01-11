@@ -1,6 +1,6 @@
+import {applicationBootstrap} from "../../../boot/WeexViewBootstrap";
 import umengMixin from "../../../mixins/umeng/UmengMixin";
 import CommonThemeControl from "common_style/src/CommonThemeControl";
-import {weexSimpleBootStarter} from "../../../boot/WeexViewBootstrap";
 import {weexTheme} from "../../../theme/js_default_theme";
 
 //注入默认的主题变量
@@ -71,7 +71,7 @@ export default {
     beforeMount() {
 
         //初始化应用的的数据
-        weexSimpleBootStarter.startup().then(({appRouter, appConfig, appRegistry}) => {
+        applicationBootstrap.startup().then(({appRouter, appConfig, appRegistry}) => {
             const layoutConfig = appRegistry.getLayoutConfig();
             this.defaultStyle = {
                 ...(layoutConfig.style || {}),
