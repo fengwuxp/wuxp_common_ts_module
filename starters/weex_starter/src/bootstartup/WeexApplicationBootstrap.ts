@@ -23,40 +23,43 @@ export default class WeexApplicationBootstrap implements AppBootStarter<WeexAppC
     protected defaultStarters: AppBootStarter<WeexAppContext>[];
 
 
-    constructor(defaultStarters: AppBootStarter<WeexAppContext>[]=[]) {
+    constructor(defaultStarters: AppBootStarter<WeexAppContext>[] = []) {
         this.defaultStarters = defaultStarters;
     }
 
     startup = (...args): Promise<WeexAppContext> => {
+
         if (WeexApplicationBootstrap.appContext == null) {
+
             //初始化app 配置
             appConfigRegistry.register(appConfig);
             //注册路由
             AppRouter.registerRouters(route);
             AppRouter.appSessionManager = weexDefaultSessionManager;
-            WeexApplicationBootstrap.appContext = {
+
+
+            const appContext = {
                 appRouter: AppRouter,
                 appRegistry: appConfigRegistry,
                 appConfig
             };
-        } else {
-            return Promise.resolve(WeexApplicationBootstrap.appContext);
+
+            WeexApplicationBootstrap.appContext = appContext;
+
+            //默认的启动器
+            const {defaultStarters} = this;
+
+            //启动器列表
+            const appStarters = [...defaultStarters, ...(appContext.appConfig.appStarters || [])];
+
+            if (appStarters != null) {
+                //执行所有的starter
+                appStarters.forEach((stater) => stater.startup(appContext));
+            }
         }
 
-        const appContext = WeexApplicationBootstrap.appContext;
 
-        //默认的启动器
-        const {defaultStarters} = this;
-
-        //启动器列表
-        const appStarters = [...defaultStarters, ...(appContext.appConfig.appStarters || [])];
-
-        if (appStarters != null) {
-            //执行所有的starter
-            appStarters.map((stater) => stater.startup(appContext));
-        }
-
-        return Promise.resolve(appContext);
+        return Promise.resolve(WeexApplicationBootstrap.appContext);
 
     };
 
