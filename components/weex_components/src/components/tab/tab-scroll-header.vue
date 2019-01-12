@@ -92,11 +92,11 @@
                 };
                 if (!this.tabStyles.hasActiveBottom) {
                     style.borderBottomColor = this.currentPage == index ? this.tabStyles.activeBottomColor : 'transparent';
-                    style.borderBottomWidth = this.tabStyles.activeBottomHeight;
+                    style.borderBottomWidth = this.tabStyles.activeBottomHeight + "px";
                     style.borderBottomStyle = "solid";
                 }
 
-                style.width = this.tabStyles.width+"px";
+                style.width = this.tabStyles.width + "px";
 
                 return style;
             },
@@ -109,7 +109,7 @@
                 };
                 width = this.tabStyles.activeBottomWidth;
                 style.left = (this.tabStyles.width - this.tabStyles.activeBottomWidth) / 2
-                style.width = width;
+                style.width = width + "px";
 
                 return style;
             }

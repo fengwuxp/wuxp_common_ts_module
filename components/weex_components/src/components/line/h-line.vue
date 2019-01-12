@@ -8,7 +8,7 @@
         name: "h_line",
         props:{
             width:{
-                default:0
+                default:750
             }
         },
         computed:{
