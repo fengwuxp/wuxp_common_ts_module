@@ -3,7 +3,7 @@
 
 
 - 1：规划客户的api模块，拦截器，等统一处理
-- 2：初始化feign, 需要实现[FeignProxyInitializer](../packages/common_feign/src/proxy/feign/FeignProxyInitializer)接口
+- 2：初始化feign, 需要实现[FeignProxyInitializer](https://github.com/fengwuxp/wuxp_common_ts_module/blob/master/packages/common_fetch/src/proxy/feign/FeignProxyInitializer.ts)接口
 
         export default MyFeignProxyInitializer implements FeignProxyInitializer{
 
@@ -16,4 +16,4 @@
 
         }
 
-- 更多请参考[common_feign](../packages/common_feign/README.md)
+- 更多请参考[common_feign](https://github.com/fengwuxp/wuxp_common_ts_module/blob/master/packages/common_fetch/README.md)

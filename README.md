@@ -4,9 +4,9 @@
      1：需要安装nodejs环境，lerna 以及yarn
      2: 环境安装好以后运行 npm run module_init
 
-- [node installation](./docs/node_installation.md)
-- [lerna installation](./docs/lerna_installation.md)
-- [yarn installation](./docs/yarn_installation.md)
+- [node installation](./docs/env/node_installation.md)
+- [lerna installation](./docs/env/lerna_installation.md)
+- [yarn installation](./docs/env/yarn_installation.md)
 
 
 
