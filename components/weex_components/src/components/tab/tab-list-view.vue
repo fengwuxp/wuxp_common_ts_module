@@ -69,7 +69,7 @@
              * @param index
              */
             changeSlider({index}) {
-                this.showStatus[index] = true;
+                Vue.set(this.showStatus, index, true);
                 if (index !== this.selectedIndex) {
                     this.emitEvent(index);
                 }
