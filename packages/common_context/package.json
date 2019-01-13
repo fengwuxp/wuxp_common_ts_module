@@ -1,0 +1,38 @@
+{
+  "name": "common_context",
+  "version": "0.0.1",
+  "description": "common context",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_publish": "npm publish"
+  },
+  "keywords": [
+    "dependency injection",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@types/node": "^10.12.12",
+    "@types/weex": "^0.0.1",
+    "@types/weixin": "^0.0.1",
+    "common_test": "^0.0.1",
+    "jest": "^23.6.0",
+    "tslib": "^1.9.3"
+  },
+  "dependencies": {
+  },
+  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
+}
