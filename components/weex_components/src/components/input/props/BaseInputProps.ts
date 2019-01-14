@@ -19,7 +19,7 @@ export default {
 
     containerStyle: {
         default: () => ({
-            padding: "10px"
+            padding: "20px",
         })
     },
 
@@ -33,8 +33,8 @@ export default {
     labelStyle: {
         default: () => ({
             fontSize: "32px",
-            lineHeight:"32px",
-            height:"32px",
+            lineHeight: "32px",
+            height: "32px",
             color: CommonThemeControl.getStyleAttrByName("color-text-base")
         })
     },
@@ -58,6 +58,15 @@ export default {
     },
     rightSlot: {
         default: false
+    },
+
+    inputStyle: {
+        default: () => ({
+            fontSize: "32px",
+            lineHeight: "50px",
+            height: "50px",
+            color: CommonThemeControl.getStyleAttrByName("color-text-base")
+        })
     },
 
     /**
@@ -116,7 +125,7 @@ export default {
      */
     clearIconStyle: {
         default: () => ({
-            fontSize: 46,
+            fontSize: "40px",
             color: "#cccccc"
         })
     }

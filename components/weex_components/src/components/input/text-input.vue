@@ -14,14 +14,14 @@
         <input class="input"
                ref="input"
                :type="type"
+               :style="inputStyle"
                :autofocus="autoFocus"
                :value="showValue"
                :maxlength="maxLength"
                :placeholder="placeholder"
                @focus="onFocus"
                @blur="onBlur"
-               @input="onInput"
-        />
+               @input="onInput"/>
         <div v-if="!rightSlot"
              class="flex_center"
              @click="clearValueInner">
