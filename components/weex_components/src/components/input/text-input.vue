@@ -138,6 +138,8 @@
 
     .label {
         padding-right: 15px;
+        justify-content: center;
+        align-items: center;
     }
 
     .input {

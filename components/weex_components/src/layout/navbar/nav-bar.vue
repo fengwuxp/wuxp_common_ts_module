@@ -17,10 +17,13 @@
                           :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>
         </div>
-        <text slot="nav-bar-center"
-              class="nav-bar-title"
-              :style="navTitleStyle"
-              :value="navTitle"></text>
+        <div slot="nav-bar-center"
+             class="nav-bar-center"
+             :style="centerStyle">
+            <text class="nav-bar-title"
+                  :style="navTitleStyle"
+                  :value="navTitle"></text>
+        </div>
         <div slot="nav-bar-right"
              class="nav-bar-right"
              :style="rightStyle">

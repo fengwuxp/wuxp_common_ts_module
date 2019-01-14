@@ -34,7 +34,7 @@ export default {
         default: () => ({
             fontSize: "32px",
             lineHeight:"32px",
-            height:32,
+            height:"32px",
             color: CommonThemeControl.getStyleAttrByName("color-text-base")
         })
     },
@@ -48,8 +48,8 @@ export default {
 
     labelIconStyle: {
         default: () => ({
-            width: 40,
-            height: 40
+            width: "40px",
+            height: "40px"
         })
     },
 

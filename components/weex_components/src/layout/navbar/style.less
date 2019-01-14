@@ -49,13 +49,19 @@
   top: 0;
 }
 
+.nav-bar-center {
+  width: 750px;
+  padding-left: @nav-bar-left-width;
+  padding-right: @nav-bar-left-width;
+}
+
 .nav-bar-title {
-  width: @nav-bar-center-width - 20px;
   font-size: @nav-bar-title-font-size;
   color: @nav-bar-title-color;
   text-overflow: ellipsis;
   font-weight: 500;
   text-align: center;
+  flex: 1;
   //weex 特有  绝望
   lines: 1;
 

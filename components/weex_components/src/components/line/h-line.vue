@@ -14,7 +14,7 @@
         computed:{
             lineStyle(){
                 return {
-                    width:this.width
+                    width:`${this.width}px`
                 }
             }
         }
