@@ -5,6 +5,7 @@ import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
 import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouterHelper from "../route/AppRouterHelper";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 //使用默认的参数器解析参数
 const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
@@ -25,6 +26,8 @@ const appMixin: ComponentOptions<any> = {
             //用户信息
             member: null,
 
+            //页面是否准备完成
+            viewIsReady: false
         }
     },
     methods: {
@@ -44,7 +47,8 @@ const appMixin: ComponentOptions<any> = {
         //初始化页面state
         const state = await transferViewState();
         // 获取url参数
-        const urlParams = argumentsResolve.parseArguments(weex.config.bundleUrl, true);
+        const url = isWeb ? location.href : weex.config.bundleUrl;
+        const urlParams = argumentsResolve.parseArguments(url, true);
         //将url参数和页面state初始化到vue的实例中
         setParameterToVueInstance(this, state, urlParams);
 
@@ -61,6 +65,7 @@ const appMixin: ComponentOptions<any> = {
             console.debug("获取用户信息失败", e);
         }
 
+        this.viewIsReady = true;
         //调用页面的onReady方法
         this.onReady && this.onReady()
     }
