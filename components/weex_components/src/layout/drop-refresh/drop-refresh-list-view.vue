@@ -1,6 +1,7 @@
 <!--下拉刷新列表视图-->
 <template>
     <list class="flex_1"
+          ref="scroll_container"
           :loadmoreoffset="loadMoreOffset"
           @resetLoadmore="resetLoadMore"
           @scroll="viewScroll"
@@ -28,6 +29,7 @@
                 <loading-indicator :style="indicatorStyle"></loading-indicator>
             </div>
         </refresh>
+        <cell ref="first_node"></cell>
         <slot></slot>
     </list>
 </template>

@@ -1,5 +1,6 @@
 import DropRefreshProps from "../props/DropRefreshProps";
 import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
 
 export default {
     components: {},
@@ -52,9 +53,6 @@ export default {
         loadMore(e) {
             this.$emit("onLoadMore");
         },
-        resetLoadMore(e){
-            this.loadMore(e);
-        },
 
         /**
          * 页面滚动
@@ -97,7 +95,25 @@ export default {
                 }, 200);
             }, 500);
         },
+        /**
+         * 滚动到指定的节点，如果不填则滚到顶部
+         * @param ref
+         */
+        scrollToElement(ref) {
+            if (ref == null) {
+                ref = this.$refs["first_node"];
+            }
+            dom.scrollToElement(ref, {
+                offset: 0
+            });
+        },
 
+        /**
+         * 重置加载更多的事件
+         */
+        resetLoadMore() {
+            this.$refs["scroll_container"].resetLoadmore();
+        }
     },
     mounted() {
         if (this.refreshNow) {
@@ -115,6 +131,6 @@ export default {
             images[i] = getWeexResourceUrl(`animation/pull_to_refresh_people_${i}.png`);
         }
         this.images = images;
-        console.log("---loadMoreOffset---->",this.loadMoreOffset);
+        console.log("---loadMoreOffset---->", this.loadMoreOffset);
     }
 }
