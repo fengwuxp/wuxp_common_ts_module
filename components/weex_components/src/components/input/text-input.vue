@@ -2,7 +2,8 @@
 <template>
     <div class="input_container" :style="containerStyle">
         <div v-if="!labelSlot"
-             class="flex_row label">
+             class="flex_row label"
+             :style="labelContainerStyle">
             <image v-if="labelIcon"
                    :style="labelIconStyle"
                    :src="labelIcon"></image>

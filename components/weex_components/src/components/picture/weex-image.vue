@@ -12,7 +12,7 @@
 <script>
 
     import {isAndroid} from "common_weex/src/constant/WeexEnv";
-    import ImageAutoSize from "./ImageAutoSize";
+    import ImageAutoSize from "./minxins/ImageAutoSize";
 
     export default {
         props: {

@@ -10,6 +10,7 @@
                          v-if="show"
                          ref="overlay"
                          :topPosition="topPosition"
+                         :canAutoClose="maskClose"
                          v-bind="overlayCfg"
                          @wxcOverlayBodyClicking="wxcOverlayBodyClicking"></wxc-overlay>
         </div>
@@ -81,6 +82,9 @@
             },
             topPosition: {
                 default: 0
+            },
+            maskClose:{
+                default:true
             },
             overlayCfg: {
                 type: Object,
@@ -189,7 +193,10 @@
                 this.$refs.overlay.appearOverlay(false);
             },
             wxcOverlayBodyClicking() {
-                this.isShow && this.appearPopup(false);
+                if (this.maskClose) {
+                    this.isShow && this.appearPopup(false);
+                }
+
             },
             appearPopup(bool, duration = 300) {
                 this.isShow = bool;

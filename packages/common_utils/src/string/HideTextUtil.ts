@@ -6,11 +6,15 @@ const HIDE_ID_NUMBER_REGEXP: RegExp = /^(\d{10})\d{4}(\w{4})$/;
  * @param {string} mobilePhone
  * @return {string}
  */
-const hideMobilePhone = (mobilePhone: string = ""): string => {
-    if (mobilePhone.trim().length < 11) {
+const hideMobilePhone = (mobilePhone: string): string => {
+    if (mobilePhone == null) {
+        return null;
+    }
+    const s = mobilePhone.trim();
+    if (s.length < 11) {
         return mobilePhone;
     }
-    return mobilePhone.replace(HIDE_MOBILE_PHONE_REGEXP, "$1****$2");
+    return s.replace(HIDE_MOBILE_PHONE_REGEXP, "$1****$2");
 };
 
 /**
@@ -18,11 +22,15 @@ const hideMobilePhone = (mobilePhone: string = ""): string => {
  * @param {string} idNumber
  * @return {string}
  */
-const hideIdNumber = (idNumber: string = ""): string => {
-    if (idNumber.trim().length < 18) {
+const hideIdNumber = (idNumber: string): string => {
+    if (idNumber == null) {
+        return null;
+    }
+    const s = idNumber.trim();
+    if (s.length < 18) {
         return idNumber;
     }
-    return idNumber.replace(HIDE_ID_NUMBER_REGEXP, "$1****$2");
+    return s.replace(HIDE_ID_NUMBER_REGEXP, "$1****$2");
 };
 
 export {

@@ -40,6 +40,13 @@ export default {
     },
 
     /**
+     * 标签容器样式
+     */
+    labelContainerStyle:{
+        default: () => ({})
+    },
+
+    /**
      * 输入框左侧icon
      */
     labelIcon: {

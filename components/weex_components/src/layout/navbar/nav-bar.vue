@@ -4,6 +4,7 @@
                   :immersiveStatusBarColor="immersiveStatusBarColor"
                   :immersiveStatusBarHeight="immersiveStatusBarHeight"
                   :enableImmersive="enableImmersive"
+                  :navBarStyle="navBarStyle"
                   :rightStyle="rightStyle">
         <div slot="nav-bar-left"
              :style="leftStyle"
