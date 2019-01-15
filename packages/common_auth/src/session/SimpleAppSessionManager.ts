@@ -1,13 +1,14 @@
 import {AppSessionManager} from "./AppSessionManager";
 import {LocalStorage} from "common_utils/src/storage/LocalStorage";
 
+
 /**
  * 默认提供的简单的用户会话管理器
  * 依赖localStorage
  */
 export default class SimpleAppSessionManager<T> implements AppSessionManager<T> {
 
-    public static SAVE_MEMBER_KEY: string = "APP_MEMBER_INFO";
+    public static SAVE_MEMBER_KEY: string = `${process.env.API_ROOT_PATH || ''}_APP_MEMBER_INFO`;
 
     private member: T = null;
 

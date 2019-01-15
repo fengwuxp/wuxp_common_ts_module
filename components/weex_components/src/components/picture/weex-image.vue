@@ -4,8 +4,10 @@
 <template>
     <image v-if="show"
            :src="src"
+           ref="image"
            :resize="resize"
-           @click="click"
+           @load="imageLoad"
+           @click="onClick"
            :filter="filter"
            :style="pictureStyle"></image>
 </template>
@@ -32,8 +34,30 @@
             }
         },
         methods: {
-            click() {
+            onClick() {
                 this.$emit("onClick", this.src);
+            },
+
+            /**
+             * 保存图片
+             * @return Promise<void>
+             */
+            save() {
+                const $ref = this.$refs["image"];
+                if ($ref) {
+                    return new Promise((relsove, reject) => {
+                        $ref.save(({success, errorDesc}) => {
+                            if (success) {
+                                relsove();
+                            } else {
+                                reject(errorDesc);
+                            }
+                        });
+                    });
+                }
+
+                return Promise.reject("");
+
             }
         },
         computed: {

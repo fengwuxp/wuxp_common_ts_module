@@ -145,10 +145,8 @@
 
     .input {
         flex: 1;
-        padding-top: 15px;
-        padding-bottom: 15px;
         border-width: 0;
-        color: #3f3c3c;
+        color: #303030;
         placeholder-color: #919191;
     }
 </style>

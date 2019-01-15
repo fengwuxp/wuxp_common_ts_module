@@ -7,9 +7,12 @@ export default {
         proportion: {default: -1}, //默认图片比例 -1表示自适应
     },
     data() {
-        return {
-
-        };
+        return {};
+    },
+    computed: {
+        needLoadSize() {
+            return this.height === -1
+        }
     },
     methods: {
         /**
@@ -64,7 +67,8 @@ export default {
                     width,
                     height
                 });
-            })
+            });
+            this.show = true;
 
         },
 
@@ -85,11 +89,12 @@ export default {
             if (imageWidth <= 0 || imageHeight <= 0 - 1) {
                 return;
             }
-            this.setSize({
+            this.adjustSize({
                 imageWidth,
                 imageHeight
             });
-        }
+        },
+
     },
     beforeMount() {
 
@@ -99,17 +104,22 @@ export default {
             this.height = this.width;
         }
         this.height = parseInt(this.height);
-        imageLoader.loadImageInfo(this.src, this.width === -1 ? this.maxWidth : this.width,
-            (map) => {
-                const {reqWidth, reqHeight} = map;
-                this.adjustSize({
-                    imageWidth: reqWidth,
-                    imageHeight: reqHeight
+        if (this.needLoadSize) {
+            imageLoader.loadImageInfo(this.src, this.width === -1 ? this.maxWidth : this.width,
+                (map) => {
+                    const {reqWidth, reqHeight} = map;
+                    this.adjustSize({
+                        imageWidth: reqWidth,
+                        imageHeight: reqHeight
+                    });
+                    console.log("获取图片高度!-> " + JSON.stringify(map));
+                }, (msg) => {
+                    console.log("获取图片高度失败!-> " + msg);
                 });
-                console.log("获取图片高度!-> " + JSON.stringify(map));
-            }, (msg) => {
-                console.log("获取图片高度失败!-> " + msg);
-            });
+
+        } else {
+            this.show = true;
+        }
 
     }
 }

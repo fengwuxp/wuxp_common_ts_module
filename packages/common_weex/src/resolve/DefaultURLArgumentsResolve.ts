@@ -47,7 +47,7 @@ export default class DefaultURLArgumentsResolve implements URLArgumentsResolve {
                 }
             }
             //所有的参数使用json字符串传递
-            encodeParams[DefaultURLArgumentsResolve.JSON_PARAMS_NAME] =  StringToHexUtil.encode(JSON.stringify(toJSONStringParams));
+            encodeParams[DefaultURLArgumentsResolve.JSON_PARAMS_NAME] = StringToHexUtil.encode(JSON.stringify(toJSONStringParams));
             queryString = stringify(encodeParams);
         } else {
             queryString = stringify(params);
@@ -91,6 +91,13 @@ export default class DefaultURLArgumentsResolve implements URLArgumentsResolve {
                 delete params[DefaultURLArgumentsResolve.JSON_PARAMS_NAME];
                 //合并最终的参数
                 Object.assign(params, p);
+                for (const key in  params) {
+                    if (params[key] === "true") {
+                        params[key] = true
+                    } else if (params[key] === "false") {
+                        params[key] = false
+                    }
+                }
             }
         }
         return params;
