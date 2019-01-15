@@ -4,7 +4,7 @@
             :auto-play="autoPlay"
             :interval="interval"
             :infinite="infinite"
-            @change="change"
+            @change="onChange"
             v-if="show">
         <weex-image v-for="(src,i) in images"
                     :key="i"
@@ -57,6 +57,9 @@
                     this.sliderHeight = height;
                 }
 
+            },
+            onChange(e){
+                this.$emit("onChange",e);
             }
         }
     }
