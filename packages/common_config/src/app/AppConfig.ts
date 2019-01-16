@@ -38,8 +38,6 @@ export interface AppConfig {
     layoutConfig: LayoutConfig;
 
 
-
-
     /**
      * androidAppCode 检查更新需要
      */
