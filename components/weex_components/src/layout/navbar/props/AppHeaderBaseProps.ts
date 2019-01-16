@@ -43,30 +43,6 @@ export const getAppHeaderBaseProps = () => {
             type: String
         },
 
-        // /**
-        //  * 沉浸式导航栏颜色
-        //  */
-        // immersiveStatusBarColor: {
-        //     default: navBarOptions.immersiveStatusBarColor,
-        //     type: String
-        // },
-        //
-        // /**
-        //  * 沉浸式导航栏高度
-        //  */
-        // immersiveStatusBarHeight: {
-        //     default: 0,
-        //     type: Number
-        // },
-        //
-        // /**
-        //  * 是否开启沉浸式导航栏
-        //  */
-        // enableImmersive: {
-        //     default: enableImmersiveNavBar(),
-        //     type: Boolean
-        // },
-
         /**
          * 样式
          */

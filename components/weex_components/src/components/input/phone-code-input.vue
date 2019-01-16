@@ -40,6 +40,7 @@
     import ioniconIcon from "common_icons/weex/ionicons/";
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import CountDownControl from "./mixins/CountDownControl";
+    import {isAndroid} from "common_weex/src/constant/WeexEnv";
 
     export default {
         name: "phone-code-input",
@@ -47,6 +48,9 @@
             ioniconIcon
         },
         props: {
+            type: {
+                default: isAndroid ? 'tel' : 'number'
+            },
             containerStyle: {
                 default: () => ({
                     padding: "20px",

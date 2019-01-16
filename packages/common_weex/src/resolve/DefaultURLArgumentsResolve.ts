@@ -91,6 +91,8 @@ export default class DefaultURLArgumentsResolve implements URLArgumentsResolve {
                 delete params[DefaultURLArgumentsResolve.JSON_PARAMS_NAME];
                 //合并最终的参数
                 Object.assign(params, p);
+
+                //处理boolean值，只处理第一层
                 for (const key in  params) {
                     if (params[key] === "true") {
                         params[key] = true

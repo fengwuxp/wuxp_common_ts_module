@@ -97,17 +97,20 @@
                 //检查
                 const r = this.checkInput(value);
                 if (typeof r === "string") {
-                    this.value = r;
+                    this.setValueAndEmitterChangeEvent(r);
                 } else if (r === true) {
-                    this.value = value;
+                    this.setValueAndEmitterChangeEvent(value);
                 }
 
+            },
+            setValueAndEmitterChangeEvent(val) {
+                this.value = val;
                 //父组件中可以使用v-model
                 this.$emit("input", this.needValue);
-
+                this.$emit("onChange", this.needValue);
             },
             clearValue() {
-                this.value = "";
+                this.setValueAndEmitterChangeEvent("");
             },
             clearValueInner() {
                 if (!this.showClearIcon) {
@@ -146,7 +149,7 @@
     .input {
         flex: 1;
         border-width: 0;
-        color: #303030;
+        color: #3f3c3c;
         placeholder-color: #919191;
     }
 </style>
