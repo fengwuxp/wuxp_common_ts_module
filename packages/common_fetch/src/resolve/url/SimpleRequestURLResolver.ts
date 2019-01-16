@@ -23,7 +23,7 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
         const feignOptions = apiService.feign;
 
         //生成 例如 @member/member/queryMember 或 @default/member/{memberId}
-        const url = `${getApiUriByApiService(apiService, feignOptions)}/${getApiUriByApiServiceMethod(apiService, methodName)}`;
+        const url = `${getApiUriByApiService(apiService, feignOptions)}${getApiUriByApiServiceMethod(apiService, methodName)}`;
 
         //替换路径参数
         return this.matchRuleResolver.resolve(url, data);
@@ -41,7 +41,8 @@ const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOption
     const apiModule = feignOptions.apiModule;
 
     //使用serviceName serviceName的值=feignOptions.value或类的名称
-    return `@${apiModule}/${apiService.serviceName}`;
+    const serviceName = apiService.serviceName;
+    return `@${apiModule}${serviceName.startsWith("/") ? serviceName : "/" + serviceName}`;
 };
 
 /**
@@ -56,5 +57,6 @@ const getApiUriByApiServiceMethod = (apiService: FeignProxy, methodName: string)
     if (apiServiceConfig.requestMapping == null || !apiServiceConfig.requestMapping.value) {
         return methodName;
     }
-    return apiServiceConfig.requestMapping.value;
+    const value = apiServiceConfig.requestMapping.value;
+    return value.startsWith("/") ? value : "/" + value;
 };
