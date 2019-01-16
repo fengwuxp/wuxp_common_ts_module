@@ -119,7 +119,7 @@ export default {
          */
         immersiveStatusBarStyle() {
             return {
-                width: weexTheme["screen-width"],
+                width: `${weexTheme["render-width"]}px`,
                 backgroundColor: this.immersiveStatusBarColor,
                 height: `${this.immersiveStatusBarHeight}px`
             }
@@ -130,7 +130,7 @@ export default {
          */
         immersiveBottomBarStyle() {
             return {
-                width: weexTheme["screen-width"],
+                width: `${weexTheme["render-width"]}px`,
                 backgroundColor: this.immersiveBottomBarColor,
                 height: `${this.immersiveBottomBarHeight}px`
             }

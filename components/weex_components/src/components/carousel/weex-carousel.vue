@@ -4,17 +4,19 @@
             :auto-play="autoPlay"
             :interval="interval"
             :infinite="infinite"
-            @change="onChange"
-            v-if="show">
+            @change="onChange">
         <weex-image v-for="(src,i) in images"
                     :key="i"
                     @onLoad="onImageLoad"
                     :src="src"></weex-image>
+        <indicator :style="finallyIndicatorStyle"
+                   class="slider_indicator"></indicator>
     </slider>
 </template>
 
 <script>
     import WeexImage from "../picture/weex-image";
+    import {weexTheme} from "../../theme/js_default_theme";
 
     const defaultSliderHeight = 360;
 
@@ -36,6 +38,9 @@
             },
             infinite: {
                 default: false
+            },
+            indicatorStyle: {
+                default: {}
             }
         },
         data() {
@@ -46,8 +51,15 @@
         computed: {
             sliderStyle() {
                 return {
+                    width: `${weexTheme["render-width"]}px`,
                     ...this.carouselStyles,
                     height: `${this.sliderHeight}px`
+                }
+            },
+            finallyIndicatorStyle() {
+                return {
+                    ...this.indicatorStyle,
+                    width: `${weexTheme["render-width"]}px`,
                 }
             }
         },
@@ -58,13 +70,22 @@
                 }
 
             },
-            onChange(e){
-                this.$emit("onChange",e);
+            onChange(e) {
+                this.$emit("onChange", e);
             }
         }
     }
 </script>
 
 <style scoped>
+
+    .slider_indicator {
+        position: absolute;
+        itemColor: #41a9ff;
+        itemSelectedColor: #ffffff;
+        itemSize: 10px;
+        height: 20px;
+        bottom: 20px;
+    }
 
 </style>

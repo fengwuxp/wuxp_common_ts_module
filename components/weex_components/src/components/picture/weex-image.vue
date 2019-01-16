@@ -15,11 +15,13 @@
 
     import {isAndroid} from "common_weex/src/constant/WeexEnv";
     import ImageAutoSize from "./minxins/ImageAutoSize";
+    import {weexTheme} from "../../theme/js_default_theme";
 
     export default {
         props: {
             src: {default: ""},
             width: {default: 0},
+            maxWidth: {default: weexTheme["render-width"]},
             imageStyle: {default: {}},
             radius: {default: null},
             resize: {

@@ -1,17 +1,18 @@
 import {imageLoader} from "oak_weex_starter/src/ExpotrtWeexOAKModel";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 export default {
 
     props: {
-        height: {default: -1},     //期望高度
-        proportion: {default: -1}, //默认图片比例 -1表示自适应
+        height: {default: 0},     //期望高度
+        proportion: {default: 0}, //默认图片比例 0表示自适应
     },
     data() {
         return {};
     },
     computed: {
         needLoadSize() {
-            return this.height === -1
+            return this.height === 0 && !isWeb;
         }
     },
     methods: {
@@ -21,8 +22,8 @@ export default {
          * @param imageHeight
          */
         adjustSize({imageWidth, imageHeight}) {
-            let autoWidth = this.height === -1;
-            let autoHeight = this.width === -1;
+            let autoWidth = this.height === 0;
+            let autoHeight = this.width === 0;
             if (autoWidth && autoHeight) {
                 //自适应
                 if (imageWidth <= this.maxWidth) {
@@ -52,7 +53,7 @@ export default {
             }
 
             let maxHeight = this.maxHeight;
-            if (maxHeight !== -1 && height > maxHeight) {
+            if (maxHeight !== 0 && height > maxHeight) {
                 //超过最大高度限制
                 //重新计算
                 proportion = height / maxHeight;
@@ -99,13 +100,13 @@ export default {
     beforeMount() {
 
         this.width = parseInt(this.width);
-        if (this.height === -1) {
+        if (this.height === 0) {
             //没有设置高度的话默认和宽度一直
             this.height = this.width;
         }
         this.height = parseInt(this.height);
         if (this.needLoadSize) {
-            imageLoader.loadImageInfo(this.src, this.width === -1 ? this.maxWidth : this.width,
+            imageLoader.loadImageInfo(this.src, this.width === 0 ? this.maxWidth : this.width,
                 (map) => {
                     const {reqWidth, reqHeight} = map;
                     this.adjustSize({

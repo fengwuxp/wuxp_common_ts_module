@@ -78,9 +78,9 @@
     "html-webpack-plugin": "3.2.0",
     "http-proxy-middleware": "0.18.0",
     "immutable": "^4.0.0-rc.10",
-    "typescript": "^3.2.2",
     "tslib": "^1.9.3",
+    "typescript": "^3.2.2",
     "typings": "^2.1.1"
   },
-  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
+  "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }

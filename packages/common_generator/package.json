@@ -19,5 +19,6 @@
   "scripts": {
     "npm_i": "npm i",
     "npm_publish": "npm publish"
-  }
+  },
+  "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }

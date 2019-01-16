@@ -28,7 +28,7 @@
     "@tarojs/taro": "^1.2.0-beta.12",
     "@types/node": "^10.9.4",
     "@types/weex": "^0.0.1",
-    "@types/weixin": "0.0.1",
+    "@types/weixin": "^0.0.1",
     "common_core": "^0.0.1",
     "common_env": "^0.0.1",
     "common_utils": "^0.0.1",
@@ -38,5 +38,5 @@
     "@types/history": "^4.7.2",
     "history": "^4.7.2"
   },
-  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
+  "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }

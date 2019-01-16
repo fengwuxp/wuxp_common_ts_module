@@ -67,5 +67,5 @@
     "webpack-merge": "^4.1.4",
     "webpack-uglify-parallel": "^0.1.4"
   },
-  "gitHead": "d520e502b9abb0580ef33353b942d9b3ca5a8f29"
+  "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }
