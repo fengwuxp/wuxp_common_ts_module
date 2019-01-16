@@ -15,4 +15,5 @@ export const registerWeexModuleByWeb = () => {
     require("./module/Location");
     require("./module/ThirdLogin");
     require("./module/ALiPayModule");
+    require("./module/NaviMapModule");
 };
