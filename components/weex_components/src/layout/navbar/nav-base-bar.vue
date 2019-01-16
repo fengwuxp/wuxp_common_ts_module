@@ -15,10 +15,8 @@
 <script>
 
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
-    import {getStatusBarHeight} from "../../helper/FlexViewHelper";
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
-
 
 
     export default {
@@ -28,9 +26,11 @@
 
         },
         data() {
+            const navBarOptions = AppConfigRegistry.getNavBarOptions();
 
             return {
-                defaultStyle:null
+                //默认样式
+                defaultStyle: navBarOptions.style || {}
             }
         },
         computed: {
@@ -38,10 +38,6 @@
                 const style = {
                     ...this.defaultStyle
                 };
-                if (this.enableImmersive) {
-                    //开启沉浸式导航
-                    style.paddingTop = this.immersiveStatusBarHeight;
-                }
 
                 return {
                     ...CommonThemeControl.resolveStyle({
@@ -55,13 +51,8 @@
 
         },
         created() {
-            const navBarOptions = AppConfigRegistry.getNavBarOptions();
 
-            this.defaultStyle = navBarOptions.style || {};
-            //初始化状态栏
-            getStatusBarHeight().then((height) => {
-                this.immersiveStatusBarHeight = height;
-            });
+
         }
     }
 </script>

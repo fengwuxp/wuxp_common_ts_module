@@ -8,9 +8,13 @@
                :src="bgSrc"
                :style="bgStyle"></image>
         <div class="bg_image">
+            <div v-if="enableImmersiveNavBar"
+                 :style="immersiveStatusBarStyle"></div>
             <slot name="app-header"></slot>
             <slot name="app-body"></slot>
             <slot name="app-footer"></slot>
+            <div v-if="enableImmersiveBottomBar"
+                 :style="immersiveBottomBarStyle"></div>
         </div>
 
     </div>

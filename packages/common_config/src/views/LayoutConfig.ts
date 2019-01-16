@@ -33,6 +33,16 @@ export interface LayoutConfig {
      * 页面主体的样式
      */
     bodyStyle: CSS.Properties<string | number>;
+
+    /**
+     * 沉浸式状态栏颜色
+     */
+    immersiveStatusBarColor?: CSS.BackgroundColorProperty;
+
+    /**
+     * 沉浸式bottom bar 颜色
+     */
+    immersiveBottomBarColor?: CSS.BackgroundColorProperty;
 }
 
 
@@ -82,8 +92,4 @@ export interface NavBarStyleOptions {
      */
     rightStyle?: CSS.Properties<string | number>;
 
-    /**
-     * 沉浸式状态栏颜色
-     */
-    immersiveStatusBarColor?: CSS.BackgroundColorProperty;
 }

@@ -80,6 +80,27 @@ export const getStatusBarHeight = async (): Promise<number> => {
     return appStatusBarHelper.getStatusBarHeight();
 };
 
+
+/**
+ * 获取StatusBar顶部高度
+ * @return {number}
+ */
+export const getBottomBarHeight = async (): Promise<number> => {
+
+    if (isIphoneX) {
+        return IPHONEX_BOTTOM_HEIGHT;
+    } else if (isIos) {
+        return 0;
+    }
+
+    if (appStatusBarHelper == null) {
+        return 0;
+    }
+
+    return appStatusBarHelper.getBottomBarHeight();
+};
+
+
 /**
  * 注册状态栏helper
  * @param helper
@@ -97,4 +118,9 @@ interface AppStatusBarHelper {
      * 获取状态栏
      */
     getStatusBarHeight: () => Promise<number>;
+
+    /**
+     * 获取底部bar的height
+     */
+    getBottomBarHeight: () => Promise<number>;
 }

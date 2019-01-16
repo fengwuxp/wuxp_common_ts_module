@@ -6,11 +6,15 @@ import {StyleTheme} from "common_style/src/CommonThemeControl";
  */
 interface WeexStyleTheme extends StyleTheme {
 
+    //设备宽度
+    "screen-width": string;
+
     //主字号颜色
-    "color-text-base": CSS.Color
+    "color-text-base": CSS.Color;
 }
 
 export const weexTheme: WeexStyleTheme = {
 
+    "screen-width": "750px",
     "color-text-base": "#000"
 };

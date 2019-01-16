@@ -1,4 +1,3 @@
-import {enableImmersiveNavBar} from "../../../condition/EnableImmersiveNavBar";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
 
@@ -44,29 +43,29 @@ export const getAppHeaderBaseProps = () => {
             type: String
         },
 
-        /**
-         * 沉浸式导航栏颜色
-         */
-        immersiveStatusBarColor: {
-            default: navBarOptions.immersiveStatusBarColor,
-            type: String
-        },
-
-        /**
-         * 沉浸式导航栏高度
-         */
-        immersiveStatusBarHeight: {
-            default: 0,
-            type: Number
-        },
-
-        /**
-         * 是否开启沉浸式导航栏
-         */
-        enableImmersive: {
-            default: enableImmersiveNavBar(),
-            type: Boolean
-        },
+        // /**
+        //  * 沉浸式导航栏颜色
+        //  */
+        // immersiveStatusBarColor: {
+        //     default: navBarOptions.immersiveStatusBarColor,
+        //     type: String
+        // },
+        //
+        // /**
+        //  * 沉浸式导航栏高度
+        //  */
+        // immersiveStatusBarHeight: {
+        //     default: 0,
+        //     type: Number
+        // },
+        //
+        // /**
+        //  * 是否开启沉浸式导航栏
+        //  */
+        // enableImmersive: {
+        //     default: enableImmersiveNavBar(),
+        //     type: Boolean
+        // },
 
         /**
          * 样式
