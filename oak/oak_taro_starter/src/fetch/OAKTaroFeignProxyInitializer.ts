@@ -15,6 +15,7 @@ import OAKTaroSyncAuthHelper from "./OAKTaroSyncAuthHelper";
 import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessInterceptor";
 import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
+import DefaultTransformDateInterceptor from "common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
 
 
 /**
@@ -43,7 +44,8 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
         this.interceptorList = interceptorList || [
             new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(taro)),
             new NeedAuthInterceptor(new OAKTaroSyncAuthHelper(taro)),
-            new TaroUnifiedRespProcessInterceptor(taro)
+            new DefaultTransformDateInterceptor(),
+            new TaroUnifiedRespProcessInterceptor(taro),
         ];
 
     }
@@ -56,7 +58,6 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             this.routeMapping,
             this.interceptorList);
 
-        console.log("--oakEnv.clientId-->", oakEnv.clientId);
         FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(

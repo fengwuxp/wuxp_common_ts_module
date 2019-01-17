@@ -1,4 +1,5 @@
 import {SimpleApiSignatureStrategy} from "common_fetch/src/signature/ApiSignatureStrategy";
+import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
 
 const md5 = require("md5");
 
@@ -14,7 +15,6 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
      * 签名秘钥
      */
     private clientSecret: string;
-
 
     /**
      * 渠道编号
@@ -59,14 +59,20 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
  */
 const apiSign = (fields: Array<string>, params: any, clientId: string, clientSecret: string, channelCode: string, timestamp: number): string => {
     console.log("需要签名的列->", fields);
-
     let value = "";
     if (fields != null) {
-        fields.sort().forEach(function (item) {
-            let param = params[item.toString()];
+        fields.sort().forEach((item) => {
+            const key = item.toString();
+            let param = params[key];
             if (param == null) {
-                throw new Error("参与签名的参数：" + item + " 未传入或值无效!");
+                throw new Error("参与签名的参数：" + key + " 未传入或值无效!");
             }
+
+            if (param.constructor === Date) {
+                //时间类型字段转为yyyy-MM-dd hh:mm:ss在签名
+                param = DateFormatUtils.formatterDate(param);
+            }
+
             value += `${item}=${param}&`;
         });
     }
