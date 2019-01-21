@@ -105,6 +105,87 @@ export interface NaviMapModule extends WeexModule {
     openTencent: (dlat: number, dlon: string, dname: string, failure: Function) => void;
 }
 
+/**
+ * 定位模块
+ */
+export interface LocationModule extends WeexModule {
+
+    /**
+     * 获取我的位置信息
+     * @param flag
+     * @param succ 成功回调  {"district":"街道","address":"详细地址","latitude":123.99,"longitude":36.99}
+     * @param fail 失败回调
+     */
+    getMyLocation: (flag: number, succ: (resultInfo: LoacationResultInfo) => void) => void;
+
+
+    /**
+     * Map={"mode":1,"address":"地址","slat":"起点纬度","slng":"起点经度","dlat":"目标纬度","dlng":"目标经度"}
+     * mode:1、2、3，分别表示公交、驾车和步行
+     * address:可空
+     * 坐标double型，起点坐标不传
+     * @param params
+     * @param succ
+     * @param fail
+     */
+    openRoutePlan: (params: any, succ: () => void, fail: () => void) => void;
+}
+
+/**
+ * 定位结果信息
+ */
+export interface LoacationResultInfo {
+
+
+    /**
+     * 区/县
+     */
+    district: string;
+
+    /**
+     * 详细地址
+     */
+    address: string;
+
+    /**
+     * 城市
+     */
+    city: string;
+
+
+    /**
+     * 纬度
+     */
+    latitude: number;
+
+    /**
+     * 精度
+     */
+    longitude: number;
+
+    /**
+     * 省份
+     */
+    province: string;
+
+
+    /**
+     * 第三方城市编码，不同的定位平台可能不同，或没有
+     */
+    areaCode?: string | number;
+
+    /**
+     * 街道
+     */
+    street: string;
+
+    /**
+     * 街道号
+     */
+    streetNumber: string;
+}
+
+
 const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");  //自定义广播对象
 const cache: any = weex.requireModule("cache");
 const appMain: any = weex.requireModule("appMain");
@@ -114,7 +195,7 @@ const qrcode: any = weex.requireModule("qrcode");
 const common: any = weex.requireModule("common");
 const appUpdate: any = weex.requireModule("appUpdate");
 const photo: any = weex.requireModule("photo");
-const location: any = weex.requireModule("location");
+const location: LocationModule = weex.requireModule("location");
 const thirdLogin: any = weex.requireModule("thirdLogin");
 const aliPay: AliPayModule = weex.requireModule("aliPay");
 const naviMap: NaviMapModule = weex.requireModule("naviMap");
