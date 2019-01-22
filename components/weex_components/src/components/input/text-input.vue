@@ -125,7 +125,12 @@
                 if ($ref) {
                     $ref.focus();
                 }
-
+            },
+            blur(){
+                const $ref = this.$refs["input"];
+                if ($ref) {
+                    $ref.blur();
+                }
             }
         },
         beforeMount() {
