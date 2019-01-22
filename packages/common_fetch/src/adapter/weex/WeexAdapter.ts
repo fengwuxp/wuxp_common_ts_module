@@ -31,14 +31,16 @@ export class WeexAdapter extends AbstractFetchAdapter<WebFetchOptions> {
                     reject(data);
                 }
             }, (response) => {
-
-                let requestProgress = options.requestProgress;
-                if (typeof requestProgress === "function") {
+                if (response == null) {
                     return;
                 }
 
+                let requestProgress = options.requestProgress;
+                if (typeof requestProgress !== "function") {
+                    return;
+                }
                 //请求进度
-                // requestProgress(response);
+                requestProgress(response as any);
             });
         });
 

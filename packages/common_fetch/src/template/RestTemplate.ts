@@ -1,4 +1,4 @@
-import {FetchContext, FetchOptions, FetchResponse} from "../FetchOptions";
+import {FetchOptions, FetchResponse} from "../FetchOptions";
 import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";
 import {FetchClient} from "../fetch/FetchClient";
 import {RequestMethod} from "../constant/RequestMethod";
@@ -50,14 +50,14 @@ export interface RestTemplateConfig extends RetryOptions {
     method?: RequestMethod;
 
     /**
-     * 提交的数据类型
+     * 响应的数据类型
      * @see {@link ../constant/http/MediaType}
      * 默认 MediaType.JSON
      */
     consumes?: string[];
 
     /**
-     * 响应的数据类型
+     * 提交的数据类型
      * @see {@link ../constant/http/MediaType}
      */
     produces?: string[];
@@ -75,6 +75,12 @@ const defaultTemplateConfig: RestTemplateConfig = {
 
     headers: {}
 };
+
+//响应类型的映射关系
+const RESPONSE_MAP: Map<string, ResponseType> = new Map<string, ResponseType>();
+RESPONSE_MAP.set(MediaType.JSON, ResponseType.JSON);
+RESPONSE_MAP.set(MediaType.TEXT, ResponseType.TEXT);
+RESPONSE_MAP.set(MediaType.HTML, ResponseType.HTML);
 
 
 /**
@@ -125,13 +131,13 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         }
 
         if (!options.contentType) {
-            options.contentType = this.templateConfig.consumes[0] || MediaType.JSON;
+            //请求提交的数据类型
+            options.contentType = this.templateConfig.produces[0] || MediaType.JSON;
         }
 
         if (options.responseType == null) {
             //默认使用json
-            //let mediaType = this.templateConfig.produces[0] || MediaType.JSON;
-            options.responseType = ResponseType.JSON;
+            options.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON] || ResponseType.JSON;
         }
 
         //路由
