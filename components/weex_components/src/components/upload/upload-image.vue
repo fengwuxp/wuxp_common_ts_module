@@ -127,6 +127,7 @@
                  * 1：上传中，
                  * 2：上传成功
                  * 如果上传失败则回到步骤1
+                 * 上传成功则回到步骤0
                  */
                 uploadStep: 0,
                 uploadResult: ""
@@ -146,6 +147,9 @@
              * 选择图片
              **/
             chooseImage() {
+                if (this.uploadStep !== 0) {
+                    return;
+                }
                 //在原生环境下先选择图片
                 //http://natjs.com/#/reference/media/image
                 actionSheet.create({
@@ -174,7 +178,11 @@
                     const {aspectX, aspectY} = proportion;
                     photo.capture(this.booleanConvert(index === 0),
                         this.booleanConvert(this.crop),
-                        {aspectX: aspectX, aspectY: aspectY}, (data) => {
+                        {
+                            aspectX: aspectX,
+                            aspectY: aspectY,
+                            requireBase64: typeof this.handleUpload === "function"
+                        }, (data) => {
                             if (data === undefined || data === null) {
                                 weexToast("图片选择出现异常");
                                 return;
@@ -223,6 +231,8 @@
                     //TODO 转为base64字符串
                     this.uploadHandle(data).then(() => {
                         this.$emit("onUploadSuccess");
+                    }).then(() => {
+                        this.uploadStep = 0;
                     });
                 } else {
                     //使用默认的原生自动上传
@@ -266,12 +276,9 @@
                         url: process.env.PIC_SERVICE_DOMAIN + url
                     };
                     this.$emit("onUploadSuccess", {
-                        result,
-                        callback: function (width = 200, height = 200) {
-                            this.uploadStep = 0;
-                        }
+                        result
                     });
-
+                    this.uploadStep = 0;
                 });
             },
         },
@@ -283,9 +290,12 @@
 
     .mask_text {
         position: absolute;
-        justify-content: center;
-        align-items: center;
         top: 0;
         left: 0;
+        right: 0;
+        bottom: 0;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, .1);
     }
 </style>

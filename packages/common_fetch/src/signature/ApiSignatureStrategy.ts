@@ -1,6 +1,8 @@
 /**
  * api签名策略
  */
+import {FetchOptions} from "../FetchOptions";
+
 export interface ApiSignatureStrategy {
 
     /**
@@ -14,7 +16,13 @@ export interface ApiSignatureStrategy {
 export interface SimpleApiSignatureStrategy extends ApiSignatureStrategy {
 
 
-    sign: (fields: string[], data: object | any) => object;
+    /**
+     * 签名
+     * @param fields        需要参与签名的字段
+     * @param data          请求数据
+     * @param fetchOptions  请求数据
+     */
+    sign: (fields: string[], data: object | any, fetchOptions: FetchOptions) => object;
 
 
 }

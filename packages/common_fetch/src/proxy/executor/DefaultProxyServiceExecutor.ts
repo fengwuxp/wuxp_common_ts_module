@@ -65,7 +65,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         }
         if (signature && this.apiSignatureStrategy != null) {
             //签名处理
-            const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter);
+            const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter,fetchOptions);
             fetchOptions.data = {
                 ...data,
                 ...sign
