@@ -24,7 +24,6 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
 
         //生成 例如 @member/member/queryMember 或 @default/member/{memberId}
         const url = `${getApiUriByApiService(apiService, feignOptions)}${getApiUriByApiServiceMethod(apiService, methodName)}`;
-
         //替换路径参数
         return this.matchRuleResolver.resolve(url, data);
     };
@@ -53,10 +52,12 @@ const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOption
 const getApiUriByApiServiceMethod = (apiService: FeignProxy, methodName: string) => {
 
     const apiServiceConfig = apiService.getServiceMethodConfig(methodName);
-
+    let value;
     if (apiServiceConfig.requestMapping == null || !apiServiceConfig.requestMapping.value) {
-        return methodName;
+        value = methodName;
+    } else {
+        value = apiServiceConfig.requestMapping.value
     }
-    const value = apiServiceConfig.requestMapping.value;
-    return value.startsWith("/") ? value : "/" + value;
+
+    return value.startsWith("/") ? value : `/${value}`;
 };

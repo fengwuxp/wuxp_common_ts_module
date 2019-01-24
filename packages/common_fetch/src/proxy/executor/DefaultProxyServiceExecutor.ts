@@ -35,7 +35,6 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //处理请求头
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
 
-
         //请求requestMapping
         const {requestMapping, signature, retryOptions} = apiService.getServiceMethodConfig(methodName);
 
