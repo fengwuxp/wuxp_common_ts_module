@@ -1,3 +1,4 @@
+<!--tab scroll header-->
 <template>
     <scroller class="tab-title-list"
               ref="tab-title-list"
@@ -37,6 +38,11 @@
                   :style="{ fontSize: tabStyles.fontSize+'px', fontWeight: (currentPage == index && tabStyles.isActiveTitleBold)? 'bold' : 'normal', color: currentPage == index ? tabStyles.activeTitleColor : tabStyles.titleColor, paddingLeft:tabStyles.textPaddingLeft+'px', paddingRight:tabStyles.textPaddingRight+'px'}"
                   :value="v.title"
                   class="tab-text"></text>
+            <div class="desc-tag" v-if="v.badge && !titleUseSlot">
+                <text class="desc-text" :value="v.badge"></text>
+            </div>
+            <div v-if="v.dot && !v.badge && !titleUseSlot"
+                 class="dot"></div>
             <div class="border-bottom"
                  v-if="tabStyles.hasActiveBottom && !titleUseSlot"
                  :style="itemBottomBorderStyle(index)"></div>
@@ -155,5 +161,40 @@
         margin-bottom: 8px;
         font-family: wxcIconFont;
     }
+
+    .desc-tag {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        border-bottom-right-radius: 14px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+        background-color: #FF5E00;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        position: absolute;
+        top: 10px;
+        right: 40px;
+        background-color: #FF5E00;
+    }
+
+    .desc-text {
+        font-size: 18px;
+        color: #ffffff;
+    }
+
 
 </style>
