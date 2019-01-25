@@ -3,7 +3,9 @@ import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
 
 const md5 = require("md5");
 
-
+/**
+ * oak的api签名策略
+ */
 export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
 
     /**

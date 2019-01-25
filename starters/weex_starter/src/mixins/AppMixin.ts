@@ -1,6 +1,6 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
-import {transferViewState} from "common_weex/src/route/PageStatTransferUtil";
+import {setNextViewState, transferViewState} from "common_weex/src/route/PageStatTransferUtil";
 import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
 import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
@@ -67,7 +67,12 @@ const appMixin: ComponentOptions<any> = {
 
         this.viewIsReady = true;
         //调用页面的onReady方法
-        this.onReady && this.onReady()
+        this.onReady && this.onReady();
+
+        if (state != null) {
+            //清空本业的页面的sate
+            setNextViewState(null);
+        }
     }
 };
 

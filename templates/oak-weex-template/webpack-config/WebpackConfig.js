@@ -5,11 +5,11 @@
 const INCLUDE_PATH = ["weex_components", "common_icons"];  //需要从node_modules引入的自己的源码模块
 
 //开发环境请求域名
-const DEV_API_DOMAIN = "test.meazoo.com";//"dev.oaknt.com";
+const DEV_API_DOMAIN = "test.xxxx.com";//"dev.oaknt.com";
 
 
 //正式环境请求域名
-const PROD_API_DOMAIN = "test.meazoo.com";
+const PROD_API_DOMAIN = "prod.xxx.com";
 
 //测试h5部署目录
 const TEST_H5_WEB_CONTEXT = "test_h5";

@@ -1,8 +1,9 @@
 #### 通用的fetch请求工具，支持浏览器，weex 微信小程序
 
 #### 思路
-          1：请求统一由engine发出
-          2: engine由适配器进行初始化
+          1：请求统一由client发出
+          2: client有一个请求适配器进行真正的处理，已对应不同环境，比如浏览器，Nodejs weex 微信小程序，react-native
+             默认已经实现了 浏览器，weex,微信小程序3个端
           3：请求过程可以插入前置、后置拦截器
 
 #### 扩展自定义环境下的适配器
@@ -11,7 +12,7 @@
 #### 依赖的环境变量
        process.env.RUN_ENV，有效值：WEB、WEEX、WX_MIN_AAPP，默认值为web
 
-###### 使用时需要设置 环境变量 process.env.RUN_ENV
+##### 使用时需要设置 环境变量 process.env.RUN_ENV
 ##### 使用方式
 
           1: http adpater

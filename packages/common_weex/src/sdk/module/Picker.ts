@@ -1,11 +1,12 @@
 import {isWeb} from "../../constant/WeexEnv";
+import {WeexPickerModule} from "weex/src/sdk/model/picker";
 /**
  * 自定义picker 保存对象
  * Created by wuxp on 2017/6/6.
  */
 if (isWeb) {
 
-    const pickerModal:any={
+    const pickerModal:WeexPickerModule={
         pickDate(){
             console.log("web端暂不支持");
         },

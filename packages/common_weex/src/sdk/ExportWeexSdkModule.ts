@@ -14,10 +14,10 @@ import {WeexStorageModule} from "weex/src/sdk/model/storage";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator/";
 import {WeexModalModule} from "weex/src/sdk/model/modal/";
 import {WeexWebSocketModule} from "weex/src/sdk/model/webSocket";
+import {isWeb} from "../constant/WeexEnv";
 
-if (process.env.IS_WEB) {
+if (isWeb) {
     require("./module/Picker");
-    // require("./module/Timer");
 }
 
 const animation: WeexAnimationModule = weex.requireModule('animation');
