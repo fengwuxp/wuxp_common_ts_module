@@ -1,6 +1,7 @@
 <!--下拉刷新-->
 <template>
-    <drop-refresh-view :loadMore="loadMore">
+    <drop-refresh-view :loadMore="loadMore"
+                       :querySize="6">
         <div></div>
     </drop-refresh-view>
 </template>
@@ -20,7 +21,7 @@
             loadMore() {
 
                 return Promise((resolve) => {
-                    resolve();
+                    resolve(5);
                 });
             }
         }

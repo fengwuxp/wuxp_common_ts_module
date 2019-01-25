@@ -47,7 +47,7 @@ export default {
          * 页码发生下拉刷新
          * @param e
          */
-        viewOnRefresh(e) {
+        onViewOnRefresh(e) {
             //开始刷新
             this.refreshing = true;
             this.queryPage = 1;
@@ -70,22 +70,26 @@ export default {
                 this.endRefreshAnimation();
             });
         },
-        viewOnPullingDown(e) {
+        onViewOnPullingDown(e) {
             this.$emit("onPullingDown", e);
         },
 
         /**
          * 加载更多
+         * @param event
+         * @param isRefresh
          */
         onLoadMore(event, isRefresh = false) {
 
             if (this.queryLoading || this.queryEnd) {
+                //防止连续触发，串行化
                 return;
             }
             this.queryLoading = true;
             const loadMore = this.loadMore;
             if (typeof loadMore !== "function") {
-                throw new Error(`loadMore is not function`);
+                // throw new Error(`loadMore is not function`);
+                return;
             }
             //向父组件广播事件
             // this.$emit("onLoadMore");
@@ -108,7 +112,7 @@ export default {
          * 页面滚动
          * @param event
          */
-        viewScroll(event) {
+        onViewScroll(event) {
             //页面滚动时调用的方法
             this.$emit("onScroll", event);
         },
@@ -169,7 +173,7 @@ export default {
         if (this.refreshNow) {
             //页面一加载就刷新
             this.$nextTick(() => {
-                this.viewOnRefresh(null);
+                this.onViewOnRefresh(null);
             });
         }
 

@@ -72,6 +72,7 @@ export default {
     /**
      * 加载跟多的方法
      * 传入查询大小和查询页码
+     * @param isRefresh 是否为下拉刷新（重置）
      * 返回查询到的数据条数
      * ({
      *     querySize:number,
@@ -80,8 +81,7 @@ export default {
      */
     loadMore: {
         default: null,
-        type: Function,
-        required: true
+        type: Function
     },
 
 

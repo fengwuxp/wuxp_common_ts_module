@@ -4,12 +4,12 @@
               ref="scroll_container"
               :loadmoreoffset="loadMoreOffset"
               @resetLoadmore="resetLoadMore"
-              @scroll="viewScroll"
-              @loadmore="loadMore">
+              @scroll="onViewScroll"
+              @loadmore="onLoadMore">
         <refresh class="flex_row"
                  :style="refreshContainerStyle"
-                 @refresh="viewOnRefresh"
-                 @pullingdown="viewOnPullingDown"
+                 @refresh="onViewOnRefresh"
+                 @pullingdown="onViewOnPullingDown"
                  :display="refreshing ? 'show' : 'hide'">
             <div v-if="indicatorModel==='default'"
                  class="flex_row flex_v_center"
