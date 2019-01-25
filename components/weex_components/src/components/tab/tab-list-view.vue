@@ -70,9 +70,10 @@
              */
             changeSlider({index}) {
                 Vue.set(this.showStatus, index, true);
-                if (index !== this.selectedIndex) {
-                    this.emitEvent(index);
+                if (index === this.selectedIndex) {
+                    return;
                 }
+                this.emitEvent(index);
                 this.selectedIndex = index;
                 this.$refs['tab-scroll-header'].changeIndex(index);
             },
