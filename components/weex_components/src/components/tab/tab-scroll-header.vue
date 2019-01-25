@@ -38,9 +38,11 @@
                   :style="{ fontSize: tabStyles.fontSize+'px', fontWeight: (currentPage == index && tabStyles.isActiveTitleBold)? 'bold' : 'normal', color: currentPage == index ? tabStyles.activeTitleColor : tabStyles.titleColor, paddingLeft:tabStyles.textPaddingLeft+'px', paddingRight:tabStyles.textPaddingRight+'px'}"
                   :value="v.title"
                   class="tab-text"></text>
+            <!--数字徽章-->
             <div class="desc-tag" v-if="v.badge && !titleUseSlot">
                 <text class="desc-text" :value="v.badge"></text>
             </div>
+            <!--打点-->
             <div v-if="v.dot && !v.badge && !titleUseSlot"
                  class="dot"></div>
             <div class="border-bottom"

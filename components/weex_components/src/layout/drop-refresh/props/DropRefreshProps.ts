@@ -55,8 +55,33 @@ export default {
         default: 130
     },
 
+    /**
+     * 查询大小
+     */
+    querySize: {
+        default: 10
+    },
+
+    /**
+     * 距离底部触发加载更多事件的距离
+     */
     loadMoreOffset: {
         default: 120
+    },
+
+    /**
+     * 加载跟多的方法
+     * 传入查询大小和查询页码
+     * 返回查询到的数据条数
+     * ({
+     *     querySize:number,
+     *     queryPage:number
+     * },isRefresh:boolean)=>Promise<number>
+     */
+    loadMore: {
+        default: null,
+        type: Function,
+        required: true
     },
 
 

@@ -14,26 +14,54 @@ export default {
     props: {
         //是否立即刷新
         refreshNow: {
-            default: false
+            default: true
         },
         ...DropRefreshProps
     },
     data() {
         return {
+            //是否显示下拉刷新提示
             showTip: false,
+
             //是否处于刷新状态
             refreshing: false,
+
             //当前下拉刷新动画的帧
             currentAnimationFrame: 0,
+
             //图片列表
-            images: []
+            images: [],
+
+            //初始查询页码
+            queryPage: 1,
+            //是否处于查询中
+            queryLoading: false,
+            //是否查询结束
+            queryEnd: false
         }
     },
+    computed: {},
     methods: {
+
+        /**
+         * 页码发生下拉刷新
+         * @param e
+         */
         viewOnRefresh(e) {
             //开始刷新
             this.refreshing = true;
+            this.queryPage = 1;
+            this.queryEnd = false;
+            this.queryLoading = false;
             this.startRefreshAnimation();
+
+
+            //加载数据
+            const onLoadMore = this.onLoadMore(null, true);
+            if (onLoadMore != null) {
+                onLoadMore.finally(this.endRefreshAnimation);
+            }
+            //向父组件广播刷新事件
             this.$emit("onRefresh", (message) => {
                 if (message) {
                     //TODO 提示
@@ -42,7 +70,6 @@ export default {
                 this.endRefreshAnimation();
             });
         },
-
         viewOnPullingDown(e) {
             this.$emit("onPullingDown", e);
         },
@@ -50,8 +77,31 @@ export default {
         /**
          * 加载更多
          */
-        loadMore(e) {
-            this.$emit("onLoadMore");
+        onLoadMore(event, isRefresh = false) {
+
+            if (this.queryLoading || this.queryEnd) {
+                return;
+            }
+            this.queryLoading = true;
+            const loadMore = this.loadMore;
+            if (typeof loadMore !== "function") {
+                throw new Error(`loadMore is not function`);
+            }
+            //向父组件广播事件
+            // this.$emit("onLoadMore");
+
+            return loadMore({
+                queryPage: this.queryPage,
+                querySize: this.querySize,
+            }, isRefresh).finally((len = 0) => {
+                if (len < this.querySize) {
+                    //查询结束
+                    this.queryEnd = true;
+                } else {
+                    this.queryPage++;
+                }
+                this.queryLoading = false;
+            });
         },
 
         /**
