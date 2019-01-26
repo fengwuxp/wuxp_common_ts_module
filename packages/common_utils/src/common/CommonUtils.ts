@@ -1,13 +1,8 @@
-/**
- * Created by wuxp on 2017/6/6.
- */
-import {isNullOrUndefined, isString, isNumber, isBoolean} from "util";
-
 const moneyRegExp = /^[0-9]+[\.]?[0-9]{0,2}$/;
 
-class CommonUtils {
+export default class CommonUtils {
 
-    constructor() {
+    private constructor() {
     }
 
     /**
@@ -15,7 +10,7 @@ class CommonUtils {
      * @param value
      * @return {boolean}
      */
-    isMoney = (value: any): boolean => {
+    static isMoney = (value: any): boolean => {
 
         if (value === null) {
             return true;
@@ -37,8 +32,8 @@ class CommonUtils {
      * @param obj
      * @return {boolean}
      */
-    isNullOrUndefined = (obj: any): boolean => {
-        return isNullOrUndefined(obj);
+    static isNullOrUndefined = (obj: any): boolean => {
+        return obj == null;
     };
 
     /**
@@ -46,11 +41,11 @@ class CommonUtils {
      * @param obj
      * @return {boolean}
      */
-    isEmptyObject = (obj: any): boolean => {
-        if (isNullOrUndefined(obj)) {
+    static isEmptyObject = (obj: any): boolean => {
+        if (obj == null) {
             return true;
         }
-        if (isString(obj)) {
+        if (typeof obj === "string") {
             let k: string = obj.trim();
             if (k.trim().length === 0) {
                 return true;
@@ -59,12 +54,13 @@ class CommonUtils {
                 return true;
             }
         }
-        if (isNumber(obj)) {
+        if (typeof obj === "number") {
             return isNaN(obj);
         }
-        if (isBoolean(obj)) {
+        if (typeof obj === "boolean") {
             return false;
         }
+
         for (let k in obj) {
             return false
         }
@@ -74,5 +70,3 @@ class CommonUtils {
 
 
 }
-
-export default new CommonUtils();

@@ -1,48 +1,96 @@
 <template>
     <div class="wx-switch"
-         :style="{'background-color': checked ? checkedColor : '#d9d9d9'}"
+         :style="switchStyle"
          @click="handleClick">
-        <text ref="switchCore" class="switch-core" :style="corestyle"></text>
+        <text ref="switchCore" class="switch-core" :style="coreStyle"></text>
         <text class="blk" ref="blk" :style="blkStyle"></text>
     </div>
 </template>
 
 <script>
-    import {isAndroid,isWeb} from "common_weex/src/constant/WeexEnv";
+
+    import {isAndroid, isWeb} from "common_weex/src/constant/WeexEnv";
     import {animation} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {SIZE_CONFIG} from "./SizeConfigMap";
+
 
     export default {
         mixins: [],
         props: {
-            value: {
+            defaultValue: {
                 type: Boolean,
             },
             disabled: {
                 type: Boolean,
             },
-
             checkedColor: {
                 type: String,
                 default: '#027FF3',
+            },
+            /**
+             * 大小 sm md lg
+             */
+            size: {
+                default: "md"
             }
         },
 
         data() {
             return {
-                checked: false,
-                blkStyle: {},
-                corestyle: {},
+                checked: false
             }
         },
 
-        created() {
-            this.initStyle();
-        },
+        computed: {
 
-        mounted() {
-            this.checked = this.value;
-            this.blkAnimation(true);
-            this.animation(true);
+            /**
+             * switch 按钮的样式
+             * @return {{[p: string]: *}}
+             */
+            switchStyle() {
+                const {checkedColor, checked, size} = this;
+                const {width, height} = SIZE_CONFIG[size].switchConfig;
+                return {
+                    backgroundColor: checked ? checkedColor : '#d9d9d9',
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: `${height}px`
+                }
+            },
+            coreStyle() {
+                const {size} = this;
+                const {width, height, top} = SIZE_CONFIG[size].core;
+                return {
+                    top: `${top}px`,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: `${height}px`
+                }
+            },
+            blkStyle() {
+                const {size} = this;
+                const {width, height, top, left} = SIZE_CONFIG[size].blk;
+                let blkStyle = {};
+                if (isAndroid) {
+                    blkStyle = {
+                        'border-width': '1px',
+                        'border-style': 'solid',
+                        'border-color': '#d9d9d9',
+                    }
+                } else {
+                    blkStyle = {
+                        boxShadow: '0 1px 3px rgba(0,0,0,.4)',
+                    };
+                }
+                return {
+                    ...blkStyle,
+                    top: `${top}px`,
+                    left: `${left}px`,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: `${height}px`
+                };
+            }
         },
 
         methods: {
@@ -60,7 +108,8 @@
             animation(isInit = false) {
                 let el = this.$refs.switchCore;
                 // 设置为0.1 解决奇怪的Y轴会覆盖点击问题
-                let s = this.checked ? '0.1' : '1';
+                // let s = this.checked ? '0.1' : '1';
+                let s = this.checked ? 0 : 1;
                 animation.transition(el, {
                     styles: {
                         transform: `scale(${s})`
@@ -74,7 +123,11 @@
 
             blkAnimation(isInit = false) {
                 let el = this.$refs.blk;
-                let x = this.checked ? '42px' : '0px';
+
+                const {size} = this;
+                const {switchConfig, blk, marginRight} = SIZE_CONFIG[size];
+
+                let x = this.checked ? `${switchConfig.width - blk.width - marginRight}px` : '0px';
                 animation.transition(el, {
                     styles: {
                         transform: `translateX(${x})`
@@ -91,61 +144,39 @@
 
             // android不支持阴影
             initStyle() {
-                if (isAndroid) {
-                    this.blkStyle = {
-                        'border-width': '1px',
-                        'border-style': 'solid',
-                        'border-color': '#d9d9d9',
-                    }
-                } else {
-                    this.blkStyle = {
-                        'box-shadow': '0 1px 3px rgba(0,0,0,.4)',
-                        top: '5px'
-                    };
-                    if (isWeb) {
-                        this.corestyle = {
-                            width: '100px',
-                            height: '60px',
-                            'border-radius': '60px',
-                        };
-                        this.blkStyle.top = '4px';
-                    }
-                }
+
             }
-        }
+        },
+        created() {
+            this.initStyle();
+        },
+
+        mounted() {
+            this.checked = this.defaultValue;
+            this.blkAnimation(true);
+            this.animation(true);
+        },
     }
 </script>
 
 <style scoped>
     .wx-switch {
         position: relative;
-        width: 104px;
-        height: 64px;
-        border-radius: 64px;
         border-width: 1px;
         border-style: solid;
-        border-color: #ddd;
+        border-color: #dddddd;
         background-color: #d9d9d9;
     }
 
     .blk {
         position: absolute;
-        top: 5px;
-        left: 0px;
         z-index: 100;
-        height: 52px;
-        width: 56px;
-        background-color: #fff;
-        border-radius: 52px;
+        background-color: #ffffff;
     }
 
     .switch-core {
         position: absolute;
-        top: 0;
-        width: 102px;
-        height: 62px;
         background-color: #fdfdfd;
-        border-radius: 62px;
     }
 
 </style>
