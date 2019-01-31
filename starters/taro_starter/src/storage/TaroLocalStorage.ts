@@ -3,6 +3,9 @@ import {LocalStorageOptions} from "common_utils/src/storage/LocalStorage";
 import TaroJsHolder from "../TaroJsHolder";
 
 
+/**
+ * taro的local storage
+ */
 class TaroLocalStorage implements LocalStorage {
 
 

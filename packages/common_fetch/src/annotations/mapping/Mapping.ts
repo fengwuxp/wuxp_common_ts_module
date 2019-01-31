@@ -41,6 +41,12 @@ export interface BaseRequestMappingOptions {
      */
     produces?: string[];
 
+    /**
+     * 需要鉴权
+     * 默认：false
+     */
+    needAuth?: boolean;
+
 }
 
 export interface RequestMappingOptions extends BaseRequestMappingOptions {
@@ -64,7 +70,6 @@ export type Mapping<T extends BaseRequestMappingOptions = BaseRequestMappingOpti
 export function generateMapping<T extends BaseRequestMappingOptions>(method?: RequestMethod): Mapping<T> {
 
     return function <E extends ProxyApiService>(options: T): Function {
-
 
 
         /**

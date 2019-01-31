@@ -41,22 +41,33 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
         const routeMapping = {};
         routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
         this.routeMapping = routeMapping;
-        this.interceptorList = interceptorList || [
-            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(taro)),
-            new NeedAuthInterceptor(new OAKTaroSyncAuthHelper(taro)),
-            new DefaultTransformDateInterceptor(),
-            new TaroUnifiedRespProcessInterceptor(taro),
-        ];
+        this.interceptorList = interceptorList;
 
     }
 
     initFeignProxyFactory = () => {
 
+        const needAuthInterceptor = new NeedAuthInterceptor();
+        const interceptorList = [
+            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(this.taro)),
+            needAuthInterceptor,
+            new DefaultTransformDateInterceptor(),
+            new TaroUnifiedRespProcessInterceptor(this.taro)
+        ];
 
         const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
             this.taro,
             this.routeMapping,
-            this.interceptorList);
+            interceptorList);
+
+        //设置template
+        needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null), this.taro);
+
+        if (this.interceptorList == null) {
+
+            this.interceptorList = interceptorList
+        }
+
 
         FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,

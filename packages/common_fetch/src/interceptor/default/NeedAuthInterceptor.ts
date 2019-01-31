@@ -9,29 +9,32 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
     /**
      * 鉴权处理者
      */
-    private authHelper: SyncAuthHelper;
+    private _authHelper: SyncAuthHelper;
 
 
-    constructor(authHelper: SyncAuthHelper) {
+    constructor(authHelper?: SyncAuthHelper) {
         super();
-        this.authHelper = authHelper;
+        this._authHelper = authHelper;
     }
 
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
 
-        return this.authHelper.isToAuthView(data, options);
+        return this._authHelper.isToAuthView(data, options);
     };
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
         //初始化请求头
         params.headers = params.headers || {};
-        return this.authHelper.requestParamsEnhance(params);
+        return this._authHelper.requestParamsEnhance(params);
 
+    };
+
+
+    set authHelper(value: SyncAuthHelper) {
+        this._authHelper = value;
     }
-
-
 }
 
 
@@ -53,3 +56,4 @@ export interface SyncAuthHelper<T = FetchOptions, R = FetchResponse> {
      */
     isToAuthView: (data: R, options: T) => Promise<R>;
 }
+

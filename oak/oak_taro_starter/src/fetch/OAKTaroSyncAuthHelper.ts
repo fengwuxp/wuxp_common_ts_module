@@ -1,73 +1,66 @@
-import {SyncAuthHelper} from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import {TaroInterface} from "taro_starter/src/TaroJsHolder";
+import {AbstractSyncAuthHelper, RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {RestTemplate} from "../../../../packages/common_fetch/src/template/RestTemplate";
 
 /**
  * Taro 同步鉴权处理者
  */
-export default class OAKTaroSyncAuthHelper implements SyncAuthHelper {
+export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
 
     private taro: TaroInterface;
 
-    protected static loginNoticeTimerId;
 
     //等待登录结果通知的最大秒数
     public static MAX_WAIT_LOGIN_NOTICE_TIMES = 30 * 1000;
 
-    //登录结果通
-    public static LOGIN_RESULT_EVENT: string = "login_result_notice";
 
-    //需要登录事件通知
-    public static NEED_LOGIN_EVENT: string = "need_login_notice";
-
-    constructor(taro: TaroInterface) {
+    constructor(testTemplate: RestTemplate, taro: TaroInterface) {
+        super(testTemplate);
         this.taro = taro;
     }
 
-    async isToAuthView(response: FetchResponse, options: FetchOptions): Promise<FetchResponse> {
+    isToAuthView = (response: FetchResponse, options: FetchOptions): Promise<FetchResponse> => {
 
         if (response.data.code != 99) {
-            return response;
+            return Promise.resolve(response);
         }
 
-        if (OAKTaroSyncAuthHelper.loginNoticeTimerId != null) {
-            //处于等待状态
-            return response;
-        }
-
-        return new Promise<FetchResponse>((resolve, reject) => {
-
-            //发出一个需要登录的通知
-            this.taro.eventCenter.trigger(OAKTaroSyncAuthHelper.NEED_LOGIN_EVENT, true);
-
-            //开始等待登录结果
-            this.startWaitLoginResult();
-
-            resolve(response);
+        return this.buildWaitPromise({
+            response,
+            options
         });
 
     };
 
 
-    async requestParamsEnhance(params: FetchOptions): Promise<FetchOptions> {
-
-        try {
-            const member: any = await taroDefaultSessionManager.getMember();
-            const token = member.token;
-            if (!this.verifyToken(token)) {
-                return params;
+    protected getToken = (): Promise<string> => {
+        return taroDefaultSessionManager.getMember().then((member) => {
+            const token = member["token"];
+            if (this.verifyToken(token)) {
+                return Promise.reject();
+            } else {
+                return token;
             }
-            params.headers["token"] = token;
-        } catch (e) {
-            //TODO 加入鉴权判断逻辑
-            return params;
-        }
-
-
-        return params;
-
+        })
     };
+
+    protected broadcastRefreshTokenEvent = () => {
+        this.taro.eventCenter.trigger(AbstractSyncAuthHelper.NEED_AUTH_EVENT);
+    };
+    protected cancelTokenResultEvent = () => {
+        //取消事件监听
+        this.taro.eventCenter.off(AbstractSyncAuthHelper.NEED_AUTH_EVENT);
+    };
+
+    protected receiveTokenResultEvent = () => {
+        //接受事件监听
+        this.taro.eventCenter.on(AbstractSyncAuthHelper.REFRESH_TOKEN_RESULT, (result: RefreshTokenResult) => {
+            this.handleWaitResult(result);
+        });
+    };
+
 
     /**
      * 简单验证token有效性
@@ -83,39 +76,6 @@ export default class OAKTaroSyncAuthHelper implements SyncAuthHelper {
         }
         return true;
     };
-
-    /**
-     * 开始等待登录结果，最大等待 MAX_WAIT_LOGIN_NOTICE_TIMES 时长
-     */
-    private startWaitLoginResult = () => {
-
-        //初始化定时器
-        OAKTaroSyncAuthHelper.loginNoticeTimerId = setTimeout(() => {
-            this.clearStatus();
-        }, OAKTaroSyncAuthHelper.MAX_WAIT_LOGIN_NOTICE_TIMES);
-
-
-        //监听登录结果，不论成功或失败
-        this.taro.eventCenter.on(OAKTaroSyncAuthHelper.LOGIN_RESULT_EVENT, () => {
-            //清除定时器
-            clearTimeout(OAKTaroSyncAuthHelper.loginNoticeTimerId);
-            this.clearStatus();
-
-        });
-
-    };
-
-
-    /**
-     * 清除状态
-     */
-    private clearStatus = () => {
-        //清除定时器
-        OAKTaroSyncAuthHelper.loginNoticeTimerId = null;
-
-        //取消事件监听
-        this.taro.eventCenter.off(OAKTaroSyncAuthHelper.LOGIN_RESULT_EVENT);
-    }
 
 
 }

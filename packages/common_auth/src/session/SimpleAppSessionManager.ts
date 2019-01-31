@@ -41,11 +41,12 @@ export default class SimpleAppSessionManager<T> implements AppSessionManager<T> 
     };
 
     removeMember = (): Promise<boolean> => {
+        this.member = null;
         return this.storage.removeStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY).then(() => true);
     };
 
     saveMember = (memebr: T): Promise<void> => {
-
+        this.member = memebr;
         return this.storage.setStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
     };
 }
