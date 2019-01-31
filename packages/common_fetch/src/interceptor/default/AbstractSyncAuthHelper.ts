@@ -179,7 +179,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
                 reject();
                 return;
             }
-            console.log(`自动重试请求：${result.retry}`, options, this.retryTestTemplate);
+            // console.log(`自动重试请求：${result.retry}`, options, this.retryTestTemplate);
             if (result.retry && this.retryTestTemplate != null) {
                 //重试
                 const {contentType} = options;
@@ -189,10 +189,9 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
                     } else if (contentType === MediaType.JSON) {
                         options.data = JSON.parse(options.data);
                     }
-
                 }
-
-                resolve(this.retryTestTemplate.fetch(options));
+                options.useUnifiedTransformResponse = false;
+                this.retryTestTemplate.fetch(options).finally(resolve as any);
             } else {
                 //登录成功
                 resolve(response);

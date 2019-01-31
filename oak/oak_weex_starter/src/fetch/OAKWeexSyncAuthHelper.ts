@@ -13,7 +13,7 @@ import {RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractS
 export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
 
 
-    constructor(testTemplate: RestTemplate) {
+    constructor(testTemplate?: RestTemplate) {
         super(testTemplate);
     }
 

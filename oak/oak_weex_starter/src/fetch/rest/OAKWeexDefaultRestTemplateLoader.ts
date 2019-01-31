@@ -22,9 +22,10 @@ const routeMapping = {};
 
 routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
 
+const needAuthInterceptor = new NeedAuthInterceptor();
 const interceptorList = [
     new NeedProgressBarInterceptor(new OAKWeexFetchProgressBar()),
-    new NeedAuthInterceptor(new OAKWeexSyncAuthHelper()),
+    needAuthInterceptor,
     new WeexUnifiedRespProcessInterceptor()
 ];
 
@@ -33,8 +34,7 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
 
     buildRestTemplate = (apiModuleName: string): RestTemplate => {
 
-
-        return new DefaultRestTemplate({
+        const defaultRestTemplate = new DefaultRestTemplate({
                 method: RequestMethod.POST,
                 consumes: [MediaType.JSON],
                 produces: [MediaType.JSON],
@@ -43,6 +43,8 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
             }, new DefaultApiRoutingStrategy(routeMapping),
             new DefaultFetchClient(new WeexAdapter()),
             new FetchInterceptorExecutor(interceptorList));
+        needAuthInterceptor.authHelper = new OAKWeexSyncAuthHelper(defaultRestTemplate);
+        return defaultRestTemplate;
     };
 
 
