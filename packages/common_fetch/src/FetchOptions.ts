@@ -66,6 +66,12 @@ export interface FetchOptions extends BaseFetchOptions {
     useUnifiedTransformResponse?: boolean;
 
     /**
+     * 需要鉴权
+     *  默认：false
+     */
+    needAuth?: boolean;
+
+    /**
      * 进度条配置
      * 进度条控制可以在拦截器实现
      *

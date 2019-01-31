@@ -46,13 +46,13 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     }[] = [];
 
     /**
-     * restTemplate
+     * 鉴权后用于重试的 restTemplate
      */
-    protected testTemplate: RestTemplate;
+    protected retryTestTemplate: RestTemplate;
 
 
-    constructor(testTemplate: RestTemplate) {
-        this.testTemplate = testTemplate;
+    constructor(testTemplate?: RestTemplate) {
+        this.retryTestTemplate = testTemplate;
     }
 
     abstract isToAuthView: (data: R, options: T) => Promise<R>;
@@ -60,11 +60,13 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     async requestParamsEnhance(params: T): Promise<T> {
 
         try {
-            params["headers"]["token"] = await this.getToken();
+            let token = await this.getToken();
+            console.log("token", token);
+            (params as FetchOptions).headers["token"] = token;
         } catch (e) {
             //获取本地用户信息失败 登录
-            if (params["needAuth"] === true) {
-                console.log("需要登录加入等待队列", params);
+            if ((params as FetchOptions).needAuth === true) {
+                console.log("需要鉴权加入等待鉴权队列", params);
                 return this.buildWaitPromise({
                     options: params,
                     response: null
@@ -103,7 +105,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     }): Promise<any> => {
         if (AbstractSyncAuthHelper.REFRESH_TOKEN_TIMER_ID == null) {
             return new Promise<T>((resolve, reject) => {
-                console.log("发出一个需要登录的通知");
+                console.log("发出一个需要刷新token的广播");
                 //发出一个需要登录的通知
                 this.broadcastRefreshTokenEvent();
                 //开始等待登录结果
@@ -160,6 +162,9 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
 
         //取消事件监听
         this.cancelTokenResultEvent();
+
+        //清空等队列
+        this.waitingQueue = [];
     };
 
     /**
@@ -167,23 +172,23 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
      * @param result
      */
     protected handleWaitResult = (result: RefreshTokenResult) => {
-        this.waitingQueue.forEach((item) => {
-            if (result.success) {
-                //登录成功
-                item.resolve(item.response)
+        this.waitingQueue.forEach(({resolve, reject, options, response}) => {
+            if (!result.success) {
+                reject();
+                return;
+            }
+            console.log(`自动重试请求：${result.retry}`, options,this.retryTestTemplate);
+            if (result.retry && this.retryTestTemplate != null) {
+                //重试
+                resolve(this.retryTestTemplate.fetch(options));
             } else {
-                if (result.retry) {
-                    //重试
-                    item.resolve(this.testTemplate.fetch(item.options));
-                } else {
-                    item.reject();
-                }
-
+                //登录成功
+                resolve(response);
             }
         });
 
-        //清空等队列
-        this.waitingQueue = [];
+
+        this.clearStatus();
     }
 
 

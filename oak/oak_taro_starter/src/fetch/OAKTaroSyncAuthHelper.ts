@@ -2,7 +2,7 @@ import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import {TaroInterface} from "taro_starter/src/TaroJsHolder";
 import {AbstractSyncAuthHelper, RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
-import {RestTemplate} from "../../../../packages/common_fetch/src/template/RestTemplate";
+import {RestTemplate} from "common_fetch/src/template/RestTemplate";
 
 /**
  * Taro 同步鉴权处理者
@@ -10,10 +10,6 @@ import {RestTemplate} from "../../../../packages/common_fetch/src/template/RestT
 export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
 
     private taro: TaroInterface;
-
-
-    //等待登录结果通知的最大秒数
-    public static MAX_WAIT_LOGIN_NOTICE_TIMES = 30 * 1000;
 
 
     constructor(testTemplate: RestTemplate, taro: TaroInterface) {
@@ -39,9 +35,9 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
         return taroDefaultSessionManager.getMember().then((member) => {
             const token = member["token"];
             if (this.verifyToken(token)) {
-                return Promise.reject();
-            } else {
                 return token;
+            } else {
+                return Promise.reject();
             }
         })
     };
