@@ -12,11 +12,16 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
 
 
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
-        if (options.useUnifiedTransformResponse === false) {
+
+        if (options.useUnifiedTransformResponse === false || data == null) {
             //不使用统一的响应转换
             return data;
         }
+
         const resp: ApiResp = data.data;
+        if (resp == null) {
+            return Promise.reject();
+        }
 
         if (resp.code !== 0) {
 
