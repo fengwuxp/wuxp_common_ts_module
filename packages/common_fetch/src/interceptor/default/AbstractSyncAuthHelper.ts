@@ -1,6 +1,8 @@
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {SyncAuthHelper} from "./NeedAuthInterceptor";
 import {RestTemplate} from "../../template/RestTemplate";
+import {MediaType} from "../../constant/http/MediaType";
+import {parse} from "querystring";
 
 
 export interface RefreshTokenResult {
@@ -177,9 +179,19 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
                 reject();
                 return;
             }
-            console.log(`自动重试请求：${result.retry}`, options,this.retryTestTemplate);
+            console.log(`自动重试请求：${result.retry}`, options, this.retryTestTemplate);
             if (result.retry && this.retryTestTemplate != null) {
                 //重试
+                const {contentType} = options;
+                if (typeof options.data === "string") {
+                    if (contentType === MediaType.FORM_DATA) {
+                        options.data = parse(options.data);
+                    } else if (contentType === MediaType.JSON) {
+                        options.data = JSON.parse(options.data);
+                    }
+
+                }
+
                 resolve(this.retryTestTemplate.fetch(options));
             } else {
                 //登录成功
