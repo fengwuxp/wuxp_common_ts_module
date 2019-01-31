@@ -1,4 +1,4 @@
-<!--手机验证码输入宽-->
+<!--手机验证码输入框-->
 <template>
     <div class="input_container" :style="containerStyle">
         <div class="left_contanier flex_row flex_v_center">
@@ -162,8 +162,6 @@
 
     .input {
         flex: 1;
-        padding-top: 15px;
-        padding-bottom: 15px;
         border-width: 0;
         color: #3f3c3c;
         placeholder-color: #919191;
