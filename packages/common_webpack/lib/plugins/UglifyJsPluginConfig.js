@@ -7,7 +7,8 @@ var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
  * @create 2018-09-24 18:46
  **/
 exports.uglifyJsPlugin = new UglifyJsPlugin({
-    // parallel: true,
+    //多线程压缩
+    parallel: true,
     uglifyOptions: {
         /**
          * ecma（默认未定义） - 传递5,6,7或8以覆盖分析，压缩和输出选项。。

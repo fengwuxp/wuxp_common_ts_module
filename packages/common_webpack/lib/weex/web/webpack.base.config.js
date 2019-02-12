@@ -136,8 +136,13 @@ var webpackConfig = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin
+        bannerPlugin,
+        BabelLoader_1.happyPackBabelLoaderPlugin,
     ],
+    //压缩配置
+    optimization: {
+        minimizer: []
+    },
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our

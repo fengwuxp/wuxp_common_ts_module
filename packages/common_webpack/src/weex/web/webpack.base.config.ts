@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader from "../../loader/BabelLoader";
+import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
@@ -61,7 +61,7 @@ const webpackConfig: webpack.Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
-        alias:pathAlias
+        alias: pathAlias
     },
 
     module: {
@@ -69,6 +69,7 @@ const webpackConfig: webpack.Configuration = {
             babelLoader,
             {
                 test: /\.vue(\?[^?]+)?$/,
+
                 use: [
                     {
                         loader: 'vue-loader',
@@ -143,8 +144,15 @@ const webpackConfig: webpack.Configuration = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin
+        bannerPlugin,
+        happyPackBabelLoaderPlugin,
+
     ],
+
+    //压缩配置
+    optimization: {
+        minimizer: []
+    },
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our

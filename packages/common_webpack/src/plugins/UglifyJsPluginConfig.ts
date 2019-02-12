@@ -6,7 +6,8 @@ import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
  * @create 2018-09-24 18:46
  **/
 export const uglifyJsPlugin = new UglifyJsPlugin({
-    // parallel: true,
+    //多线程压缩
+    parallel: true,
     uglifyOptions: {
 
         /**

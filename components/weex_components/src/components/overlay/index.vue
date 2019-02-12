@@ -63,7 +63,7 @@
             overlayStyle() {
                 return {
                     opacity: this.hasAnimation ? 0 : 1,
-                    top:this.topPosition,
+                    top: `${this.topPosition}px`,
                     backgroundColor: `rgba(0, 0, 0,${this.opacity})`
                 }
             },

@@ -3,7 +3,6 @@
     <scroller class="flex_1"
               ref="scroll_container"
               :loadmoreoffset="loadMoreOffset"
-              @resetLoadmore="resetLoadMore"
               @scroll="onViewScroll"
               @loadmore="onLoadMore">
         <refresh class="flex_row"
