@@ -28,7 +28,7 @@
 
           4 feign prroxy
 
-               以接口代理的形式屏蔽远程调用的感知
+               以接口代理的形式屏蔽远程调用的感知，调用时就如同使用本地方法一样
 
           5  annation
 
@@ -36,7 +36,7 @@
 
                 Feign：标记一个类为Feign代理
 
-                RequestMapping相关注解：标记方法
+                RequestMapping相关注解：标记在上方法
 
                 //接口签名注解
                 Signature: 可以标记那些参数需要加入签名

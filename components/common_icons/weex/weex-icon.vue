@@ -54,9 +54,8 @@
             }
         },
         data() {
-
             return {
-                iconContent: null
+
             }
         },
         computed: {
@@ -70,6 +69,15 @@
                     color,
                     ...style,
                 }
+            },
+            iconContent() {
+                const {name, charCode, glyphMap} = this;
+                let glyph = charCode ? charCode : name ? glyphMap[name] || '?' : '';
+
+                if (typeof glyph === "number") {
+                    glyph = String.fromCharCode(glyph);
+                }
+                return glyph;
             }
         },
         methods: {
@@ -81,14 +89,16 @@
                 });
             }
         },
+        // watch: {
+        //     name(val) {
+        //         this.name = val;
+        //     },
+        //     color(val) {
+        //         this.color = val;
+        //     }
+        // },
         beforeMount() {
-            const {name, charCode, glyphMap} = this;
-            let glyph = charCode ? charCode : name ? glyphMap[name] || '?' : '';
 
-            if (typeof glyph === "number") {
-                glyph = String.fromCharCode(glyph);
-            }
-            this.iconContent = glyph;
 
         },
         created() {
