@@ -58,7 +58,10 @@
     import WeexImage from "../picture/weex-image";
     import {weexToast} from "common_weex/src/toast/WeexToast";
     import {isIos, isWeb} from "common_weex/src/constant/WeexEnv";
+    import UploadHandleByNative from "./UploadHandleByNative";
+    import UploadHandleByWeb from "./UploadHandleByWeb";
 
+    const uploadHandle = isWeb ? UploadHandleByWeb : UploadHandleByNative;
 
     export default {
         name: "upload-image",
@@ -141,6 +144,7 @@
             }
 
         },
+        mixins:[uploadHandle],
         data() {
             return {
 
@@ -176,27 +180,26 @@
 
             /**
              * 处理图片上传
+             * @param base64DataList 要上传的base64图片数据
              **/
-            handleUpload(base64Data) {
-                if (this.uploadHandle) {
+            handleUpload(base64DataList) {
+
+                //使用默认的上传处理
+                let uploadHandle = this.uploadFile;
+                if (typeof this.uploadHandle === "function") {
                     //使用自定义的上传处理
-                    this.uploadHandle(base64Data).then((result) => {
-                        this.$emit("onUploadSuccess", {
-                            result
-                        });
-                    }).catch(() => {
-                        this.uploadStep = 0;
-                    });
-                } else {
-                    //使用默认的原生自动上传
-                    this.uploadFile(base64Data).then((result) => {
-                        this.$emit("onUploadSuccess", {
-                            result
-                        });
-                    }).catch(() => {
-                        this.uploadStep = 0;
-                    });
+                    uploadHandle = this.uploadHandle;
                 }
+                if (uploadHandle == null) {
+                    throw new Error("upload handle is null");
+                }
+
+                Promise.all(base64DataList.map((data, index) => this.uploadHandle(data, index))).then((result) => {
+                    //上传结果是一个数组
+                    this.$emit("onUploadSuccess", result);
+                }).catch(() => {
+                    this.uploadStep = 0;
+                });
             },
 
         },

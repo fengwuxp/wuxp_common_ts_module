@@ -7,6 +7,12 @@ const config = getWebpackLibraryTargetConfig({
     entry: {
         index: path.resolve('src', 'Compress.ts'),
     },
+    output: {
+        filename: '[name].js',
+        chunkFilename: '[name].js',
+        path: path.resolve(__dirname),
+        libraryTarget: "commonjs"
+    },
     production: process.env.production || false
 });
 
@@ -15,7 +21,7 @@ config.plugins = [
     new CopyWebpackPlugin([
         {
             from: path.resolve(__dirname, "./src/Compress.d.ts"),
-            to: path.resolve(__dirname, "./lib/index.d.ts"),
+            to: path.resolve(__dirname, "./index.d.ts"),
         }
     ])
 ];

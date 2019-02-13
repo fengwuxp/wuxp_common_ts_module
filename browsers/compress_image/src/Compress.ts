@@ -49,30 +49,47 @@ interface CompressOutput {
 export interface CompressOptions {
 
     /**
-     * 压缩率
+     * 压缩质量
+     * 默认：0.5
      */
-    quality: number;
+    quality?: number;
+
+    /**
+     * 最小压缩质量
+     * 默认：0.3
+     */
+    minQuality?: number;
+
 
     /**
      * 压缩后的最大尺寸 单位 MB
+     * 默认：0.6
      */
-    size: number;
+    size?: number;
 
     /**
      * 压缩后的最大尺寸
+     * 默认：1920
      */
-    maxWidth: number;
+    maxWidth?: number;
 
     /**
      * 压缩后的最大高度
+     * 默认：1920
      */
-    maxHeight: number;
+    maxHeight?: number;
 
     /**
      * 是否进行大小调整
      * 默认 false
      */
     resize?: boolean;
+
+    /**
+     * 压缩的最新误差大小
+     * 默认 10kb
+     */
+    minimumErrorSize?: number
 }
 
 /**
@@ -82,7 +99,8 @@ export interface CompressOptions {
  * image/png, image/jpeg, image/jpg, image/gif, image/bmp, image/tiff, image/x-icon,  image/svg+xml, image/webp, image/xxx
  * image/png, image/jpeg, image/webp
  */
-export default class Compress {
+export class Compress {
+
 
     /**
      *
@@ -94,7 +112,7 @@ export default class Compress {
             const input: HTMLInputElement = document.querySelector(el);
             input.setAttribute('accept', 'image/*');
             input.addEventListener('change', (evt) => {
-                const output = this.compress([...((evt.target as HTMLInputElement).files) as any], options);
+                const output = this.compress(convertFileListToArray((evt.target as HTMLInputElement).files), options);
                 resolve(output)
             }, false);
         })
@@ -106,6 +124,7 @@ export default class Compress {
      * @param options  压缩配置
      */
     compress = (files: File[], options: CompressOptions): Promise<CompressOutput[]> => {
+
         function compressFile(file, options) {
             // Create a new photo object
             const photo = genPhoto(options);
@@ -141,7 +160,7 @@ export default class Compress {
                     photo.iterations = 1;
                     // Base64.mime(Converter.canvasToBase64(canvas))
                     photo.base64prefix = Base64.prefix(photo.ext);
-                    return loopCompression(canvas, photo.startSize, photo.quality, photo.size, photo.minQuality, photo.iterations)
+                    return loopCompression(canvas, photo.startSize, photo.quality, photo.size, photo.minQuality, photo.iterations, photo.minimumErrorSize)
                 }).then((base64) => {
                     photo.finalSize = Base64.size(base64);
                     return Base64.data(base64)
@@ -169,24 +188,40 @@ export default class Compress {
             }
         }
 
-        function loopCompression(canvas, size, quality = 1, targetSize, targetQuality = 1, iterations) {
+        /**
+         * 循环压缩
+         * @param canvas
+         * @param size          当前大小
+         * @param quality       压缩质量
+         * @param targetSize    目标大小
+         * @param targetQuality 目标的压缩质量
+         * @param iterations    循环压缩的次数
+         * @param minimumErrorSize 压缩的最小误差
+         */
+        function loopCompression(canvas, size, quality = 1, targetSize, targetQuality = 1, iterations, minimumErrorSize: number) {
             const base64str = Converter.canvasToBase64(canvas, quality);
+            console.log("iterations压缩次数", iterations, size, quality, targetSize, targetQuality);
             const newSize = Base64.size(base64str);
-            // const base64str = convertCanvasToBase64(src)
-            // const size = getFileSize(base64str);
+            if (iterations === 20) {
+                return base64str;
+            }
+
+            //如果压缩质量小于等0.1 或压缩的大小在目标压缩大小的最小误差值以内
+            if (quality <= 0.1 || newSize <= (size + minimumErrorSize)) {
+                return base64str;
+            }
+
             iterations += 1;
             // add in iteration count
             if (newSize > targetSize) {
-                return loopCompression(canvas, newSize, quality - 0.1, targetSize, targetQuality, iterations)
+                return loopCompression(canvas, newSize, quality / 1.1, targetSize, targetQuality, iterations, minimumErrorSize);
             }
 
             if (quality > targetQuality) {
-                return loopCompression(canvas, newSize, quality - 0.1, targetSize, targetQuality, iterations)
+                return loopCompression(canvas, newSize, quality / 1.1, targetSize, targetQuality, iterations, minimumErrorSize);
             }
 
-            if (quality < 0.5) {
-                return base64str
-            }
+
             return base64str
         }
 
@@ -195,8 +230,25 @@ export default class Compress {
         })) as any
     };
 
-
 }
+
+
+export const convertFileListToArray = (flies: FileList) => {
+
+    if (flies == null) {
+        return []
+    }
+
+    let len = flies.length, i = 0;
+    const result = [];
+    while (i < len) {
+        result.push(flies.item(i));
+        i++;
+    }
+
+    return result;
+
+};
 
 /**
  * 将base64的图片数据转换为Blob对象

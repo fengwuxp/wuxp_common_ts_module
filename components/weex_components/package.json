@@ -30,6 +30,7 @@
     "common_route": "^0.0.1",
     "common_style": "^0.0.1",
     "common_weex": "^0.0.1",
+    "compress_image": "^0.0.1",
     "weex-ui": "^0.6.6"
   },
   "devDependencies": {

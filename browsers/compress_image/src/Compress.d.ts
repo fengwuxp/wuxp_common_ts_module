@@ -26,26 +26,40 @@ interface CompressOutput {
 }
 export interface CompressOptions {
     /**
-     * 压缩率
+     * 压缩质量
+     * 默认：0.5
      */
-    quality: number;
+    quality?: number;
+    /**
+     * 最小压缩质量
+     * 默认：0.3
+     */
+    minQuality?: number;
     /**
      * 压缩后的最大尺寸 单位 MB
+     * 默认：0.6
      */
-    size: number;
+    size?: number;
     /**
      * 压缩后的最大尺寸
+     * 默认：1920
      */
-    maxWidth: number;
+    maxWidth?: number;
     /**
      * 压缩后的最大高度
+     * 默认：1920
      */
-    maxHeight: number;
+    maxHeight?: number;
     /**
      * 是否进行大小调整
      * 默认 false
      */
     resize?: boolean;
+    /**
+     * 压缩的最新误差大小
+     * 默认 10kb
+     */
+    minimumErrorSize?: number;
 }
 /**
  * 压缩图片
@@ -54,7 +68,7 @@ export interface CompressOptions {
  * image/png, image/jpeg, image/jpg, image/gif, image/bmp, image/tiff, image/x-icon,  image/svg+xml, image/webp, image/xxx
  * image/png, image/jpeg, image/webp
  */
-export default class Compress {
+export declare class Compress {
     /**
      *
      * @param el       input[type='file']的选择器
@@ -68,6 +82,7 @@ export default class Compress {
      */
     compress: (files: File[], options: CompressOptions) => Promise<CompressOutput[]>;
 }
+export declare const convertFileListToArray: (flies: FileList) => any[];
 /**
  * 将base64的图片数据转换为Blob对象
  * @param base64

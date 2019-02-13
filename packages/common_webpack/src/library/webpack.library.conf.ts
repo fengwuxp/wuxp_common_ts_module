@@ -3,6 +3,7 @@ import * as path from "path";
 import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import {Entry, EntryFunc} from "webpack";
+import {Output} from "webpack";
 
 
 interface GetLibraryTargetConfigOptions {
@@ -15,6 +16,8 @@ interface GetLibraryTargetConfigOptions {
      * 输出目录 默认 lib
      */
     outputDir?: string;
+
+    output: Output;
 }
 
 
@@ -29,7 +32,7 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
     return {
         mode: options.production ? "production" : "development",
         entry: options.entry,
-        output: {
+        output: options.output || {
             filename: '[name].js',
             chunkFilename: '[name].js',
             path: packPath,
@@ -46,7 +49,6 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
             ]
         },
 
-        plugins: [
-        ]
+        plugins: []
     }
 };

@@ -1,10 +1,18 @@
+import {Compress, convertFileListToArray} from "compress_image";
+
+
+const compress = new Compress();
+
+
 /**
  * 基于浏览器的图片选择
+ *
+ * 图片上传的处理组件使用者传入
  */
-import {url} from "inspector";
-
 export default {
 
+
+    props: {},
 
     data() {
 
@@ -14,6 +22,10 @@ export default {
     },
 
     methods: {
+        /**
+         * 图片选择事件
+         * @param event
+         */
         onChooseFile(event) {
 
             this.changeCount++;
@@ -23,32 +35,14 @@ export default {
                 return;
             }
 
-            let len = files.length, i = -1;
-
-            const result: File[] = [...(files as any)];
-
-            //压缩图片 compressionSize
-
-        },
-
-        /**
-         * 上传文件
-         */
-        uploadFile(base64Data) {
-
-            const reqOptions: RequestInit = {
-                method: "POST",
-                body: base64Data,
-                cache: false,
-                mode: "cors",
-                credentials: "include"
-            } as any;
-            return fetch(new Request("", reqOptions))
-                .then(() => {
-                    //上传成功
-                }).catch(() => {
-                    //上传失败
-                })
+            //压缩图片
+            compress.compress(convertFileListToArray(files), {
+                quality: 0.3,
+                size: 0.3
+            }).then((resultList) => {
+                //上传
+                this.handleUpload(resultList.map(item => item.data));
+            });
         }
     }
 }

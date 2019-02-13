@@ -31,6 +31,11 @@ interface PhotoInfo {
     // Carry out image resizing
     quality: number;
 
+    /**
+     * 最小压缩率
+     */
+    minQuality: number;
+
     resize: boolean;
 
     maxWidth: number;
@@ -40,12 +45,32 @@ interface PhotoInfo {
     orientation: number
 }
 
+const DEFAULT_OPTIONS: CompressOptions = {
+    quality: 0.5,
+    minQuality: 0.3,
+    size: 0.6,
+    maxWidth: 1920,
+    maxHeight: 1920,
+    resize: false,
+    minimumErrorSize: 10 * 1024
+};
 
+export const genPhoto = (options?: CompressOptions): PhotoInfo => {
 
+    const {
+        quality = 0.5,
+        size = 0.6,
+        maxWidth = 1920,
+        maxHeight = 1920,
+        resize = false,
+        minQuality = 0.3
+    } = {
+        ...DEFAULT_OPTIONS,
+        ...(options || {})
+    };
 
-export const genPhoto = ({quality = 0.75, size = 2, maxWidth = 1920, maxHeight = 1920, resize = false}:CompressOptions): PhotoInfo => {
     // size in MB
-    size = size * 1024 * 1024;
+    const targetSize = size * 1024 * 1024;
 
     return {
         start: window.performance.now(),
@@ -56,14 +81,15 @@ export const genPhoto = ({quality = 0.75, size = 2, maxWidth = 1920, maxHeight =
         startHeight: null,
         // How much will the quality decrease by each compression
         // stepQuality= stepQuality
-        size,
+        size: targetSize,
+        minQuality: minQuality >= quality ? 0.1 : minQuality,
         endSize: null,
         endWidth: null,
         endHeight: null,
         iterations: 0,
         base64prefix: null,
         // Carry out image resizing
-        quality,
+        quality: quality === 0.1 ? quality + 0.05 : quality,
         resize,
         maxWidth,
         maxHeight,

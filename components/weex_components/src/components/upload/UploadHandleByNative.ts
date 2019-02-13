@@ -102,7 +102,7 @@ export default {
          * 基于原生的自动上传图片
          * @param filePath
          */
-        uploadFile(filePath) {
+        uploadFile(filePath, index) {
 
             appMain.showProgressBar(20);
             this.uploadStep = 1;
