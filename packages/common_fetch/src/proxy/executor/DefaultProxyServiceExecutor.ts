@@ -24,8 +24,10 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //原始参数
         const originalParameter = args[0] || {};
 
-        //解析参数，复制一份值
+        //解析参数，进行值复制（浅拷贝）
         const data = {...originalParameter};
+
+        //TODO 加入文件上传的策略
 
         const options: FetchOptions = args[1] || {};
 

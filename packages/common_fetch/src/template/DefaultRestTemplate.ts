@@ -1,4 +1,4 @@
-import {AbstractRestTemplate, RestTemplateConfig} from "./RestTemplate";
+ import {AbstractRestTemplate, RestTemplateConfig} from "./RestTemplate";
 import {ApiRoutingStrategy} from "../route/ApiRoutingStrategy";
 import {FetchClient} from "../fetch/FetchClient";
 import FetchInterceptorExecutor from "../interceptor/FetchInterceptorExecutor";

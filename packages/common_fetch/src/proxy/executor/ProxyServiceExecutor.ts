@@ -50,7 +50,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
     }
 
     /**
-     * 获取api模块的缓存
+     * 获取api模块的RestTemplate
      * @param feignOptions
      */
     protected getTemplate = (feignOptions: FeignOptions): RestTemplate => {
