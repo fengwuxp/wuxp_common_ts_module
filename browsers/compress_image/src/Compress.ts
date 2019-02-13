@@ -1,9 +1,9 @@
 import {genPhoto} from "./core/photo";
-import Base64 from './core/base64.js'
-import Converter from './core/converter.js'
-import File from './core/file.js'
-import Image from './core/image.js'
-import Rotate from './core/rotate.js'
+import Base64 from "./core/base64";
+import Converter from "./core/converter";
+import File from "./core/file";
+import Image from "./core/image";
+import Rotate from "./core/rotate";
 
 
 /**

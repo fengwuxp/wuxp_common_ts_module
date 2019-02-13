@@ -9,11 +9,8 @@
     "module": "commonjs",
     "target": "es5",
     "sourceMap": false,
-    "sourceRoot": "",
-    "baseUrl": "./sources",
-    "outDir": "./lib",
-    "declaration": true,
-    "importHelpers": true,
+    "declaration": false,
+    "importHelpers": false,
     "typeRoots": [
       "node_modules/@types"
     ],

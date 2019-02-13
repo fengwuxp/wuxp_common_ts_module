@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
+import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
@@ -144,9 +144,7 @@ const webpackConfig: webpack.Configuration = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin,
-        happyPackBabelLoaderPlugin,
-
+        bannerPlugin
     ],
 
     //压缩配置

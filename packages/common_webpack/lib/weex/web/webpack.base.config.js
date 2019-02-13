@@ -136,8 +136,7 @@ var webpackConfig = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin,
-        BabelLoader_1.happyPackBabelLoaderPlugin,
+        bannerPlugin
     ],
     //压缩配置
     optimization: {
