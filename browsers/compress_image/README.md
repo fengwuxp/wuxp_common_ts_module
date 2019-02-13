@@ -3,7 +3,7 @@
 
 [代码来源于compress.js](https://github.com/alextanhongpin/compress.js)，
 
-- 吧原本js的代码装换为ts
+- 把原本js的代码转换为ts
 - 这是一个基于canvas的图片压缩库，并修复了移动端即时拍照上传时图片倒转等问题。
 
 

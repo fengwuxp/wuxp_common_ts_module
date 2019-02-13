@@ -52,6 +52,7 @@
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.2",
     "typescript": "^3.2.2",
+    "common_utils": "^0.0.1",
     "common_webpack": "^0.0.1"
   }
 }
