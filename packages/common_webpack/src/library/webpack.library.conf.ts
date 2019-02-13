@@ -41,7 +41,7 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js"],
         },
-        devtool: "source-map",
+        devtool: options.production ? false : "source-map",
         module: {
             rules: [
                 babelLoader,

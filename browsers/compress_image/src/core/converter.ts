@@ -1,11 +1,16 @@
-const base64ToFile = (base64, mime = 'image/jpeg'): Blob => {
-    const byteString = window.atob(base64);
-    const content = [];
-    for (let i = 0; i < byteString.length; i++) {
-        content[i] = byteString.charCodeAt(i)
-    }
-    return new window.Blob([new Uint8Array(content)], {type: mime})
-};
+import {base64ToFile,canvasToBase64} from "common_utils/src/codec/FileConverterUtil";
+
+
+
+// const base64ToFile = (base64, mime = 'image/jpeg'): Blob => {
+//     const byteString = window.atob(base64);
+//     const content = [];
+//     for (let i = 0; i < byteString.length; i++) {
+//         content[i] = byteString.charCodeAt(i)
+//     }
+//     return new window.Blob([new Uint8Array(content)], {type: mime})
+// };
+
 
 const imageToCanvas = (width, height, orientation) => {
     const canvas = document.createElement('canvas');
@@ -74,10 +79,10 @@ const imageToCanvas = (width, height, orientation) => {
     }
 };
 
-const canvasToBase64 = (canvas, quality = 0.75) => {
-    // in order to compress the final image format has to be jpeg
-    return canvas.toDataURL('image/jpeg', quality)
-};
+// const canvasToBase64 = (canvas, quality = 0.75) => {
+//     // in order to compress the final image format has to be jpeg
+//     return canvas.toDataURL('image/jpeg', quality)
+// };
 
 // const canvasToImage = (canvas, quality=.75, mimeType='image/jpeg') => {
 //   const image = new Image()
