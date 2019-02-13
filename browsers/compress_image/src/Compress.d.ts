@@ -42,12 +42,12 @@ export interface CompressOptions {
     size?: number;
     /**
      * 压缩后的最大尺寸
-     * 默认：1920
+     * 默认：图片宽度 *  quality
      */
     maxWidth?: number;
     /**
      * 压缩后的最大高度
-     * 默认：1920
+     * 默认：图片高度 *  quality
      */
     maxHeight?: number;
     /**

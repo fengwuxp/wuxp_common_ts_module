@@ -34,15 +34,29 @@ export default {
             if (files == null) {
                 return;
             }
-
             //压缩图片
             compress.compress(convertFileListToArray(files), {
                 quality: 0.3,
-                size: 0.3
+                size: 0.3,
+                resize: true
             }).then((resultList) => {
                 //上传
                 this.handleUpload(resultList.map(item => item.data));
             });
-        }
+        },
+
+        /**
+         * web 端文件上传
+         * @param base64Data
+         * @param index
+         */
+        uploadFile(base64Data, index) {
+
+        },
+    },
+    beforeMount() {
+        //web 端需要外部传入
+
+
     }
 }

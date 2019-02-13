@@ -19,3 +19,5 @@ coverage
 *.tgz
 lib
 *.lock
+*.awcache
+

@@ -5,7 +5,7 @@
  * 计算旋转的角度
  * @param file
  */
-const orientation = (file) => {
+const orientation = (file: File) => {
     return new Promise<number>((resolve, reject) => {
         const reader = new FileReader();
 

@@ -49,8 +49,8 @@ const DEFAULT_OPTIONS: CompressOptions = {
     quality: 0.5,
     minQuality: 0.3,
     size: 0.6,
-    maxWidth: 1920,
-    maxHeight: 1920,
+    // maxWidth: 1920,
+    // maxHeight: 1920,
     resize: false,
     minimumErrorSize: 10 * 1024
 };
@@ -58,16 +58,16 @@ const DEFAULT_OPTIONS: CompressOptions = {
 export const genPhoto = (options?: CompressOptions): PhotoInfo => {
 
     const {
-        quality = 0.5,
-        size = 0.6,
-        maxWidth = 1920,
-        maxHeight = 1920,
-        resize = false,
-        minQuality = 0.3
+        quality,
+        size,
+        resize,
+        minQuality,
+        maxHeight,
+        maxWidth
     } = {
         ...DEFAULT_OPTIONS,
         ...(options || {})
-    };
+    } as CompressOptions;
 
     // size in MB
     const targetSize = size * 1024 * 1024;

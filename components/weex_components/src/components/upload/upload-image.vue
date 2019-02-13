@@ -144,7 +144,7 @@
             }
 
         },
-        mixins:[uploadHandle],
+        mixins: [uploadHandle],
         data() {
             return {
 
@@ -194,15 +194,32 @@
                     throw new Error("upload handle is null");
                 }
 
-                Promise.all(base64DataList.map((data, index) => this.uploadHandle(data, index))).then((result) => {
-                    //上传结果是一个数组
-                    this.$emit("onUploadSuccess", result);
-                }).catch(() => {
+                Promise.all(base64DataList.map((data, index) => this.uploadHandle(data, index)))
+                    .then((resultList) => {
+                        //上传结果是一个数组
+                        // [{url:"http://xxx",orderIndex:1}]
+                        this.$emit("onUploadSuccess", resultList);
+                    }).catch((e) => {
+                    console.error("上传文件失败", e);
                     this.uploadStep = 0;
                 });
             },
 
         },
+        beforeMount() {
+            const uploadHandle = this.uploadHandle;
+            if (uploadHandle) {
+                this.uploadHandle = () => {
+                    return uploadHandle().then((url) => {
+                        //统一响应
+                        return {
+                            orderIndex: this.orderIndex,
+                            url
+                        }
+                    });
+                }
+            }
+        }
     }
 </script>
 

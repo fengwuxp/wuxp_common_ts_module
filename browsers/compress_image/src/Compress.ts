@@ -69,13 +69,13 @@ export interface CompressOptions {
 
     /**
      * 压缩后的最大尺寸
-     * 默认：1920
+     * 默认：图片宽度 *  quality
      */
     maxWidth?: number;
 
     /**
      * 压缩后的最大高度
-     * 默认：1920
+     * 默认：图片高度 *  quality
      */
     maxHeight?: number;
 
@@ -136,7 +136,7 @@ export class Compress {
             return Rotate.orientation(file)
                 .then((orientation) => {
                     photo.orientation = orientation;
-                    return File.load(file)
+                    return File.load(file);
                 }).then(compressImage(photo));
         }
 
@@ -148,6 +148,12 @@ export class Compress {
                     photo.startHeight = img.naturalHeight;
                     // Resize the image
                     if (photo.resize) {
+                        if (photo.maxWidth == null) {
+                            photo.maxWidth = photo.startWidth * photo.quality;
+                        }
+                        if (photo.maxHeight == null) {
+                            photo.maxHeight = photo.startHeight * photo.quality;
+                        }
                         const {width, height} = Image.resize(photo.maxWidth, photo.maxHeight)(img.naturalWidth, img.naturalHeight);
                         photo.endWidth = width;
                         photo.endHeight = height
@@ -160,6 +166,10 @@ export class Compress {
                     photo.iterations = 1;
                     // Base64.mime(Converter.canvasToBase64(canvas))
                     photo.base64prefix = Base64.prefix(photo.ext);
+                    if (photo.startSize <= photo.size) {
+                        //小于需要压缩的阈值
+                        return Converter.canvasToBase64(canvas);
+                    }
                     return loopCompression(canvas, photo.startSize, photo.quality, photo.size, photo.minQuality, photo.iterations, photo.minimumErrorSize)
                 }).then((base64) => {
                     photo.finalSize = Base64.size(base64);
@@ -168,6 +178,7 @@ export class Compress {
                     photo.end = window.performance.now();
                     const difference = photo.end - photo.start;// in ms
 
+                    // console.log(`data:jpeg;base64,${data}`);
                     return {
                         data: data,
                         prefix: photo.base64prefix,
@@ -191,16 +202,16 @@ export class Compress {
         /**
          * 循环压缩
          * @param canvas
-         * @param size          当前大小
-         * @param quality       压缩质量
-         * @param targetSize    目标大小
-         * @param targetQuality 目标的压缩质量
-         * @param iterations    循环压缩的次数
-         * @param minimumErrorSize 压缩的最小误差
+         * @param size               当前大小
+         * @param quality            压缩质量
+         * @param targetSize         目标大小
+         * @param targetQuality      目标的压缩质量
+         * @param iterations         循环压缩的次数
+         * @param minimumErrorSize   压缩的最小误差
          */
         function loopCompression(canvas, size, quality = 1, targetSize, targetQuality = 1, iterations, minimumErrorSize: number) {
             const base64str = Converter.canvasToBase64(canvas, quality);
-            console.log("iterations压缩次数", iterations, size, quality, targetSize, targetQuality);
+            // console.log("iterations压缩次数", iterations, size, quality, targetSize, targetQuality);
             const newSize = Base64.size(base64str);
             if (iterations === 20) {
                 return base64str;
