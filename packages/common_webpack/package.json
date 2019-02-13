@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "build_ts": "rm -rf ./lib && node ./scripts/build.js",
-    "yar_i": "yarn install",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
     "npm_build_publish": "npm run build_ts && npm publish"
   },
