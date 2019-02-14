@@ -1,17 +1,18 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
-
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-import coverThemeLessLoader from "../style/CoverThemeLessLoader";
-import {cssModuleLoader} from "../style/CssModuleUtils";
+import  {getHappyLessLoaderPlugin, lessLoader} from "../style/ThemeLessLoader";
+import {cssModuleLoader, happyPackCssLoaderPlugin} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
-import {DEPLOYMENT_DIRECTORY, PROJECT_DIR, EXTERNALS} from "../config/webpackConfig";
-import babelLoader from "../loader/BabelLoader";
+import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
+import babelLoader, {happyPackBabelLoaderPlugin} from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
 import {TsConfigPathsPlugin} from "awesome-typescript-loader";
 import {pathAlias} from "../config/CommonpPathAlias";
+import {genHappyPackLoaderString, getHappyPackPlugin} from "../utils/GetHappyPackPluginConfig";
+
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 
 /**
@@ -58,7 +59,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                     }),
 
                 },
-                coverThemeLessLoader(options),
+               lessLoader,
 
                 {
                     test: /\.s[c|a]ss$/,
@@ -68,12 +69,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                             // require.resolve("style-loader"),
                             cssModuleLoader,
                             PostCssLoader,
-                            {
-                                loader: "sass-loader",
-                                options: {
-                                    ident: "css-loader"
-                                }
-                            }
+                            genHappyPackLoaderString("scss")
                         ]
                     })
                 },
@@ -101,8 +97,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                                 //返回最终的资源相对路径
                                 publicPath: function (url) {
                                     //使用全局变量来传递 资源根路径
-                                    const uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
-                                    return uri;
+                                    return path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
                                 }
                             },
 
@@ -120,6 +115,17 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             ...(EXTERNALS || {})
         },
         plugins: [
+            happyPackBabelLoaderPlugin,
+            happyPackCssLoaderPlugin,
+            getHappyLessLoaderPlugin(options),
+            getHappyPackPlugin("sass", [
+                {
+                    loader: "sass-loader",
+                    options: {
+                        ident: "css-loader"
+                    }
+                }
+            ],2),
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true

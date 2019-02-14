@@ -13,17 +13,18 @@ const config = getWebpackLibraryTargetConfig({
         path: path.resolve(__dirname),
         libraryTarget: "commonjs"
     },
-    production: process.env.production || false
+    production: process.env.production || false,
+    plugins:[
+        //复制
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, "./src/Compress.d.ts"),
+                to: path.resolve(__dirname, "./index.d.ts"),
+            }
+        ])
+    ]
 });
 
-config.plugins = [
-    //复制
-    new CopyWebpackPlugin([
-        {
-            from: path.resolve(__dirname, "./src/Compress.d.ts"),
-            to: path.resolve(__dirname, "./index.d.ts"),
-        }
-    ])
-];
+
 
 module.exports = config;

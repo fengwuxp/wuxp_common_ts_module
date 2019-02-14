@@ -1,6 +1,7 @@
 import {isExclude} from "../utils/WebpackUtils";
 import * as path from "path";
 import {LoaderConfig} from "awesome-typescript-loader/dist/interfaces";
+import {genHappyPackLoaderString, getHappyPackPlugin} from "../utils/GetHappyPackPluginConfig";
 
 /**
  * awesome-typescript-loader
@@ -71,6 +72,14 @@ const awesomeTypescriptLoader = {
         }
     ]
 };
+
+// export const happyPackTypescriptLoaderPlugin = getHappyPackPlugin(awesomeTypescriptLoaderName, [
+//     {
+//         //supportEs6BabelLoader
+//         loader: awesomeTypescriptLoaderName,
+//         options
+//     }
+// ]);
 
 
 export default awesomeTypescriptLoader;

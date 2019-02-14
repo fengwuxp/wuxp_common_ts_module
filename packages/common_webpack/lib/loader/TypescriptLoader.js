@@ -63,4 +63,11 @@ var awesomeTypescriptLoader = {
         }
     ]
 };
+// export const happyPackTypescriptLoaderPlugin = getHappyPackPlugin(awesomeTypescriptLoaderName, [
+//     {
+//         //supportEs6BabelLoader
+//         loader: awesomeTypescriptLoaderName,
+//         options
+//     }
+// ]);
 exports.default = awesomeTypescriptLoader;

@@ -7,17 +7,16 @@ const config = getWebpackLibraryTargetConfig({
     entry: {
         index: path.resolve('src', 'index.ts'),
     },
-    production: process.env.production || false
+    production: process.env.production || false,
+    plugins:[
+        //复制
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, "./src/index.d.ts"),
+                to: path.resolve(__dirname, "./lib/index.d.ts"),
+            }
+        ])
+    ]
 });
-
-config.plugins = [
-    //复制
-    new CopyWebpackPlugin([
-        {
-            from: path.resolve(__dirname, "./src/index.d.ts"),
-            to: path.resolve(__dirname, "./lib/index.d.ts"),
-        }
-    ])
-];
 
 module.exports = config;

@@ -13,15 +13,16 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
-var CleanWebpackPlugin = require("clean-webpack-plugin");
-var CoverThemeLessLoader_1 = require("../style/CoverThemeLessLoader");
-var CssModuleUtils_1 = require("../style/CssModuleUtils");
+var ThemeLessLoader_1 = require("../style/ThemeLessLoader");
+var CssModuleLoader_1 = require("../style/CssModuleLoader");
 var webpackConfig_1 = require("../config/webpackConfig");
 var BabelLoader_1 = require("../loader/BabelLoader");
 var TypescriptLoader_1 = require("../loader/TypescriptLoader");
 var PostCssLoader_1 = require("../style/PostCssLoader");
 var awesome_typescript_loader_1 = require("awesome-typescript-loader");
 var CommonpPathAlias_1 = require("../config/CommonpPathAlias");
+var GetHappyPackPluginConfig_1 = require("../utils/GetHappyPackPluginConfig");
+var CleanWebpackPlugin = require("clean-webpack-plugin");
 /**
  * 获取打包配置
  * @param {GetWebpackBaseConfigOptions} options
@@ -55,26 +56,21 @@ exports.getWebpackBaseConfig = function (options) {
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
-                            CssModuleUtils_1.cssModuleLoader,
+                            CssModuleLoader_1.cssModuleLoader,
                             PostCssLoader_1.default
                         ]
                     }),
                 },
-                CoverThemeLessLoader_1.default(options),
+                ThemeLessLoader_1.lessLoader,
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
                             // require.resolve("style-loader"),
-                            CssModuleUtils_1.cssModuleLoader,
+                            CssModuleLoader_1.cssModuleLoader,
                             PostCssLoader_1.default,
-                            {
-                                loader: "sass-loader",
-                                options: {
-                                    ident: "css-loader"
-                                }
-                            }
+                            GetHappyPackPluginConfig_1.genHappyPackLoaderString("scss")
                         ]
                     })
                 },
@@ -102,8 +98,7 @@ exports.getWebpackBaseConfig = function (options) {
                                 //返回最终的资源相对路径
                                 publicPath: function (url) {
                                     //使用全局变量来传递 资源根路径
-                                    var uri = path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
-                                    return uri;
+                                    return path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
                                 }
                             },
                         }
@@ -117,6 +112,17 @@ exports.getWebpackBaseConfig = function (options) {
         // dependencies, which allows browsers to cache those libraries between builds.
         externals: __assign({}, (webpackConfig_1.EXTERNALS || {})),
         plugins: [
+            BabelLoader_1.happyPackBabelLoaderPlugin,
+            CssModuleLoader_1.happyPackCssLoaderPlugin,
+            ThemeLessLoader_1.getHappyLessLoaderPlugin(options),
+            GetHappyPackPluginConfig_1.getHappyPackPlugin("sass", [
+                {
+                    loader: "sass-loader",
+                    options: {
+                        ident: "css-loader"
+                    }
+                }
+            ], 2),
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true

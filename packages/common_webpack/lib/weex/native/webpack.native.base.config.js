@@ -7,6 +7,7 @@ var BabelLoader_1 = require("../../loader/BabelLoader");
 var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var ThemeConfig_1 = require("../../style/ThemeConfig");
 var CommonpPathAlias_1 = require("../../config/CommonpPathAlias");
+var GetHappyPackPluginConfig_1 = require("../../utils/GetHappyPackPluginConfig");
 var babel7Options = require("../../../babel/babelrc7");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -36,7 +37,7 @@ var config = {
             TypescriptLoader_1.default,
             {
                 test: /\.vue(\?[^?]+)?$/,
-                loaders: [
+                use: [
                     {
                         loader: "weex-vue-loader",
                         options: {
@@ -47,14 +48,7 @@ var config = {
                             loaders: {
                                 //覆盖默认的 less-loader，必须要配置成数组，否则不生效
                                 less: [
-                                    {
-                                        loader: 'less-loader',
-                                        options: {
-                                            sourceMap: true,
-                                            javascriptEnabled: true,
-                                            modifyVars: ThemeConfig_1.getThemeConfig()
-                                        }
-                                    }
+                                    GetHappyPackPluginConfig_1.genHappyPackLoaderString("less")
                                 ]
                             }
                         }
@@ -63,7 +57,19 @@ var config = {
             }
         ]
     },
-    plugins: []
+    plugins: [
+        BabelLoader_1.happyPackBabelLoaderPlugin,
+        GetHappyPackPluginConfig_1.getHappyPackPlugin("less", [
+            {
+                loader: 'less-loader',
+                options: {
+                    sourceMap: true,
+                    javascriptEnabled: true,
+                    modifyVars: ThemeConfig_1.getThemeConfig()
+                }
+            }
+        ], 4)
+    ]
 };
 if (nativeRelease) {
     //先将打包目录清除

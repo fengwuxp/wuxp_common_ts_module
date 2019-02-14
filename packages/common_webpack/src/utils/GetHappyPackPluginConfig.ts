@@ -11,7 +11,7 @@ export const genHappyPackLoaderString = (id: string) => {
     return `happypack/loader?id=${id}`
 };
 
-export const getHappyPackPlugin = (id: string, loaders: Array<any>, threads: number = os.cpus().length) => {
+export const getHappyPackPlugin = (id: string, loaders: Array<any>, threads: number = os.cpus().length - 1) => {
 
     return new HappyPack({
         id,

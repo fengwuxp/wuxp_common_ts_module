@@ -1,9 +1,10 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader from "../loader/BabelLoader";
+import babelLoader, {happyPackBabelLoaderPlugin} from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import {Entry, EntryFunc} from "webpack";
 import {Output} from "webpack";
+import {Plugin} from "webpack";
 
 
 interface GetLibraryTargetConfigOptions {
@@ -17,7 +18,9 @@ interface GetLibraryTargetConfigOptions {
      */
     outputDir?: string;
 
-    output: Output;
+    output?: Output;
+
+    plugins?: Plugin[]
 }
 
 
@@ -49,6 +52,9 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
             ]
         },
 
-        plugins: []
+        plugins: [
+            happyPackBabelLoaderPlugin,
+            ...(options.plugins || [])
+        ]
     }
 };

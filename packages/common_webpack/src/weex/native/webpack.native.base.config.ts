@@ -2,11 +2,13 @@ import * as webpack from "webpack";
 import * as path from "path";
 import entry from "./GetNativePackViews";
 import WeexPackConfig from "./WeexPackConfig";
-import babelLoader from "../../loader/BabelLoader";
+import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {getThemeConfig} from "../../style/ThemeConfig";
 import {pathAlias} from "../../config/CommonpPathAlias";
-const babel7Options =require( "../../../babel/babelrc7");
+import {genHappyPackLoaderString, getHappyPackPlugin} from "../../utils/GetHappyPackPluginConfig";
+
+const babel7Options = require("../../../babel/babelrc7");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -29,7 +31,7 @@ const config: webpack.Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
-        alias:pathAlias
+        alias: pathAlias
     },
     node: {
         global: true
@@ -41,7 +43,7 @@ const config: webpack.Configuration = {
             awesomeTypescriptLoader,
             {
                 test: /\.vue(\?[^?]+)?$/,
-                loaders: [
+                use: [
                     {
                         loader: "weex-vue-loader",
                         options: {
@@ -53,14 +55,7 @@ const config: webpack.Configuration = {
 
                                 //覆盖默认的 less-loader，必须要配置成数组，否则不生效
                                 less: [
-                                    {
-                                        loader: 'less-loader',
-                                        options: {
-                                            sourceMap: true,
-                                            javascriptEnabled: true,
-                                            modifyVars: getThemeConfig()
-                                        }
-                                    }
+                                    genHappyPackLoaderString("less")
                                 ]
                             }
                         }
@@ -69,7 +64,19 @@ const config: webpack.Configuration = {
             }
         ]
     },
-    plugins: []
+    plugins: [
+        happyPackBabelLoaderPlugin,
+        getHappyPackPlugin("less", [
+            {
+                loader: 'less-loader',
+                options: {
+                    sourceMap: true,
+                    javascriptEnabled: true,
+                    modifyVars: getThemeConfig()
+                }
+            }
+        ],4)
+    ]
 };
 
 

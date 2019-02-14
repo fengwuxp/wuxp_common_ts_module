@@ -1,11 +1,12 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader from "../../loader/BabelLoader";
+import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {getThemeConfig} from "../../style/ThemeConfig";
 import {pathAlias} from "../../config/CommonpPathAlias";
+import {genHappyPackLoaderString, getHappyPackPlugin} from "../../utils/GetHappyPackPluginConfig";
 
 const {VueLoaderPlugin} = require('vue-loader');
 
@@ -19,7 +20,7 @@ const postcssPluginWeex = require('postcss-plugin-weex');
 const autoprefixer = require('autoprefixer');
 const postcssPluginPx2Rem = require('postcss-plugin-px2rem');
 
-const cssLoader = ({resource}) => ({
+const cssLoader = {
     ident: "css-loader",
     loader: 'css-loader',
     options: {
@@ -30,7 +31,7 @@ const cssLoader = ({resource}) => ({
         // localIdentName: '[name]__[local]___[hash:base64:5]',
         ident: "css-loader"
     }
-});
+};
 
 const postcssLoader = {
     loader: "postcss-loader",
@@ -96,7 +97,6 @@ const webpackConfig: webpack.Configuration = {
                     use: [
                         cssLoader,
                         postcssLoader
-
                     ]
                 })
             },
@@ -107,15 +107,7 @@ const webpackConfig: webpack.Configuration = {
                     use: [
                         cssLoader,
                         postcssLoader,
-                        {
-                            loader: 'less-loader',
-                            options: {
-                                sourceMap: true,
-                                javascriptEnabled: true,
-                                modifyVars: getThemeConfig()
-                                // ident: "css-loader"
-                            }
-                        }
+                        genHappyPackLoaderString("less")
                     ]
                 })
             },
@@ -126,12 +118,7 @@ const webpackConfig: webpack.Configuration = {
                     use: [
                         cssLoader,
                         postcssLoader,
-                        {
-                            loader: "sass-loader",
-                            options: {
-                                // ident: "css-loader"
-                            }
-                        }
+                        genHappyPackLoaderString("sass")
                     ]
                 })
             }
@@ -144,7 +131,26 @@ const webpackConfig: webpack.Configuration = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin
+        bannerPlugin,
+        happyPackBabelLoaderPlugin,
+        getHappyPackPlugin("less", [
+            {
+                loader: 'less-loader',
+                options: {
+                    sourceMap: true,
+                    javascriptEnabled: true,
+                    modifyVars: getThemeConfig()
+                }
+            }
+        ], 4),
+        getHappyPackPlugin("sass", [
+            {
+                loader: "sass-loader",
+                options: {
+                    // ident: "css-loader"
+                }
+            }
+        ], 2)
     ],
 
     //压缩配置

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var WebpackUtils_1 = require("../utils/WebpackUtils");
+var GetHappyPackPluginConfig_1 = require("../utils/GetHappyPackPluginConfig");
 var babel7Options = require("../../babel/babelrc7");
 /**
  * babel-loader
@@ -12,16 +13,13 @@ var babelLoader = {
     test: /\.js[x]?$/,
     exclude: WebpackUtils_1.isExclude,
     use: [
-        {
-            loader: babelLoaderName,
-            options: babel7Options
-        }
+        GetHappyPackPluginConfig_1.genHappyPackLoaderString(babelLoaderName)
     ]
 };
-// export const happyPackBabelLoaderPlugin = getHappyPackPlugin(babelLoaderName, [
-//     {
-//         loader: babelLoaderName,
-//         options: babel7Options
-//     }
-// ]);
+exports.happyPackBabelLoaderPlugin = GetHappyPackPluginConfig_1.getHappyPackPlugin(babelLoaderName, [
+    {
+        loader: babelLoaderName,
+        options: babel7Options
+    }
+]);
 exports.default = babelLoader;

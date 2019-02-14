@@ -7,6 +7,7 @@ var TypescriptLoader_1 = require("../../loader/TypescriptLoader");
 var ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 var ThemeConfig_1 = require("../../style/ThemeConfig");
 var CommonpPathAlias_1 = require("../../config/CommonpPathAlias");
+var GetHappyPackPluginConfig_1 = require("../../utils/GetHappyPackPluginConfig");
 var VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 var bannerPlugin = new webpack.BannerPlugin({
     banner: '// { "framework": "Vue" }\n',
@@ -16,20 +17,17 @@ var bannerPlugin = new webpack.BannerPlugin({
 var postcssPluginWeex = require('postcss-plugin-weex');
 var autoprefixer = require('autoprefixer');
 var postcssPluginPx2Rem = require('postcss-plugin-px2rem');
-var cssLoader = function (_a) {
-    var resource = _a.resource;
-    return ({
-        ident: "css-loader",
-        loader: 'css-loader',
-        options: {
-            minimize: true,
-            importLoaders: 2,
-            // //判断是否需要css module
-            // modules: /\.module\.css/.test(resource),
-            // localIdentName: '[name]__[local]___[hash:base64:5]',
-            ident: "css-loader"
-        }
-    });
+var cssLoader = {
+    ident: "css-loader",
+    loader: 'css-loader',
+    options: {
+        minimize: true,
+        importLoaders: 2,
+        // //判断是否需要css module
+        // modules: /\.module\.css/.test(resource),
+        // localIdentName: '[name]__[local]___[hash:base64:5]',
+        ident: "css-loader"
+    }
 };
 var postcssLoader = {
     loader: "postcss-loader",
@@ -100,15 +98,7 @@ var webpackConfig = {
                     use: [
                         cssLoader,
                         postcssLoader,
-                        {
-                            loader: 'less-loader',
-                            options: {
-                                sourceMap: true,
-                                javascriptEnabled: true,
-                                modifyVars: ThemeConfig_1.getThemeConfig()
-                                // ident: "css-loader"
-                            }
-                        }
+                        GetHappyPackPluginConfig_1.genHappyPackLoaderString("less")
                     ]
                 })
             },
@@ -119,12 +109,7 @@ var webpackConfig = {
                     use: [
                         cssLoader,
                         postcssLoader,
-                        {
-                            loader: "sass-loader",
-                            options: {
-                            // ident: "css-loader"
-                            }
-                        }
+                        GetHappyPackPluginConfig_1.genHappyPackLoaderString("sass")
                     ]
                 })
             }
@@ -136,7 +121,26 @@ var webpackConfig = {
             filename: "[name].css",
             allChunks: true
         }),
-        bannerPlugin
+        bannerPlugin,
+        BabelLoader_1.happyPackBabelLoaderPlugin,
+        GetHappyPackPluginConfig_1.getHappyPackPlugin("less", [
+            {
+                loader: 'less-loader',
+                options: {
+                    sourceMap: true,
+                    javascriptEnabled: true,
+                    modifyVars: ThemeConfig_1.getThemeConfig()
+                }
+            }
+        ], 4),
+        GetHappyPackPluginConfig_1.getHappyPackPlugin("sass", [
+            {
+                loader: "sass-loader",
+                options: {
+                // ident: "css-loader"
+                }
+            }
+        ], 2)
     ],
     //压缩配置
     optimization: {

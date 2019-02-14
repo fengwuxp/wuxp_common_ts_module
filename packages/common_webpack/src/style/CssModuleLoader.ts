@@ -1,8 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cssModuleLoader = function (_a) {
-    var resource = _a.resource;
-    return ({
+import {genHappyPackLoaderString, getHappyPackPlugin} from "../utils/GetHappyPackPluginConfig";
+
+export const cssModuleLoader = genHappyPackLoaderString("css");
+
+
+export const happyPackCssLoaderPlugin = getHappyPackPlugin("css", [
+    ({resource}) => ({
         ident: "css-loader",
         loader: 'css-loader',
         options: {
@@ -13,5 +15,7 @@ exports.cssModuleLoader = function (_a) {
             localIdentName: '[name]__[local]___[hash:base64:5]',
             ident: "css-loader"
         }
-    });
-};
+    })
+],2);
+
+
