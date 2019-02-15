@@ -10,6 +10,12 @@ export interface FileUploadOptions extends BaseFetchOptions {
 
     data: string | File | Blob;
 
+    /**
+     * 以表单形式提交文件时，表单参数的名称,
+     * 默认 file
+     */
+    formDataFileName?: string
+
 }
 
 /**
@@ -21,7 +27,6 @@ export interface FileDownloadOptions {
 
     fileName?: string;
 }
-
 
 
 /**

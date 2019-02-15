@@ -3,11 +3,14 @@ import {FileUploadOptions} from "./FileTransmitter";
 import {RestTemplate} from "../template/RestTemplate";
 import {FetchOptions} from "../FetchOptions";
 import {fileToBase64} from "../../../common_utils/src/codec/FileConverterUtil";
+import {MediaType} from "../constant/http/MediaType";
 
 
 /**
  * 默认的文件上传策略
- * 使用 base64的格式上传文件
+ * contentType == MediaType.FORM_DATA 时使用表单上传
+ * contentType == null || contentType === MediaType.JSON     时使用base64字符串上传
+ *
  */
 export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadStrategy {
 
@@ -30,15 +33,23 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
     }
 
     protected uploadFile = (options: FileUploadOptions): Promise<string> => {
-
-        let file: Promise<string>;
-        const data = options.data;
+        //TODO　加入文件压缩
+        let file: Promise<any>;
+        const {data, contentType, formDataFileName} = options;
         if (typeof data !== "string") {
             if (typeof window === "undefined") {
                 throw new Error("File or Blob only support browser");
             }
-            //web端
-            file = fileToBase64(data);
+            if (contentType === MediaType.FORM_DATA) {
+                //使用表单
+                const formData = new FormData();
+                formData.append(formDataFileName || "file", data as Blob);
+                file = Promise.resolve(formData);
+            } else if (contentType == null || contentType === MediaType.JSON) {
+                //使用 json
+                file = fileToBase64(data);
+            }
+
         } else {
             file = Promise.resolve(data);
         }

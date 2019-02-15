@@ -44,6 +44,9 @@ export default abstract class AbstractCacheFileUploadStrategy implements FileUpl
 
     };
 
+    /**
+     * 上传文件
+     */
     protected abstract uploadFile: (options: FileUploadOptions) => Promise<string>;
 
 

@@ -28,14 +28,6 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //解析参数，进行值复制（浅拷贝）
         let data = {...originalParameter};
 
-        //transform request data encoder
-        for (const encoder of this.requestEncoders) {
-            try {
-                data = await encoder.encode(data);
-            } catch (e) {
-                console.error("编码转换出现异常", e);
-            }
-        }
 
         const options: FetchOptions = args[1] || {};
 
@@ -72,6 +64,17 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 // fetchOptions.responseType = ResponseType.JSON;
             }
         }
+
+        //transform request data encoder
+        for (const encoder of this.requestEncoders) {
+            try {
+                data = await encoder.encode(data);
+            } catch (e) {
+                console.error("编码转换出现异常", e);
+            }
+        }
+
+
         if (signature && this.apiSignatureStrategy != null) {
             //签名处理
             const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter, fetchOptions);
