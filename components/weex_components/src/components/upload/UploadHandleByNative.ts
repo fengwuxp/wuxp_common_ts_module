@@ -14,7 +14,7 @@ const nat_network_transfer: any = weex.requireModule('nat_network_transfer');
  * @return {*}
  */
 const booleanConvert = (flag) => {
-    if (isIos) {
+    if (!isIos) {
         return flag;
     }
     return flag ? 1 : 0;
@@ -75,8 +75,7 @@ export default {
                 proportion.aspectY = this.proportion[1]
             }
             const {aspectX, aspectY} = proportion;
-            photo.capture(booleanConvert(index === 0),
-                this.booleanConvert(this.crop),
+            photo.capture(booleanConvert(index === 0), booleanConvert(this.crop),
                 {
                     aspectX: aspectX,
                     aspectY: aspectY,
@@ -91,6 +90,10 @@ export default {
                         appMain.showProgressBar(20);
                         return;
                     }
+                    if (data.constructor !== Array) {
+                        data = [data];
+                    }
+
                     this.handleUpload(data);
 
                 }, (message) => {

@@ -40,6 +40,7 @@
 <script>
     import BaseInputProps from "./props/BaseInputProps";
     import ioniconIcon from "common_icons/weex/ionicons/";
+    import {isWeb} from "common_weex/src/constant/WeexEnv";
 
     export default {
         name: "base-input",
@@ -80,6 +81,13 @@
             onFocus(e) {
                 this.isFocus = true;
                 this.$emit("onFocus", e);
+                if (isWeb){
+                    //  const input = e.target;
+                    // setTimeout(()=>{
+                    //     input.scrollIntoView(true);
+                    //     input.scrollIntoViewIfNeeded(true);
+                    // },100);
+                }
             },
 
             onBlur(e) {

@@ -5,7 +5,7 @@ import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
 import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouterHelper from "../route/AppRouterHelper";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {isWeb, rpx} from "common_weex/src/constant/WeexEnv";
 
 //使用默认的参数器解析参数
 const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
@@ -19,7 +19,6 @@ const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
 const appMixin: ComponentOptions<any> = {
 
     data() {
-
         return {
             //客户端版本代码
             appVersionCode: -1,
@@ -27,7 +26,9 @@ const appMixin: ComponentOptions<any> = {
             member: null,
 
             //页面是否准备完成
-            viewIsReady: false
+            viewIsReady: false,
+
+            rpx
         }
     },
     methods: {

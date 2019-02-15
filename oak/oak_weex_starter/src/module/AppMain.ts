@@ -49,60 +49,60 @@ if (isWeb) {
             callback({id: 152});
         },
 
-        /**
-         * 跳转到个人中心
-         * @param success
-         * @param failre
-         */
-        toMine(success = () => {
-        }, failre = () => {
-        }) {
-            console.log("浏览器暂不支持toMine方法");
-        },
-
-        /**
-         * 跳转到购物车
-         * @param success
-         * @param failre
-         */
-        toCart(success = () => {
-        }, failre = () => {
-        }) {
-            console.log("浏览器暂不支持toCart方法");
-        },
-
-        /**
-         * 跳转到分类
-         * @param success
-         * @param failre
-         */
-        toCategory(success = () => {
-        }, failre = () => {
-        }) {
-            console.log("浏览器暂不支持toCategory方法");
-        },
-
-        /**
-         * 跳转到首页
-         * @param success
-         * @param failre
-         */
-        toHome(success = () => {
-        }, failre = () => {
-        }) {
-            console.log("浏览器暂不支持toHome方法");
-        },
-
-        /**
-         * 跳转到订单
-         * @param success
-         * @param failre
-         */
-        toOrder(success = () => {
-        }, failre = () => {
-        }) {
-            console.log("浏览器暂不支持 toOrder 方法");
-        },
+        // /**
+        //  * 跳转到个人中心
+        //  * @param success
+        //  * @param failre
+        //  */
+        // toMine(success = () => {
+        // }, failre = () => {
+        // }) {
+        //     console.log("浏览器暂不支持toMine方法");
+        // },
+        //
+        // /**
+        //  * 跳转到购物车
+        //  * @param success
+        //  * @param failre
+        //  */
+        // toCart(success = () => {
+        // }, failre = () => {
+        // }) {
+        //     console.log("浏览器暂不支持toCart方法");
+        // },
+        //
+        // /**
+        //  * 跳转到分类
+        //  * @param success
+        //  * @param failre
+        //  */
+        // toCategory(success = () => {
+        // }, failre = () => {
+        // }) {
+        //     console.log("浏览器暂不支持toCategory方法");
+        // },
+        //
+        // /**
+        //  * 跳转到首页
+        //  * @param success
+        //  * @param failre
+        //  */
+        // toHome(success = () => {
+        // }, failre = () => {
+        // }) {
+        //     console.log("浏览器暂不支持toHome方法");
+        // },
+        //
+        // /**
+        //  * 跳转到订单
+        //  * @param success
+        //  * @param failre
+        //  */
+        // toOrder(success = () => {
+        // }, failre = () => {
+        // }) {
+        //     console.log("浏览器暂不支持 toOrder 方法");
+        // },
 
         /**
          * 分享
