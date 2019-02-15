@@ -100,7 +100,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
 
     /**
-     * 默认的骑过去呢客户端
+     * 默认的请求客户端
      */
     protected fetchClient: FetchClient;
 

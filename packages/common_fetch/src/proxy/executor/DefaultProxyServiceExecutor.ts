@@ -4,6 +4,7 @@ import {MediaType} from "../../constant/http/MediaType";
 import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
 import {FetchRetryOptions} from "../../FetchRetryOptions";
+import {RequestDataEncoder} from "../RequestDataEncoder";
 
 
 /**
@@ -12,7 +13,7 @@ import {FetchRetryOptions} from "../../FetchRetryOptions";
 export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
 
-    execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
+    async execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
 
         const serviceMethod: Function = apiService[methodName];
         if (serviceMethod) {
@@ -25,9 +26,16 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         const originalParameter = args[0] || {};
 
         //解析参数，进行值复制（浅拷贝）
-        const data = {...originalParameter};
+        let data = {...originalParameter};
 
-        //TODO 加入文件上传的策略
+        //transform request data encoder
+        for (const encoder of this.requestEncoders) {
+            try {
+                data = await encoder.encode(data);
+            } catch (e) {
+                console.error("编码转换出现异常", e);
+            }
+        }
 
         const options: FetchOptions = args[1] || {};
 
@@ -66,7 +74,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         }
         if (signature && this.apiSignatureStrategy != null) {
             //签名处理
-            const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter,fetchOptions);
+            const sign = this.apiSignatureStrategy.sign(signature.fields, originalParameter, fetchOptions);
             fetchOptions.data = {
                 ...data,
                 ...sign

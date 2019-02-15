@@ -8,6 +8,10 @@ import SimpleRequestHeaderResolver from "../../resolve/header/SimpleRequestHeade
 import {FeignProxy} from "../feign/FeignProxy";
 import {ProxyApiService} from "../ProxyApiService";
 import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
+import {RequestDataEncoder} from "../RequestDataEncoder";
+import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
+import {ProxyUnifiedTransformRequestFileObjectEncoder} from 'proxy/ProxyUnifiedTransformRequestFileObjectEncoder';
+import {defaultApiModuleName} from 'constant/FeignConstVar';
 
 /**
  * 代理服务执行器
@@ -35,18 +39,33 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
     //签名策略
     protected apiSignatureStrategy: ApiSignatureStrategy;
 
+    //在代理执行器中 encode
+    protected requestEncoders: Array<RequestDataEncoder>;
+
     //加载器
     private restTemplateLoader: RestTemplateLoader;
 
 
+    /**
+     *
+     * @param restTemplateLoader     模板加载器
+     * @param apiSignatureStrategy   接口签名策略
+     * @param requestURLResolver     请求url 解析
+     * @param requestHeaderResolver  请求头解析
+     * @param requestEncoders        请求数据编码器
+     */
     constructor(restTemplateLoader: RestTemplateLoader,
                 apiSignatureStrategy: ApiSignatureStrategy,
                 requestURLResolver?: RequestURLResolver,
-                requestHeaderResolver?: RequestHeaderResolver) {
+                requestHeaderResolver?: RequestHeaderResolver,
+                requestEncoders?: Array<RequestDataEncoder>) {
         this.restTemplateLoader = restTemplateLoader;
         this.apiSignatureStrategy = apiSignatureStrategy;
         this.requestHeaderResolver = requestHeaderResolver || new SimpleRequestHeaderResolver();
         this.requestURLResolver = requestURLResolver || new SimpleRequestURLResolver();
+        this.requestEncoders = requestEncoders || [
+            new ProxyUnifiedTransformRequestFileObjectEncoder(new DefaultFileUploadStrategy(process.env.UNIFIED_UPLOADFILE_URL, restTemplateLoader.load(defaultApiModuleName)))
+        ];
     }
 
     /**
