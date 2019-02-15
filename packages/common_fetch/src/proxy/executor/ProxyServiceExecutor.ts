@@ -39,7 +39,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
     //签名策略
     protected apiSignatureStrategy: ApiSignatureStrategy;
 
-    //在代理执行器中 encode
+    //在代理中执行 encoder
     protected requestEncoders: Array<RequestDataEncoder>;
 
     //加载器

@@ -4,7 +4,6 @@ import {MediaType} from "../../constant/http/MediaType";
 import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
 import {FetchRetryOptions} from "../../FetchRetryOptions";
-import {RequestDataEncoder} from "../RequestDataEncoder";
 
 
 /**
