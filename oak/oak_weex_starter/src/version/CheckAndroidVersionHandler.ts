@@ -1,21 +1,25 @@
 import {appUpdate, common} from "../ExpotrtWeexOAKModel";
 import {isIos} from "common_weex/src/constant/WeexEnv";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import {AppVersionInfo} from "./AppVersionInfo";
+import {PlatformType} from "./PlatformType";
+import {FetchOptions} from "common_fetch/src/FetchOptions";
+
+
+interface CheckAppVersionReq {
+
+    appCode: string;
+
+    platformType: PlatformType;
+
+    currVersionCode: number;
+}
 
 interface AppService {
 
-    checkAppVersion: Function;
+    checkAppVersion: (req: CheckAppVersionReq, options?: FetchOptions) => Promise<AppVersionInfo>;
 }
 
-interface CheckResult {
-
-    code: number;
-
-    /**
-     * 是否最新版本
-     */
-    newestVersion: boolean
-}
 
 /**
  * 检查更新android 版本
@@ -63,31 +67,15 @@ export default class CheckAndroidVersionHandler {
     /**
      * 是否最新版本
      */
-    isNewestVersion = (): Promise<CheckResult> => {
-        return new Promise<CheckResult>((resolve, reject) => {
+    isNewestVersion = (): Promise<AppVersionInfo> => {
+        return new Promise<AppVersionInfo>((resolve, reject) => {
             common.getAppVersionInfo(({versionCode, versionName, packageName}) => {
                 console.log("当前版本-> " + versionCode);
-
-                this.getAppVersionByServer(versionCode).then((data) => {
-                    if (data == null) {
-                        reject();
-                        return;
-                    }
-                    const {code} = data;
-                    if (code <= versionCode) {
-                        resolve({
-                            code,
-                            newestVersion: true
-                        })
-                    } else {
-                        resolve({
-                            code,
-                            newestVersion: false
-                        });
-                    }
-                }).catch(({message}) => {
-                    console.log(message ? message : "检查更新查询失败!");
-                });
+                this.getAppVersionByServer(versionCode)
+                    .then(resolve)
+                    .catch(({message}) => {
+                        console.log(message ? message : "检查更新查询失败!");
+                    });
             }, (message = "获取版本信息失败！") => {
                 reject(message);
             });
@@ -99,12 +87,12 @@ export default class CheckAndroidVersionHandler {
      * 从服务端获取版本号
      * @param versionCode
      */
-    private getAppVersionByServer = (versionCode): Promise<any> => {
+    private getAppVersionByServer = (versionCode: string | number): Promise<AppVersionInfo> => {
 
         return this.appService.checkAppVersion({
             appCode: AppConfigRegistry.get().androidAppCode,
-            platformType: "ANDROID",
-            currVersionCode: parseInt(versionCode)
+            platformType: PlatformType.ANDROID,
+            currVersionCode: parseInt(versionCode.toString())
         }, {useProgressBar: false});
     }
 }
