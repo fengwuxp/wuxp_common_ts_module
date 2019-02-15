@@ -7,10 +7,14 @@
           3：请求过程可以插入前置、后置拦截器
 
 #### 扩展自定义环境下的适配器
-      只需要实现 FetchAdapter接口就可以了
+      
+      只需要实现对应环境的FetchAdapter接口就可以了
 
-#### 依赖的环境变量
-       process.env.RUN_ENV，有效值：WEB、WEEX、WX_MIN_AAPP，默认值为web
+#### 目前的环境变量
+      浏览器 
+      WEEX
+      微信小程序
+      
 
 ##### 使用时需要设置 环境变量 process.env.RUN_ENV
 ##### 使用方式
