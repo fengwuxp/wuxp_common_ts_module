@@ -30,7 +30,7 @@ export interface AppConfig {
     /**
      * 文件上传地址
      */
-    upLoadFileURL?: string;
+    uploadFileURL?: string;
 
     /**
      * 布局配置

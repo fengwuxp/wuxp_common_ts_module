@@ -4,13 +4,35 @@ import {MediaType} from "../../constant/http/MediaType";
 import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
 import {FetchRetryOptions} from "../../FetchRetryOptions";
-
+import {RestTemplateLoader} from 'template/RestTemplateLoader';
+import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
+import {RequestURLResolver} from "../../resolve/url/RequestURLResolver";
+import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver";
+import {RequestDataEncoder} from "../RequestDataEncoder";
+import {ProxyUnifiedTransformRequestFileObjectEncoder} from "../ProxyUnifiedTransformRequestFileObjectEncoder";
+import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
+import {defaultApiModuleName} from "../../constant/FeignConstVar";
+import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
 /**
  * 默认的代理执行器
  */
 export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExecutor {
 
+
+    constructor(restTemplateLoader: RestTemplateLoader,
+                apiSignatureStrategy: ApiSignatureStrategy,
+                requestURLResolver?: RequestURLResolver,
+                requestHeaderResolver?: RequestHeaderResolver,
+                requestEncoders?: Array<RequestDataEncoder>) {
+        super(restTemplateLoader,
+            apiSignatureStrategy,
+            requestURLResolver,
+            requestHeaderResolver,
+            requestEncoders || [
+                new ProxyUnifiedTransformRequestFileObjectEncoder(new DefaultFileUploadStrategy(AppConfigRegistry.get().uploadFileURL, restTemplateLoader.load(defaultApiModuleName)))
+            ]);
+    }
 
     async execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
 

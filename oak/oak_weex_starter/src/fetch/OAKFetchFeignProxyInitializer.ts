@@ -6,6 +6,12 @@ import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInit
 import {oakEnv} from "oak_weex_common/src/env/OAKEnvVar";
 import {isWeb, isAndroid} from "common_weex/src/constant/WeexEnv";
 import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
+import {ProxyUnifiedTransformRequestFileObjectEncoder} from "common_fetch/src/proxy/ProxyUnifiedTransformRequestFileObjectEncoder";
+import DefaultFileUploadStrategy from "common_fetch/src/transfer/DefaultFileUploadStrategy";
+import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
+import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import {MediaType} from "common_fetch/src/constant/http/MediaType";
+import {FileUploadOptions} from "../../../../packages/common_fetch/src/transfer/FileTransmitter";
 
 
 export default class DefaultFetchFeignProxyInitializer implements FeignProxyInitializer {
@@ -28,8 +34,24 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
                 oakEnv.clientSecret,
-                isWeb ? "WEB" : isAndroid ? "ANDROID" : "IOS"
-            )
+                isWeb ? "WEB" : isAndroid ? "ANDROID" : "IOS",
+            ),
+            //undefined 表示使用默认
+            undefined,
+            undefined,
+            [
+                //文件上传处理
+                new ProxyUnifiedTransformRequestFileObjectEncoder(
+                    new DefaultFileUploadStrategy(
+                        AppConfigRegistry.get().uploadFileURL,
+                        templateLoader.load(defaultApiModuleName),
+                        {
+                            formDataFileName: "base64Data",
+                            contentType: MediaType.JSON
+                        } as FileUploadOptions
+                    )
+                )
+            ]
         );
 
     }

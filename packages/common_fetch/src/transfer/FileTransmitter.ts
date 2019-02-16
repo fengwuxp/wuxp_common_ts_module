@@ -4,14 +4,22 @@ import DefaultFetchClient from "../fetch/DefaultFetchClient";
 
 
 /**
+ * 在使用application/json提交数据时使用
+ */
+interface RequestBody {
+
+    [key: string]: any;
+}
+
+/**
  * 文件上传的配置对象
  */
 export interface FileUploadOptions extends BaseFetchOptions {
 
-    data: string | File | Blob;
+    data: string | RequestBody | File | Blob;
 
     /**
-     * 以表单形式提交文件时，表单参数的名称,
+     * 以表单形式或单纯的base64字符串提交文件时，服务端接收参数的名称,
      * 默认 file
      */
     formDataFileName?: string

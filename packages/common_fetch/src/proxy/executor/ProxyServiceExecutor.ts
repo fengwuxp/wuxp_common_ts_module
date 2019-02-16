@@ -9,9 +9,7 @@ import {FeignProxy} from "../feign/FeignProxy";
 import {ProxyApiService} from "../ProxyApiService";
 import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
 import {RequestDataEncoder} from "../RequestDataEncoder";
-import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
-import {ProxyUnifiedTransformRequestFileObjectEncoder} from 'proxy/ProxyUnifiedTransformRequestFileObjectEncoder';
-import {defaultApiModuleName} from 'constant/FeignConstVar';
+
 
 /**
  * 代理服务执行器
@@ -63,9 +61,7 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
         this.apiSignatureStrategy = apiSignatureStrategy;
         this.requestHeaderResolver = requestHeaderResolver || new SimpleRequestHeaderResolver();
         this.requestURLResolver = requestURLResolver || new SimpleRequestURLResolver();
-        this.requestEncoders = requestEncoders || [
-            new ProxyUnifiedTransformRequestFileObjectEncoder(new DefaultFileUploadStrategy(process.env.UNIFIED_UPLOADFILE_URL, restTemplateLoader.load(defaultApiModuleName)))
-        ];
+        this.requestEncoders = requestEncoders || [];
     }
 
     /**

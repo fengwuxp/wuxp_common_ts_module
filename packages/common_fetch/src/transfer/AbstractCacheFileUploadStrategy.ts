@@ -50,6 +50,12 @@ export default abstract class AbstractCacheFileUploadStrategy implements FileUpl
     protected abstract uploadFile: (options: FileUploadOptions) => Promise<string>;
 
 
+    /**
+     * 构建文件上传对象
+     */
+    protected abstract buildUploadFileRequest: (options: FileUploadOptions) => Promise<string>;
+
+
     private findUploadResultByCache = (file: File | string): string => {
         const result = AbstractCacheFileUploadStrategy.CACHE_UPLOAD_RESULT.get(this.genKey(file));
         if (result != null) {
