@@ -4,6 +4,7 @@ import {RestTemplate} from "../template/RestTemplate";
 import {FetchOptions} from "../FetchOptions";
 import {fileToBase64} from "../../../common_utils/src/codec/FileConverterUtil";
 import {MediaType} from "../constant/http/MediaType";
+import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
 
 /**
@@ -16,11 +17,6 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
 
 
     /**
-     * 上传url
-     */
-    protected url: string;
-
-    /**
      * rest template
      */
     protected restTemplate: RestTemplate;
@@ -31,11 +27,11 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
     protected defaultFileOptions: FileUploadOptions;
 
 
-    constructor(url: string, restTemplate: RestTemplate, defaultFileOptions?: FileUploadOptions, inspectionInterval?: number, maxTimes?: number) {
+    constructor(restTemplate: RestTemplate, defaultFileOptions?: FileUploadOptions, inspectionInterval?: number, maxTimes?: number) {
         super(inspectionInterval, maxTimes);
-        this.url = url;
         this.restTemplate = restTemplate;
         this.defaultFileOptions = defaultFileOptions || {
+            url: AppConfigRegistry.get().uploadFileURL,
             contentType: MediaType.JSON,
             formDataFileName: "file"
         } as FileUploadOptions;
@@ -43,24 +39,20 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
 
     protected uploadFile = (options: FileUploadOptions): Promise<string> => {
 
-        return this.buildUploadFileRequest(options).then((requestData) => {
+        return this.buildUploadFileRequest(options).then((fetchOptions: FetchOptions) => {
 
             //使用 rest template 上传文件，可用共享接口统一处理逻辑
-            return this.restTemplate.fetch({
-                ...options,
-                data: requestData,
-                url: options.url || this.url
-            } as FetchOptions).then((data) => {
+            return this.restTemplate.fetch(fetchOptions).then((data) => {
                 if (typeof data === "string") {
                     return data;
                 }
                 return data["url"];
-            })
+            });
         });
     };
 
 
-    protected buildUploadFileRequest = (options: FileUploadOptions): Promise<any> => {
+    protected buildUploadFileRequest = (options: FileUploadOptions): Promise<FetchOptions> => {
         //TODO　加入文件压缩
         const {data, contentType, formDataFileName} = {
             ...options,
@@ -78,7 +70,10 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                 const formData = new FormData();
                 formData.append(name, blob);
                 formData.append("extName", extName);
-                return Promise.resolve(formData);
+                return Promise.resolve({
+                    ...options,
+                    data: formData
+                });
             } else if (contentType == null || contentType === MediaType.JSON) {
                 //使用 json
                 return fileToBase64(blob).then((base64) => {
@@ -87,12 +82,18 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                         extName: extName
                     };
                     result[name] = base64;
-                    return result
+                    return {
+                        ...options,
+                        data: result
+                    }
                 });
             }
 
         } else {
-            return Promise.resolve(data);
+            return Promise.resolve({
+                ...options,
+                data
+            });
         }
     };
 

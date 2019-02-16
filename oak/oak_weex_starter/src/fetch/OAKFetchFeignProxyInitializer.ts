@@ -29,6 +29,7 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
 
 
         //设置代理持有者
+        const url = `@${defaultApiModuleName}/system/uploadFile` || AppConfigRegistry.get().uploadFileURL;
         FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(
@@ -43,16 +44,17 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
                 //文件上传处理
                 new ProxyUnifiedTransformRequestFileObjectEncoder(
                     new DefaultFileUploadStrategy(
-                        AppConfigRegistry.get().uploadFileURL,
                         templateLoader.load(defaultApiModuleName),
                         {
+                            url: url,
                             formDataFileName: "base64Data",
                             contentType: MediaType.JSON
                         } as FileUploadOptions
                     )
                 )
             ]
-        );
+        )
+        ;
 
     }
 

@@ -12,7 +12,6 @@ import {RequestDataEncoder} from "../RequestDataEncoder";
 import {ProxyUnifiedTransformRequestFileObjectEncoder} from "../ProxyUnifiedTransformRequestFileObjectEncoder";
 import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
 import {defaultApiModuleName} from "../../constant/FeignConstVar";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 
 /**
  * 默认的代理执行器
@@ -30,7 +29,9 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             requestURLResolver,
             requestHeaderResolver,
             requestEncoders || [
-                new ProxyUnifiedTransformRequestFileObjectEncoder(new DefaultFileUploadStrategy(AppConfigRegistry.get().uploadFileURL, restTemplateLoader.load(defaultApiModuleName)))
+                new ProxyUnifiedTransformRequestFileObjectEncoder(
+                    new DefaultFileUploadStrategy(restTemplateLoader.load(defaultApiModuleName))
+                )
             ]);
     }
 

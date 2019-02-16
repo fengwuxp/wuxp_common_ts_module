@@ -1,4 +1,5 @@
 import {FileUploadOptions, FileUploadStrategy} from "./FileTransmitter";
+import {FetchOptions} from "../FetchOptions";
 
 type CacheResult = {
     url: string,
@@ -53,7 +54,7 @@ export default abstract class AbstractCacheFileUploadStrategy implements FileUpl
     /**
      * 构建文件上传对象
      */
-    protected abstract buildUploadFileRequest: (options: FileUploadOptions) => Promise<string>;
+    protected abstract buildUploadFileRequest?: (options: FileUploadOptions) => Promise<FetchOptions>;
 
 
     private findUploadResultByCache = (file: File | string): string => {

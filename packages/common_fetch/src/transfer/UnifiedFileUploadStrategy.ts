@@ -1,12 +1,13 @@
-import {FileUploadOptions} from "./FileTransmitter";
+import {FileUploadOptions, UploadFileType} from "./FileTransmitter";
 import AbstractCacheFileUploadStrategy from "./AbstractCacheFileUploadStrategy";
+import {FetchOptions} from "../FetchOptions";
 
 
 /**
  * 统一的文件上传处理
  * @param data base64字符串或二进制对象
  */
-type UnifiedFileUploadHandle = (data: string | File | Blob) => Promise<string>;
+type UnifiedFileUploadHandle = (data: UploadFileType) => Promise<string>;
 
 /**
  * 统一的文件上传策略
@@ -26,6 +27,10 @@ export default class UnifiedFileUploadStrategy extends AbstractCacheFileUploadSt
     uploadFile = (options: FileUploadOptions): Promise<string> => {
         return this.uploadHandle(options.data);
     };
+
+    protected buildUploadFileRequest: (options: FileUploadOptions) => Promise<FetchOptions>;
+
+
 
 
 }
