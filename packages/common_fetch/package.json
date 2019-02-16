@@ -30,6 +30,7 @@
     "@types/node": "^10.12.12",
     "@types/weex": "^0.0.1",
     "@types/weixin": "^0.0.1",
+    "common_utils": "^0.0.1",
     "common_test": "^0.0.1",
     "common_webpack": "^0.0.1",
     "jest": "^23.6.0",

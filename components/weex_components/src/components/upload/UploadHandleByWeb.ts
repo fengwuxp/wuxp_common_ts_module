@@ -37,6 +37,7 @@ export default {
             //压缩图片
             compress.compress(convertFileListToArray(files), {
                 quality: 0.3,
+                //最大 0.3MB，只有大于0.3MB的图片才会进行压缩
                 size: 0.3,
                 resize: true
             }).then((resultList) => {

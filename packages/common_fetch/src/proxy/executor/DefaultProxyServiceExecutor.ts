@@ -4,7 +4,7 @@ import {MediaType} from "../../constant/http/MediaType";
 import {ResponseType} from "../../constant/ResponseType";
 import {FeignProxy} from "../feign/FeignProxy";
 import {FetchRetryOptions} from "../../FetchRetryOptions";
-import {RestTemplateLoader} from 'template/RestTemplateLoader';
+import {RestTemplateLoader} from '../../template/RestTemplateLoader';
 import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
 import {RequestURLResolver} from "../../resolve/url/RequestURLResolver";
 import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver";

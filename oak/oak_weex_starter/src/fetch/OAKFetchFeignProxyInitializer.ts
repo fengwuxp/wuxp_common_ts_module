@@ -11,7 +11,7 @@ import DefaultFileUploadStrategy from "common_fetch/src/transfer/DefaultFileUplo
 import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {MediaType} from "common_fetch/src/constant/http/MediaType";
-import {FileUploadOptions} from "../../../../packages/common_fetch/src/transfer/FileTransmitter";
+import {FileUploadOptions} from "common_fetch/src/transfer/FileTransmitter";
 
 
 export default class DefaultFetchFeignProxyInitializer implements FeignProxyInitializer {
