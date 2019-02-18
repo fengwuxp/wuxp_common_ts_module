@@ -101,6 +101,7 @@ const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(
 FeignProxyExecutorHolder.DEFAULT_EXECUTOR = proxyServiceExecutor;
 
 
+
 describe("test proxy api service", () => {
 
 
@@ -117,7 +118,10 @@ describe("test proxy api service", () => {
         //     logger.debug(e);
         // });
 
-        await testService.testQuery({memberId: 1}).then((data) => {
+        await testService.testQuery({
+            memberId: 1,
+            file: new Blob()
+        }).then((data) => {
             logger.debug("--请求结束，成功->", data);
         }).catch((e) => {
             logger.debug("--请求结束，失败-->", e);

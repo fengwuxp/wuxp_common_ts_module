@@ -5,6 +5,7 @@ import {FetchOptions} from "../FetchOptions";
 import {fileToBase64} from "common_utils/src/codec/FileConverterUtil";
 import {MediaType} from "../constant/http/MediaType";
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import {defaultApiModuleName} from "../constant/FeignConstVar";
 
 
 /**
@@ -30,8 +31,9 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
     constructor(restTemplate: RestTemplate, defaultFileOptions?: FileUploadOptions, inspectionInterval?: number, maxTimes?: number) {
         super(inspectionInterval, maxTimes);
         this.restTemplate = restTemplate;
+        const appConfig = AppConfigRegistry.get();
         this.defaultFileOptions = defaultFileOptions || {
-            url: AppConfigRegistry.get().uploadFileURL,
+            url: appConfig != null ? appConfig.uploadFileURL : (process.env.UNIFIED_UPLOAD_FILE_URL || `@${defaultApiModuleName}/system/upload`),
             contentType: MediaType.JSON,
             formDataFileName: "file"
         } as FileUploadOptions;
@@ -41,6 +43,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
 
         return this.buildUploadFileRequest(options).then((fetchOptions: FetchOptions) => {
 
+            console.log("上传文件", fetchOptions);
             //使用 rest template 上传文件，可用共享接口统一处理逻辑
             return this.restTemplate.fetch(fetchOptions).then((data) => {
                 if (typeof data === "string") {
@@ -54,10 +57,11 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
 
     protected buildUploadFileRequest = (options: FileUploadOptions): Promise<FetchOptions> => {
         //TODO　加入文件压缩
-        const {data, contentType, formDataFileName} = {
+        const fetchOptions = {
             ...options,
             ...this.defaultFileOptions
         };
+        const {data, contentType, formDataFileName} = fetchOptions;
         if (data.constructor === File || data.constructor === Blob) {
             if (typeof window === "undefined") {
                 throw new Error("File or Blob only support browser");
@@ -71,7 +75,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                 formData.append(name, blob);
                 formData.append("extName", extName);
                 return Promise.resolve({
-                    ...options,
+                    ...fetchOptions,
                     data: formData
                 });
             } else if (contentType == null || contentType === MediaType.JSON) {
@@ -81,9 +85,9 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                         //文件扩展名称
                         extName: extName
                     };
-                    result[name] = base64;
+                    result[name] = base64.split(",")[1];
                     return {
-                        ...options,
+                        ...fetchOptions,
                         data: result
                     }
                 });
@@ -91,7 +95,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
 
         } else {
             return Promise.resolve({
-                ...options,
+                ...fetchOptions,
                 data
             });
         }

@@ -18,7 +18,7 @@
   "license": "ISC",
   "scripts": {
     "build_ts": "rm -rf ./lib && node ./scripts/build.js",
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
     "npm_build_publish": "npm run build_ts && npm publish"
   },
@@ -31,14 +31,14 @@
     "typescript": ">=3.1.0"
   },
   "dependencies": {
-    "@types/jest": "^23.3.10",
+    "@types/jest": "^24.0.6",
     "@types/node": "^10.12.12",
-    "log4js": "^3.0.6",
+    "log4js": "^4.0.2",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.1"
   },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^24.1.0"
   },
   "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }
