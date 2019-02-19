@@ -58,7 +58,7 @@ const webpackConfig: webpack.Configuration = {
     },
     output: {
         path: path.resolve('dist_web'),
-        filename: '[name].web.js'
+        filename: '[name]_[hash].js'
     },
     resolve: {
         extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
@@ -128,7 +128,7 @@ const webpackConfig: webpack.Configuration = {
     plugins: [
         new VueLoaderPlugin(),
         new ExtractTextWebpackPlugin({
-            filename: "[name].css",
+            filename: "[name]_[hash].css",
             allChunks: true
         }),
         bannerPlugin,
@@ -163,6 +163,7 @@ const webpackConfig: webpack.Configuration = {
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
         "vue": "Vue",
+        "vue-router":"VueRouter"
     },
 };
 

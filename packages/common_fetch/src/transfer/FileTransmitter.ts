@@ -31,10 +31,12 @@ export interface FileUploadOptions extends BaseFetchOptions {
 /**
  * 文件下载配置
  */
-export interface FileDownloadOptions {
+export interface FileDownloadOptions extends BaseFetchOptions {
 
-    url: string;
 
+    /**
+     * 文件下载的名称
+     */
     fileName?: string;
 }
 
@@ -74,32 +76,3 @@ export interface FileTransmitter extends FileUploadStrategy, FileDownloadStrateg
 }
 
 
-// /**
-//  * 抽象的文件传输者
-//  */
-// export abstract class AbstractFileTransfer extends DefaultFetchClient implements FileTransmitter {
-//
-//
-//
-//     constructor(fetchAdapter: FetchAdapter) {
-//         super(fetchAdapter);
-//     }
-//
-//     download = (options: FileDownloadOptions): Promise<Blob> => {
-//
-//
-//         this.post({
-//             url:options.url
-//         }).then(()=>{
-//
-//         });
-//         return null
-//
-//     };
-//
-//     upload = (options: FileUploadOptions): Promise<string> => {
-//         return null
-//     };
-//
-//
-// }

@@ -7,12 +7,15 @@ import {AppRoute} from "./AppRouter";
 import {WeexRouteItem} from "./WeexRouteItem";
 import {Component} from "vue";
 
+
+const ROUTER_BASE_PATH = `/${process.env.ROUTER_BASE_PATH || ""}`;
+
 Vue.use(VueRouter);
 
 //路由列表
 const routeList: Array<RouteConfig> = [
     {
-        path: '/',
+        path: ROUTER_BASE_PATH,
         redirect: {
             path: "/index"
         }
@@ -36,9 +39,11 @@ const setRouteList = function (appRoute: AppRoute) {
 };
 setRouteList(routes as any);
 
+
 const router = new VueRouter({
     mode: 'history',
-    routes: routeList
+    routes: routeList,
+    base: ROUTER_BASE_PATH
 });
 
 

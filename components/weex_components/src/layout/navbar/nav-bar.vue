@@ -7,6 +7,7 @@
                   :navBarStyle="navBarStyle"
                   :rightStyle="rightStyle">
         <div slot="nav-bar-left"
+             v-if="showBack"
              :style="leftStyle"
              class="nav-bar-left"
              @click="clickLeft">
@@ -36,6 +37,7 @@
 <script>
     import NavBaseBar from "./nav-base-bar";
     import FeatherIcon from "common_icons/weex/feather/index";
+    import {isWeb} from "common_weex/src/constant/WeexEnv";
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
 
     export default {
@@ -50,7 +52,14 @@
         data() {
             return {};
         },
-        computed: {},
+        computed: {
+            showBack() {
+                if (isWeb) {
+                    return history.length > 1;
+                }
+                return true;
+            }
+        },
         methods: {
             /**
              * 是否为字体图标
