@@ -159,6 +159,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             //执行前置拦截器
             fetchOptions = await interceptorExecutor.preHandle(options);
         } catch (e) {
+            //忽略前置拦截器的执行异常
             console.error("interceptor pre handle error", e);
         }
 
@@ -176,14 +177,15 @@ export abstract class AbstractRestTemplate implements RestTemplate {
                 message: statusText,
                 httpCode: status,
                 headers,
-                response: data,
+                response: e,
                 request: options
             };
             //http code错误处理，将其广播
             ExceptionBroadcaster.broadcast(exception);
             //请求错误
             fetchIsError = true;
-            resp = e;
+            resp = exception;
+            // return Promise.reject(exception);
         }
 
         try {

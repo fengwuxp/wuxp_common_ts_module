@@ -24,9 +24,10 @@ export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
         //抓取api模块名称并且进行替换
         const searchValue = /^@(.+?)\//;
 
-        return url.replace(searchValue, ($1, $2) => {
 
-            return `${this.routeMapping[$2]}/`;
+        return url.replace(searchValue, ($1, $2) => {
+            const domain = this.routeMapping[$2];
+            return domain.endsWith("/") ? domain : `${domain}/`;
         })
     };
 

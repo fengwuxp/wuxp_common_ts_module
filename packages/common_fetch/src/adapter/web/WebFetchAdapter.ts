@@ -36,7 +36,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
             }).catch((response: Response) => {
                 const data = this.resolveResponse.resolve(response);
                 data.data = response;
-                return data;
+                return Promise.reject(data);
             });
             //超时控制
             const timeId = setTimeout(() => {

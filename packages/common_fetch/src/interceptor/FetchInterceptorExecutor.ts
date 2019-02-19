@@ -22,6 +22,12 @@ export default class FetchInterceptorExecutor {
         return this.executePreHandle(params);
     }
 
+    /**
+     * 请求后置处理器
+     * @param response
+     * @param options
+     * @param fetchError
+     */
     postHandle(response: FetchResponse, options: BaseFetchOptions, fetchError: boolean): Promise<FetchResponse | null | undefined> {
         return this.executePostHandle(response, options, fetchError);
     }
@@ -36,10 +42,15 @@ export default class FetchInterceptorExecutor {
         let index = 0;
         let result: BaseFetchOptions = options;
         while (index < interceptorList.length) {
-            let interceptor = interceptorList[index];
+            const interceptor = interceptorList[index];
             index++;
+            const handle = interceptor.preHandle;
+            if (handle == null) {
+                continue;
+            }
             try {
-                result = await interceptor.preHandle(result);
+
+                result = await handle(result);
             } catch (e) {
                 //异常，跳过
                 console.error("FetchInterceptorExecutor pre handle exception", e);
@@ -75,6 +86,10 @@ export default class FetchInterceptorExecutor {
                 }
             }
 
+            if (postHandle == null) {
+                continue;
+            }
+
 
             try {
                 result = await postHandle(result, options);
@@ -83,7 +98,9 @@ export default class FetchInterceptorExecutor {
                 //异常，中断执行，并抛出错误
                 return Promise.reject(e);
             }
-
+        }
+        if (fetchError) {
+            return Promise.reject(result);
         }
         return result;
     }

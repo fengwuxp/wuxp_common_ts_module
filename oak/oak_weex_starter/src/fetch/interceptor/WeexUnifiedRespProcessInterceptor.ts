@@ -4,6 +4,7 @@ import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_weex_common/src/model/api/ApiResp";
 import StringUtils from "common_utils/src/string/StringUtils";
 import {weexToast} from "common_weex/src/toast/WeexToast";
+import {HttpFetchException} from "common_fetch/src/exception/HttpFetchException";
 
 /**
  * 统一数据处理
@@ -20,21 +21,17 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
 
         const resp: ApiResp = data.data;
         if (resp == null) {
-            return Promise.reject();
+            return Promise.reject(data);
         }
 
         if (resp.code !== 0) {
-
             const message = resp.message;
-            const useUnifiedToast = StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar !== false);
-            if (useUnifiedToast) {
+            if (this.useUnifiedToast(options, message)) {
                 // 加入错误提示
                 weexToast(message);
             }
-
             return Promise.reject(resp);
         }
-
 
         const transformResponse = options.transformResponse;
 
@@ -53,5 +50,22 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
 
         return data;
 
+    };
+
+    postHandleError = (response: any, options: FetchOptions): any => {
+        if (options.useUnifiedTransformResponse !== false) {
+            //不使用统一的响应转换
+            const exception = response as HttpFetchException;
+            const message = exception.message || `请求异常 http code：${exception.httpCode}`;
+            if (this.useUnifiedToast(options, message)) {
+                // 加入错误提示
+                weexToast(message);
+            }
+        }
+        return response;
+    };
+
+    private useUnifiedToast = (options: FetchOptions, message: string) => {
+        return StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar !== false);
     }
 }

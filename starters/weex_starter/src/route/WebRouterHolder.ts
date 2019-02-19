@@ -8,14 +8,15 @@ import {WeexRouteItem} from "./WeexRouteItem";
 import {Component} from "vue";
 
 
-const ROUTER_BASE_PATH = `/${process.env.ROUTER_BASE_PATH || ""}`;
+const routerBasePahth = process.env.ROUTER_BASE_PATH || "";
+const ROUTER_BASE_PATH = routerBasePahth.startsWith("/") ? routerBasePahth : `/${routerBasePahth}`;
 
 Vue.use(VueRouter);
 
 //路由列表
 const routeList: Array<RouteConfig> = [
     {
-        path: ROUTER_BASE_PATH,
+        path: `${ROUTER_BASE_PATH}`,
         redirect: {
             path: "/index"
         }
