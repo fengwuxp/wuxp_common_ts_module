@@ -15,26 +15,28 @@ export default class MockSyncExecutePlugin implements LockExecutePlugin {
 
 
     constructor(minimumIntervalMilliseconds?: number) {
-        this.minimumIntervalMilliseconds = minimumIntervalMilliseconds || 1 * 1000;
+        this.minimumIntervalMilliseconds = minimumIntervalMilliseconds || 1000;
     }
 
     newProxyFunction = (fn: (...args) => any): ProxyFunctionType => {
 
         const minimumIntervalMilliseconds = this.minimumIntervalMilliseconds;
+        let isLock = false;
 
         return async function (...args): Promise<any> {
 
-            let isLock = false, beginTime = new Date().getTime();
+            const beginTime = new Date().getTime();
             if (isLock) {
                 //被锁定
                 return Promise.resolve(null);
             }
             isLock = true;
 
-            const proxy: Promise<any> = (await fn(...args)) as any;
+            const result: Promise<any> = (await fn(...args)) as any || Promise.resolve();
+
             const endTime = new Date().getTime();
 
-            return proxy["finally"]((data) => {
+            const handleFinally = (data) => {
                 //方法执行的时间
                 const times = endTime - beginTime;
                 if (times >= minimumIntervalMilliseconds - 16) {
@@ -46,7 +48,10 @@ export default class MockSyncExecutePlugin implements LockExecutePlugin {
                 }
 
                 return data;
-            });
+
+            };
+
+            return result.then(handleFinally).catch(handleFinally);
 
         };
 

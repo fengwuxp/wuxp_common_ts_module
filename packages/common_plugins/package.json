@@ -23,8 +23,14 @@
     "npm_i": "npm i",
     "npm_publish": "npm publish"
   },
-  "dependencies": {
-    "@types/node": "^10.9.4"
+  "devDependencies": {
+    "@types/node": "^10.12.12",
+    "common_config": "^0.0.1",
+    "common_test": "^0.0.1",
+    "common_webpack": "^0.0.1",
+    "jest": "^24.1.0",
+    "log4js": "^4.0.2"
   },
+  "dependencies": {},
   "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }
