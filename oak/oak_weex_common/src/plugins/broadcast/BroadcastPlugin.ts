@@ -1,5 +1,4 @@
-import {EsPlugin} from "../EsPlugin";
-import {isNullOrUndefined} from "util";
+import {EsPlugin} from "common_plugins/src/EsPlugin";
 import {BroadcastEvent} from "./BroadcastEvent";
 import {BroadcastEventData} from "./BroadcastData";
 import {BroadcastEventHolder} from "./BroadcastEventHolder";
@@ -42,7 +41,7 @@ export default class BroadcastPlugin implements EsPlugin {
         const key: string = this.getEventName(category, eventName);
 
         //TODO 多事件广播待支持
-        if (isNullOrUndefined(this.eventMap[key])) {
+        if (this.eventMap[key] == null) {
             this.eventMap[key] = [];
         }
         this.eventMap[key].push({
@@ -52,7 +51,7 @@ export default class BroadcastPlugin implements EsPlugin {
         console.log("注册事件成功--> " + category + " : " + eventName);
         // console.log(this.eventMap[key]);
 
-        if (isNullOrUndefined(this.eventData[key])) {
+        if (this.eventData[key] == null) {
             return
         }
         //当事件数据存储器中有该注册事件的值，进行消息广播
@@ -71,7 +70,7 @@ export default class BroadcastPlugin implements EsPlugin {
 
         //保存广播数据
         const key: string = this.getEventName(category, eventName);
-        if (isNullOrUndefined(this.eventData[key])) {
+        if (this.eventData[key] == null) {
             this.eventData[key] = [];
         }
         this.eventData[key].push({
@@ -101,7 +100,7 @@ export default class BroadcastPlugin implements EsPlugin {
 
         const eventDatum: Array<any> = this.eventData[key];
 
-        if (isNullOrUndefined(eventDatum)) {
+        if (eventDatum == null) {
             console.warn("key-> " + key + " 对应的数据存在!");
             return;
         }
@@ -110,7 +109,7 @@ export default class BroadcastPlugin implements EsPlugin {
 
         console.log(eventHolders);
 
-        if (isNullOrUndefined(eventHolders)) {
+        if (eventHolders == null) {
             console.warn("key-> " + key + " 对应的处理方式不存在!");
             return;
         }

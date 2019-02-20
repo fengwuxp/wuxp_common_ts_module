@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "md5": "^2.2.1",
+    "common_plugins": "^0.0.1",
     "oak_weex_common": "^0.0.1",
     "weex-vue-precompiler": "^0.1.23-bate",
     "weex_starter": "^0.0.1"
