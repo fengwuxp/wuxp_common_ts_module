@@ -23,8 +23,8 @@ export default class MockSyncExecutePlugin implements LockExecutePlugin {
         const minimumIntervalMilliseconds = this.minimumIntervalMilliseconds;
         let isLock = false;
 
-        return async function (...args): Promise<any> {
 
+        return async function (...args): Promise<any> {
             const beginTime = new Date().getTime();
             if (isLock) {
                 //被锁定
@@ -32,7 +32,7 @@ export default class MockSyncExecutePlugin implements LockExecutePlugin {
             }
             isLock = true;
 
-            const result: Promise<any> = (await fn(...args)) as any || Promise.resolve();
+            const result: Promise<any> = (await fn.call(this, ...args)) as any || Promise.resolve();
 
             const endTime = new Date().getTime();
 
@@ -44,7 +44,7 @@ export default class MockSyncExecutePlugin implements LockExecutePlugin {
                 } else {
                     setTimeout(() => {
                         isLock = false;
-                    }, this.minimumInterval - times);
+                    }, minimumIntervalMilliseconds - times);
                 }
 
                 return data;
