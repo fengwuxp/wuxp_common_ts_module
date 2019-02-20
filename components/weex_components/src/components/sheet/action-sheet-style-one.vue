@@ -2,7 +2,7 @@
 <template>
     <wxc-popup popup-color="rgba(255,255,255,0)"
                ref="popup"
-               :show="showCustomPlan"
+               :show="showPopup"
                @wxcPopupOverlayClicked="popupOverlayBottomClick"
                pos="bottom"
                :height="popupHeight">
@@ -10,7 +10,7 @@
             <div class="action_items">
                 <div v-for="(item,i) in items"
                      :class="getClassNames(i)"
-                     @click="clickAction(i)"
+                     @click="onClickItem(i)"
                      :key="i">
                     <text class="item_text"
                           :value="item"></text>
@@ -18,7 +18,7 @@
             </div>
             <text @click="openPopup(false)"
                   class="text_cancel"
-                  value="取消"></text>
+                  :value="cancelText"></text>
         </div>
     </wxc-popup>
 </template>
@@ -40,18 +40,11 @@
         },
         methods: {
             getClassNames(i) {
-                let classNames = ["action_item"];
+                const classNames = ["action_item"];
                 if (i < this.items.length - 1) {
                     classNames.push("border_bottom");
                 }
                 return classNames;
-            },
-            clickAction(index) {
-                this.$emit("onActionSheetChoose", {
-                    index,
-                    item: this.items[index]
-                });
-                this.openPopup(false);
             },
 
             pushAction(item) {

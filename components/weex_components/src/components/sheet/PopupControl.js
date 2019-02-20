@@ -19,13 +19,16 @@ export default {
         displayNumber: {
             default: 5
         },
+        cancelText: {
+            default: "取消"
+        },
         orderIndex: {
             default: 0
         }
     },
     data() {
         return {
-            showCustomPlan: false,
+            showPopup: false,
         }
     },
     computed: {
@@ -37,20 +40,27 @@ export default {
     },
     methods: {
         popupOverlayBottomClick() {
-            this.showCustomPlan = false;
+            this.showPopup = false;
             this.$emit("onClose", this.orderIndex);
         },
-        openPopup(showCustomPlan) {
-            if (showCustomPlan) {
-                this.showCustomPlan = showCustomPlan;
+        openPopup(showPopup) {
+            if (showPopup) {
+                this.showPopup = showPopup;
             } else {
                 this.$refs["popup"].appearPopup(false);
             }
         },
         toggle() {
-            this.openPopup(!this.showCustomPlan);
+            this.openPopup(!this.showPopup);
         },
 
+        onClickItem(index){
+            this.$emit("onChoose", {
+                index,
+                item: this.items[index]
+            });
+            this.openPopup(false);
+        }
 
     }
 }
