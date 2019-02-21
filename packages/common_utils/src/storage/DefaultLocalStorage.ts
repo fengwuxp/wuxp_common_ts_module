@@ -45,7 +45,7 @@ export default class DefaultLocalStorage implements LocalStorage {
 
     setStorage = <T>(key: string, data: T, options?: LocalStorageOptions): Promise<void> => {
 
-        let d: any = data;
+        let d: any;
         if (options) {
             d = {
                 data: d,
@@ -53,9 +53,10 @@ export default class DefaultLocalStorage implements LocalStorage {
                     expireDate: options.effectiveTime + new Date().getTime()
                 }
             };
+        } else {
+            d = data;
         }
-
-        return this.storage.setStorage<string>(key, JSON.stringify(d));
+        return this.storage.setStorage<string>(key, typeof data === "string" ? d : JSON.stringify(d));
     };
 
 

@@ -17,7 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "dependencies": {
@@ -25,7 +25,10 @@
     "@types/weixin": "^0.0.1"
   },
   "devDependencies": {
-    "@types/node": "^10.9.4"
+    "@types/node": "^10.12.26",
+    "common_test": "^0.0.1",
+    "jest": "^24.1.0",
+    "log4js": "^4.0.2"
   },
   "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
 }
