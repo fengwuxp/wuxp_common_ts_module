@@ -27,7 +27,20 @@ export const handleRedirect = <T extends NavigatorDescriptorObject = NavigatorDe
         return null;
     }
 
-    return navigatorAdapter.redirect(params);
+    const queryParams = {
+        ...params.queryParams
+    };
+
+    const pathname = queryParams.redirectUrl;
+    const redirectParams = queryParams.redirectParams;
+    delete queryParams.redirectUrl;
+    delete queryParams.redirectParams;
+
+    return navigatorAdapter.redirect({
+        ...params,
+        pathname,
+        queryParams: redirectParams
+    });
 
 };
 

@@ -53,13 +53,15 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
      */
     push = (params: WeexNavigatorParam): Promise<void> => {
 
-        const {pathname, search, queryParams, state, animated, callback} = params;
+        const {pathname, search, state, animated, callback} = params;
 
-        const queryString: string = `${this.argumentsResolve.argumentsToString(queryParams || {})}${search || ''}`;
-
+        const queryParams = {
+            ...(params.queryParams || {}),
+            ...parse(search)
+        };
         const result = handleRedirect(this, {
             pathname,
-            queryParams: parse(queryString),
+            queryParams,
             state,
             animated,
             callback
@@ -68,6 +70,10 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
             //需要重定向
             return result as Promise<void>;
         }
+
+
+        const queryString: string = `${this.argumentsResolve.argumentsToString(queryParams)}`;
+
 
         //设置需要传递到下一个页面的状态
         setNextViewState(state);
