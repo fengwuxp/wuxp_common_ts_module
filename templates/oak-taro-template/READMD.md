@@ -44,7 +44,9 @@
                   //页面跳转
                    navigator.push({
                       pathname:"/goods/list"  // 这个"/goods/list" 是 app.tsx中的pages 中的 "/pages/goods/list" 去掉"/pages"来的
-
+                      queryParams:{
+                         xxx:'xxx'
+                      },
                       //页面参数
                       state:{
                         goodsId:1
