@@ -1,3 +1,5 @@
+import StringUtils from "../string/StringUtils";
+
 const Util = {
 
     // 对Date的扩展，将 Date 转化为指定格式的String
@@ -29,6 +31,30 @@ const Util = {
         return fmt;
     },
 
+
+    /**
+     * @param source
+     */
+    parse: (source: string | number) => {
+        if (source == null) {
+            return null;
+        }
+        if (typeof source === "number") {
+            return new Date(source);
+        }
+        if (!StringUtils.hasText(source)) {
+            return null;
+        }
+
+        if (/\w*T\w*/.test(source)) {
+            //TODO 带有时区
+
+
+        } else {
+            return new Date(source.replace("/-/g", "/"));
+        }
+
+    },
 
     /**
      * 获取本地时间

@@ -1,6 +1,6 @@
-import {NavigatorAdapter} from "../../NavigatorAdapter";
-import {LocationDescriptorObject} from "history";
+import {NavigatorAdapter, NavigatorDescriptorObject} from "../../NavigatorAdapter";
 import {parse, stringify} from "querystring";
+import {handleRedirect} from "../../utils/RedirectRouteUtil";
 
 /**
  * 基于京东taro的导航适配器
@@ -22,8 +22,23 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     goBack = (num?: number) => this.taro.navigateBack({delta: num});
 
 
-    push = (params: LocationDescriptorObject): Promise<void> => {
+    push = (params: NavigatorDescriptorObject): Promise<void> => {
 
+        const {pathname, state, queryParams, search} = params;
+        // const paths = pathname ? pathname.split("?") : [];
+        const result = handleRedirect(this, {
+            pathname,
+            queryParams: {
+                // ...(parse(paths[0])),
+                ...parse(search),
+                ...(queryParams || {}),
+            },
+            state
+        });
+        if (result != null) {
+            //需要重定向
+            return result as Promise<void>;
+        }
 
         return this.taro.navigateTo({
             url: this.generateURL(params)
@@ -31,23 +46,23 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
 
     };
 
-    redirect = (params: LocationDescriptorObject) => {
+    redirect = (params: NavigatorDescriptorObject) => {
         return this.taro.redirectTo({
             url: this.generateURL(params)
         });
     };
 
 
-    protected generateURL = (locationDescriptorObject: LocationDescriptorObject): string => {
+    protected generateURL = (navigatorDescriptorObject: NavigatorDescriptorObject): string => {
 
 
-        const {pathname, state, search} = locationDescriptorObject;
+        const {pathname, state, search} = navigatorDescriptorObject;
 
-        const paths = pathname ? pathname.split("?") : [];
+        const paths = pathname.split("?");
 
         const params = {
             ...(parse(search as string)),
-            ...(parse(paths[0])),
+            // ...(parse(paths[0])),
             ...(state || {})
         };
 

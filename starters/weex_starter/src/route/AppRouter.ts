@@ -5,6 +5,7 @@ import {parse} from "querystring";
 import {ViewConfigByRoute} from "./ViewConfigByRoute";
 import {isWeb} from "common_weex/src/constant/WeexEnv";
 import {AppSessionManager} from "common_auth/src/session/AppSessionManager";
+import {getRedirectRoute} from "common_route/src/utils/RedirectRouteUtil";
 
 
 export interface AppRoute {
@@ -67,15 +68,13 @@ export default class AppRouter {
                     //未登录
                     return AppRouter.navigator.push({
                         pathname: generateBundleJsURL(AppRouter.appRoutes["login"]),
-                        queryParams: {
-                            //登录成功的重定向地址
-                            redirectUrl: pathname,
-                            //重定向参数
-                            redirectParams: JSON.stringify({
+                        queryParams: getRedirectRoute(
+                            pathname,
+                            {
                                 ...parse(param.search),
                                 ...queryParams
-                            })
-                        }
+                            }
+                        )
                     } as any);
                 }
             }

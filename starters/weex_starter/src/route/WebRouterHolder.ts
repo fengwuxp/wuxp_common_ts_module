@@ -6,6 +6,7 @@ import routes from '../../../../src/route/WebRoute';
 import {AppRoute} from "./AppRouter";
 import {WeexRouteItem} from "./WeexRouteItem";
 import {Component} from "vue";
+import {getRedirectRoute} from "common_route/src/utils/RedirectRouteUtil";
 
 
 const routerBasePahth = process.env.ROUTER_BASE_PATH || "";
@@ -66,11 +67,8 @@ router.beforeEach(async function (to, from, next) {
         if (!isLogin) {
             next({
                 path: '/login',
-                query: {
-                    // 将跳转的路由path作为参数，登录成功后跳转到该路由
-                    redirect: to.fullPath,
-                    redirectParam: JSON.stringify(to.params)
-                }
+                // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                query: getRedirectRoute(to.fullPath, to.params)
             });
         } else {
             next();

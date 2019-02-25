@@ -1,102 +1,184 @@
-/**
- * 下拉刷新的props
- */
+import DropRefreshProps from "../props/DropRefreshProps";
+import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
+
 export default {
+    components: {},
+    // props: Object.assign({
+    //
+    //     //是否立即刷新
+    //     refreshNow: {
+    //         default: false
+    //     }
+    // }, DropRefreshProps),
+    props: {
+        //是否立即刷新
+        refreshNow: {
+            default: true
+        },
+        ...DropRefreshProps
+    },
+    data() {
+        return {
+            //是否显示下拉刷新提示
+            showTip: false,
 
-    /**
-     * 刷新的图标样式
-     */
-    refreshImageStyle: {
-        default: {
-            width: "60px",
-            height: "60px"
+            //是否处于刷新状态
+            refreshing: false,
+
+            //当前下拉刷新动画的帧
+            currentAnimationFrame: 0,
+
+            //图片列表
+            images: [],
+
+            //初始查询页码
+            queryPage: 1,
+            //是否处于查询中
+            queryLoading: false,
+            //是否查询结束
+            queryEnd: false
         }
     },
+    computed: {},
+    methods: {
 
-    /**
-     * 刷新的容器样式
-     */
-    refreshContainerStyle: {
-        default: {
-            width: "750px",
-            justifyContent: "center"
+        /**
+         * 页码发生下拉刷新
+         * @param e
+         */
+        onViewOnRefresh(e) {
+            //开始刷新
+            this.refreshing = true;
+            this.queryPage = 1;
+            this.queryEnd = false;
+            this.queryLoading = false;
+            this.startRefreshAnimation();
+
+            //向父组件广播刷新事件
+            this.$emit("onRefresh");
+
+            //加载数据
+            const onLoadMore = this.onLoadMore(null, true);
+            if (onLoadMore != null) {
+                onLoadMore.finally(this.endRefreshAnimation);
+            }
+        },
+        onViewOnPullingDown(e) {
+            this.$emit("onPullingDown", e);
+        },
+
+        /**
+         * 加载更多
+         * @param event
+         * @param isRefresh
+         */
+        onLoadMore(event, isRefresh = false) {
+
+            if (this.queryLoading || this.queryEnd) {
+                //防止连续触发，串行化
+                return;
+            }
+            this.queryLoading = true;
+            const loadMore = this.loadMore;
+            if (typeof loadMore !== "function") {
+                // throw new Error(`loadMore is not function`);
+                return;
+            }
+            //向父组件广播事件
+            // this.$emit("onLoadMore");
+
+            return loadMore({
+                queryPage: this.queryPage,
+                querySize: this.querySize,
+            }, isRefresh).finally((len = 0) => {
+                if (len < this.querySize) {
+                    //查询结束
+                    this.queryEnd = true;
+                } else {
+                    this.queryPage++;
+                }
+                this.queryLoading = false;
+            });
+        },
+
+        /**
+         * 页面滚动
+         * @param event
+         */
+        onViewScroll(event) {
+            //页面滚动时调用的方法
+            this.$emit("onScroll", event);
+        },
+
+        /**
+         * 开始下拉刷新动画帧控制
+         **/
+        startRefreshAnimation() {
+            setTimeout(() => {
+                // 处理动画帧变化
+                if (this.currentAnimationFrame < this.imagesLength) {
+                    this.currentAnimationFrame++;
+                } else {
+                    this.currentAnimationFrame = 0;
+                }
+                if (this.refreshing) {
+                    //循环处理
+                    this.startRefreshAnimation();
+                }
+            }, this.frameTimes);
+        },
+
+
+        /**
+         * 结束下拉刷新
+         */
+        endRefreshAnimation() {
+            setTimeout(() => {
+                //结束动画
+                this.refreshing = false;
+                setTimeout(() => {
+                    //隐藏提示
+                    this.showTip = false;
+                }, 200);
+            }, 500);
+        },
+        /**
+         * 滚动到指定的节点，如果不填则滚到顶部
+         * @param ref
+         */
+        scrollToElement(ref) {
+            if (ref == null) {
+                ref = this.$refs["first_node"];
+            }
+            dom.scrollToElement(ref, {
+                offset: 0
+            });
+        },
+
+        /**
+         * 重置加载更多的事件
+         */
+        resetLoadMore() {
+            this.$refs["scroll_container"].resetLoadmore();
         }
     },
-    /**
-     * 刷新的内容样式
-     */
-    refreshContentStyle: {
-        default: {}
-    },
-
-    /**
-     * 刷新动画图片数组长度
-     * 刷新的图片依据约定的规则放到固定的目录
-     * images/animation/pull_to_refresh_people_{index}.png
-     */
-    imagesLength: {
-        default: 5
-    },
-    refreshTitle: {
-        default: ""
-    },
-
-    pullDownTipText: {
-        default: "松开后刷新"
-    },
-    refreshTipText: {
-        default: "正在加载中"
-    },
-
-    /**
-     * 下拉刷新动画帧的切换间隔
-     */
-    frameTimes: {
-        default: 130
-    },
-
-    /**
-     * 查询大小
-     */
-    querySize: {
-        default: 10
-    },
-
-    /**
-     * 距离底部触发加载更多事件的距离
-     */
-    loadMoreOffset: {
-        default: 120
-    },
-
-    /**
-     * 加载跟多的方法
-     * 传入查询大小和查询页码
-     * @param isRefresh 是否为下拉刷新（重置）
-     * 返回查询到的数据条数
-     * ({
-     *     querySize:number,
-     *     queryPage:number
-     * },isRefresh:boolean)=>Promise<number>
-     */
-    loadMore: {
-        default: null,
-        type: Function
-    },
-
-
-    /**
-     * 在 indicatorModel='indicator' 时生效
-     */
-    indicatorStyle: {
-        default: {
-            width: "60px",
-            height: "60px"
+    mounted() {
+        if (this.refreshNow) {
+            //页面一加载就刷新
+            this.$nextTick(() => {
+                this.onViewOnRefresh(null);
+            });
         }
+
     },
-    /**
-     * 刷新的  indicator样式
-     * 支持的只有3个  default, indicator,custom
-     */
-    indicatorModel: {default: "default"} //使用默认的动画效果
+    beforeMount() {
+        const imagesLength = this.imagesLength;
+        const images = [];
+        for (let i = 0; i < imagesLength; i++) {
+            images[i] = getWeexResourceUrl(`animation/pull_to_refresh_people_${i}.png`);
+        }
+        this.images = images;
+        console.log("---loadMoreOffset---->", this.loadMoreOffset);
+    }
 }

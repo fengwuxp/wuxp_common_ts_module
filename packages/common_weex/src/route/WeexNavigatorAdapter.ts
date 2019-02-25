@@ -1,17 +1,14 @@
-import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
+import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import DefaultURLArgumentsResolve from "../resolve/DefaultURLArgumentsResolve";
-import {LocationDescriptorObject} from "history";
 import {URLArgumentsResolve} from "../resolve/URLArgumentsResolve";
 import {setNextViewState} from "./PageStatTransferUtil";
+import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
+import {parse} from "querystring";
 
 
-export interface WeexNavigatorParam extends LocationDescriptorObject {
+export interface WeexNavigatorParam extends NavigatorDescriptorObject {
 
-    //查询参数
-    queryParams?: {
-        [k: string]: any
-    };
 
     animated?: boolean;
 
@@ -56,28 +53,41 @@ export default class WeexNavigatorAdapter implements NavigatorAdapter<WeexNaviga
      */
     push = (params: WeexNavigatorParam): Promise<void> => {
 
+        const {pathname, search, queryParams, state, animated, callback} = params;
 
-        let {pathname, search, queryParams, state} = params;
+        const queryString: string = `${this.argumentsResolve.argumentsToString(queryParams || {})}${search || ''}`;
 
+        const result = handleRedirect(this, {
+            pathname,
+            queryParams: parse(queryString),
+            state,
+            animated,
+            callback
+        });
+        if (result != null) {
+            //需要重定向
+            return result as Promise<void>;
+        }
+
+        //设置需要传递到下一个页面的状态
         setNextViewState(state);
 
-        let queryString = `${this.argumentsResolve.argumentsToString(queryParams || {})}${search || ''}`;
+        let url = pathname;
 
-
-        if (pathname.indexOf("?") >= 0) {
-            if (pathname.endsWith("&")) {
-                pathname += queryString;
+        if (url.indexOf("?") >= 0) {
+            if (url.endsWith("&")) {
+                url += queryString;
             } else {
-                pathname += `&${queryString}`;
+                url += `&${queryString}`;
             }
         } else {
-            pathname += `?${queryString}`;
+            url += `?${queryString}`;
         }
 
         return new Promise<void>((resolve, reject) => {
             this.navigator.push({
-                url: pathname,
-                animated: params.animated == null ? "true" : params.animated + ""
+                url,
+                animated: animated == null ? "true" : animated + ""
             }, () => {
                 if (!!params.callback) {
                     params.callback();

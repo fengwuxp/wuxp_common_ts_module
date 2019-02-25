@@ -1,9 +1,17 @@
 import {LocationDescriptorObject} from "history";
 
+
+export interface NavigatorDescriptorObject extends LocationDescriptorObject {
+    //查询参数
+    queryParams?: {
+        [k: string]: any
+    };
+}
+
 /**
  * 导航器适配器
  */
-export interface NavigatorAdapter<T extends LocationDescriptorObject = LocationDescriptorObject> {
+export interface NavigatorAdapter<T extends NavigatorDescriptorObject = NavigatorDescriptorObject> {
 
 
     /**

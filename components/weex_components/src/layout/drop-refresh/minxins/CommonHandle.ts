@@ -1,6 +1,7 @@
 import DropRefreshProps from "../props/DropRefreshProps";
 import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
 import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
 
 export default {
     components: {},
@@ -48,6 +49,11 @@ export default {
          * @param e
          */
         onViewOnRefresh(e) {
+            if (e != null && isWeb) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
             //开始刷新
             this.refreshing = true;
             this.queryPage = 1;
@@ -55,20 +61,14 @@ export default {
             this.queryLoading = false;
             this.startRefreshAnimation();
 
+            //向父组件广播刷新事件
+            this.$emit("onRefresh");
 
             //加载数据
             const onLoadMore = this.onLoadMore(null, true);
             if (onLoadMore != null) {
                 onLoadMore.finally(this.endRefreshAnimation);
             }
-            //向父组件广播刷新事件
-            this.$emit("onRefresh", (message) => {
-                if (message) {
-                    //TODO 提示
-                }
-                //结束刷新
-                this.endRefreshAnimation();
-            });
         },
         onViewOnPullingDown(e) {
             this.$emit("onPullingDown", e);
