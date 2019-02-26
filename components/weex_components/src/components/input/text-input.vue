@@ -14,7 +14,7 @@
         <slot v-if="labelSlot" name="label"></slot>
         <input class="input"
                ref="input"
-               :type="type"
+               :type="inputType"
                :style="inputStyle"
                :autofocus="autoFocus"
                :value="showValue"
@@ -40,7 +40,7 @@
 <script>
     import BaseInputProps from "./props/BaseInputProps";
     import ioniconIcon from "common_icons/weex/ionicons/";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import {isWeb,isAndroid} from "common_weex/src/constant/WeexEnv";
 
     export default {
         name: "base-input",
@@ -72,6 +72,16 @@
                     return false;
                 }
                 return this.value.length > 0;
+            },
+            inputType(){
+
+                const type = this.type;
+                if (type === 'number') {
+                    if (isAndroid) {
+                        return 'tel';
+                    }
+                }
+                return type;
             }
         },
         mounted() {

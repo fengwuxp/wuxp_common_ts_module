@@ -12,7 +12,11 @@
             </div>
             <scroller show-scrollbar="false"
                       class="item_scroller">
-                <text class="text_item border_bottom"></text>
+                <text v-for="(item,i) in items"
+                      class="text_item border_bottom"
+                      :key="i"
+                      @click="onClickItem(i)"
+                      :value="item"></text>
             </scroller>
             <div class="footer" @click="toggle">
                 <text class="text_cancel" :value="cancelText"></text>
@@ -75,6 +79,7 @@
 
     .text_item {
         height: 80px;
+        line-height: 80px;
         font-size: 32px;
         color: #303030;
         text-align: center;
