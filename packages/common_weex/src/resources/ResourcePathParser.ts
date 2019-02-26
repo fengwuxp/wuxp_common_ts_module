@@ -1,6 +1,7 @@
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
 import {WeexAppConfig} from "weex_starter/src/config/WeexAppConfig";
+import {isWeb} from "../constant/WeexEnv";
 
 
 const pathPrefix = {
@@ -85,6 +86,9 @@ export const getWeexResourceUrl = (uri: string) => {
         _uri = `${WEB_JS_DIR}/${uri}`;
     } else if (/\.(png|jpg|jpeg|webp)$/i.test(uri)) {
         //是图片 默认放在images目录下
+
+        //TODO 如果是prod 环境 切换到本地图片
+
         _uri = `${IMAGES_DIR}/${uri}`;
     } else if (/\.(ttf)$/i.test(uri)) {
         //字体文件 默认放在fons目录下
@@ -96,4 +100,16 @@ export const getWeexResourceUrl = (uri: string) => {
     }
 
     return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), _uri);
+};
+
+/**
+ * 从本地加载资源
+ * https://weex.apache.org/zh/guide/advanced/asset-path.html#schemes
+ * @param uri
+ */
+export const getWeexResourceUrlByLocal = (uri: string) => {
+    if (isWeb) {
+        return getWeexResourceUrl(uri);
+    }
+    return `local:///${uri}`;
 };

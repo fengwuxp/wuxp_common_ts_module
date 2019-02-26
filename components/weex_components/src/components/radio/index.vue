@@ -20,46 +20,6 @@
         </div>
     </div>
 </template>
-<style scoped>
-    .wx-radio-items {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .wx-radio-item {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .wx-radio-label-right {
-        padding-right: 10px;
-    }
-
-    .wx-radio-label-left {
-        padding-left: 10px;
-    }
-
-    .wx-radio {
-        position: relative;
-        border-radius: 40px;
-    }
-
-    .wx-radio-checked {
-        border-width: 10px;
-    }
-
-    .wx-radio-nochecked {
-        background-color: #ffffff;
-        border-width: 2px;
-        border-style: solid;
-        border-color: #ddd;
-    }
-
-    .checked {
-        background-color: #ffffff;
-    }
-
-</style>
 <script>
     export default {
         props: {
@@ -184,3 +144,44 @@
         }
     }
 </script>
+
+<style scoped>
+    .wx-radio-items {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .wx-radio-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .wx-radio-label-right {
+        padding-right: 10px;
+    }
+
+    .wx-radio-label-left {
+        padding-left: 10px;
+    }
+
+    .wx-radio {
+        position: relative;
+        border-radius: 40px;
+    }
+
+    .wx-radio-checked {
+        border-width: 10px;
+    }
+
+    .wx-radio-nochecked {
+        background-color: #ffffff;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #ddd;
+    }
+
+    .checked {
+        background-color: #ffffff;
+    }
+
+</style>
