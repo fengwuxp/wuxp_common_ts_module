@@ -38,7 +38,7 @@ const FONTS_DIR = process.env.FONTS_DIR || 'fonts';
 export const parseWeexBundleJsBasePath = () => {
 
     //获取app的配置的信息 WeexAppConfig
-    const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get() as any ;
+    const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get() as any;
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 
@@ -108,7 +108,7 @@ export const getWeexResourceUrl = (uri: string) => {
  */
 export const getWeexResourceUrlByLocal = (uri: string) => {
     if (isWeb) {
-        return getWeexResourceUrl(uri);
+        return getWeexResourceUrl(uri.replace(".", "@1x."));
     }
     return `local:///${uri}`;
 };
