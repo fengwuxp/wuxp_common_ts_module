@@ -203,3 +203,14 @@ export const getArbitrarilyMonthDateRange = (options?: GetDateRangeOptions): Dat
 
     return result;
 };
+
+/**
+ * 获取下一年的时间
+ * @param time
+ */
+export const getNextYear = (time: number) => {
+
+    const date = new Date(time);
+    date.setFullYear(date.getFullYear() + 1);
+    return date;
+};

@@ -1,22 +1,24 @@
 <!--单选按钮-->
-<!--引用自：https://github.com/hbteam/weex-droplet-ui-->
+<!--引用自：https://github.com/hbteam/weex-droplet-ui -->
 <template>
-    <div class="wx-radio-items" :style="{'flex-direction': direction, 'width': width}">
+    <div class="wx-radio-items" :style="wrapperStyle">
         <div class="wx-radio-item"
-             v-for="item in options"
+             v-for="(item,i) in options"
+             :key="i"
              :style="rowStyle"
              @click="handleClick(item)">
-            <text :style="textStyles" v-if="align === 'left'"
+            <text :style="textStyles"
+                  v-if="align === 'left'"
                   class="wx-radio-label-right"
-                  :value="item.title"></text>
+                  :value="text"></text>
             <div class="wx-radio"
-                 :style="getRadioStyle(item)"
-                 :class="[item.checked ? 'wx-radio-checked' : 'wx-radio-nochecked']">
+                 :style="radioStyle(item)"
+                 :class="[isChecked(item) ? 'wx-radio-checked' : 'wx-radio-nochecked']">
             </div>
             <text :style="textStyles"
                   v-if="align === 'right'"
                   class="wx-radio-label-left"
-                  :value="item.title"></text>
+                  :value="item.text"></text>
         </div>
     </div>
 </template>
@@ -24,12 +26,12 @@
     export default {
         props: {
             width: {
-                type: String,
-                default: '750px'
+                type: Number,
+                default: 750
             },
             size: {
-                type: String,
-                default: '44px'
+                type: Number,
+                default: 44
             },
             align: {
                 type: String,
@@ -39,16 +41,22 @@
                 type: String,
                 default: 'row'
             },
+            /**
+             * 单选按钮配置
+             * {
+             *     text:'',
+             *     value:'',
+             *     disabled:false
+             * }
+             */
             options: {
-                type: Array,
-                default: function () {
-                    return []
-                },
-                required: true
+                default: []
             },
-            value: {
-                type: Object,
-                required: true
+            defaultValue: {
+                default: null
+            },
+            disabled: {
+                default: false
             },
             checkedColor: {
                 type: String,
@@ -59,92 +67,92 @@
                 default: '#4D4D4D'
             },
             textFontSize: {
-                type: String,
-                default: '32px'
+                type: Number,
+                default: 32
             }
         },
 
         data() {
             return {
-                checkedStyle: {},
-                textStyles: {},
-                rowStyle: {},
+                value: this.defaultValue
             }
         },
 
-        created() {
-            this.setCheckedStyle();
-            this.setTextStyle();
-            this.setRowStyle();
-            this.initChecked();
-        },
-
-        methods: {
-            setTextStyle() {
-                this.textStyles = {
-                    color: this.textColor,
-                    fontSize: this.textFontSize
-                };
+        computed: {
+            wrapperStyle() {
+                const {direction, width} = this;
+                return {
+                    flexDirection: direction,
+                    width: `${width}px`
+                }
             },
-
-            setRowStyle() {
+            rowStyle() {
                 if (this.direction === 'column') {
-                    this.rowStyle = {
-                        'width': this.width,
+                    return {
+                        'width': `${this.width}px`,
                         'justify-content': 'space-between',
                         'padding-top': '24px',
                         'padding-bottom': '24px',
                         'padding-left': '40px',
                         'padding-right': '40px',
-                    }
+                    };
+
+                }
+                return {};
+            },
+            textStyles() {
+                return {
+                    color: this.textColor,
+                    fontSize: `${this.textFontSize}px`
                 }
             },
 
-            setCheckedStyle() {
-                const value = Number(this.size.replace('px', '')) / 2;
-                const size = value + 'px';
-                this.checkedStyle = {
+            checkedStyle() {
+                const size = `${this.size}px`;
+                return {
                     height: size,
                     width: size,
                     'border-radius': size,
                 };
             },
+        },
 
-            getRadioStyle(item) {
+
+        methods: {
+
+
+            emitEvent() {
+                const {value} = this;
+                const event = {value};
+                this.$emit('onChange', event);
+                this.$emit('input', value);
+            },
+
+            handleClick({disabled, value}) {
+                if (disabled) return;
+                this.value = value;
+                this.emitEvent();
+            },
+            radioStyle({disabled, value}) {
+                const {size, checkedColor} = this;
+                const _size = `${size}px`;
                 const style = {
-                    height: this.size,
-                    width: this.size,
-                    'border-radius': this.size,
-                    borderColor: item.checked ? this.checkedColor : "#dddddd"
+                    height: _size,
+                    width: _size,
+                    'border-radius': _size,
+                    borderColor: this.isChecked({value}) ? checkedColor : "#dddddd"
                 };
-                if (item.disabled) {
+                if (disabled) {
                     style['background-color'] = '#d9d9d9';
                 }
                 return style;
             },
-
-            initChecked() {
-                this.options.forEach(item => {
-                    if (item.checked) {
-                        this.$emit('wxChange', item.value);
-                        this.$emit('input', item.value);
-                    }
-                });
-            },
-
-            handleClick(item) {
-                if (item.checked || item.disabled) return;
-                this.options.forEach(el => {
-                    el.checked = false;
-                });
-                item.checked = true;
-                this.$emit('wxChange', item.value);
-                this.$emit('input', item.value);
-            },
+            isChecked({value}) {
+                return this.value === value;
+            }
         }
     }
 </script>
-
 <style scoped>
     .wx-radio-items {
         flex-direction: row;
