@@ -14,11 +14,6 @@ import {WeexStorageModule} from "weex/src/sdk/model/storage";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator/";
 import {WeexModalModule} from "weex/src/sdk/model/modal/";
 import {WeexWebSocketModule} from "weex/src/sdk/model/webSocket";
-import {isWeb} from "../constant/WeexEnv";
-
-if (isWeb) {
-    require("./module/Picker");
-}
 
 const animation: WeexAnimationModule = weex.requireModule('animation');
 const clipboard: WeexClipboardModule = weex.requireModule('clipboard');

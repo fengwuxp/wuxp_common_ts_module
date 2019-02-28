@@ -27,6 +27,7 @@
   "dependencies": {
     "@types/node": "^10.9.4",
     "@types/weex": "^0.0.1",
+    "@weex-project/weex-picker":"^0.2.4",
     "common_config": "^0.0.1",
     "common_route": "^0.0.1",
     "common_utils": "^0.0.1",
