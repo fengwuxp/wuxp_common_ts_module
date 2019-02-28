@@ -27,6 +27,7 @@
     "common_test": "^0.0.1"
   },
   "dependencies": {
+    "@weex-project/weex-picker":"^0.2.4",
     "common_auth": "^0.0.1",
     "common_config": "^0.0.1",
     "common_core": "^0.0.1",

@@ -66,11 +66,29 @@ export const parseWeexBundleJsBasePath = () => {
  */
 let WEEX_BUNDLE_JS_BASE_PATH = "";
 
+const IS_IMAGE_REGEXP = /(jpg|png|jpeg|gif)$/gi;
+
 /**
  * 获取资源的完整路径
  * @param uri
  */
-export const getWeexResourceUrl = (uri: string) => {
+export const getWeexResourceUr = (uri: string) => {
+
+    const enabledLocal = !isWeb && (process.env.ENABLED_SUPPORT_LOCAL_RESOURCE || false);
+    if (!enabledLocal || !IS_IMAGE_REGEXP.test(uri)) {
+        //没有启用本地资源，或者不是图片资源
+        return getWeexResourceUrlByFile(uri);
+    }
+
+    return getWeexResourceUrlByLocal(uri.replace(".", "@2x."));
+};
+
+
+/**
+ * 获取文件资源
+ * @param uri
+ */
+const getWeexResourceUrlByFile = (uri: string) => {
     let prefix = "";
     if (bundleUrl.startsWith("http")) {
         //远程
@@ -102,13 +120,12 @@ export const getWeexResourceUrl = (uri: string) => {
 };
 
 /**
- * 从本地加载资源
+ * 从本地加载资源 目前仅支持图片
  * https://weex.apache.org/zh/guide/advanced/asset-path.html#schemes
  * @param uri
  */
-export const getWeexResourceUrlByLocal = (uri: string) => {
-    if (isWeb) {
-        return getWeexResourceUrl(uri.replace(".", "@1x."));
-    }
-    return `local:///${uri}`;
+const getWeexResourceUrlByLocal = (uri: string) => {
+    const strings: string[] = uri.split("/");
+    const fileName = strings.pop().split(".")[0];
+    return `local:///${fileName}`;
 };
