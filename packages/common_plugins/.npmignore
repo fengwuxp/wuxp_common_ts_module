@@ -3,3 +3,4 @@ tsconfig.json
 jest.config.js
 tsconfig.test.json
 test
+.awcache

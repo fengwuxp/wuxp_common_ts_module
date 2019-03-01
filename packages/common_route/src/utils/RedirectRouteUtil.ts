@@ -1,6 +1,5 @@
 import StringUtils from "common_utils/src/string/StringUtils";
 import {NavigatorAdapter, NavigatorDescriptorObject} from "../NavigatorAdapter";
-import {WeexNavigatorParam} from "../../../common_weex/src/route/WeexNavigatorAdapter";
 
 /**
  * 获取重定向的路由信息

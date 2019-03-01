@@ -2,5 +2,8 @@
 tsconfig.json
 src
 scripts
-webpack-old
 .lock
+.awcache
+jest.config.js
+test
+tsconfig.test.json

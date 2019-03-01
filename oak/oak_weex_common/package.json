@@ -28,10 +28,10 @@
   "devDependencies": {
     "@types/node": "^10.12.18",
     "common_fetch": "^0.0.1",
-    "common_utils": "^0.0.1",
     "common_plugins": "^0.0.1",
     "common_test": "^0.0.1",
+    "common_utils": "^0.0.1",
     "md5": "^2.2.1"
   },
-  "gitHead": "38df96b841a02df1129cb36847868b2df50fd2eb"
+  "gitHead": "69d96469873702536da77c808618eb28e1e517f9"
 }

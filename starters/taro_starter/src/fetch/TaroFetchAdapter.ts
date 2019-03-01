@@ -51,7 +51,7 @@ export default class TaroFetchAdapter extends AbstractFetchAdapter<WebFetchOptio
             //headers HTTP 请求头
             header: headers,
             data,
-        };
+        } as any;
     };
 
 

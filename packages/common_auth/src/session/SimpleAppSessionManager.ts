@@ -6,11 +6,11 @@ import {LocalStorage} from "common_utils/src/storage/LocalStorage";
  * 默认提供的简单的用户会话管理器
  * 依赖localStorage
  */
-export default class SimpleAppSessionManager<T> implements AppSessionManager<T> {
+export default class SimpleAppSessionManager implements AppSessionManager<any> {
 
     public static SAVE_MEMBER_KEY: string = `${process.env.API_ROOT_PATH || ''}_APP_MEMBER_INFO`;
 
-    private member: T = null;
+    private member: any = null;
 
     private storage: LocalStorage;
 
@@ -19,7 +19,7 @@ export default class SimpleAppSessionManager<T> implements AppSessionManager<T> 
         this.storage = storage;
     }
 
-    getMember = (): Promise<T> => {
+    getMember = <T = any>(): Promise<T> => {
 
         if (this.member != null) {
             return Promise.resolve(this.member);
@@ -45,7 +45,7 @@ export default class SimpleAppSessionManager<T> implements AppSessionManager<T> 
         return this.storage.removeStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY).then(() => true);
     };
 
-    saveMember = (memebr: T): Promise<void> => {
+    saveMember = <T>(memebr: T): Promise<void> => {
         this.member = memebr;
         return this.storage.setStorage(SimpleAppSessionManager.SAVE_MEMBER_KEY, memebr);
     };

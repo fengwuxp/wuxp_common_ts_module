@@ -62,10 +62,11 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     async requestParamsEnhance(params: T): Promise<T> {
 
         try {
-            let token = await this.getToken();
+            const token: string = await this.getToken();
             console.log("token", token);
             (params as FetchOptions).headers["token"] = token;
         } catch (e) {
+            console.error("获取token失败", e);
             //获取本地用户信息失败 登录
             if ((params as FetchOptions).needAuth === true) {
                 console.log("需要鉴权加入等待鉴权队列", params);
