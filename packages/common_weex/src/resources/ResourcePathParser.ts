@@ -72,7 +72,7 @@ const IS_IMAGE_REGEXP = /(jpg|png|jpeg|gif)$/gi;
  * 获取资源的完整路径
  * @param uri
  */
-export const getWeexResourceUr = (uri: string) => {
+export const getWeexResourceUrl = (uri: string) => {
 
     const enabledLocal = !isWeb && (process.env.ENABLED_SUPPORT_LOCAL_RESOURCE || false);
     if (!enabledLocal || !IS_IMAGE_REGEXP.test(uri)) {

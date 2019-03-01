@@ -65,7 +65,15 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
         return response;
     };
 
-    private useUnifiedToast = (options: FetchOptions, message: string) => {
-        return StringUtils.hasText(message) && (options.useUnifiedToast !== false || options.useProgressBar !== false);
+    /**
+     * 是否使用统一的错误提示
+     * @param options
+     * @param message
+     */
+    private useUnifiedToast = (options: FetchOptions, message: string): boolean => {
+        if (options.useUnifiedToast === false || options.useProgressBar === false) {
+            return false;
+        }
+        return StringUtils.hasText(message);
     }
 }

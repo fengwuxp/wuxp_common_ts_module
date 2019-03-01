@@ -1,4 +1,4 @@
-import {WeexAppContext} from "weex_starter/src/config/WeexAppConfig";
+import {WeexAppConfig, WeexAppContext} from "weex_starter/src/config/WeexAppConfig";
 import OAKFetchFeignProxyInitializer from "../fetch/OAKFetchFeignProxyInitializer";
 import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
 
@@ -14,9 +14,9 @@ export default class OAKInitFeignBootStarter implements AppBootStarter<WeexAppCo
 
     protected initStatus: boolean = false;
 
-    async startup (context: WeexAppContext): Promise<WeexAppContext>  {
+    async startup(context: WeexAppContext): Promise<WeexAppContext> {
 
-        const appConfig = context.appConfig;
+        const appConfig: WeexAppConfig = context.appConfig;
         if (appConfig.feignProxyInitializer != null) {
             //使用自定义的代理初始化器，初始化
             appConfig.feignProxyInitializer.initFeignProxyFactory();

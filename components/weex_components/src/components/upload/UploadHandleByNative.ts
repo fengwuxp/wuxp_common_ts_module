@@ -1,5 +1,5 @@
 import {weexToast} from "common_weex/src/toast/WeexToast";
-import {isIos, isWeb} from "common_weex/src/constant/WeexEnv";
+import {isIos} from "common_weex/src/constant/WeexEnv";
 
 const photo: any = weex.requireModule('photo');
 const appMain: any = weex.requireModule("appMain");
@@ -13,7 +13,7 @@ const nat_network_transfer: any = weex.requireModule('nat_network_transfer');
  * @param flag
  * @return {*}
  */
-const booleanConvert = (flag) => {
+const booleanConvert = (flag: boolean) => {
     if (!isIos) {
         return flag;
     }
@@ -79,7 +79,7 @@ export default {
                 {
                     aspectX: aspectX,
                     aspectY: aspectY,
-                    requireBase64: typeof this.handleUpload === "function"
+                    requireBase64: typeof this.uploadHandle === "function"
                 }, (data) => {
                     if (data === undefined || data === null) {
                         weexToast("图片选择出现异常");
@@ -132,7 +132,7 @@ export default {
                     const resp = JSON.parse(data);
                     const {url} = resp;
                     resolve({
-                        orderNumber: this.orderNumber,
+                        orderIndex: this.orderIndex,
                         url: process.env.PIC_SERVICE_DOMAIN + url
                     });
                 });
