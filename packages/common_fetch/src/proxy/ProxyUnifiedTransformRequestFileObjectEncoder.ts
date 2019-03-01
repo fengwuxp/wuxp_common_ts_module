@@ -3,7 +3,7 @@ import {FileUploadStrategy} from "../transfer/FileTransmitter";
 
 
 /**
- * 在代理中统一上传文件对象的的encoder
+ * 在代理中统一上传文件对象的的encoder，仅支持web端
  */
 export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDataEncoder {
 
@@ -18,7 +18,9 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
     }
 
     async encode(request: any): Promise<any> {
-
+        if (typeof File === "undefined" || typeof Blob === "undefined") {
+            return request;
+        }
         const uploadQueue: Array<{
             key: string,
             value: Promise<any>[]
@@ -63,6 +65,7 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
 
     private async uploadFile(value): Promise<any> {
         //判断请求参数是否存在文件对象
+
         if (value.constructor === File || value.constructor === Blob) {
             //上传
             return await this.fileUploadStrategy.upload({

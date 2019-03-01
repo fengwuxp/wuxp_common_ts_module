@@ -3,6 +3,7 @@ import {FeignOptions} from "../../annotations/Feign";
 import {RequestMappingOptions} from "../../annotations/mapping/Mapping";
 import {SignatureOptions} from "../../annotations/security/Signature";
 import {RetryOptions} from "../../FetchRetryOptions";
+import {NeedAutoUploadOptions} from "../../annotations/upload/AutoUpload";
 
 
 /**
@@ -25,6 +26,17 @@ export interface FeignProxyApiServiceMethodConfig {
      * 重试相关配置
      */
     retryOptions?: RetryOptions;
+
+    /**
+     * 缓存相关配置
+     */
+    cacheOptions?:any;
+
+    /**
+     * 自动上传的相关配置
+     */
+   autoUploadOptions?: NeedAutoUploadOptions;
+
 }
 
 /**

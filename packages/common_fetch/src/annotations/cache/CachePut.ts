@@ -2,22 +2,36 @@ import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
 
 /**
- * 签名配置
+ * 缓存配置
  */
-export interface SignatureOptions {
+export interface CachePutOptions {
 
     /**
-     * 要签名的字段名称
+     * 缓存的key
+     * 默认按照url和参数进行缓存
      */
-    fields: Array<string>;
+    key?: string;
+
+    /**
+     * 生成缓存key的方法
+     * @param args
+     */
+    generateKey?: (...args) => string;
+
+
+    /**
+     * 有效期，毫秒数
+     * 默认：5 * 60 * 1000  5分钟
+     */
+    validityPeriod?: number;
+
 }
 
-
 /**
- * @param options 签名配置
+ * @param options  缓存配置
  * @constructor
  */
-export function Signature<T extends ProxyApiService>(options: SignatureOptions): Function {
+export function CachePut<T extends ProxyApiService>(options: CachePutOptions): Function {
 
 
     /**
@@ -28,7 +42,7 @@ export function Signature<T extends ProxyApiService>(options: SignatureOptions):
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): T {
         defaultGenerateAnnotationMethodConfig(target, name, {
-            signature: options
+            cacheOptions: options
         });
         return target;
 

@@ -6,3 +6,4 @@ tsconfig.json
 webpack.config.js
 *.map
 .awcache
+*.lock

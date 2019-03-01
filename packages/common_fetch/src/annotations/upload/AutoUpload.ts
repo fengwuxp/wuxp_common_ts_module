@@ -2,22 +2,26 @@ import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
 
 /**
- * 签名配置
+ * 需要自动上传配置
  */
-export interface SignatureOptions {
+export interface NeedAutoUploadOptions {
 
     /**
-     * 要签名的字段名称
+     * 需要上传的字段
      */
     fields: Array<string>;
+
+    /**
+     * 上传的rul
+     */
+    url?: string;
 }
 
-
 /**
- * @param options 签名配置
+ * @param options  需要自动上传
  * @constructor
  */
-export function Signature<T extends ProxyApiService>(options: SignatureOptions): Function {
+export function AutoUpload<T extends ProxyApiService>(options: NeedAutoUploadOptions): Function {
 
 
     /**
@@ -28,7 +32,7 @@ export function Signature<T extends ProxyApiService>(options: SignatureOptions):
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): T {
         defaultGenerateAnnotationMethodConfig(target, name, {
-            signature: options
+            autoUploadOptions: options
         });
         return target;
 
