@@ -5,7 +5,7 @@
 import {picker} from "./ExportWeexSdkModule";
 import {WeexPromiseModule} from "./module/WeexPromiseModule";
 import {WeexPickerDateOptions, WeexPickerOptions, WeexPickerTimerOptions} from "weex/src/sdk/model/picker";
-import {transformPromiseByProxy} from "./TransformPromiseByProxy";
+import {standardizedWeexModuleToPromise} from "./standardization/StandardizationHelper";
 
 
 /**
@@ -21,4 +21,4 @@ export interface WeexPrickPromiseModule extends WeexPromiseModule {
 }
 
 //
-export const promisePicker:WeexPrickPromiseModule = transformPromiseByProxy(picker);
+export const promisePicker: WeexPrickPromiseModule = standardizedWeexModuleToPromise({weexModule: picker});
