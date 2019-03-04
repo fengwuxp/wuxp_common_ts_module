@@ -23,3 +23,5 @@ declare module "*.woff2";
 declare module "*.eot";
 
 declare module "*.json";
+
+declare module "*.md";

@@ -137,7 +137,7 @@
                     needLayout: false,
                     delay: 0
                 }, () => {
-                    this.$emit('wxChange', this.checked);
+                    this.$emit('onChange', this.checked);
                     this.$emit('input', this.checked);
                 });
             },

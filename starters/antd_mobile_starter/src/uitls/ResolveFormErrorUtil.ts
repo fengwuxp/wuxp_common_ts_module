@@ -1,3 +1,5 @@
+
+
 interface FormError {
 
     readonly [key: string]: {
@@ -18,3 +20,4 @@ export function resolveFormErrorMessage(error: FormError): string {
     const key = Object.keys(error)[0];
     return error[key].errors[0].message
 }
+

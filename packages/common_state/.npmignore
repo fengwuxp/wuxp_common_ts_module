@@ -4,3 +4,4 @@ tsconfig.json
 jest.config.js
 test
 tsconfig.test.json
+*.lock
