@@ -33,6 +33,7 @@ const Util = {
 
 
     /**
+     * 字符串或数字转时间
      * @param source
      */
     parse: (source: string | number) => {
