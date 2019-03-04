@@ -1,5 +1,5 @@
 import {WeexModule} from "weex";
-import {WeexStandardizedPlugin} from "./WeexStandardizedPlugin";
+import {WeexStandardizedModule} from "./WeexStandardizedModule";
 
 interface WeexStandardizedOptions {
 
@@ -8,11 +8,17 @@ interface WeexStandardizedOptions {
      */
     weexModule: WeexModule,
 
+
     /**
-     * 参数转换
-     * @param args
+     * 参数装换的映射表
      */
-    transformParams?: (...args) => any;
+    transformParamMap?: {
+        /**
+         * 参数转换
+         * key 方法名称
+         */
+        [key: string]: (...otherArgs) => any
+    };
 
     /**
      * 回调转换
@@ -23,7 +29,7 @@ interface WeexStandardizedOptions {
 }
 
 const defaultOptions: WeexStandardizedOptions = {
-    transformParams: (...args) => args,
+    transformParamMap: {},
     transformCallback: (resolve, reject) => {
         return [
             ({result, data}) => {
@@ -44,11 +50,11 @@ const defaultOptions: WeexStandardizedOptions = {
  * 将weex的模块标准化为promise
  * @param options
  */
-export const standardizedWeexModuleToPromise = <T extends WeexStandardizedPlugin>(options: WeexStandardizedOptions): T => {
+export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule>(options: WeexStandardizedOptions): T => {
 
     const {
         weexModule,
-        transformParams,
+        transformParamMap,
         transformCallback
     } = {
         ...defaultOptions,
@@ -70,8 +76,9 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedPlugin
             },
             get: () => {
                 return (...p) => new Promise((resolve, reject) => {
-                    weexModule[key](...transformParams(...p), ...transformCallback(resolve, reject));
-                })
+                    const transformParamFn = transformParamMap[key];
+                    weexModule[key](...(transformParamFn ? transformParamFn(...p) : p), ...transformCallback(resolve, reject));
+                });
             }
         });
     }
