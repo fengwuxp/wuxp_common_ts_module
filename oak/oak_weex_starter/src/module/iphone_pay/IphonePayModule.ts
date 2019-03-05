@@ -1,4 +1,4 @@
-import {InAppPay, PermissionCheck} from "./index";
+import {InAppPay, PermissionCheck} from "..";
 
 
 const inAppPay: InAppPay = weex.requireModule<InAppPay>("inAppPay");

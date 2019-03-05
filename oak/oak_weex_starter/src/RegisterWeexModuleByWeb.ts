@@ -3,17 +3,17 @@
  */
 
 export const registerWeexModuleByWeb = () => {
-    require("./module/Broadcast");
+    require("./module/boradcast/Broadcast");
     require("./module/Cache");
     require("./module/AppMain");
     require("./module/ImageLoad");
-    require("./module/MessagagePush");
-    require("./module/Qrcode");
+    require("./module/push/MessagagePush");
+    require("./module/scan/Qrcode");
     require("./module/Common");
-    require("./module/AppUpdate");
+    require("./module/version/AppUpdate");
     require("./module/Photo");
-    require("./module/Location");
-    require("./module/ThirdLogin");
-    require("./module/ALiPayModule");
-    require("./module/NaviMapModule");
+    require("./module/location/Location");
+    require("./module/third/ThirdLogin");
+    require("./module/pay/ALiPayModule");
+    require("./module/location/NaviMapModule");
 };

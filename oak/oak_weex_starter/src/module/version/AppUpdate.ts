@@ -1,10 +1,11 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {WeexAppVersionControlModule} from "./index";
 
 /**
  * 自定义appUpdate 模块
  */
 if (isWeb) {
-    const appUpdateModal:any = {
+    const appUpdateModal:WeexAppVersionControlModule = {
 
         /**
          * 检查更新

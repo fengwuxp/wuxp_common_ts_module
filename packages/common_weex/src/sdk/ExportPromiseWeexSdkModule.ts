@@ -22,7 +22,7 @@ export interface WeexPrickPromiseModule extends WeexPromiseModule {
 }
 
 //picker
-export const promisePicker: WeexPrickPromiseModule = standardizedWeexModuleToPromise({weexModule: picker});
+export const promisePicker: WeexPrickPromiseModule = standardizedWeexModuleToPromise({module: picker});
 
 
 export interface WeexDomPromiseModule extends WeexPromiseModule {
@@ -51,7 +51,7 @@ export interface WeexDomPromiseModule extends WeexPromiseModule {
 
 
 export const domPicker: WeexDomPromiseModule = standardizedWeexModuleToPromise({
-    weexModule: dom,
+    module: dom,
     transformCallback: (resolve, reject) => {
         return [
             ({result, size}: WeexComponentRect) => {

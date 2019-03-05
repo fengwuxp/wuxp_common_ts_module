@@ -38,6 +38,7 @@ export {
     picker,
     clipboard,
     dom,
+    meta,
     modal,
     navigator,
     storage,

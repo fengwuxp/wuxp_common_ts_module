@@ -6,7 +6,7 @@ interface WeexStandardizedOptions {
     /**
      * 需要标准化的模块
      */
-    weexModule: WeexModule,
+    module: WeexModule,
 
 
     /**
@@ -26,6 +26,18 @@ interface WeexStandardizedOptions {
      * @param reject
      */
     transformCallback?: (resolve, reject) => Function[];
+
+    /**
+     * 模块增强的映射表
+     * 当基础模块提供的能力参数较为复杂时，可以使用该配置进行方法增强，简化开发的调用
+     */
+    enhanceMap?: {
+        /**
+         * 参数转换
+         * key 方法名称
+         */
+        [key: string]: (weexStandardizedModule: WeexStandardizedModule, ...args) => Promise<any>
+    }
 }
 
 const defaultOptions: WeexStandardizedOptions = {
@@ -41,7 +53,8 @@ const defaultOptions: WeexStandardizedOptions = {
             }
         ];
     },
-    weexModule: undefined
+    enhanceMap: {},
+    module: undefined
 
 
 };
@@ -53,9 +66,10 @@ const defaultOptions: WeexStandardizedOptions = {
 export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule>(options: WeexStandardizedOptions): T => {
 
     const {
-        weexModule,
+        module,
         transformParamMap,
-        transformCallback
+        transformCallback,
+        enhanceMap
     } = {
         ...defaultOptions,
         ...options,
@@ -68,7 +82,7 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
 //         configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable）
 //         enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
 
-    for (const key in weexModule) {
+    for (const key in module) {
 
         Object.defineProperty(proxy, key, {
             set: (val) => {
@@ -77,7 +91,16 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
             get: () => {
                 return (...p) => new Promise((resolve, reject) => {
                     const transformParamFn = transformParamMap[key];
-                    weexModule[key](...(transformParamFn ? transformParamFn(...p) : p), ...transformCallback(resolve, reject));
+                    const func = module[key];
+                    if (func == null) {
+                        const enhanceFunc = enhanceMap[key];
+                        if (enhanceFunc != null) {
+                            return enhanceFunc(proxy, ...p);
+                        }
+                    } else {
+                        func(...(transformParamFn ? transformParamFn(...p) : p), ...transformCallback(resolve, reject));
+                    }
+
                 });
             }
         });
