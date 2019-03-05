@@ -90,13 +90,13 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
     transformParamMap: {
         pick: (options: WeexStandardizeDateTimerPickerOptions) => {
             return [
+                options.title,
                 options.columnTitles == null ? null : options.columnTitles.join(","),
                 options.format,
                 options.value,
-                options.title,
                 options.rangeBegin,
                 options.rangeEnd,
-                options.configs
+                options.configs || {}
             ];
         }
     },
