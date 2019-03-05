@@ -1,11 +1,12 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {WeexScanQrCodeModule} from "./index";
 
 if (isWeb) {
 
-    const qrCode:any={
+    const qrCode:WeexScanQrCodeModule={
 
         /**
-         * zbar扫码
+         * zxing扫码
          * @param hiddenExchange 是否隐藏二维码/条码切换（0，false;1,true）
          * @param hiddenImportPhoto 是否隐藏导入图片（0，false;1,true）
          * @param success

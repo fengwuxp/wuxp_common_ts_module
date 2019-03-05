@@ -98,17 +98,18 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
             },
             get: () => {
                 return (...p) => {
-                    const transformParamFn = transformParamMap[key];
                     const func = module[key];
-                    if (func == null) {
-                        const enhanceFunc = enhanceMap[key];
-                        if (enhanceFunc != null) {
-                            return enhanceFunc(proxy, ...p);
-                        }
-                    } else {
+                    if (func != null) {
                         return new Promise((resolve, reject) => {
+                            const transformParamFn = transformParamMap[key];
                             func(...(transformParamFn ? transformParamFn(...p) : p), ...transformCallback(resolve, reject));
                         });
+                    }
+                    const enhanceFunc = enhanceMap[key];
+                    if (enhanceFunc != null) {
+                        return enhanceFunc(proxy, ...p);
+                    } else {
+                        throw new Error(`not support method: ${key}`);
                     }
 
                 }

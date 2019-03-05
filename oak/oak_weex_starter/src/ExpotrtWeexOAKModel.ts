@@ -1,5 +1,5 @@
 import {WeexModule} from "weex";
-import {WeexBoradcastModule} from "./module/boradcast";
+import {WeexBoradcastModule} from "./module/broadcast";
 import {LocationModule, NaviMapModule} from "./module/location";
 import {AliPayModule} from "./module/pay";
 

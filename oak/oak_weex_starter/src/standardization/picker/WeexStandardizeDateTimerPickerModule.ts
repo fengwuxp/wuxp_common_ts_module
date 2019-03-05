@@ -17,14 +17,14 @@ export interface WeexStandardizeDateTimerPickerModule {
      * @param options
      * @return string yyyy-MM-dd
      */
-    readonly pickDate: (options: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
+    readonly pickDate: (options?: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
 
     /**
      * 选择时分
      * @param value
      * @return string hh:mm
      */
-    readonly pickerTime: (options: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
+    readonly pickerTime: (options?: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
 }
 
 export interface BaseWeexStandardizeDateTimerPickerOptions {
@@ -105,10 +105,10 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
         reject
     ],
     enhanceMap: {
-        pickDate: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+        pickDate: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions = {}) => {
             return weexStandardizedModule.pick(options);
         },
-        pickerTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+        pickerTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions = {}) => {
             return weexStandardizedModule.pick({
                 columnTitles: [EMPTY_CHAR, EMPTY_CHAR, EMPTY_CHAR, "时", "分"],
                 format: "hh:mm",

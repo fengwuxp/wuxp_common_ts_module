@@ -2,7 +2,7 @@
  * 注册（导入）自定义weex模块
  */
 export const registerWeexModuleByWeb = () => {
-    require("./module/boradcast/Broadcast");
+    require("./module/broadcast/Broadcast");
     require("./module/push/MessagagePush");
     require("./module/scan/Qrcode");
     require("./module/version/AppUpdate");
