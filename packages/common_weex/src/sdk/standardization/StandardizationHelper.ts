@@ -82,15 +82,15 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
             return typeof module[key] == "function";
         }),
         ...Object.keys(enhanceMap)
-    ]
+    ];
 
-    console.log("funNames",funNames);
 
-//         value:属性的值
-//         writable:如果为false，属性的值就不能被重写,只能为只读了
-//         configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable）
-//         enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
     funNames.forEach((key) => {
+
+        //  value:属性的值
+        //  writable:如果为false，属性的值就不能被重写,只能为只读了
+        //  configurable:总开关，一旦为false，就不能再设置他的（value，writable，configurable ）
+        //  enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
         Object.defineProperty(proxy, key, {
             set: (val) => {
                 throw new Error("proxy module 不允许添加新的方法");
