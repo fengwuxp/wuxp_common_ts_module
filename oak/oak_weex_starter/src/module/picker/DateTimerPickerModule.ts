@@ -11,6 +11,9 @@ if (isWeb) {
             dateTime: string,
             rangeOfStartTime:string ,
             rangeOfEndTime:string,
+            configs: {
+                [key:string]:any
+            },
             success: (result: string) => void,
             failure: () => void) {
             console.log("web端暂时不支持")

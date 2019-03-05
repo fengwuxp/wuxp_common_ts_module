@@ -27,7 +27,9 @@ export interface WeexDateTimerPickerModule extends WeexModule {
                     dateTime: string,
                     rangeOfStartTime: string,
                     rangeOfEndTime: string,
-                    configs: {},
+                    configs: {
+                        [key: string]: any
+                    },
                     success: (result: string) => void,
                     failure: () => void) => void;
 }
