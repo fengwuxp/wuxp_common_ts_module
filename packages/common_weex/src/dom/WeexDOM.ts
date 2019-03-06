@@ -14,7 +14,7 @@ interface AppendElementOptions {
     /**
      * 组件的props
      */
-    props: any;
+    props?: any;
 }
 
 /**
