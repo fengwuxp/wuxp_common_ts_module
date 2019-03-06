@@ -1,5 +1,5 @@
-import FontAwesome from "../../src/fontAwesome/FontAwesome.json";
-import "../../src/fontAwesome/style.less";
+import FontAwesome from "../../glyphmaps/FontAwesome.json";
+import "../../styles/FontAwesome.less";
 import createIconSet from "../CreateIconSet";
 
 /**

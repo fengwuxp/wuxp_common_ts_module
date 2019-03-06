@@ -1,5 +1,5 @@
-import AntDesign from "../../src/antDesign/AntDesign.json";
-import "../src/antDesign/style.less";
+import AntDesign from "../../glyphmaps/AntDesign.json";
+import "../styles/AntDesign.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(AntDesign, 'AntDesign');

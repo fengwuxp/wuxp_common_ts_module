@@ -1,5 +1,5 @@
-import SimpleLineIcons from "../../src/simpleLineIcons/SimpleLineIcons.json";
-import "../../src/simpleLineIcons/style.less";
+import SimpleLineIcons from "../../glyphmaps/SimpleLineIcons.json";
+import "../../styles/Octicons.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(SimpleLineIcons, 'SimpleLineIcons');

@@ -1,5 +1,5 @@
-import Feather from "../../src/feather/Feather.json";
-import "../../src/feather/style.less";
+import Feather from "../../glyphmaps/Feather.json";
+import "../../styles/Feather.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(Feather, 'Feather');

@@ -11,7 +11,7 @@
 
 <script>
 
-    import Ionicons from "../../src/ionicons/Ionicons.json";
+    import Ionicons from "../../glyphmaps/Ionicons.json";
     import iconMixin from "../iconMixin";
 
     export default {

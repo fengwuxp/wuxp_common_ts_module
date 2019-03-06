@@ -1,5 +1,5 @@
-import Foundation from "../../src/foundation/Foundation.json";
-import "../../src/foundation/style.less";
+import Foundation from "../../glyphmaps/Foundation.json";
+import "../../styles/Foundation.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(Foundation, 'Foundation');

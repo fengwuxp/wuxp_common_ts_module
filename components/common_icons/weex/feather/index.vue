@@ -11,7 +11,7 @@
 
 <script>
 
-    import Feather from "../../src/feather/Feather.json";
+    import Feather from "../../glyphmaps/Feather.json";
     import iconMixin from "../iconMixin";
 
     export default {

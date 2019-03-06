@@ -26,5 +26,5 @@
 </script>
 
 <style scoped lang="less">
-    @import "../../src/feather/style.less";
+    @import "../../styles/Feather";
 </style>

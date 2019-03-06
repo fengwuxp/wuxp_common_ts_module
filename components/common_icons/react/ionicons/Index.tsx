@@ -1,5 +1,5 @@
-import Ionicons from "../../src/ionicons/Ionicons.json";
-import "../../src/ionicons/style.less";
+import Ionicons from "../../glyphmaps/Ionicons.json";
+import "../../styles/Ionicons.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(Ionicons, 'Ionicons');

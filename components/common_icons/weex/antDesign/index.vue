@@ -11,7 +11,7 @@
 
 <script>
 
-    import Feather from "../../src/feather/Feather.json";
+    import AntDesign from "../../glyphmaps/AntDesign.json";
     import iconMixin from "../iconMixin";
 
     export default {
@@ -20,7 +20,7 @@
         data() {
             return {
                 fontFamily: "AntDesign",
-                glyphMap: Feather
+                glyphMap: AntDesign
             }
         }
     }

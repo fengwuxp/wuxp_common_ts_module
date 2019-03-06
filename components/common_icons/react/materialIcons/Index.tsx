@@ -1,5 +1,5 @@
-import MaterialIcons from "../../materialIcons/MaterialIcons.json";
-import "../../src/materialIcons/src/style.less";
+import MaterialIcons from "../../glyphmaps/MaterialIcons.json";
+import "../../styles/MaterialIcons.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(MaterialIcons, 'MaterialIcons');

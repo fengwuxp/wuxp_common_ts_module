@@ -1,5 +1,5 @@
-import Octicons from "../../src/Octicons/Octicons.json";
-import "../../src/Octicons/style.less";
+import Octicons from "../../glyphmaps/Octicons.json";
+import "../../styles/Octicons.less";
 import createIconSet from "../CreateIconSet";
 
 const Icon = createIconSet(Octicons, 'Octicons');
