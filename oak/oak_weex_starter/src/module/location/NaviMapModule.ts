@@ -1,11 +1,12 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {NaviMapModule} from "./index";
 
 /**
  * 导航地图相关
  */
 if (isWeb) {
 
-    const naviModal: any = {
+    const naviModal: NaviMapModule = {
 
         /**
          * 获取安装的地图app
@@ -22,7 +23,7 @@ if (isWeb) {
          * @param success
          * @param failure
          */
-        getBaiduLocation: (coorType: string, locationOptions: any, success, failure) => {
+        getCurrentLocationByBaidu: (coorType: string, locationOptions: any, success, failure) => {
             console.log("web端暂不支持");
         },
 
@@ -35,7 +36,7 @@ if (isWeb) {
          * @param dname     终点名称
          * @return
          */
-        openNaviMap(appCnName: string, dlat: number, dlon: string, dname: string, failure) {
+        openNaviMap(appCnName: string, dlat: number, dlon: number, dname: string, failure) {
             console.log("web端暂不支持");
         },
         /**
@@ -49,7 +50,7 @@ if (isWeb) {
          * @param dname 终点名称
          * @param failure
          */
-        openBaiduMap(dlat: number, dlon: string, dname: string, failure) {
+        openBaiduMap(dlat: number, dlon: number, dname: string, failure) {
             console.log("web端暂不支持");
         },
 
@@ -64,7 +65,7 @@ if (isWeb) {
          * @param dname 终点名称
          * @param failure
          */
-        openGaoDeMap(dlat: number, dlon: string, dname: string, failure) {
+        openGaoDeMap(dlat: number, dlon: number, dname: string, failure) {
             console.log("web端暂不支持");
         },
 

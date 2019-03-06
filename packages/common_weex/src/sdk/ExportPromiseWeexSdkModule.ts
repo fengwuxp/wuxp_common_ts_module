@@ -52,7 +52,7 @@ export interface WeexDomPromiseModule extends WeexPromiseModule {
 
 export const domPicker: WeexDomPromiseModule = standardizedWeexModuleToPromise({
     module: dom,
-    transformCallback: (resolve, reject) => {
+    transformCallbackMap: (resolve, reject) => {
         return [
             ({result, size}: WeexComponentRect) => {
 

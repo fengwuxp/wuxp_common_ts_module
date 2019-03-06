@@ -8,16 +8,19 @@ export interface NaviMapModule extends WeexModule {
      * 获取安装的地图app
      * @param callback
      */
-    getInstalledNaviApp: (callback: (map) => void) => void;
+    getInstalledNaviApp: (callback: (map: LocalInstallMapAppMap) => void) => void;
 
     /**
      * 获取百度地图定位
-     * @param coorType
+     * @param coorType          坐标系类型
      * @param locationOptions
      * @param success
      * @param failure
      */
-    getBaiduLocation: (coorType: string, locationOptions: any, success, failure) => void;
+    getCurrentLocationByBaidu: (coorType: CoordinateType,
+                                locationOptions: any,
+                                success: (result: CurrentLocationByBaiduResult) => void,
+                                failure) => void;
 
     /**
      * 从当前位置导航
@@ -29,7 +32,7 @@ export interface NaviMapModule extends WeexModule {
      * @param failure
      * @return
      */
-    openNaviMap: (appCnName: string, dlat: number, dlon: string, dname: string, failure) => void;
+    openNaviMap: (appCnName: string, dlat: number, dlon: number, dname: string, failure) => void;
 
     /**
      * 打开百度地图（公交出行，起点位置使用地图当前位置）
@@ -41,7 +44,7 @@ export interface NaviMapModule extends WeexModule {
      * @param dlon  终点经度
      * @param failure
      */
-    openBaiduMap: (dlat: number, dlon: string, dname: string, failure) => void;
+    openBaiduMap: (dlat: number, dlon: number, dname: string, failure) => void;
 
     /**
      * 打开高德地图（公交出行，起点位置使用地图当前位置）
@@ -54,7 +57,7 @@ export interface NaviMapModule extends WeexModule {
      * @param dname 终点名称
      * @param failure
      */
-    openGaoDeMap: (dlat: number, dlon: string, dname: string, failure) => void;
+    openGaoDeMap: (dlat: number, dlon: number, dname: string, failure) => void;
 
     /**
      * 打开腾讯地图（公交出行，起点位置使用地图当前位置）
@@ -74,6 +77,69 @@ export interface NaviMapModule extends WeexModule {
 }
 
 /**
+ * 本机安装的地图app 列表
+ */
+export interface LocalInstallMapAppMap {
+
+    /**
+     * 百度地图
+     */
+    baiduMap?: string;
+
+    /**
+     * 百度地图
+     */
+    gaodeMap?: string;
+
+    /**
+     * 百度地图
+     */
+    tencentMap?: string;
+}
+
+/**
+ * 坐标系类型
+ */
+export enum CoordinateType {
+
+    ////地理坐标系统，Google Earth和中国外的Google Map使用，另外，目前基本上所有定位空间位置的设备都使用这种坐标系统，例如手机的GPS系统。
+    WGS_84 = "wgs84",
+
+    ////投影坐标系统，也就是我们平常所说的火星坐标系，Google Map中国、高德和腾讯好像使用，这个是中国自己在WGS84基础上加密而成，目的显而易见。
+    GCJ_02 = "gcj02",
+
+    //投影坐标系统，百度地图使用，在GCJ-02基础上二次加密而成。
+    BD_09 = "bd09"
+}
+
+
+export interface CurrentLocationByBaiduResult {
+
+    /**
+     * 坐标系类型
+     */
+    coorType: CoordinateType;
+
+    /**
+     * 纬度
+     */
+    latitude: string;
+
+    /**
+     * 经度
+     */
+    longitude: string;
+
+    label: string;
+
+    /**
+     * 城市名称
+     */
+    cityName: string;
+}
+
+
+/**
  * 定位模块
  */
 export interface LocationModule extends WeexModule {
@@ -88,15 +154,12 @@ export interface LocationModule extends WeexModule {
 
 
     /**
-     * Map={"mode":1,"address":"地址","slat":"起点纬度","slng":"起点经度","dlat":"目标纬度","dlng":"目标经度"}
-     * mode:1、2、3，分别表示公交、驾车和步行
-     * address:可空
-     * 坐标double型，起点坐标不传
+     * 打开导航路线
      * @param params
      * @param succ
      * @param fail
      */
-    openRoutePlan: (params: any, succ: () => void, fail: () => void) => void;
+    openRoutePlan: (params: RouteOptions, succ: () => void, fail: () => void) => void;
 }
 
 /**
@@ -151,4 +214,52 @@ export interface LocationResult {
      * 街道号
      */
     streetNumber: string;
+}
+
+export enum LocationRouteModel {
+
+    //公交
+    BUS,
+
+    //驾车
+    DRIVE,
+
+    // 步行
+    WALK
+}
+
+export interface RouteOptions {
+
+
+    /**
+     * 模式
+     */
+    mode: LocationRouteModel;
+
+    /**
+     * 地址
+     */
+    address: string;
+
+    /**
+     * 起点纬度
+     */
+    slat: number;
+
+    /**
+     * 起点经度
+     */
+    slng: number;
+
+    /**
+     * 目标纬度
+     */
+    dlat: number;
+
+    /**
+     * 目标精度
+     */
+    dlng: number;
+
+
 }

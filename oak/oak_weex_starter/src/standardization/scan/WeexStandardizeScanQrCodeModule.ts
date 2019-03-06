@@ -1,5 +1,4 @@
 import {qrcode} from "../../ExpotrtWeexOAKModel";
-import {WeexStandardizeLocationModule} from "../location/WeexStandardizeLocationModule";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 
 export interface WeexStandardizeScanQrCodeModule {
@@ -9,13 +8,13 @@ export interface WeexStandardizeScanQrCodeModule {
      * 扫码二维码
      * @param options
      */
-    scanWithZXing: (options?: WeexStandardizeScanQrCodeOptions) => Promise<string>;
+    readonly scanWithZXing: (options?: WeexStandardizeScanQrCodeOptions) => Promise<string>;
 
     /**
      * ZBar扫码
      * @param options
      */
-    scanWithZbar: (options?: WeexStandardizeScanQrCodeOptions) => Promise<string>;
+    readonly scanWithZbar: (options?: WeexStandardizeScanQrCodeOptions) => Promise<string>;
 }
 
 export interface WeexStandardizeScanQrCodeOptions {
@@ -45,13 +44,13 @@ const scanWithZXing = (options: WeexStandardizeScanQrCodeOptions = defaultOption
 /**
  * 标准化的扫码模块
  */
-export default standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
+export default standardizedWeexModuleToPromise<WeexStandardizeScanQrCodeModule>({
     module: qrcode,
     transformParamMap: {
         scanWithZXing,
         scanWithZbar: scanWithZXing
     },
-    transformCallback: (resolve, reject) => [
+    transformCallbackMap: (resolve, reject) => [
         resolve,
         reject
     ]

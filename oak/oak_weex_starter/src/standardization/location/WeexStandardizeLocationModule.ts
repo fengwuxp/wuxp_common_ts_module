@@ -1,6 +1,6 @@
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {LocationResult} from "../../module/location";
+import {LocationResult, RouteOptions} from "../../module/location";
 import {location} from "../../ExpotrtWeexOAKModel"
 
 /**
@@ -18,7 +18,7 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
      * 打开路线面板
      * @param options
      */
-    readonly openRoutePlan: (options: OpenRoutePlanOptions) => Promise<{}>;
+    readonly openRoutePlan: (options: RouteOptions) => Promise<void>;
 }
 
 interface LocationOptions {
@@ -29,9 +29,6 @@ interface LocationOptions {
     openMap?: boolean;
 }
 
-interface OpenRoutePlanOptions {
-
-}
 
 /**
  * 标准化的定位模块
@@ -44,7 +41,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
             return [openMap ? 1 : 0];
         }
     },
-    transformCallback: (resolve, reject) => [
+    transformCallbackMap: (resolve, reject) => [
         resolve,
         reject
     ]

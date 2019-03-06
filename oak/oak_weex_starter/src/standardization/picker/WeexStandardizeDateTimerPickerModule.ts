@@ -109,7 +109,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
             ];
         }
     },
-    transformCallback: (resolve, reject) => [
+    transformCallbackMap: (resolve, reject) => [
         resolve,
         reject
     ],
