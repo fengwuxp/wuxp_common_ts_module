@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
     "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
@@ -27,7 +27,8 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-loader": "^8.0.2",
     "typescript": "^3.2.2",
-    "typings": "^2.1.1"
+    "typings": "^2.1.1",
+    "core-js": ">=^2.6"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

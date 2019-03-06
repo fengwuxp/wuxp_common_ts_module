@@ -21,7 +21,7 @@
                 default: {
                     fontSize: "30px",
                     color: "#999999",
-                    marginTop: 70,
+                    marginTop: "25px",
                     marginBottom: "25px"
                 }
             },

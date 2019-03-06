@@ -7,6 +7,7 @@ import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouterHelper from "../route/AppRouterHelper";
 import {isWeb, rpx} from "common_weex/src/constant/WeexEnv";
 
+
 //使用默认的参数器解析参数
 const argumentsResolve: URLArgumentsResolve = new DefaultURLArgumentsResolve();
 

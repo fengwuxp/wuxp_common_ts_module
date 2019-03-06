@@ -2,14 +2,20 @@
  * babel 7 配置
  * @author wxup
  * @create 2018-09-08 10:45
+ * @link {https://babeljs.io/docs/en/}
  **/
 module.exports = {
     presets: [
         [
+            // @link https://babeljs.io/docs/en/babel-preset-env
             "@babel/preset-env",
             {
-                "modules": false
+                // modules: false,
+                // shippedProposals:true
                 // useBuiltins: "usage"
+                // include:[
+                //     "es7.array"
+                // ]
             },
 
         ],
