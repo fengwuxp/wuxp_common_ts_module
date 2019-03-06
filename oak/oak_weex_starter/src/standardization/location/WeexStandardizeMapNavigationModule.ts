@@ -18,7 +18,7 @@ export interface WeexStandardizeMapNavigationModule {
      * 通过百度地图进行定位
      * @param options
      */
-    readonly  getCurrentLocationByBaidu: (options: GetCurrentLocationByBaiduOptions) => Promise<CurrentLocationByBaiduResult>;
+    readonly getCurrentLocationByBaidu: (options: GetCurrentLocationByBaiduOptions) => Promise<CurrentLocationByBaiduResult>;
 
     /**
      * 注意 由于这个是打开第三方应用，无法得到明确的成功回调，只会有明确的失败回调
@@ -93,6 +93,25 @@ const openBaiduMap = (options: BaseNavigationOptions) => {
         options.dname
     ];
 };
+
+/**
+ * 地图名称和模块方法名称的映射关系
+ */
+const MAP_NAME_TO_METHOD_NAME_MAP = {
+    "百度地图": "openBaiduMap",
+    "高德地图": "openGaoDeMap",
+    "腾讯地图": "openTencent",
+};
+
+/**
+ * 通过地图名称获取模块打开地图能力的方法名称
+ * @param mapName
+ */
+export const getModuleOpenRouteMethodNameByMapName = (mapName: string) => {
+
+    return MAP_NAME_TO_METHOD_NAME_MAP[mapName]
+};
+
 /**
  * 标准化的地图导航模块
  */
