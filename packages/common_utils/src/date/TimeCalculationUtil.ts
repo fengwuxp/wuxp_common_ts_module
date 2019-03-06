@@ -1,4 +1,5 @@
 import {DAYS_OF_YEAR, MONTHS_OF_YEAR, ONE_DAY_MILLISECONDS} from "./Constant";
+import DateFormatUtils from "./DateFormatUtils";
 
 
 /**
@@ -37,7 +38,7 @@ export const calculationDaysByNow = (days: number): Date => {
     const date = new Date();
     const time = date.getTime() + days * ONE_DAY_MILLISECONDS;
     date.setTime(time);
-    return date;
+    return DateFormatUtils.getLocalTime(date);
 };
 
 /**

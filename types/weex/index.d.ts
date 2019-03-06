@@ -22,7 +22,13 @@ interface WeexConfigAPI {
     readonly  env: WeexEnvironment;
 }
 
-interface WeexDocument {
+/**
+ * 继承html document
+ * @link {https://weex.apache.org/zh/docs/api/weex-variable.html#document}
+ */
+interface WeexDocument extends Document {
+
+
 }
 
 export interface WeexModule {

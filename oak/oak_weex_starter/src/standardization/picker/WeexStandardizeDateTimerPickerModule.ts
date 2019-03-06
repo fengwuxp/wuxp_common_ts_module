@@ -84,7 +84,7 @@ export interface WeexStandardizeDateTimerPickerOptions extends BaseWeexStandardi
      * 强制格式化类型，如果改字段有值，返回的结果会按照format的格式返回
      * 默认格式：yyyy-MM-dd
      */
-    format?: "yyyy" | "MM" | "dd" | "hh" | "mm" | "ss" | "yyyy-MM" | "yyyy-MM-dd" | "hh:mm" | "yyyy-MM-dd hh:mm" | "yyyy-MM-dd hh:mm:ss";
+    format?: "yyyy" | "MM" | "dd" | "HH" | "mm" | "ss" | "yyyy-MM" | "yyyy-MM-dd" | "HH:mm" | "yyyy-MM-dd HH:mm" | "yyyy-MM-dd HH:mm:ss";
 
 
 }
@@ -101,7 +101,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
             return [
                 options.title,
                 options.columnTitles,
-                options.format,
+                options.format == null ? null : options.format.replace("hh", "HH"),
                 options.value,
                 options.rangeBegin,
                 options.rangeEnd,
@@ -119,15 +119,15 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
         },
         pickerTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
             return weexStandardizedModule.pick({
-                columnTitles: `${EMPTY_CHAR},${EMPTY_CHAR},${EMPTY_CHAR},时,分,${EMPTY_CHAR}`,
-                format: "hh:mm",
+                columnTitles: `${EMPTY_CHAR},${EMPTY_CHAR},${EMPTY_CHAR},时,分`,
+                format: "HH:mm",
                 ...options
             });
         },
         pickDateTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
             return weexStandardizedModule.pick({
-                columnTitles: `年,月,日,时,分,${EMPTY_CHAR}`,
-                format: "yyyy-MM-dd hh:mm",
+                columnTitles: `年,月,日,时,分`,
+                format: "yyyy-MM-dd HH:mm",
                 ...options
             });
         },
