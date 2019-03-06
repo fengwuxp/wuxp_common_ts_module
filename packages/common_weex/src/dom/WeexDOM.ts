@@ -19,7 +19,7 @@ interface AppendElementOptions {
     /**
      * 监听的事件
      */
-    on?: Record<string, Function>;
+    onEvents?: Record<string, Function>;
 }
 
 /**
@@ -45,7 +45,7 @@ interface ComponentHolder {
  */
 export const appendElementToView = (options: AppendElementOptions): ComponentHolder => {
 
-    const {component, props, on} = options;
+    const {component, props, onEvents} = options;
 
     // @ts-ignore
     const VueComponent = Vue.extend(component);
@@ -57,9 +57,10 @@ export const appendElementToView = (options: AppendElementOptions): ComponentHol
     for (const key in props) {
         instance[key] = props[key];
     }
-    if (on != null) {
-        for (const method in on) {
-            instance.$listeners[method] = on[method];
+    if (onEvents != null) {
+        //监听组件的事件
+        for (const method in onEvents) {
+            instance.$on(method, onEvents[method]);
         }
     }
 

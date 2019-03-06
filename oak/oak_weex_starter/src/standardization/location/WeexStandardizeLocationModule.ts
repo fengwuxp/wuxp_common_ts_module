@@ -44,5 +44,10 @@ export default standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
     transformCallbackMap: (resolve, reject) => [
         resolve,
         reject
-    ]
+    ],
+    enhanceMap: {
+        location: (weexStandardizedModule, options: LocationOptions) => {
+            return weexStandardizedModule["getMyLocation"](options);
+        }
+    }
 });

@@ -92,7 +92,7 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
         ...Object.keys(enhanceMap)
     ];
 
-    console.log("funNames", funNames);
+    // console.log("funNames", funNames);
 
 
     funNames.forEach((key) => {
