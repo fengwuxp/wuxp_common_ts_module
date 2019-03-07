@@ -88,7 +88,7 @@
 
 
                 this.currentPage = index;
-                this.$emit("changeTab", {
+                this.$emit("onChangeTab", {
                     index
                 });
             },

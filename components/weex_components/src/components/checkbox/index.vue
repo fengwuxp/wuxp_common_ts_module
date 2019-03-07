@@ -13,6 +13,8 @@
 </template>
 
 <script>
+    import {ON_CHANGE_EVENT_NAME, ON_INPUT_EVENT_NAME} from "../../config/EventNamesConfig";
+
     export default {
         name: "check-box",
         props: {
@@ -102,8 +104,8 @@
                 }
                 this.checked = !checked;
                 const event = {checked, index};
-                this.$emit('onChange', event);
-                this.$emit('input', checked);
+                this.$emit(ON_CHANGE_EVENT_NAME, event);
+                this.$emit(ON_INPUT_EVENT_NAME, checked);
             }
         }
     }

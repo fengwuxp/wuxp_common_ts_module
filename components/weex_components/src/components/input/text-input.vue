@@ -41,6 +41,12 @@
     import BaseInputProps from "./props/BaseInputProps";
     import ioniconIcon from "common_icons/weex/ionicons/";
     import {isWeb,isAndroid} from "common_weex/src/constant/WeexEnv";
+    import {
+        ON_BLUR_EVENT_NAME,
+        ON_CHANGE_EVENT_NAME,
+        ON_FOCUS_EVENT_NAME,
+        ON_INPUT_EVENT_NAME
+    } from "../../config/EventNamesConfig";
 
     export default {
         name: "base-input",
@@ -90,7 +96,7 @@
         methods: {
             onFocus(e) {
                 this.isFocus = true;
-                this.$emit("onFocus", e);
+                this.$emit(ON_FOCUS_EVENT_NAME, e);
                 if (isWeb){
                     //  const input = e.target;
                     // setTimeout(()=>{
@@ -102,7 +108,7 @@
 
             onBlur(e) {
                 this.isFocus = false;
-                this.$emit("onBlur", e);
+                this.$emit(ON_BLUR_EVENT_NAME, e);
             },
 
             onInput({value}) {
@@ -124,8 +130,8 @@
             setValueAndEmitterChangeEvent(val) {
                 this.value = val;
                 //父组件中可以使用v-model
-                this.$emit("input", this.needValue);
-                this.$emit("onChange", this.needValue);
+                this.$emit(ON_INPUT_EVENT_NAME, this.needValue);
+                this.$emit(ON_CHANGE_EVENT_NAME, this.needValue);
             },
             clearValue() {
                 this.setValueAndEmitterChangeEvent("");

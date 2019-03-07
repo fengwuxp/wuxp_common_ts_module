@@ -16,6 +16,7 @@
     import {isAndroid} from "common_weex/src/constant/WeexEnv";
     import ImageAutoSize from "./minxins/ImageAutoSize";
     import {weexTheme} from "../../theme/js_default_theme";
+    import {ON_CLICK_EVENT_NAME} from "../../config/EventNamesConfig";
 
     export default {
         props: {
@@ -37,7 +38,7 @@
         },
         methods: {
             onClick() {
-                this.$emit("onClick", this.src);
+                this.$emit(ON_CLICK_EVENT_NAME, this.src);
             },
 
             /**

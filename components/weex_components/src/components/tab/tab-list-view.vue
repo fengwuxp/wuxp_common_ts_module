@@ -78,7 +78,7 @@
                 this.$refs['tab-scroll-header'].changeIndex(index);
             },
             emitEvent(index) {
-                this.$emit("changeTab", {index});
+                this.$emit("onChangeTab", {index});
             }
         },
         beforeMount() {

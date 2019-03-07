@@ -1,4 +1,5 @@
 import WxcPopup from "../popup/index";
+import {ON_CLOSE_EVENT_NAME} from "../../config/EventNamesConfig";
 
 /**
  * 弹出式控制
@@ -41,7 +42,7 @@ export default {
     methods: {
         popupOverlayBottomClick() {
             this.showPopup = false;
-            this.$emit("onClose", this.orderIndex);
+            this.$emit(ON_CLOSE_EVENT_NAME, this.orderIndex);
         },
         openPopup(showPopup) {
             if (showPopup) {

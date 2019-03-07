@@ -17,6 +17,7 @@
 <script>
     import WeexImage from "../picture/weex-image";
     import {weexTheme} from "../../theme/js_default_theme";
+    import {ON_CHANGE_EVENT_NAME} from "../../config/EventNamesConfig";
 
     const defaultSliderHeight = 360;
 
@@ -71,7 +72,7 @@
 
             },
             onChange(e) {
-                this.$emit("onChange", e);
+                this.$emit(ON_CHANGE_EVENT_NAME, e);
             }
         }
     }

@@ -41,6 +41,12 @@
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import CountDownControl from "./mixins/CountDownControl";
     import {isAndroid} from "common_weex/src/constant/WeexEnv";
+    import {
+        ON_BLUR_EVENT_NAME,
+        ON_CHANGE_EVENT_NAME,
+        ON_FOCUS_EVENT_NAME,
+        ON_INPUT_EVENT_NAME
+    } from "../../config/EventNamesConfig";
 
     export default {
         name: "phone-code-input",
@@ -115,12 +121,12 @@
         methods: {
             onFocus(e) {
                 this.isFocus = true;
-                this.$emit("onFocus", e);
+                this.$emit(ON_FOCUS_EVENT_NAME, e);
             },
 
             onBlur(e) {
                 this.isFocus = false;
-                this.$emit("onBlur", e);
+                this.$emit(ON_BLUR_EVENT_NAME, e);
             },
 
             onInput({value}) {
@@ -131,8 +137,8 @@
                 }
                 this.value = value;
                 //父组件中可以使用v-model
-                this.$emit("input", this.value);
-                this.$emit("onChange", this.value);
+                this.$emit(ON_INPUT_EVENT_NAME, this.value);
+                this.$emit(ON_CHANGE_EVENT_NAME, this.value);
 
             },
             clearValue() {

@@ -23,6 +23,8 @@
     </div>
 </template>
 <script>
+    import {ON_CHANGE_EVENT_NAME, ON_INPUT_EVENT_NAME} from "../../config/EventNamesConfig";
+
     export default {
         props: {
             width: {
@@ -124,8 +126,8 @@
             emitEvent() {
                 const {value} = this;
                 const event = {value};
-                this.$emit('onChange', event);
-                this.$emit('input', value);
+                this.$emit(ON_CHANGE_EVENT_NAME, event);
+                this.$emit(ON_INPUT_EVENT_NAME, value);
             },
 
             handleClick({disabled, value}) {

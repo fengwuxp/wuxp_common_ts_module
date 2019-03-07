@@ -12,7 +12,7 @@
                          :topPosition="topPosition"
                          :canAutoClose="maskClose"
                          v-bind="overlayCfg"
-                         @wxcOverlayBodyClicking="wxcOverlayBodyClicking"></wxc-overlay>
+                         @onClicking="wxcOverlayBodyClicking"></wxc-overlay>
         </div>
         <div ref="wxc-popup"
              v-if="show"
@@ -63,6 +63,7 @@
     import WxcOverlay from '../overlay';
     import {animation, dom} from "common_weex/src/sdk/ExportWeexSdkModule";
     import {IPHONEX_BOTTOM_HEIGHT} from "../../helper/FlexViewHelper";
+    import {ON_CLOSE_EVENT_NAME, ON_DISPLAY_EVENT_NAME} from "../../config/EventNamesConfig";
 
 
     export default {
@@ -83,8 +84,8 @@
             topPosition: {
                 default: 0
             },
-            maskClose:{
-                default:true
+            maskClose: {
+                default: true
             },
             overlayCfg: {
                 type: Object,
@@ -198,6 +199,12 @@
                 }
 
             },
+
+            /**
+             * 显示或隐藏 popup
+             * @param bool
+             * @param duration
+             */
             appearPopup(bool, duration = 300) {
                 this.isShow = bool;
                 const popupEl = this.$refs['wxc-popup'];
@@ -212,9 +219,7 @@
                     delay: 0,
                     ...this.animation
                 }, () => {
-                    if (!bool) {
-                        this.$emit('wxcPopupOverlayClicked', {pos: this.pos});
-                    }
+                    this.$emit(bool ? ON_DISPLAY_EVENT_NAME : ON_CLOSE_EVENT_NAME, {pos: this.pos});
                 });
             },
             getTransform(pos, width, height, bool) {

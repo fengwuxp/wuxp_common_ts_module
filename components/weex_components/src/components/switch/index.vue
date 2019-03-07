@@ -12,6 +12,7 @@
     import {isAndroid, isWeb} from "common_weex/src/constant/WeexEnv";
     import {animation} from "common_weex/src/sdk/ExportWeexSdkModule";
     import {SIZE_CONFIG} from "./SizeConfigMap";
+    import {ON_CHANGE_EVENT_NAME, ON_INPUT_EVENT_NAME} from "../../config/EventNamesConfig";
 
 
     export default {
@@ -137,8 +138,8 @@
                     needLayout: false,
                     delay: 0
                 }, () => {
-                    this.$emit('onChange', this.checked);
-                    this.$emit('input', this.checked);
+                    this.$emit(ON_CHANGE_EVENT_NAME, this.checked);
+                    this.$emit(ON_INPUT_EVENT_NAME, this.checked);
                 });
             },
 

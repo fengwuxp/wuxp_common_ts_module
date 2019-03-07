@@ -3,7 +3,7 @@
     <wxc-popup popup-color="rgba(255,255,255,0)"
                ref="popup"
                :show="showPopup"
-               @wxcPopupOverlayClicked="popupOverlayBottomClick"
+               @onClose="popupOverlayBottomClick"
                pos="bottom"
                :height="popupHeight">
         <div class="action_sheet">

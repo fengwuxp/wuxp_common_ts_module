@@ -27,6 +27,7 @@
 
 <script>
     import {animation} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {ON_CLICK_EVENT_NAME} from "../../config/EventNamesConfig";
 
 
     export default {
@@ -77,12 +78,15 @@
         },
         methods: {
             overlayClicked(e) {
-                this.canAutoClose ? this.appearOverlay(false) : this.$emit('wxcOverlayBodyClicked', {});
+                //wxcOverlayBodyClicked
+
+                this.canAutoClose ? this.appearOverlay(false) : this.$emit(ON_CLICK_EVENT_NAME, {});
             },
             appearOverlay(bool, duration = this.duration) {
                 const {hasAnimation, timingFunction, canAutoClose} = this;
                 const needEmit = !bool && canAutoClose;
-                needEmit && (this.$emit('wxcOverlayBodyClicking', {}));
+                //组件关闭中
+                needEmit && (this.$emit('onClicking', {}));
                 const overlayEl = this.$refs['wxc-overlay'];
                 if (hasAnimation && overlayEl) {
                     animation.transition(overlayEl, {
@@ -93,10 +97,10 @@
                         timingFunction: timingFunction[bool ? 0 : 1],
                         delay: 0
                     }, () => {
-                        needEmit && (this.$emit('wxcOverlayBodyClicked', {}));
+                        needEmit && (this.$emit(ON_CLICK_EVENT_NAME, {}));
                     });
                 } else {
-                    needEmit && (this.$emit('wxcOverlayBodyClicked', {}));
+                    needEmit && (this.$emit(ON_CLICK_EVENT_NAME, {}));
                 }
             }
         }
