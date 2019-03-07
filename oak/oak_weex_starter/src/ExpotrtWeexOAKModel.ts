@@ -1,7 +1,7 @@
 import {WeexModule} from "weex";
 import {WeexBoradcastModule} from "./module/broadcast";
 import {LocationModule, NaviMapModule} from "./module/location";
-import {AliPayModule} from "./module/pay";
+import {ALiPayModule} from "./module/pay";
 
 
 
@@ -16,7 +16,8 @@ const appUpdate: any = weex.requireModule("appUpdate");
 const photo: any = weex.requireModule("photo");
 const location: LocationModule = weex.requireModule("location");
 const thirdLogin: any = weex.requireModule("thirdLogin");
-const aliPay: AliPayModule = weex.requireModule("aliPay");
+const aliPay: ALiPayModule = weex.requireModule("aliPay");
+const weixinPay: any = weex.requireModule("weixinPay");
 const naviMap: NaviMapModule = weex.requireModule("naviMap");
 
 //此处为了导入地方能够进行结构赋值，不能使用 export default
@@ -34,5 +35,6 @@ export {
     location,
     thirdLogin,
     aliPay,
+    weixinPay,
     naviMap
 }

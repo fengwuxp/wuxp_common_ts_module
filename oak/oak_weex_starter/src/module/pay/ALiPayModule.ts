@@ -1,12 +1,9 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-/**
- * 自定义videoPlayer 保存对象
- * Created by wuxp on 2017/6/6.
- */
+import {ALiPayModule} from "./index";
 
 if (isWeb) {
 
-    const aliPay = {
+    const aliPay:ALiPayModule = {
 
         /**
          * 设置沙箱环境

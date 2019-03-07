@@ -1,12 +1,11 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-/**
- * 自定义photo
- * Created by wuxp on 2017/6/6.
- */
+import {ThirdLoginModule, WxAuthResultInfo} from "./index";
+
+
 if (isWeb) {
 
-    const thirdLogin:any={
-        wxLogin(){
+    const thirdLogin:ThirdLoginModule={
+        wxLogin(params: any, callback: (data:WxAuthResultInfo) => void){
             console.log("web端暂不支持");
         }
     };
