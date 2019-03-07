@@ -273,12 +273,12 @@
                     // 高版本ios 手淘上面会有不固定情况，hack一下
                     setTimeout(() => {
                         this._animateTransformX(page, animated);
-                        this.$emit('onSelectedTab', {page});
+                        this.$emit('onChangeTab', {page});
                     }, 10);
                 } else {
                     this._animateTransformX(page, animated);
                     //tabPageCurrentTabSelected
-                    this.$emit('onSelectedTab', {page});
+                    this.$emit('onChangeTab', {page});
                 }
             },
             // jumpOut(url) {

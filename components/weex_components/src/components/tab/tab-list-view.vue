@@ -9,7 +9,7 @@
                                :defaultIndex="selectedIndex"
                                :startScrollIndex="startScrollIndex"
                                ref="tab-scroll-header"
-                               @changeTab="changeSlider">
+                               @onChangeTab="changeSlider">
                 <slot v-if="titleUseSlot"
                       v-for="(item,index) in tabTitles"
                       :name="`tab_title_${index}`"
