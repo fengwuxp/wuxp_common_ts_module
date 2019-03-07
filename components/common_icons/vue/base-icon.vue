@@ -59,6 +59,7 @@
                 }
             }
         },
+        methods: {},
         created() {
             const {name, glyphMap} = this.props;
             let glyph = name ? glyphMap[name] || '?' : '';
