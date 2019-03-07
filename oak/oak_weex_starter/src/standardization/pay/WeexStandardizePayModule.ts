@@ -10,9 +10,10 @@ export interface WeexStandardizeThirdPartyPaymentModule {
 
     /**
      * 支付
+     * 如果支付失败 返回对应平台的错误码和错误消息 {errorCode,errorMessage}
      * @param param
      */
-    pay: (param: PayInfo) => Promise<PayResultInfo>;
+    pay: (param: PayInfo) => Promise<void>;
 }
 
 
@@ -31,19 +32,7 @@ export interface PayInfo {
     payParam: {} | string;
 }
 
-export interface PayResultInfo {
 
-
-    /**
-     * 错误码
-     */
-    errorCode?: string;
-
-    /**
-     * 错误消息
-     */
-    errorMessage?: string;
-}
 
 const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentModule = {
 
@@ -51,7 +40,7 @@ const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentMo
               useSandboxEnv,
               method,
               payParam
-          }: PayInfo): Promise<PayResultInfo> => {
+          }: PayInfo): Promise<void> => {
 
         switch (method) {
             case ThirdPartyPaymentMethod.APP_ALI_PAY:
@@ -60,7 +49,6 @@ const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentMo
                 return handleWeiXinPay(payParam as string, useSandboxEnv);
             default:
                 return Promise.reject({
-                    isSuccess: false,
                     errorCode: -1,
                     errorMessage: `not support:${method}`
                 });
@@ -81,7 +69,7 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
         aliPay.setSandboxEnv(useSandboxEnv);
     }
 
-    return new Promise<PayResultInfo>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         aliPay.pay(true, signData, (data) => {
             if (typeof data === "string") {
                 data = JSON.parse(data);
@@ -101,7 +89,7 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
             if (resultStatus === "9000" || resultStatus === "8000" || resultStatus === "6004") {
                 resolve();
             } else {
-                reject( {
+                reject({
                     errorCode: resultStatus,
                     errorMessage: memo
                 });
@@ -117,7 +105,7 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
  * @param useSandboxEnv
  */
 const handleWeiXinPay = (payParam, useSandboxEnv: boolean) => {
-    return new Promise<PayResultInfo>((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         weixinPay.pay(payParam,
             () => {
                 resolve();

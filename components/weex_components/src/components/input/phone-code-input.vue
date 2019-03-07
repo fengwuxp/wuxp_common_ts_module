@@ -18,7 +18,7 @@
                 <div class="clear_icon"
                      v-if="showClearIcon">
                     <ionicon-icon name="ios-close-circle"
-                                  @iconClicked="clearValueInner"
+                                  @onClick="clearValueInner"
                                   :iconStyle="clearIconStyle"></ionicon-icon>
                 </div>
             </div>

@@ -15,7 +15,7 @@
                    :src="backIcon"
                    :style="backIconStyle"></image>
             <feather-icon v-if="backIcon && isFontIcon(backIcon)"
-                          @iconClicked="clickLeft"
+                          @onClick="clickLeft"
                           :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>
         </div>

@@ -52,7 +52,7 @@ export default {
             },
             on: {
                 click(evnet) {
-                    this.$emit("clickIcon", evnet);
+                    this.$emit("onClick", evnet);
                 }
             }
         })

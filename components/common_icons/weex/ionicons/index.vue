@@ -5,7 +5,7 @@
                :color="color"
                :size="size"
                :iconStyle="iconStyle"
-               @iconClicked="iconClicked"
+               @onClick="iconClicked"
     ></weex-icon>
 </template>
 

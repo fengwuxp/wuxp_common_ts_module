@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         iconClicked(data) {
-            this.$emit('iconClicked', data);
+            this.$emit('onClick', data);
         }
     }
 }
