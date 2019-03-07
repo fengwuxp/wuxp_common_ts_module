@@ -7,6 +7,7 @@
 
 <script>
     import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+    import {ON_CLICK_EVENT_NAME} from "../../weex_components/src/config/EventNamesConfig";
 
     const dom = weex.requireModule('dom');
 
@@ -83,7 +84,7 @@
         methods: {
             itemClicked() {
                 const {name, charCode} = this;
-                this.$emit('iconClicked', {
+                this.$emit(ON_CLICK_EVENT_NAME, {
                     name,
                     charCode
                 });

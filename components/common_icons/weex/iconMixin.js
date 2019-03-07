@@ -1,4 +1,5 @@
 import WeexIcon from "./weex-icon";
+import {ON_CLICK_EVENT_NAME} from "../../weex_components/src/config/EventNamesConfig";
 
 /**
  * weex icon
@@ -39,7 +40,7 @@ export default {
     },
     methods: {
         iconClicked(data) {
-            this.$emit('onClick', data);
+            this.$emit(ON_CLICK_EVENT_NAME, data);
         }
     }
 }
