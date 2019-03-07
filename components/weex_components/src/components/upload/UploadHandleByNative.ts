@@ -133,7 +133,7 @@ export default {
                     const {url} = resp;
                     resolve({
                         orderIndex: this.orderIndex,
-                        url: process.env.PIC_SERVICE_DOMAIN + url
+                        url: (process.env.PIC_SERVICE_DOMAIN||'') + url
                     });
                 });
             })

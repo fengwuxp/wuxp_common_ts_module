@@ -12,6 +12,7 @@ import {RequestDataEncoder} from "../RequestDataEncoder";
 import {ProxyUnifiedTransformRequestFileObjectEncoder} from "../ProxyUnifiedTransformRequestFileObjectEncoder";
 import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
 import {defaultApiModuleName} from "../../constant/FeignConstVar";
+import {BaseFetchOptions} from "../../BaseFetchOptions";
 
 /**
  * 默认的代理执行器
@@ -64,7 +65,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         //解析参数生成 options，并提交请求
-        const fetchOptions = {
+        const fetchOptions:BaseFetchOptions = {
             ...options,
             url: requestURL,
             headers,

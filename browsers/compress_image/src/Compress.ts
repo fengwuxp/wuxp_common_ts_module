@@ -130,7 +130,7 @@ export class Compress {
             const photo = genPhoto(options);
             photo.start = window.performance.now();
             photo.alt = file.name;
-            photo.ext = file.type;
+            photo.ext = file.type.split("/")[1] || "";
             photo.startSize = file.size;
 
             return Rotate.orientation(file)

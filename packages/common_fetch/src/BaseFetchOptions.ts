@@ -24,6 +24,7 @@ export interface BaseFetchOptions {
 
     /**
      * 请求方法
+     * 默认 POST
      */
     method?: RequestMethod;
 

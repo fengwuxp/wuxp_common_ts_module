@@ -21,6 +21,8 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
         if (typeof File === "undefined" || typeof Blob === "undefined") {
             return request;
         }
+
+        //找出要上传的文件对象，加入到上传的队列中
         const uploadQueue: Array<{
             key: string,
             value: Promise<any>[]
@@ -54,7 +56,7 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
             })).then((values) => {
                 values.forEach(({key, value}) => {
 
-                    //覆盖参数值
+                    //覆盖参数值，文件对象--> 远程url
                     request[key] = value;
                 });
             });

@@ -186,8 +186,7 @@
         methods: {
             handleTouchEnd(e) {
                 // 在支付宝上面有点击穿透问题
-                const {platform} = weex.config.env;
-                platform === 'Web' && e.preventDefault && e.preventDefault();
+                isWeb && e.preventDefault && e.preventDefault();
             },
             hide() {
                 this.appearPopup(false);

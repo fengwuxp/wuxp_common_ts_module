@@ -78,8 +78,6 @@
         },
         methods: {
             overlayClicked(e) {
-                //wxcOverlayBodyClicked
-
                 this.canAutoClose ? this.appearOverlay(false) : this.$emit(ON_CLICK_EVENT_NAME, {});
             },
             appearOverlay(bool, duration = this.duration) {
