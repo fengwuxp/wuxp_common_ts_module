@@ -1,4 +1,4 @@
-import BroadcastPlugin from "oak_weex_common/src/plugins/broadcast/BroadcastPlugin";
+import BroadcastPlugin from "oak_common/src/plugins/broadcast/BroadcastPlugin";
 import {isWeb} from "common_weex/src/constant/WeexEnv";
 import {WeexBoradcastModule} from "./index";
 

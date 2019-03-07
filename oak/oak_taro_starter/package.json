@@ -33,7 +33,7 @@
     "tslib": "^1.9.3"
   },
   "dependencies": {
-    "oak_weex_common": "^0.0.1",
+    "oak_common": "^0.0.1",
     "taro_starter": "^0.0.1"
   },
   "gitHead": "69d96469873702536da77c808618eb28e1e517f9"

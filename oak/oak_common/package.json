@@ -1,7 +1,7 @@
 {
-  "name": "oak_weex_common",
+  "name": "oak_common",
   "version": "0.0.1",
-  "description": "oak weex common",
+  "description": "oak  common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
