@@ -27,6 +27,12 @@ if (isWeb) {
             console.log("web端暂不支持");
         },
 
+
+        openNaviMap: (appName: string, dlat: number, dlon: number, dname: string,failure) => {
+
+            console.log("web端暂不支持");
+        },
+
         /**
          * 从当前位置导航
          * dlat: number, dlon: number, dname:

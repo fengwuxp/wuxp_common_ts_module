@@ -91,10 +91,7 @@ export interface WeexStandardizeDateTimerPickerOptions extends BaseWeexStandardi
 
 const EMPTY_CHAR = "N";
 
-/**
- * 标准化的日期选择工具
- */
-export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerModule>({
+const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule = standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerModule>({
     module: weex.requireModule("dateTimePicker"),
     transformParamMap: {
         pick: (options: WeexStandardizeDateTimerPickerOptions) => {
@@ -133,3 +130,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerMod
         },
     }
 });
+/**
+ * 标准化的日期选择工具
+ */
+export default weexStandardizeDateTimerPickerModule;

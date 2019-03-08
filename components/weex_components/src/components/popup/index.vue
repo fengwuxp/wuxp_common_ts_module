@@ -26,37 +26,6 @@
     </div>
 </template>
 
-<style scoped>
-    .wxc-popup {
-        position: fixed;
-        width: 750px;
-    }
-
-    .top {
-        left: 0;
-        right: 0;
-    }
-
-    .bottom {
-        left: 0;
-        right: 0;
-    }
-
-    .left {
-        bottom: 0;
-        top: 0;
-    }
-
-    .right {
-        bottom: 0;
-        top: 0;
-    }
-
-    .center {
-    }
-
-</style>
-
 <script>
 
     import {isWeb, isIphoneX,} from "common_weex/src/constant/WeexEnv";
@@ -194,7 +163,7 @@
             },
             wxcOverlayBodyClicking() {
                 if (this.maskClose) {
-                    this.isShow && this.appearPopup(false);
+                    this.show && this.appearPopup(false);
                 }
 
             },
@@ -205,7 +174,6 @@
              * @param duration
              */
             appearPopup(bool, duration = 300) {
-                this.isShow = bool;
                 const popupEl = this.$refs['wxc-popup'];
                 if (!popupEl) {
                     return;
@@ -218,6 +186,7 @@
                     delay: 0,
                     ...this.animation
                 }, () => {
+                    this.show = bool;
                     this.$emit(bool ? ON_DISPLAY_EVENT_NAME : ON_CLOSE_EVENT_NAME, {pos: this.pos});
                 });
             },
@@ -265,3 +234,33 @@
         }
     }
 </script>
+<style scoped>
+    .wxc-popup {
+        position: fixed;
+        width: 750px;
+    }
+
+    .top {
+        left: 0;
+        right: 0;
+    }
+
+    .bottom {
+        left: 0;
+        right: 0;
+    }
+
+    .left {
+        bottom: 0;
+        top: 0;
+    }
+
+    .right {
+        bottom: 0;
+        top: 0;
+    }
+
+    .center {
+    }
+
+</style>

@@ -25,25 +25,25 @@ export interface WeexStandardizeMapNavigationModule {
      * 从当前位置导航
      * @param options
      */
-    readonly openMapApp: (options: NavigationOptions) => Promise<void>;
+    readonly openNaviMap: (options: NavigationOptions) => Promise<void>;
 
-    /**
-     * 使用百度地图 从当前位置导航
-     * @param options
-     */
-    readonly openBaiduMap: (options: BaseNavigationOptions) => Promise<void>;
-
-    /**
-     * 使用高德地图 从当前位置导航
-     * @param options
-     */
-    readonly openGaoDeMap: (options: BaseNavigationOptions) => Promise<void>;
-
-    /**
-     * 使用腾讯地图 从当前位置导航
-     * @param options
-     */
-    readonly openTencent: (options: BaseNavigationOptions) => Promise<void>;
+    // /**
+    //  * 使用百度地图 从当前位置导航
+    //  * @param options
+    //  */
+    // readonly openBaiduMap: (options: BaseNavigationOptions) => Promise<void>;
+    //
+    // /**
+    //  * 使用高德地图 从当前位置导航
+    //  * @param options
+    //  */
+    // readonly openGaoDeMap: (options: BaseNavigationOptions) => Promise<void>;
+    //
+    // /**
+    //  * 使用腾讯地图 从当前位置导航
+    //  * @param options
+    //  */
+    // readonly openTencent: (options: BaseNavigationOptions) => Promise<void>;
 }
 
 export interface GetCurrentLocationByBaiduOptions {
@@ -100,25 +100,22 @@ const openBaiduMap = (options: BaseNavigationOptions) => {
 /**
  * 地图名称和模块方法名称的映射关系
  */
-const MAP_NAME_TO_METHOD_NAME_MAP = {
-    "百度地图": "openBaiduMap",
-    "高德地图": "openGaoDeMap",
-    "腾讯地图": "openTencent",
-};
+// const MAP_NAME_TO_METHOD_NAME_MAP = {
+//     "百度地图": "openBaiduMap",
+//     "高德地图": "openGaoDeMap",
+//     "腾讯地图": "openTencent",
+// };
 
 /**
  * 通过地图名称获取模块打开地图能力的方法名称
  * @param mapName
  */
-export const getModuleOpenRouteMethodNameByMapName = (mapName: string) => {
+// export const getModuleOpenRouteMethodNameByMapName = (mapName: string) => {
+//
+//     return MAP_NAME_TO_METHOD_NAME_MAP[mapName]
+// };
 
-    return MAP_NAME_TO_METHOD_NAME_MAP[mapName]
-};
-
-/**
- * 标准化的地图导航模块
- */
-export default standardizedWeexModuleToPromise<WeexStandardizeMapNavigationModule>({
+const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = standardizedWeexModuleToPromise<WeexStandardizeMapNavigationModule>({
     module: naviMap,
     transformParamMap: {
         getCurrentLocationByBaidu: (options: GetCurrentLocationByBaiduOptions) => {
@@ -128,22 +125,32 @@ export default standardizedWeexModuleToPromise<WeexStandardizeMapNavigationModul
             ];
         },
         getInstalledNaviApp: () => [],
-        openMapApp: (options: NavigationOptions) => {
-            const params=openBaiduMap(options);
-            params[0]=options.packageName;
+        openNaviMap: (options: NavigationOptions) => {
+            const params = openBaiduMap(options);
+            params[0] = options.packageName;
             return params;
         },
-        openBaiduMap,
-        openGaoDeMap: openBaiduMap,
-        openTencent: openBaiduMap
+        // openMapApp: (options: NavigationOptions) => {
+        //     const params=openBaiduMap(options);
+        //     params[0]=options.packageName;
+        //     return params;
+        // },
+        // openBaiduMap,
+        // openGaoDeMap: openBaiduMap,
+        // openTencent: openBaiduMap
 
     },
     transformCallbackMap: {
         getCurrentLocationByBaidu: (resolve, reject) => [resolve, reject],
         getInstalledNaviApp: (resolve, reject) => [resolve],
-        openBaiduMap: (resolve, reject) => [reject],
-        openGaoDeMap: (resolve, reject) => [reject],
-        openMapApp: (resolve, reject) => [reject],
-        openTencent: (resolve, reject) => [reject]
+        openNaviMap: (resolve, reject) => [reject],
+        // openBaiduMap: (resolve, reject) => [reject],
+        // openGaoDeMap: (resolve, reject) => [reject],
+        // openMapApp: (resolve, reject) => [reject],
+        // openTencent: (resolve, reject) => [reject]
     }
 });
+/**
+ * 标准化的地图导航模块
+ */
+export default weexStandardizeMapNavigationModule;

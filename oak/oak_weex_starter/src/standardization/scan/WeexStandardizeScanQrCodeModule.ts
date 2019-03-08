@@ -41,10 +41,7 @@ const scanWithZXing = (options: WeexStandardizeScanQrCodeOptions = defaultOption
         hiddenImportPhoto ? 1 : 0,
     ];
 };
-/**
- * 标准化的扫码模块
- */
-export default standardizedWeexModuleToPromise<WeexStandardizeScanQrCodeModule>({
+const weexStandardizeScanQrCodeModule: WeexStandardizeScanQrCodeModule = standardizedWeexModuleToPromise<WeexStandardizeScanQrCodeModule>({
     module: qrcode,
     transformParamMap: {
         scanWithZXing,
@@ -55,3 +52,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeScanQrCodeModule>(
         reject
     ]
 });
+/**
+ * 标准化的扫码模块
+ */
+export default weexStandardizeScanQrCodeModule;

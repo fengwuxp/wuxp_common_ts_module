@@ -29,11 +29,7 @@ interface LocationOptions {
     openMap?: boolean;
 }
 
-
-/**
- * 标准化的定位模块
- */
-export default standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
+const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
     module: location,
     transformParamMap: {
         location: (options: LocationOptions = {openMap: false}) => {
@@ -50,4 +46,9 @@ export default standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
             return weexStandardizedModule["getMyLocation"](options);
         }
     }
-});
+})
+
+/**
+ * 标准化的定位模块
+ */
+export default standardizeLocationModule;

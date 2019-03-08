@@ -24,6 +24,15 @@ export interface NaviMapModule extends WeexModule {
 
     /**
      * 从当前位置导航
+     * @param appName
+     * @param dlat
+     * @param dlon
+     * @param dname
+     * @param failure
+     */
+    openNaviMap: (appName: string, dlat: number, dlon: number, dname: string, failure) => void;
+    /**
+     * 从当前位置导航
      *
      * @param packageName 导航软件包名
      * @param options
