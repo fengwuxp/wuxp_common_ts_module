@@ -25,14 +25,12 @@ export interface NaviMapModule extends WeexModule {
     /**
      * 从当前位置导航
      *
-     * @param appCnName 导航软件中文名称，如百度地图
-     * @param dlat      终点纬度
-     * @param dlon      终点经度
-     * @param dname     终点名称
+     * @param packageName 导航软件包名
+     * @param options
      * @param failure
      * @return
      */
-    openNaviMap: (appCnName: string, dlat: number, dlon: number, dname: string, failure) => void;
+    openMapApp: (packageName: string, options: OpenMapAppOptions, failure: () => void) => void;
 
     /**
      * 打开百度地图（公交出行，起点位置使用地图当前位置）
@@ -44,20 +42,18 @@ export interface NaviMapModule extends WeexModule {
      * @param dlon  终点经度
      * @param failure
      */
-    openBaiduMap: (dlat: number, dlon: number, dname: string, failure) => void;
+    openBaiduMap: (action: string, options: OpenMapAppOptions, failure: () => void) => void;
 
     /**
      * 打开高德地图（公交出行，起点位置使用地图当前位置）
      * <p>
      * t = 0（驾车）= 1（公交）= 2（步行）= 3（骑行）= 4（火车）= 5（长途客车）
      *
-     * @param dlat  终点纬度
-     * @param dlon  终点经度
-     * @param dname 终点名称
-     * @param dname 终点名称
+     * @param action  终点纬度
+     * @param options
      * @param failure
      */
-    openGaoDeMap: (dlat: number, dlon: number, dname: string, failure) => void;
+    openGaoDeMap: (action: string, options: OpenMapAppOptions, failure: () => void) => void;
 
     /**
      * 打开腾讯地图（公交出行，起点位置使用地图当前位置）
@@ -68,12 +64,18 @@ export interface NaviMapModule extends WeexModule {
      * 0：较快捷 、 1：无高速 、 2：距离短
      * policy的取值缺省为0
      *
-     * @param dlat  终点纬度
-     * @param dlon  终点经度
-     * @param dname 终点名称
+     * @param action
+     * @param options
      * @param failure
      */
-    openTencent: (dlat: number, dlon: string, dname: string, failure: Function) => void;
+    openTencent: (action: string, options: OpenMapAppOptions, failure: () => void) => void;
+}
+
+
+export interface OpenMapAppOptions {
+    dlat: string,
+    dlon: string,
+    dname: string
 }
 
 /**

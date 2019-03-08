@@ -25,7 +25,7 @@ export interface WeexStandardizeMapNavigationModule {
      * 从当前位置导航
      * @param options
      */
-    readonly openNaviMap: (options: NavigationOptions) => Promise<void>;
+    readonly openMapApp: (options: NavigationOptions) => Promise<void>;
 
     /**
      * 使用百度地图 从当前位置导航
@@ -66,31 +66,34 @@ export interface BaseNavigationOptions {
     /**
      * 终点纬度
      */
-    dlat: number;
+    targetLatitude: number;
 
     /**
      * 终点经度
      */
-    dlon: number;
+    targetLongitude: number;
 
     /**
      * 终点名称
      */
-    dname: string;
+    targetName: string;
 }
 
 export interface NavigationOptions extends BaseNavigationOptions {
     /**
-     * 导航软件中文名称，如百度地图
+     * 导航软件包名
      */
-    appCnName: string,
+    packageName: string,
 }
 
 const openBaiduMap = (options: BaseNavigationOptions) => {
     return [
-        options.dlat,
-        options.dlon,
-        options.dname
+        "",
+        {
+            dlat: options.targetLatitude,
+            dlon: options.targetLongitude,
+            dname: options.targetName
+        }
     ];
 };
 
@@ -125,13 +128,10 @@ export default standardizedWeexModuleToPromise<WeexStandardizeMapNavigationModul
             ];
         },
         getInstalledNaviApp: () => [],
-        openNaviMap: (options: NavigationOptions) => {
-            return [
-                options.appCnName,
-                options.dlat,
-                options.dlon,
-                options.dname
-            ];
+        openMapApp: (options: NavigationOptions) => {
+            const params=openBaiduMap(options);
+            params[0]=options.packageName;
+            return params;
         },
         openBaiduMap,
         openGaoDeMap: openBaiduMap,
@@ -143,7 +143,7 @@ export default standardizedWeexModuleToPromise<WeexStandardizeMapNavigationModul
         getInstalledNaviApp: (resolve, reject) => [resolve],
         openBaiduMap: (resolve, reject) => [reject],
         openGaoDeMap: (resolve, reject) => [reject],
-        openNaviMap: (resolve, reject) => [reject],
+        openMapApp: (resolve, reject) => [reject],
         openTencent: (resolve, reject) => [reject]
     }
 });

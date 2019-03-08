@@ -1,5 +1,5 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {NaviMapModule} from "./index";
+import {NaviMapModule, OpenMapAppOptions} from "./index";
 
 /**
  * 导航地图相关
@@ -29,14 +29,13 @@ if (isWeb) {
 
         /**
          * 从当前位置导航
-         *
-         * @param appCnName 导航软件中文名称，如百度地图
-         * @param dlat      终点纬度
-         * @param dlon      终点经度
-         * @param dname     终点名称
+         * dlat: number, dlon: number, dname:
+         * @param packageName 导航软件包名
+         * @param options
+         * @param failure
          * @return
          */
-        openNaviMap(appCnName: string, dlat: number, dlon: number, dname: string, failure) {
+        openMapApp(packageName: string, options: OpenMapAppOptions, failure: () => void) {
             console.log("web端暂不支持");
         },
         /**
@@ -45,12 +44,11 @@ if (isWeb) {
          * mode = transit（公交）、driving（驾车）、walking（步行）和riding（骑行）. 默认:driving
          * 当 mode=transit 时 ： sy = 0：推荐路线 、 2：少换乘 、 3：少步行 、 4：不坐地铁 、 5：时间短 、 6：地铁优先
          *
-         * @param dlat  终点纬度
-         * @param dlon  终点经度
-         * @param dname 终点名称
+         * @param action
+         * @param options
          * @param failure
          */
-        openBaiduMap(dlat: number, dlon: number, dname: string, failure) {
+        openBaiduMap(action: string, options: OpenMapAppOptions, failure: () => void) {
             console.log("web端暂不支持");
         },
 
@@ -59,13 +57,11 @@ if (isWeb) {
          * <p>
          * t = 0（驾车）= 1（公交）= 2（步行）= 3（骑行）= 4（火车）= 5（长途客车）
          *
-         * @param dlat  终点纬度
-         * @param dlon  终点经度
-         * @param dname 终点名称
-         * @param dname 终点名称
+         * @param action
+         * @param options
          * @param failure
          */
-        openGaoDeMap(dlat: number, dlon: number, dname: string, failure) {
+        openGaoDeMap(action: string, options: OpenMapAppOptions, failure: () => void) {
             console.log("web端暂不支持");
         },
 
@@ -78,12 +74,11 @@ if (isWeb) {
          * 0：较快捷 、 1：无高速 、 2：距离短
          * policy的取值缺省为0
          *
-         * @param dlat  终点纬度
-         * @param dlon  终点经度
-         * @param dname 终点名称
+         * @param action
+         * @param options
          * @param failure
          */
-        openTencent(dlat: number, dlon: string, dname: string, failure) {
+        openTencent(action: string, options: OpenMapAppOptions, failure: () => void) {
             console.log("web端暂不支持");
         }
     };
