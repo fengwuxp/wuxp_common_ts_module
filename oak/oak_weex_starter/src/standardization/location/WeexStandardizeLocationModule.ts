@@ -46,7 +46,7 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
             return weexStandardizedModule["getMyLocation"](options);
         }
     }
-})
+});
 
 /**
  * 标准化的定位模块

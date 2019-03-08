@@ -89,11 +89,7 @@ export interface NavigationOptions extends BaseNavigationOptions {
 const openBaiduMap = (options: BaseNavigationOptions) => {
     return [
         "",
-        {
-            dlat: options.targetLatitude,
-            dlon: options.targetLongitude,
-            dname: options.targetName
-        }
+        {}
     ];
 };
 
@@ -126,9 +122,12 @@ const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = s
         },
         getInstalledNaviApp: () => [],
         openNaviMap: (options: NavigationOptions) => {
-            const params = openBaiduMap(options);
-            params[0] = options.packageName;
-            return params;
+            return [
+                options.packageName,
+                options.targetLatitude,
+                options.targetLongitude,
+                options.targetName
+            ];
         },
         // openMapApp: (options: NavigationOptions) => {
         //     const params=openBaiduMap(options);

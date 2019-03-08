@@ -28,9 +28,10 @@ if (isWeb) {
         },
 
 
-        openNaviMap: (appName: string, dlat: number, dlon: number, dname: string,failure) => {
+        openNaviMap: (appName: string, dlat: number, dlon: number, dname: string, failure) => {
 
-            console.log("web端暂不支持");
+            // console.log("web端暂不支持");
+            failure("web端暂不支持")
         },
 
         /**
