@@ -14,6 +14,6 @@
 
 - components  组件：
 - packages    通用模块
-- starts      起动机
+- starters    起动机
 - templates   模板项目
 - types       一些types定义
