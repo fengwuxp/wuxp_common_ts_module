@@ -91,8 +91,11 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         //transform request data encoder
         for (const encoder of this.requestEncoders) {
+            if (!encoder.needExecute(options)) {
+                continue;
+            }
             try {
-                data = await encoder.encode(data,apiService.getServiceMethodConfig(methodName));
+                data = await encoder.encode(data, apiService.getServiceMethodConfig(methodName));
             } catch (e) {
                 console.error("编码转换出现异常", e);
             }

@@ -2,6 +2,8 @@ import {RequestDataEncoder} from './RequestDataEncoder';
 import {FileUploadStrategy} from "../transfer/FileTransmitter";
 import {NeedAutoUploadOptions} from "../annotations/upload/AutoUpload";
 import {FeignProxyApiServiceMethodConfig} from "./feign/FeignProxy";
+import {FetchOptions} from "../FetchOptions";
+import {RequestMethod} from "../constant/RequestMethod";
 
 
 /**
@@ -14,7 +16,16 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
      */
     private fileUploadStrategy: FileUploadStrategy;
 
+    /**
+     * 是否为web 环境
+     */
     private isWeb: boolean = typeof File !== "undefined" || typeof Blob !== "undefined";
+
+    /**
+     * 支持的请求方法列表
+     */
+    private supportRequestMethods = [RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT];
+
 
     constructor(fileUploadStrategy: FileUploadStrategy) {
         this.fileUploadStrategy = fileUploadStrategy;
@@ -66,6 +77,15 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
 
         return request;
     };
+
+
+    needExecute = (options: FetchOptions) => {
+
+
+        return this.supportRequestMethods.indexOf(options.method) >= 0;
+
+    };
+
 
     /**
      * 该属性是否需要进行文件上传
