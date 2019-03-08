@@ -9,13 +9,15 @@ import {ProxyApiService} from "../ProxyApiService";
 export default class Es6PoxyServiceFactory extends AbstractProxyServiceFactory {
 
 
-
     factory<T extends ProxyApiService>(targetService: T): T {
 
         const proxyHandler: ProxyHandler<any> = {
-            get: (target: ProxyApiService, serviceMethod: PropertyKey, receiver: any): any => {
+            get: (target: ProxyApiService, serviceMethod: string, receiver: any): any => {
                 return (...p) => {
-                    return this.getProxyServiceExecutor().execute(targetService, serviceMethod as string, ...p);
+                    if (this.isIgnore(targetService, serviceMethod)) {
+                        return Promise.reject('is ignore');
+                    }
+                    return this.getProxyServiceExecutor().execute(targetService, serviceMethod, ...p);
                 }
             },
             set: function (target, key, value, receiver): boolean {

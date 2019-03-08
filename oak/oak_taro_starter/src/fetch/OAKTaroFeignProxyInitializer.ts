@@ -69,14 +69,14 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
         }
 
 
-        FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(
+        FeignProxyExecutorHolder.registerDefaultExecutor(new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(
                 oakEnv.clientId,
                 oakEnv.clientSecret,
                 "WX_MIN_APP"
             )
-        );
+        ));
 
     };
 

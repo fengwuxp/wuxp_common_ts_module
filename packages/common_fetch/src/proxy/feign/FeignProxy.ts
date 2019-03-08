@@ -30,12 +30,12 @@ export interface FeignProxyApiServiceMethodConfig {
     /**
      * 缓存相关配置
      */
-    cacheOptions?:any;
+    cacheOptions?: any;
 
     /**
      * 自动上传的相关配置
      */
-   autoUploadOptions?: NeedAutoUploadOptions;
+    autoUploadOptions?: NeedAutoUploadOptions;
 
 }
 

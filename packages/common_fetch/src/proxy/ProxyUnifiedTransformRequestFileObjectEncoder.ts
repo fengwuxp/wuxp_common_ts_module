@@ -1,5 +1,7 @@
 import {RequestDataEncoder} from './RequestDataEncoder';
 import {FileUploadStrategy} from "../transfer/FileTransmitter";
+import {NeedAutoUploadOptions} from "../annotations/upload/AutoUpload";
+import {FeignProxyApiServiceMethodConfig} from "./feign/FeignProxy";
 
 
 /**
@@ -12,15 +14,15 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
      */
     private fileUploadStrategy: FileUploadStrategy;
 
+    private isWeb: boolean = typeof File !== "undefined" || typeof Blob !== "undefined";
 
     constructor(fileUploadStrategy: FileUploadStrategy) {
         this.fileUploadStrategy = fileUploadStrategy;
     }
 
-    async encode(request: any): Promise<any> {
-        if (typeof File === "undefined" || typeof Blob === "undefined") {
-            return request;
-        }
+
+    async encode(request: any, options: FeignProxyApiServiceMethodConfig): Promise<any> {
+
 
         //找出要上传的文件对象，加入到上传的队列中
         const uploadQueue: Array<{
@@ -29,13 +31,13 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
         }> = [];
         for (const key in request) {
             const val = request[key];
-            if (val == null) {
-                continue;
+            if (this.attrIsNeedUpload(key, val, options.autoUploadOptions)) {
+                uploadQueue.push({
+                    key,
+                    value: [val]
+                });
             }
-            uploadQueue.push({
-                key,
-                value: [val]
-            });
+
         }
         if (uploadQueue.length > 0) {
             await Promise.all(uploadQueue.map(async ({key, value}) => {
@@ -65,19 +67,42 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
         return request;
     };
 
-    private async uploadFile(value): Promise<any> {
-        //判断请求参数是否存在文件对象
-
-        if (value.constructor === File || value.constructor === Blob) {
-            //上传
-            return await this.fileUploadStrategy.upload({
-                data: value
-            });
+    /**
+     * 该属性是否需要进行文件上传
+     * @param key
+     * @param value
+     * @param options
+     */
+    private attrIsNeedUpload = (key: string, value, options: NeedAutoUploadOptions): boolean => {
+        if (value == null) {
+            return false;
         }
 
-        return value;
+        if (this.isWeb) {
+            //判断请求参数是否存在文件对象
+            if (value.constructor === File || value.constructor === Blob) {
+                return true;
+            }
+        }
 
-    }
+        //是否在需要上传的列表中
+        if (options != null && options.fields != null) {
+            if (options.fields.findIndex((field) => field === key)) {
+                return true;
+            }
+        }
+
+        return false;
+
+    };
+
+    /**
+     * 上传
+     * @param value
+     */
+    private uploadFile = (value): Promise<any> => this.fileUploadStrategy.upload({
+        data: value
+    })
 
 
 }

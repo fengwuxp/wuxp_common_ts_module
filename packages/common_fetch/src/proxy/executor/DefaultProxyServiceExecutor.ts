@@ -30,6 +30,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             requestURLResolver,
             requestHeaderResolver,
             requestEncoders || [
+                //加入统一文件上传的支持
                 new ProxyUnifiedTransformRequestFileObjectEncoder(
                     new DefaultFileUploadStrategy(restTemplateLoader.load(defaultApiModuleName))
                 )
@@ -65,7 +66,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         //解析参数生成 options，并提交请求
-        const fetchOptions:BaseFetchOptions = {
+        const fetchOptions: BaseFetchOptions = {
             ...options,
             url: requestURL,
             headers,
@@ -91,7 +92,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //transform request data encoder
         for (const encoder of this.requestEncoders) {
             try {
-                data = await encoder.encode(data);
+                data = await encoder.encode(data,apiService.getServiceMethodConfig(methodName));
             } catch (e) {
                 console.error("编码转换出现异常", e);
             }

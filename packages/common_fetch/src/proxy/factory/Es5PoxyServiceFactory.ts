@@ -8,11 +8,6 @@ import {ProxyApiService} from "../ProxyApiService";
  */
 export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
 
-    private ignorePropertyNames: string[] = [
-        "getServiceMethodConfig",
-        "setServiceMethodConfig",
-        "feign"
-    ];
 
 
     factory<T extends ProxyApiService>(targetService: T): T {
@@ -34,6 +29,7 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
                 },
                 get: () => {
                     return (...p) => {
+                        //TODO  根据不同的策略可以返回不同的代理服务执行器
                         return this.getProxyServiceExecutor().execute(targetService, key, ...p);
                     }
                 }
@@ -43,16 +39,7 @@ export default class Es5PoxyServiceFactory extends AbstractProxyServiceFactory {
         return proxy;
     }
 
-    private isIgnore = (targetService, key: string) => {
-        const element = targetService[key];
-        if (element == null) {
-            return false;
-        }
-        if (typeof element != "function") {
-            return true;
-        }
-        return this.ignorePropertyNames.findIndex((item) => item === key) >= 0;
-    }
+
 }
 
 

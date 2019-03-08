@@ -18,13 +18,34 @@ export interface ProxyServiceFactory {
 export abstract class AbstractProxyServiceFactory implements ProxyServiceFactory {
 
 
+    /**
+     * 默认忽略执行的方法和属性
+     */
+    private ignorePropertyNames: string[] = [
+        "getServiceMethodConfig",
+        "setServiceMethodConfig",
+        "feign"
+    ];
+
+
     abstract factory<T extends ProxyApiService>(target: T): T;
 
 
     protected getProxyServiceExecutor = (): ProxyServiceExecutor => {
 
         //返回默认的代理执行器
-        return FeignProxyExecutorHolder.DEFAULT_EXECUTOR;
+        return FeignProxyExecutorHolder.getExecutor();
+    };
+
+    protected isIgnore = (targetService, key: string) => {
+        const element = targetService[key];
+        if (element == null) {
+            return false;
+        }
+        if (typeof element != "function") {
+            return true;
+        }
+        return this.ignorePropertyNames.findIndex((item) => item === key) >= 0;
     }
 
 
