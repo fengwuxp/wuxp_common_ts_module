@@ -113,7 +113,7 @@
                 }
 
                 if (isChange) {
-                    this.$emit("navChange", {
+                    this.$emit("onNavChange", {
                         index,
                         targetType,
                         viewItems: this.viewItems

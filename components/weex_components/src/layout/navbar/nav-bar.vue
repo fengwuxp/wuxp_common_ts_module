@@ -72,7 +72,7 @@
                 return true;
             },
             clickLeft(event) {
-                this.$emit("back", event);
+                this.$emit("onBack", event);
             }
         },
         beforeMount() {

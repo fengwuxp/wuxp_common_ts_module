@@ -38,7 +38,7 @@
                  :navIconStyle="navIconStyle"
                  :numberDotStyle="numberDotStyle"
                  :transformNavIcon="transformNavIcon"
-                 @navChange="navChange"></tab-bar>
+                 @onNavChange="navChange"></tab-bar>
     </flex-view>
 </template>
 <script>
@@ -74,7 +74,7 @@
                 this.currentViewIndex = index;
                 this.loadStatus[index] = true;
                 this.viewItems = viewItems;
-                this.$emit("pageChange", {
+                this.$emit("onPageChange", {
                     index,
                     targetType
                 });
