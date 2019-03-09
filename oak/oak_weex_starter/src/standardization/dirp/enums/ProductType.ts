@@ -19,5 +19,23 @@ export enum ProductType {
     /**
      * 滴滴出租车
      */
-    TAXI = "taxi"
+    TAXI = "taxi",
+
+
+    /**
+     * 巴士
+     */
+    BUS = "bus",
+
+    /**
+     * 顺风车
+     */
+    CAR_MATE = "car-mate",
+
+    /**
+     * 代驾
+     */
+    DRIVER_SERVICE = "driver_service"
+
+
 }

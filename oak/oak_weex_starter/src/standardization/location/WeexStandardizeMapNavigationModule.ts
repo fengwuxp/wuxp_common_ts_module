@@ -1,6 +1,7 @@
 import {CurrentLocationByBaiduResult, LocalInstallMapAppMap} from "../../module/location";
 import {naviMap} from "../../ExpotrtWeexOAKModel";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {CoordinateType} from "../../module/location/CoordinateType";
 
 /**
  * 地图导航相关
@@ -84,6 +85,12 @@ export interface NavigationOptions extends BaseNavigationOptions {
      * 导航软件包名
      */
     packageName: string,
+
+    /**
+     * 默认 CoordinateType.BD_09
+     * 坐标系类型
+     */
+    coordinate?: CoordinateType;
 }
 
 const openBaiduMap = (options: BaseNavigationOptions) => {
@@ -124,8 +131,9 @@ const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = s
         openNaviMap: (options: NavigationOptions) => {
             return [
                 options.packageName,
-                options.targetLatitude,
+                options.coordinate || CoordinateType.BD_09,
                 options.targetLongitude,
+                options.targetLatitude,
                 options.targetName
             ];
         },

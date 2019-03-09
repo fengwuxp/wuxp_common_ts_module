@@ -3,7 +3,7 @@ import {NewOrderParam, NewOrderResult} from "./NewOrder";
 import {DriverInfo} from "./DriverInfo";
 import {OrderStatusInfo} from "./OrderStatusInfo";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {ShoDDPageParams} from "../../module/dirp";
+import {CallAppParam, ShoDDPageParams} from "../../module/dirp";
 
 /**
  * @link {http://developer.xiaojukeji.com/doc/sdk.html}
@@ -27,7 +27,17 @@ export interface WeexDripTravelSDKModule {
      * 拉起打车页面
      * @param param
      */
-    showDDPage:(param:ShoDDPageParams)=>Promise<void>;
+    showDDPage: (param: ShoDDPageParams) => Promise<void>;
+
+
+    /**
+     * http://developer.xiaojukeji.com/doc/sdk/api/app.html
+     *
+     * 唤醒滴滴客户端，进入主页面，并传递参数
+     * @param param
+     */
+    callApp: (param: CallAppParam) => Promise<void>;
+
 
     /**
      * http://developer.xiaojukeji.com/doc/sdk/api/price.html
@@ -95,7 +105,7 @@ const standardizedWeexModuleToPromise1 = standardizedWeexModuleToPromise<WeexDri
         //     return undefined;
         // }
     },
-    enhanceMap: undefined,
+    // enhanceMap: {},
 
 
 });

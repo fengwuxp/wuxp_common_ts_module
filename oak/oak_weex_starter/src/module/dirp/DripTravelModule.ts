@@ -1,5 +1,5 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {WeexDripTravelModule} from "./index";
+import {CallAppParam, WeexDripTravelModule} from "./index";
 
 
 if (isWeb) {
@@ -18,6 +18,9 @@ if (isWeb) {
             console.log("web端不支持ddcx", params);
         },
         getCurrentOrderStatus: function (params, p2, p3) {
+            console.log("web端不支持ddcx", params);
+        },
+        callApp: function (params: CallAppParam, p2, p3) {
             console.log("web端不支持ddcx", params);
         }
 

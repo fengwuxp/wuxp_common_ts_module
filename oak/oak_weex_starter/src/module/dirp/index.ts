@@ -1,4 +1,6 @@
 import {WeexModule} from "weex";
+import {MapType} from "../../standardization/dirp/enums/MapType";
+import {ProductType} from "../../standardization/dirp/enums/ProductType";
 
 /**
  * 滴滴出行
@@ -6,12 +8,22 @@ import {WeexModule} from "weex";
 export interface WeexDripTravelModule extends WeexModule {
 
     /**
-     * 拉起滴滴打车主页面
+     * 拉起滴滴打车主页面 (h5版本)
      * @param params
      * @param success
      * @param failure
      */
-    showDDPage: (params:ShoDDPageParams, success, failure) => void;
+    showDDPage: (params: ShoDDPageParams, success, failure) => void;
+
+
+    /**
+     * http://developer.xiaojukeji.com/doc/sdk/api/app.html
+     * 唤醒滴滴客户端，进入主页面，并传递参数
+     * @param params
+     * @param success
+     * @param failure
+     */
+    callApp: (params: CallAppParam, success, failure) => void;
 
     /**
      * 打电话
@@ -65,33 +77,33 @@ export interface ShoDDPageParams {
     /**
      * 手机号    设置登录默认用户
      */
-    phone: string;
+    phone?: string;
 
     /**
      * 地图坐标系类型   soso（默认值），
      * wgs，gcj02，baidu，soso，gaode
      */
-    maptype: "wgs" | "gcj02" | "baidu" | "soso" | "gaode";
+    maptype?: MapType
 
     /**
      * 起点纬度    精确到小数点后2位以上
      */
-    fromlat: number;
+    fromlat?: number;
 
     /**
      * 起点经度    精确到小数点后2位以上
      */
-    fromlng: number;
+    fromlng?: number;
 
     /**
      * 起点名
      */
-    fromname: string;
+    fromname?: string;
 
     /**
      * 起点地址
      */
-    fromaddr: string;
+    fromaddr?: string;
 
     /**
      * 终点纬度    精确到小数点后2位以上
@@ -106,17 +118,17 @@ export interface ShoDDPageParams {
     /**
      * 终点名
      */
-    toname: number;
+    toname?: string;
 
     /**
      * 终点地址
      */
-    toaddr: number;
+    toaddr?: string;
 
     /**
      * 渠道号
      */
-    channel: string;
+    channel?: string;
 
     /**
      * 业务线id    257 - 出租车；
@@ -125,5 +137,39 @@ export interface ShoDDPageParams {
      *            261 - 代驾；
      *            262 - 巴士
      */
-    bizid: number;
+    bizid?: number;
+}
+
+
+export interface CallAppParam {
+
+    /**
+     * float    起点位置纬度
+     */
+    from_lat?: number;
+
+    /**
+     * 起点位置经度
+     */
+    from_lng?: number;
+
+    /**
+     * 终点位置纬度
+     */
+    to_lat: number;
+
+    /**
+     * 终点位置经度
+     */
+    to_lng: number;
+
+    /**
+     *    string(可选)    坐标系类型，默认soso，
+     */
+    map_type?: MapType;
+
+    /**
+     * 产品类型
+     */
+    product_type: ProductType;
 }
