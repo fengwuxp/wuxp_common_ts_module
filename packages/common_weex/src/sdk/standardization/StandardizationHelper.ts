@@ -111,7 +111,10 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
                         return new Promise((resolve, reject) => {
                             const transformParamHandle: TransformParamHandle = getHandleByConfigMap(transformParamMap, key);
                             const transformCallbackTypeHandle: TransformCallbackTypeHandle = getHandleByConfigMap(transformCallbackMap, key);
-                            func(...(transformParamHandle ? transformParamHandle(...p) : p), ...transformCallbackTypeHandle(resolve, reject));
+                            func(
+                                ...(transformParamHandle ? transformParamHandle(...p) : p),
+                                ...(transformCallbackTypeHandle ? transformCallbackTypeHandle(resolve, reject) : [resolve, reject])
+                            );
                         });
                     }
                     const enhanceHandle = getHandleByConfigMap(enhanceMap, key);

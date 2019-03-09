@@ -140,7 +140,7 @@ const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = s
 
     },
     transformCallbackMap: {
-        getCurrentLocationByBaidu: (resolve, reject) => [resolve, reject],
+        // getCurrentLocationByBaidu: (resolve, reject) => [resolve, reject],
         getInstalledNaviApp: (resolve, reject) => [resolve],
         openNaviMap: (resolve, reject) => [reject],
         // openBaiduMap: (resolve, reject) => [reject],
