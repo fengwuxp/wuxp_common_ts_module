@@ -1,6 +1,6 @@
 import {WeexModule} from "weex";
-import {MapType} from "../../standardization/dirp/enums/MapType";
-import {ProductType} from "../../standardization/dirp/enums/ProductType";
+import {MapType} from "../../standardization/drip/enums/MapType";
+import {ProductType} from "../../standardization/drip/enums/ProductType";
 
 /**
  * 滴滴出行
