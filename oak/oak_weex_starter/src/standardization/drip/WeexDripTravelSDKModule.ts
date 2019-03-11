@@ -3,7 +3,7 @@ import {NewOrderParam, NewOrderResult} from "./NewOrder";
 import {DriverInfo} from "./DriverInfo";
 import {OrderStatusInfo} from "./OrderStatusInfo";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {CallAppParam, ShoDDPageParams} from "../../module/dirp";
+import {CallAppParam, ShoDDPageParams} from "../../module/drip";
 
 /**
  * @link {http://developer.xiaojukeji.com/doc/sdk.html}
