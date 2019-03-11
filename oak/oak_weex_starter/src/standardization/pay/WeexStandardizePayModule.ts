@@ -1,4 +1,3 @@
-
 import {aliPay, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {ThirdPartyPaymentMethod} from "./ThirdPartyPaymentMethod";
 
@@ -31,7 +30,6 @@ export interface PayInfo {
 
     payParam: {} | string;
 }
-
 
 
 const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentModule = {
@@ -104,8 +102,13 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
  * @param payParam
  * @param useSandboxEnv
  */
-const handleWeiXinPay = (payParam, useSandboxEnv: boolean) => {
+const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean) => {
     return new Promise<void>((resolve, reject) => {
+
+        if (typeof payParam === "string") {
+            payParam = JSON.parse(payParam);
+        }
+
         weixinPay.pay(payParam,
             () => {
                 resolve();

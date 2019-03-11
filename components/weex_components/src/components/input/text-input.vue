@@ -40,13 +40,8 @@
 <script>
     import BaseInputProps from "./props/BaseInputProps";
     import ioniconIcon from "common_icons/weex/ionicons/";
-    import {isWeb,isAndroid} from "common_weex/src/constant/WeexEnv";
-    import {
-        ON_BLUR_EVENT_NAME,
-        ON_CHANGE_EVENT_NAME,
-        ON_FOCUS_EVENT_NAME,
-        ON_INPUT_EVENT_NAME
-    } from "../../config/EventNamesConfig";
+    import { isAndroid} from "common_weex/src/constant/WeexEnv";
+    import TextInputMixin from "./mixins/TextInputMixin";
 
     export default {
         name: "base-input",
@@ -56,7 +51,9 @@
         props: {
             ...BaseInputProps
         },
-
+        mixins:[
+            TextInputMixin
+        ],
         data() {
             return {
                 value: "",
@@ -79,7 +76,7 @@
                 }
                 return this.value.length > 0;
             },
-            inputType(){
+            inputType() {
 
                 const type = this.type;
                 if (type === 'number') {
@@ -93,70 +90,7 @@
         mounted() {
 
         },
-        methods: {
-            onFocus(e) {
-                this.isFocus = true;
-                this.$emit(ON_FOCUS_EVENT_NAME, e);
-                if (isWeb){
-                    //  const input = e.target;
-                    // setTimeout(()=>{
-                    //     input.scrollIntoView(true);
-                    //     input.scrollIntoViewIfNeeded(true);
-                    // },100);
-                }
-            },
-
-            onBlur(e) {
-                this.isFocus = false;
-                this.$emit(ON_BLUR_EVENT_NAME, e);
-            },
-
-            onInput({value}) {
-                if (value.length > this.maxLength) {
-                    //超长
-                    this.value = new String(this.value);
-                    return false;
-                }
-
-                //检查
-                const r = this.checkInput(value);
-                if (typeof r === "string") {
-                    this.setValueAndEmitterChangeEvent(r);
-                } else if (r === true) {
-                    this.setValueAndEmitterChangeEvent(value);
-                }
-
-            },
-            setValueAndEmitterChangeEvent(val) {
-                this.value = val;
-                //父组件中可以使用v-model
-                this.$emit(ON_INPUT_EVENT_NAME, this.needValue);
-                this.$emit(ON_CHANGE_EVENT_NAME, this.needValue);
-            },
-            clearValue() {
-                this.setValueAndEmitterChangeEvent("");
-            },
-            clearValueInner() {
-                if (!this.showClearIcon) {
-                    return;
-                }
-                this.clearValue();
-                this.focus();
-            },
-
-            focus() {
-                const $ref = this.$refs["input"];
-                if ($ref) {
-                    $ref.focus();
-                }
-            },
-            blur(){
-                const $ref = this.$refs["input"];
-                if ($ref) {
-                    $ref.blur();
-                }
-            }
-        },
+        methods: {},
         beforeMount() {
             if (this.defaultValue) {
                 this.value = this.defaultValue;

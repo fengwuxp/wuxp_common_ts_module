@@ -135,14 +135,10 @@
                     this.value = new String(this.value);
                     return false;
                 }
-                this.value = value;
-                //父组件中可以使用v-model
-                this.$emit(ON_INPUT_EVENT_NAME, this.value);
-                this.$emit(ON_CHANGE_EVENT_NAME, this.value);
-
+                this.setValueAndEmitterChangeEvent(value);
             },
             clearValue() {
-                this.value = "";
+                this.setValueAndEmitterChangeEvent("");
             },
             clearValueInner() {
                 if (!this.showClearIcon) {
@@ -157,8 +153,13 @@
                 if ($ref) {
                     $ref.focus();
                 }
-
-            }
+            },
+            setValueAndEmitterChangeEvent(val) {
+                this.value = val;
+                //父组件中可以使用v-model
+                this.$emit(ON_INPUT_EVENT_NAME, this.value);
+                this.$emit(ON_CHANGE_EVENT_NAME, this.value);
+            },
         },
     }
 </script>
