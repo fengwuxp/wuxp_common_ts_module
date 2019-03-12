@@ -47,10 +47,7 @@ const weexStandardizeScanQrCodeModule: WeexStandardizeScanQrCodeModule = standar
         scanWithZXing,
         scanWithZbar: scanWithZXing
     },
-    // transformCallbackMap: (resolve, reject) => [
-    //     resolve,
-    //     reject
-    // ]
+    transformCallbackMap:{}
 });
 /**
  * 标准化的扫码模块

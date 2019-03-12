@@ -16,12 +16,12 @@
                         :src="uploadPlaceholderIcon"></weex-image>
             <!--web端使用表单-->
             <label v-if="isWeb"
-                   :for="`upload_web`"
+                   :for="webInputId"
                    class="input_file">
                 <input v-if="changeCount%2===0"
                        type="file"
                        :key="changeCount"
-                       :id="`upload_web`"
+                       :id="webInputId"
                        style="display: none"
                        :multiline="selectedMaxNum>1"
                        @change="onChooseFile"
@@ -29,7 +29,7 @@
                 <input v-if="changeCount%2===1"
                        type="file"
                        :key="changeCount"
-                       :id="`upload_web`"
+                       :id="webInputId"
                        style="display: none"
                        :multiline="selectedMaxNum>1"
                        @change="onChooseFile"
@@ -167,6 +167,10 @@
                     // width: `${this.width}px`,
                     // height: `${this.height}px`
                 }
+            },
+            webInputId() {
+
+                return `upload_${parseInt(Math.random() * 10000000)}`
             }
         },
         methods: {
@@ -200,7 +204,7 @@
                         this.$emit("onUploadSuccess", resultList);
                     }).catch((e) => {
                     console.error("上传文件失败", e);
-                }).finally(()=>{
+                }).finally(() => {
                     this.uploadStep = 0;
                 });
             },

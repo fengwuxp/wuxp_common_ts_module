@@ -61,7 +61,7 @@ const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentMo
  * @param signData
  * @param useSandboxEnv
  */
-const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
+const handleAilPay = (signData: string, useSandboxEnv: boolean = false) => {
 
     if (useSandboxEnv === true) {
         aliPay.setSandboxEnv(useSandboxEnv);
@@ -102,7 +102,7 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean) => {
  * @param payParam
  * @param useSandboxEnv
  */
-const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean) => {
+const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean = false) => {
     return new Promise<void>((resolve, reject) => {
 
         if (typeof payParam === "string") {

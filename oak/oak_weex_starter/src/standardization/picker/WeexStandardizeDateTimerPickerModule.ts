@@ -106,10 +106,7 @@ const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule
             ];
         }
     },
-    // transformCallbackMap: (resolve, reject) => [
-    //     resolve,
-    //     reject
-    // ],
+    transformCallbackMap:{},
     enhanceMap: {
         pickDate: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
             return weexStandardizedModule.pick(options);

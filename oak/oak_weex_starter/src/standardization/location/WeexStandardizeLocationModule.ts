@@ -37,10 +37,7 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
             return [openMap ? 1 : 0];
         }
     },
-    // transformCallbackMap: (resolve, reject) => [
-    //     resolve,
-    //     reject
-    // ],
+    transformCallbackMap:{},
     enhanceMap: {
         location: (weexStandardizedModule, options: LocationOptions) => {
             return weexStandardizedModule["getMyLocation"](options);
