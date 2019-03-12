@@ -119,7 +119,7 @@ const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean = false) => {
                     resolve();
                 } else {
                     const {errCode, errStr} = data;
-                    if (errCode === -1) {
+                    if (parseInt(errCode) === -1) {
                         //错误
                         reject({
                             errorCode: errCode,
