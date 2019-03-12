@@ -77,6 +77,7 @@ export default {
             if (typeof this.getPhoneCodeFn === "function") {
                 this.getPhoneCodeFn().then(() => {
                     this.countDown();
+                }).finally(()=>{
                     this.buttonIsLock = false;
                 });
             }
