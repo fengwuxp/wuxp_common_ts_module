@@ -15,4 +15,6 @@ const externals = {
     "antd-mobile": "window['antd-mobile']"
 };
 
-module.export = externals;
+module.exports = {
+    externals
+};

@@ -18,7 +18,7 @@ const baseConfig = {
 };
 
 baseConfig.mode = "production";
-
+baseConfig.devtool = false;
 
 baseConfig.optimization = { // 提取js 第三方库等
     splitChunks: {

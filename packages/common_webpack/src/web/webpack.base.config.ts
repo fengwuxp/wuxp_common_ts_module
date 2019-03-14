@@ -1,7 +1,7 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
-import { loadLessLoader} from "../style/ThemeLessLoader";
+import {loadLessLoader} from "../style/ThemeLessLoader";
 import {cssModuleLoader, lessModuleLoader, scssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
@@ -77,7 +77,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                         {
                             loader: "url-loader",
                             options: {
-                                limit: 25000
+                                limit: 1024 * 5
                             }
                         }
                     ]
@@ -90,10 +90,10 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                             //项目设置打包到dist下的fonts文件夹下
                             options: {
                                 name: 'fonts/[name].[hash:8].[ext]',
-                                //20kb以下的直接打包到css文件中
-                                limit: 1024 * 20,
+                                //10kb以下的直接打包到css文件中
+                                limit: 1024 * 10,
                                 //返回最终的资源相对路径
-                                publicPath: function (url) {
+                                publicPath(url) {
                                     //使用全局变量来传递 资源根路径
                                     return path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
                                 }
@@ -101,6 +101,10 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
 
                         }
                     ]
+                },
+                {
+                    test: /\.hbs$/,
+                    loader: 'handlebars-loader'
                 }
             ]
         },
@@ -109,9 +113,9 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
         // This is important because it allows us to avoid bundling all of our
         // dependencies, which allows browsers to cache those libraries between builds.
         externals: {
-
             ...(EXTERNALS || {})
         },
+
         plugins: [
             getHappyPackPlugin("sass", [
                 {
