@@ -25,7 +25,7 @@ const execSync = require('child_process').execSync;
 // walk("../", "./src/web", list, "../lib");
 // walk("../", "./src/weex", list, "../lib");
 // list.push({
-//     source: path.join(__dirname, "../src/style/PostCss.config.ts"),
+//     source: path.join(__dirname, "../src/style/postcss.config.ts"),
 //     output: path.resolve(__dirname, "../lib/style")
 // });
 // list.push({

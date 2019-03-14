@@ -34,20 +34,7 @@ var options = tsConfig.target === "es5" ? null : {
     useBabel: true,
     useCache: true,
     babelOptions: {
-        babelrc: false,
-        presets: [
-            "@babel/preset-env"
-        ],
-        plugins: [
-            "@babel/plugin-transform-regenerator",
-            [
-                "@babel/plugin-transform-runtime",
-                {
-                    "helpers": false,
-                    "regenerator": true
-                }
-            ]
-        ]
+        babelrc: true,
     },
     babelCore: "@babel/core"
 };

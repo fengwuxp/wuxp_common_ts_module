@@ -8,11 +8,24 @@ var path = require("path");
  **/
 var PostCssLoader = {
     loader: "postcss-loader",
+    ident: 'postcss',
     options: {
         ident: "css-loader",
         config: {
-            path: path.join(__dirname, './PostCss.config.js')
-        }
+            path: path.resolve(__dirname, "../../../..") + "/"
+        },
+        plugins: function (loader) { return [
+            require('postcss-preset-env')({
+                stage: 3,
+            }),
+            require('postcss-import')({
+                root: loader.resourcePath,
+            }),
+            require('postcss-flexbugs-fixes'),
+            require('precss'),
+            //使用.browserslistrc的统一配置
+            require('autoprefixer')(),
+        ]; }
     }
 };
 exports.default = PostCssLoader;
