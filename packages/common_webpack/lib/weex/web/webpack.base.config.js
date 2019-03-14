@@ -122,7 +122,6 @@ var webpackConfig = {
             allChunks: true
         }),
         bannerPlugin,
-        BabelLoader_1.happyPackBabelLoaderPlugin,
         GetHappyPackPluginConfig_1.getHappyPackPlugin("less", [
             {
                 loader: 'less-loader',

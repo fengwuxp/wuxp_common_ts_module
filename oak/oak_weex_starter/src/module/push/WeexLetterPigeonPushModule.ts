@@ -1,11 +1,12 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {LetterPigeonConfigOptions, WeexLetterPigeonPushModule} from "./index";
 
 /**
  * 信鸽推送
  * Created by wuxp on 2017/7/10.
  */
 if (isWeb) {
-    const MessagagePush :any= {
+    const messagePush :WeexLetterPigeonPushModule= {
         /**
          * APP只有在完成信鸽的启动与注册后才可以信鸽SDK提供push服务，在这之前请确保配置AccessId和AccessKey。
          * <p>
@@ -14,7 +15,7 @@ if (isWeb) {
          * AccessKey
          * @param
          */
-        config(params = {AccessId: "", AccessKey: ""}){
+        config(params:LetterPigeonConfigOptions){
             console.log(params);
         },
         /**
@@ -44,6 +45,6 @@ if (isWeb) {
         }
     };
     console.log("注册自定义模块 msgPush");
-    console.log(MessagagePush);
-    weex.registerModule('msgPush', MessagagePush);
+    console.log(messagePush);
+    weex.registerModule('msgPush', messagePush);
 }

@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
+import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
@@ -132,7 +132,6 @@ const webpackConfig: webpack.Configuration = {
             allChunks: true
         }),
         bannerPlugin,
-        happyPackBabelLoaderPlugin,
         getHappyPackPlugin("less", [
             {
                 loader: 'less-loader',

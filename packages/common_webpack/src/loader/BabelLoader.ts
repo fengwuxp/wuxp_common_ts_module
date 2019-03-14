@@ -18,11 +18,20 @@ const babelLoader = {
     ]
 };
 
-export const happyPackBabelLoaderPlugin = getHappyPackPlugin(babelLoaderName, [
-    {
-        loader: babelLoaderName,
-        options: babel7Options
-    }
-]);
+// export const happyPackBabelLoaderPlugin = getHappyPackPlugin(babelLoaderName, [
+//     {
+//         loader: babelLoaderName,
+//         options: babel7Options
+//     }
+// ]);
 
-export default babelLoader;
+export default  {
+    test: /\.js[x]?$/,
+    exclude: isExclude,
+    use: [
+        {
+            loader: babelLoaderName,
+            options: babel7Options
+        }
+    ]
+};

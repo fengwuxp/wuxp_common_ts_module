@@ -2,10 +2,10 @@ import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import  {getHappyLessLoaderPlugin, lessLoader} from "../style/ThemeLessLoader";
-import {cssModuleLoader, happyPackCssLoaderPlugin} from "../style/CssModuleLoader";
+import {cssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
-import babelLoader, {happyPackBabelLoaderPlugin} from "../loader/BabelLoader";
+import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
 import {TsConfigPathsPlugin} from "awesome-typescript-loader";
@@ -115,8 +115,6 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             ...(EXTERNALS || {})
         },
         plugins: [
-            happyPackBabelLoaderPlugin,
-            happyPackCssLoaderPlugin,
             getHappyLessLoaderPlugin(options),
             getHappyPackPlugin("sass", [
                 {

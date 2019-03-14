@@ -20,13 +20,13 @@
     "build:release": "cross-env RELEASE=1 webpack --config ./webpack.config.js --progress --colors",
     "build:prod": "cross-env RELEASE=0 webpack --config ./webpack.prod.config.js  --progress --colors",
     "build:prod:release": "cross-env RELEASE=1 webpack --config ./webpack.prod.config.js  --progress --colors",
-    "npm_i": "npm i antd_mobile_starter@0.0.1",
-    "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules && npm run yarn_i"
   },
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
     "antd_mobile_starter": "^0.0.1"
   },
-  "gitHead": "69d96469873702536da77c808618eb28e1e517f9"
+  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

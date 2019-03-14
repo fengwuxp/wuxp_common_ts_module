@@ -3,7 +3,7 @@ import {WeexModule} from "weex";
 
 export interface ThirdLoginModule extends WeexModule {
 
-    wxLogin: (params: any, callback: (data:WxAuthResultInfo) => void) => void;
+    wxLogin: (params: any, success: (data: WxAuthResultInfo) => void, failure: (data: string) => void) => void;
 }
 
 export interface WxAuthResultInfo {

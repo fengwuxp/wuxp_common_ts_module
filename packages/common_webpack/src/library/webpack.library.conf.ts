@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import babelLoader, {happyPackBabelLoaderPlugin} from "../loader/BabelLoader";
+import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import {Entry, EntryFunc} from "webpack";
 import {Output} from "webpack";
@@ -53,7 +53,6 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
         },
 
         plugins: [
-            happyPackBabelLoaderPlugin,
             ...(options.plugins || [])
         ]
     }

@@ -3,7 +3,7 @@
  */
 export const registerWeexModuleByWeb = () => {
     require("./module/broadcast/Broadcast");
-    require("./module/push/MessagagePush");
+    require("./module/push/WeexLetterPigeonPushModule");
     require("./module/scan/Qrcode");
     require("./module/version/AppUpdate");
     require("./module/location/Location");

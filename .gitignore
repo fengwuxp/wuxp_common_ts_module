@@ -8,9 +8,9 @@ genode
 build
 *.properties
 oak/oak_taro_starter/lib/modules
-package-lock.json
+*-lock.json
 yarn.lock
-lerna-debug.log
+*.log
 *-debug.log
 *-error.log
 dist

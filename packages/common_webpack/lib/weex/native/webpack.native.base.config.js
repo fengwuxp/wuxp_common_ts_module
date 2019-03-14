@@ -58,7 +58,6 @@ var config = {
         ]
     },
     plugins: [
-        BabelLoader_1.happyPackBabelLoaderPlugin,
         GetHappyPackPluginConfig_1.getHappyPackPlugin("less", [
             {
                 loader: 'less-loader',

@@ -123,7 +123,7 @@ const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean = false) => {
                         //错误
                         reject({
                             errorCode: errCode,
-                            errorMessage: errStr
+                            errorMessage: errStr || "pay failure"
                         });
                     }
                 }

@@ -16,10 +16,19 @@ var babelLoader = {
         GetHappyPackPluginConfig_1.genHappyPackLoaderString(babelLoaderName)
     ]
 };
-exports.happyPackBabelLoaderPlugin = GetHappyPackPluginConfig_1.getHappyPackPlugin(babelLoaderName, [
-    {
-        loader: babelLoaderName,
-        options: babel7Options
-    }
-]);
-exports.default = babelLoader;
+// export const happyPackBabelLoaderPlugin = getHappyPackPlugin(babelLoaderName, [
+//     {
+//         loader: babelLoaderName,
+//         options: babel7Options
+//     }
+// ]);
+exports.default = {
+    test: /\.js[x]?$/,
+    exclude: WebpackUtils_1.isExclude,
+    use: [
+        {
+            loader: babelLoaderName,
+            options: babel7Options
+        }
+    ]
+};

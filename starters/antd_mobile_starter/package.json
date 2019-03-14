@@ -20,7 +20,7 @@
   ],
   "author": "wuxp",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish",
     "npm_rest_dependencies": "rm -rf ./node_modules && npm run npm_i"
   },
@@ -30,6 +30,7 @@
     "babel-plugin-import": "^1.8.0",
     "common_fetch": "^0.0.1",
     "common_react": "^0.0.1",
+    "common_react_router": "^0.0.1",
     "common_redux": "^0.0.1",
     "common_route": "^0.0.1",
     "common_starter": "^0.0.1",
@@ -45,5 +46,5 @@
     "react-swipeable-views": "^0.12.16",
     "react-swipeable-views-utils": "^0.12.16"
   },
-  "gitHead": "69d96469873702536da77c808618eb28e1e517f9"
+  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

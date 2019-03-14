@@ -14,7 +14,6 @@ export const lessLoader={
             cssModuleLoader,
             PostCssLoader,
             genHappyPackLoaderString("less")
-
         ]
     })
 };

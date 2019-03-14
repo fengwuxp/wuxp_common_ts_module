@@ -112,8 +112,6 @@ exports.getWebpackBaseConfig = function (options) {
         // dependencies, which allows browsers to cache those libraries between builds.
         externals: __assign({}, (webpackConfig_1.EXTERNALS || {})),
         plugins: [
-            BabelLoader_1.happyPackBabelLoaderPlugin,
-            CssModuleLoader_1.happyPackCssLoaderPlugin,
             ThemeLessLoader_1.getHappyLessLoaderPlugin(options),
             GetHappyPackPluginConfig_1.getHappyPackPlugin("sass", [
                 {

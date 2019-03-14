@@ -2,7 +2,7 @@ import * as webpack from "webpack";
 import * as path from "path";
 import entry from "./GetNativePackViews";
 import WeexPackConfig from "./WeexPackConfig";
-import babelLoader, {happyPackBabelLoaderPlugin} from "../../loader/BabelLoader";
+import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 import {getThemeConfig} from "../../style/ThemeConfig";
 import {pathAlias} from "../../config/CommonpPathAlias";
@@ -65,7 +65,6 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
-        happyPackBabelLoaderPlugin,
         getHappyPackPlugin("less", [
             {
                 loader: 'less-loader',

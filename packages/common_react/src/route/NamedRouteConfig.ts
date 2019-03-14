@@ -12,6 +12,8 @@ export interface NamedRouteConfig extends RouteConfig {
 
     /**
      * 是否需要鉴权（登录）
+     * 默认 不需要
+     *
      */
-    needAuth?: boolean;
+    requiredAuth?: boolean;
 }

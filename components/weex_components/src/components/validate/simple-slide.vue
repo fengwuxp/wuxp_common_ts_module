@@ -33,15 +33,14 @@
             towardsTheRightIcon: {
                 default: null
             },
-            maxWidth: {
-                default: 600
+            width: {
+                default: 700
             }
         },
         data() {
             return {
-                iconStatus: {
-                    left: 0
-                },
+                iconSize: 100,
+                iconLeft: 0,
                 validateStatus: {
                     left: 0,
                     top: 0,
@@ -53,7 +52,9 @@
         computed: {
             containerStyle() {
                 return {
-                    width: `${this.maxWidth}px`
+                    width: `${this.width}px`,
+                    height: "100px",
+                    position: "relative",
                 }
             },
             showIcon() {
@@ -73,10 +74,12 @@
                 }
             },
             rightIconStyle() {
-                const {left} = this.iconStatus;
+                const {iconSize, iconLeft} = this;
                 return {
-                    left: `${left}px`,
-                    top: "0px"
+                    left: `${iconLeft}px`,
+                    top: "0px",
+                    width: `${iconSize}px`,
+                    height: `${iconSize}px`
                 }
             }
         },
@@ -92,8 +95,9 @@
                 }
                 const {screenX} = changedTouches[0];
                 let left = screenX - 25;
-                if (left >= this.maxWidth) {
-                    left = this.maxWidth;
+                const maxPosition = this.width - 100;
+                if (left >= maxPosition) {
+                    left = this.width;
                     this.validateFirstSucc();
                 } else if (left <= 0) {
                     left = 0;
@@ -106,8 +110,7 @@
              */
             slideEnd() {
                 const width = this.validateStatus.width;
-                console.log("width-> ", width, this.maxWidth);
-                if (width < this.maxWidth) {
+                if (width < this.width) {
                     //回到原点
                     this.validateStatus.width = 0;
                     this.animationChange();
@@ -136,8 +139,10 @@
 
             },
             setValidateValue(val) {
-                const width = val >= this.maxWidth ? this.maxWidth : val;
-                this.iconStatus.left = width;
+                const width = val >= this.width ? this.width : val;
+                const iconSize = this.iconSize;
+                const maxLeftPosition = this.width - iconSize;
+                this.iconLeft = width > maxLeftPosition ? maxLeftPosition : width;
                 this.validateStatus = {
                     ...this.validateStatus,
                     width
@@ -145,7 +150,7 @@
             },
             validateFirstSucc() {
                 this.validateResult = true;
-                this.setValidateValue(this.maxWidth);
+                this.setValidateValue(this.width);
                 setTimeout(() => {
                     this.$emit("onSuccess");
                 }, 1000);
@@ -158,6 +163,11 @@
 
     @import "../../styles/base/flex";
 
+    .text_default {
+        font-size: 32px;
+        color: #303030;
+    }
+
     .w_validate {
         width: 700px;
         height: 100px;
@@ -165,7 +175,7 @@
 
     .position_validate {
         position: absolute;
-        left: 25px;
+        left: 0;
         top: 0;
     }
 
@@ -190,8 +200,6 @@
 
     .validate_right_icon {
         position: absolute;
-        width: 100px;
-        height: 100px;
         background-color: #ffffff;
     }
 
