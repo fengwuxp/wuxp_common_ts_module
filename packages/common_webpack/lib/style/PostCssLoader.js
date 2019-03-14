@@ -8,7 +8,7 @@ var path = require("path");
  **/
 var PostCssLoader = {
     loader: "postcss-loader",
-    ident: 'postcss',
+    // ident: 'postcss',
     options: {
         ident: "css-loader",
         config: {

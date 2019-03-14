@@ -1,8 +1,8 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
-import {getHappyLessLoaderPlugin, lessLoader} from "../style/ThemeLessLoader";
-import {cssModuleLoader} from "../style/CssModuleLoader";
+import { loadLessLoader} from "../style/ThemeLessLoader";
+import {cssModuleLoader, lessModuleLoader, scssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
 import babelLoader from "../loader/BabelLoader";
@@ -58,14 +58,14 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                     }),
 
                 },
-                lessLoader,
+                loadLessLoader(options),
 
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
-                            cssModuleLoader,
+                            scssModuleLoader,
                             PostCssLoader,
                             genHappyPackLoaderString("scss")
                         ]
@@ -113,7 +113,6 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             ...(EXTERNALS || {})
         },
         plugins: [
-            getHappyLessLoaderPlugin(options),
             getHappyPackPlugin("sass", [
                 {
                     loader: "sass-loader",
@@ -126,10 +125,6 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                 filename: "[name].css",
                 allChunks: true
             }),
-            //tsconfig.ts 中就可以愉快的使用baseUrl, paths
-            // new TsConfigPathsPlugin({
-            //         configFileName: "./tsconfig.json"
-            // })
         ]
     };
     //是否打release包

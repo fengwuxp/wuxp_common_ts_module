@@ -8,7 +8,7 @@ import * as path from "path";
 
 const PostCssLoader = {
     loader: "postcss-loader",
-    ident: 'postcss',
+    // ident: 'postcss',
     options: {
         ident: "css-loader",
         config: {

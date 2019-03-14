@@ -60,13 +60,13 @@ exports.getWebpackBaseConfig = function (options) {
                         ]
                     }),
                 },
-                ThemeLessLoader_1.lessLoader,
+                ThemeLessLoader_1.loadLessLoader(options),
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
-                            CssModuleLoader_1.cssModuleLoader,
+                            CssModuleLoader_1.scssModuleLoader,
                             PostCssLoader_1.default,
                             GetHappyPackPluginConfig_1.genHappyPackLoaderString("scss")
                         ]
@@ -110,7 +110,6 @@ exports.getWebpackBaseConfig = function (options) {
         // dependencies, which allows browsers to cache those libraries between builds.
         externals: __assign({}, (webpackConfig_1.EXTERNALS || {})),
         plugins: [
-            ThemeLessLoader_1.getHappyLessLoaderPlugin(options),
             GetHappyPackPluginConfig_1.getHappyPackPlugin("sass", [
                 {
                     loader: "sass-loader",
