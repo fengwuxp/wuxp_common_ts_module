@@ -23,13 +23,15 @@
   "author": "wuxp",
   "license": "ISC",
   "keywords": [],
+  "devDependencies": {
+    "@types/node": "^10.12.9"
+  },
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/copy-webpack-plugin": "^4.4.2",
     "@types/happypack": "^5.0.0",
     "@types/html-webpack-plugin": "^3.2.0",
-    "@types/node": "^10.12.9",
     "@types/uglifyjs-webpack-plugin": "^1.1.0",
     "@types/webpack": "^4.4.25",
     "@types/webpack-dev-server": "^3.1.0",
@@ -65,13 +67,13 @@
     "terser-webpack-plugin": "^1.2.2",
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.1.2",
-    "url-loader": "^1.1.1",
-    "webpack": "^4.27.1",
-    "webpack-bundle-analyzer": "^3.0.2",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cleanup-plugin": "^0.5.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "webpack-merge": "^4.1.4",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1",
     "webpack-uglify-parallel": "^0.1.4"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"

@@ -9,7 +9,7 @@ import * as path from "path";
 const PostCssLoader = {
     loader: "postcss-loader",
     options: {
-        // ident: "css-loader",
+        ident: "css-loader",
         config: {
             path: path.join(__dirname, './PostCss.config.js')
         }

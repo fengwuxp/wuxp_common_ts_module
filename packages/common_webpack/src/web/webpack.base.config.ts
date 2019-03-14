@@ -1,14 +1,13 @@
 import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
-import  {getHappyLessLoaderPlugin, lessLoader} from "../style/ThemeLessLoader";
+import {getHappyLessLoaderPlugin, lessLoader} from "../style/ThemeLessLoader";
 import {cssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
 import babelLoader from "../loader/BabelLoader";
 import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import PostCssLoader from "../style/PostCssLoader";
-import {TsConfigPathsPlugin} from "awesome-typescript-loader";
 import {pathAlias} from "../config/CommonpPathAlias";
 import {genHappyPackLoaderString, getHappyPackPlugin} from "../utils/GetHappyPackPluginConfig";
 
@@ -59,14 +58,13 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                     }),
 
                 },
-               lessLoader,
+                lessLoader,
 
                 {
                     test: /\.s[c|a]ss$/,
                     use: ExtractTextWebpackPlugin.extract({
                         fallback: "style-loader",
                         use: [
-                            // require.resolve("style-loader"),
                             cssModuleLoader,
                             PostCssLoader,
                             genHappyPackLoaderString("scss")
@@ -123,16 +121,14 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                         ident: "css-loader"
                     }
                 }
-            ],2),
+            ], 2),
             new ExtractTextWebpackPlugin({
                 filename: "[name].css",
                 allChunks: true
             }),
             //tsconfig.ts 中就可以愉快的使用baseUrl, paths
-            new TsConfigPathsPlugin()
-            // new WriteFilePlugin({
-            //     // test: /^((?!\.hot-update).)*$/,
-            //     test: /\.jsp|\.tld|\.xml$/,
+            // new TsConfigPathsPlugin({
+            //         configFileName: "./tsconfig.json"
             // })
         ]
     };

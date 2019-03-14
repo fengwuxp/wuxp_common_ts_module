@@ -25,7 +25,7 @@
   },
   "author": "wuxp",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "antd_mobile_starter": "^0.0.1"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"

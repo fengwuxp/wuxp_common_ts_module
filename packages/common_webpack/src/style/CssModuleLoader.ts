@@ -11,5 +11,5 @@ export const cssModuleLoader = ({resource}) => ({
         localIdentName: '[name]__[local]___[hash:base64:5]',
         ident: "css-loader"
     }
-})
+});
 

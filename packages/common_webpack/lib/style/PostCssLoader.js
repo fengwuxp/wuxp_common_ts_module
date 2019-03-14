@@ -9,7 +9,7 @@ var path = require("path");
 var PostCssLoader = {
     loader: "postcss-loader",
     options: {
-        // ident: "css-loader",
+        ident: "css-loader",
         config: {
             path: path.join(__dirname, './PostCss.config.js')
         }
