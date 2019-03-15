@@ -5,7 +5,7 @@ type TransformParamHandle = (...otherArgs) => any[]
 
 type TransformCallbackTypeHandle = (resolve, reject) => Function[];
 
-type EnhanceHandle<T = any> = (weexStandardizedModule: WeexStandardizedModule, ...args) => Promise<T>;
+type EnhanceHandle<T = any> = (weexStandardizedModule: WeexStandardizedModule, ...args) => Promise<T> | void;
 
 interface WeexStandardizedOptions<M = WeexStandardizedModule> {
 

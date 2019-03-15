@@ -16,7 +16,7 @@ export interface WeexLetterPigeonPushModule {
      * @param success
      * @param failure
      */
-    registerMsgPush: (accountId: number,
+    registerMsgPush: (accountId: string,
                       success: (data) => void,
                       failure: (errorMessage: string) => void) => void;
 }
