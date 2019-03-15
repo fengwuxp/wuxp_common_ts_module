@@ -3,12 +3,8 @@ import {defaultApiModuleName} from "../src/constant/FeignConstVar";
 import DefaultRestTemplate from "../src/template/DefaultRestTemplate";
 import DefaultApiRoutingStrategy from "../src/route/DefaultApiRoutingStrategy";
 import DefaultFetchClient from "../src/fetch/DefaultFetchClient";
-import WebFetchAdapter from "../src/adapter/web/WebFetchAdapter";
 import FetchInterceptorExecutor from "../src/interceptor/FetchInterceptorExecutor";
 import {ProxyServiceExecutor} from "../src/proxy/executor/ProxyServiceExecutor";
-import Es6PoxyServiceFactory from "../src/proxy/factory/Es6PoxyServiceFactory";
-
-import {setProxyFactory} from "../src/annotations/Feign";
 import * as log4js from "log4js";
 import DefaultProxyServiceExecutor from "../src/proxy/executor/DefaultProxyServiceExecutor";
 import TestService from "./services/TestService";
@@ -16,7 +12,6 @@ import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy"
 import {apiSign} from "./utils/ApiSginUtils";
 import {RequestMethod} from "../src/constant/RequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
-import Es5PoxyServiceFactory from "../src/proxy/factory/Es5PoxyServiceFactory";
 import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
 
@@ -98,8 +93,7 @@ const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(
 
 
 //设置代理执行器
-FeignProxyExecutorHolder.DEFAULT_EXECUTOR = proxyServiceExecutor;
-
+FeignProxyExecutorHolder.registerDefaultExecutor(proxyServiceExecutor);
 
 
 describe("test proxy api service", () => {

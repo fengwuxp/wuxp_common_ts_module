@@ -157,6 +157,14 @@ export interface LocationModule extends WeexModule {
      * @param fail
      */
     openRoutePlan: (params: RouteOptions, succ: () => void, fail: () => void) => void;
+
+
+    /**
+     * 打开选择小区
+     * @param success
+     * @param failure
+     */
+    chooseCommunity: (success: (data: LocationResult) => void, failure: () => void) => void;
 }
 
 /**

@@ -19,6 +19,11 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
      * @param options
      */
     readonly openRoutePlan: (options: RouteOptions) => Promise<void>;
+
+    /**
+     * 打开选择小区面板
+     */
+    readonly chooseCommunity: () => Promise<LocationResult>;
 }
 
 interface LocationOptions {
@@ -45,16 +50,16 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
     enhanceMap: {
         getCurrentLocation(weexStandardizedModule: WeexStandardizedModule, options: LocationOptions = defaultOptions) {
             const openMap = options.openMap || false;
-            if (openMap) {
-
-                return new Promise((resolve, reject) => {
-                    appMain.getMyLocation(openMap ? 1 : 0, resolve, reject);
-                });
-            }
+            // if (openMap) {
+            //
+            //     return new Promise((resolve, reject) => {
+            //         appMain.getMyLocation(openMap ? 1 : 0, resolve, reject);
+            //     });
+            // }
 
             return new Promise<LocationResult>((resolve, reject) => {
-                const forceLocation = defaultOptions.forceLocation || false;
-                (weexStandardizedModule as LocationModule).getMyLocation(forceLocation ? 1 : 0, resolve);
+                // const forceLocation = defaultOptions.forceLocation || false;
+                (weexStandardizedModule as LocationModule).getMyLocation(openMap ? 1 : 0, resolve);
             })
         }
 

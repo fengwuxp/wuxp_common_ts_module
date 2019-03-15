@@ -22,7 +22,6 @@ export default class TestService {
 
     queryList: (evt: any, options?: FetchOptions) => Promise<any> = undefined;
 
-
     @Signature({fields: []})
     @RequestMapping({
         value: "testQuery",

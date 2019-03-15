@@ -1,5 +1,5 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {LocationModule, RouteOptions} from "./index";
+import {LocationModule, LocationResult, RouteOptions} from "./index";
 
 /**
  * 自定义location 保存对象
@@ -39,6 +39,15 @@ if (isWeb) {
         }, fail = () => {
         }) {
             console.log("浏览器暂不支持改方法");
+        },
+
+        /**
+         * 打开选择小区
+         * @param success
+         * @param failure
+         */
+        chooseCommunity(success:(data:LocationResult)=>void,failure:()=>void){
+
         }
     };
     console.log("注册自定义模块 location");

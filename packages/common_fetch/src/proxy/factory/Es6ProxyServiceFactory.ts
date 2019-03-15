@@ -6,7 +6,7 @@ import {ProxyApiService} from "../ProxyApiService";
  * 代理服务工厂
  * es6版本
  */
-export default class Es6PoxyServiceFactory extends AbstractProxyServiceFactory {
+export default class Es6ProxyServiceFactory extends AbstractProxyServiceFactory {
 
 
     factory<T extends ProxyApiService>(targetService: T): T {

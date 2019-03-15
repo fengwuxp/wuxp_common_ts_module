@@ -1,0 +1,34 @@
+{
+  "name": "common_proxy",
+  "version": "0.0.1",
+  "description": "common proxy",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "author": "wuxp",
+  "license": "ISC",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_publish": "npm publish",
+    "rest_depencies": "rm -rf ./node_modules & npm run yarn_i"
+  },
+  "keywords": [],
+  "types": "./index.d.ts",
+
+  "devDependencies": {
+    "@types/node": "^10.12.12",
+    "common_test": "^0.0.1",
+    "ts-jest": "^23.10.5",
+    "log4js": "^4.0.2"
+  },
+  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+}

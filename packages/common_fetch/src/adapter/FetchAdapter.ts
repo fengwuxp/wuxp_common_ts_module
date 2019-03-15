@@ -12,3 +12,4 @@ export interface FetchAdapter<T extends FetchOptions = FetchOptions> {
      */
     request: (options: T) => Promise<FetchResponse>;
 }
+
