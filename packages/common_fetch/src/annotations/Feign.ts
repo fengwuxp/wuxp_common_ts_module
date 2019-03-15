@@ -1,7 +1,6 @@
 import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
 import {FeignProxy, FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
-import Es5ProxyServiceFactory from "../proxy/factory/Es5ProxyServiceFactory";
 import DefaultProxyServiceFactory from "../proxy/factory/DefaultProxyServiceFactory";
 
 
@@ -26,7 +25,6 @@ export interface FeignOptions {
 
 //默认使用es5的代理工厂
 const proxyFactory: ProxyServiceFactory = new DefaultProxyServiceFactory();
-// const proxyFactory: ProxyServiceFactory = new Es5ProxyServiceFactory();
 
 
 /**
