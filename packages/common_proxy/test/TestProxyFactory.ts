@@ -13,11 +13,11 @@ describe("test proxy factory", () => {
 
 
         a1(name) {
-            logger.debug("--al-->", name);
+            logger.debug("--al-->", name, this && this.prop);
             return 'a1'
         },
         a2(...args) {
-            logger.debug("--a2-->", ...args);
+            logger.debug("--a2-->", ...args, this);
             return 'a2'
         }
 
@@ -28,14 +28,7 @@ describe("test proxy factory", () => {
         const proxy = ProxyFactory.newProxyInstance(target,
             (object: any, propertyKey: PropertyKey, receiver: any) => {
                 logger.debug("proxy key", propertyKey,);
-                const objectElement = object[propertyKey];
-                if (typeof objectElement == "function") {
-                    return function (...args) {
-                        return objectElement(...args);
-                    }
-                } else {
-                    return objectElement;
-                }
+                return object[propertyKey];
 
             }, null, ProxyScope.ALL);
         logger.debug("proxy.prop", proxy.prop);
@@ -47,7 +40,7 @@ describe("test proxy factory", () => {
         const proxy = ProxyFactory.newProxyInstance(target,
             (object: any, propertyKey: PropertyKey, receiver: any) => {
                 logger.debug("proxy", propertyKey,);
-                return function (...args) {
+                return (...args) => {
                     return object[propertyKey](...args);
                 }
             }, null,
@@ -56,7 +49,7 @@ describe("test proxy factory", () => {
 
                 return propertyKey === "a2";
             });
-        // proxy.a1("张三");
+        proxy.a1("张三");
         proxy.a2("张三", "李四");
 
     });
@@ -65,12 +58,12 @@ describe("test proxy factory", () => {
         const proxy: any = ProxyFactory.newProxyInstanceEnhance(target,
             (object: any, propertyKey: PropertyKey, receiver: any) => {
                 logger.debug("proxy", propertyKey,);
-                return function (...args) {
+                return (...args) => {
                     return object[propertyKey];
                 }
             }, (object: any, propertyKey: PropertyKey, receiver: any) => {
 
-                return function (...args) {
+                return (...args) => {
                     logger.debug("enhance", ...args);
                 }
             });

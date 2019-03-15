@@ -31,14 +31,14 @@ export const enum ProxyScope {
 /**
  * 匹配代理范围
  * @param val
+ * @param isMethod
  * @param scope
  */
-export const matchProxyScope = (val, scope: ProxyScope = ProxyScope.METHOD) => {
+export const matchProxyScope = (val, isMethod: boolean, scope: ProxyScope = ProxyScope.METHOD) => {
     if (scope === ProxyScope.ALL) {
         return true;
     } else {
         const valType = typeof val;
-        const isMethod = valType === "function";
         if (isMethod && scope === ProxyScope.METHOD) {
             return true;
         }

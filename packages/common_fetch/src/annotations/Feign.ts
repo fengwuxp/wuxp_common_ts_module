@@ -26,6 +26,7 @@ export interface FeignOptions {
 
 //默认使用es5的代理工厂
 const proxyFactory: ProxyServiceFactory = new DefaultProxyServiceFactory();
+// const proxyFactory: ProxyServiceFactory = new Es5ProxyServiceFactory();
 
 
 /**

@@ -99,7 +99,7 @@ FeignProxyExecutorHolder.registerDefaultExecutor(proxyServiceExecutor);
 describe("test proxy api service", () => {
 
 
-    test("test", async () => {
+    test("test mock api method", async () => {
 
 
         const testService = new TestService();

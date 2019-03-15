@@ -38,6 +38,6 @@ export interface ProxyCreateConfig<T = any> {
     customMatch?: CustomMatchType<T>;
 }
 
-export type CustomMatchType<T = any> = (object: T, propertyKey: string) => boolean | RegExp;
+export type CustomMatchType<T=any> = (object: any, propertyKey: string) => boolean | RegExp;
 
 export type ProxyAdapter<T = any> = (config: ProxyCreateConfig<T>) => T;

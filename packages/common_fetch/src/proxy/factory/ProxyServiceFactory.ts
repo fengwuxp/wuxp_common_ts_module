@@ -24,7 +24,7 @@ export abstract class AbstractProxyServiceFactory implements ProxyServiceFactory
     private ignorePropertyNames: string[] = [
         "getServiceMethodConfig",
         "setServiceMethodConfig",
-        "feign"
+        // "feign"
     ];
 
 
@@ -38,14 +38,14 @@ export abstract class AbstractProxyServiceFactory implements ProxyServiceFactory
     };
 
     protected isIgnore = (targetService, key: string) => {
-        const element = targetService[key];
-        if (element == null) {
-            return false;
-        }
-        if (typeof element != "function") {
-            return true;
-        }
-        return this.ignorePropertyNames.findIndex((item) => item === key) >= 0;
+        // const element = targetService[key];
+        // if (element == null) {
+        //     return false;
+        // }
+        // if (typeof element != "function") {
+        //     return true;
+        // }
+        return this.ignorePropertyNames.some((item) => item === key);
     }
 
 

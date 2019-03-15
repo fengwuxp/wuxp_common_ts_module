@@ -1,6 +1,6 @@
 import {ProxyAdapter, ProxyCreateConfig} from "./ProxyAdapter";
 import {es5Proxy} from "./Es5Proxy";
-import {matchProxyScope} from "./ProxyScope";
+import {matchProxyScope, ProxyScope} from "./ProxyScope";
 
 
 /**
@@ -19,28 +19,35 @@ export const defaultProxyAdapter: ProxyAdapter = <T extends object = any>(config
     } = config;
 
     const proxyHandler: ProxyHandler<T> = {
-        get(target: T, propertyKey: PropertyKey, receiver: any): any {
+        get: (target: T, propertyKey: PropertyKey, receiver: any): any => {
+
+
+            let element = target[propertyKey];
+            const isMethod = typeof element === "function";
 
             //是否匹配
-            if (match(target, propertyKey, scope, customMatch)) {
+            if (match(target, propertyKey, isMethod, scope, customMatch)) {
                 if (noSuchMethodInterceptor != null) {
-                    return noSuchMethodInterceptor(target, propertyKey, receiver);
+                    element = noSuchMethodInterceptor(target, propertyKey, receiver);
                 }
-                return methodInterceptor(target, propertyKey, receiver);
-            } else {
-                    throw new Error(`not support method proxy: ${propertyKey as string}`);
+                element = methodInterceptor(target, propertyKey, receiver);
             }
+            if (isMethod) {
+                //保证this 对象的传递
+                return element.bind(target);
+            }
+            return element;
         },
-        set(target: T, propertyKey: PropertyKey, value: any, receiver: any): boolean {
-            if (match(target, propertyKey, scope, customMatch)) {
+        set: (target: T, propertyKey: PropertyKey, value: any, receiver: any): boolean => {
+            if (match(target, propertyKey, false, scope, customMatch)) {
                 return setPropertyInterceptor(target, propertyKey, value, null);
             } else {
-                throw new Error("not support set method proxy");
+                //保持原有的行为
+                target[propertyKey] = value;
+                return true;
             }
         }
     };
-
-    console.log("defaultProxyAdapter", "defaultProxyAdapter");
 
     if (typeof Proxy === "undefined") {
         return es5Proxy(object, proxyHandler);
@@ -54,10 +61,15 @@ export const defaultProxyAdapter: ProxyAdapter = <T extends object = any>(config
  * 是否匹配代理执行的要求
  * @param target
  * @param propertyKey
+ * @param isMethod
  * @param scope
  * @param customMatch
  */
-const match = (target: any, propertyKey: PropertyKey, scope, customMatch) => {
+const match = (target: any,
+               propertyKey: PropertyKey,
+               isMethod: boolean,
+               scope: ProxyScope,
+               customMatch) => {
     const value = target[propertyKey];
     if (value == null) {
         //如果为空将尝试使用 noSuchMethodInterceptor
@@ -72,5 +84,5 @@ const match = (target: any, propertyKey: PropertyKey, scope, customMatch) => {
             return propertyKey === customMatch;
         }
     }
-    return matchProxyScope(value, scope);
+    return matchProxyScope(value, isMethod, scope);
 };
