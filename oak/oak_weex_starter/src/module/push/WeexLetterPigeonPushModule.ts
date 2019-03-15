@@ -6,7 +6,7 @@ import {LetterPigeonConfigOptions, WeexLetterPigeonPushModule} from "./index";
  * Created by wuxp on 2017/7/10.
  */
 if (isWeb) {
-    const messagePush :WeexLetterPigeonPushModule= {
+    const messagePush: WeexLetterPigeonPushModule = {
         /**
          * APP只有在完成信鸽的启动与注册后才可以信鸽SDK提供push服务，在这之前请确保配置AccessId和AccessKey。
          * <p>
@@ -15,7 +15,7 @@ if (isWeb) {
          * AccessKey
          * @param
          */
-        config(params:LetterPigeonConfigOptions){
+        config(params: LetterPigeonConfigOptions) {
             console.log(params);
         },
         /**
@@ -24,7 +24,9 @@ if (isWeb) {
          * @param success
          * @param failure
          */
-        registerMsgPush(accountId, success = () => {}, failure = () => {}){
+        registerMsgPush(accountId, success = () => {
+        }, failure = () => {
+        }) {
             console.log(accountId);
         },
 
@@ -32,7 +34,8 @@ if (isWeb) {
          * 查询消息
          * @param callback
          */
-        queryMsg(callback=()=>{}){
+        queryMsg(callback = () => {
+        }) {
             console.log("web环境暂不支持 queryMsg");
         },
         /**
@@ -40,7 +43,8 @@ if (isWeb) {
          * @param msgId  消息
          * @param callback
          */
-        readMsg(msgId,callback=()=>{}){
+        readMsg(msgId, callback = () => {
+        }) {
             console.log("web环境暂不支持 readMsg");
         }
     };

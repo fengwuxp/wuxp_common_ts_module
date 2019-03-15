@@ -1,4 +1,4 @@
-import {LetterPigeonConfigOptions, WeexLetterPigeonPushModule} from "../../module/push";
+import {LetterPigeonConfigOptions, PushMessageInfo, WeexLetterPigeonPushModule} from "../../module/push";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {msgPush, broadcast} from "../../ExpotrtWeexOAKModel";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
@@ -39,6 +39,18 @@ export interface WeexStandardizeLetterPigeonPushModule {
      * @param handle
      */
     onReceiveMessage: (handle: ReceiveMessageHandle) => void;
+
+
+    /**
+     * 获取所有的推送消息
+     */
+    getAllPushMessages: () => Promise<PushMessageInfo[]>;
+
+    /**
+     * 通过消息id读取消息
+     * @param id
+     */
+    readMessageById: (id: string) => Promise<PushMessageInfo>;
 }
 
 const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeLetterPigeonPushModule>({
@@ -69,7 +81,20 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
                 }
                 (standardizedModule as WeexLetterPigeonPushModule).registerMsgPush(id, resolve, reject);
             });
+        },
+
+        getAllPushMessages(standardizedModule: WeexStandardizedModule) {
+            return new Promise((resolve) => {
+                (standardizedModule as WeexLetterPigeonPushModule).queryMsg(resolve);
+            });
+        },
+
+        readMessageById(standardizedModule: WeexStandardizedModule, messageId: string) {
+            return new Promise((resolve) => {
+                (standardizedModule as WeexLetterPigeonPushModule).readMsg(messageId, resolve);
+            });
         }
+
 
     }
 
