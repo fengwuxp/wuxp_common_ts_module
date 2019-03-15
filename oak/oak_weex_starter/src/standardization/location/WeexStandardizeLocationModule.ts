@@ -12,7 +12,7 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
      * 定位
      * @param options
      */
-    readonly location: (options?: LocationOptions) => Promise<LocationResult>;
+    readonly getMyLocation: (options?: LocationOptions) => Promise<LocationResult>;
 
     /**
      * 打开路线面板
@@ -32,16 +32,14 @@ interface LocationOptions {
 const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
     module: location,
     transformParamMap: {
-        location: (options: LocationOptions = {openMap: false}) => {
+        getMyLocation: (options: LocationOptions = {openMap: false}) => {
             const openMap = options.openMap || false;
             return [openMap ? 1 : 0];
         }
     },
     transformCallbackMap:{},
     enhanceMap: {
-        location: (weexStandardizedModule, options: LocationOptions) => {
-            return weexStandardizedModule["getMyLocation"](options);
-        }
+
     }
 });
 

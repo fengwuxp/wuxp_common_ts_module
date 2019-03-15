@@ -7,7 +7,7 @@ const config = getWebpackBaseConfig({
 });
 const baseConfig = {
     ...config,
-    externals,
+    // externals,
 };
 
 
