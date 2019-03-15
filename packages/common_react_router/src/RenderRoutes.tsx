@@ -1,6 +1,6 @@
 import React from "react";
 import {CommonRouteConfig} from "./CommonRouteConfig";
-import {DefaultPrivateRoute} from "./route/DefaultPrivateRoute";
+import DefaultPrivateRoute from "./route/DefaultPrivateRoute";
 import {AppRouterAuthenticator} from "./AppRouterAuthenticator";
 import {GlobalRouterRouteConfig} from "./GlobalRouterRouteConfig";
 import {Route, Switch, SwitchProps} from "react-router";
@@ -21,25 +21,28 @@ export const renderRoutes = (
     switchProps: SwitchProps = {}) =>
     routes ? (
         <Switch {...switchProps}>
-            {routes.map((route, i) => {
-                const {requiredAuth, key, path, exact, strict} = route;
-
+            {routes.map((route: CommonRouteConfig, i) => {
+                const {requiredAuth, key, path, exact, strict, component} = route;
+                const RouteComponent = component as any;
                 const needAuth = requiredAuth == null ? globalRouterRouteConfig.requiredAuth : requiredAuth;
+                const _exact = exact == null ? globalRouterRouteConfig.exact : exact;
+                const _strict = strict == null ? globalRouterRouteConfig.strict : strict;
 
                 return needAuth ?
                     <DefaultPrivateRoute
                         authenticator={authenticator}
                         toLoginViewPathname={globalRouterRouteConfig.toLoginViewPathname}
+                        component={component}
                         path={path}
-                        exact={exact}
-                        strict={strict}
+                        exact={_exact}
+                        strict={_strict}
                         key={key || i}/> :
                     <Route key={key || i}
                            path={path}
-                           exact={exact}
-                           strict={strict}
+                           exact={_exact}
+                           strict={_strict}
                            render={props => (
-                               <route.component {...props} {...extraProps} route={route}/>
+                               <RouteComponent {...props} {...extraProps} route={route}/>
                            )}
                     />
             })}

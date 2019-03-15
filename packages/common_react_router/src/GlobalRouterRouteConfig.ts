@@ -13,4 +13,15 @@ export interface GlobalRouterRouteConfig {
      * 登录的uri，默认 'login'
      */
     toLoginViewPathname?: string;
+
+    /**
+     * 是否准确匹配路由
+     * 默认 null
+     */
+    exact?: boolean;
+
+    /**
+     * 默认 null
+     */
+    strict?: boolean;
 }
