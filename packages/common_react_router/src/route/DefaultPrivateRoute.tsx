@@ -9,13 +9,21 @@ import {PrivateRoute, PrivateRouteProps} from "./PrivateRoute";
  * @constructor
  */
 const DefaultPrivateRoute: PrivateRoute = (props: PrivateRouteProps) => {
-    const {authenticator, path, exact, strict, toLoginViewPathname} = props;
+    const {
+        authenticator,
+        path,
+        exact,
+        strict,
+        toLoginViewPathname,
+        extraProps
+    } = props;
     return (
         <Route path={path}
                exact={exact}
                strict={strict}
                render={(routeProps) => (
-                   authenticator.isAuthenticated() ? (<props.component {...routeProps} />) : (<Redirect to={{
+                   authenticator.isAuthenticated() ? (<props.component {...routeProps} {...extraProps} />) : (
+                       <Redirect to={{
                            pathname: toLoginViewPathname == null ? "/login" : toLoginViewPathname.startsWith("/") ? toLoginViewPathname : `/${toLoginViewPathname}`,
                            state: {
                                from: props.location

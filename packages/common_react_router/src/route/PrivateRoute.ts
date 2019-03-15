@@ -17,6 +17,11 @@ export interface PrivateRouteProps extends RouteProps {
      * 登录的pathname，默认 'login'
      */
     toLoginViewPathname?: string;
+
+    /**
+     * 额外的属性
+     */
+    extraProps: {};
 }
 
 
