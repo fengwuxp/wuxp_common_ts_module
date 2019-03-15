@@ -143,11 +143,11 @@ export interface LocationModule extends WeexModule {
 
     /**
      * 获取我的位置信息
-     * @param flag
+     * @param forceLocation
      * @param succ 成功回调  {"district":"街道","address":"详细地址","latitude":123.99,"longitude":36.99}
      * @param fail 失败回调
      */
-    getMyLocation: (flag: number, succ: (resultInfo: LocationResult) => void) => void;
+    getMyLocation: (forceLocation: number, succ: (resultInfo: LocationResult) => void) => void;
 
 
     /**
