@@ -5,7 +5,10 @@
     "module": "commonjs",
     "target": "esnext",
     "sourceMap": true,
-    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "./lib",
+    "outDir": "./lib",
+    "baseUrl": "./src",
     "types": [
       "node"
     ],

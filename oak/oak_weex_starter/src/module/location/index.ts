@@ -23,6 +23,16 @@ export interface NaviMapModule extends WeexModule {
                                 success: (result: CurrentLocationByBaiduResult) => void,
                                 failure) => void;
 
+
+    /**
+     * 百度地图大点
+     * @param coorType
+     * @param data     格式 [{"latitude":0.0,"longitude":0.0,"title":"xxxxx"}]
+     * @param callback
+     */
+    openBaiduMarker:(coorType:CoordinateType,data:string,callback:()=>void)=>void;
+
+
     /**
      * 从当前位置导航
      * @param appName

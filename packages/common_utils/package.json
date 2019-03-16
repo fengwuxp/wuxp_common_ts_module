@@ -17,6 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
+    "build_ts": "rm -rf ./lib && node ./scripts/build.js",
     "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^10.12.26",
     "common_test": "^0.0.1",
+    "common_webpack": "^0.0.1",
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },

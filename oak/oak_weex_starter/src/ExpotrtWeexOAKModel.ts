@@ -4,6 +4,7 @@ import {LocationModule, NaviMapModule} from "./module/location";
 import {ALiPayModule, WexXinPayModule} from "./module/pay";
 import {ThirdLoginModule} from "./module/third";
 import {WeexAppVersionControlModule} from "./module/version";
+import {WeexLetterPigeonPushModule} from "./module/push";
 
 
 
@@ -11,7 +12,7 @@ const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");  //è‡ªå®
 const cache: any = weex.requireModule("cache");
 const appMain: any = weex.requireModule("appMain");
 const imageLoader: any = weex.requireModule("image");
-const msgPush: any = weex.requireModule("msgPush");
+const msgPush: WeexLetterPigeonPushModule = weex.requireModule("msgPush");
 const qrcode: any = weex.requireModule("qrcode");
 const common: any = weex.requireModule("common");
 const appUpdate: WeexAppVersionControlModule = weex.requireModule("appUpdate");
