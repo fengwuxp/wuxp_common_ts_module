@@ -1,3 +1,6 @@
+import {ProductType} from "./enums/ProductType";
+import {RideType} from "./enums/RideType";
+
 /**
  * http://developer.xiaojukeji.com/doc/sdk/api/current_driver.html
  *
@@ -34,12 +37,12 @@ export interface DriverInfo {
         /**
          * 产品类型
          */
-        product_type: string;
+        product_type: ProductType;
 
         /**
          * 运力类型
          */
-        ride_type: string;
+        ride_type: RideType;
 
         /**
          * 头像url

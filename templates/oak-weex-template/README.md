@@ -11,7 +11,7 @@
 |-----public               web开放环境需要的框架js
 |-----src
 |-------components         组件
-|-------cinfig             项目配置
+|-------config             项目配置
 |-------container          sub page  子页面
 |-------less               通用的less
 |-------route              路由配置

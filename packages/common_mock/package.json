@@ -1,7 +1,7 @@
 {
-  "name": "common_weex",
+  "name": "common_mock",
   "version": "0.0.1",
-  "description": "common weex",
+  "description": "common mock",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -21,22 +21,25 @@
     "npm_publish": "npm publish"
   },
   "keywords": [
+    "fetch",
+    "typescript",
     "weex",
-    "typescrit"
+    "minapp"
   ],
-  "dependencies": {
-    "@types/node": "^10.9.4",
-    "@types/weex": "^0.0.1",
-    "@weex-project/weex-picker": "^0.2.4",
-    "common_config": "^0.0.1",
-    "common_mock": "^0.0.1",
-    "common_proxy": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_utils": "^0.0.1",
-    "vue-router": "^3.0.1"
-  },
   "devDependencies": {
-    "vue": "^2.5.7"
+    "@types/node": "^10.12.12",
+    "common_config": "^0.0.1",
+    "common_test": "^0.0.1",
+    "common_utils": "^0.0.1",
+    "common_webpack": "^0.0.1",
+    "jest": "^23.6.0",
+    "log4js": "^4.0.2",
+    "md5": "^2.2.1",
+    "tslib": "^1.9.3"
+  },
+  "dependencies": {
+    "common_exception": "^0.0.1",
+    "common_proxy": "^0.0.1"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

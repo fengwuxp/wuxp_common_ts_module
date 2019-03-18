@@ -1,6 +1,7 @@
 import {WeexModule} from "weex";
 import {WeexStandardizedModule} from "./WeexStandardizedModule";
 import ProxyFactory from "common_proxy/src/ProxyFactory"
+import {wrapperObjectToMocker} from "common_mock/src/MockerWrapper";
 
 type TransformParamHandle = (...otherArgs) => any[]
 
@@ -112,7 +113,7 @@ export const standardizedWeexModuleToPromise = <T extends WeexStandardizedModule
         }
     });
 
-    return proxy;
+    return wrapperObjectToMocker(proxy);
 
 
     // const funNames = [
