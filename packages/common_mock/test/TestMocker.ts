@@ -11,15 +11,21 @@ describe("test mocker", () => {
     const mockTarget = {
         a: () => {
             return 1;
+        },
+        b: () => {
+            return 3;
         }
     };
 
     const mocker = {
         a: () => {
             return 2;
+        },
+        b: () => {
+            return 2;
         }
     };
-    DefaultFunctionMockRegistrar.register(mockTarget, mocker);
+    DefaultFunctionMockRegistrar.registerMocker(mocker);
 
 
     test("simple mocker", () => {

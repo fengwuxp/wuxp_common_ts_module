@@ -6,18 +6,24 @@ import {FunctionMocker} from "./FunctionMocker";
  */
 export interface FunctionMockRegistrar {
 
+
     /**
-     * 注册
-     * @param target    被mock的目标
-     * @param mocker    mocker
+     * 添加一mocker
+     * @param mocker
      */
-    register: (target: any, mocker: FunctionMocker) => void;
+    registerMocker: (mocker: FunctionMocker) => void;
 
 
     /**
      * 获取一个mocker
      * @param target
+     * @param findMockerStrategy
      */
-    getMocker<T>(target: any): T;
+    getMocker<T>(target:T, findMockerStrategy?: FindMockerStrategy<T>): T;
 }
+
+/**
+ * 查找 mocker的策略
+ */
+export type FindMockerStrategy<T = any> = (target: T, mocker: Set<FunctionMocker>) => T;
 

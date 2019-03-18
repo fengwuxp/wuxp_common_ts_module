@@ -1,19 +1,19 @@
-import {FunctionMockRegistrar} from "./FunctionMockRegistrar";
+import {FindMockerStrategy, FunctionMockRegistrar} from "./FunctionMockRegistrar";
 import {FunctionMocker} from "./FunctionMocker";
+import {defaultFindMockerStrategy} from "./DefaultFindMockerStrategy";
 
 
 class DefaultFunctionMockRegistrar implements FunctionMockRegistrar {
 
-    private MOCKER_MAP: Map<any, FunctionMocker> = new Map();
 
-    register = (target: any, mocker: FunctionMocker) => {
+    private MOCKER: Set<any> = new Set();
 
-        this.MOCKER_MAP.set(target, mocker);
-
+    registerMocker = (mocker: FunctionMocker) => {
+        this.MOCKER.add(mocker);
     };
 
-    getMocker = <T>(target: any) => {
-        return this.MOCKER_MAP.get(target) as T;
+    getMocker = <T>(target: T, findMockerStrategy: FindMockerStrategy<T> = defaultFindMockerStrategy): T => {
+        return findMockerStrategy(target, this.MOCKER);
     }
 
 
