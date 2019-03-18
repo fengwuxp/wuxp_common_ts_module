@@ -75,7 +75,7 @@ const handleWeiXinAuth = (param) => {
             } else {
                 resolve(code);
             }
-        })
+        }, reject);
     })
 };
 
