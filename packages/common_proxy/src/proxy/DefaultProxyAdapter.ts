@@ -24,13 +24,24 @@ export const defaultProxyAdapter: ProxyAdapter = <T extends object = any>(config
 
             let element = target[propertyKey];
             const isMethod = typeof element === "function";
+            const isNullOrUndefined = element == null;
 
-            //是否匹配
-            if (match(target, propertyKey, isMethod, scope, customMatch)) {
+            if (isNullOrUndefined) {
+                //noSuchMethod
                 if (noSuchMethodInterceptor != null) {
                     element = noSuchMethodInterceptor(target, propertyKey, receiver);
+                    //保证this 对象的传递
+                    return element.bind(target);
+                } else {
+                    //TODO
                 }
-                element = methodInterceptor(target, propertyKey, receiver);
+            } else {
+                if (match(target, propertyKey, isMethod, scope, customMatch)) {
+                    //是否匹配
+                    element = methodInterceptor(target, propertyKey, receiver);
+                } else {
+                    //TODO
+                }
             }
             if (isMethod) {
                 //保证this 对象的传递
@@ -70,11 +81,6 @@ const match = (target: any,
                isMethod: boolean,
                scope: ProxyScope,
                customMatch) => {
-    const value = target[propertyKey];
-    if (value == null) {
-        //如果为空将尝试使用 noSuchMethodInterceptor
-        return true;
-    }
     if (customMatch != null) {
         if (typeof customMatch === "function") {
             return customMatch(target, propertyKey);
@@ -84,5 +90,6 @@ const match = (target: any,
             return propertyKey === customMatch;
         }
     }
+    const value = target[propertyKey];
     return matchProxyScope(value, isMethod, scope);
 };

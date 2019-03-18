@@ -38,7 +38,6 @@ export const matchProxyScope = (val, isMethod: boolean, scope: ProxyScope = Prox
     if (scope === ProxyScope.ALL) {
         return true;
     } else {
-        const valType = typeof val;
         if (isMethod && scope === ProxyScope.METHOD) {
             return true;
         }

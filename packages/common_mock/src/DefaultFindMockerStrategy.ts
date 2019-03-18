@@ -1,5 +1,6 @@
 import {FindMockerStrategy} from "./FunctionMockRegistrar";
 import {FunctionMocker} from "./FunctionMocker";
+import ProxyFactory from "common_proxy/src/ProxyFactory";
 
 
 const CACHE: Map<any, any> = new Map();
@@ -18,10 +19,13 @@ export const defaultFindMockerStrategy: FindMockerStrategy = (target: any, mocke
         return null;
     }
     const isFunction = typeof target === "function";
+
+    let needMerge = false;
     mockers.forEach((mocker) => {
         if (result != null) {
             return;
         }
+
 
         if (isFunction) {
             const functionObject = (target as Function);
@@ -30,10 +34,8 @@ export const defaultFindMockerStrategy: FindMockerStrategy = (target: any, mocke
                 result = mocker;
             }
         } else {
-            const mockerKeys = Object.keys(mocker);
-            const keys = Object.keys(target);
-
-
+            const mockerKeys = Object.getOwnPropertyNames(mocker);
+            const keys = Object.getOwnPropertyNames(target);
             const len = mockerKeys.map((name) => {
                 return keys.find((key) => {
                     return name === key;
@@ -41,16 +43,30 @@ export const defaultFindMockerStrategy: FindMockerStrategy = (target: any, mocke
             }).map((item) => {
                 return item != null;
             }).filter((item) => item).length;
-
-            //当且仅当 mocker中所有的key都被 target包含时才认为相等
-            if (len === mockerKeys.length) {
+            //当且仅当 mocker中2/3的key都被 target包含时才认为相等
+            const length = mockerKeys.length;
+            if (len >= length / 3 * 2) {
                 result = mocker;
             }
+            needMerge = len > length;
+
         }
     });
 
     if (result == null) {
-        console.error(`not found mocker,target`, target);
+        // console.error(`not found mocker,target`, target);
+        return target
+    }
+
+    if (needMerge) {
+        //使用代理合并
+        return ProxyFactory.newProxyInstanceEnhance(result,
+            (object: any, propertyKey: PropertyKey, receiver: any) => {
+                return object[propertyKey];
+            }, (object: any, propertyKey: PropertyKey, receiver: any) => {
+
+                return target[propertyKey];
+            });
     }
 
 
