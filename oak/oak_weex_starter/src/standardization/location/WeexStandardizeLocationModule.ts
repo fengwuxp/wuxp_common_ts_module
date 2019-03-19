@@ -32,7 +32,7 @@ interface LocationOptions {
      * 是否打开地图
      * 默认 false
      */
-    openMap?: boolean;
+    // openMap?: boolean;
 
     /**
      * 是否强制重新定位
@@ -50,12 +50,6 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
     enhanceMap: {
         getCurrentLocation(weexStandardizedModule: WeexStandardizedModule, options: LocationOptions = defaultOptions) {
             const openMap = options.openMap || false;
-            // if (openMap) {
-            //
-            //     return new Promise((resolve, reject) => {
-            //         appMain.getMyLocation(openMap ? 1 : 0, resolve, reject);
-            //     });
-            // }
 
             return new Promise<LocationResult>((resolve, reject) => {
                 // const forceLocation = defaultOptions.forceLocation || false;

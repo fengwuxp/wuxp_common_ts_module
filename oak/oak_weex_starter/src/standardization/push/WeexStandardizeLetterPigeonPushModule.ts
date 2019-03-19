@@ -32,7 +32,7 @@ export interface WeexStandardizeLetterPigeonPushModule {
      * 注册接受消息的账号
      * @param accountId
      */
-    registerReceiver: (accountId: number) => Promise<void>;
+    registerReceiver: (accountId: number | string) => Promise<void>;
 
     /**
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
@@ -74,11 +74,11 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
             });
         },
         registerReceiver(standardizedModule: WeexStandardizedModule, accountId: number) {
+            let id: string = accountId.toString();
+            if ((typeof accountId === "number" && accountId < 10) || id.length === 1) {
+                id = `0${accountId}`;
+            }
             return new Promise((resolve, reject) => {
-                let id: string = accountId.toString();
-                if (accountId < 10) {
-                    id = `0${accountId}`;
-                }
                 (standardizedModule as WeexLetterPigeonPushModule).registerMsgPush(id, resolve, reject);
             });
         },

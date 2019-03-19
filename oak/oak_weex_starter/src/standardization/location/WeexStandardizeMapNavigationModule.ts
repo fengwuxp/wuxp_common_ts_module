@@ -1,4 +1,4 @@
-import {CurrentLocationByBaiduResult, LocalInstallMapAppMap} from "../../module/location";
+import {BaiduMarkerOptions, CurrentLocationByBaiduResult, LocalInstallMapAppMap} from "../../module/location";
 import {naviMap} from "../../ExpotrtWeexOAKModel";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {CoordinateType} from "../../module/location/CoordinateType";
@@ -27,6 +27,13 @@ export interface WeexStandardizeMapNavigationModule {
      * @param options
      */
     readonly openNaviMap: (options: NavigationOptions) => Promise<void>;
+
+
+    /**
+     * 打开百度地图，并且在地图上打点
+     * @param options
+     */
+    readonly openBaiduMarker: (options: OpenBaiDuMarkerOptions) => Promise<void>;
 
     // /**
     //  * 使用百度地图 从当前位置导航
@@ -93,12 +100,33 @@ export interface NavigationOptions extends BaseNavigationOptions {
     coordinate?: CoordinateType;
 }
 
-const openBaiduMap = (options: BaseNavigationOptions) => {
-    return [
-        "",
-        {}
-    ];
-};
+
+export interface OpenBaiDuMarkerOptions {
+    /**
+     * 默认 CoordinateType.BD_09
+     * 坐标系类型
+     */
+    coordinate?: CoordinateType;
+
+    /**
+     * 打点的数据
+     */
+    data: BaiduMarkerOptions[];
+
+    /**
+     * 点击打好的点的回调
+     * @param options
+     */
+    onClick: (options: BaiduMarkerOptions) => void;
+}
+
+
+// const openBaiduMap = (options: BaseNavigationOptions) => {
+//     return [
+//         "",
+//         {}
+//     ];
+// };
 
 /**
  * 地图名称和模块方法名称的映射关系
@@ -137,6 +165,14 @@ const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = s
                 options.targetName
             ];
         },
+        openBaiduMarker: (options: OpenBaiDuMarkerOptions) => {
+
+            return [
+                options.coordinate || CoordinateType.BD_09,
+                options.data,
+                options.onClick
+            ]
+        }
         // openMapApp: (options: NavigationOptions) => {
         //     const params=openBaiduMap(options);
         //     params[0]=options.packageName;

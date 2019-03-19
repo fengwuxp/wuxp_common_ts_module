@@ -35,7 +35,7 @@ export interface WeexLetterPigeonPushModule {
 
 export interface LetterPigeonConfigOptions {
 
-    AccessId: string;
+    AccessId: number;
 
     AccessKey: string;
 

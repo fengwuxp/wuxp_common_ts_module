@@ -1,5 +1,11 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {CurrentLocationByBaiduResult, LocalInstallMapAppMap, NaviMapModule, OpenMapAppOptions} from "./index";
+import {
+    BaiduMarkerOptions,
+    CurrentLocationByBaiduResult,
+    LocalInstallMapAppMap,
+    NaviMapModule,
+    OpenMapAppOptions
+} from "./index";
 import {CoordinateType} from "./CoordinateType";
 
 /**
@@ -24,7 +30,7 @@ if (isWeb) {
         openBaiduMap: function (p1: string, p2: OpenMapAppOptions, p3: () => void) {
             console.log("web端暂不支持");
         },
-        openBaiduMarker: function (p1: CoordinateType, p2: string, p3: () => void) {
+        openBaiduMarker: function (coorType: CoordinateType, data:  BaiduMarkerOptions[], callback: () => void) {
             console.log("web端暂不支持");
         },
         openGaoDeMap: function (p1: string, p2: OpenMapAppOptions, p3: () => void) {

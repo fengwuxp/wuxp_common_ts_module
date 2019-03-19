@@ -1,5 +1,6 @@
 import {WeexModule} from "weex";
 import {CoordinateType} from "./CoordinateType";
+import {LocationRouteModel} from "./LocationRouteModel";
 
 /**
  * 打开第三方地图app导航相关
@@ -30,7 +31,7 @@ export interface NaviMapModule extends WeexModule {
      * @param data     格式 [{"latitude":0.0,"longitude":0.0,"title":"xxxxx"}]
      * @param callback
      */
-    openBaiduMarker:(coorType:CoordinateType,data:string,callback:()=>void)=>void;
+    openBaiduMarker: (coorType: CoordinateType, data: BaiduMarkerOptions[], callback: () => void) => void;
 
 
     /**
@@ -231,17 +232,28 @@ export interface LocationResult {
     streetNumber: string;
 }
 
-export enum LocationRouteModel {
 
-    //公交
-    BUS,
+/**
+ * 百度地图打点配置
+ */
+export interface BaiduMarkerOptions {
 
-    //驾车
-    DRIVE,
+    /**
+     * 纬度
+     */
+    latitude: number;
 
-    // 步行
-    WALK
+    /**
+     * 经度
+     */
+    longitude: number;
+
+    /**
+     * 名称
+     */
+    title: string
 }
+
 
 export interface RouteOptions {
 
