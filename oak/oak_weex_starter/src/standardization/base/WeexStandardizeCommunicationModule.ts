@@ -10,7 +10,7 @@ export interface WeexStandardizeCommunicationModule {
     /**
      * 打电话
      * @param mobilePhone  手机号码
-     * @param callNow      是否立即拨打
+     * @param callNow      是否立即拨打，默认false
      */
     callPhone: (mobilePhone: string, callNow?: boolean) => Promise<void>;
 }
@@ -19,7 +19,7 @@ export interface WeexStandardizeCommunicationModule {
 const weexStandardizeCommunicationModule = standardizedWeexModuleToPromise<WeexStandardizeCommunicationModule>({
     module: {},
     enhanceMap: {
-        callPhone: (mobilePhone: string, callNow: boolean = false) => {
+        callPhone: (communicationModule: WeexStandardizeCommunicationModule, mobilePhone: string, callNow: boolean = false) => {
             return new Promise<void>((resolve, reject) => {
 
                 appMain.callPhone(callNow, mobilePhone, resolve, reject);

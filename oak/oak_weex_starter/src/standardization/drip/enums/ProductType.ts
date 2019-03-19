@@ -35,7 +35,7 @@ export enum ProductType {
     /**
      * 代驾
      */
-    DRIVER_SERVICE = "driver_service"
+    DRIVER_SERVICE = "driver-service"
 
 
 }

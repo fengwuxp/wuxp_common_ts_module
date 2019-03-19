@@ -1,7 +1,8 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 
 /**
- * 标准哈ali相关的能力
+ * 标准化ali相关的能力
+ * 文档地址：https://help.aliyun.com/document_detail/61362.html#FVBioOnly
  */
 export interface WeexStandardizeAliModule {
 

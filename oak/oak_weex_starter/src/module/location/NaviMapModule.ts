@@ -8,11 +8,18 @@ import {CoordinateType} from "./CoordinateType";
 if (isWeb) {
 
     const naviModal: NaviMapModule = {
-        getCurrentLocationByBaidu: function (p1: CoordinateType, p2: any, p3: (result: CurrentLocationByBaiduResult) => void, p4) {
+        getCurrentLocationByBaidu: function (coorType: CoordinateType,
+                                             locationOptions: any,
+                                             success: (result: CurrentLocationByBaiduResult) => void, failure) {
             console.log("web端暂不支持");
+
         },
-        getInstalledNaviApp: function (p1: (map: LocalInstallMapAppMap) => void) {
+        getInstalledNaviApp: function (callback: (map: LocalInstallMapAppMap) => void) {
             console.log("web端暂不支持");
+            callback({
+                baiduMap: "百度地图",
+                tencentMap: "腾讯地图",
+            })
         },
         openBaiduMap: function (p1: string, p2: OpenMapAppOptions, p3: () => void) {
             console.log("web端暂不支持");
