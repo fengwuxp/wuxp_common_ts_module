@@ -1,5 +1,7 @@
-import {ThirdPartyPaymentMethod} from "./ThirdPartyAuthType";
+import {ThirdPartyAuthType} from "./ThirdPartyAuthType";
 import {aliPay, thirdLogin, weixinPay} from "../../ExpotrtWeexOAKModel";
+import {WxLoginOptions} from "../../module/third";
+import {AuthOptions} from "./AuthOptions";
 
 
 /**
@@ -10,31 +12,38 @@ export interface WeexStandardizeThirdPartyModule {
     /**
      * 鉴权认证
      * @param params
-     * @param 返回用于和服务端交换用户数据的 code字符串
+     * @return 返回用于和服务端交换用户数据的 code字符串
      */
     auth: (params: AuthParamInfo) => Promise<string>
 }
 
 export interface AuthParamInfo {
 
-    type: ThirdPartyPaymentMethod;
+    /**
+     * 第三方
+     */
+    type: ThirdPartyAuthType;
 
     /**
-     * 数据都从服务端来
-     * 微信是一个对象，阿里是一个字符串
+     * 获取鉴权配置，微信必须要
      */
-    authParam: any;
+    getAuthOptions?: (type: ThirdPartyAuthType) => Promise<AuthOptions> | AuthOptions;
 }
 
 
 const standardizeThirdPartyModule: WeexStandardizeThirdPartyModule = {
-    auth: ({type, authParam}: AuthParamInfo) => {
+    auth: async ({type, getAuthOptions}: AuthParamInfo) => {
+
+        let authOptions: AuthOptions;
+        if (getAuthOptions != null) {
+            authOptions = await getAuthOptions(type);
+        }
 
         switch (type) {
-            case ThirdPartyPaymentMethod.ALIPAY:
-                return handleALiAuth(authParam);
-            case ThirdPartyPaymentMethod.WEIXIN:
-                return handleALiAuth(authParam);
+            case ThirdPartyAuthType.ALI_PAY:
+                return handleALiAuth(authOptions);
+            case ThirdPartyAuthType.WE_CHAT:
+                return handleALiAuth(authOptions);
             default:
                 Promise.reject({
                     message: `not support: ${type}`
@@ -68,7 +77,7 @@ const handleALiAuth = (param) => {
  * 处理微信登录
  * @param param
  */
-const handleWeiXinAuth = (param) => {
+const handleWeiXinAuth = (param: WxLoginOptions) => {
 
     return new Promise<string>((resolve, reject) => {
 

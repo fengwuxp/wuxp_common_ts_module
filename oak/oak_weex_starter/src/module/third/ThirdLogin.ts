@@ -1,11 +1,11 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {ThirdLoginModule, WxAuthResultInfo} from "./index";
+import {ThirdLoginModule, WxAuthResultInfo, WxLoginOptions} from "./index";
 
 
 if (isWeb) {
 
     const thirdLogin:ThirdLoginModule={
-        wxLogin(params: any, callback: (data:WxAuthResultInfo) => void){
+        wxLogin(params: WxLoginOptions, callback: (data:WxAuthResultInfo) => void){
             console.log("web端暂不支持");
         }
     };

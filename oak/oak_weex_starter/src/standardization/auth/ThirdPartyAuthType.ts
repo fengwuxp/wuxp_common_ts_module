@@ -1,8 +1,17 @@
-export enum ThirdPartyPaymentMethod {
+/**
+ * 第三方鉴权类型
+ */
+export enum ThirdPartyAuthType {
 
 
-    WEIXIN,
+    /**
+     * 微信
+     */
+    WE_CHAT,
 
-    ALIPAY
+    /**
+     * 支付包
+     */
+    ALI_PAY
 
 }
