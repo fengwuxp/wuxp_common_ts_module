@@ -19,6 +19,10 @@ export interface AuthParamInfo {
 
     type: ThirdPartyPaymentMethod;
 
+    /**
+     * 数据都从服务端来
+     * 微信是一个对象，阿里是一个字符串
+     */
     authParam: any;
 }
 

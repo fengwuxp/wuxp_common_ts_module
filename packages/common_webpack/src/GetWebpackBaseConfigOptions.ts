@@ -1,3 +1,6 @@
+import awesomeTypescriptLoader from "./loader/TypescriptLoader";
+import {RuleSetRule} from "webpack";
+
 /**
  * 获取webpack基础配置的options
  * @author wxup
@@ -14,4 +17,9 @@ export interface GetWebpackBaseConfigOptions {
      * packageJson的文件路径
      */
     packagePath?: string;
+
+    /**
+     * awesomeTypescriptLoader
+     */
+    awesomeTypescriptLoader?: RuleSetRule;
 }

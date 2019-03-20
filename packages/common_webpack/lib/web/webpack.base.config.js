@@ -28,7 +28,7 @@ var CleanWebpackPlugin = require("clean-webpack-plugin");
  * @return {webpack.Configuration}
  */
 exports.getWebpackBaseConfig = function (options) {
-    console.log("---------初始化打包配置--------", options);
+    // console.log("---------初始化打包配置--------", options);
     //默认打包目录
     var packPath = path.resolve("src", '../dist');
     var config = {
@@ -49,7 +49,7 @@ exports.getWebpackBaseConfig = function (options) {
         module: {
             rules: [
                 BabelLoader_1.default,
-                TypescriptLoader_1.default,
+                options.awesomeTypescriptLoader || TypescriptLoader_1.default,
                 {
                     test: /\.css$/,
                     use: ExtractTextWebpackPlugin.extract({

@@ -41,7 +41,7 @@ interface LocationOptions {
     forceLocation?: boolean;
 }
 
-const defaultOptions: LocationOptions = {openMap: false, forceLocation: false};
+const defaultOptions: LocationOptions = {forceLocation: false};
 
 const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
     module: location,
@@ -49,11 +49,11 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
     transformCallbackMap: {},
     enhanceMap: {
         getCurrentLocation(weexStandardizedModule: WeexStandardizedModule, options: LocationOptions = defaultOptions) {
-            const openMap = options.openMap || false;
+            // const openMap = options.openMap || false;
 
             return new Promise<LocationResult>((resolve, reject) => {
-                // const forceLocation = defaultOptions.forceLocation || false;
-                (weexStandardizedModule as LocationModule).getMyLocation(openMap ? 1 : 0, resolve);
+                const forceLocation = defaultOptions.forceLocation || false;
+                (weexStandardizedModule as LocationModule).getMyLocation(forceLocation ? 1 : 0, resolve);
             })
         }
 

@@ -2,7 +2,7 @@ import * as webpack from "webpack";
 import * as path from "path";
 import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {loadLessLoader} from "../style/ThemeLessLoader";
-import {cssModuleLoader, lessModuleLoader, scssModuleLoader} from "../style/CssModuleLoader";
+import {cssModuleLoader, scssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import {DEPLOYMENT_DIRECTORY, EXTERNALS, PROJECT_DIR} from "../config/webpackConfig";
 import babelLoader from "../loader/BabelLoader";
@@ -21,7 +21,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
  */
 export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOptions): webpack.Configuration {
 
-    console.log("---------初始化打包配置--------", options);
+    // console.log("---------初始化打包配置--------", options);
 
 
     //默认打包目录
@@ -46,7 +46,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
         module: {
             rules: [
                 babelLoader,
-                awesomeTypescriptLoader,
+                options.awesomeTypescriptLoader || awesomeTypescriptLoader,
                 {
                     test: /\.css$/,
                     use: ExtractTextWebpackPlugin.extract({

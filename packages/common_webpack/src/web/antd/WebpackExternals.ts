@@ -4,7 +4,7 @@
  * @create 2018-10-09 9:09
  **/
 
-const externals = {
+export  const externals = {
     "react": "React",
     "react-dom": "ReactDOM",
     "moment": "moment",
@@ -15,6 +15,3 @@ const externals = {
     "antd-mobile": "window['antd-mobile']"
 };
 
-module.exports = {
-    externals
-};

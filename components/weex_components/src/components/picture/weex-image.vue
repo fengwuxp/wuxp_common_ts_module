@@ -2,14 +2,15 @@
 <!--android 原生通过filter层面支持圆角-->
 <!--通过原生能力计算图片自适应宽高-->
 <template>
-    <image v-if="show"
-           :src="src"
-           ref="image"
-           :resize="resize"
-           @load="imageLoad"
-           @click="onClick"
-           :filter="filter"
-           :style="pictureStyle"></image>
+    <div :style="pictureStyle" @click="onClick">
+        <image v-if="show"
+               :src="src"
+               ref="image"
+               :resize="resize"
+               @load="imageLoad"
+               :filter="filter"
+               :style="pictureStyle"></image>
+    </div>
 </template>
 <script>
 
