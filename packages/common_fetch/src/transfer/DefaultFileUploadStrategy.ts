@@ -11,7 +11,7 @@ import {defaultApiModuleName} from "../constant/FeignConstVar";
 /**
  * 默认的文件上传策略
  * contentType == MediaType.FORM_DATA 时使用表单上传
- * contentType == null || contentType === MediaType.JSON     时使用base64字符串上传
+ * contentType == null || contentType === MediaType.JSON_UTF8     时使用base64字符串上传
  *
  */
 export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadStrategy {
@@ -34,7 +34,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
         const appConfig = AppConfigRegistry.get();
         this.defaultFileOptions = defaultFileOptions || {
             url: appConfig != null ? appConfig.uploadFileURL : (process.env.UNIFIED_UPLOAD_FILE_URL || `@${defaultApiModuleName}/system/upload`),
-            contentType: MediaType.JSON,
+            contentType: MediaType.JSON_UTF8,
             formDataFileName: "file"
         } as FileUploadOptions;
     }
@@ -78,7 +78,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                     ...fetchOptions,
                     data: formData
                 });
-            } else if (contentType == null || contentType === MediaType.JSON) {
+            } else if (contentType == null || contentType === MediaType.JSON_UTF8) {
                 //使用 json
                 return fileToBase64(blob).then((base64) => {
                     const result = {

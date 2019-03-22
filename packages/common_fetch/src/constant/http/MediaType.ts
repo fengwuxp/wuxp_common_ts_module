@@ -13,7 +13,12 @@ export enum MediaType {
     /**
      * json
      */
-    JSON = "application/json;charset=UTF-8",
+    JSON = "application/json",
+
+    /**
+     * JSON_UTF_8
+     */
+    JSON_UTF8 = "application/json;charset=UTF-8",
 
     TEXT = "text/plain",
 

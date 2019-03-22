@@ -187,7 +187,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
                 if (typeof options.data === "string") {
                     if (contentType === MediaType.FORM_DATA) {
                         options.data = parse(options.data);
-                    } else if (contentType === MediaType.JSON) {
+                    } else if (contentType === MediaType.JSON_UTF8) {
                         options.data = JSON.parse(options.data);
                     }
                 }

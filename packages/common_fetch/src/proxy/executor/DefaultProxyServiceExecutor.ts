@@ -79,7 +79,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             fetchOptions.contentType = requestMapping.produces[0];
 
             const consume = requestMapping.consumes[0];
-            if (consume === MediaType.JSON) {
+            if (consume === MediaType.JSON_UTF8) {
                 fetchOptions.responseType = ResponseType.JSON
             } else if (consume === MediaType.TEXT) {
                 fetchOptions.responseType = ResponseType.TEXT

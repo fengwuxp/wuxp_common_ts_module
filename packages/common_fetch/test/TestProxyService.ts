@@ -34,8 +34,8 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
         const restTemplate = new DefaultRestTemplate({
                 method: RequestMethod.POST,
-                consumes: [MediaType.JSON],
-                produces: [MediaType.JSON],
+                consumes: [MediaType.JSON_UTF8],
+                produces: [MediaType.JSON_UTF8],
                 timeout: 10 * 1000,
                 headers: {}
             }, new DefaultApiRoutingStrategy(routingMapping),

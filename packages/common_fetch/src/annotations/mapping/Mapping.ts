@@ -30,14 +30,14 @@ export interface BaseRequestMappingOptions {
     /**
      * 提交的数据类型
      * @see {@link ../constant/http/MediaType}
-     * 默认 MediaType.JSON
+     * 默认 MediaType.JSON_UTF8
      */
     consumes?: string[];
 
     /**
      * 响应的数据类型
      * @see {@link ../constant/http/MediaType}
-     * 默认 MediaType.JSON
+     * 默认 MediaType.JSON_UTF8
      */
     produces?: string[];
 
@@ -87,10 +87,10 @@ export function generateMapping<T extends BaseRequestMappingOptions>(method?: Re
             };
 
             if (requestMapping.consumes == null) {
-                requestMapping.consumes = [MediaType.JSON]
+                requestMapping.consumes = [MediaType.JSON_UTF8]
             }
             if (requestMapping.produces == null) {
-                requestMapping.produces = [MediaType.JSON]
+                requestMapping.produces = [MediaType.JSON_UTF8]
             }
             defaultGenerateAnnotationMethodConfig(target, name, {
                 requestMapping

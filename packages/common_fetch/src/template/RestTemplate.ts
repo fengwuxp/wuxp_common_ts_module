@@ -52,7 +52,7 @@ export interface RestTemplateConfig extends RetryOptions {
     /**
      * 响应的数据类型
      * @see {@link ../constant/http/MediaType}
-     * 默认 MediaType.JSON
+     * 默认 MediaType.JSON_UTF8
      */
     consumes?: string[];
 
@@ -67,18 +67,20 @@ const defaultTemplateConfig: RestTemplateConfig = {
 
     method: RequestMethod.POST,
 
-    consumes: [MediaType.JSON],
+    consumes: [MediaType.JSON_UTF8],
 
-    produces: [MediaType.JSON],
+    produces: [MediaType.JSON_UTF8],
 
     timeout: 10 * 1000,
 
-    headers: {}
+    headers: {
+        'Accept': 'application/json, application/json;charset=UTF-8, text/plain, */*'
+    }
 };
 
 //响应类型的映射关系
 const RESPONSE_MAP: Map<string, ResponseType> = new Map<string, ResponseType>();
-RESPONSE_MAP.set(MediaType.JSON, ResponseType.JSON);
+RESPONSE_MAP.set(MediaType.JSON_UTF8, ResponseType.JSON);
 RESPONSE_MAP.set(MediaType.TEXT, ResponseType.TEXT);
 RESPONSE_MAP.set(MediaType.HTML, ResponseType.HTML);
 
@@ -132,12 +134,12 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
         if (!options.contentType) {
             //请求提交的数据类型
-            options.contentType = this.templateConfig.produces[0] || MediaType.JSON;
+            options.contentType = this.templateConfig.produces[0] || MediaType.JSON_UTF8;
         }
 
         if (options.responseType == null) {
             //默认使用json
-            options.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON] || ResponseType.JSON;
+            options.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
         }
 
         //路由

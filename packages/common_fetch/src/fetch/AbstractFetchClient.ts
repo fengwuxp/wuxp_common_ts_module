@@ -88,7 +88,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
             if (contentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据
                 options.data = stringify(data);
-            } else if (contentType === MediaType.JSON) {
+            } else if (contentType === MediaType.JSON_UTF8) {
                 //json
                 options.data = JSON.stringify(data);
             } else {
