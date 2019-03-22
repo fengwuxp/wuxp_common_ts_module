@@ -96,6 +96,9 @@
                 };
                 this.$emit("input", value);
                 this.$emit("onChange", event);
+            },
+            blur(){
+                this.$refs["textarea"].blur();
             }
         }
     }

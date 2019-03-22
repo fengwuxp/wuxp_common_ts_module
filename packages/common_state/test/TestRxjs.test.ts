@@ -23,21 +23,32 @@ describe("test", () => {
 
 
     test("observable", () => {
-        const observable: Observable<number> = Observable.create((observer: Observer<number>) => {
+        const list = [];
+        let addItemFn;
+        const observable: Observable<number> = new Observable((observer: Observer<number>) => {
 
-            [1, 2, 4].forEach((item) => {
+            // [1, 2, 4].forEach((item) => {
+            //     observer.next(item);
+            // });
+            addItemFn = (item) => {
+                list.push(item);
                 observer.next(item);
-            });
-
+            };
         });
+
 
         observable.subscribe(
             (x) => logger.log("next", x),
             (x) => logger.log("error", x),
             () => {
                 logger.log("complete")
-            })
-    });
+            });
+        addItemFn("1");
+        addItemFn("120");
+        // setTimeout(() => {
+        //     addItemFn("5");
+        // },2000);
+    }, 4 * 1000);
 
     it("form", () => {
 

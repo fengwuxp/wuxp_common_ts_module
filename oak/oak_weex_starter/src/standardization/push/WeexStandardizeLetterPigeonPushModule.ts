@@ -18,39 +18,39 @@ type ReceiveMessageHandle<T = any> = (message: T) => HandleMessageResult | void;
 /**
  * 信鸽推送能力标准化
  */
-export interface WeexStandardizeLetterPigeonPushModule {
+export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedModule {
 
 
     /**
      * 配置信鸽推送的参数
      * @param config
      */
-    config: (config: LetterPigeonConfigOptions) => void;
+    readonly  config: (config: LetterPigeonConfigOptions) => void;
 
 
     /**
      * 注册接受消息的账号
      * @param accountId
      */
-    registerReceiver: (accountId: number | string) => Promise<void>;
+    readonly  registerReceiver: (accountId: number | string) => Promise<void>;
 
     /**
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
      * @param handle
      */
-    onReceiveMessage: (handle: ReceiveMessageHandle) => void;
+    readonly  onReceiveMessage: (handle: ReceiveMessageHandle) => void;
 
 
     /**
      * 获取所有的推送消息
      */
-    getAllPushMessages: () => Promise<PushMessageInfo[]>;
+    readonly getAllPushMessages: () => Promise<PushMessageInfo[]>;
 
     /**
      * 通过消息id读取消息
      * @param id
      */
-    readMessageById: (id: string) => Promise<PushMessageInfo>;
+    readonly readMessageById: (id: string) => Promise<PushMessageInfo>;
 }
 
 const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeLetterPigeonPushModule>({

@@ -103,7 +103,7 @@ if (nativeRelease) {
     // ignore  忽略拷贝指定的文件           可以用模糊匹配
 
     //将图片资源复制到对应的原始目录
-    let from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH);
+    let from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./","./static_resources/"));
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(
             new CopyWebpackPlugin([{

@@ -1,16 +1,18 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * 标准化ali相关的能力
  * 文档地址：https://help.aliyun.com/document_detail/61362.html#FVBioOnly
  */
-export interface WeexStandardizeAliModule {
+export interface WeexStandardizeAliModule extends WeexStandardizedModule {
+
 
     /**
      * 人脸验证
      * @param options
      */
-    faceVerify: (options: FaceVerifyOptions) => Promise<void>;
+    readonly faceVerify: (options: FaceVerifyOptions) => Promise<void>;
 }
 
 interface FaceVerifyOptions {

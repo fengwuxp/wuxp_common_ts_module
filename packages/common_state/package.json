@@ -25,6 +25,7 @@
   "types": "./index.d.ts",
   "devDependencies": {
     "common_test": "^0.0.1",
+    "common_proxy": "^0.0.1",
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },

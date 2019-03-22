@@ -95,7 +95,9 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                                 //返回最终的资源相对路径
                                 publicPath(url) {
                                     //使用全局变量来传递 资源根路径
-                                    return path.join(global['__RESOURCES_BASE_NAME__'], url).replace(/\\/g, '/');
+                                    return path.join(global['__RESOURCES_BASE_NAME__'], url)
+                                        .replace(/\\/g, '/')
+                                        .replace(/^(http:\/)/,"http://");
                                 }
                             },
 

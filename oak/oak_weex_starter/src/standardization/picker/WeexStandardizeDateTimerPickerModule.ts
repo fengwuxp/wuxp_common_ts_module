@@ -1,9 +1,10 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * weex 标准化的时间选择器模块
  */
-export interface WeexStandardizeDateTimerPickerModule {
+export interface WeexStandardizeDateTimerPickerModule  extends WeexStandardizedModule{
 
     /**
      * 选择时间

@@ -2,19 +2,20 @@ import {ThirdPartyAuthType} from "./ThirdPartyAuthType";
 import {aliPay, thirdLogin, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {WxLoginOptions} from "../../module/third";
 import {AuthOptions} from "./AuthOptions";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 
 /**
  * 标准化第三方登录
  */
-export interface WeexStandardizeThirdPartyModule {
+export interface WeexStandardizeThirdPartyModule extends WeexStandardizedModule{
 
     /**
      * 鉴权认证
      * @param params
      * @return 返回用于和服务端交换用户数据的 code字符串
      */
-    auth: (params: AuthParamInfo) => Promise<string>
+    readonly auth: (params: AuthParamInfo) => Promise<AuthResult>
 }
 
 export interface AuthParamInfo {
@@ -27,14 +28,21 @@ export interface AuthParamInfo {
     /**
      * 获取鉴权配置，微信必须要
      */
-    getAuthOptions?: (type: ThirdPartyAuthType) => Promise<AuthOptions> | AuthOptions;
+    getAuthOptions?: (type: ThirdPartyAuthType) => Promise<AuthOptions> | AuthOptions | null | undefined;
+}
+
+export interface AuthResult {
+
+    openId: string;
+
+    code: string;
 }
 
 
 const standardizeThirdPartyModule: WeexStandardizeThirdPartyModule = {
     auth: async ({type, getAuthOptions}: AuthParamInfo) => {
 
-        let authOptions: AuthOptions;
+        let authOptions;
         if (getAuthOptions != null) {
             authOptions = await getAuthOptions(type);
         }
@@ -43,9 +51,9 @@ const standardizeThirdPartyModule: WeexStandardizeThirdPartyModule = {
             case ThirdPartyAuthType.ALI_PAY:
                 return handleALiAuth(authOptions);
             case ThirdPartyAuthType.WE_CHAT:
-                return handleALiAuth(authOptions);
+                return handleWeiXinAuth(authOptions);
             default:
-                Promise.reject({
+                return Promise.reject({
                     message: `not support: ${type}`
                 });
         }
@@ -60,14 +68,17 @@ const standardizeThirdPartyModule: WeexStandardizeThirdPartyModule = {
  */
 const handleALiAuth = (param) => {
 
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<AuthResult>((resolve, reject) => {
         aliPay.auth(true, param, (data) => {
             const {resultStatus, result, memo} = data;
-            const {result_code} = result;
+            const {result_code, auth_code, alipay_open_id} = result;
             if (result_code === "200") {
-                resolve(result.auth_code);
+                resolve({
+                    code: auth_code,
+                    openId: alipay_open_id
+                });
             } else {
-                reject(data)
+                reject(data);
             }
         });
     });
@@ -79,14 +90,17 @@ const handleALiAuth = (param) => {
  */
 const handleWeiXinAuth = (param: WxLoginOptions) => {
 
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<AuthResult>((resolve, reject) => {
 
         thirdLogin.wxLogin(param, (data) => {
             const {code, result} = data;
             if (parseInt(result) !== 0) {
                 reject(data);
             } else {
-                resolve(code);
+                resolve({
+                    code,
+                    openId: null
+                });
             }
         }, reject);
     })

@@ -1,11 +1,15 @@
 import {isWeb} from "common_weex/src/constant/WeexEnv";
-/**
- * 自定义videoPlayer 保存对象
- * Created by wuxp on 2017/6/6.
- */
+import {WeexMobShareModule} from "./index";
+
 if (isWeb) {
 
-    const share = {
+    const share: WeexMobShareModule = {
+
+        initConfig(appKey: string, appSecret: string) {
+            console.log("web端暂不支持");
+        },
+
+
         /**
          *
          * @param type     分享平台

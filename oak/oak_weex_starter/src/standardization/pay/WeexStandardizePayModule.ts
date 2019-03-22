@@ -1,10 +1,11 @@
 import {aliPay, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {ThirdPartyPaymentMethod} from "./ThirdPartyPaymentMethod";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * 标准化第三方支付
  */
-export interface WeexStandardizeThirdPartyPaymentModule {
+export interface WeexStandardizeThirdPartyPaymentModule extends WeexStandardizedModule{
 
 
     /**
@@ -12,7 +13,7 @@ export interface WeexStandardizeThirdPartyPaymentModule {
      * 如果支付失败 返回对应平台的错误码和错误消息 {errorCode,errorMessage}
      * @param param
      */
-    pay: (param: PayInfo) => Promise<void>;
+    readonly pay: (param: PayInfo) => Promise<void>;
 }
 
 

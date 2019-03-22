@@ -29,5 +29,6 @@
 #### 更多请参考[官方文档](https://lernajs.io/)
 
 #### 社区文章
+- [npm私服搭建] (https://blog.csdn.net/itKingOne/article/details/81448592)
 - [使用lerna管理大型前端项目](https://www.jianshu.com/p/2f9c05b119c9)
 - [lerna入门指南](http://www.ayqy.net/blog/lerna%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/)

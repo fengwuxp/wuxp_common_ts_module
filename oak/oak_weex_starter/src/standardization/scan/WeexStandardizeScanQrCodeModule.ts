@@ -1,7 +1,12 @@
 import {qrcode} from "../../ExpotrtWeexOAKModel";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
-export interface WeexStandardizeScanQrCodeModule {
+
+/**
+ * 标准化的扫码能力
+ */
+export interface WeexStandardizeScanQrCodeModule  extends WeexStandardizedModule{
 
     /**
      * ZXing扫码

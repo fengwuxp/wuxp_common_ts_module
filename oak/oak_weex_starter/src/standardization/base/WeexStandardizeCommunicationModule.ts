@@ -1,10 +1,11 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {appMain} from "../../ExpotrtWeexOAKModel";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  *  通讯能力
  */
-export interface WeexStandardizeCommunicationModule {
+export interface WeexStandardizeCommunicationModule  extends WeexStandardizedModule {
 
 
     /**
@@ -12,7 +13,7 @@ export interface WeexStandardizeCommunicationModule {
      * @param mobilePhone  手机号码
      * @param callNow      是否立即拨打，默认false
      */
-    callPhone: (mobilePhone: string, callNow?: boolean) => Promise<void>;
+    readonly callPhone: (mobilePhone: string, callNow?: boolean) => Promise<void>;
 }
 
 

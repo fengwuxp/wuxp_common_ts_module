@@ -2,11 +2,12 @@ import {BaiduMarkerOptions, CurrentLocationByBaiduResult, LocalInstallMapAppMap}
 import {naviMap} from "../../ExpotrtWeexOAKModel";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {CoordinateType} from "../../module/location/CoordinateType";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * 地图导航相关
  */
-export interface WeexStandardizeMapNavigationModule {
+export interface WeexStandardizeMapNavigationModule extends WeexStandardizedModule{
 
 
     /**

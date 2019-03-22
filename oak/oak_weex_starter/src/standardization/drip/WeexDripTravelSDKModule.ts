@@ -4,13 +4,14 @@ import {DriverInfo} from "./DriverInfo";
 import {OrderStatusInfo} from "./OrderStatusInfo";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {CallAppParam, ShoDDPageParams} from "../../module/drip";
+import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * @link {http://developer.xiaojukeji.com/doc/sdk.html}
  *
  * 标准化后的滴滴出行sdk能力
  */
-export interface WeexDripTravelSDKModule {
+export interface WeexDripTravelSDKModule extends WeexStandardizedModule {
 
 
     /**
@@ -20,14 +21,14 @@ export interface WeexDripTravelSDKModule {
      * @param appId   申请的appid
      * @param secret  申请的appid对应的秘钥
      */
-    registerApp: (appId: string, secret: string) => Promise<void>;
+    readonly registerApp: (appId: string, secret: string) => Promise<void>;
 
 
     /**
      * 拉起打车页面
      * @param param
      */
-    showDDPage: (param: ShoDDPageParams) => Promise<void>;
+    readonly showDDPage: (param: ShoDDPageParams) => Promise<void>;
 
 
     /**
@@ -36,7 +37,7 @@ export interface WeexDripTravelSDKModule {
      * 唤醒滴滴客户端，进入主页面，并传递参数
      * @param param
      */
-    callApp: (param: CallAppParam) => Promise<void>;
+    readonly callApp: (param: CallAppParam) => Promise<void>;
 
 
     /**
@@ -45,7 +46,7 @@ export interface WeexDripTravelSDKModule {
      * 获取预估价格
      * @param param
      */
-    getEstimatePrice: (param: GetEstimatePriceParam) => Promise<GetEstimatePriceResult>;
+    readonly getEstimatePrice: (param: GetEstimatePriceParam) => Promise<GetEstimatePriceResult>;
 
 
     /**
@@ -54,21 +55,21 @@ export interface WeexDripTravelSDKModule {
      * 创建滴滴行程
      * @param param
      */
-    newOrder: (param: NewOrderParam) => Promise<NewOrderResult>;
+    readonly  newOrder: (param: NewOrderParam) => Promise<NewOrderResult>;
 
     /**
      * http://developer.xiaojukeji.com/doc/_book/remark/trip_status.html
      *
      * 获取当前请求订单状态
      */
-    getCurrentOrderStatus: () => Promise<OrderStatusInfo>;
+    readonly getCurrentOrderStatus: () => Promise<OrderStatusInfo>;
 
     /**
      * http://developer.xiaojukeji.com/doc/sdk/api/current_driver.html
      *
      * 获取当前订单司机信息
      */
-    getCurrentDriverInfo: () => Promise<DriverInfo>;
+    readonly getCurrentDriverInfo: () => Promise<DriverInfo>;
 
 }
 
