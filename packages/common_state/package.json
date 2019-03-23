@@ -24,13 +24,15 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "common_test": "^0.0.1",
     "common_proxy": "^0.0.1",
-    "jest": "^24.1.0",
+    "common_utils": "^0.0.1",
+    "common_test": "^0.0.1",
+    "jest": "^23.6.0",
     "log4js": "^4.0.2"
   },
   "dependencies": {
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.4.0",
+    "immutable": "^4.0.0-rc.12"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

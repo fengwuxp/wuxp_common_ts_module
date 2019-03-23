@@ -3,6 +3,7 @@ import {Observable, fromEvent, Observer, timer, range, ReplaySubject, from} from
 import {delay, map, reduce, retryWhen, scan} from 'rxjs/operators';
 
 import * as log4js from "log4js";
+import {Subscriber} from "rxjs/src/internal/Subscriber";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -22,7 +23,7 @@ describe("test", () => {
     });
 
 
-    test("observable", () => {
+    test("observable", async () => {
         const list = [];
         let addItemFn;
         const observable: Observable<number> = new Observable((observer: Observer<number>) => {
@@ -45,9 +46,12 @@ describe("test", () => {
             });
         addItemFn("1");
         addItemFn("120");
-        // setTimeout(() => {
-        //     addItemFn("5");
-        // },2000);
+        await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                addItemFn("5");
+                resolve()
+            }, 2000);
+        })
     }, 4 * 1000);
 
     it("form", () => {

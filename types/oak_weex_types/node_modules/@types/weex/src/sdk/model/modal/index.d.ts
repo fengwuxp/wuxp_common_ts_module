@@ -16,7 +16,7 @@ export interface WeexModalModule extends WeexModule {
      * 警告
      * @param {WeexAlertOptions} options
      */
-    readonly alert: (options: WeexAlertOptions,callback: (value: string) => void) => void;
+    readonly alert: (options: WeexAlertOptions, callback: (value: string) => void) => void;
 
     /**
      * 确认框
@@ -43,7 +43,7 @@ export interface WeexToastOptions {
     /**
      * 展示的持续时间（以秒为单位）
      */
-    duration: number
+    duration?: number
 }
 
 export interface WeexAlertOptions {
@@ -56,12 +56,7 @@ export interface WeexAlertOptions {
     /**
      * 确定按钮上显示的文字信息，默认是“OK”
      */
-    okTitle: string,
-    /**
-     * 用户操作完成后的回调
-     * @param {string} value
-     */
-    callback: (value: string) => void;
+    okTitle?: string,
 }
 
 
@@ -74,11 +69,11 @@ export interface WeexConfirmOptions {
     /**
      * 确认按钮上显示的文字信息，默认是 OK
      */
-    okTitle: string;
+    okTitle?: string;
     /**
      * 取消按钮上显示的文字信息，默认是 Cancel
      */
-    cancelTitle: string;
+    cancelTitle?: string;
 
 
 }

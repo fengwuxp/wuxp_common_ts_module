@@ -80,6 +80,12 @@ export interface WeexStreamResponse {
      * http响应头
      */
     readonly  headers: object;
+
+    /**
+     * 请求超时控制，毫秒数
+     * 默认3 * 1000毫秒
+     */
+    timeout?: number;
 }
 
 /**

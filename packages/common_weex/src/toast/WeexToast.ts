@@ -1,4 +1,5 @@
 import {modal} from "../sdk/ExportWeexSdkModule";
+import {WeexAlertOptions, WeexPromptOptions, WeexConfirmOptions} from "weex/src/sdk/model/modal";
 
 /**
  * toast
@@ -14,42 +15,58 @@ export const weexToast = (message: string, times: number = 2, callback?: () => v
     setTimeout(callback, times * 1000);
 };
 
+interface BaseOptions {
+
+    /**
+     * 消息
+     */
+    message: string,
+}
+
+
 /**
  * 警告框
- * @param options
+ * @param params
  * @param callback
  */
-export const weexAlert = (options: any = {}, callback) => {
-    if (typeof options === "string") {
-        options = {message: options}
-    }
-    options = Object.assign({
+export const weexAlert = (params: string | WeexAlertOptions, callback) => {
+    let options: WeexAlertOptions = {
         message: "",
-        duration: 1,
         okTitle: "确认",
-        cancelTitle: "取消"
-    }, options);
+    };
+    if (typeof params === "string") {
+        options.message = params;
+    } else {
+        options = {
+            ...options,
+            ...params
+        };
+    }
     modal.alert(options, callback)
 };
 
 /**
  * 带确认的对话框
- * @param options 配置详情
+ * @param params 配置详情
  * @param confirm 确认回调
  * @param cancel  取消回调
  */
-export const weexConfirm = (options: any = {}, confirm = () => {
+export const weexConfirm = (params: string | WeexConfirmOptions, confirm = () => {
 }, cancel = () => {
 }) => {
-    if (typeof options === "string") {
-        options = {message: options}
-    }
-    options = Object.assign({
-        message: "",
-        duration: 1,
+    let options: WeexConfirmOptions = {
         okTitle: "确认",
-        cancelTitle: "取消"
-    }, options);
+        cancelTitle: "取消",
+        message: ""
+    };
+    if (typeof params === "string") {
+        options.message = params;
+    } else {
+        options = {
+            ...options,
+            ...params
+        };
+    }
     modal.confirm(options, (result) => {
         if (result === options.okTitle) {
             confirm();
@@ -61,22 +78,27 @@ export const weexConfirm = (options: any = {}, confirm = () => {
 
 /**
  * 带输入框的对话框
- * @param options 配置详情
+ * @param params 配置详情
  * @param confirm 确认回调
  * @param cancel  取消回调
  */
-export const weexPrompt = (options: any = {}, confirm = (data) => {
+export const weexPrompt = (params: string | WeexPromptOptions, confirm = (data) => {
 }, cancel = (data) => {
 }) => {
-    if (typeof options === "string") {
-        options = {message: options}
-    }
-    options = Object.assign({
-        message: "",
-        duration: .3,
+
+    let options: WeexPromptOptions = {
         okTitle: "确认",
-        cancelTitle: "取消"
-    }, options);
+        cancelTitle: "取消",
+        message: ""
+    };
+    if (typeof params === "string") {
+        options.message = params;
+    } else {
+        options = {
+            ...options,
+            ...params
+        };
+    }
     modal.prompt(options, ({result, data}) => {
         if (result === options.okTitle) {
             confirm(data);
