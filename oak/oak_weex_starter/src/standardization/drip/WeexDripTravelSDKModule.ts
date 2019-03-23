@@ -55,7 +55,7 @@ export interface WeexDripTravelSDKModule extends WeexStandardizedModule {
      * 创建滴滴行程
      * @param param
      */
-    readonly  newOrder: (param: NewOrderParam) => Promise<NewOrderResult>;
+    readonly newOrder: (param: NewOrderParam) => Promise<NewOrderResult>;
 
     /**
      * http://developer.xiaojukeji.com/doc/_book/remark/trip_status.html
@@ -70,6 +70,13 @@ export interface WeexDripTravelSDKModule extends WeexStandardizedModule {
      * 获取当前订单司机信息
      */
     readonly getCurrentDriverInfo: () => Promise<DriverInfo>;
+
+
+    /**
+     * 拨打电话
+     * 客户端会默认调用一次获取当前订单司机信息
+     */
+    readonly callPhone: () => Promise<void>;
 
 }
 
@@ -86,6 +93,10 @@ const standardizedWeexModuleToPromise1 = standardizedWeexModuleToPromise<WeexDri
                 appId,
                 secret
             ];
+        },
+        callPhone: () => {
+
+            return [{}];
         }
 
     },

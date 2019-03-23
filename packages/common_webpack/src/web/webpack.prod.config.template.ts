@@ -14,6 +14,7 @@ const config = {
 };
 
 config.mode = "production";
+config.devtool = false;
 
 
 config.optimization = { // 提取js 第三方库等
@@ -26,7 +27,7 @@ config.optimization = { // 提取js 第三方库等
             }
         }
     },
-    concatenateModules:true
+    concatenateModules: true
 };
 
 config.plugins.push(

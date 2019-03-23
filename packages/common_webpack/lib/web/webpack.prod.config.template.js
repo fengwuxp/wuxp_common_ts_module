@@ -20,6 +20,7 @@ var baseConfig = webpack_base_config_1.getWebpackBaseConfig({
 });
 var config = __assign({}, baseConfig);
 config.mode = "production";
+config.devtool = false;
 config.optimization = {
     splitChunks: {
         cacheGroups: {

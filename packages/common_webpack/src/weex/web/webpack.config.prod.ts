@@ -1,7 +1,15 @@
 import webpackConfig from "./webpack.base.config";
 import {uglifyJsPlugin} from "../../plugins/UglifyJsPluginConfig";
 
-webpackConfig.plugins.push(uglifyJsPlugin);
-webpackConfig.mode = "production";
+const prodConfig = {
+    ...webpackConfig
+};
 
-export default webpackConfig;
+prodConfig.plugins.push(uglifyJsPlugin);
+prodConfig.mode = "production";
+prodConfig.devtool = false;
+
+
+
+
+export default prodConfig;

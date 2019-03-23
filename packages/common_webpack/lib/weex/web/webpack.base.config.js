@@ -142,7 +142,22 @@ var webpackConfig = {
         ], 2)
     ],
     //压缩配置
+    // 提取js 第三方库等
     optimization: {
+        splitChunks: {
+            cacheGroups: {
+                common: {
+                    chunks: 'initial',
+                    name: 'common',
+                    enforce: true,
+                    test: /node_modules/,
+                    minSize: 0,
+                    minChunks: 1,
+                    reuseExistingChunk: true // 可设置是否重用已用chunk 不再创建新的chunk
+                }
+            }
+        },
+        concatenateModules: true,
         minimizer: []
     },
     // When importing a module whose path matches one of the following, just

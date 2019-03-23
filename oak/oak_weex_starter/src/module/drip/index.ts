@@ -19,11 +19,11 @@ export interface WeexDripTravelModule extends WeexModule {
     /**
      * http://developer.xiaojukeji.com/doc/sdk/api/app.html
      * 唤醒滴滴客户端，进入主页面，并传递参数
-     * @param params
+     * @param params    参数默认为null
      * @param success
      * @param failure
      */
-    callApp: (params: CallAppParam, success, failure) => void;
+    callApp: (params, success, failure) => void;
 
     /**
      * 打电话
@@ -35,7 +35,7 @@ export interface WeexDripTravelModule extends WeexModule {
 
     /**
      * 获取订单状态
-     * @param params
+     * @param params   参数默认为null
      * @param success
      * @param failure
      */
@@ -43,7 +43,7 @@ export interface WeexDripTravelModule extends WeexModule {
 
     /**
      * 获取司机信息
-     * @param params
+     * @param params  参数默认为null
      * @param success
      * @param failure
      */
@@ -173,3 +173,4 @@ export interface CallAppParam {
      */
     product_type: ProductType;
 }
+
