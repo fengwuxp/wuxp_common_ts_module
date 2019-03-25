@@ -61,10 +61,6 @@ if (nativeRelease.trim().length > 0) {
     if (nativeRelease.indexOf("IOS") >= 0) {
         walk('./src', '/views', entry, IOS_DIR);
     }
-    if (process.env.NOT_USE_DEV == null) {
-        //默认会输出到开发环境的目录
-        walk('./src', '/views', entry, DEV_DIR);
-    }
 } else {
     walk('./src', '/views', entry, DEV_DIR);
 }

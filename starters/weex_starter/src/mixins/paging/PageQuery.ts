@@ -21,7 +21,7 @@ export default {
         /**
          * 重置查询状态
          */
-        restStartPage() {
+        restStartQueryPageInfo() {
             this.pageInfo = {
                 queryPage: 1,
                 querySize: 10
@@ -74,6 +74,6 @@ export default {
 
     },
     created() {
-        this.restStartPage();
+        this.restStartQueryPageInfo();
     }
 }

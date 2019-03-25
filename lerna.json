@@ -1,5 +1,6 @@
 {
   "packages": [
+    "browsers/*",
     "components/*",
     "oak/*",
     "packages/*",

@@ -67,12 +67,14 @@ const appMixin: ComponentOptions<any> = {
             console.debug("获取用户信息失败", e);
         }
 
-        this.viewIsReady = true;
         //调用页面的onReady方法
-        this.onReady && this.onReady();
+        this.onReady && await this.onReady();
+
+        //on ready表示准备完成
+        this.viewIsReady = true;
 
         if (state != null) {
-            //清空本业的页面的sate
+            //清空本页面的sate
             setNextViewState(null);
         }
     }

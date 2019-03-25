@@ -1,27 +1,18 @@
+
+import {State} from "./State";
+
 /**
  * 数据提供者
  */
-export interface DataProvider {
+export interface DataProvider<T> {
 
 
 }
 
-export class DefaultDataProvider implements DataProvider {
-
-    /**
-     * 全局
-     */
-    private globalStore = {};
-
-    /**
-     * 按照事件类型分发的数据
-     */
-    private eventStore = {};
+export class DefaultDataProvider<S> implements DataProvider<S> {
 
 
-    setGlobalValue = (key: string, value: any) => {
-        this.globalStore[key] = value;
-    }
+    private state: State<S>;
 
 
 }

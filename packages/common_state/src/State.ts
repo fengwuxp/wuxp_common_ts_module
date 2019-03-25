@@ -1,5 +1,5 @@
 /**
- * 状态
+ * 状态存储
  *   1：初始化
  *   2: 值被改变是将会发出广播
  * @author wxup
@@ -11,8 +11,15 @@ export interface State<T> {
     /**
      * 状态
      */
-    sate:T;
+    sate: T;
 
 
-    subscribe: (listener: () => void) => void;
+    /**
+     * 订阅
+     * @param listener
+     */
+    subscribe: (listener: Listener) => void;
 }
+
+
+export type Listener = () => void

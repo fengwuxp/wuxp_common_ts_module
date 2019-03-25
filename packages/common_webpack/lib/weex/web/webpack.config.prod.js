@@ -17,4 +17,20 @@ var prodConfig = __assign({}, webpack_base_config_1.default);
 prodConfig.plugins.push(UglifyJsPluginConfig_1.uglifyJsPlugin);
 prodConfig.mode = "production";
 prodConfig.devtool = false;
+prodConfig.optimization = {
+    splitChunks: {
+        cacheGroups: {
+            common: {
+                chunks: 'initial',
+                name: 'common',
+                enforce: true,
+                test: /node_modules/,
+                minSize: 0,
+                minChunks: 1,
+                reuseExistingChunk: true // 可设置是否重用已用chunk 不再创建新的chunk
+            }
+        }
+    },
+    concatenateModules: true
+};
 exports.default = prodConfig;
