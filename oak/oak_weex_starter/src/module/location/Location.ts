@@ -13,8 +13,8 @@ if (isWeb) {
                 district: "杨桥西路298号",
                 address: "福州市鼓楼区杨桥西路298号",
                 areaCode: 300,
-                latitude: 123.1,
-                longitude: 22.23
+                longitude: 119.262438,
+                latitude: 26.082763
             } as any);
         },
         getMyLocation: function (forceLocation: number, succ: (resultInfo: LocationResult) => void) {
@@ -23,8 +23,8 @@ if (isWeb) {
                 district: "杨桥西路298号",
                 address: "福州市鼓楼区杨桥西路298号",
                 areaCode: 300,
-                latitude: 123.1,
-                longitude: 22.23
+                longitude: 119.262438,
+                latitude: 26.082763
             } as any);
         },
         openRoutePlan: function (routeOptions: RouteOptions, succ: () => void, fail: () => void) {
