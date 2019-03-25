@@ -48,6 +48,12 @@ export declare type WeexStreamOption = {
      */
     body?: string;
 
+    /**
+     * 超时时间
+     * 毫秒数
+     * 默认 3 * 1000
+     */
+    timeout?: number;
 }
 
 /**
