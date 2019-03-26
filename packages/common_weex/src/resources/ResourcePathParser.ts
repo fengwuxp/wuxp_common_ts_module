@@ -131,7 +131,9 @@ const getWeexResourceUrlByFile = (uri: string) => {
         if (WEEX_FONTS_BASE_PATH === "") {
             WEEX_FONTS_BASE_PATH = parseWeexBundleJsBasePath(true);
         }
+
         basePath = WEEX_FONTS_BASE_PATH;
+        prefix = "http://";
     } else {
         if (WEEX_BUNDLE_JS_BASE_PATH === "") {
             WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
@@ -140,6 +142,11 @@ const getWeexResourceUrlByFile = (uri: string) => {
     }
 
     return prefix + path.join(basePath.replace(prefix, ""), _uri);
+    //
+    // if (WEEX_BUNDLE_JS_BASE_PATH === "") {
+    //     WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+    // }
+    // return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), _uri);
 };
 
 /**
