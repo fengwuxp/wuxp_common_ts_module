@@ -30,7 +30,7 @@ if (isWeb) {
         openBaiduMap: function (p1: string, p2: OpenMapAppOptions, p3: () => void) {
             console.log("web端暂不支持");
         },
-        openBaiduMarker: function (coorType: CoordinateType, data:  BaiduMarkerOptions[], callback: () => void) {
+        openBaiduMarker: function (coorType: CoordinateType, data: BaiduMarkerOptions[], callback: (options: BaiduMarkerOptions) => void) {
             console.log("web端暂不支持");
         },
         openGaoDeMap: function (p1: string, p2: OpenMapAppOptions, p3: () => void) {

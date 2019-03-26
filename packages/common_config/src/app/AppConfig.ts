@@ -1,4 +1,3 @@
-
 import {LayoutConfig} from "../views/LayoutConfig";
 
 // @ts-ignore
@@ -23,7 +22,7 @@ export interface AppConfig {
     apiEntryAddress: string;
 
     /**
-     * 静态资源的根路径，如果没有则使用apiEntryAddress
+     * 远程静态资源的根路径，如果没有则使用apiEntryAddress
      */
     staticResourcesRootPath?: string;
 

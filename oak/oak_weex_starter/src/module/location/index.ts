@@ -31,7 +31,7 @@ export interface NaviMapModule extends WeexModule {
      * @param data     格式 [{"latitude":0.0,"longitude":0.0,"title":"xxxxx"}]
      * @param callback
      */
-    openBaiduMarker: (coorType: CoordinateType, data: BaiduMarkerOptions[], callback: () => void) => void;
+    openBaiduMarker: (coorType: CoordinateType, data: BaiduMarkerOptions[], callback: (options: BaiduMarkerOptions) => void) => void;
 
 
     /**

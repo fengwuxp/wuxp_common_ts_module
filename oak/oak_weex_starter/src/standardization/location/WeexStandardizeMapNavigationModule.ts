@@ -7,7 +7,7 @@ import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexSt
 /**
  * 地图导航相关
  */
-export interface WeexStandardizeMapNavigationModule extends WeexStandardizedModule{
+export interface WeexStandardizeMapNavigationModule extends WeexStandardizedModule {
 
 
     /**
@@ -174,24 +174,12 @@ const weexStandardizeMapNavigationModule: WeexStandardizeMapNavigationModule = s
                 options.onClick
             ]
         }
-        // openMapApp: (options: NavigationOptions) => {
-        //     const params=openBaiduMap(options);
-        //     params[0]=options.packageName;
-        //     return params;
-        // },
-        // openBaiduMap,
-        // openGaoDeMap: openBaiduMap,
-        // openTencent: openBaiduMap
 
     },
     transformCallbackMap: {
-        // getCurrentLocationByBaidu: (resolve, reject) => [resolve, reject],
         getInstalledNaviApp: (resolve, reject) => [resolve],
         openNaviMap: (resolve, reject) => [reject],
-        // openBaiduMap: (resolve, reject) => [reject],
-        // openGaoDeMap: (resolve, reject) => [reject],
-        // openMapApp: (resolve, reject) => [reject],
-        // openTencent: (resolve, reject) => [reject]
+        openBaiduMarker: (resolve, reject) => []
     }
 });
 /**

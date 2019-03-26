@@ -49,15 +49,11 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
     transformCallbackMap: {},
     enhanceMap: {
         getCurrentLocation(weexStandardizedModule: WeexStandardizedModule, options: LocationOptions = defaultOptions) {
-            // const openMap = options.openMap || false;
-
             return new Promise<LocationResult>((resolve, reject) => {
                 const forceLocation = defaultOptions.forceLocation || false;
-                (weexStandardizedModule as LocationModule).getMyLocation(forceLocation ? 1 : 0, resolve);
+                location.getMyLocation(forceLocation ? 1 : 0, resolve);
             })
         }
-
-
     }
 });
 
