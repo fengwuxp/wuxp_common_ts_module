@@ -66,7 +66,7 @@ export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedM
 
     /**
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
-     * @param handle
+     * @param handle 可不传，将使用默认的处理方式
      */
     readonly  onReceiveMessage: (handle?: ReceiveMessageHandle) => void;
 
@@ -119,6 +119,7 @@ const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
     if (jumpPath) {
         AppRouterHelper.toView(jumpPath, jumpParam ? parse(jumpParam) : {});
     }
+    return true;
 };
 
 const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeLetterPigeonPushModule>({
