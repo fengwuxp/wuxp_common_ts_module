@@ -82,10 +82,9 @@ export interface WeexDripTravelSDKModule extends WeexStandardizedModule {
 }
 
 
-const standardizedWeexModuleToPromise1 = standardizedWeexModuleToPromise<WeexDripTravelSDKModule>({
+const dripTravelSDKModule = standardizedWeexModuleToPromise<WeexDripTravelSDKModule>({
     module: weex.requireModule("ddcx"),
     transformParamMap: {
-        getCurrentDriverInfo: () => [{}],
         getCurrentOrderStatus: () => [{}],
         registerApp: (appId: string, secret: string) => {
             return [
@@ -107,10 +106,7 @@ const standardizedWeexModuleToPromise1 = standardizedWeexModuleToPromise<WeexDri
             reject
         ]
     },
-    // enhanceMap: {},
-
-
 });
 
-export default standardizedWeexModuleToPromise1;
+export default dripTravelSDKModule;
 
