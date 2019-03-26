@@ -36,19 +36,20 @@ export const defaultFindMockerStrategy: FindMockerStrategy = (target: any, mocke
         } else {
             const mockerKeys = Object.getOwnPropertyNames(mocker);
             const keys = Object.getOwnPropertyNames(target);
-            const len = mockerKeys.map((name) => {
+            const containLength = mockerKeys.map((name) => {
                 return keys.find((key) => {
                     return name === key;
                 })
             }).map((item) => {
                 return item != null;
             }).filter((item) => item).length;
+
             //当且仅当 mocker中2/3的key都被 target包含时才认为相等
             const length = mockerKeys.length;
-            if (len >= length / 3 * 2) {
+            if (containLength >= length / 3 * 2) {
                 result = mocker;
             }
-            needMerge = len > length;
+            needMerge = containLength >= length;
 
         }
     });
