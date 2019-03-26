@@ -27,11 +27,11 @@ export interface WeexDripTravelModule extends WeexModule {
 
     /**
      * 打电话
-     * @param params
+     * @param proxyPhone 代理手机号码
      * @param success
      * @param failure
      */
-    callPhone: (params, success, failure) => void;
+    callPhone: (proxyPhone: string, success, failure) => void;
 
     /**
      * 获取订单状态

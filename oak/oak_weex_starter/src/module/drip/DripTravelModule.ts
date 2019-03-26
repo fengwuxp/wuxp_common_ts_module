@@ -8,8 +8,8 @@ if (isWeb) {
         showDDPage: (params: any, success, failure) => {
             console.log("web端不支持ddcx", params);
         },
-        callPhone: function (params, p2, p3) {
-            console.log("web端不支持ddcx", params);
+        callPhone: function (proxyPhone, p2, p3) {
+            console.log("web端不支持ddcx", proxyPhone);
         },
         asyncCallDDApi: function (params: string, p2: any, p3: (data) => void, p4: (data) => void) {
             console.log("web端不支持ddcx", params);

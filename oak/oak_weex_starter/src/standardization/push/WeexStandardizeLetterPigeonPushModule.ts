@@ -32,7 +32,7 @@ export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedM
      * 注册接受消息的账号
      * @param accountId
      */
-    readonly  registerReceiver: (accountId: number | string) => Promise<void>;
+    readonly registerReceiver: (accountId: number | string) => Promise<void>;
 
     /**
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
@@ -57,6 +57,8 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     module: msgPush,
     transformParamMap: {
         config: (pigeonConfigOptions: LetterPigeonConfigOptions) => {
+
+
             return [
                 pigeonConfigOptions
             ];

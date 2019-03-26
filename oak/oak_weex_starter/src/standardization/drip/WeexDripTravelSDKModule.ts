@@ -5,6 +5,7 @@ import {OrderStatusInfo} from "./OrderStatusInfo";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {CallAppParam, ShoDDPageParams} from "../../module/drip";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {DripTravelSDKResp} from "./DripTravelSDKResp";
 
 /**
  * @link {http://developer.xiaojukeji.com/doc/sdk.html}
@@ -74,9 +75,9 @@ export interface WeexDripTravelSDKModule extends WeexStandardizedModule {
 
     /**
      * 拨打电话
-     * 客户端会默认调用一次获取当前订单司机信息
+     * @param proxyPhone 代理手机号码
      */
-    readonly callPhone: () => Promise<void>;
+    readonly callPhone: (proxyPhone: string) => Promise<void>;
 
 }
 
@@ -86,36 +87,25 @@ const standardizedWeexModuleToPromise1 = standardizedWeexModuleToPromise<WeexDri
     transformParamMap: {
         getCurrentDriverInfo: () => [{}],
         getCurrentOrderStatus: () => [{}],
-        // getEstimatePrice:  (param: GetEstimatePriceParam)=> [param],
-        // newOrder:  (param: NewOrderParam)=> [param],
         registerApp: (appId: string, secret: string) => {
             return [
                 appId,
                 secret
             ];
-        },
-        callPhone: () => {
-
-            return [{}];
         }
-
     },
 
     transformCallbackMap: {
-        // getCurrentDriverInfo:(resolve, reject) => [
-        //     resolve,
-        //     reject
-        // ],
-        // getCurrentOrderStatus: (resolve, reject) => [
-        //     resolve,
-        //     reject
-        // ],
-        // getEstimatePrice: (resolve, reject) => {
-        //     return undefined;
-        // },
-        // newOrder: (resolve, reject) => {
-        //     return undefined;
-        // }
+        getCurrentDriverInfo: (resolve, reject) => [
+            ({errmsg, errno, data}: DripTravelSDKResp<DriverInfo>) => {
+                if (data == null) {
+                    reject();
+                } else {
+                    resolve(data);
+                }
+            },
+            reject
+        ]
     },
     // enhanceMap: {},
 
