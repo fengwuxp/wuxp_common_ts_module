@@ -1,9 +1,9 @@
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
-import {isWeb} from "../constant/WeexEnv";
+import {isAndroid, isIos, isWeb} from "../constant/WeexEnv";
 
 
-const pathPrefix = {
+const PATH_PREFIX = {
 
     web: "",
 
@@ -11,6 +11,7 @@ const pathPrefix = {
 
     ios: "file:///"
 };
+
 
 //bundleURL
 const bundleUrl: string = weex.config.bundleUrl;
@@ -25,10 +26,19 @@ const IOS_JS_DIR = process.env.IOS_JS_DIR || 'bundlejs';
 const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
 
 //图片目录
-const IMAGES_DIR = process.env.IMAGES_JS_DIR || 'images';
+const IMAGES_DIR = process.env.IMAGES_DIR || isIos ? 'bundlejs/images' : 'images';
 
 //字体图标目标
-const FONTS_DIR = process.env.FONTS_DIR || 'fonts';
+const FONTS_DIR = process.env.FONTS_DIR || isIos ? 'bundlejs/fonts' : 'fonts';
+
+const JS_DIR = {
+
+    web: WEB_JS_DIR,
+
+    android: ANDROID_JS_DIR,
+
+    ios: IOS_JS_DIR
+};
 
 /**
  * 路径解析，获取bundle js的根路径
@@ -42,23 +52,21 @@ export const parseWeexBundleJsBasePath = () => {
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 
-
-    const isAndroidAssets = bundleUrl.indexOf(ANDROID_JS_DIR) >= 0;
-    const isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
-
-    let nativeBasePaht: string;
-    if (isAndroidAssets) {
-        nativeBasePaht = ANDROID_JS_DIR;
-    } else if (isiOSAssets) {
-        nativeBasePaht = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_JS_DIR}/`;
+    let nativeBasePath: string;
+    if (isAndroid) {
+        //获取安卓的base path形如  file://assets/
+        nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`/${ANDROID_JS_DIR}/`));
+    } else if (isIos) {
+        //获取ios的base path形如
+        nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/`;
     } else {
         //远程js加入版本控制
         const host = `${staticResourcesRootPath}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
-        nativeBasePaht = `${host}`;
+        nativeBasePath = `${host}`;
 
     }
 
-    return nativeBasePaht;
+    return nativeBasePath;
 };
 
 /**
@@ -90,22 +98,22 @@ export const getWeexResourceUrl = (uri: string) => {
  */
 const getWeexResourceUrlByFile = (uri: string) => {
     let prefix = "";
+    const platformName = weex.config.env.platform.toLowerCase();
     if (bundleUrl.startsWith("http")) {
         //远程
         prefix = "http://";
     } else {
-        prefix = pathPrefix[weex.config.env.platform.toLowerCase()];
+        prefix = PATH_PREFIX[platformName];
     }
     const uris = uri.split("?");
     let _uri = uris[0];
     if (_uri.endsWith(".js")) {
         //是js ,默认放在weex目录下
-        _uri = `${WEB_JS_DIR}/${uri}`;
+        _uri = `${JS_DIR[platformName]}/${uri}`;
     } else if (/\.(png|jpg|jpeg|webp)$/i.test(uri)) {
         //是图片 默认放在images目录下
 
         //TODO 如果是prod 环境 切换到本地图片
-
         _uri = `${IMAGES_DIR}/${uri}`;
     } else if (/\.(ttf)$/i.test(uri)) {
         //字体文件 默认放在fons目录下

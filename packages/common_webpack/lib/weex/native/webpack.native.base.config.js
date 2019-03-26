@@ -93,7 +93,7 @@ if (nativeRelease) {
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH.replace("./", "../"))
             }]));
     }
     if (nativeRelease.indexOf("IOS") >= 0) {

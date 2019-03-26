@@ -1,19 +1,49 @@
 import {LetterPigeonConfigOptions, PushMessageInfo, WeexLetterPigeonPushModule} from "../../module/push";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {msgPush, broadcast} from "../../ExpotrtWeexOAKModel";
+import {msgPush, common} from "../../ExpotrtWeexOAKModel";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {parse} from "querystring";
+import AppRouterHelper from "weex_starter/src/route/AppRouterHelper";
 
 /**
  * 消息处理的结果
  */
 interface HandleMessageResult {
 
+
+}
+
+/**
+ * 接受的消息对象
+ */
+export interface ReceiveMessageInfo {
+
+    id: string;
+
+    data: {
+        /**
+         * 跳转路径
+         */
+        jumpPath: string;
+
+        /**
+         * 跳转参数，格式默认为查询字符串 q=1&b=2
+         */
+        jumpParam: string;
+
+        /**
+         * 是否已读
+         */
+        readed: boolean;
+
+    }
+
 }
 
 /**
  * 接收消息处理
  */
-type ReceiveMessageHandle<T = any> = (message: T) => HandleMessageResult | void;
+type ReceiveMessageHandle<T extends ReceiveMessageInfo = ReceiveMessageInfo> = (message: T) => HandleMessageResult | boolean | void;
 
 /**
  * 信鸽推送能力标准化
@@ -38,7 +68,7 @@ export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedM
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
      * @param handle
      */
-    readonly  onReceiveMessage: (handle: ReceiveMessageHandle) => void;
+    readonly  onReceiveMessage: (handle?: ReceiveMessageHandle) => void;
 
 
     /**
@@ -52,6 +82,44 @@ export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedM
      */
     readonly readMessageById: (id: string) => Promise<PushMessageInfo>;
 }
+
+/**
+ * 被点击的消息id前缀
+ * @type {string}
+ */
+const CLICK_MSG_PREFIX = "onClick_";
+
+/**
+ * 未被点击的消息id前缀
+ * @type {string}
+ */
+const COMMON_MSG_PREFIX = "onText_";
+
+
+/**
+ * 查找当前被点击的消息
+ * @param list
+ */
+const findCurrentClickMessage = (list: PushMessageInfo[]) => {
+    return list.find((item) => {
+        return item.id.indexOf(CLICK_MSG_PREFIX) >= 0;
+    });
+};
+
+/**
+ * 默认的消息接受处理者
+ * @param data
+ * @param id
+ */
+const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
+    const {jumpPath, readed, jumpParam} = data;
+
+    if (!readed) {
+    }
+    if (jumpPath) {
+        AppRouterHelper.toView(jumpPath, jumpParam ? parse(jumpParam) : {});
+    }
+};
 
 const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeLetterPigeonPushModule>({
     module: msgPush,
@@ -67,13 +135,37 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     },
     transformCallbackMap: {},
     enhanceMap: {
-        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {
-            broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", (data) => {
-                const result = handle(data);
-                if (result != null) {
-                    //TODO result
-                }
+        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessage) {
+
+            //注册页面显示的回调
+            common.setOnActCallback(() => {
+                msgPush.queryMsg((list: PushMessageInfo[]) => {
+                    if (typeof list === "string") {
+                        //手动转换一次
+                        list = JSON.parse(list as string);
+                    }
+                    if (list.length === 0) {
+                        return;
+                    }
+                    const message: PushMessageInfo = findCurrentClickMessage(list);
+                    if (message === null || message === undefined) {
+                        console.log("暂无被点击的消息");
+                        return;
+                    }
+                    const messageId = message.id;
+                    const data = JSON.parse(message.data);
+                    const result = handle({
+                        data,
+                        id: messageId
+                    });
+                    if (result) {
+                        msgPush.readMsg(messageId.toString(), () => {
+                            console.log("消息读取成功!");
+                        });
+                    }
+                });
             });
+
         },
         registerReceiver(standardizedModule: WeexStandardizedModule, accountId: number) {
             let id: string = accountId.toString();
