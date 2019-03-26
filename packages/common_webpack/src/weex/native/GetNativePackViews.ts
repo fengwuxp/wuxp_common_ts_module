@@ -56,7 +56,7 @@ const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : 
 if (nativeRelease.trim().length > 0) {
     //是否原生发布的包
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        walk('./src', '/views', entry, ANDROID_DIR);
+        walk('./src', '/views', entry, ANDROID_DIR+"/js");
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
         walk('./src', '/views', entry, IOS_DIR);

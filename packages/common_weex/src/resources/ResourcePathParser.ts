@@ -17,7 +17,7 @@ const PATH_PREFIX = {
 const bundleUrl: string = weex.config.bundleUrl;
 
 //android js 目录
-const ANDROID_JS_DIR = process.env.ANDROID_JS_DIR || 'file://assets/';
+const ANDROID_JS_DIR = process.env.ANDROID_JS_DIR || 'js';
 
 //ios js 目录
 const IOS_JS_DIR = process.env.IOS_JS_DIR || 'bundlejs';
@@ -42,10 +42,11 @@ const JS_DIR = {
 
 /**
  * 路径解析，获取bundle js的根路径
+ * @param forceRemote 强制使用远程地址
  * @author wxup
  * @create 2018-09-27 9:54
  **/
-export const parseWeexBundleJsBasePath = () => {
+export const parseWeexBundleJsBasePath = (forceRemote: boolean = isWeb) => {
 
     //获取app的配置的信息 WeexAppConfig
     const {staticResourcesRootPath, resourceConfig} = AppConfigRegistry.get() as any;
@@ -53,17 +54,18 @@ export const parseWeexBundleJsBasePath = () => {
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 
     let nativeBasePath: string;
-    if (isAndroid) {
-        //获取安卓的base path形如  file://assets/
-        nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`/${ANDROID_JS_DIR}/`));
-    } else if (isIos) {
-        //获取ios的base path形如
-        nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/`;
-    } else {
+    if (forceRemote) {
         //远程js加入版本控制
-        const host = `${staticResourcesRootPath}/${remoteDeploymentDirectory}/${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
+        const host = `${staticResourcesRootPath}/${remoteDeploymentDirectory ? remoteDeploymentDirectory + '/' : ''}${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
         nativeBasePath = `${host}`;
-
+    } else {
+        if (isAndroid) {
+            //获取安卓的base path形如  file://assets/
+            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`/${ANDROID_JS_DIR}/`));
+        } else if (isIos) {
+            //获取ios的base path形如
+            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/`;
+        }
     }
 
     return nativeBasePath;
@@ -72,7 +74,7 @@ export const parseWeexBundleJsBasePath = () => {
 /**
  * weex bundle js base path
  */
-let WEEX_BUNDLE_JS_BASE_PATH = "";
+let WEEX_BUNDLE_JS_BASE_PATH = "", WEEX_FONTS_BASE_PATH = "";
 
 const IS_IMAGE_REGEXP = /(jpg|png|jpeg|gif)$/gi;
 
@@ -97,7 +99,7 @@ export const getWeexResourceUrl = (uri: string) => {
  * @param uri
  */
 const getWeexResourceUrlByFile = (uri: string) => {
-    let prefix = "";
+    let prefix = "", isFontFile = false;
     const platformName = weex.config.env.platform.toLowerCase();
     if (bundleUrl.startsWith("http")) {
         //远程
@@ -115,16 +117,29 @@ const getWeexResourceUrlByFile = (uri: string) => {
 
         //TODO 如果是prod 环境 切换到本地图片
         _uri = `${IMAGES_DIR}/${uri}`;
-    } else if (/\.(ttf)$/i.test(uri)) {
-        //字体文件 默认放在fons目录下
-        _uri = `${FONTS_DIR}/${uri}`;
+    } else {
+        isFontFile = /\.(ttf)$/i.test(uri);
+        if (isFontFile) {
+            //字体文件 默认放在fons目录下
+            _uri = `${FONTS_DIR}/${uri}`;
+        }
     }
 
-    if (WEEX_BUNDLE_JS_BASE_PATH === "") {
-        WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+    let basePath: string = "";
+    if (isFontFile) {
+        //字体文件默认走远程
+        if (WEEX_FONTS_BASE_PATH === "") {
+            WEEX_FONTS_BASE_PATH = parseWeexBundleJsBasePath(true);
+        }
+        basePath = WEEX_FONTS_BASE_PATH;
+    } else {
+        if (WEEX_BUNDLE_JS_BASE_PATH === "") {
+            WEEX_BUNDLE_JS_BASE_PATH = parseWeexBundleJsBasePath();
+        }
+        basePath = WEEX_BUNDLE_JS_BASE_PATH;
     }
 
-    return prefix + path.join(WEEX_BUNDLE_JS_BASE_PATH.replace(prefix, ""), _uri);
+    return prefix + path.join(basePath.replace(prefix, ""), _uri);
 };
 
 /**

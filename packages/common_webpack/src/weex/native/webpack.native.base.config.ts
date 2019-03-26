@@ -13,7 +13,7 @@ const babel7Options = require("../../../babel/babelrc7");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
+const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, FONT_PATH, PROJECT_ROOT_DIR} = WeexPackConfig;
 
 const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
@@ -84,12 +84,14 @@ if (nativeRelease) {
 
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
-        path.join(PROJECT_ROOT_DIR, ANDROID_DIR),
-        path.join(PROJECT_ROOT_DIR, IOS_DIR)
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR + "js"),
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR),
     ], {
         //root: __dirname,       　　　　　　　　　　//根目录
         verbose: true,        　　　　　　　　　　//开启在控制台输出信息
-        dry: false        　　　　　　　　　　//启用删除文件
+        dry: false,        　　　　　　　　　　//启用删除文件
+        allowExternal: true
     }));
 
     //发布的情况下使用copy-webpack-plugiins进行文件复制
@@ -106,10 +108,17 @@ if (nativeRelease) {
     let from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./", "./static_resources/"));
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(
+            //复制图片
             new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH.replace("./", "../"))
-            }])
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
+            }]),
+
+            // //复制字体图标
+            // new CopyWebpackPlugin([{
+            //     from: from.replace("images", "fonts"),
+            //     to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, FONT_PATH)
+            // }])
         );
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
@@ -117,7 +126,12 @@ if (nativeRelease) {
             new CopyWebpackPlugin([{
                 from: from,
                 to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH)
-            }])
+            }]),
+            //复制字体图标
+            // new CopyWebpackPlugin([{
+            //     from: from.replace("images", "fonts"),
+            //     to: path.join(PROJECT_ROOT_DIR, IOS_DIR, FONT_PATH)
+            // }])
         );
     }
 }

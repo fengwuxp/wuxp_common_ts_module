@@ -107,11 +107,15 @@ const findCurrentClickMessage = (list: PushMessageInfo[]) => {
 };
 
 /**
- * 默认的消息接受处理者
- * @param data
- * @param id
+ * 默认的消息接收处理者
+ * @param message
  */
-const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
+const defaultReceiveMessageHandle: ReceiveMessageHandle = (message) => {
+
+    const {data, id} = message;
+    if (data == null) {
+        return;
+    }
     const {jumpPath, readed, jumpParam} = data;
 
     if (!readed) {
@@ -136,7 +140,7 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     },
     transformCallbackMap: {},
     enhanceMap: {
-        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessage) {
+        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessageHandle) {
 
             //注册页面显示的回调
             common.setOnActCallback(() => {

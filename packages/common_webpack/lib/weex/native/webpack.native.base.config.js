@@ -11,7 +11,7 @@ var GetHappyPackPluginConfig_1 = require("../../utils/GetHappyPackPluginConfig")
 var babel7Options = require("../../../babel/babelrc7");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
+var IMAGE_PATH = WeexPackConfig_1.default.IMAGE_PATH, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, FONT_PATH = WeexPackConfig_1.default.FONT_PATH, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR;
 var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 /**
  * weex 打包的 base config
@@ -73,12 +73,14 @@ var config = {
 if (nativeRelease) {
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
-        path.join(PROJECT_ROOT_DIR, ANDROID_DIR),
-        path.join(PROJECT_ROOT_DIR, IOS_DIR)
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR + "js"),
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR),
     ], {
         //root: __dirname,       　　　　　　　　　　//根目录
         verbose: true,
-        dry: false //启用删除文件
+        dry: false,
+        allowExternal: true
     }));
     //发布的情况下使用copy-webpack-plugiins进行文件复制
     // from    定义要拷贝的源目录           from: __dirname + ‘/src/public’
@@ -91,9 +93,11 @@ if (nativeRelease) {
     //将图片资源复制到对应的原始目录
     var from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./", "./static_resources/"));
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        config.plugins.push(new CopyWebpackPlugin([{
+        config.plugins.push(
+        //复制图片
+        new CopyWebpackPlugin([{
                 from: from,
-                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH.replace("./", "../"))
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
             }]));
     }
     if (nativeRelease.indexOf("IOS") >= 0) {

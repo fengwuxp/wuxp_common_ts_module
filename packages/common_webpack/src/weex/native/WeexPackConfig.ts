@@ -26,6 +26,10 @@ interface WeexPackConfig {
      */
     IMAGE_PATH: string;
 
+    /**
+     * 字体文件目录
+     */
+    FONT_PATH: string;
 
     /**
      * 项目根目录
@@ -37,7 +41,8 @@ let {
     NATIVE_EXCLUDE_FILES,
     ANDROID_DIR,
     IOS_DIR,
-    IMAGE_PATH
+    IMAGE_PATH,
+    FONT_PATH
 } = require("../../../../../webpack-config/WebpackConfig");
 
 
@@ -46,18 +51,19 @@ if (NATIVE_EXCLUDE_FILES === undefined || NATIVE_EXCLUDE_FILES === null) {
 }
 
 //默认安卓输出目录
-const DEFAULT_ANDROID_DIR = "./app/android/app/src/main/assets/js";
+const DEFAULT_ANDROID_DIR = "./app/android/app/src/main/assets/";
 
 //默认ios输出目录
 const DEFAULT_IOS_DIR = "./app/ios/bundlejs";
 
 
-ANDROID_DIR = ANDROID_DIR ? ANDROID_DIR : DEFAULT_ANDROID_DIR;
+ANDROID_DIR = ANDROID_DIR || DEFAULT_ANDROID_DIR;
 
-IOS_DIR = IOS_DIR ? IOS_DIR : DEFAULT_IOS_DIR;
+IOS_DIR = IOS_DIR || DEFAULT_IOS_DIR;
 
-IMAGE_PATH = IMAGE_PATH ? IMAGE_PATH : "./images";
+IMAGE_PATH = IMAGE_PATH || "./images";
 
+FONT_PATH = FONT_PATH || "./fonts";
 
 /**
  * 获取项目更目录
@@ -71,6 +77,7 @@ const PackConfig: WeexPackConfig = {
     ANDROID_DIR,
     IOS_DIR,
     IMAGE_PATH,
+    FONT_PATH,
     PROJECT_ROOT_DIR
 };
 
