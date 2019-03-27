@@ -109,7 +109,9 @@ const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
     const {view, param} = data;
 
     if (view) {
-        AppRouterHelper.toView(view, param ? parse(param) : {});
+        AppRouterHelper.toView(view, {
+            queryParams: param ? parse(param) : {}
+        });
     }
     return true;
 };
