@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import WeexPackConfig from "./WeexPackConfig";
 
-const {NATIVE_EXCLUDE_FILES, ANDROID_DIR, PROJECT_ROOT_DIR, IOS_DIR} = WeexPackConfig;
+const {NATIVE_EXCLUDE_FILES, ANDROID_DIR, PROJECT_ROOT_DIR, IOS_DIR, BUNDLE_JS_DIR} = WeexPackConfig;
 
 /**
  *  获取原生要打包的页面
@@ -28,8 +28,7 @@ const walk = function (root, dir, entry = {}, outPath) {
                     regExp = item;
                 } else if (item.constructor === Function) {
                     return (item as any)(fullPath);
-                }
-                else {
+                } else {
                     console.warn("配置有误");
                     return false
                 }
@@ -56,10 +55,10 @@ const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : 
 if (nativeRelease.trim().length > 0) {
     //是否原生发布的包
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        walk('./src', '/views', entry, ANDROID_DIR+"/js");
+        walk('./src', '/views', entry, `${ANDROID_DIR}/${BUNDLE_JS_DIR.replace("./","")}`);
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
-        walk('./src', '/views', entry, IOS_DIR);
+        walk('./src', '/views', entry, `${IOS_DIR}/${BUNDLE_JS_DIR.replace("./","")}`);
     }
 } else {
     walk('./src', '/views', entry, DEV_DIR);

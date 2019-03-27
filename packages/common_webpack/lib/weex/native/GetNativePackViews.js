@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var path = require("path");
 var WeexPackConfig_1 = require("./WeexPackConfig");
-var NATIVE_EXCLUDE_FILES = WeexPackConfig_1.default.NATIVE_EXCLUDE_FILES, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR;
+var NATIVE_EXCLUDE_FILES = WeexPackConfig_1.default.NATIVE_EXCLUDE_FILES, ANDROID_DIR = WeexPackConfig_1.default.ANDROID_DIR, PROJECT_ROOT_DIR = WeexPackConfig_1.default.PROJECT_ROOT_DIR, IOS_DIR = WeexPackConfig_1.default.IOS_DIR, BUNDLE_JS_DIR = WeexPackConfig_1.default.BUNDLE_JS_DIR;
 /**
  *  获取原生要打包的页面
  * @author wxup
@@ -55,10 +55,10 @@ var nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : ""
 if (nativeRelease.trim().length > 0) {
     //是否原生发布的包
     if (nativeRelease.indexOf("ANDROID") >= 0) {
-        walk('./src', '/views', entry, ANDROID_DIR + "/js");
+        walk('./src', '/views', entry, ANDROID_DIR + "/" + BUNDLE_JS_DIR.replace("./", ""));
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
-        walk('./src', '/views', entry, IOS_DIR);
+        walk('./src', '/views', entry, IOS_DIR + "/" + BUNDLE_JS_DIR.replace("./", ""));
     }
 }
 else {

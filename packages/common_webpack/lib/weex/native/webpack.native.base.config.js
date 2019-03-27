@@ -75,7 +75,8 @@ if (nativeRelease) {
     config.plugins.push(new CleanWebpackPlugin([
         path.join(PROJECT_ROOT_DIR, ANDROID_DIR, BUNDLE_JS_DIR),
         path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH),
-        path.join(PROJECT_ROOT_DIR, IOS_DIR),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR, BUNDLE_JS_DIR),
+        path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH),
     ], {
         //root: __dirname,       　　　　　　　　　　//根目录
         verbose: true,
@@ -91,19 +92,19 @@ if (nativeRelease) {
     // flatten 只拷贝文件不管文件夹      默认是false
     // ignore  忽略拷贝指定的文件           可以用模糊匹配
     //将图片资源复制到对应的原始目录
-    var from = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./", "./static_resources/"));
+    var imageFormPath = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./", "./static_resources/"));
     if (nativeRelease.indexOf("ANDROID") >= 0) {
         config.plugins.push(
         //复制图片
         new CopyWebpackPlugin([{
-                from: from,
-                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH)
+                from: imageFormPath,
+                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH) + "/"
             }]));
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
         config.plugins.push(new CopyWebpackPlugin([{
-                from: from,
-                to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH)
+                from: imageFormPath,
+                to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH) + "/"
             }]));
     }
 }
