@@ -24,18 +24,12 @@ export interface ReceiveMessageInfo {
         /**
          * 跳转路径
          */
-        jumpPath: string;
+        view: string;
 
         /**
          * 跳转参数，格式默认为查询字符串 q=1&b=2
          */
-        jumpParam: string;
-
-        /**
-         * 是否已读
-         */
-        readed: boolean;
-
+        param: string;
     }
 
 }
@@ -107,21 +101,15 @@ const findCurrentClickMessage = (list: PushMessageInfo[]) => {
 };
 
 /**
- * 默认的消息接收处理者
- * @param message
+ * 默认的消息接受处理者
+ * @param data
+ * @param id
  */
-const defaultReceiveMessageHandle: ReceiveMessageHandle = (message) => {
+const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
+    const {view, param} = data;
 
-    const {data, id} = message;
-    if (data == null) {
-        return;
-    }
-    const {jumpPath, readed, jumpParam} = data;
-
-    if (!readed) {
-    }
-    if (jumpPath) {
-        AppRouterHelper.toView(jumpPath, jumpParam ? parse(jumpParam) : {});
+    if (view) {
+        AppRouterHelper.toView(view, param ? parse(param) : {});
     }
     return true;
 };
@@ -140,7 +128,8 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     },
     transformCallbackMap: {},
     enhanceMap: {
-        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessageHandle) {
+        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessage) {
+
 
             //注册页面显示的回调
             common.setOnActCallback(() => {
@@ -154,15 +143,16 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
                     }
                     const message: PushMessageInfo = findCurrentClickMessage(list);
                     if (message === null || message === undefined) {
-                        console.log("暂无被点击的消息");
                         return;
                     }
+
                     const messageId = message.id;
                     const data = JSON.parse(message.data);
                     const result = handle({
                         data,
                         id: messageId
                     });
+
                     if (result) {
                         msgPush.readMsg(messageId.toString(), () => {
                             console.log("消息读取成功!");
