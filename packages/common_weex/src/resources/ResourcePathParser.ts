@@ -1,6 +1,6 @@
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import * as path from "path";
-import {isAndroid, isIos, isWeb} from "../constant/WeexEnv";
+import {isIos, isWeb} from "../constant/WeexEnv";
 
 
 const PATH_PREFIX = {
@@ -16,29 +16,23 @@ const PATH_PREFIX = {
 //bundleURL
 const bundleUrl: string = weex.config.bundleUrl;
 
-//android js 目录
-const ANDROID_JS_DIR = process.env.ANDROID_JS_DIR || 'js';
+//ios 资源目录
+const IOS_RESOURCES_BASE_DIR = process.env.IOS_RESOURCES_BASE_DIR || 'bundlejs';
 
-//ios js 目录
-const IOS_JS_DIR = process.env.IOS_JS_DIR || 'bundlejs';
+//android 资源目录
+const ANDROID_RESOURCES_BASE_DIR = process.env.ANDROID_RESOURCES_BASE_DIR || 'assets';
 
-//web 远程js目录
-const WEB_JS_DIR = process.env.WEB_JS_DIR || 'weex';
+
+//BUNDLE js DIR
+const BUNDLE_JS_DIR = process.env.BUNDLE_DIR || "weex";
+
 
 //图片目录
-const IMAGES_DIR = process.env.IMAGES_DIR || isIos ? 'bundlejs/images' : 'images';
+const IMAGES_DIR = process.env.IMAGES_DIR || "images";
 
 //字体图标目标
-const FONTS_DIR = process.env.FONTS_DIR || isIos ? 'bundlejs/fonts' : 'fonts';
+const FONTS_DIR = process.env.FONTS_DIR || "fonts";
 
-const JS_DIR = {
-
-    web: WEB_JS_DIR,
-
-    android: ANDROID_JS_DIR,
-
-    ios: IOS_JS_DIR
-};
 
 /**
  * 路径解析，获取bundle js的根路径
@@ -53,19 +47,22 @@ export const parseWeexBundleJsBasePath = (forceRemote: boolean = isWeb) => {
 
     const {iosProjectName, remoteDeploymentDirectory, versionCode} = resourceConfig;
 
-    let nativeBasePath: string;
-    if (forceRemote) {
+    let nativeBasePath: string = undefined;
+    if (!forceRemote) {
+        const isAndroidAssets = bundleUrl.indexOf(PATH_PREFIX.android) >= 0 && bundleUrl.indexOf(`/${BUNDLE_JS_DIR}/`) >= 0;
+        const isiOSAssets = bundleUrl.indexOf(PATH_PREFIX.ios) >= 0 && bundleUrl.indexOf(iosProjectName) > 0;
+        if (isAndroidAssets) {
+            //获取安卓的base path形如  file://assets/
+            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`/${BUNDLE_JS_DIR}/`));
+        } else if (isiOSAssets) {
+            //获取ios的base path形如
+            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/${IOS_RESOURCES_BASE_DIR}/`;
+        }
+    }
+    if (nativeBasePath == null) {
         //远程js加入版本控制
         const host = `${staticResourcesRootPath}/${remoteDeploymentDirectory ? remoteDeploymentDirectory + '/' : ''}${!!versionCode ? 'v_' + versionCode + '/' : ''}`;
         nativeBasePath = `${host}`;
-    } else {
-        if (isAndroid) {
-            //获取安卓的base path形如  file://assets/
-            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`/${ANDROID_JS_DIR}/`));
-        } else if (isIos) {
-            //获取ios的base path形如
-            nativeBasePath = bundleUrl.substring(0, bundleUrl.lastIndexOf(`${iosProjectName}/`)) + `${iosProjectName}/`;
-        }
     }
 
     return nativeBasePath;
@@ -111,7 +108,7 @@ const getWeexResourceUrlByFile = (uri: string) => {
     let _uri = uris[0];
     if (_uri.endsWith(".js")) {
         //是js ,默认放在weex目录下
-        _uri = `${JS_DIR[platformName]}/${uri}`;
+        _uri = `${BUNDLE_JS_DIR}/${uri}`;
     } else if (/\.(png|jpg|jpeg|webp)$/i.test(uri)) {
         //是图片 默认放在images目录下
 

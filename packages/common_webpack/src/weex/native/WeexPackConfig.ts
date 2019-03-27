@@ -21,6 +21,12 @@ interface WeexPackConfig {
      */
     IOS_DIR: string;
 
+
+    /**
+     * bundle js 目录
+     */
+    BUNDLE_JS_DIR: string;
+
     /**
      * 图片目录
      */
@@ -41,6 +47,7 @@ let {
     NATIVE_EXCLUDE_FILES,
     ANDROID_DIR,
     IOS_DIR,
+    BUNDLE_JS_DIR,
     IMAGE_PATH,
     FONT_PATH
 } = require("../../../../../webpack-config/WebpackConfig");
@@ -61,6 +68,8 @@ ANDROID_DIR = ANDROID_DIR || DEFAULT_ANDROID_DIR;
 
 IOS_DIR = IOS_DIR || DEFAULT_IOS_DIR;
 
+BUNDLE_JS_DIR = BUNDLE_JS_DIR || "./weex";
+
 IMAGE_PATH = IMAGE_PATH || "./images";
 
 FONT_PATH = FONT_PATH || "./fonts";
@@ -76,6 +85,7 @@ const PackConfig: WeexPackConfig = {
     NATIVE_EXCLUDE_FILES,
     ANDROID_DIR,
     IOS_DIR,
+    BUNDLE_JS_DIR,
     IMAGE_PATH,
     FONT_PATH,
     PROJECT_ROOT_DIR

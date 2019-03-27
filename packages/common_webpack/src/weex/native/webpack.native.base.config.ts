@@ -13,7 +13,7 @@ const babel7Options = require("../../../babel/babelrc7");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, FONT_PATH, PROJECT_ROOT_DIR} = WeexPackConfig;
+const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, FONT_PATH, BUNDLE_JS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
 
 const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
 
@@ -84,7 +84,7 @@ if (nativeRelease) {
 
     //先将打包目录清除
     config.plugins.push(new CleanWebpackPlugin([
-        path.join(PROJECT_ROOT_DIR, ANDROID_DIR + "js"),
+        path.join(PROJECT_ROOT_DIR, ANDROID_DIR, BUNDLE_JS_DIR),
         path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH),
         path.join(PROJECT_ROOT_DIR, IOS_DIR),
     ], {
