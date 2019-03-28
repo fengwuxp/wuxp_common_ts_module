@@ -86,6 +86,7 @@ const dripTravelSDKModule = standardizedWeexModuleToPromise<WeexDripTravelSDKMod
     module: weex.requireModule("ddcx"),
     transformParamMap: {
         getCurrentOrderStatus: () => [{}],
+        getCurrentDriverInfo: () => [{}],
         registerApp: (appId: string, secret: string) => {
             return [
                 appId,
