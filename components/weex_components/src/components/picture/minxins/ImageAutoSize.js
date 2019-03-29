@@ -100,11 +100,6 @@ export default {
     beforeMount() {
 
         this.width = parseInt(this.width);
-        if (this.height === 0) {
-            //没有设置高度的话默认和宽度一直
-            this.height = this.width;
-        }
-        this.height = parseInt(this.height);
         if (this.needLoadSize) {
             imageLoader.loadImageInfo(this.src, this.width === 0 ? this.maxWidth : this.width,
                 (map) => {
@@ -119,6 +114,11 @@ export default {
                 });
 
         } else {
+            if (this.height === 0) {
+                //没有设置高度的话默认和宽度一直
+                this.height = this.width;
+            }
+            this.height = parseInt(this.height);
             this.show = true;
         }
 

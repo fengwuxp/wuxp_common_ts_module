@@ -1,6 +1,8 @@
 import {Observable, Observer} from "rxjs";
 import {Subscriber} from "rxjs/src/internal/Subscriber";
 import {TeardownLogic} from "rxjs/src/internal/types";
+import {EventPayload} from "./Payload";
+import {KeyValueDatabase} from "./databse/KeyValueDatabase";
 
 /**
  * 数据仓库，负责监听数据变更、查询、存储、更新、移除数据
@@ -37,42 +39,74 @@ export interface EventDrivenStore<T> extends TransferStore<T> {
 
 }
 
-/**
- * 数据监听者
- */
-export interface DataListener {
-
-    monitor: () => void;
-}
-
-
-// export default abstract class AbstractStore<T> implements EventDrivenStore<T> {
+// interface EventDrivenReceiver<T> {
 //
-//     private observable: Observable<T>;
-//
-//     // private store: {} = {};
-//
-//     constructor(subscribe: (observer: Observer<T>) => TeardownLogic) {
-//
-//         const observable = new Observable<T>((observer: Observer<T>) => {
-//
-//         });
-//
-//         observable.subscribe(
-//             //next
-//             (value) => {
-//
-//             },
-//
-//             //error
-//             (x) => {
-//
-//             },
-//             //complete
-//             () => {
-//
-//             });
-//
-//         this.observable = observable;
-//     }
+//     /**
+//      * 接收事件消息
+//      * @param sate
+//      */
+//     receiveEventMessage: (sate: T) => void;
 // }
+
+export  type EventReceiver<T = any> = (state: T) => void;
+
+
+export default abstract class AbstractStore<T extends EventPayload> implements EventDrivenStore<T> {
+
+    private observable: Observable<T>;
+
+
+    //事件接收者
+    private eventReceiver: KeyValueDatabase<EventReceiver[]> = new Map();
+
+    constructor(subscribe: (observer: Observer<T>) => TeardownLogic) {
+
+        const observable = new Observable<T>(subscribe);
+
+        observable.subscribe(
+            //next
+            this.onNext,
+
+            //error
+            this.onError,
+
+            //complete
+            this.onComplete
+        );
+
+        this.observable = observable;
+    }
+
+
+    deposit: (...args) => void;
+
+    transfer: (...args) => void;
+
+
+    /**
+     * 接收到一个消息体，将这个消息广播给所有相关的接收这个
+     * @param payload
+     */
+    protected onNext = (payload: EventPayload) => {
+        const receivers: EventReceiver[] = this.eventReceiver.get(this.genEventKey(payload));
+        if (receivers == null) {
+            return;
+        }
+        receivers.forEach((receiver) => receiver(payload.value));
+    };
+
+    protected onError = (error) => {
+
+    };
+
+    protected onComplete = () => {
+
+    };
+
+
+    private genEventKey = (payload: EventPayload) => {
+
+        return `${payload.eventType}_${payload.eventName}`;
+    }
+
+}

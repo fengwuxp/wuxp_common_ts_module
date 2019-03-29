@@ -47,12 +47,20 @@ const Util = {
             return null;
         }
 
+        let date = source.trim();
+        const length = date.length;
+        if (length === 10) {
+            //yyyy-MM-dd
+            date = `${date} 00:00:00`;
+        } else if (length === 16) {
+            //yyyy-MM-dd HH:mm
+            date = `${date}:00`;
+        }
+
         if (/\w*T\w*/.test(source)) {
             //TODO 带有时区
-
-
         } else {
-            return new Date(source.replace("/-/g", "/"));
+            return new Date(source.replace(/-/g, "/"));
         }
 
     },
