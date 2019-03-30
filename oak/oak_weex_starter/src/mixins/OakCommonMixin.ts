@@ -10,7 +10,7 @@ export default {
          * @param index    第几个菜单项
          * @param refresh  是否刷新导航页面
          */
-        toIndex({index, refresh}: { index?: number, refresh?: boolean }) {
+        toIndex({index, refresh}: { index?: number, refresh?: boolean } = {}) {
 
             if (index != null) {
                 //发送广播
