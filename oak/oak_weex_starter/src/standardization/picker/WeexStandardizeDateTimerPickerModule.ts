@@ -1,10 +1,11 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
 
 /**
  * weex 标准化的时间选择器模块
  */
-export interface WeexStandardizeDateTimerPickerModule  extends WeexStandardizedModule{
+export interface WeexStandardizeDateTimerPickerModule extends WeexStandardizedModule {
 
     /**
      * 选择时间
@@ -51,19 +52,19 @@ export interface BaseWeexStandardizeDateTimerPickerOptions {
     /**
      * 默认当前时间 格式为 yyyy-MM-dd hh:mm:ss
      */
-    value?: string;
+    value?: string | Date;
 
     /**
      * 时间范围选择开始
      * 默认 1970-01-01 00:00:00
      */
-    rangeBegin?: string;
+    rangeBegin?: string | Date;
 
     /**
      * 时间范围选择结束
      * 默认：null
      */
-    rangeEnd?: string;
+    rangeEnd?: string | Date;
 
     /**
      * 标题
@@ -92,22 +93,37 @@ export interface WeexStandardizeDateTimerPickerOptions extends BaseWeexStandardi
 
 const EMPTY_CHAR = "N";
 
+const transformDate = (date: string | Date, format: string) => {
+    if (date == null) {
+        return null;
+    }
+
+    if (typeof date === "string") {
+        return date;
+    }
+    return DateFormatUtils.formatterDate(date, format.replace("HH", "hh"));
+};
+
 const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule = standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerModule>({
     module: weex.requireModule("dateTimePicker"),
     transformParamMap: {
         pick: (options: WeexStandardizeDateTimerPickerOptions) => {
+            const format = options.format == null ? null : options.format.replace("hh", "HH");
+            const value = transformDate(options.value, format);
+            const rangeBegin = transformDate(options.rangeBegin, format);
+            const rangeEnd = transformDate(options.rangeEnd, format);
             return [
                 options.title,
                 options.columnTitles,
-                options.format == null ? null : options.format.replace("hh", "HH"),
-                options.value,
-                options.rangeBegin,
-                options.rangeEnd,
+                format,
+                value,
+                rangeBegin,
+                rangeEnd,
                 options.configs || {}
             ];
         }
     },
-    transformCallbackMap:{},
+    transformCallbackMap: {},
     enhanceMap: {
         pickDate: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
             return weexStandardizedModule.pick(options);
