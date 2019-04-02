@@ -48,7 +48,8 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
 }
 
 abstract class AbstractDataProvider<S> implements DataProvider<S> {
-    setState<K extends keyof S>(state: ((prevState: Readonly<S>) => (Pick<S, K> | S | null)) | Pick<S, K> | S | null, callback?: () => void): void {
+
+     setState<K extends keyof S>(state: ((prevState: Readonly<S>) => (Pick<S, K> | S | null)) | Pick<S, K> | S | null, callback?: () => void): void {
 
 
     }

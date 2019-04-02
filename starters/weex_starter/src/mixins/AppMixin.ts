@@ -73,10 +73,10 @@ const appMixin: ComponentOptions<any> = {
         //on ready表示准备完成
         this.viewIsReady = true;
 
-        if (state != null) {
-            //清空本页面的sate
-            setNextViewState(null);
-        }
+        // if (state != null) {
+        //     //清空本页面的sate
+        //     setNextViewState(null);
+        // }
     }
 };
 

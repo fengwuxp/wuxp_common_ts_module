@@ -143,6 +143,13 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
 
         onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {
             broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", (list: ReceiveMessageInfo[]) => {
+                if (list == null) {
+                    return;
+                }
+                console.log(`----> ${JSON.stringify(list)}`);
+                if (list.constructor !== Array) {
+                    list = [list as any];
+                }
                 const messageInfo = list.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
                 if (messageInfo) {
                     handle(messageInfo);

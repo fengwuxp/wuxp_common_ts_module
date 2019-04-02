@@ -26,7 +26,7 @@ export async function transferViewState() {
  */
 export async function setNextViewState(viewState: any) {
     if (viewState == null) {
-        //清空 页面
+        //清空页面的state
         await weexSdkStorage.setStorage(PAGE_VIEW_STATE, null);
     } else {
         await weexSdkStorage.setStorage(PAGE_VIEW_STATE, viewState);
