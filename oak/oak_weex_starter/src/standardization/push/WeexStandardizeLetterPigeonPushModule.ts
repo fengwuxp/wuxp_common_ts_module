@@ -1,6 +1,6 @@
 import {LetterPigeonConfigOptions, PushMessageInfo, WeexLetterPigeonPushModule} from "../../module/push";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {msgPush, common} from "../../ExpotrtWeexOAKModel";
+import {msgPush, common, broadcast} from "../../ExpotrtWeexOAKModel";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {parse} from "querystring";
 import AppRouterHelper from "weex_starter/src/route/AppRouterHelper";
@@ -62,8 +62,13 @@ export interface WeexStandardizeLetterPigeonPushModule extends WeexStandardizedM
      * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
      * @param handle 可不传，将使用默认的处理方式
      */
-    readonly  onReceiveMessage: (handle?: ReceiveMessageHandle) => void;
+    readonly onReceiveMessage: (handle: ReceiveMessageHandle) => void;
 
+    /**
+     * 信鸽消息被点击消息
+     * @param handle
+     */
+    readonly onClickMessage: (handle?: ReceiveMessageHandle) => void;
 
     /**
      * 获取所有的推送消息
@@ -88,6 +93,11 @@ const CLICK_MSG_PREFIX = "onClick_";
  * @type {string}
  */
 const COMMON_MSG_PREFIX = "onText_";
+
+/**
+ * 当前显示的消息
+ */
+const ON_SHOW_PREFIX = "onShow_";
 
 
 /**
@@ -130,7 +140,17 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     },
     transformCallbackMap: {},
     enhanceMap: {
-        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessage) {
+
+        onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {
+            broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", (list: ReceiveMessageInfo[]) => {
+                const messageInfo = list.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
+                if (messageInfo) {
+                    handle(messageInfo);
+                }
+            });
+        },
+
+        onClickMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle = defaultReceiveMessage) {
 
 
             //注册页面显示的回调

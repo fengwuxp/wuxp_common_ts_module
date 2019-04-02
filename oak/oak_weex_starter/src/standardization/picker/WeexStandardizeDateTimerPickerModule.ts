@@ -1,6 +1,8 @@
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
+import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {promisePicker} from "common_weex/src/sdk/ExportPromiseWeexSdkModule";
 
 /**
  * weex 标准化的时间选择器模块
@@ -126,19 +128,45 @@ const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule
     transformCallbackMap: {},
     enhanceMap: {
         pickDate: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+            const format = "yyyy-MM-dd";
+            if (isWeb) {
+                return promisePicker.pickDate({
+                    value: transformDate(options.value, format),
+                    min: transformDate(options.rangeBegin, format),
+                    max: transformDate(options.rangeEnd, format)
+                });
+            }
             return weexStandardizedModule.pick(options);
         },
         pickerTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+
+            const format = "HH:mm";
+            if (isWeb) {
+                return promisePicker.pickTime({
+                    value: options.value as string
+                });
+            }
+
             return weexStandardizedModule.pick({
                 columnTitles: `${EMPTY_CHAR},${EMPTY_CHAR},${EMPTY_CHAR},时,分`,
-                format: "HH:mm",
+                format,
                 ...options
             });
         },
         pickDateTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+
+            const format = "yyyy-MM-dd HH:mm";
+            if (isWeb) {
+                const _format = format.replace("HH", "hh");
+                return promisePicker.pickDate({
+                    value: transformDate(options.value, _format),
+                    min: transformDate(options.rangeBegin, _format),
+                    max: transformDate(options.rangeEnd, _format)
+                });
+            }
             return weexStandardizedModule.pick({
                 columnTitles: `年,月,日,时,分`,
-                format: "yyyy-MM-dd HH:mm",
+                format,
                 ...options
             });
         },
