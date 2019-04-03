@@ -40,7 +40,7 @@ export default class ProxyFactory {
      */
     static newProxyInstanceEnhance = <T>(target: T,
                                          methodInterceptor: MethodInterceptor,
-                                         noSuchMethodInterceptor): T => {
+                                         noSuchMethodInterceptor:MethodInterceptor): T => {
 
         return defaultProxyAdapter({
             object: target,

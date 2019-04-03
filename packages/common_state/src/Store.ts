@@ -3,6 +3,7 @@ import {Subscriber} from "rxjs/src/internal/Subscriber";
 import {TeardownLogic} from "rxjs/src/internal/types";
 import {EventPayload} from "./Payload";
 import {KeyValueDatabase} from "./databse/KeyValueDatabase";
+import {rxJsSubscriber} from "./subscribe/RxjsSubscriber";
 
 /**
  * 数据仓库，负责监听数据变更、查询、存储、更新、移除数据
@@ -39,14 +40,6 @@ export interface EventDrivenStore<T> extends TransferStore<T> {
 
 }
 
-// interface EventDrivenReceiver<T> {
-//
-//     /**
-//      * 接收事件消息
-//      * @param sate
-//      */
-//     receiveEventMessage: (sate: T) => void;
-// }
 
 export  type EventReceiver<T = any> = (state: T) => void;
 
@@ -59,9 +52,10 @@ export default abstract class AbstractStore<T extends EventPayload> implements E
     //事件接收者
     private eventReceiver: KeyValueDatabase<EventReceiver[]> = new Map();
 
-    constructor(subscribe: (observer: Observer<T>) => TeardownLogic) {
+    constructor(subscribe: (observer: Observer<T>) => TeardownLogic = rxJsSubscriber) {
 
         const observable = new Observable<T>(subscribe);
+
 
         observable.subscribe(
             //next

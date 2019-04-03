@@ -89,7 +89,7 @@ export default {
             const loadMore = this.loadMore;
             if (typeof loadMore !== "function") {
                 // throw new Error(`loadMore is not function`);
-                return;
+                return Promise.reject();
             }
             //向父组件广播事件
             // this.$emit("onLoadMore");
@@ -97,8 +97,15 @@ export default {
             return loadMore({
                 queryPage: this.queryPage,
                 querySize: this.querySize,
-            }, isRefresh).finally((len = 0) => {
-                if (len < this.querySize) {
+            }, isRefresh).finally((result) => {
+                if (result != null && typeof result !== "number") {
+                    if (result.constructor === Array) {
+                        result = result.length;
+                    } else {
+                        result = 0;
+                    }
+                }
+                if (result < this.querySize) {
                     //查询结束
                     this.queryEnd = true;
                 } else {

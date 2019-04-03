@@ -1,5 +1,9 @@
 import {SubscriptionEventType} from "../enums/SubscriptionEventType";
-import {DataProvider, FunctionDataProvider} from "../provider/DataProvider";
+import {DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
+import {Observer, TeardownLogic} from "rxjs";
+import {pushNextEvent} from "../subscribe/RxjsSubscriber";
+import ProxyFactory from "../../../common_proxy/src/ProxyFactory";
+import {AbstractDataProvider} from "../provider/AbstractDataProvider";
 
 export interface EventProviderOptions {
 
@@ -15,6 +19,7 @@ export interface EventProviderOptions {
      */
     eventName?: string;
 }
+
 
 const defaultOptions: EventProviderOptions = {
 
@@ -37,22 +42,52 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): T {
+
         if (typeof target === "function") {
+
+            //函数式数据提供者
+
+            const _target = target as Function;
+            const fnName = _target.name;
+
+            return async function (...args) {
+                const value = await _target(...args);
+                // this.state = value;
+                pushNextEvent({
+                    eventName: parseFunctionNameToEventName(fnName),
+                    eventType: options.eventType.toString(),
+                    value
+                });
+            } as any;
 
         } else {
 
+            //@ts-ignore
+            class AutoGenProvider extends AbstractDataProvider<any> implements DataProvider {
+
+                constructor(state?: StateType<any, any>) {
+                    super(state, options, new (target as any)());
+                }
+
+            }
+            //自动生成的Provider
+            return AutoGenProvider as any;
         }
-
-        return null;
     }
 }
 
-abstract class AbstractDataProvider<S> implements DataProvider<S> {
+const methodNamePrefix = ["get", "load", "find", "query"];
 
-     setState<K extends keyof S>(state: ((prevState: Readonly<S>) => (Pick<S, K> | S | null)) | Pick<S, K> | S | null, callback?: () => void): void {
+export const parseFunctionNameToEventName = (methodName: string) => {
 
+    let name = methodName;
+    methodNamePrefix.filter((item) => {
+        return name.startsWith(item);
+    }).forEach((item) => {
+        name = name.replace(item, "");
+    });
 
-    }
+    return name;
 
+};
 
-}

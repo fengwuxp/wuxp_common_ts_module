@@ -5,21 +5,23 @@
  * @author wxup
  * @create 2018-11-02 16:54
  **/
-export interface State<T> {
+// export interface State<T> {
+//
+//
+//     /**
+//      * 状态
+//      */
+//     sate: T;
+//
+//
+//     /**
+//      * 订阅
+//      * @param listener
+//      */
+//     subscribe: (listener: Listener) => void;
+// }
 
 
-    /**
-     * 状态
-     */
-    sate: T;
-
-
-    /**
-     * 订阅
-     * @param listener
-     */
-    subscribe: (listener: Listener) => void;
-}
 
 
 export type Listener = () => void

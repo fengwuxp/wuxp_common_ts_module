@@ -4,6 +4,7 @@ import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {AppVersionInfo} from "./AppVersionInfo";
 import {PlatformType} from "./PlatformType";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
+import {weexToast} from "common_weex/src/toast/WeexToast";
 
 
 interface CheckAppVersionReq {
@@ -37,14 +38,18 @@ export default class CheckAndroidVersionHandler {
     /**
      * 检测更新(仅支持安卓端)
      */
-    checkApkUpdate = (): Promise<void> => {
+    checkApkUpdate = (optons: {
+        useProgressBar: boolean
+    } = {
+        useProgressBar: false
+    }): Promise<void> => {
         if (isIos) {
             return Promise.reject();
         }
 
 
         return new Promise((resolve, reject) => {
-            this.isNewestVersion().then((data) => {
+            this.isNewestVersion(optons.useProgressBar).then((data) => {
                 const resp = {
                     code: 0,
                     data,
@@ -56,25 +61,27 @@ export default class CheckAndroidVersionHandler {
                 }, (message = "检查更新调用失败") => {
                     reject(message);
                 });
-            }).catch((e) => {
-                console.log(`获取版本信息失败 ：${e}`)
-            });
+            }).catch(reject);
 
-        })
+        });
 
     };
 
     /**
      * 是否最新版本
      */
-    isNewestVersion = (): Promise<AppVersionInfo> => {
+    isNewestVersion = (useProgressBar): Promise<AppVersionInfo> => {
         return new Promise<AppVersionInfo>((resolve, reject) => {
             common.getAppVersionInfo(({versionCode, versionName, packageName}) => {
                 console.log("当前版本-> " + versionCode);
-                this.getAppVersionByServer(versionCode)
+                this.getAppVersionByServer(versionCode, useProgressBar)
                     .then(resolve)
                     .catch(({message}) => {
-                        console.log(message ? message : "检查更新查询失败!");
+                        message = message || "检查更新查询失败";
+                        if (useProgressBar) {
+                            weexToast(message);
+                        }
+                        reject(message);
                     });
             }, (message = "获取版本信息失败！") => {
                 reject(message);
@@ -86,13 +93,14 @@ export default class CheckAndroidVersionHandler {
     /**
      * 从服务端获取版本号
      * @param versionCode
+     * @param useProgressBar
      */
-    private getAppVersionByServer = (versionCode: string | number): Promise<AppVersionInfo> => {
+    private getAppVersionByServer = (versionCode: string | number, useProgressBar: boolean = false): Promise<AppVersionInfo> => {
 
         return this.appService.checkAppVersion({
             appCode: AppConfigRegistry.get().androidAppCode,
             platformType: PlatformType.ANDROID,
             currVersionCode: parseInt(versionCode.toString())
-        }, {useProgressBar: false});
+        }, {useProgressBar, useUnifiedToast: false});
     }
 }
