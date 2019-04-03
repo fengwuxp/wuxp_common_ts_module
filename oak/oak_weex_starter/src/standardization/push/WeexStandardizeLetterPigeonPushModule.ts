@@ -4,6 +4,7 @@ import {msgPush, common, broadcast} from "../../ExpotrtWeexOAKModel";
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {parse} from "querystring";
 import AppRouterHelper from "weex_starter/src/route/AppRouterHelper";
+import StringUtils from "common_utils/src/string/StringUtils";
 
 /**
  * 消息处理的结果
@@ -142,15 +143,14 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
     enhanceMap: {
 
         onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {
-            broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", (list: ReceiveMessageInfo[]) => {
-                if (list == null) {
+            broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", ({data}: { data: ReceiveMessageInfo[] }) => {
+                if (data == null) {
                     return;
                 }
-                console.log(`----> ${JSON.stringify(list)}`);
-                if (list.constructor !== Array) {
-                    list = [list as any];
+                if (data.constructor !== Array) {
+                    data = [data as any];
                 }
-                const messageInfo = list.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
+                const messageInfo = data.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
                 if (messageInfo) {
                     handle(messageInfo);
                 }
@@ -171,11 +171,15 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
                         return;
                     }
                     const message: PushMessageInfo = findCurrentClickMessage(list);
-                    if (message === null || message === undefined) {
+                    if (message == null) {
                         return;
                     }
 
                     const messageId = message.id;
+                    if (!StringUtils.hasText(message.data)) {
+                        console.log("信鸽消息data为空");
+                        return;
+                    }
                     const data = JSON.parse(message.data);
                     const result = handle({
                         data,
