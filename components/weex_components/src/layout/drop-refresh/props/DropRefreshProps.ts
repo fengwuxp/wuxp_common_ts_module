@@ -64,9 +64,10 @@ export default {
 
     /**
      * 距离底部触发加载更多事件的距离
+     * 如果是 list组件由于有原生实现的问题，loadMoreOffset至少要大于list中一个元素的高度
      */
     loadMoreOffset: {
-        default: 120
+        default: 200
     },
 
     /**

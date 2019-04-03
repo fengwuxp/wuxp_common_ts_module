@@ -10,20 +10,6 @@ const babel7Options = require("../../babel/babelrc7");
  * @create 2018-09-25 9:37
  **/
 const babelLoaderName = "babel-loader";
-const babelLoader = {
-    test: /\.js[x]?$/,
-    exclude: isExclude,
-    use: [
-        genHappyPackLoaderString(babelLoaderName)
-    ]
-};
-
-// export const happyPackBabelLoaderPlugin = getHappyPackPlugin(babelLoaderName, [
-//     {
-//         loader: babelLoaderName,
-//         options: babel7Options
-//     }
-// ]);
 
 export default  {
     test: /\.js[x]?$/,

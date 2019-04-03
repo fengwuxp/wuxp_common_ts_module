@@ -2,6 +2,7 @@
 <template>
     <scroller class="flex_1"
               ref="scroll_container"
+              show-scrollbar="false"
               :loadmoreoffset="loadMoreOffset"
               @scroll="onViewScroll"
               @loadmore="onLoadMore">
