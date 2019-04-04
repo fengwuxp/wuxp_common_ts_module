@@ -1,6 +1,7 @@
 const needIncludeModuleNames = [
     //导入的第三方模块
-    "oak_taro_starter"
+    "oak_taro_starter",
+    "taro-ui"
 ];
 
 const config = {

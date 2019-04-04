@@ -38,7 +38,7 @@
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
-    "browserslist": "^4.3.5",
+    "browserslist": "^4.5.4",
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
