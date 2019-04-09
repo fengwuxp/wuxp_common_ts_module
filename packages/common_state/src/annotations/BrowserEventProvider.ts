@@ -28,6 +28,36 @@ const defaultOptions: EventProviderOptions = {
 };
 
 
+export type ProviderMethod<A = any, R = any> = (...args: A[]) => R;
+
+
+/**
+ * 将函数包装为 provider
+ * @param options
+ * @constructor
+ */
+export const WrapperMethodToProvider = <A = any, R = any, T extends DataProvider | FunctionDataProvider>(options: EventProviderOptions): (func: ProviderMethod<A, R>) =>
+    ProviderMethod<A, Promise<R>> => {
+    const _options = {
+        ...defaultOptions,
+        ...options
+    };
+    return (func: ProviderMethod): ProviderMethod<A, Promise<R>> => {
+        //函数式数据提供者
+        const fnName = func.name;
+        return async (...args): Promise<any> => {
+            const value = wrapperFunctionReturnResult(fnName, _options, await func(...args));
+            pushNextEvent({
+                eventName: genEventName(_options),
+                eventType: _options.eventType.toString(),
+                value
+            });
+            return value;
+        }
+    }
+
+};
+
 /**
  * 事件提供者
  * 用于DataProvider或|FunctionDataProvider上，
@@ -48,70 +78,53 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function (target: T, name: string, descriptor: PropertyDescriptor): T {
+    return function (Provider: T, name: string, descriptor: PropertyDescriptor): T {
 
-        if (target["prototype"] == null) {
-            //函数式数据提供者
-            const _target = target as Function;
-            const fnName = _target.name;
-            return async function (...args) {
-                const value = wrapperFunctionReturnResult(fnName, _options, await _target(...args));
-                pushNextEvent({
-                    eventName: genEventName(_options),
-                    eventType: _options.eventType.toString(),
-                    value
-                });
-                return value;
-            } as any;
+        //@ts-ignore
+        class AutoGenProvider<S = any> extends Provider<S> implements DataProvider {
 
-        } else {
+            /**
+             *
+             * @param initState
+             */
+            constructor(initState?: StateType<S, any>) {
+                super();
+                const proxyInstanceEnhance = ProxyFactory.newProxyInstanceEnhance(this,
+                    (provider: AutoGenProvider, propertyKey: PropertyKey, receiver: any) => {
+                        const action = provider[propertyKey];
 
-            //@ts-ignore
-            class AutoGenProvider<S> extends target<S> implements DataProvider {
+                        return async function (...args) {
 
-                /**
-                 *
-                 * @param initState
-                 */
-                constructor(initState?: StateType<S, any>) {
-                    super();
-                    const proxyInstanceEnhance = ProxyFactory.newProxyInstanceEnhance(this,
-                        (provider: AutoGenProvider, propertyKey: PropertyKey, receiver: any) => {
-                            const action = provider[propertyKey];
+                            const result = await action(...args);
+                            const value = propertyKey === "defaultState" ? result :
+                                wrapperFunctionReturnResult(propertyKey as string, _options, result);
+                            const eventName = genEventName(_options);
+                            pushNextEvent({
+                                eventName,
+                                eventType: _options.eventType.toString(),
+                                value
+                            });
 
-                            return async function (...args) {
+                            return result;
+                        }
 
-                                const result = await action(...args);
-                                const value = propertyKey === "defaultState" ? result :
-                                    wrapperFunctionReturnResult(propertyKey as string, _options, result);
-                                const eventName = genEventName(_options);
-                                pushNextEvent({
-                                    eventName,
-                                    eventType: _options.eventType.toString(),
-                                    value
-                                });
+                    }, (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
 
-                                return result;
-                            }
+                        return async function (...args) {
 
-                        }, (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
+                        }
 
-                            return async function (...args) {
-
-                            }
-
-                        });
-                    //初始化state
-                    (proxyInstanceEnhance as DataProvider).defaultState();
-                    return proxyInstanceEnhance;
-                }
-
+                    });
+                //初始化state
+                (proxyInstanceEnhance as DataProvider).defaultState();
+                return proxyInstanceEnhance;
             }
-
-            //自动生成的Provider
-            return AutoGenProvider as any;
         }
+
+        return AutoGenProvider as T;
     }
+
+
 }
 
 

@@ -1,6 +1,6 @@
 import * as log4js from "log4js";
 import StoreFactory from "../src/store/StoreFactory";
-import {EventProvider} from "../src/annotations/BrowserEventProvider";
+import {EventProvider, WrapperMethodToProvider} from "../src/annotations/BrowserEventProvider";
 import {SubscriptionEventType} from "../src/enums/SubscriptionEventType";
 import {DataProvider} from "../src/provider/DataProvider";
 import {BrowserEventReceiver} from "../src/annotations/BrowserEventReceiver";
@@ -14,10 +14,12 @@ const getIndex = (index: number) => {
     return index;
 };
 
-const _getIndexProvider: (index: number) => Promise<number> = EventProvider({
+type IndexProviderMethod = (index: number) => Promise<number>;
+const _getIndexProvider:IndexProviderMethod = WrapperMethodToProvider<number,number>({
     eventType: SubscriptionEventType.CUSTOMIZED_EVENT,
     eventName: "member"
 })(getIndex);
+
 
 interface SimpleState {
 
@@ -93,13 +95,12 @@ describe("test rxjs event store", () => {
 
     // const simpleEventReceiver: SimpleEventReceiver = (SimpleEventReceiver as any)();
 
-    // simpleEventReceiver.outStateToConsole();
 
     const simpleDataProvider = new SimpleDataProvider();
 
     test("data provider test", async () => {
         const index = await _getIndexProvider(2);
-        // logger.debug(index);
+         logger.debug(index);
 
         simpleDataProvider.loadOrderList();
         simpleDataProvider.queryMember();
