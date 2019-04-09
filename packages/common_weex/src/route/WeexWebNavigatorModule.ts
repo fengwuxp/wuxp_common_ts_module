@@ -1,6 +1,7 @@
 import {WeexNavigatorModule, WeexNavigatorPopOptions, WeexNavigatorPushOptions} from "weex/src/sdk/model/navigator";
 import {VueRouter} from "vue-router/types/router";
 import {parse} from "querystring";
+import {ignoreParamNames} from "../constant/IgnoreParamNames";
 
 
 /**
@@ -37,6 +38,10 @@ export class WeexWebNavigatorModule implements WeexNavigatorModule {
         this.vueRouter.push(location, () => {
             if (callback) {
                 callback();
+                if (options.url.indexOf(`${ignoreParamNames[0]}=true`)) {
+                    //刷新
+                    window.location.reload();
+                }
             }
         });
 
