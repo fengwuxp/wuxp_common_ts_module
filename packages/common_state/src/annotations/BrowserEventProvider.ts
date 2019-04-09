@@ -27,8 +27,10 @@ const defaultOptions: EventProviderOptions = {
     autoStateName: true
 };
 
-
-export type ProviderMethod<A = any, R = any> = (...args: A[]) => R;
+/**
+ * 函数式数据提供者
+ */
+type FunctionDataProvider<A = any, R = any> = (...args: A[]) => R;
 
 
 /**
@@ -36,13 +38,13 @@ export type ProviderMethod<A = any, R = any> = (...args: A[]) => R;
  * @param options
  * @constructor
  */
-export const WrapperMethodToProvider = <A = any, R = any, T extends DataProvider | FunctionDataProvider>(options: EventProviderOptions): (func: ProviderMethod<A, R>) =>
-    ProviderMethod<A, Promise<R>> => {
+export const WrapperMethodToProvider = <A = any, R = any, T extends DataProvider | FunctionDataProvider>(options: EventProviderOptions): (func: FunctionDataProvider<A, R>) =>
+    FunctionDataProvider<A, Promise<R>> => {
     const _options = {
         ...defaultOptions,
         ...options
     };
-    return (func: ProviderMethod): ProviderMethod<A, Promise<R>> => {
+    return (func: FunctionDataProvider): FunctionDataProvider<A, Promise<R>> => {
         //函数式数据提供者
         const fnName = func.name;
         return async (...args): Promise<any> => {
@@ -80,17 +82,14 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
      */
     return function (Provider: T, name: string, descriptor: PropertyDescriptor): T {
 
-        //@ts-ignore
-        class AutoGenProvider<S = any> extends Provider<S> implements DataProvider {
 
-            /**
-             *
-             * @param initState
-             */
-            constructor(initState?: StateType<S, any>) {
+        class AutoGenDataProvider<S = any> extends Provider<S> implements DataProvider {
+
+            constructor() {
                 super();
+                //通过代理返回
                 const proxyInstanceEnhance = ProxyFactory.newProxyInstanceEnhance(this,
-                    (provider: AutoGenProvider, propertyKey: PropertyKey, receiver: any) => {
+                    (provider: AutoGenDataProvider, propertyKey: PropertyKey, receiver: any) => {
                         const action = provider[propertyKey];
 
                         return async function (...args) {
@@ -121,7 +120,7 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
             }
         }
 
-        return AutoGenProvider as T;
+        return AutoGenDataProvider as T;
     }
 
 
