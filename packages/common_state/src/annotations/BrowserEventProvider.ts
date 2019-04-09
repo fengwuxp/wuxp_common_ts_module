@@ -1,9 +1,9 @@
 import {SubscriptionEventType} from "../enums/SubscriptionEventType";
 import {DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
-import {Observer, TeardownLogic} from "rxjs";
 import {pushNextEvent} from "../subscribe/RxjsSubscriber";
-import {AbstractDataProvider} from "../provider/AbstractDataProvider";
 import {BaseEventOptions, genEventName} from "../store/BaseEventOptions";
+import {transformInitialLetterLowercase} from "../../../common_utils/src/string/LetterUtils";
+import ProxyFactory from "common_proxy/src/ProxyFactory";
 
 export interface EventProviderOptions extends BaseEventOptions {
 
@@ -27,6 +27,7 @@ const defaultOptions: EventProviderOptions = {
     autoStateName: true
 };
 
+
 /**
  * 事件提供者
  * 用于DataProvider或|FunctionDataProvider上，
@@ -49,29 +50,62 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
      */
     return function (target: T, name: string, descriptor: PropertyDescriptor): T {
 
-        if (typeof target === "function") {
-
+        if (target["prototype"] == null) {
             //函数式数据提供者
             const _target = target as Function;
             const fnName = _target.name;
             return async function (...args) {
                 const value = wrapperFunctionReturnResult(fnName, _options, await _target(...args));
-                this.__state__ = value;
                 pushNextEvent({
                     eventName: genEventName(_options),
                     eventType: _options.eventType.toString(),
                     value
                 });
+                return value;
             } as any;
 
         } else {
 
             //@ts-ignore
-            class AutoGenProvider extends AbstractDataProvider<any> implements DataProvider {
+            class AutoGenProvider<S> extends target<S> implements DataProvider {
 
-                constructor(state?: StateType<any, any>) {
-                    super(state, _options, new (target as any)());
+                /**
+                 *
+                 * @param initState
+                 */
+                constructor(initState?: StateType<S, any>) {
+                    super();
+                    const proxyInstanceEnhance = ProxyFactory.newProxyInstanceEnhance(this,
+                        (provider: AutoGenProvider, propertyKey: PropertyKey, receiver: any) => {
+                            const action = provider[propertyKey];
+
+                            return async function (...args) {
+
+                                const result = await action(...args);
+                                const value = propertyKey === "defaultState" ? result :
+                                    wrapperFunctionReturnResult(propertyKey as string, _options, result);
+                                const eventName = genEventName(_options);
+                                pushNextEvent({
+                                    eventName,
+                                    eventType: _options.eventType.toString(),
+                                    value
+                                });
+
+                                return result;
+                            }
+
+                        }, (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
+
+                            return async function (...args) {
+
+                            }
+
+                        });
+                    //初始化state
+                    (proxyInstanceEnhance as DataProvider).defaultState();
+                    return proxyInstanceEnhance;
                 }
+
             }
 
             //自动生成的Provider
@@ -99,15 +133,11 @@ export const wrapperFunctionReturnResult = (methodName: string, options: EventPr
     }).forEach((item) => {
         name = name.replace(item, "");
     });
-
     if (name === methodName) {
         return value;
     }
 
-
-    if (value === null) {
-        result[name] = value;
-    }
+    result[transformInitialLetterLowercase(name)] = value;
 
     return result;
 };

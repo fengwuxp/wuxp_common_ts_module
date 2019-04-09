@@ -27,6 +27,9 @@ export default abstract class AbstractEventDrivenStore<T extends EventPayload> i
     //事件接收者
     private eventReceiver: KeyValueDatabase<EventReceiver[]> = getEventReceiverStore();
 
+    //根据事件类型存储数据
+    private eventDataStore: KeyValueDatabase<any> = new Map();
+
     constructor(subscribe: (observer: Observer<T>) => TeardownLogic = rxJsSubscriber) {
 
         const observable = new Observable<T>(subscribe);
@@ -55,11 +58,21 @@ export default abstract class AbstractEventDrivenStore<T extends EventPayload> i
      * @param payload
      */
     protected onNext = (payload: EventPayload) => {
-        const receivers: EventReceiver[] = this.eventReceiver.get(this.genEventKey(payload));
-        if (receivers == null) {
-            return;
+        const key = this.genEventKey(payload);
+        const state = this.eventDataStore.get(key) || {};
+        const receivers: EventReceiver[] = this.eventReceiver.get(key);
+
+        const value = payload.value;
+        const newState = {
+            ...state,
+            ...value
+        };
+        if (receivers != null) {
+            receivers.forEach((receiver) => receiver(newState));
         }
-        receivers.forEach((receiver) => receiver(payload.value));
+
+        this.eventDataStore.set(key, newState);
+
     };
 
     protected onError = (error) => {

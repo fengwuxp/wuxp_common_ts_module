@@ -3,6 +3,7 @@ node_modules
 .idea
 .gradle
 *.iml
+lib
 .temp
 genode
 build

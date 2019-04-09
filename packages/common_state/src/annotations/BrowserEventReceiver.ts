@@ -36,7 +36,7 @@ export function BrowserEventReceiver<T = EventReceiver>(options: EventReceiverOp
 
 
         const receiver: EventReceiver = (...args) => {
-            if (typeof target === "function") {
+            if (target.constructor == null) {
 
                 //函数式数据提供者
                 return (target as Function)(...args);

@@ -8,16 +8,20 @@ import {BrowserEventReceiver} from "../src/annotations/BrowserEventReceiver";
 const logger = log4js.getLogger();
 logger.level = 'debug';
 
-@EventProvider({
-    eventType: SubscriptionEventType.CUSTOMIZED_EVENT,
-    eventName: "home"
-})
+
 const getIndex = (index: number) => {
 
     return index;
 };
 
+const _getIndexProvider: (index: number) => Promise<number> = EventProvider({
+    eventType: SubscriptionEventType.CUSTOMIZED_EVENT,
+    eventName: "member"
+})(getIndex);
+
 interface SimpleState {
+
+    index: number,
 
     member: {
         name: string;
@@ -35,11 +39,24 @@ interface SimpleState {
     eventName: "member"
 })
 class SimpleDataProvider implements DataProvider<SimpleState> {
+    defaultState = <SimpleState>(): SimpleState => {
 
-    queryMember = () => {
+        return {
+            index: 0,
+            member: null,
+            orderList: []
+        } as SimpleState;
+    };
+
+
+    queryMember = (): Promise<{
+        name: string;
+        age: number;
+    }> => {
 
         return Promise.resolve({
-            name: "张三"
+            name: "张三",
+            age: 1
         });
     };
 
@@ -59,10 +76,11 @@ class SimpleDataProvider implements DataProvider<SimpleState> {
 })
 class SimpleEventReceiver {
 
+    private state: SimpleState = null;
 
-    outStateToConsole = () => {
-
-        logger.debug("-->");
+    constructor(state: SimpleState) {
+        this.state = state;
+        logger.debug("state", this.state);
     }
 
 }
@@ -73,20 +91,20 @@ describe("test rxjs event store", () => {
 
     const store = StoreFactory.factory();
 
+    // const simpleEventReceiver: SimpleEventReceiver = (SimpleEventReceiver as any)();
 
-    const simpleEventReceiver:SimpleEventReceiver = new SimpleEventReceiver();
+    // simpleEventReceiver.outStateToConsole();
 
     const simpleDataProvider = new SimpleDataProvider();
 
     test("data provider test", async () => {
-        const index = getIndex(2);
-        logger.debug(index);
-
-        simpleEventReceiver.outStateToConsole();
+        const index = await _getIndexProvider(2);
+        // logger.debug(index);
 
         simpleDataProvider.loadOrderList();
+        simpleDataProvider.queryMember();
 
-        simpleEventReceiver.outStateToConsole();
+
     }, 2 * 1000)
 
 });
