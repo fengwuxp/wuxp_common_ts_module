@@ -12,11 +12,13 @@ export const registerWeexModuleByWeb = () => {
     require("./module/pay/ALiPayModule");
     require("./module/picker/DateTimerPickerModule");
     require("./module/share/ShareModel");
+    require("./module/keyboard/KeyboardModule");
 
     require("./module/Cache");
     require("./module/AppMain");
     require("./module/ImageLoad");
     require("./module/Common");
     require("./module/Photo");
+
 
 };

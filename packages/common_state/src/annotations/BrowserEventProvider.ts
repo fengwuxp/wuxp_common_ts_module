@@ -2,28 +2,29 @@ import {SubscriptionEventType} from "../enums/SubscriptionEventType";
 import {DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
 import {Observer, TeardownLogic} from "rxjs";
 import {pushNextEvent} from "../subscribe/RxjsSubscriber";
-import ProxyFactory from "../../../common_proxy/src/ProxyFactory";
 import {AbstractDataProvider} from "../provider/AbstractDataProvider";
+import {BaseEventOptions, genEventName} from "../store/BaseEventOptions";
 
-export interface EventProviderOptions {
-
-    /**
-     * 事件类型
-     * 默认使用SubscriptionEventType.ROUTE
-     */
-    eventType?: SubscriptionEventType;
+export interface EventProviderOptions extends BaseEventOptions {
 
     /**
-     * 事件名称
-     * eventType=SubscriptionEventType.ROUTE时，默认使用当前pathname
+     * state的名称
      */
-    eventName?: string;
+    stateName?: string;
+
+    /**
+     * 使用自动计算state的名称
+     * 默认true
+     */
+    autoStateName?: boolean;
 }
 
 
 const defaultOptions: EventProviderOptions = {
 
-    eventType: SubscriptionEventType.ROUTE
+    eventType: SubscriptionEventType.ROUTE,
+
+    autoStateName: true
 };
 
 /**
@@ -34,6 +35,11 @@ const defaultOptions: EventProviderOptions = {
  */
 export function EventProvider<T extends DataProvider | FunctionDataProvider>(options: EventProviderOptions): Function {
 
+
+    const _options = {
+        ...defaultOptions,
+        ...options
+    };
 
     /**
      * decorator
@@ -46,16 +52,14 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
         if (typeof target === "function") {
 
             //函数式数据提供者
-
             const _target = target as Function;
             const fnName = _target.name;
-
             return async function (...args) {
-                const value = await _target(...args);
-                // this.state = value;
+                const value = wrapperFunctionReturnResult(fnName, _options, await _target(...args));
+                this.__state__ = value;
                 pushNextEvent({
-                    eventName: parseFunctionNameToEventName(fnName),
-                    eventType: options.eventType.toString(),
+                    eventName: genEventName(_options),
+                    eventType: _options.eventType.toString(),
                     value
                 });
             } as any;
@@ -66,19 +70,28 @@ export function EventProvider<T extends DataProvider | FunctionDataProvider>(opt
             class AutoGenProvider extends AbstractDataProvider<any> implements DataProvider {
 
                 constructor(state?: StateType<any, any>) {
-                    super(state, options, new (target as any)());
+                    super(state, _options, new (target as any)());
                 }
-
             }
+
             //自动生成的Provider
             return AutoGenProvider as any;
         }
     }
 }
 
+
 const methodNamePrefix = ["get", "load", "find", "query"];
 
-export const parseFunctionNameToEventName = (methodName: string) => {
+export const wrapperFunctionReturnResult = (methodName: string, options: EventProviderOptions, value: any) => {
+    const result = {};
+    if (options.stateName) {
+        result[options.stateName] = value;
+        return result;
+    }
+    if (!options.autoStateName) {
+        return value;
+    }
 
     let name = methodName;
     methodNamePrefix.filter((item) => {
@@ -87,7 +100,15 @@ export const parseFunctionNameToEventName = (methodName: string) => {
         name = name.replace(item, "");
     });
 
-    return name;
+    if (name === methodName) {
+        return value;
+    }
 
+
+    if (value === null) {
+        result[name] = value;
+    }
+
+    return result;
 };
 

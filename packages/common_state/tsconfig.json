@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "module": "commonjs",
-    "target": "esnext",
-    "sourceMap": true,
-    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": false,
+    "baseUrl": "./src",
+    "declaration": true,
     "types": [
       "node",
       "jest"

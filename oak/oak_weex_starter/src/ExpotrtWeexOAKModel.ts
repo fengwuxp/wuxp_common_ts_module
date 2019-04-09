@@ -5,7 +5,7 @@ import {ALiPayModule, WexXinPayModule} from "./module/pay";
 import {ThirdLoginModule} from "./module/third";
 import {WeexAppVersionControlModule} from "./module/version";
 import {WeexLetterPigeonPushModule} from "./module/push";
-
+import {WeexKeyboardModule} from "./module/keyboard";
 
 
 const broadcast: WeexBoradcastModule = weex.requireModule("broadcast");  //自定义广播对象
@@ -22,6 +22,7 @@ const thirdLogin: ThirdLoginModule = weex.requireModule("thirdLogin");
 const aliPay: ALiPayModule = weex.requireModule("aliPay");
 const weixinPay: WexXinPayModule = weex.requireModule("weixinPay");
 const naviMap: NaviMapModule = weex.requireModule("naviMap");
+const keyBoard: WeexKeyboardModule = weex.requireModule("keyBoard");
 
 //此处为了导入地方能够进行结构赋值，不能使用 export default
 
@@ -39,5 +40,6 @@ export {
     thirdLogin,
     aliPay,
     weixinPay,
-    naviMap
+    naviMap,
+    keyBoard
 }

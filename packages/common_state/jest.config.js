@@ -1,19 +1,21 @@
-// const {jestConfig} = require("common_test/lib/CommonJestConfig");
-//
-// module.exports = jestConfig;
-
 module.exports = {
     transform: {
-        '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.ts[x]?$': 'ts-jest',
+
     },
     testRegex: '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?|ts?)$',
-    // testRegex: "(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    testPathIgnorePatterns: ["/lib/", "/node_modules/"],
+    testPathIgnorePatterns: ["/lib/", /*"/node_modules/"*/],
+    transformIgnorePatterns: [],
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     collectCoverage: false,
     globals: {
         'ts-jest': {
             tsConfig: './tsconfig.test.json',
+            // 文档地址：https://kulshekhar.github.io/ts-jest/user/config/
+            diagnostics: {
+                warnOnly: true,
+                pathRegex: '(/test/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?|ts?)$'
+            }
         },
     },
 };

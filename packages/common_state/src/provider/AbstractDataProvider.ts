@@ -1,7 +1,10 @@
 import {DataProvider, StateType} from "./DataProvider";
 import ProxyFactory from "common_proxy/src/ProxyFactory";
 import {pushNextEvent} from "../subscribe/RxjsSubscriber";
-import {EventProviderOptions, parseFunctionNameToEventName} from "../annotations/BrowserEventProvider";
+import {
+    EventProviderOptions, wrapperFunctionReturnResult,
+} from "../annotations/BrowserEventProvider";
+import {genEventName} from "../store/BaseEventOptions";
 
 
 export abstract class AbstractDataProvider<S extends object> implements DataProvider<S> {
@@ -27,16 +30,14 @@ export abstract class AbstractDataProvider<S extends object> implements DataProv
             (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
                 return async function (...args) {
                     const action = provider[propertyKey];
-                    const value = await action(...args);
-                    const eventName = parseFunctionNameToEventName(propertyKey as string);
+                    const value = wrapperFunctionReturnResult(propertyKey as string, options, await action(...args));
+                    const eventName = genEventName(options);
                     pushNextEvent({
                         eventName,
                         eventType: options.eventType.toString(),
                         value
                     });
-                    const state = {};
-                    // state[eventName] = value;
-                    provider.setState(state)
+                    provider.setState(value)
                 }
 
             }, (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
