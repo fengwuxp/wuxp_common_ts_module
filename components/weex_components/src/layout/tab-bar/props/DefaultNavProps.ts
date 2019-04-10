@@ -107,6 +107,13 @@ export default {
         }
     },
 
+    dotStyle: {
+        default: {
+            left: "65px",
+            top: "-10px"
+        }
+    },
+
     /**
      * 在导航索引改变之前执行的函数
      */

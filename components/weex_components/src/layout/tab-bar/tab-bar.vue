@@ -17,6 +17,7 @@
                       class="nav-item-text"
                       :style="item.textColor"
                       :value="item.text"></text>
+                <div v-if="item.dot" class="nav-dot" :style="dotStyle"></div>
                 <text class="number-icon"
                       :style="numberDotStyle"
                       v-if="item.number && item.showType===NavShowType.DEFAULT"
@@ -152,6 +153,9 @@
 </script>
 
 <style scoped lang="less">
+
+    @import "../../theme/defualt_theme";
+
     .bottom_nav_container {
         flex-direction: row;
         align-items: flex-end;
@@ -185,11 +189,19 @@
         height: 40px;
         font-size: 22px;
         border-radius: 40px;
-        background-color: #ff0000;
+        background-color: @tab-bar-dot-background-color;
         color: #ffffff;
         text-align: center;
         line-height: 40px;
         font-weight: 700;
+        position: absolute;
+    }
+
+    .nav-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        background-color: @tab-bar-dot-background-color;
         position: absolute;
     }
 </style>
