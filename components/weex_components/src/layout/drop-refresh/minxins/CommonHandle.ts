@@ -105,7 +105,7 @@ export default {
                         result = 0;
                     }
                 }
-                if (result < this.querySize) {
+                if (result < this.querySize || this.querySize == -1) {
                     //查询结束
                     this.queryEnd = true;
                 } else {
