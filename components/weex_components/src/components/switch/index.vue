@@ -138,9 +138,10 @@
                     needLayout: false,
                     delay: 0
                 }, () => {
-                    this.$emit(ON_CHANGE_EVENT_NAME, this.checked);
-                    this.$emit(ON_INPUT_EVENT_NAME, this.checked);
+
                 });
+                this.$emit(ON_CHANGE_EVENT_NAME, this.checked);
+                this.$emit(ON_INPUT_EVENT_NAME, this.checked);
             },
 
             // android不支持阴影
