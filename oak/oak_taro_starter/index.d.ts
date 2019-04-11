@@ -9,25 +9,14 @@ import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
 import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
 import {Signature} from "common_fetch/src/annotations/security/Signature";
 import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
-import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
-import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
-import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
-import TaroJsHolder from "taro_starter/src/TaroJsHolder";
-
-/*-------------------------------------------------------------*/
+import OAKTaroFeignProxyInitializer from "./src/fetch/OAKTaroFeignProxyInitializer";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {FetchRetryOptions, RetryOptions} from "common_fetch/src/FetchRetryOptions";
-import {AppConfig} from "common_config/src/app/AppConfig";
-import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
-import {TaroNavigatorAdapter} from "common_route/src/adapter/taro/TaroNavigatorAdapter";
-
-declare class OAKTaroFeignProxyInitializer implements FeignProxyInitializer {
-
-    constructor(taro: any, appConfig: AppConfig, interceptorList?: FetchInterceptor[]);
-
-    initFeignProxyFactory: () => void;
-}
-
+import TaroJsHolder from "taro_starter/src/TaroJsHolder";
+import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
+import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
+import {TaroNavigatorAdapter} from "taro_starter/src/route/TaroNavigatorAdapter";
+import AppRouterHelper from "taro_starter/src/route/AppRouterHelper";
 
 export {
     Feign,
@@ -42,10 +31,10 @@ export {
     FetchRetry,
     Signature,
     RequestMethod,
-
     OAKTaroFeignProxyInitializer,
     TaroLocalStorage,
     taroDefaultSessionManager,
     TaroNavigatorAdapter,
+    AppRouterHelper,
     TaroJsHolder
 };

@@ -82,5 +82,10 @@ const apiSign = (fields: Array<string>, params: any, clientId: string, clientSec
     //加入clientId 、clientSecret 时间戳参与签名
     value += `clientId=${clientId}&clientSecret=${clientSecret}&timestamp=${timestamp}&channelCode=${channelCode}`;
 
+
+    //TODO 加密规则
+    //1: 按照8位为一个处理块，进行混排
+    //1.1 按照8 - index 用这数值用来做异或或者取反（例如前4位做异或，后四位做取反）
+
     return md5(value);
 };

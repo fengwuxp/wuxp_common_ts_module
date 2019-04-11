@@ -1,0 +1,1 @@
+export {default as AbstractView} from './components/view';

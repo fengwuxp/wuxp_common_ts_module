@@ -10,7 +10,7 @@
     "target": "es5",
     "sourceMap": false,
     "sourceRoot": "",
-    "baseUrl": "./sources",
+    "baseUrl": "./src",
     "outDir": "./lib",
     "declaration": true,
     "importHelpers": true,

@@ -1,6 +1,7 @@
-import {NavigatorAdapter, NavigatorDescriptorObject} from "../../NavigatorAdapter";
+import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
 import {parse, stringify} from "querystring";
-import {handleRedirect} from "../../utils/RedirectRouteUtil";
+import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
+
 
 /**
  * 基于京东taro的导航适配器
@@ -19,7 +20,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         this.prefix = prefix;
     }
 
-    goBack = (num?: number) => this.taro.navigateBack({delta: num});
+    goBack = (num?: number): Promise<void> => this.taro.navigateBack({delta: num});
 
 
     push = (params: NavigatorDescriptorObject): Promise<void> => {
@@ -46,7 +47,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
 
     };
 
-    redirect = (params: NavigatorDescriptorObject) => {
+    redirect = (params: NavigatorDescriptorObject): Promise<void> => {
         return this.taro.redirectTo({
             url: this.generateURL(params)
         });
@@ -73,7 +74,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         }
 
 
-        console.debug("--url-->", url);
+        // console.debug("--url-->", url);
 
         return url;
     }

@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+tsconfig.json
+.babelrc.js
+.temp
+src
+node_modules

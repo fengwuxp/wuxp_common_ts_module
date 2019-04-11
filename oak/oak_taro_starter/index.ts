@@ -9,7 +9,8 @@ import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
 import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
 import {Signature} from "common_fetch/src/annotations/security/Signature";
 import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
-import OAKTaroFeignProxyInitializer from "./fetch/OAKTaroFeignProxyInitializer";
+import OAKTaroFeignProxyInitializer from "./src/fetch/OAKTaroFeignProxyInitializer";
+
 
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {FetchRetryOptions, RetryOptions} from "common_fetch/src/FetchRetryOptions";
@@ -18,7 +19,10 @@ import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 /*-------------------------------------------------------------*/
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
-import {TaroNavigatorAdapter} from "common_route/src/adapter/taro/TaroNavigatorAdapter";
+import {TaroNavigatorAdapter} from "taro_starter/src/route/TaroNavigatorAdapter";
+import AppRouterHelper from "taro_starter/src/route/AppRouterHelper";
+
+
 
 
 export {
@@ -39,5 +43,6 @@ export {
     TaroLocalStorage,
     taroDefaultSessionManager,
     TaroNavigatorAdapter,
+    AppRouterHelper,
     TaroJsHolder
 }
