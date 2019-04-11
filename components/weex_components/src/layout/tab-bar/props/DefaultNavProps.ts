@@ -84,7 +84,9 @@ export default {
      * 导航项样式
      **/
     navItemStyle: {
-        default: {}
+        default: {
+            height: "99px"
+        }
     },
     /**
      * 导航图片样式
@@ -103,14 +105,14 @@ export default {
     numberDotStyle: {
         default: {
             right: "48px",
-            top: "-8px"
+            top: "18px"
         }
     },
 
     dotStyle: {
         default: {
             left: "65px",
-            top: "-10px"
+            top: "18px"
         }
     },
 
