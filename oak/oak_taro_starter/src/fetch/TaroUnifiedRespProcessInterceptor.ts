@@ -2,7 +2,7 @@ import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetch
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_common/src/model/api/ApiResp";
 import StringUtils from "common_utils/src/string/StringUtils";
-import {TaroInterface} from "taro_starter/src/TaroJsHolder";
+import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 
 
 /**
@@ -11,13 +11,13 @@ import {TaroInterface} from "taro_starter/src/TaroJsHolder";
 export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
 
-    private taro: TaroInterface;
+    protected taroHolder: TaroInterfaceHolder;
 
     private toastImageUrl: string;
 
-    constructor(taro: TaroInterface, toastImageUrl?: string) {
+    constructor(toastImageUrl?: string) {
         super();
-        this.taro = taro;
+        this.taroHolder = TaroJsHolder.getTaroHolder();
         this.toastImageUrl = toastImageUrl;
     }
 
@@ -51,7 +51,7 @@ export default class TaroUnifiedRespProcessInterceptor extends AbstractFetchInte
                 } else {
                     config.icon = "none";
                 }
-                this.taro.showToast(config);
+                this.taroHolder.taro.showToast(config);
             }
 
 

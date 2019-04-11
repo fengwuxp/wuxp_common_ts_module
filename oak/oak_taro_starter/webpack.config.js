@@ -5,17 +5,17 @@ const {getWebpackLibraryTargetConfig} = require("common_webpack/lib/library/webp
 
 const config = getWebpackLibraryTargetConfig({
     entry: {
-        index: path.resolve('./', 'index.ts'),
+        index: path.resolve('./src', 'index.ts'),
     },
     production: process.env.production || false,
     plugins: [
         //复制
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, "./index.d.ts"),
-                to: path.resolve(__dirname, "./lib/index.d.ts"),
-            }
-        ])
+        // new CopyWebpackPlugin([
+        //     {
+        //         from: path.resolve(__dirname, "./index.d.ts"),
+        //         to: path.resolve(__dirname, "./lib/index.d.ts"),
+        //     }
+        // ])
     ]
 });
 

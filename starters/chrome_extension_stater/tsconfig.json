@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "module": "esnext",
+    "target": "es5",
+    "sourceMap": true,
+    "allowJs": true,
+    "compileOnSave": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "es6",
+      "es2015",
+      "es2015.promise"
+    ]
+  }
+}

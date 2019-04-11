@@ -8,7 +8,7 @@ export interface RouteView<T> {
      */
     viewPrams?: T;
 
-    pushView: (pathname: string, params: object) => void | Promise<any>;
+    toView: (pathname: string, params: object) => void | Promise<any>;
 
     backView: () => void | Promise<any>;
 

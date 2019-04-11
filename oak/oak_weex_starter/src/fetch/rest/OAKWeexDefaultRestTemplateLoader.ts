@@ -43,7 +43,7 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
             }, new DefaultApiRoutingStrategy(routeMapping),
             new DefaultFetchClient(new WeexAdapter()),
             new FetchInterceptorExecutor(interceptorList));
-        needAuthInterceptor.authHelper = new OAKWeexSyncAuthHelper(defaultRestTemplate);
+        needAuthInterceptor.setAuthHelper(new OAKWeexSyncAuthHelper(defaultRestTemplate));
         return defaultRestTemplate;
     };
 

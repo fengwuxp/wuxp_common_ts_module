@@ -13,7 +13,8 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build:lib": "rm -rf ./lib && cross-env _self=1 webpack --config webpack.config.js --progress --colors",
     "build:lib-production": "rm -rf ./lib && cross-env _self=1 production=true webpack --config webpack.config.js --progress --colors",

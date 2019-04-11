@@ -1,6 +1,7 @@
 import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
 import {parse, stringify} from "querystring";
 import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
+import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 
 
 /**
@@ -10,17 +11,19 @@ import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
 export class TaroNavigatorAdapter implements NavigatorAdapter {
 
 
+    /**
+     * 页面前缀
+     */
     private prefix: string;
 
+    protected taroHolder: TaroInterfaceHolder;
 
-    protected taro: any;
-
-    constructor(taro: any, prefix: string = "pages") {
-        this.taro = taro;
+    constructor(prefix: string = "pages") {
         this.prefix = prefix;
+        this.taroHolder = TaroJsHolder.getTaroHolder();
     }
 
-    goBack = (num?: number): Promise<void> => this.taro.navigateBack({delta: num});
+    goBack = (num?: number): Promise<void> => this.taroHolder.taro.navigateBack({delta: num});
 
 
     push = (params: NavigatorDescriptorObject): Promise<void> => {
@@ -41,14 +44,14 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
             return result as Promise<void>;
         }
 
-        return this.taro.navigateTo({
+        return this.taroHolder.taro.navigateTo({
             url: this.generateURL(params)
         });
 
     };
 
     redirect = (params: NavigatorDescriptorObject): Promise<void> => {
-        return this.taro.redirectTo({
+        return this.taroHolder.taro.redirectTo({
             url: this.generateURL(params)
         });
     };
@@ -62,14 +65,14 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         const paths = pathname.split("?");
 
         const params = {
-            ...(parse(search as string)),
+            ...(parse(search as string) || {}),
             // ...(parse(paths[0])),
             ...(state || {})
         };
 
         let url = `/${this.prefix}${paths[0].startsWith("/") ? "" : "/"}${paths[0]}`;
 
-        if (params != null) {
+        if (Object.keys(params).length > 0) {
             url = `${url}?${stringify(params)}`;
         }
 

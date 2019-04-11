@@ -1,4 +1,3 @@
-import "common_fetch/types/index.d.ts";
 import "common_fetch/src/fetch.promise";
 import {Feign} from "common_fetch/src/annotations/Feign";
 import {RequestMapping} from "common_fetch/src/annotations/mapping/RequestMapping";
@@ -9,7 +8,7 @@ import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
 import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
 import {Signature} from "common_fetch/src/annotations/security/Signature";
 import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
-import OAKTaroFeignProxyInitializer from "./src/fetch/OAKTaroFeignProxyInitializer";
+import OAKTaroFeignProxyInitializer from "./fetch/OAKTaroFeignProxyInitializer";
 
 
 import {FetchOptions} from "common_fetch/src/FetchOptions";
@@ -20,7 +19,7 @@ import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
 import {TaroNavigatorAdapter} from "taro_starter/src/route/TaroNavigatorAdapter";
-import AppRouterHelper from "taro_starter/src/route/AppRouterHelper";
+import TaroAppRouterHelper from "taro_starter/src/route/TaroAppRouterHelper";
 
 
 
@@ -43,6 +42,6 @@ export {
     TaroLocalStorage,
     taroDefaultSessionManager,
     TaroNavigatorAdapter,
-    AppRouterHelper,
+    TaroAppRouterHelper,
     TaroJsHolder
 }

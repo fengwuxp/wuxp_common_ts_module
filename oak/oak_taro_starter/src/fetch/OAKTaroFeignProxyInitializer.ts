@@ -32,12 +32,9 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
     private taro: TaroInterface;
 
     constructor(taro: TaroInterface, appConfig: AppConfig, interceptorList?: FetchInterceptor[],) {
-        if (taro) {
-            //设置taro的持有者
-            TaroJsHolder.TARO = taro;
-            this.taro = taro;
+        //设置taro的持有者
+        TaroJsHolder.setTaroHolder(taro);
 
-        }
         const routeMapping = {};
         routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
         this.routeMapping = routeMapping;
@@ -49,19 +46,18 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
         const needAuthInterceptor = new NeedAuthInterceptor();
         const interceptorList = [
-            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar(this.taro)),
+            new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar()),
             needAuthInterceptor,
             new DefaultTransformDateInterceptor(),
-            new TaroUnifiedRespProcessInterceptor(this.taro)
+            new TaroUnifiedRespProcessInterceptor()
         ];
 
         const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
-            this.taro,
             this.routeMapping,
             interceptorList);
 
         //设置template
-        needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null), this.taro);
+        needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null)) ;
 
         if (this.interceptorList == null) {
 

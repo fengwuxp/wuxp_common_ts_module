@@ -70,6 +70,9 @@ class TestSyncAuthHelper implements SyncAuthHelper {
     protected lockExecutor: LockExecutor = new LockExecutor();
 
 
+    constructor() {
+    }
+
     isToAuthView: (data: FetchResponse, options: FetchOptions) => Promise<FetchResponse>;
 
     lockExecute = (): Promise<Member> => {

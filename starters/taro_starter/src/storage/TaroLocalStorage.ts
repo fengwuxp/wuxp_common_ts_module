@@ -1,6 +1,6 @@
 import {LocalStorage} from "common_utils/src/storage/LocalStorage";
 import {LocalStorageOptions} from "common_utils/src/storage/LocalStorage";
-import TaroJsHolder from "../TaroJsHolder";
+import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 
 
 /**
@@ -8,14 +8,20 @@ import TaroJsHolder from "../TaroJsHolder";
  */
 class TaroLocalStorage implements LocalStorage {
 
+    protected taroHolder: TaroInterfaceHolder;
+
+
+    constructor() {
+        this.taroHolder = TaroJsHolder.getTaroHolder();
+    }
 
     getKeys = (): Promise<string[]> => Promise.reject("not support get keys");
 
-    getStorage = <T = string>(key: string): Promise<T> => TaroJsHolder.TARO.getStorage({key}).then(({data}) => data as any);
+    getStorage = <T = string>(key: string): Promise<T> => this.taroHolder.taro.getStorage({key}).then(({data}) => data as any);
 
     removeStorage = (key: string | string[]): Promise<string[]> => {
         //单个keys的移除
-        const removeByKey = (keyName: string) => TaroJsHolder.TARO.removeStorage({key: keyName});
+        const removeByKey = (keyName: string) => this.taroHolder.taro.removeStorage({key: keyName});
         let keys: string[];
         if (Array.isArray(key)) {
             keys = [...key];
@@ -32,7 +38,7 @@ class TaroLocalStorage implements LocalStorage {
         // } else {
         //     d = data;
         // }
-        return TaroJsHolder.TARO.setStorage({
+        return this.taroHolder.taro.setStorage({
             key,
             data
         });

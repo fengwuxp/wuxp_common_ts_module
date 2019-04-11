@@ -1,32 +1,21 @@
 import AppRouter from "./AppRouter";
+import {AppRouterHelper} from "common_route/src/helper/AppRouterHelper";
 
 
-interface ViewParams {
+class WeexAppRouterHelper implements AppRouterHelper {
 
-    /**
-     * 查询参数
-     */
-    queryParams?: {
-        [k: string]: any
-    },
 
-    /**
-     * 页面状态
-     */
-    state?: {
-        [k: string]: any
-    }
-}
-
-export default class AppRouterHelper {
-    static toView(pathname: string, viewPrams?: ViewParams) {
+    toView = (pathname: string, viewPrams?: ViewParams) => {
         return AppRouter.toView({
             pathname,
             ...(viewPrams || {})
         });
-    }
+    };
 
-    static backView() {
-        AppRouter.back();
-    }
+    redirectView = this.toView;
+
+
+    backView = () => AppRouter.back();
 }
+
+export default new WeexAppRouterHelper();
