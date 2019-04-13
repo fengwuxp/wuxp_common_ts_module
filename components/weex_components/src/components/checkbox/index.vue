@@ -64,7 +64,7 @@
         },
         data() {
             return {
-                checked: this.defaultChecked
+                checked: false
             }
         },
         computed: {
@@ -98,15 +98,26 @@
         },
         methods: {
             handle() {
-                const {checked, disabled, index} = this;
+                const {checked, disabled} = this;
                 if (disabled) {
                     return;
                 }
                 this.checked = !checked;
-                const event = {checked, index};
+                this.emitEvent();
+            },
+
+            emitEvent() {
+                const {checked, index} = this;
+                const event = {
+                    checked, index
+                };
                 this.$emit(ON_CHANGE_EVENT_NAME, event);
                 this.$emit(ON_INPUT_EVENT_NAME, checked);
             }
+        },
+        beforeMount() {
+            this.checked = this.defaultChecked;
+            this.emitEvent();
         }
     }
 </script>

@@ -30,7 +30,7 @@ const defaultOptions: EventProviderOptions = {
 /**
  * 函数式数据提供者
  */
-type FunctionDataProvider<A = any, R = any> = (...args: A[]) => R;
+type FunctionDataProvider<A = any, R = any> = (params:A) => R;
 
 
 /**

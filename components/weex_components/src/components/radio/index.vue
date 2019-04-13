@@ -152,6 +152,9 @@
             isChecked({value}) {
                 return this.value === value;
             }
+        },
+        beforeMount() {
+            this.emitEvent();
         }
     }
 </script>

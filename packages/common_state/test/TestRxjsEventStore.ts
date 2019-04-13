@@ -14,12 +14,12 @@ const getIndex = (index: number) => {
     return index;
 };
 
-type IndexProviderMethod = (index: number) => Promise<number>;
-const _getIndexProvider:IndexProviderMethod = WrapperMethodToProvider<number,number>({
+// type IndexProviderMethod = (index: number) => Promise<number>;
+
+const _getIndexProvider= WrapperMethodToProvider<number,number>({
     eventType: SubscriptionEventType.CUSTOMIZED_EVENT,
     eventName: "member"
 })(getIndex);
-
 
 interface SimpleState {
 
