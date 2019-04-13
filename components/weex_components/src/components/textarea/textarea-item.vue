@@ -113,7 +113,7 @@
         // },
         methods: {
             inputText({value}) {
-                this.setValueInner(value)
+                this.setValueAndEmitterChangeEvent(value)
 
             },
 
