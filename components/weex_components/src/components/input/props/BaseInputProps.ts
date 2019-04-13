@@ -110,7 +110,9 @@ export default {
      * 或者是返回一个新的值
      */
     checkInput: {
-        default: () => (val) => this.value === val
+        default: () => function (val) {
+            return this.value !== val;
+        }
     },
 
     /**
