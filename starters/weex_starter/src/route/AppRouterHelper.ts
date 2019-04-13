@@ -1,11 +1,11 @@
 import AppRouter from "./AppRouter";
-import {AppRouterHelper} from "common_route/src/helper/AppRouterHelper";
+import {AppRouterHelper,RouteViewParams} from "common_route/src/helper/AppRouterHelper";
 
 
 class WeexAppRouterHelper implements AppRouterHelper {
 
 
-    toView = (pathname: string, viewPrams?: ViewParams) => {
+    toView = (pathname: string, viewPrams?: RouteViewParams) => {
         return AppRouter.toView({
             pathname,
             ...(viewPrams || {})
@@ -15,7 +15,7 @@ class WeexAppRouterHelper implements AppRouterHelper {
     redirectView = this.toView;
 
 
-    backView = () => AppRouter.back();
+    backView = () => AppRouter.back() as Promise<void>;
 }
 
 export default new WeexAppRouterHelper();

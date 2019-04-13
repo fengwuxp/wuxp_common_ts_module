@@ -42,7 +42,7 @@ export default {
     /**
      * 标签容器样式
      */
-    labelContainerStyle:{
+    labelContainerStyle: {
         default: () => ({})
     },
 
@@ -110,7 +110,7 @@ export default {
      * 或者是返回一个新的值
      */
     checkInput: {
-        default: () => (val) => true
+        default: () => (val) => this.value === val
     },
 
     /**

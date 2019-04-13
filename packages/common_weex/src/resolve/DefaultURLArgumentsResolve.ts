@@ -23,7 +23,7 @@ export default class DefaultURLArgumentsResolve implements URLArgumentsResolve {
      * @param {boolean} hexEncoding
      * @returns {string}
      */
-    public argumentsToString = (params: object = {}, hexEncoding: boolean = true): string => {
+    public argumentsToString = (params: any = {}, hexEncoding: boolean = true): string => {
 
 
         let queryString: string = "";
