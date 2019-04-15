@@ -2,6 +2,7 @@ import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/Navi
 import {parse, stringify} from "querystring";
 import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
 import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
+import {setNextViewState} from "./PageStatTransferUtil";
 
 
 /**
@@ -29,11 +30,11 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     push = (params: NavigatorDescriptorObject): Promise<void> => {
 
         const {pathname, state, queryParams, search} = params;
-        // const paths = pathname ? pathname.split("?") : [];
+        const paths = pathname ? pathname.split("?") : [];
         const result = handleRedirect(this, {
             pathname,
             queryParams: {
-                // ...(parse(paths[0])),
+                ...(parse(paths[1] || "") || {}),
                 ...parse(search),
                 ...(queryParams || {}),
             },
@@ -44,15 +45,19 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
             return result as Promise<void>;
         }
 
+        const url = this.generateURL(params);
+        setNextViewState(state);
         return this.taroHolder.taro.navigateTo({
-            url: this.generateURL(params)
+            url,
         });
 
     };
 
     redirect = (params: NavigatorDescriptorObject): Promise<void> => {
+        const url = this.generateURL(params);
+        setNextViewState(params.state);
         return this.taroHolder.taro.redirectTo({
-            url: this.generateURL(params)
+            url
         });
     };
 
@@ -60,14 +65,14 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     protected generateURL = (navigatorDescriptorObject: NavigatorDescriptorObject): string => {
 
 
-        const {pathname, state, search} = navigatorDescriptorObject;
+        const {pathname, search, queryParams} = navigatorDescriptorObject;
 
         const paths = pathname.split("?");
 
         const params = {
             ...(parse(search as string) || {}),
-            // ...(parse(paths[0])),
-            ...(state || {})
+            ...(parse(paths[1] || "") || {}),
+            ...(queryParams || {})
         };
 
         let url = `/${this.prefix}${paths[0].startsWith("/") ? "" : "/"}${paths[0]}`;
@@ -77,7 +82,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         }
 
 
-        // console.debug("--url-->", url);
+        console.debug("--url-->", url);
 
         return url;
     }

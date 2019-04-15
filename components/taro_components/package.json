@@ -29,7 +29,7 @@
   "author": "wuxp",
   "license": "ISC",
   "keywords": [],
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^10.9.4",
     "@tarojs/async-await": "^1.2.15",
     "@tarojs/components": "^1.2.15",
@@ -51,16 +51,14 @@
     "@tarojs/webpack-runner": "^1.2.15",
     "@types/react": "^16.7.18",
     "@types/webpack-env": "^1.13.9",
+    "csstype": "^2.6.0",
     "common_config": "^0.0.1",
     "common_icons": "^0.0.1",
     "common_route": "^0.0.1",
     "common_style": "^0.0.1",
     "compress_image": "^0.0.1",
     "oak_taro_starter": "^0.0.1",
-    "taro-ui": "^2.0.2"
-  },
-  "devDependencies": {
-    "csstype": "^2.6.0"
+    "taro-ui": "^2.1.0"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }
