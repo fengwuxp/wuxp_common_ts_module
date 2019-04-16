@@ -38,7 +38,7 @@ export class WeexWebNavigatorModule implements WeexNavigatorModule {
         this.vueRouter.push(location, () => {
             if (callback) {
                 callback();
-                if (options.url.indexOf(`${ignoreParamNames[0]}=true`)) {
+                if (options.url.indexOf(`${ignoreParamNames[0]}=true`) >= 0) {
                     //刷新
                     window.location.reload();
                 }

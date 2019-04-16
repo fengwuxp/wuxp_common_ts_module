@@ -40,9 +40,9 @@ class TaroAppRouterHelper implements AppRouterHelper {
      * 初始化页面状态
      * @param viewInstance
      */
-    initViewRouteState = <T = any>(viewInstance: any): Promise<ViewRouteState> => {
+    initViewRouteState = <Q = any, S = any, P = any, T = any>(viewInstance: any): Promise<ViewRouteState<Q, S, P>> => {
 
-        return transferViewState().then((viewState) => {
+        return transferViewState().then((viewState: S) => {
 
             return {
                 viewParams: viewInstance.$router.params,

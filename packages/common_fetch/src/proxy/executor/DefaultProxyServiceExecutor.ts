@@ -71,12 +71,12 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             url: requestURL,
             headers,
             data: data
-        };
+        } as BaseFetchOptions;
         if (requestMapping) {
             //进行数据合并
-            fetchOptions.method = requestMapping.method;
-            fetchOptions.timeout = requestMapping.timeout;
-            fetchOptions.contentType = requestMapping.produces[0];
+            fetchOptions.method = fetchOptions.method || requestMapping.method;
+            fetchOptions.timeout = fetchOptions.timeout || requestMapping.timeout;
+            fetchOptions.contentType = fetchOptions.contentType || requestMapping.produces[0];
 
             const consume = requestMapping.consumes[0];
             if (consume === MediaType.JSON_UTF8) {

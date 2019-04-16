@@ -137,6 +137,11 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             options.contentType = this.templateConfig.produces[0] || MediaType.JSON_UTF8;
         }
 
+        if (options.timeout == null) {
+            //请求提交的数据类型
+            options.timeout = this.templateConfig.timeout;
+        }
+
         if (options.responseType == null) {
             //默认使用json
             options.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;

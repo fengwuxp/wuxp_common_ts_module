@@ -62,7 +62,7 @@ export class WeexAdapter extends AbstractFetchAdapter<WebFetchOptions> {
 
         //WEEX stream对象 https://weex.apache.org/cn/references/modules/stream.html
 
-        let reqMethod = RequestMethod[method];
+        const reqMethod = RequestMethod[method];
 
         return {
             //请求方法get post
