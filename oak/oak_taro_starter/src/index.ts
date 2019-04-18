@@ -19,9 +19,8 @@ import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
 import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
 import {TaroNavigatorAdapter} from "taro_starter/src/route/TaroNavigatorAdapter";
-import TaroAppRouterHelper,{ViewRouteState} from "taro_starter/src/route/TaroAppRouterHelper";
-
-
+import TaroAppRouterHelper, {ViewRouteState} from "taro_starter/src/route/TaroAppRouterHelper";
+import {getAppletImageResourceUrl, getAppletFontResourceUrl} from "taro_starter/src/resources/ResourcePathParser";
 
 
 export {
@@ -44,5 +43,7 @@ export {
     TaroNavigatorAdapter,
     TaroAppRouterHelper,
     TaroJsHolder,
-    ViewRouteState
+    ViewRouteState,
+    getAppletImageResourceUrl,
+    getAppletFontResourceUrl
 }

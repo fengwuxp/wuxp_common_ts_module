@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
+
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
