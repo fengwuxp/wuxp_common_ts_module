@@ -1,4 +1,4 @@
-import {RequestDataEncoder} from './RequestDataEncoder';
+import {RequestDataEncoder} from '../codec/RequestDataEncoder';
 import {FileUploadStrategy} from "../transfer/FileTransmitter";
 import {NeedAutoUploadOptions} from "../annotations/upload/AutoUpload";
 import {FeignProxyApiServiceMethodConfig} from "./feign/FeignProxy";
@@ -32,7 +32,7 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
     }
 
 
-    async encode(request: any, options: FeignProxyApiServiceMethodConfig): Promise<any> {
+    async encode(request: any, config: FeignProxyApiServiceMethodConfig): Promise<any> {
 
 
         //找出要上传的文件对象，加入到上传的队列中
@@ -42,7 +42,7 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
         }> = [];
         for (const key in request) {
             const val = request[key];
-            if (this.attrIsNeedUpload(key, val, options.autoUploadOptions)) {
+            if (this.attrIsNeedUpload(key, val, config.autoUploadOptions)) {
                 uploadQueue.push({
                     key,
                     value: [val]
@@ -79,7 +79,7 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
     };
 
 
-    needExecute = (options: FetchOptions) => {
+    needExecute = (options: FetchOptions, config: FeignProxyApiServiceMethodConfig) => {
 
 
         return this.supportRequestMethods.indexOf(options.method) >= 0;

@@ -8,11 +8,12 @@ import {RestTemplateLoader} from '../../template/RestTemplateLoader';
 import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
 import {RequestURLResolver} from "../../resolve/url/RequestURLResolver";
 import {RequestHeaderResolver} from "../../resolve/header/RequestHeaderResolver";
-import {RequestDataEncoder} from "../RequestDataEncoder";
+import {RequestDataEncoder} from "../../codec/RequestDataEncoder";
 import {ProxyUnifiedTransformRequestFileObjectEncoder} from "../ProxyUnifiedTransformRequestFileObjectEncoder";
 import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy";
 import {defaultApiModuleName} from "../../constant/FeignConstVar";
 import {BaseFetchOptions} from "../../BaseFetchOptions";
+import {ResponseDataDecoder} from "../../codec/ResponseDataDecoder";
 
 /**
  * 默认的代理执行器
@@ -24,7 +25,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 apiSignatureStrategy: ApiSignatureStrategy,
                 requestURLResolver?: RequestURLResolver,
                 requestHeaderResolver?: RequestHeaderResolver,
-                requestEncoders?: Array<RequestDataEncoder>) {
+                requestEncoders?: Array<RequestDataEncoder>,
+                responseDecoders?: Array<ResponseDataDecoder>) {
         super(restTemplateLoader,
             apiSignatureStrategy,
             requestURLResolver,
@@ -34,7 +36,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 new ProxyUnifiedTransformRequestFileObjectEncoder(
                     new DefaultFileUploadStrategy(restTemplateLoader.load(defaultApiModuleName))
                 )
-            ]);
+            ],
+            responseDecoders);
     }
 
     async execute(apiService: FeignProxy, methodName: string, ...args): Promise<any> {
@@ -62,7 +65,8 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
 
         //请求requestMapping
-        const {requestMapping, signature, retryOptions} = apiService.getServiceMethodConfig(methodName);
+        const serviceMethodConfig = apiService.getServiceMethodConfig(methodName);
+        const {requestMapping, signature, retryOptions} = serviceMethodConfig;
 
 
         //解析参数生成 options，并提交请求
@@ -91,11 +95,11 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         //transform request data encoder
         for (const encoder of this.requestEncoders) {
-            if (!encoder.needExecute(options)) {
+            if (!encoder.needExecute(options, serviceMethodConfig)) {
                 continue;
             }
             try {
-                data = await encoder.encode(data, apiService.getServiceMethodConfig(methodName));
+                data = await encoder.encode(data, serviceMethodConfig);
             } catch (e) {
                 console.error("编码转换出现异常", e);
             }
@@ -119,8 +123,20 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //获取请求template
         const restTemplate = this.getTemplate(apiService.feign);
 
+        let response = await restTemplate.fetch(fetchOptions);
+        if (response == null) {
+            return response;
+        }
 
-        return restTemplate.fetch(fetchOptions);
+        //加入数据解码
+        for (const decoder of this.responseDecoders) {
+            if (!decoder.needExecute(options, serviceMethodConfig)) {
+                continue;
+            }
+            response = decoder.decode(response, serviceMethodConfig);
+        }
+
+        return response;
     }
 
 

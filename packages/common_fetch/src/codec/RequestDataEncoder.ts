@@ -1,5 +1,5 @@
-
 import {FetchOptions} from "../FetchOptions";
+import {FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 
 /**
  *  request data encoder
@@ -18,5 +18,5 @@ export interface RequestDataEncoder<T = any> {
      * 是否需要执行
      * @param options
      */
-    needExecute:(options:FetchOptions)=>boolean;
+    needExecute: (options: FetchOptions, config: FeignProxyApiServiceMethodConfig) => boolean;
 }

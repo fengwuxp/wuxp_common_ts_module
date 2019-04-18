@@ -1,4 +1,5 @@
 import {BaseFetchOptions} from "./BaseFetchOptions";
+import {DataObfuscationOptions} from "./annotations/security/DataObfuscation";
 
 /**
  * 请求配置
@@ -79,9 +80,16 @@ export interface FetchOptions extends BaseFetchOptions {
      */
     progressBarOptions?: ProgressBarOptions;
 
+    /**
+     * 数据混淆配置
+     */
+    dataObfuscationOptions?: DataObfuscationOptions;
+
 }
 
-
+/**
+ * 请求进度条配置
+ */
 export interface ProgressBarOptions {
 
 
@@ -157,3 +165,5 @@ export interface FetchContext<T = any> {
      */
     resp: T
 }
+
+

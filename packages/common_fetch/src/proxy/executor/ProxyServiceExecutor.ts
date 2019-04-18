@@ -8,7 +8,8 @@ import SimpleRequestHeaderResolver from "../../resolve/header/SimpleRequestHeade
 import {FeignProxy} from "../feign/FeignProxy";
 import {ProxyApiService} from "../ProxyApiService";
 import {ApiSignatureStrategy} from "../../signature/ApiSignatureStrategy";
-import {RequestDataEncoder} from "../RequestDataEncoder";
+import {RequestDataEncoder} from "../../codec/RequestDataEncoder";
+import {ResponseDataDecoder} from "../../codec/ResponseDataDecoder";
 
 
 /**
@@ -40,6 +41,11 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
     //在代理中执行 encoder
     protected requestEncoders: Array<RequestDataEncoder>;
 
+    /**
+     * 在代理中执行decoder
+     */
+    protected responseDecoders: Array<ResponseDataDecoder>;
+
     //加载器
     private restTemplateLoader: RestTemplateLoader;
 
@@ -51,17 +57,20 @@ export abstract class AbstractProxyServiceExecutor implements ProxyServiceExecut
      * @param requestURLResolver     请求url 解析
      * @param requestHeaderResolver  请求头解析
      * @param requestEncoders        请求数据编码器
+     * @param responseDecoders       请求数据解码器
      */
     constructor(restTemplateLoader: RestTemplateLoader,
                 apiSignatureStrategy: ApiSignatureStrategy,
                 requestURLResolver?: RequestURLResolver,
                 requestHeaderResolver?: RequestHeaderResolver,
-                requestEncoders?: Array<RequestDataEncoder>) {
+                requestEncoders?: Array<RequestDataEncoder>,
+                responseDecoders?: Array<ResponseDataDecoder>) {
         this.restTemplateLoader = restTemplateLoader;
         this.apiSignatureStrategy = apiSignatureStrategy;
         this.requestHeaderResolver = requestHeaderResolver || new SimpleRequestHeaderResolver();
         this.requestURLResolver = requestURLResolver || new SimpleRequestURLResolver();
         this.requestEncoders = requestEncoders || [];
+        this.responseDecoders = responseDecoders || [];
     }
 
     /**

@@ -4,6 +4,9 @@ import {RequestMappingOptions} from "../../annotations/mapping/Mapping";
 import {SignatureOptions} from "../../annotations/security/Signature";
 import {RetryOptions} from "../../FetchRetryOptions";
 import {NeedAutoUploadOptions} from "../../annotations/upload/AutoUpload";
+import {DataObfuscationOptions} from "../../annotations/security/DataObfuscation";
+
+;
 
 
 /**
@@ -37,6 +40,10 @@ export interface FeignProxyApiServiceMethodConfig {
      */
     autoUploadOptions?: NeedAutoUploadOptions;
 
+    /**
+     * 数据混淆配置
+     */
+    dataObfuscationOptions?: DataObfuscationOptions;
 }
 
 /**
