@@ -2,7 +2,6 @@ import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInit
 import {RestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
 import OAKTaroDefaultRestTemplateLoader from "./OAKTaroDefaultRestTemplateLoader";
 import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
-import {oakEnv} from "oak_common/src/env/OAKEnvVar";
 import OakApiSignatureStrategy from "oak_common/src/fetch/sign/OakApiSignatureStrategy";
 import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
 import {AppConfig} from "common_config/src/app/AppConfig";
@@ -17,6 +16,14 @@ import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExe
 import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
 import DefaultTransformDateInterceptor from "common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
 
+interface OAKEnvVar {
+
+    clientId: string;
+
+    clientSecret: string;
+
+    // channelCode: string;
+}
 
 /**
  * taro feign proxy
@@ -29,11 +36,15 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
     private interceptorList: FetchInterceptor[];
 
-    private taro: TaroInterface;
+    private oakEnvVar: OAKEnvVar;
 
-    constructor(taro: TaroInterface, appConfig: AppConfig, interceptorList?: FetchInterceptor[],) {
+    constructor(taro: TaroInterface,
+                appConfig: AppConfig,
+                oakEnvVar: OAKEnvVar,
+                interceptorList?: FetchInterceptor[],) {
         //设置taro的持有者
         TaroJsHolder.setTaroHolder(taro);
+        this.oakEnvVar = oakEnvVar;
 
         const routeMapping = {};
         routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
@@ -57,19 +68,23 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             interceptorList);
 
         //设置template
-        needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null)) ;
+        needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null));
 
         if (this.interceptorList == null) {
 
             this.interceptorList = interceptorList
         }
 
+        // const oakEnv: {
+        //     clientId?: string;
+        //     clientSecret?: string;
+        // } = process.env.OAK || {} as any;
 
         FeignProxyExecutorHolder.registerDefaultExecutor(new DefaultProxyServiceExecutor(
             templateLoader,
             new OakApiSignatureStrategy(
-                oakEnv.clientId,
-                oakEnv.clientSecret,
+                this.oakEnvVar.clientId,
+                this.oakEnvVar.clientSecret,
                 "WX_MIN_APP"
             )
         ));
