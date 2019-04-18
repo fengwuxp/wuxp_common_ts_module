@@ -35,7 +35,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
             pathname,
             queryParams: {
                 ...(parse(paths[1] || "") || {}),
-                ...parse(search),
+                // ...parse(search),
                 ...(queryParams || {}),
             },
             state
@@ -70,7 +70,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         const paths = pathname.split("?");
 
         const params = {
-            ...(parse(search as string) || {}),
+            // ...(parse(search as string) || {}),
             ...(parse(paths[1] || "") || {}),
             ...(queryParams || {})
         };

@@ -50,7 +50,14 @@ class TaroAppRouterHelper implements AppRouterHelper {
                 viewState
             }
         })
-    }
+    };
+
+    /**
+     * 回到主页
+     */
+    // toHome = () => {
+    //     return this.toView("index/index");
+    // }
 }
 
 export default new TaroAppRouterHelper();
