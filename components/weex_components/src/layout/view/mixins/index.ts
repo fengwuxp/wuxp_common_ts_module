@@ -14,7 +14,7 @@ CommonThemeControl.injectThemes(weexTheme);
  */
 const getViewDefaultProps = () => {
 
-    const {immersiveBottomBarColor, immersiveStatusBarColor} = AppConfigRegistry.getLayoutConfig();
+    const {immersiveBottomBarColor, immersiveStatusBarBgImage, immersiveBottomBarBgImage, immersiveStatusBarColor} = AppConfigRegistry.getLayoutConfig();
     const navBarOptions = AppConfigRegistry.getNavBarOptions();
 
     return {
@@ -32,6 +32,19 @@ const getViewDefaultProps = () => {
             type: Boolean
         },
 
+        /**
+         * 沉浸式导航栏背景图片
+         */
+        immersiveStatusBarBgImage: {
+            default: typeof immersiveStatusBarBgImage === "function" ? immersiveStatusBarBgImage() : immersiveStatusBarBgImage
+        },
+
+        /**
+         * 沉浸式bottom bar 背景图片
+         */
+        immersiveBottomBarBgImage: {
+            default: typeof immersiveBottomBarBgImage === "function" ? immersiveBottomBarBgImage() : immersiveBottomBarBgImage
+        },
         /**
          * 沉浸式导航栏颜色
          */
@@ -114,6 +127,7 @@ export default {
             }
         },
 
+
         /**
          * 沉浸式导航栏
          */
@@ -121,6 +135,13 @@ export default {
             return {
                 width: `${weexTheme["render-width"]}px`,
                 backgroundColor: this.immersiveStatusBarColor,
+                height: `${this.immersiveStatusBarHeight}px`
+            }
+        },
+
+        immersiveStatusBarBgImageStyle() {
+            return {
+                width: `${weexTheme["render-width"]}px`,
                 height: `${this.immersiveStatusBarHeight}px`
             }
         },

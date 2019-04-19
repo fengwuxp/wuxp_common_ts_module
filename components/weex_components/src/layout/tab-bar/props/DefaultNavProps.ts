@@ -45,9 +45,9 @@ export default {
             return {
                 backgroundColor: "#ffffff",
                 height: "100px",
-                borderWidth: "1px",
-                borderColor: "#e6e6e6",
-                borderStyle: "solid"
+                borderTopWidth: "1px",
+                borderTopColor: "#e6e6e6",
+                borderTopStyle: "solid"
             };
         }
     },

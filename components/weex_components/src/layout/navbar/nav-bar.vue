@@ -6,6 +6,7 @@
                   :enableImmersive="enableImmersive"
                   :navBarStyle="navBarStyle"
                   :rightStyle="rightStyle">
+
         <div slot="nav-bar-left"
              v-if="showBack"
              :style="leftStyle"
@@ -58,6 +59,9 @@
                     return history.length > 1;
                 }
                 return true;
+            },
+            enableImmersive() {
+                return false;
             }
         },
         methods: {

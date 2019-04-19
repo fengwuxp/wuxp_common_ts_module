@@ -34,6 +34,7 @@ export interface LayoutConfig {
      */
     bodyStyle: CSS.Properties<string | number>;
 
+
     /**
      * 沉浸式状态栏颜色
      */
@@ -43,6 +44,16 @@ export interface LayoutConfig {
      * 沉浸式bottom bar 颜色
      */
     immersiveBottomBarColor?: CSS.BackgroundColorProperty;
+
+    /**
+     * 沉浸式导航栏背景图
+     */
+    immersiveStatusBarBgImage?: () => string | string;
+
+    /**
+     * 沉浸式bottom bar背景图片
+     */
+    immersiveBottomBarBgImage?: () => string | string;
 }
 
 
@@ -54,7 +65,7 @@ export interface NavBarStyleOptions {
     /**
      * 导航栏背景图
      */
-    backgroundImage?: string;
+    backgroundImage?: () => string | string;
 
     /**
      * 返回图标

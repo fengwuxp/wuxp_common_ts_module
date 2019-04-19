@@ -1,5 +1,6 @@
 import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
 import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
+import CommonThemeControl from "common_style/src/CommonThemeControl";
 
 
 /**
@@ -8,6 +9,7 @@ import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
 export const getAppHeaderBaseProps = () => {
 
     const navBarOptions = AppConfigRegistry.getNavBarOptions() || {} as NavBarStyleOptions;
+    const navBarHeight = 100;//CommonThemeControl.getStyleAttrByName("nav-bar-height");
     return {
 
 
@@ -39,7 +41,7 @@ export const getAppHeaderBaseProps = () => {
          * 背景图
          */
         backgroundImage: {
-            default: navBarOptions.backgroundImage,
+            default: typeof navBarOptions.backgroundImage === "function" ? navBarOptions.backgroundImage() : navBarOptions.backgroundImage,
             type: String
         },
 
@@ -56,7 +58,7 @@ export const getAppHeaderBaseProps = () => {
          */
         leftStyle: {
             default: () => (navBarOptions.leftStyle || {
-                height: 100,
+                height: navBarHeight,
                 width: 120
             }),
             type: Object
@@ -70,7 +72,7 @@ export const getAppHeaderBaseProps = () => {
             type: Object
         },
 
-        navTitleStyle:{
+        navTitleStyle: {
             default: () => (navBarOptions.navTitleStyle),
             type: Object
         },

@@ -27,15 +27,25 @@
   background-color: @nav-bar-background-color;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .nav-bar {
   flex-direction: row;
-  height: @nav-bar-height;
-  width: @render-width;
+  //height: @nav-bar-height;
+  //width: @render-width;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
 
+.nav-bg-image {
+  height: @nav-bar-height;
+  width: @render-width;
 }
 
 .nav-bar-left {

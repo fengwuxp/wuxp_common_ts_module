@@ -2,8 +2,12 @@
 <template>
     <div class="nav-container"
          :style="containerStyle">
-        <!--背景-->
-        <slot name="header-bg"></slot>
+        <!--背景图-->
+        <image v-if="backgroundImage!=null"
+               slot="header-bg"
+               class="nav-bg-image"
+               :src="backgroundImage">
+        </image>
         <div class="nav-bar">
             <slot name="nav-bar-left"></slot>
             <slot name="nav-bar-center"></slot>
@@ -17,7 +21,6 @@
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
     import CommonThemeControl from "common_style/src/CommonThemeControl";
     import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
-
 
     export default {
         name: "nav-base-bar",
@@ -35,19 +38,24 @@
         },
         computed: {
             containerStyle() {
+
+                const {defaultStyle, navBarStyle} = this;
+
                 const style = {
-                    ...this.defaultStyle
+                    ...defaultStyle
                 };
+
 
                 return {
                     ...CommonThemeControl.resolveStyle({
                         backgroundColor: "nav-bar-background-color"
                     }, style),
-                    ...this.navBarStyle
+                    ...navBarStyle
                 };
-            }
+            },
         },
         beforeMount() {
+
 
         },
         created() {
