@@ -1,4 +1,5 @@
 import {isIos, isIphoneX} from "common_weex/src/constant/WeexEnv";
+import {isIphoneXMax, isIphoneXR} from "../../../../packages/common_weex/src/constant/WeexEnv";
 
 
 /**
@@ -70,7 +71,7 @@ export const getStatusBarHeight = async (): Promise<number> => {
     if (isIphoneX) {
         return IPHONEX_TOP_HEIGHT;
     } else if (isIos) {
-        return IOS_TOP_HEIGHT;
+        return 0;
     }
 
     if (appStatusBarHelper == null) {
@@ -87,7 +88,7 @@ export const getStatusBarHeight = async (): Promise<number> => {
  */
 export const getBottomBarHeight = async (): Promise<number> => {
 
-    if (isIphoneX) {
+    if (isIphoneX || isIphoneXR || isIphoneXMax) {
         return IPHONEX_BOTTOM_HEIGHT;
     } else if (isIos) {
         return 0;

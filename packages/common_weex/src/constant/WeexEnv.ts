@@ -19,10 +19,20 @@ const isAndroid = WEEX_ENV_PLATFORM_NAME === 'android';
 const isIos = WEEX_ENV_PLATFORM_NAME === 'ios';
 
 /**
- * 是否为 iphoneX
+ * 是否为 iPhone X,iPhone XS
  * @return {boolean}
  */
 const isIphoneX = isIos && weex.config.env.deviceHeight === 2436;
+
+/**
+ * iPhone Xs Max
+ */
+const isIphoneXMax = isIos && weex.config.env.deviceHeight === 2688;
+
+/**
+ * iPhone XR
+ */
+const isIphoneXR = isIos && weex.config.env.deviceHeight === 1792;
 
 //默认宽度
 const DEFAULT_WIDTH = 750.0;
@@ -36,5 +46,7 @@ export {
     isWeb,
     isIos,
     isIphoneX,
+    isIphoneXMax,
+    isIphoneXR
 
 }
