@@ -137,5 +137,14 @@ export default {
                 }
             }
         }
-    }
+    },
+
+    /**
+     * 沉浸式bottom bar的颜色
+     */
+    immersiveBottomBarColor: {
+        //默认透明
+        default: null,
+        type: String
+    },
 }

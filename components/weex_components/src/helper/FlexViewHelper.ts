@@ -32,20 +32,6 @@ export const DEFAULT_HEADER_HEIGHT: number = (process.env.DEFAULT_HEADER_HEIGHT 
 export const DEFAULT_FOOTER_HEIGHT: number = 83;
 
 
-/**
- * 获取 iphone x的页面底部样式
- * @param height 底部高度
- * @return {*}
- */
-export const getViewFooterStyle = (height: number = DEFAULT_FOOTER_HEIGHT): object => {
-    const style: any = {height: height};
-    if (isIphoneX) {
-        //iphone x
-        style.height = height + IPHONEX_BOTTOM_HEIGHT;
-        style.paddingBottom = IPHONEX_BOTTOM_HEIGHT;
-    }
-    return style;
-};
 
 /**
  * 获取页面头部高度

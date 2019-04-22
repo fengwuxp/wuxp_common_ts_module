@@ -1,6 +1,7 @@
 <!--tabbar view 且底部导航带背景图片-->
 <template>
     <flex-view class="flex_cell default_bg_color"
+               :immersiveBottomBarColor="immersiveBottomBarColor"
                :enableImmersiveNavBar="false">
         <div slot="app-body" class="flex_cell" v-if="isWeb">
             <div v-for="(item,i ) in viewItems"

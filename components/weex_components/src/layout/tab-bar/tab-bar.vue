@@ -1,5 +1,4 @@
 <!--tab bar nav-->
-
 <template>
     <div>
         <div class="bottom_nav_container" :style="navBarStyle">
@@ -28,7 +27,6 @@
                :style="bigIconStyle"
                @click="navOnclick(2)"
                :src="viewItems[2].icon"></image>
-        <div v-if="isIphoneX" :style="bottomStyle"></div>
     </div>
 </template>
 
@@ -37,8 +35,6 @@
     import {NavItemType} from "./props/NavItemType";
     import {NavShowType} from "./props/NavShowType";
     import DefaultNavProps from "./props/DefaultNavProps";
-    import {isIphoneX} from "common_weex/src/constant/WeexEnv";
-    import {IPHONEX_BOTTOM_HEIGHT} from "../../helper/FlexViewHelper";
 
     /**
      * 原生下的页面样式
@@ -65,23 +61,12 @@
         },
         data() {
 
-            const bottomStyle = {
-                width: 750,
-                height: IPHONEX_BOTTOM_HEIGHT,
-                backgroundColor: "transparent"
-            };
 
-            if (isIphoneX) {
-                this.bigIconStyle.bottom = (this.bigIconStyle.bottom + IPHONEX_BOTTOM_HEIGHT) + "px";
-            }
 
             return {
                 currentViewIndex: 0,
                 NavItemType,
-                NavShowType,
-                isIphoneX,
-                bottomStyle
-
+                NavShowType
             };
         },
         methods: {
