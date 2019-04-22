@@ -44,13 +44,12 @@
     </flex-view>
 </template>
 <script>
+    import FlexView from "../view/flex-view";
     import TabBar from "./tab-bar";
 
     import {NavItemType} from "./props/NavItemType";
     import DefaultNavProps from "./props/DefaultNavProps";
     import {isWeb} from "common_weex/src/constant/WeexEnv";
-    import FlexView from "../view/flex-view";
-
 
     export default {
         //组件
