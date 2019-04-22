@@ -1,6 +1,6 @@
 import StringUtils from "../string/StringUtils";
 
-const DateFormatUtils = {
+class DateFormatUtils {
 
     // 对Date的扩展，将 Date 转化为指定格式的String
     // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
@@ -8,7 +8,7 @@ const DateFormatUtils = {
     // 例子：
     // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
     // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
-    formatterDate: (date: Date | number, fmt: string = "yyyy-MM-dd hh:mm:ss") => {
+    formatterDate = (date: Date | number, fmt: string = "yyyy-MM-dd hh:mm:ss") => {
 
         if (typeof date) {
             date = this.getLocalTime(new Date(date));//new Date(date);
@@ -29,14 +29,14 @@ const DateFormatUtils = {
         for (const k in o)
             if (new RegExp("(" + k as string + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
-    },
+    };
 
 
     /**
      * 字符串或数字转时间
      * @param source
      */
-    parse: (source: string | number) => {
+    parse = (source: string | number) => {
         if (source == null) {
             return null;
         }
@@ -63,7 +63,7 @@ const DateFormatUtils = {
             return new Date(source.replace(/-/g, "/"));
         }
 
-    },
+    };
 
     /**
      * 获取本地时间
@@ -71,7 +71,7 @@ const DateFormatUtils = {
      * @param {number} i  目标时区，i为时区值数字，比如北京为东八区则输入8,西5输入-5,现默认东八区北京时间
      * @return {Date}
      */
-    getLocalTime: (date: Date, i: number = 8): Date => {
+    getLocalTime = (date: Date, i: number = 8): Date => {
 
         //得到1970年一月一日到现在的秒数
         let local = date.getTime();
@@ -85,7 +85,7 @@ const DateFormatUtils = {
 
         return new Date(utcTime + 3600000 * i);
     }
-};
+}
 
 
-export default DateFormatUtils;
+export default new DateFormatUtils();
