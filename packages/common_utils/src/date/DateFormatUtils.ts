@@ -11,9 +11,9 @@ const DateFormatUtils = {
     formatterDate: (date: Date | number, fmt: string = "yyyy-MM-dd hh:mm:ss") => {
 
         if (typeof date) {
-            date = Util.getLocalTime(new Date(date));//new Date(date);
+            date = this.getLocalTime(new Date(date));//new Date(date);
         } else {
-            date = Util.getLocalTime(date as Date);
+            date = this.getLocalTime(date as Date);
         }
 
         const o = {
