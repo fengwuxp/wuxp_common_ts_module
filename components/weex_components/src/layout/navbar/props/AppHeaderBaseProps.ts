@@ -49,7 +49,9 @@ export const getAppHeaderBaseProps = () => {
          * 样式
          */
         navBarStyle: {
-            default: () => ({}),
+            default: () => ({
+                height: `${navBarHeight}px`
+            }),
             type: Object
         },
 
@@ -58,8 +60,8 @@ export const getAppHeaderBaseProps = () => {
          */
         leftStyle: {
             default: () => (navBarOptions.leftStyle || {
-                height: navBarHeight,
-                width: 120
+                height: `${navBarHeight}px`,
+                width: "120px"
             }),
             type: Object
         },
