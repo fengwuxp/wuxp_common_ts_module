@@ -41,6 +41,7 @@ interface SimpleState {
     eventName: "member"
 })
 class SimpleDataProvider implements DataProvider<SimpleState> {
+
     defaultState = <SimpleState>(): SimpleState => {
 
         return {
