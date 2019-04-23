@@ -1,4 +1,4 @@
-import {isIos, isIphoneX,isIphoneXMax, isIphoneXR} from "common_weex/src/constant/WeexEnv";
+import {isIos, isIphoneX, isIphoneXMax, isIphoneXR} from "common_weex/src/constant/WeexEnv";
 
 
 /**
@@ -8,7 +8,7 @@ import {isIos, isIphoneX,isIphoneXMax, isIphoneXR} from "common_weex/src/constan
 export const IOS_TOP_HEIGHT: number = 32;
 
 /**
- * iphonex 顶部高度
+ * iphonex 顶部高度 （刘海屏视频）
  * @type {number}
  */
 export const IPHONEX_TOP_HEIGHT: number = 52;
@@ -19,44 +19,20 @@ export const IPHONEX_TOP_HEIGHT: number = 52;
  */
 export const IPHONEX_BOTTOM_HEIGHT: number = 68;
 
-/**
- * 默认顶部高度
- * @type {number}
- */
-export const DEFAULT_HEADER_HEIGHT: number = (process.env.DEFAULT_HEADER_HEIGHT || 100) as number;
-
-/**
- * 默认底部高度
- * @type {number}
- */
-export const DEFAULT_FOOTER_HEIGHT: number = 83;
-
-
-
-/**
- * 获取页面头部高度
- * @return {number}
- */
-export const getViewHeaderHeight = async (): Promise<number> => {
-
-    const height = await getStatusBarHeight();
-
-    return Promise.resolve(DEFAULT_HEADER_HEIGHT + height);
-};
 
 //android需要
 let appStatusBarHelper: AppStatusBarHelper;
 
 /**
- * 获取StatusBar顶部高度
+ * 获取沉浸式StatusBar顶部高度
  * @return {number}
  */
 export const getStatusBarHeight = async (): Promise<number> => {
 
-    if (isIphoneX) {
+    if (isIphoneX || isIphoneXR || isIphoneXMax) {
         return IPHONEX_TOP_HEIGHT;
     } else if (isIos) {
-        return 0;
+        return IOS_TOP_HEIGHT;
     }
 
     if (appStatusBarHelper == null) {
@@ -68,7 +44,7 @@ export const getStatusBarHeight = async (): Promise<number> => {
 
 
 /**
- * 获取StatusBar顶部高度
+ * 获取沉浸式bottom Bar顶部高度
  * @return {number}
  */
 export const getBottomBarHeight = async (): Promise<number> => {
