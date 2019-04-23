@@ -84,6 +84,12 @@ export const getAppHeaderBaseProps = () => {
         rightStyle: {
             default: () => (navBarOptions.rightStyle),
             type: Object
+        },
+        useLeftSlot: {
+            default: false
+        },
+        useCenterSlot: {
+            default: false
         }
     };
 

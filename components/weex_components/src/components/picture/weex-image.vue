@@ -68,7 +68,7 @@
         computed: {
             pictureStyle() {
                 return {
-                    ...this.imageStyle,
+                    // ...this.imageStyle,
                     width: `${this.width}px`,
                     height: `${this.height}px`,
                     borderRadius: `${this.radius}px`

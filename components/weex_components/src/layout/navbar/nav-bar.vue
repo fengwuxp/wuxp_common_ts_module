@@ -6,7 +6,6 @@
                   :enableImmersive="enableImmersive"
                   :navBarStyle="navBarStyle"
                   :rightStyle="rightStyle">
-
         <div slot="nav-bar-left"
              v-if="showBack"
              :style="leftStyle"
@@ -20,13 +19,20 @@
                           :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>
         </div>
-        <div slot="nav-bar-center"
+        <slot v-if="useLeftSlot"
+              name="nav-bar-left"
+              slot="nav-bar-left"></slot>
+        <div v-if="!useCenterSlot"
+             slot="nav-bar-center"
              class="nav-bar-center"
              :style="centerStyle">
             <text class="nav-bar-title"
                   :style="navTitleStyle"
                   :value="navTitle"></text>
         </div>
+        <slot v-if="useCenterSlot"
+              name="nav-bar-center"
+              slot="nav-bar-center"></slot>
         <div slot="nav-bar-right"
              class="nav-bar-right"
              :style="rightStyle">
@@ -55,6 +61,9 @@
         },
         computed: {
             showBack() {
+                if (this.useLeftSlot) {
+                    return false;
+                }
                 if (isWeb) {
                     return history.length > 1;
                 }
