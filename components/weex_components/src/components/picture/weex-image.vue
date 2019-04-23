@@ -2,7 +2,7 @@
 <!--android 原生通过filter层面支持圆角-->
 <!--通过原生能力计算图片自适应宽高-->
 <template>
-    <div :style="pictureStyle" @click="onClick">
+    <div :style="imageWrapperStyle" @click="onClick">
         <image v-if="show"
                :src="src"
                ref="image"
@@ -25,6 +25,7 @@
             width: {default: 0},
             maxWidth: {default: weexTheme["render-width"]},
             imageStyle: {default: {}},
+            wrapperStyle: {default: {}},
             radius: {default: null},
             resize: {
                 default: "stretch"
@@ -71,6 +72,12 @@
                     width: `${this.width}px`,
                     height: `${this.height}px`,
                     borderRadius: `${this.radius}px`
+                }
+            },
+            imageWrapperStyle() {
+                return {
+                    ...this.imageStyle,
+                    ...this.wrapperStyle
                 }
             }
         },
