@@ -24,7 +24,7 @@
             src: {default: ""},
             width: {default: 0},
             maxWidth: {default: weexTheme["render-width"]},
-            imageStyle: {default: {}},
+            // imageStyle: {default: {}},
             wrapperStyle: {default: {}},
             radius: {default: null},
             resize: {
@@ -67,16 +67,19 @@
         },
         computed: {
             pictureStyle() {
+                const {width, height, radius} = this;
                 return {
-                    // ...this.imageStyle,
-                    width: `${this.width}px`,
-                    height: `${this.height}px`,
-                    borderRadius: `${this.radius}px`
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: `${radius}px`
                 }
             },
             imageWrapperStyle() {
+                const {width, height, radius} = this;
                 return {
-                    ...this.imageStyle,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    borderRadius: `${radius}px`,
                     ...this.wrapperStyle
                 }
             }
