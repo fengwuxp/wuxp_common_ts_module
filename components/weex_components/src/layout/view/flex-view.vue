@@ -4,7 +4,7 @@
          :style="viewStyle"
          @viewappear="viewAppear"
          @viewdisappear="viewDisappear">
-        <image v-if="immersiveStatusBarBgImage"
+        <image v-if="enableImmersiveNavBar && immersiveStatusBarBgImage"
                :src="immersiveStatusBarBgImage"
                :style="immersiveStatusBarBgImageStyle"></image>
         <div v-if="enableImmersiveNavBar && immersiveStatusBarBgImage==null"
@@ -12,7 +12,7 @@
         <slot name="app-header"></slot>
         <slot name="app-body"></slot>
         <slot name="app-footer"></slot>
-        <image v-if="immersiveBottomBarBgImage"
+        <image v-if="enableImmersiveBottomBar &&immersiveBottomBarBgImage"
                :src="immersiveBottomBarBgImage"
                :style="immersiveBottomBarStyle"></image>
         <div v-if="enableImmersiveBottomBar && immersiveBottomBarBgImage == null"
