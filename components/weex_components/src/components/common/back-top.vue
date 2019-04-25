@@ -3,20 +3,21 @@
     <image :src="backTopIcon" :style="topStyle" @click="backTop"></image>
 </template>
 <script>
-    import weexUtils from "../utils/WeexUtils";
-    import {dom} from "typescript_api_sdk/src/utils/ExportWeexSdkModel";
+    import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+    import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
 
     const defStyle = {
         right: "35px",
         bottom: "120px"
-    }
+    };
     const hideStyle = {
         right: "-135px",
         bottom: "120px"
-    }
+    };
+
     export default {
         props: {
-            backTopIcon: {default: weexUtils.getResourcesURL("images/back_top_icon.png")},
+            backTopIcon: {default: getWeexResourceUrl("back_top_icon.png")},
             backStyle: {
                 default: {
                     width: "80px",
@@ -36,7 +37,6 @@
                 if (this.show) {
                     return {
                         ...this.backStyle,
-                        // ...defStyle
                     }
                 } else {
                     return {
@@ -48,9 +48,9 @@
         },
         methods: {
             backTop() {
-                this.$emit("backTop");
+                this.$emit("onBackTop");
             },
-            change(contentOffset) {
+            tryChangeStatus(contentOffset) {
                 const {y} = contentOffset;
                 if ((y + 100) < 0) {
                     this.show = true;
@@ -60,7 +60,7 @@
             }
         },
         beforeMount() {
-            // this.backStyle = Object.assign(this.backStyle);
+
         }
     }
 </script>
