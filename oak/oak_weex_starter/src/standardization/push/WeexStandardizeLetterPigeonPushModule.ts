@@ -152,7 +152,10 @@ const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexSt
                 }
                 const messageInfo = data.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
                 if (messageInfo) {
-                    handle(messageInfo);
+                    let r = handle(messageInfo);
+                    if (r) {
+                        msgPush.readMsg(messageInfo.id, () => {});
+                    }
                 }
             });
         },

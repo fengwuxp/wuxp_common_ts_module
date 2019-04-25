@@ -4,9 +4,9 @@ import {
     WeexNetworkTransferStandardizedModule
 } from "./WeexNetworkTransferStandardizedModule";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {NatJsNetWorkTransferModule} from "../../../natjs/network/NatJsNetWorkTransferModule";
+import {natJsNetWorkTransferModule} from "../../../natjs/network";
 
-const nat_network_transfer: NatJsNetWorkTransferModule = weex.requireModule('nat_network_transfer');
+
 
 
 const emptyProgress = (speed) => {
@@ -17,7 +17,7 @@ const emptyProgress = (speed) => {
  * 基于natjs标准化的网络传输模块
  */
 export const ntJsWorkTransferStandardizedModule: WeexNetworkTransferStandardizedModule = standardizedWeexModuleToPromise({
-    module: nat_network_transfer,
+    module: natJsNetWorkTransferModule,
     transformParamMap: {
         download: (options: NetworkDownloadOptions) => {
             const headers = options.headers || {};

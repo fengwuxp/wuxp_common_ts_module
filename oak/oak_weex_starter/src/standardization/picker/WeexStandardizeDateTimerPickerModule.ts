@@ -37,7 +37,7 @@ export interface WeexStandardizeDateTimerPickerModule extends WeexStandardizedMo
      * @param value
      * @return string hh:mm
      */
-    readonly pickerTime: (options: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
+    readonly pickTime: (options: BaseWeexStandardizeDateTimerPickerOptions) => Promise<string>;
 }
 
 export interface BaseWeexStandardizeDateTimerPickerOptions {
@@ -144,7 +144,7 @@ const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule
                 format
             });
         },
-        pickerTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
+        pickTime: (weexStandardizedModule: WeexStandardizeDateTimerPickerModule, options: BaseWeexStandardizeDateTimerPickerOptions) => {
 
             const format = "HH:mm";
             if (isWeb) {

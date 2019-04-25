@@ -25,7 +25,7 @@
                        style="display: none"
                        :multiline="selectedMaxNum>1"
                        @change="onChooseFile"
-                       accept="image/*"/>
+                       :accept="accept"/>
                 <input v-if="changeCount%2===1"
                        type="file"
                        :key="changeCount"
@@ -33,7 +33,7 @@
                        style="display: none"
                        :multiline="selectedMaxNum>1"
                        @change="onChooseFile"
-                       accept="image/*"/>
+                       :accept="accept"/>
             </label>
         </div>
 
@@ -90,7 +90,7 @@
             //上传的文件类型
             accept: {
                 type: String,
-                default: "*",
+                default: "image/*",
             },
             //可以选择的最大的图片数量
             selectedMaxNum: {
