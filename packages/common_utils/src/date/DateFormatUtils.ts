@@ -31,6 +31,10 @@ class DateFormatUtils {
         return fmt;
     };
 
+    formatterDateToYYMMDD = (date: Date | number) => {
+        return this.formatterDate(date, "yyyy-MM-dd");
+    };
+
 
     /**
      * 字符串或数字转时间
