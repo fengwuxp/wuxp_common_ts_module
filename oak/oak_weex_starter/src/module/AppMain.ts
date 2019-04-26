@@ -26,7 +26,7 @@ if (isWeb) {
         getNetworkType(callback = (result: number) => {
         }) {
             console.log("web环境暂不支持 getNetworkType");
-            callback(0);
+            callback(1);
         },
         /**
          * 打开原生页面

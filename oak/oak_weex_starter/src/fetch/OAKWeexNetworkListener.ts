@@ -1,4 +1,8 @@
-import {NetworkStatusListener, NetworkStatus,NoneNetworkFailBack} from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
+import {
+    NetworkStatusListener,
+    NetworkStatus,
+    NoneNetworkFailBack
+} from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
 import {weexToast} from "common_weex/src/toast/WeexToast";
 
 const appMain: any = weex.requireModule("appMain");
@@ -28,19 +32,11 @@ export class OAKWeexNetworkListener implements NetworkStatusListener {
 
         return new Promise<NetworkStatus>((resolve, reject) => {
             appMain.getNetworkType((result) => {
-                if (result === 0) {
-
+                if (result !== 0) {
                     resolve({
-                        /**
-                         * 当前是否有网络连接
-                         */
                         isConnected: true,
-
-                        /**
-                         * 网络类型
-                         */
                         networkType: null,
-                    })
+                    });
                 } else {
                     reject(result);
                 }
