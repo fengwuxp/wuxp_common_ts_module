@@ -62,7 +62,7 @@ export default class AppRouter {
         };
         const {meta} = route;
 
-        let defaultParms = {}
+        let defaultParms = {};
 
         if (meta) {
             //需要登录
@@ -106,7 +106,7 @@ export default class AppRouter {
         //跳转
         return AppRouter.navigator.push({
             ...param,
-            pathname: pathnameKeys[0]
+            pathname
         } as WeexNavigatorParam);
     };
 
