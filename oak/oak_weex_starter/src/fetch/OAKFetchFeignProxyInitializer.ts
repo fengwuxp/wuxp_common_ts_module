@@ -30,32 +30,31 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
 
         //设置代理持有者
         const url = `@${defaultApiModuleName}/system/uploadFile` || AppConfigRegistry.get().uploadFileURL;
-        FeignProxyExecutorHolder.registerDefaultExecutor(new DefaultProxyServiceExecutor(
-            templateLoader,
-            new OakApiSignatureStrategy(
-                oakEnv.clientId,
-                oakEnv.clientSecret,
-                isWeb ? "WEB" : isAndroid ? "ANDROID" : "IOS",
-            ),
-            //undefined 表示使用默认
-            undefined,
-            undefined,
-            [
-                //文件上传处理
-                new ProxyUnifiedTransformRequestFileObjectEncoder(
-                    new DefaultFileUploadStrategy(
-                        templateLoader.load(defaultApiModuleName),
-                        {
-                            url: url,
-                            formDataFileName: "base64Data",
-                            contentType: MediaType.JSON
-                        } as FileUploadOptions
+        FeignProxyExecutorHolder.registerDefaultExecutor(
+            new DefaultProxyServiceExecutor(
+                templateLoader,
+                new OakApiSignatureStrategy(
+                    oakEnv.clientId,
+                    oakEnv.clientSecret,
+                    isWeb ? "WEB" : isAndroid ? "ANDROID" : "IOS",
+                ),
+                //undefined 表示使用默认
+                undefined,
+                undefined,
+                [
+                    //文件上传处理
+                    new ProxyUnifiedTransformRequestFileObjectEncoder(
+                        new DefaultFileUploadStrategy(
+                            templateLoader.load(defaultApiModuleName),
+                            {
+                                url: url,
+                                formDataFileName: "base64Data",
+                                contentType: MediaType.JSON
+                            } as FileUploadOptions
+                        )
                     )
-                )
-            ]
-        ));
+                ]
+            ));
 
     }
-
-
 }

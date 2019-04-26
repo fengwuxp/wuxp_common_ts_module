@@ -15,6 +15,8 @@ import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessIntercept
 import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
 import DefaultTransformDateInterceptor from "common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
+import {OAKTaroNetworkListener} from "./OAKTaroNetworkListener";
+import NeedNetworkInterceptor from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
 
 interface OAKEnvVar {
 
@@ -57,6 +59,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
         const needAuthInterceptor = new NeedAuthInterceptor();
         const interceptorList = [
+            new NeedNetworkInterceptor(new OAKTaroNetworkListener()),
             new NeedProgressBarInterceptor(new OAKTaroFetchProgressBar()),
             needAuthInterceptor,
             new DefaultTransformDateInterceptor(),

@@ -29,7 +29,8 @@
     "./types/**/*.d.ts",
     "node_modules/common_fetch/src/**/*",
     "node_modules/common_fetch/types/index.d.ts",
-    "node_modules/@tarojs/**/*"
+    "node_modules/@tarojs/**/*",
+    "node_modules/@types/weixin/src/minapp/index.d.ts"
   ],
   "exclude": [
     "dist",

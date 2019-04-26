@@ -9,7 +9,7 @@ export interface FetchInterceptor<T = any> {
     /**
      * 请求之前的处理
      * @param  {T} params 请求参数
-     * @return {T | Promise<T>} 返回非空值表示：是否继续处理下一个Interceptor 返回Promise如果状态为fulfilled则继续往下处理
+     * @return {T | Promise<T>} 返回非空值表示：是否继续处理下一个Interceptor 返回Promise如果状态为fulfilled则不继续往下处理
      */
     preHandle(params: T): T | Promise<T> | undefined | null;
 

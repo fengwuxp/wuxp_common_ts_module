@@ -17,6 +17,8 @@ import OAKWeexFetchProgressBar from "../OAKWeexFetchProgressBar";
 
 import OAKWeexSyncAuthHelper from "../OAKWeexSyncAuthHelper";
 import WeexUnifiedRespProcessInterceptor from "../interceptor/WeexUnifiedRespProcessInterceptor";
+import NeedNetworkInterceptor from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
+import {OAKWeexNetworkListener,OakWeexNoneNetworkFailBack} from "../OAKWeexNetworkListener";
 
 const routeMapping = {};
 
@@ -24,6 +26,7 @@ routeMapping[defaultApiModuleName] = `${appConfig.apiEntryAddress}`;
 
 const needAuthInterceptor = new NeedAuthInterceptor();
 const interceptorList = [
+    new NeedNetworkInterceptor(new OAKWeexNetworkListener(),new OakWeexNoneNetworkFailBack()),
     new NeedProgressBarInterceptor(new OAKWeexFetchProgressBar()),
     needAuthInterceptor,
     new WeexUnifiedRespProcessInterceptor()
@@ -43,7 +46,7 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
             }, new DefaultApiRoutingStrategy(routeMapping),
             new DefaultFetchClient(new WeexAdapter()),
             new FetchInterceptorExecutor(interceptorList));
-        needAuthInterceptor.authHelper=new OAKWeexSyncAuthHelper(defaultRestTemplate);
+        needAuthInterceptor.authHelper = new OAKWeexSyncAuthHelper(defaultRestTemplate);
         return defaultRestTemplate;
     };
 

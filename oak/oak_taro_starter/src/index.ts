@@ -21,7 +21,7 @@ import TaroLocalStorage from "taro_starter/src/storage/TaroLocalStorage";
 import {TaroNavigatorAdapter} from "taro_starter/src/route/TaroNavigatorAdapter";
 import TaroAppRouterHelper, {ViewRouteState} from "taro_starter/src/route/TaroAppRouterHelper";
 import {getAppletImageResourceUrl, getAppletFontResourceUrl} from "taro_starter/src/resources/ResourcePathParser";
-
+import {showToast} from "./toast/WeChatAppletsToast";
 
 export {
     Feign,
@@ -45,5 +45,7 @@ export {
     TaroJsHolder,
     ViewRouteState,
     getAppletImageResourceUrl,
-    getAppletFontResourceUrl
+    getAppletFontResourceUrl,
+
+    showToast
 }
