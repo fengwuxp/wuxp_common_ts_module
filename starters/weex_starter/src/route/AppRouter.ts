@@ -45,19 +45,24 @@ export default class AppRouter {
 
 
         let pathname = param.pathname.startsWith("/") ? param.pathname.substr(1, param.pathname.length) : param.pathname;
-        const route: WeexRouteItem = AppRouter.appRoutes[pathname];
+        const pathnameKeys = pathname.split("?");
+        const route: WeexRouteItem = AppRouter.appRoutes[pathnameKeys[0]];
 
         if (route == null) {
-            return Promise.reject(`not fount view-> ${pathname}`);
+            return Promise.reject(`not fount view-> ${pathnameKeys[0]}`);
         }
 
         if (param.queryParams == null) {
             param.queryParams = {};
         }
 
-        const queryParams = param.queryParams;
-
+        const queryParams = {
+            ...parse(pathnameKeys[1]),
+            ...param.queryParams
+        };
         const {meta} = route;
+
+        let defaultParms = {}
 
         if (meta) {
             //需要登录
@@ -66,27 +71,24 @@ export default class AppRouter {
                 const isLogin = await AppRouter.appSessionManager.isLogin();
                 if (!isLogin) {
                     //未登录
+
                     return AppRouter.navigator.push({
                         pathname: generateBundleJsURL(AppRouter.appRoutes["login"]),
                         queryParams: getRedirectRoute(
                             pathname,
-                            {
-                                ...parse(param.search),
-                                ...queryParams
-                            }
+                            queryParams
                         )
                     } as any);
                 }
             }
-
             //默认参数
-            if (meta.defaultParams) {
-                param.queryParams = {
-                    ...meta.defaultParams,
-                    ...queryParams
-                };
-            }
+            defaultParms = meta.defaultParams || {};
         }
+
+        param.queryParams = {
+            ...defaultParms,
+            ...queryParams
+        };
 
         if (!isWeb) {
             //拼接完整的url
@@ -104,7 +106,7 @@ export default class AppRouter {
         //跳转
         return AppRouter.navigator.push({
             ...param,
-            pathname
+            pathname: pathnameKeys[0]
         } as WeexNavigatorParam);
     };
 

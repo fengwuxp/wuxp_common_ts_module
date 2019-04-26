@@ -16,7 +16,7 @@ const emptyProgress = (speed) => {
 /**
  * 基于natjs标准化的网络传输模块
  */
-export const ntJsWorkTransferStandardizedModule: WeexNetworkTransferStandardizedModule = standardizedWeexModuleToPromise({
+export const ntJsWorkTransferStandardizedModule: WeexNetworkTransferStandardizedModule = standardizedWeexModuleToPromise<WeexNetworkTransferStandardizedModule>({
     module: natJsNetWorkTransferModule,
     transformParamMap: {
         download: (options: NetworkDownloadOptions) => {

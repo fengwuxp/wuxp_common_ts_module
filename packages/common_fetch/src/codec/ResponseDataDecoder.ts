@@ -4,7 +4,7 @@ import {FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 /**
  * response data decoder
  */
-export interface ResponseDataDecoder<T> {
+export interface ResponseDataDecoder<T = any> {
 
     /**
      * decode

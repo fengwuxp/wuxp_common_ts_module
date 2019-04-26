@@ -23,10 +23,10 @@ if (isWeb) {
          * 获取网络类型
          * @param callback
          */
-        getNetworkType(callback = (result: boolean) => {
+        getNetworkType(callback = (result: number) => {
         }) {
             console.log("web环境暂不支持 getNetworkType");
-            callback(true);
+            callback(0);
         },
         /**
          * 打开原生页面

@@ -1,5 +1,6 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions} from "../../FetchOptions";
+import {debounce} from "common_utils/src/timer/DebounceUtil";
 
 
 /**
@@ -13,7 +14,7 @@ export default class NeedNetworkInterceptor extends AbstractFetchInterceptor {
 
     private networkStatus: NetworkStatus = null;
 
-    constructor(networkStatusListener: NetworkStatusListener, noneNetworkHandler?: NoneNetworkFailBack = defaultWorkFailBack) {
+    constructor(networkStatusListener: NetworkStatusListener, noneNetworkHandler: NoneNetworkFailBack = defaultWorkFailBack) {
         super();
         this.networkStatusListener = networkStatusListener;
         this.noneNetworkHandler = noneNetworkHandler;
@@ -24,17 +25,22 @@ export default class NeedNetworkInterceptor extends AbstractFetchInterceptor {
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
-        const {networkStatus, noneNetworkHandler} = this;
+        const {networkStatus} = this;
 
         if (networkStatus != null && networkStatus.isConnected) {
             return Promise.resolve(params);
         } else {
-            //TODO 无网络是堆积请求，网络恢复后在重新请求，默认堆积等待事件 10分钟
-            noneNetworkHandler.handle();
+            //TODO 无网络时堆积请求，网络恢复后在重新请求，默认堆积等待事件 10分钟
+            this.handleFailBack();
             return Promise.reject();
         }
 
-    }
+    };
+
+
+    private handleFailBack = debounce(2000, () => {
+        this.noneNetworkHandler.handle()
+    });
 
 
 }

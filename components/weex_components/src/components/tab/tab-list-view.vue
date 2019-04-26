@@ -48,8 +48,8 @@
         computed: {
             headerStyle() {
                 return {
-                    width: 750,
-                    height: this.tabStyles.height
+                    width: "750px",
+                    height: `${this.tabStyles.height}px`
                 }
             }
         },

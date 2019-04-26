@@ -19,7 +19,7 @@
                       :slot="`tab-title-${index}`"></slot>
             </tab-scroll-header>
         </header>
-        <cell>
+        <cell :style="slideStyle">
             <slider :infinite="false"
                     :index="selectedIndex"
                     @change="changeSlider"
@@ -50,6 +50,9 @@
         mixins: [],
         props: {
             ...props,
+            tabContentHeight: {
+                default: 0
+            }
         },
         data() {
             return {
@@ -60,8 +63,14 @@
         computed: {
             headerStyle() {
                 return {
-                    width: 750,
-                    height: this.tabStyles.height
+                    width: "750px",
+                    height: `${this.tabStyles.height}px`
+                }
+            },
+            slideStyle() {
+                return {
+                    width: "750px",
+                    height: `${this.tabContentHeight}px`
                 }
             }
         },
@@ -92,10 +101,10 @@
             emitEvent(index) {
                 this.$emit("onChangeTab", {index});
             },
-            onPullingDown(e){
+            onPullingDown(e) {
                 this.$emit("onPullingDown", e);
             },
-            onRefresh(){
+            onRefresh() {
                 //向父组件广播刷新事件
                 this.$emit("onRefresh");
             }
