@@ -1,10 +1,10 @@
 const webpack = require("webpack");
 const path = require("path");
-const {baseConfig} = require("antd_mobile_starter/webpack/webpack.config.template");
+const {getWebpackBaseConfig} = require("common_webpack/lib/web/webpack.base.config");
 
-const jspArtTemplate = require("./webpack-config/jspArtTemplate");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
+const baseConfig = getWebpackBaseConfig({});
 
 const config = {
     ...baseConfig,
@@ -29,17 +29,15 @@ const htmlPluginOptions = {
     chunks: ['app']
 };
 
-const title = "antd mobile template";
+const title = "react template";
 
 
 if (process.env.RELEASE === "1") {
     global["__RESOURCES_BASE_NAME__"] = "/h5/views/";
     config.output.publicPath = `${global["__RESOURCES_BASE_NAME__"]}`;
     basePath = "/h5";
-    // htmlPluginOptions.template = "./src/index.html";
-    htmlPluginOptions.template = "./src/index.art";
-    htmlPluginOptions.filename = "../jsp/index.jsp";
-    htmlPluginOptions.jspArtTemplate = jspArtTemplate;
+    htmlPluginOptions.template = "./src/index.html";
+    htmlPluginOptions.filename = "index.html";
     htmlPluginOptions.baseBath = "";
     htmlPluginOptions.inject = false;
     rootDomain = "";
