@@ -7,10 +7,15 @@
             @change="onChange">
         <weex-image v-for="(src,i) in images"
                     :key="i"
+                    :width="sliderWidth"
+                    :height="sliderHeight"
+                    :radius="sliderRadius"
                     @onLoad="onImageLoad"
                     :src="src"></weex-image>
-        <indicator :style="finallyIndicatorStyle"
+        <indicator v-if="!useIndicatorSlot"
+                   :style="finallyIndicatorStyle"
                    class="slider_indicator"></indicator>
+        <solt v-if="useIndicatorSlot" name="indicator"></solt>
     </slider>
 </template>
 
@@ -40,26 +45,33 @@
             infinite: {
                 default: false
             },
-            indicatorStyle: {
-                default: {}
+            useIndicatorSlot:{
+                default:false
+            },
+            sliderWidth: {
+                default: weexTheme["render-width"]
+            },
+            sliderHeight: {
+                default: defaultSliderHeight
+            },
+            sliderRadius: {
+                default: 0
             }
         },
         data() {
-            return {
-                sliderHeight: defaultSliderHeight
-            }
+            return {}
         },
         computed: {
             sliderStyle() {
+                const {sliderWidth, carouselStyles, sliderHeight} = this;
                 return {
-                    width: `${weexTheme["render-width"]}px`,
-                    ...this.carouselStyles,
-                    height: `${this.sliderHeight}px`
+                    width: `${sliderWidth}px`,
+                    height: `${sliderHeight}px`,
+                    ...carouselStyles
                 }
             },
             finallyIndicatorStyle() {
                 return {
-                    ...this.indicatorStyle,
                     width: `${weexTheme["render-width"]}px`,
                 }
             }
@@ -78,15 +90,18 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+
+    @import "../../theme/defualt_theme";
 
     .slider_indicator {
         position: absolute;
-        itemColor: #41a9ff;
+        itemColor: @brand-primary;
         itemSelectedColor: #ffffff;
         itemSize: 10px;
         height: 20px;
         bottom: 20px;
     }
+
 
 </style>
