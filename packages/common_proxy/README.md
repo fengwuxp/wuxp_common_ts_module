@@ -4,7 +4,7 @@
 
 ```
    //仅做代理
-   Proxy.newInstance<T>(target: T,
+   ProxyFactory.newInstance<T>(target: T,
                          methodInterceptor: MethodInterceptor,
                          setPropertyInterceptor?: SetPropertyInterceptor,
                          scope?: ProxyScope,
@@ -15,7 +15,7 @@
    })
    
    //代理的同时增强这个对象
-   Proxy.newInstanceEnhance<T>(proxyTarget,(method,methodName,args)=>{
+   ProxyFactory.newInstanceEnhance<T>(proxyTarget,(method,methodName,args)=>{
       
           // 对原本的方法增加代理实现
       

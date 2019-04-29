@@ -11,7 +11,7 @@
                    //定制自己的RestTemplate，拦截器等配置
                    //重要的一步：设置代理执行器
                    // DefaultProxyServiceExecutor 是默认提供的代理执行器，如果不满足需求，可以自行实现 AbstractProxyServiceExecutor类或ProxyServiceExecutor接口
-                   FeignProxyExecutorHolder.DEFAULT_EXECUTOR = new DefaultProxyServiceExecutor(...);
+                   FeignProxyExecutorHolder.registerDefaultExecutor(  new DefaultProxyServiceExecutor(...args))
                }
 
         }
