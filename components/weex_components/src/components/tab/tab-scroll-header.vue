@@ -5,16 +5,7 @@
               :show-scrollbar="false"
               scroll-direction="horizontal"
               :data-spm="spmC"
-              :style="{
-                             backgroundColor: tabStyles.bgColor,
-                             height: (tabStyles.height)+'px',
-                             maxHeight: (tabStyles.height)+'px',
-                             paddingLeft:tabStyles.leftOffset+'px',
-                             borderBottomWidth:'1px',
-                             borderBottomStyle:'solid',
-                             borderBottomColor:tabStyles.tabWrapperBorderColor
-                           }">
-
+              :style="wrapperSryle">
         <div class="title-item"
              v-for="(v,index) in tabTitles"
              :key="index"
@@ -67,6 +58,23 @@
                 currentPage: 0
             }
         },
+        computed: {
+
+            wrapperSryle() {
+                const {tabStyles} = this;
+
+                return {
+                    backgroundColor: tabStyles.bgColor,
+                    height: `${tabStyles.height || 0}px`,
+                    maxHeight: `${tabStyles.height || 0}px`,
+                    paddingLeft: ` ${tabStyles.leftOffset || 0}px`,
+                    borderBottomWidth: '1px',
+                    borderBottomStyle: 'solid',
+                    borderBottomColor: tabStyles.tabWrapperBorderColor
+                }
+            }
+
+        },
         methods: {
             changeIndex(index) {
                 const previousPage = this.currentPage;
@@ -93,32 +101,34 @@
                 });
             },
             itemStyle(index) {
-
+                let height = this.tabStyles.height;
                 const style = {
-                    height: this.tabStyles.height,
                     backgroundColor: this.currentPage === index ? this.tabStyles.activeBgColor : this.tabStyles.bgColor,
                 };
                 if (!this.tabStyles.hasActiveBottom) {
                     style.borderBottomColor = this.currentPage == index ? this.tabStyles.activeBottomColor : 'transparent';
-                    style.borderBottomWidth = this.tabStyles.activeBottomHeight + "px";
+                    style.borderBottomWidth = `${this.tabStyles.activeBottomHeight}px`;
                     style.borderBottomStyle = "solid";
                 }
-
-                style.width = this.tabStyles.width + "px";
-
+                height -= 1;
+                const width = this.tabStyles.width;
+                style.width = `${width}px`;
+                style.height = `${height}px`;
                 return style;
             },
             itemBottomBorderStyle(index) {
                 let width = 0;
+                const hasActiveBottom = this.tabStyles.hasActiveBottom;
                 const style = {
                     width,
-                    height: this.tabStyles.activeBottomHeight + 'px',
+                    height: `${this.tabStyles.activeBottomHeight}px`,
                     backgroundColor: this.currentPage == index ? this.tabStyles.activeBottomColor : 'transparent'
                 };
-                width = this.tabStyles.activeBottomWidth;
-                style.left = (this.tabStyles.width - this.tabStyles.activeBottomWidth) / 2
-                style.width = width + "px";
-
+                if (hasActiveBottom) {
+                    width = this.tabStyles.activeBottomWidth;
+                    style.left = `${(this.tabStyles.width - this.tabStyles.activeBottomWidth) / 2}px`;
+                    style.width = width ? `${width}px` : "100%";
+                }
                 return style;
             }
         },
@@ -145,13 +155,13 @@
     .title-item {
         justify-content: center;
         align-items: center;
-        border-bottom-style: solid;
+        /*border-bottom-style: solid;*/
         position: relative;
     }
 
     .border-bottom {
         position: absolute;
-        bottom: 0;
+        bottom: -1px;
     }
 
     .tab-text {
