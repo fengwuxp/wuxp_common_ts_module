@@ -4,7 +4,7 @@
                             @onRefresh="onRefresh"
                             @onPullingDown="onPullingDown">
         <slot></slot>
-        <header :style="headerStyle">
+        <header :style="headerStyle" v-if="innerUseTabBar">
             <tab-scroll-header :tabTitles="tabTitles"
                                :tabStyles="tabStyles"
                                :titleType="titleType"
@@ -52,6 +52,9 @@
             ...props,
             tabContentHeight: {
                 default: 0
+            },
+            useTabBar: {
+                default: true
             }
         },
         data() {
@@ -72,7 +75,13 @@
                     width: "750px",
                     height: `${this.tabContentHeight}px`
                 }
+            },
+            innerUseTabBar() {
+                const {tabTitles, useTabBar} = this;
+
+                return useTabBar && tabTitles.length > 0;
             }
+
         },
         mounted() {
             this.$nextTick(() => {
