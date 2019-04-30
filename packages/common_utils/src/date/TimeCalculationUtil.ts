@@ -47,7 +47,13 @@ export const calculationDaysByNow = (days: number): Date => {
  */
 export const getDateTimeBegin = (date: Date = new Date()): Date => {
 
-    return DateFormatUtils.parse(DateFormatUtils.formatterDateToYYMMDD(date));
+    const result = new Date(date.getTime());
+    result.setHours(0);
+    result.setSeconds(0);
+    result.setMinutes(0);
+    result.setMilliseconds(0);
+
+    return result;
 };
 
 /**
