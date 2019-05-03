@@ -19,6 +19,4 @@ dist_web
 coverage
 *.tgz
 lib
-*.lock
-*.awcache
-
+_src

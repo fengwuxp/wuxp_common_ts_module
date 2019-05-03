@@ -1,5 +1,5 @@
 /**
- * Subscription event type
+ * SubscriptionHolder event type
  */
 export enum SubscriptionEventType {
 

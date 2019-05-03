@@ -17,7 +17,7 @@
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "keywords": [],
@@ -25,7 +25,16 @@
   "devDependencies": {
     "@types/node": "^10.9.4",
     "@types/weex": "^0.0.1",
-    "common_core": "^0.0.1"
+    "common_core": "^0.0.1",
+    "common_test": "^0.0.1",
+    "jest": "^23.6.0",
+    "log4js": "^4.0.2",
+    "md5": "^2.2.1",
+    "tslib": "^1.9.3"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.1",
+    "immutable": "^4.0.0-rc.12"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom";
 import React from "react";
+import Index from "../../oak-taro-template/src/pages/index";
 
 
-const App = () => <div>1</div>;
+const App = () => <Index/>;
 
 
 ReactDOM.render(<App/>, document.getElementById("app"));
