@@ -1,0 +1,29 @@
+{
+  "name": "wind-loader",
+  "version": "0.0.1",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "webpack_test": "webpack --config webpack.test.config"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^11.13.10",
+    "common_webpack": "^0.0.1",
+    "loader-utils": "^1.2.3"
+  },
+  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+}
