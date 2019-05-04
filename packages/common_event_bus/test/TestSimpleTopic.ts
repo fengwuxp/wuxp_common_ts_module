@@ -35,7 +35,7 @@ describe("test", () => {
         try {
             publisher.publish(3);
         } catch (e) {
-            logger.error(e)
+            logger.debug(e)
         }
     }, 3 * 1000);
 

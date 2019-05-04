@@ -3,8 +3,7 @@
  */
 export interface DataProvider<S = any> {
 
-    // setState?: <K extends keyof S>(state: StateType<S, K>,
-    //                               callback?: () => void) => void;
+    setState?: <K extends keyof S>(state: StateType<S, K>) => void;
 
     defaultState?: <K extends keyof S>() => StateType<S, K> | Promise<StateType<S, K>>;
 

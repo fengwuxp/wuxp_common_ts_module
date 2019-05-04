@@ -1,6 +1,7 @@
 import * as React from "react";
 import FlexView from "../components/FlexView";
 import Header from "../components/Header";
+import {Example} from "../components/Example";
 
 
 interface IndexViewProps {
@@ -25,6 +26,7 @@ export default class IndexView extends React.Component<IndexViewProps, IndexView
 
         return <FlexView>
             <Header title={"导航"}/>
+            <Example/>
         </FlexView>
     }
 }

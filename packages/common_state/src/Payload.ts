@@ -1,9 +1,13 @@
 /**
  * payload
  */
-import {BaseEventOptions} from "./store/BaseEventOptions";
+export interface Payload<T extends object = object> {
 
-export interface Payload<T> {
+
+    /**
+     * payload type
+     */
+    type: string;
 
     /**
      * 传递的值
@@ -12,7 +16,3 @@ export interface Payload<T> {
 }
 
 
-export interface EventPayload<T = any> extends Payload<T> ,BaseEventOptions {
-
-
-}

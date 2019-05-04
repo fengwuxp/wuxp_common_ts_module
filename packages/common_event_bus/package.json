@@ -33,8 +33,7 @@
     "tslib": "^1.9.3"
   },
   "dependencies": {
-    "rxjs": "^6.5.1",
-    "immutable": "^4.0.0-rc.12"
+    "rxjs": "^6.4.0"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

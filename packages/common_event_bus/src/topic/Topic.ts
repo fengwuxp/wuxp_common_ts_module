@@ -23,7 +23,7 @@ export interface Topic<T = any> {
     close: () => void;
 
     /**
-     * 获取一个发布者
+     * 获取一个主题消息的发布者
      * @return Publisher
      */
     getPublisher: () => Publisher<T>;

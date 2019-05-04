@@ -24,14 +24,16 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
+    "@types/react": "^16.8.16",
     "common_proxy": "^0.0.1",
     "common_utils": "^0.0.1",
     "common_test": "^0.0.1",
     "jest": "^23.6.0",
-    "log4js": "^4.0.2"
+    "log4js": "^4.0.2",
+    "react": "^16.8.6"
   },
   "dependencies": {
-    "rxjs": "^6.5.1",
+    "common_event_bus": "^0.0.1",
     "immutable": "^4.0.0-rc.12"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
