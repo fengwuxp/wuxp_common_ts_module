@@ -21,22 +21,22 @@
     "typescript"
   ],
   "scripts": {
-    "npm_i": "npm i",
+    "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
   "dependencies": {
-    "@types/react": "^16.7.6",
-    "@types/react-dom": "^16.0.9",
-    "@types/react-router": "^4.4.1",
-    "@types/react-router-config": "^1.1.0",
-    "@types/react-router-dom": "^4.3.1",
+    "@types/react": "^16.8.16",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router": "^4.4.5",
+    "@types/react-router-config": "^1.1.3",
+    "@types/react-router-dom": "^4.3.2",
     "classnames": "^2.2.6",
     "common_view": "^0.0.1",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
-    "react-router": "^4.4.0-beta.6",
-    "react-router-config": "^4.4.0-beta.6",
-    "react-router-dom": "^4.4.0-beta.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^4.4.0-beta.8",
+    "react-router-config": "^4.4.0-beta.8",
+    "react-router-dom": "^4.4.0-beta.8"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

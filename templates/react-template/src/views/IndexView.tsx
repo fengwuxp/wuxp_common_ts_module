@@ -9,7 +9,7 @@ interface IndexViewProps {
 }
 
 interface IndexViewState {
-
+    showExample: boolean
 }
 
 /**
@@ -18,15 +18,24 @@ interface IndexViewState {
 export default class IndexView extends React.Component<IndexViewProps, IndexViewState> {
 
 
-    state: IndexViewState = {};
+    state: IndexViewState = {
+        showExample: false
+    };
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
-        const {} = this.state;
+        const {showExample} = this.state;
 
         return <FlexView>
             <Header title={"导航"}/>
-            <Example/>
+            {
+                showExample ? <Example/> : null
+            }
+            <button onClick={() => {
+                this.setState({
+                    showExample: !showExample
+                })
+            }}>{showExample ? "隐藏" : "显示"}</button>
         </FlexView>
     }
 }

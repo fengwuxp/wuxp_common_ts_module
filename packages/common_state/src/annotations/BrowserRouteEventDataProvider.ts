@@ -113,7 +113,7 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
                 this.publisher.publish({
                     type: typeof payLoadType === "function" ? payLoadType() : payLoadType,
                     value: this.state
-                })
+                });
             };
 
         }
