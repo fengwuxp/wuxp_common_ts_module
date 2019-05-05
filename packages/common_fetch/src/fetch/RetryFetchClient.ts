@@ -78,7 +78,8 @@ export default class RetryFetchClient extends AbstractFetchClient<FetchRetryOpti
 
         const _onRetry = options.onRetry || this.retryOptions.onRetry;
 
-        const _delay = options.delay || this.retryOptions.delay;
+        // 以随机一个随机数
+        const _delay = Math.ceil(Math.random() * (options.delay || this.retryOptions.delay)) + 32;
 
         const retries = options.retries || this.retryOptions.retries;
 

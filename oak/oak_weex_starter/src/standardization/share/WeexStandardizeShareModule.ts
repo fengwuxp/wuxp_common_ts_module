@@ -87,8 +87,19 @@ const SHARE_PARAMS_BUILDER = {
     QZone: (data) => SHARE_PARAMS_BUILDER.QQ(data)
 };
 
+
+const module: WeexMobShareModule = weex.requireModule("share"), _proxyModule: WeexMobShareModule = {...module} as any;
+
+const hasInitFunction = typeof module.initConfig === "function";
+
+if (!hasInitFunction) {
+    _proxyModule.initConfig = function (appKey: string, appSecret: string) {
+    }
+
+}
+
 const weexStandardizeShareModule = standardizedWeexModuleToPromise<WeexStandardizeShareModule>({
-    module: weex.requireModule("share"),
+    module: hasInitFunction ? module : _proxyModule,
     transformParamMap: {},
     transformCallbackMap: {
         initConfig: (resolve, reject) => []
@@ -97,7 +108,7 @@ const weexStandardizeShareModule = standardizedWeexModuleToPromise<WeexStandardi
         share: (weexStandardizedModule: WeexMobShareModule, shareOptions: ShareOptions) => {
             return new Promise((resolve, reject) => {
                 const platform = shareOptions.platform;
-                weexStandardizedModule.shareSignPlatform(
+                module.shareSignPlatform(
                     platform,
                     SHARE_PARAMS_BUILDER[platform](shareOptions),
                     resolve, reject);
