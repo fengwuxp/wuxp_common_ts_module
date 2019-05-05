@@ -10,35 +10,33 @@ export interface WeexCommonThirdAppModule extends WeexStandardizedModule {
     /**
      * 某个app是有安装
      */
-    readonly isInstallApp: (packageName: string) => Promise<boolean>;
+    // readonly isAppInstalled: (packageName: string) => Promise<boolean>;
 
 
     /**
      * 是否安装微信
      */
-    readonly isInstallWeChat: () => Promise<boolean>;
+    readonly isWeChatAppInstalled: () => Promise<boolean>;
+
+
+    readonly isQQInstalled: () => Promise<boolean>;
 
 
     /**
      * 是否安装支付宝
      */
-    readonly isInstallAliPay: () => Promise<boolean>;
+    readonly isAliPayInstalled: () => Promise<boolean>;
 }
 
 const weexCommonThirdAppModule = standardizedWeexModuleToPromise<WeexCommonThirdAppModule>({
     module: common,
+    transformParamMap: {},
+    transformCallbackMap: {
+        isAliPayInstalled: (resolve, reject) => [resolve],
+        isQQInstalled: (resolve, reject) => [resolve],
+        isWeChatAppInstalled: (resolve, reject) => [resolve]
+    },
     enhanceMap: {
-        isInstallAliPay: function () {
-            return undefined;
-        },
-        isInstallApp: function (p1: string) {
-            return undefined;
-        },
-        isInstallWeChat: () => {
-            return new Promise((resolve, reject) => {
-                common.isWXInstalled(resolve);
-            });
-        }
 
     }
 });

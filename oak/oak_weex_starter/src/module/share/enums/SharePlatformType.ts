@@ -5,13 +5,14 @@ export enum SharePlatformType {
 
 
     /**
-     * 微信朋友圈
+     *
+     * 微信好友
      */
     WE_CHAT = "Wechat",
 
+
     /**
-     *
-     * 微信好友
+     * 微信朋友圈
      */
     WE_CHAT_MOMENTS = "WechatMoments",
 
