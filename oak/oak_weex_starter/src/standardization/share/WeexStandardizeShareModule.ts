@@ -21,7 +21,7 @@ export interface WeexStandardizeShareModule extends WeexStandardizedModule {
      * 分享
      * @param options
      */
-    readonly  share: (options: ShareOptions) => Promise<void>;
+    readonly  shareByMob: (options: ShareOptions) => Promise<void>;
 }
 
 export interface ShareOptions {
@@ -105,7 +105,7 @@ const weexStandardizeShareModule = standardizedWeexModuleToPromise<WeexStandardi
         initConfig: (resolve, reject) => []
     },
     enhanceMap: {
-        share: (weexStandardizedModule: WeexMobShareModule, shareOptions: ShareOptions) => {
+        shareByMob: (weexStandardizedModule: WeexMobShareModule, shareOptions: ShareOptions) => {
             return new Promise((resolve, reject) => {
                 const platform = shareOptions.platform;
                 module.shareSignPlatform(
