@@ -59,7 +59,7 @@ const commonModule = standardizedWeexModuleToPromise<WeexCommonModule>({
         openBrowser(weexStandardizedModule, url: string) {
 
             return new Promise((resolve, reject) => {
-                appMain.openActivity("LINK", {url}, resolve, reject);
+                appMain.openActivity("BROWSER", {url}, resolve, reject);
             });
         }
 
