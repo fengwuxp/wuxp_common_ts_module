@@ -1,16 +1,23 @@
 import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
 import {FetchResponse} from "common_fetch/src/FetchOptions";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
-import {ApiResp} from "oak_common/src/model/api/ApiResp";
 import StringUtils from "common_utils/src/string/StringUtils";
-import {weexToast} from "common_weex/src/toast/WeexToast";
 import {HttpFetchException} from "common_fetch/src/exception/HttpFetchException";
+import {ApiResp} from "../../model/api/ApiResp";
 
 /**
  * 统一数据处理
  */
-export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
+export default class OakUnifiedRespProcessInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
+
+    protected toastMethod: (message: string) => Promise<void> | void;
+
+
+    constructor(toastMethod: (message: string) => (Promise<void> | void)) {
+        super();
+        this.toastMethod = toastMethod;
+    }
 
     postHandle = (data: FetchResponse, options: FetchOptions): FetchResponse | Promise<FetchResponse> | null | undefined => {
 
@@ -28,7 +35,7 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
             const message = resp.message;
             if (this.useUnifiedToast(options, message)) {
                 // 加入错误提示
-                weexToast(message);
+                this.toastMethod(message);
             }
             return Promise.reject(resp);
         }
@@ -59,7 +66,7 @@ export default class WeexUnifiedRespProcessInterceptor extends AbstractFetchInte
             const message = exception.message || `请求异常 http code：${exception.httpCode}`;
             if (this.useUnifiedToast(options, message)) {
                 // 加入错误提示
-                weexToast(message);
+                this.toastMethod(message);
             }
         }
         return response;
