@@ -8,7 +8,7 @@ import {Action} from "./Action";
 export interface ApiResp<T=any> {
 
     /**
-     * 请求结果code 0表示成功
+     * 请求结果code 0表示成功，其他均为失败
      */
     readonly code: number;
 
