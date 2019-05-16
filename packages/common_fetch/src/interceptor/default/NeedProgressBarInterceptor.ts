@@ -33,15 +33,23 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
      */
     protected progressBarOptions: ProgressBarOptions;
 
+    /**
+     * 防止抖动，在接口很快响应的时候，不显示进度条
+     */
+    protected preventJitter: boolean = true;
+
 
     constructor(progressBar: FetchProgressBar, progressBarOptions?: ProgressBarOptions, timer?: Timer) {
         super();
         this.progressBar = progressBar;
         this.progressBarOptions = progressBarOptions || {
+            //默认延迟300毫秒
             delay: 300,
             mask: false
         };
         this.timer = timer;
+        //延迟显示的时间最少要大于等于100毫秒才会启用防止抖动的模式
+        this.preventJitter = this.progressBarOptions.delay >= 100;
     }
 
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
@@ -51,13 +59,18 @@ export default class NeedProgressBarInterceptor extends AbstractFetchInterceptor
         }
         let {progressBar} = this;
         if (NeedProgressBarInterceptor.count === 0) {
+            const progressBarOptions = {
+                ...this.progressBarOptions,
+                ...(params.progressBarOptions || {})
+            };
             //显示加载进度条
-            this.timerId = setTimeout(() => {
-                progressBar.showProgressBar({
-                    ...this.progressBarOptions,
-                    ...(params.progressBarOptions || {})
-                });
-            }, this.progressBarOptions.delay);
+            if (this.preventJitter) {
+                this.timerId = setTimeout(() => {
+                    progressBar.showProgressBar(progressBarOptions);
+                }, this.progressBarOptions.delay);
+            } else {
+                progressBar.showProgressBar(progressBarOptions);
+            }
         }
 
         //计数器加一
