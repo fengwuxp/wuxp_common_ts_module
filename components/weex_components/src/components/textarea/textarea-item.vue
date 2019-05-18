@@ -4,7 +4,7 @@
          :style="wrapperStyle">
         <textarea :placeholder="placeholder"
                   ref="textarea"
-                  class="text_arae"
+                  class="text_area"
                   :autofocus="autoFocus"
                   :maxlength="maxLength"
                   :rows="rows"
@@ -90,16 +90,16 @@
                 return {
                     height: `${height}px`,
                     width: `${width}px`,
-                    padding,
+                    padding: `${padding}px`,
                     ...border
                 };
             },
             textareaStyle() {
-                const {width, height} = this;
+                const {width, height,padding} = this;
                 return {
-                    height: `${height}px`,
-                    width: `${width}px`,
-                    paddingBottom: "40px"
+                    height: `${height - padding * 2}px`,
+                    width: `${width - padding * 2}px`,
+                    paddingBottom: `${40 - padding}px`
                 };
             },
             needValue() {
@@ -160,9 +160,10 @@
 
     .text_wrapper {
         position: relative;
+        background-color: #ffffff;
     }
 
-    .text_arae {
+    .text_area {
         border-width: 0;
         border-color: rgba(255, 255, 255, 0);
     }
@@ -170,7 +171,7 @@
     .tip_text {
         position: absolute;
         bottom: 10px;
-        right: 5px;
+        right: 20px;
         font-size: 30px;
         color: #a2a2a2;
         text-align: right;
