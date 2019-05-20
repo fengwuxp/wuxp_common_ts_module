@@ -22,11 +22,11 @@
             <text class="icon-font"
                   v-if="titleType === 'iconFont' && v.codePoint && !titleUseSlot"
                   :value="v.codePoint"
-                  :style="{fontFamily: 'wxcIconFont',fontSize: tabStyles.iconFontSize+'px', color: currentPage == index ? tabStyles.activeIconFontColor : tabStyles.iconFontColor}">
+                  :style="itemIconStyle(index)">
             </text>
 
             <text v-if="!titleUseSlot"
-                  :style="{ fontSize: tabStyles.fontSize+'px', fontWeight: (currentPage == index && tabStyles.isActiveTitleBold)? 'bold' : 'normal', color: currentPage == index ? tabStyles.activeTitleColor : tabStyles.titleColor, paddingLeft:tabStyles.textPaddingLeft+'px', paddingRight:tabStyles.textPaddingRight+'px'}"
+                  :style="itemTitleStyle(index)"
                   :value="v.title"
                   class="tab-text"></text>
             <!--数字徽章-->
@@ -112,7 +112,9 @@
                 }
                 height -= 1;
                 const width = this.tabStyles.width;
-                style.width = `${width}px`;
+                if (width) {
+                    style.width = `${width}px`;
+                }
                 style.height = `${height}px`;
                 return style;
             },
@@ -130,6 +132,27 @@
                     style.width = width ? `${width}px` : "100%";
                 }
                 return style;
+            },
+            itemIconStyle(index) {
+                const {tabStyles, currentPage} = this;
+                return {
+                    fontFamily: 'wxcIconFont',
+                    fontSize: tabStyles.iconFontSize + 'px',
+                    color: currentPage == index ? tabStyles.activeIconFontColor : tabStyles.iconFontColor
+                }
+            },
+
+            itemTitleStyle(index) {
+
+                const {tabStyles, currentPage} = this;
+
+                return {
+                    fontSize: tabStyles.fontSize + 'px',
+                    fontWeight: (currentPage == index && tabStyles.isActiveTitleBold) ? 'bold' : 'normal',
+                    color: currentPage == index ? tabStyles.activeTitleColor : tabStyles.titleColor,
+                    paddingLeft: tabStyles.textPaddingLeft + 'px',
+                    paddingRight: tabStyles.textPaddingRight + 'px'
+                }
             }
         },
         created() {

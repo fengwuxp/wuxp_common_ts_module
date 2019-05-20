@@ -19,9 +19,10 @@
                           :iconStyle="backIconStyle"
                           :name="`${backIcon||'chevron-left'}`"></feather-icon>
         </div>
-        <slot v-if="useLeftSlot"
-              name="nav-bar-left"
-              slot="nav-bar-left"></slot>
+        <div v-if="useLeftSlot"
+             slot="nav-bar-left">
+            <slot name="nav-bar-left-slot"></slot>
+        </div>
         <div v-if="!useCenterSlot"
              slot="nav-bar-center"
              class="nav-bar-center"
@@ -30,9 +31,11 @@
                   :style="navTitleStyle"
                   :value="navTitle"></text>
         </div>
-        <slot v-if="useCenterSlot"
-              name="nav-bar-center"
-              slot="nav-bar-center"></slot>
+        <div v-if="useCenterSlot"
+             slot="nav-bar-center"
+             :style="centerStyle">
+            <slot name="nav-bar-center-slot"></slot>
+        </div>
         <div slot="nav-bar-right"
              class="nav-bar-right"
              :style="rightStyle">

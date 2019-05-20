@@ -38,10 +38,16 @@ export default {
             //是否处于查询中
             queryLoading: false,
             //是否查询结束
-            queryEnd: false
+            queryEnd: false,
+            showLoading:false
         }
     },
-    computed: {},
+    computed: {
+        loadingDisplayValue(){
+
+            return this.showLoading?"show":"hide"
+        }
+    },
     methods: {
 
         /**
@@ -167,6 +173,10 @@ export default {
             dom.scrollToElement(ref, {
                 offset: 0
             });
+        },
+
+        onLoading(){
+
         },
 
         /**

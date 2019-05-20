@@ -42,6 +42,6 @@ export default {
         default: 0
     },
     startScrollIndex:{
-        default: 0
+        default: 10
     },
 }

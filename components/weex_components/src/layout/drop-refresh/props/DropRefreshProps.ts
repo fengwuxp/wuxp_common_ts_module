@@ -48,6 +48,10 @@ export default {
         default: "正在加载中"
     },
 
+    ladingText: {
+        default: "数据加载中..."
+    },
+
     /**
      * 下拉刷新动画帧的切换间隔
      */

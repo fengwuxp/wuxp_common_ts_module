@@ -31,6 +31,13 @@
         </refresh>
         <div ref="first_node"></div>
         <slot></slot>
+        <!--loading-->
+        <loading @loading="onLoading"
+                 class="loading flex_row"
+                 :display="loadingDisplayValue">
+            <loading-indicator></loading-indicator>
+            <text class="loading_text" :value="ladingText"></text>
+        </loading>
     </scroller>
 </template>
 <script>
