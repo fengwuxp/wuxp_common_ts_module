@@ -20,6 +20,11 @@
         props: {
             defaultValue: {
                 type: Boolean,
+                default: false
+            },
+            value: {
+                type: Boolean,
+                default: null
             },
             disabled: {
                 type: Boolean,
@@ -28,17 +33,19 @@
                 type: String,
                 default: '#027FF3',
             },
+
             /**
              * 大小 sm md lg
              */
             size: {
                 default: "md"
-            }
+            },
+
         },
 
         data() {
             return {
-                checked: false
+                // checked: false
             }
         },
 
@@ -49,10 +56,10 @@
              * @return {{[p: string]: *}}
              */
             switchStyle() {
-                const {checkedColor, checked, size} = this;
+                const {checkedColor, value, size} = this;
                 const {width, height} = SIZE_CONFIG[size].switchConfig;
                 return {
-                    backgroundColor: checked ? checkedColor : '#d9d9d9',
+                    backgroundColor: value ? checkedColor : '#d9d9d9',
                     width: `${width}px`,
                     height: `${height}px`,
                     borderRadius: `${height}px`
@@ -101,7 +108,7 @@
                     event.stopPropagation();
                 }
                 if (this.disabled) return;
-                this.checked = !this.checked;
+                this.value = !this.value;
                 this.animation();
                 this.blkAnimation();
             },
@@ -110,7 +117,7 @@
                 let el = this.$refs.switchCore;
                 // 设置为0.1 解决奇怪的Y轴会覆盖点击问题
                 // let s = this.checked ? '0.1' : '1';
-                let s = this.checked ? 0 : 1;
+                let s = this.value ? 0 : 1;
                 animation.transition(el, {
                     styles: {
                         transform: `scale(${s})`
@@ -128,7 +135,7 @@
                 const {size} = this;
                 const {switchConfig, blk, marginRight} = SIZE_CONFIG[size];
 
-                let x = this.checked ? `${switchConfig.width - blk.width - marginRight}px` : '0px';
+                let x = this.value ? `${switchConfig.width - blk.width - marginRight}px` : '0px';
                 animation.transition(el, {
                     styles: {
                         transform: `translateX(${x})`
@@ -140,21 +147,32 @@
                 }, () => {
 
                 });
-                this.$emit(ON_CHANGE_EVENT_NAME, this.checked);
-                this.$emit(ON_INPUT_EVENT_NAME, this.checked);
+                this.$emit(ON_CHANGE_EVENT_NAME, this.value);
+                this.$emit(ON_INPUT_EVENT_NAME, this.value);
             },
 
             // android不支持阴影
             initStyle() {
 
+            },
+            changeValue(value) {
+                this.value = value;
+                this.blkAnimation(true);
+                this.animation(true);
             }
         },
+        // watch: {
+        //     value(value) {
+        //         this.changeValue(value);
+        //     }
+        // },
         created() {
+            if (this.value == null) {
+                this.value = this.defaultValue || false;
+            }
             this.initStyle();
         },
-
         mounted() {
-            this.checked = this.defaultValue;
             this.blkAnimation(true);
             this.animation(true);
         },
