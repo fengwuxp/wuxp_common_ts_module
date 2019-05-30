@@ -32,7 +32,7 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
 }
 
 interface ChooseLocationOptions {
-    search: string
+    search?: string
 }
 
 interface LocationOptions {
