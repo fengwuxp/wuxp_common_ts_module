@@ -29,8 +29,6 @@ export const uglifyJsPlugin = new UglifyJsPlugin({
          * compress（默认{}） - 传递false以完全跳过压缩。传递一个对象来指定自定义压缩选项。
          */
         compress: {
-            // 在UglifyJs删除没有用到的代码时不输出警告
-            warnings: false,
             // 删除所有的 `console` 语句
             // 还可以兼容ie浏览器
             drop_console: true,
