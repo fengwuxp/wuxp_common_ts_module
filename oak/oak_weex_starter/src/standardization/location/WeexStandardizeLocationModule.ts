@@ -24,6 +24,15 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
      * 打开选择小区面板
      */
     readonly chooseCommunity: () => Promise<LocationResult>;
+
+    /**
+     * 选择位置
+     */
+    readonly chooseLocation: (options: ChooseLocationOptions) => Promise<LocationResult>;
+}
+
+interface ChooseLocationOptions {
+    search: string
 }
 
 interface LocationOptions {
@@ -45,7 +54,11 @@ const defaultOptions: LocationOptions = {forceLocation: false};
 
 const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWeexModuleToPromise<WeexStandardizeLocationModule>({
     module: location,
-    transformParamMap: {},
+    transformParamMap: {
+        chooseLocation: (options: ChooseLocationOptions) => {
+            return [options.search];
+        }
+    },
     transformCallbackMap: {},
     enhanceMap: {
         getCurrentLocation(weexStandardizedModule: WeexStandardizedModule, options: LocationOptions = defaultOptions) {

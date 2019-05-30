@@ -21,6 +21,14 @@ export interface WeexCommonModule extends WeexStandardizedModule {
      * @param url
      */
     openBrowser: (url: string) => Promise<void>;
+
+    /**
+     * 打开内部浏览器
+     * @param options
+     */
+    openInternalBrowser: (options: {
+        url: string
+    }) => Promise<void>;
 }
 
 export interface OpenThirdAppOptions {
@@ -60,6 +68,14 @@ const commonModule = standardizedWeexModuleToPromise<WeexCommonModule>({
 
             return new Promise((resolve, reject) => {
                 appMain.openActivity("BROWSER", {url}, resolve, reject);
+            });
+        },
+        openInternalBrowser(weexStandardizedModule, options: {
+            url: string
+        }) {
+            const {url} = options;
+            return new Promise((resolve, reject) => {
+                appMain.openActivity("URL", {url}, resolve, reject);
             });
         }
 

@@ -119,7 +119,7 @@ describe("test proxy api service", () => {
             logger.debug("--请求结束，成功->", data);
         }).catch((e) => {
             logger.debug("--请求结束，失败-->", e);
-        });
+        }).f;
 
         // testService.deleteMember({memberId: 1});
     }, 30 * 1000);

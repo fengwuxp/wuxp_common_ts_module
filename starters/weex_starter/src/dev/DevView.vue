@@ -2,7 +2,7 @@
 <template>
     <flex-view :viewStyle="viewStyle">
         <nav-bar slot="app-header"
-                 @back="backView"
+                 @onBack="backView"
                  :navTitle="navTitle"></nav-bar>
         <div slot="app-body" class="flex_1">
             <div class="flex_center margin_top_20">

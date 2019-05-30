@@ -39,13 +39,14 @@ export default {
             queryLoading: false,
             //是否查询结束
             queryEnd: false,
-            showLoading:false
+            //显示加载中
+            // showLoading: false
         }
     },
     computed: {
-        loadingDisplayValue(){
+        loadingDisplayValue() {
 
-            return this.showLoading?"show":"hide"
+            return this.queryLoading ? "show" : "hide"
         }
     },
     methods: {
@@ -175,7 +176,7 @@ export default {
             });
         },
 
-        onLoading(){
+        onLoading() {
 
         },
 

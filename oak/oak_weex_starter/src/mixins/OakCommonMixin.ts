@@ -16,11 +16,13 @@ export default {
                 //发送广播
                 broadcast.send("update", "toIndex", {index});
             }
-            this.toView("index", {
-                queryParams: {
-                    weex_refresh: (refresh || false)
-                }
-            });
+            if (this.toView) {
+                this.toView("index", {
+                    queryParams: {
+                        weex_refresh: (refresh || false)
+                    }
+                });
+            }
         }
     }
 }

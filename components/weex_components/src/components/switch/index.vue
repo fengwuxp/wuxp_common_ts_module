@@ -161,11 +161,11 @@
                 this.animation(true);
             }
         },
-        // watch: {
-        //     value(value) {
-        //         this.changeValue(value);
-        //     }
-        // },
+        watch: {
+            value(value) {
+                this.changeValue(value);
+            }
+        },
         created() {
             if (this.value == null) {
                 this.value = this.defaultValue || false;
