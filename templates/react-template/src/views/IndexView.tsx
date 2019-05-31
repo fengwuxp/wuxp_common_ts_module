@@ -36,6 +36,9 @@ export default class IndexView extends React.Component<IndexViewProps, IndexView
                     showExample: !showExample
                 })
             }}>{showExample ? "隐藏" : "显示"}</button>
+            <button onClick={() => {
+
+            }}></button>
         </FlexView>
     }
 }

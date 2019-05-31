@@ -14,7 +14,10 @@ class DefaultTopicManager implements TopicManager {
             return this.topicMap.get(topicName);
         }
 
-        return new RxjsTopic<T>(topicName);
+        const rxjsTopic = new RxjsTopic<T>(topicName);
+
+        this.topicMap.set(topicName, rxjsTopic);
+        return rxjsTopic;
     };
 
     removeTopic = (topicName: string) => {

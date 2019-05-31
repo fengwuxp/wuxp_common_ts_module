@@ -17,6 +17,9 @@ export interface WrapperDataProviderOptions {
      */
     topicName?: string;
 
+    /**
+     * 负载类型
+     */
     payLoadType?: string | GenPayLoadType;
 
 }
@@ -42,7 +45,7 @@ const ignoreMethodNames = ["defaultState", "setState"];
 export function WrapperDataProvider<T extends DataProvider | FunctionDataProvider>(options: WrapperDataProviderOptions): Function {
 
 
-    const _options = {
+    const _options: WrapperDataProviderOptions = {
         ...defaultOptions,
         ...options
     };
@@ -53,29 +56,31 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function (Provider: T, name: string, descriptor: PropertyDescriptor): T {
+    return function (Provider: { new(...args: any[]): {} }, name: string, descriptor: PropertyDescriptor) {
+
+        console.log("create proxy data provider", _options);
+
+        return class AutoGenDataProvider extends Provider implements DataProvider {
 
 
-        class AutoGenDataProvider<S = any> extends Provider<S> implements DataProvider {
+            protected state: any;
 
-            protected publisher: Publisher<Payload>;
-
-            protected state: S;
-
-            async constructor() {
+            constructor() {
                 super();
 
-                const topic = TopicManager.getTopic<Payload>(_options.topicType);
+                const initFun = async () => {
+                    //初始化state
+                    this.state = await this.defaultState();
+                };
 
-                this.publisher = topic.getPublisher();
-                //初始化state
-                this.state = await this.defaultState();
+                initFun();
+
                 //通过代理返回
                 return ProxyFactory.newProxyInstanceEnhance(this,
                     (provider: AutoGenDataProvider, propertyKey: PropertyKey, receiver: any) => {
 
 
-                        const actionFunction = provider[propertyKey];
+                        const actionFunction = provider[propertyKey as string];
 
                         return async (...args) => {
 
@@ -93,39 +98,37 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
                             return result;
                         }
 
-                    }, (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
-
-                        return () => throw new Error(`no such method ${propertyKey}`);
-
+                    },
+                    (provider: DataProvider, propertyKey: PropertyKey, receiver: any) => {
+                        return () => {
+                            throw new Error(`no such method ${propertyKey as string}`);
+                        }
                     });
 
             }
 
-            setState = <K extends keyof S>(state: StateType<S, K>) => {
-
+            setState = <K extends keyof any>(state: StateType<any, K>) => {
+                const topic = TopicManager.getTopic<Payload>(_options.topicName);
+                console.log("topic", topic);
                 this.state = {
                     ...this.state,
                     ...state
                 };
-
                 const payLoadType = _options.payLoadType;
-
-                this.publisher.publish({
+                const publisher = topic.getPublisher();
+                console.log(publisher);
+                publisher.publish({
                     type: typeof payLoadType === "function" ? payLoadType() : payLoadType,
                     value: this.state
                 });
             };
 
-        }
+            defaultState = <K extends keyof any>() => ({});
 
-        return AutoGenDataProvider as T;
+        };
+
     }
 }
-
-let defaultConverterMethodNameToStateAttrName: ConverterMethodNameToStateAttrName = simpleConverterMethodNameToStateAttrName;
-
-export const setDefaultConverterMethodNameToStateAttrName = () => defaultConverterMethodNameToStateAttrName = simpleConverterMethodNameToStateAttrName;
-
 
 /**
  * 转换方法名称为sate属性的名称
@@ -134,7 +137,6 @@ export type ConverterMethodNameToStateAttrName = (methodName: string) => string;
 
 
 const methodNamePrefix = ["get", "load", "find", "query"];
-
 
 const simpleConverterMethodNameToStateAttrName: ConverterMethodNameToStateAttrName = (methodName: string) => {
     let name = methodName;
@@ -150,4 +152,11 @@ const simpleConverterMethodNameToStateAttrName: ConverterMethodNameToStateAttrNa
 
     return transformInitialLetterLowercase(name);
 };
+
+let defaultConverterMethodNameToStateAttrName: ConverterMethodNameToStateAttrName = simpleConverterMethodNameToStateAttrName;
+
+
+//设置默认的方法名称转换为属性名称的策略
+export const setDefaultConverterMethodNameToStateAttrName = () => defaultConverterMethodNameToStateAttrName = simpleConverterMethodNameToStateAttrName;
+
 

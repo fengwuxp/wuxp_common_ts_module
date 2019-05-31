@@ -1,7 +1,9 @@
+import * as React from "react";
+import {useEffect, useState} from "react";
 import TopicManager from "common_event_bus/src/DefaultTopicManager";
 import {ApplicationTopicType} from "../enums/ApplicationTopicType";
-import {useState, useEffect} from "react";
 import {Payload} from "../Payload";
+
 
 export interface ReactRouteViewOptions {
 
@@ -17,7 +19,7 @@ export interface ReactRouteViewOptions {
  * @param options
  * @constructor
  */
-export const ReactRouteView = (options: ReactRouteViewOptions) => {
+export const ReactRouteView = (options: ReactRouteViewOptions) :Function=> {
 
 
     /**
@@ -31,7 +33,7 @@ export const ReactRouteView = (options: ReactRouteViewOptions) => {
 
         const WrapperComponent = (props) => {
 
-            const {eventProps, updateEventProps} = useState({});
+            const [eventProps, updateEventProps] = useState({});
 
             useEffect(() => {
                 const topic = TopicManager.getTopic(ApplicationTopicType.ROUTE);

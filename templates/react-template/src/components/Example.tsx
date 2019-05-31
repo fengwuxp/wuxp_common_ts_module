@@ -1,7 +1,8 @@
+import * as React from "react";
 import {useState, useLayoutEffect, useEffect} from "react";
 
 
-export const Example = () => {
+export const Example = (props) => {
 
     const [object, setCount] = useState({num: 1});
 
