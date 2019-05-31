@@ -1,7 +1,7 @@
 import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
 import {parse, stringify} from "querystring";
 import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
-import TaroJsHolder, {TaroInterface, TaroInterfaceHolder} from "../TaroJsHolder";
+import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 import {setNextViewState} from "./PageStatTransferUtil";
 
 
@@ -17,14 +17,14 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
      */
     private prefix: string;
 
-    protected taroInstance: TaroInterface;
+    protected taroHolder: TaroInterfaceHolder;
 
     constructor(prefix: string = "pages") {
         this.prefix = prefix;
-        this.taroInstance = TaroJsHolder.getTaroHolder().taro;
+        this.taroHolder = TaroJsHolder.getTaroHolder();
     }
 
-    goBack = (num?: number): Promise<void> => this.taroInstance.navigateBack({delta: num});
+    goBack = (num?: number): Promise<void> => this.taroHolder.taro.navigateBack({delta: num});
 
 
     push = (params: NavigatorDescriptorObject): Promise<void> => {
@@ -47,7 +47,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
 
         const url = this.generateURL(params);
         setNextViewState(state);
-        return this.taroInstance.navigateTo({
+        return this.taroHolder.taro.navigateTo({
             url,
         });
 
@@ -56,20 +56,19 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     redirect = (params: NavigatorDescriptorObject): Promise<void> => {
         const url = this.generateURL(params);
         setNextViewState(params.state);
-        return this.taroInstance.redirectTo({
+        return this.taroHolder.taro.redirectTo({
             url
         });
     };
 
-    switchTab(pathname: string,) {
+    switchTab(pathname: string) {
         const url = this.generateURL({
             pathname
         });
-        return this.taroInstance.switchTab({
+        this.taroHolder.taro.switchTab({
             url
         });
     }
-
 
     protected generateURL = (navigatorDescriptorObject: NavigatorDescriptorObject): string => {
 
