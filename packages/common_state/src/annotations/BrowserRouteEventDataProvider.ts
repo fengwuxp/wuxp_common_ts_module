@@ -42,12 +42,12 @@ const ignoreMethodNames = ["defaultState", "setState"];
  * @param options
  * @constructor
  */
-export function WrapperDataProvider<T extends DataProvider | FunctionDataProvider>(options: WrapperDataProviderOptions): Function {
+export function WrapperDataProvider<T extends DataProvider | FunctionDataProvider>(options?: WrapperDataProviderOptions): Function {
 
 
     const _options: WrapperDataProviderOptions = {
         ...defaultOptions,
-        ...options
+        ...(options || {})
     };
 
     /**
@@ -63,14 +63,15 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
         return class AutoGenDataProvider extends Provider implements DataProvider {
 
 
-            protected state: any;
+            protected state: any = {};
 
             constructor() {
                 super();
 
                 const initFun = async () => {
                     //初始化state
-                    this.state = await this.defaultState();
+                    const state = await this.defaultState();
+                    this.setState(state || {});
                 };
 
                 initFun();
@@ -109,14 +110,12 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
 
             setState = <K extends keyof any>(state: StateType<any, K>) => {
                 const topic = TopicManager.getTopic<Payload>(_options.topicName);
-                console.log("topic", topic);
                 this.state = {
                     ...this.state,
                     ...state
                 };
                 const payLoadType = _options.payLoadType;
                 const publisher = topic.getPublisher();
-                console.log(publisher);
                 publisher.publish({
                     type: typeof payLoadType === "function" ? payLoadType() : payLoadType,
                     value: this.state
@@ -125,7 +124,7 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
 
             defaultState = <K extends keyof any>() => ({});
 
-        };
+        }
 
     }
 }

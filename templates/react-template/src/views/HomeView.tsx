@@ -3,7 +3,8 @@ import FlexView from "../components/FlexView";
 import Header from "../components/Header";
 import {ReactRouteView} from "common_state/src/annotations/ReactRouteView";
 import HomeDataProvider from "../provider/HomeDataProvider";
-const homeDataProvider = new HomeDataProvider();
+
+
 export interface HomeViewProps {
 
     name: string;
@@ -28,22 +29,22 @@ export default class HomeView extends React.Component<HomeViewProps, HomeViewSta
 
     constructor(props: Readonly<HomeViewProps>) {
         super(props);
-    }
 
-    componentDidMount(): void {
-
-        // console.log("HomeDataProvider",homeDataProvider);
         setTimeout(() => {
-            homeDataProvider.getName();
+            HomeDataProvider.getName();
         }, 1000);
 
         setTimeout(() => {
-            homeDataProvider.getTotal();
+            HomeDataProvider.getTotal();
         }, 2000);
         setTimeout(() => {
-            homeDataProvider.getSimpleObject();
-        }, 2000);
+            HomeDataProvider.getSimpleObject();
+            HomeDataProvider.setState({
+                name: "王五"
+            });
+        }, 3000);
     }
+
 
     render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
         const {name, total, simpleObject} = this.props;

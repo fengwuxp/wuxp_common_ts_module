@@ -1,7 +1,7 @@
 import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {LocationModule, LocationResult, RouteOptions} from "../../module/location";
-import {location, appMain} from "../../ExpotrtWeexOAKModel"
+import {LocationResult, RouteOptions} from "../../module/location";
+import {location} from "../../ExpotrtWeexOAKModel"
 
 /**
  * 定位插件
@@ -32,7 +32,12 @@ export interface WeexStandardizeLocationModule extends WeexStandardizedModule {
 }
 
 interface ChooseLocationOptions {
-    search?: string
+
+    categoryList?: string[]
+
+    keywords?: string[];
+
+    options?: {};
 }
 
 interface LocationOptions {
@@ -56,7 +61,13 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
     module: location,
     transformParamMap: {
         chooseLocation: (options: ChooseLocationOptions) => {
-            return [options.search];
+            const categoryList = options.categoryList;
+            const keywords = options.keywords;
+            return [
+                categoryList == null ? null : categoryList.join(" "),
+                keywords == null ? null : keywords.join(" "),
+                options.options
+            ];
         }
     },
     transformCallbackMap: {},

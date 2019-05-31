@@ -1,10 +1,14 @@
 import {WrapperDataProvider} from "common_state/src/annotations/BrowserRouteEventDataProvider";
 import {DataProvider} from "common_state/src/provider/DataProvider";
 import {HomeViewProps} from "../views/HomeView";
+import {StateType} from "common_state/src/provider/DataProvider";
 
 
 @WrapperDataProvider({})
-export default class HomeDataProvider implements DataProvider<HomeViewProps> {
+class HomeDataProvider implements DataProvider<HomeViewProps> {
+
+    // setState: <K extends keyof HomeViewProps>(state: StateType<HomeViewProps, K>) => void;
+
 
     defaultState = <K extends keyof HomeViewProps>() => {
         return {
@@ -19,7 +23,12 @@ export default class HomeDataProvider implements DataProvider<HomeViewProps> {
     };
 
     getTotal = () => {
-        return 12;
+        return new Promise(resolve => {
+
+            setTimeout(() => {
+                resolve(1111);
+            }, 3000);
+        });
     };
 
     getSimpleObject = () => {
@@ -29,3 +38,9 @@ export default class HomeDataProvider implements DataProvider<HomeViewProps> {
         }
     }
 }
+
+const homeDataProvider = new HomeDataProvider();
+
+
+
+export default homeDataProvider;
