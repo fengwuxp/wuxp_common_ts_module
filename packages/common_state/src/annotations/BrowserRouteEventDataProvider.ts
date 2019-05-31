@@ -1,10 +1,11 @@
-import {DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
+import {AbstractDataProvider, DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
 import ProxyFactory from "common_proxy/src/ProxyFactory";
 import {transformInitialLetterLowercase} from "common_utils/src/string/LetterUtils";
 import TopicManager from "common_event_bus/src/DefaultTopicManager";
 import {ApplicationTopicType} from "../enums/ApplicationTopicType";
 import {Payload} from "../Payload";
 import {Publisher} from "common_event_bus/src/publishe/Publisher";
+import {Provider} from "react";
 
 
 type GenPayLoadType = () => string;
@@ -34,7 +35,7 @@ const defaultOptions: WrapperDataProviderOptions = {
 };
 
 
-const ignoreMethodNames = ["defaultState", "setState"];
+const ignoreMethodNames = ["setState"];
 
 /**
  * 数据提供者
@@ -42,7 +43,7 @@ const ignoreMethodNames = ["defaultState", "setState"];
  * @param options
  * @constructor
  */
-export function WrapperDataProvider<T extends DataProvider | FunctionDataProvider>(options?: WrapperDataProviderOptions): Function {
+export function WrapperDataProvider<T extends DataProvider>(options?: WrapperDataProviderOptions): Function {
 
 
     const _options: WrapperDataProviderOptions = {
@@ -60,28 +61,24 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
 
         console.log("create proxy data provider", _options);
 
-        return class AutoGenDataProvider extends Provider implements DataProvider {
+        const defaultProvider = new Provider();
+        return class AutoGenDataProvider implements DataProvider<any> {
 
 
             protected state: any = {};
 
             constructor() {
-                super();
 
-                const initFun = async () => {
-                    //初始化state
-                    const state = await this.defaultState();
-                    this.setState(state || {});
-                };
-
-                initFun();
 
                 //通过代理返回
-                return ProxyFactory.newProxyInstanceEnhance(this,
+                const genDataProvider = ProxyFactory.newProxyInstanceEnhance({
+                        ...this,
+                        ...defaultProvider
+                    },
                     (provider: AutoGenDataProvider, propertyKey: PropertyKey, receiver: any) => {
 
+                        const actionFunction = propertyKey === "defaultState" ? defaultProvider[propertyKey as string] : provider[propertyKey as string];
 
-                        const actionFunction = provider[propertyKey as string];
 
                         return async (...args) => {
 
@@ -90,7 +87,7 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
                                 return result;
                             }
                             if (result === undefined) {
-                                return
+                                return;
                             }
                             const newSate = {};
                             const stateAttrName = defaultConverterMethodNameToStateAttrName(propertyKey as string);
@@ -105,6 +102,16 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
                             throw new Error(`no such method ${propertyKey as string}`);
                         }
                     });
+
+                const initFun = async () => {
+                    //初始化state
+                    const state = await genDataProvider.defaultState();
+                    this.setState(state || {});
+                };
+
+                initFun();
+
+                return genDataProvider;
 
             }
 
@@ -122,7 +129,8 @@ export function WrapperDataProvider<T extends DataProvider | FunctionDataProvide
                 });
             };
 
-            defaultState = <K extends keyof any>() => ({});
+            defaultState: <K extends keyof any>() => (StateType<any, K> | Promise<StateType<any, K>>);
+
 
         }
 

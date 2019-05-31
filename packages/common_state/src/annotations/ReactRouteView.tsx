@@ -19,7 +19,7 @@ export interface ReactRouteViewOptions {
  * @param options
  * @constructor
  */
-export const ReactRouteView = (options: ReactRouteViewOptions) :Function=> {
+export const ReactRouteView = (options: ReactRouteViewOptions): Function => {
 
 
     /**
@@ -31,7 +31,7 @@ export const ReactRouteView = (options: ReactRouteViewOptions) :Function=> {
     return function (ReactComponent: any, name: string, descriptor: PropertyDescriptor): any {
 
 
-        const WrapperComponent = (props) => {
+        return (props) => {
 
             const [eventProps, updateEventProps] = useState({});
 
@@ -55,6 +55,5 @@ export const ReactRouteView = (options: ReactRouteViewOptions) :Function=> {
             return <ReactComponent {...props} {...eventProps}/>;
         };
 
-        return WrapperComponent;
     }
 };
