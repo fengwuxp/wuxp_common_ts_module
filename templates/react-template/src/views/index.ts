@@ -1,6 +1,7 @@
 import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig"
 import IndexView from "./IndexView";
 import HomeView from "./HomeView";
+import GoodsListView from "./GoodsListView";
 
 
 interface IndexRouteNames {
@@ -20,9 +21,13 @@ interface IndexRouteNames {
 const routes: Array<NamedRouteConfig> = [
     {
         path: "/home",
-        // path: HomeView["pathname"],
         exact: true,
         component: HomeView
+    },
+    {
+        path: "/goods_list",
+        exact: true,
+        component: GoodsListView
     },
     {
         path: "/",

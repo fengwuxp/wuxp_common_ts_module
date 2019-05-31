@@ -2,7 +2,7 @@ import * as React from "react";
 import FlexView from "../components/FlexView";
 import Header from "../components/Header";
 import {Example} from "../components/Example";
-
+import {history} from "../AppRouterHelper";
 
 interface IndexViewProps {
 
@@ -11,7 +11,6 @@ interface IndexViewProps {
 interface IndexViewState {
     showExample: boolean
 }
-
 /**
  * index
  */
@@ -37,8 +36,11 @@ export default class IndexView extends React.Component<IndexViewProps, IndexView
                 })
             }}>{showExample ? "隐藏" : "显示"}</button>
             <button onClick={() => {
-
-            }}></button>
+                history.push("/home")
+            }}>首页</button>
+            <button onClick={() => {
+                history.push("/goods_list")
+            }}>商品列表</button>
         </FlexView>
     }
 }

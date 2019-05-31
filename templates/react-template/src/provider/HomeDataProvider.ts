@@ -7,7 +7,7 @@ import {StateType} from "common_state/src/provider/DataProvider";
 @WrapperDataProvider({})
 class HomeDataProvider implements DataProvider<HomeViewProps> {
 
-    // setState: <K extends keyof HomeViewProps>(state: StateType<HomeViewProps, K>) => void;
+    setState: <K extends keyof HomeViewProps>(state: StateType<HomeViewProps, K>) => void;
 
 
     defaultState = <K extends keyof HomeViewProps>() => {

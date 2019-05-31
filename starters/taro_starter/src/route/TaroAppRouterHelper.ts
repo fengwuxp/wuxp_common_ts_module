@@ -36,6 +36,8 @@ class TaroAppRouterHelper implements AppRouterHelper {
     backView = () => TaroAppRouterHelper.navigator.goBack();
 
 
+    switchTab = (pathname: string) => TaroAppRouterHelper.navigator.switchTab(pathname);
+
     /**
      * 初始化页面状态
      * @param viewInstance

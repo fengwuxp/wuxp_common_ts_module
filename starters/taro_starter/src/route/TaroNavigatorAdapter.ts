@@ -1,7 +1,7 @@
 import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
 import {parse, stringify} from "querystring";
 import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
-import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
+import TaroJsHolder, {TaroInterface, TaroInterfaceHolder} from "../TaroJsHolder";
 import {setNextViewState} from "./PageStatTransferUtil";
 
 
@@ -17,21 +17,21 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
      */
     private prefix: string;
 
-    protected taroHolder: TaroInterfaceHolder;
+    protected taroInstance: TaroInterface;
 
     constructor(prefix: string = "pages") {
         this.prefix = prefix;
-        this.taroHolder = TaroJsHolder.getTaroHolder();
+        this.taroInstance = TaroJsHolder.getTaroHolder().taro;
     }
 
-    goBack = (num?: number): Promise<void> => this.taroHolder.taro.navigateBack({delta: num});
+    goBack = (num?: number): Promise<void> => this.taroInstance.navigateBack({delta: num});
 
 
     push = (params: NavigatorDescriptorObject): Promise<void> => {
 
         const {pathname, state, queryParams, search} = params;
         const paths = pathname ? pathname.split("?") : [];
-        const result = handleRedirect(this, {
+        const needRedirect = handleRedirect(this, {
             pathname,
             queryParams: {
                 ...(parse(paths[1] || "") || {}),
@@ -40,14 +40,14 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
             },
             state
         });
-        if (result != null) {
+        if (needRedirect != null) {
             //需要重定向
-            return result as Promise<void>;
+            return needRedirect as Promise<void>;
         }
 
         const url = this.generateURL(params);
         setNextViewState(state);
-        return this.taroHolder.taro.navigateTo({
+        return this.taroInstance.navigateTo({
             url,
         });
 
@@ -56,10 +56,19 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     redirect = (params: NavigatorDescriptorObject): Promise<void> => {
         const url = this.generateURL(params);
         setNextViewState(params.state);
-        return this.taroHolder.taro.redirectTo({
+        return this.taroInstance.redirectTo({
             url
         });
     };
+
+    switchTab(pathname: string,) {
+        const url = this.generateURL({
+            pathname
+        });
+        return this.taroInstance.switchTab({
+            url
+        });
+    }
 
 
     protected generateURL = (navigatorDescriptorObject: NavigatorDescriptorObject): string => {
