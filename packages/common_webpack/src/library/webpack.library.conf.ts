@@ -5,6 +5,7 @@ import awesomeTypescriptLoader from "../loader/TypescriptLoader";
 import {Entry, EntryFunc} from "webpack";
 import {Output} from "webpack";
 import {Plugin} from "webpack";
+import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
 
 
 interface GetLibraryTargetConfigOptions {
@@ -53,7 +54,8 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
         },
 
         plugins: [
-            ...(options.plugins || [])
+            ...(options.plugins || []),
+            uglifyJsPlugin
         ]
     }
 };
