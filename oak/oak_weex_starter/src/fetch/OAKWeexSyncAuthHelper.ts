@@ -22,7 +22,8 @@ export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
         if (response.data.code != 99) {
             return Promise.resolve(response);
         }
-
+        //移除本地的用户信息
+        simpleAppSessionManager.removeMember();
         if (AbstractSyncAuthHelper.REFRESH_TOKEN_TIMER_ID == null) {
             AppRouter.toView({
                 pathname: "login"
@@ -52,7 +53,7 @@ export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
     };
     protected cancelTokenResultEvent = () => {
         //取消事件监听
-        broadcast.unregister(AbstractSyncAuthHelper.NEED_AUTH_EVENT, AbstractSyncAuthHelper.NEED_AUTH_EVENT);
+        broadcast.unregister(AbstractSyncAuthHelper.REFRESH_TOKEN_RESULT, AbstractSyncAuthHelper.NEED_AUTH_EVENT);
     };
 
     protected receiveTokenResultEvent = () => {

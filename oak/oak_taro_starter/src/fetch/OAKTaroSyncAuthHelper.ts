@@ -23,6 +23,8 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
             return Promise.resolve(response);
         }
 
+        taroDefaultSessionManager.removeMember();
+
         return this.buildWaitPromise({
             response,
             options
@@ -47,7 +49,7 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
     };
     protected cancelTokenResultEvent = () => {
         //取消事件监听
-        this.taroHolder.taro.eventCenter.off(AbstractSyncAuthHelper.NEED_AUTH_EVENT);
+        this.taroHolder.taro.eventCenter.off(AbstractSyncAuthHelper.REFRESH_TOKEN_RESULT);
     };
 
     protected receiveTokenResultEvent = () => {

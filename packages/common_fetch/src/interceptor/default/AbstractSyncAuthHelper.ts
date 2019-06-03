@@ -39,6 +39,8 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     //等待登录结果通知的最大秒数
     public static MAX_WAIT_LOGIN_NOTICE_TIMES = 30 * 1000;
 
+    private static MAX_QUEUE_SIZE = 10;
+
     //等待请求的队列
     protected waitingQueue: {
         resolve: Function;
@@ -98,9 +100,10 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
 
 
     /**
-     * 取消token事件监听
+     * 取消token结果事件监听
      */
     protected abstract cancelTokenResultEvent: () => void;
+
 
 
     protected buildWaitPromise = (item: {
@@ -123,19 +126,29 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
             //处于等待状态登录状态
             return new Promise((resolve, reject) => {
                 //缓存本次请求的实例
-                console.log("加入等待队列");
-                this.addWaitQueue({
+                console.log("加入刷新token的等待队列");
+                const r = this.addWaitQueue({
                     resolve,
                     reject,
                     ...item
                 });
+                if (!r) {
+                    reject();
+                }
             });
         }
     };
 
 
     protected addWaitQueue = (item) => {
-        this.waitingQueue.push(item)
+        const length = this.waitingQueue.length;
+        if (length >= AbstractSyncAuthHelper.MAX_QUEUE_SIZE) {
+            console.info("token 刷新等待队列已满，size =", length);
+            return false;
+
+        }
+        this.waitingQueue.push(item);
+        return true;
     };
 
     /**
