@@ -43,8 +43,8 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
 
     //等待请求的队列
     protected waitingQueue: {
-        resolve: Function;
-        reject: Function;
+        resolve: <T = any>(value?: T | PromiseLike<T>) => void;
+        reject: (reason?: any) => void;
         response: FetchResponse;
         options: FetchOptions
     }[] = [];
@@ -68,7 +68,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
             console.log("token", token);
             (params as FetchOptions).headers["token"] = token;
         } catch (e) {
-            console.error("获取token失败", e);
+            console.log("获取token失败", e);
             //获取本地用户信息失败 登录
             if ((params as FetchOptions).needAuth === true) {
                 console.log("需要鉴权加入等待鉴权队列", params);
@@ -103,7 +103,6 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
      * 取消token结果事件监听
      */
     protected abstract cancelTokenResultEvent: () => void;
-
 
 
     protected buildWaitPromise = (item: {
@@ -204,10 +203,14 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
                         options.data = JSON.parse(options.data);
                     }
                 }
-                options.useUnifiedTransformResponse = false;
-                this.retryTestTemplate.fetch(options).finally(resolve as any);
+                //重试请求
+                this.retryTestTemplate.fetch({
+                    ...options,
+                    //不使用同一的数据转换
+                    useUnifiedTransformResponse: false
+                }).finally(resolve);
             } else {
-                //登录成功
+                //登录成功,不进行重试，直接把之前的响应,传递下去
                 resolve(response);
             }
         });
