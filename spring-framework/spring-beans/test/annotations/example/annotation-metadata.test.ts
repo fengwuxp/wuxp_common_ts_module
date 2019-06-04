@@ -71,7 +71,7 @@ function AutoWried(options: AutoWriedOptions) {
 
         descriptor = {
             value: BEAN_MAP.get(metadata)
-        }
+        };
 
 
         return descriptor;

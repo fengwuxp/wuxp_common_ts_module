@@ -31,21 +31,22 @@ const proxyFactory: ProxyServiceFactory = new DefaultProxyServiceFactory();
  * 标记为feign proxy
  * @constructor T extends { new(...args: any[]): any }
  */
-export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
+export function Feign<T extends FeignProxy>(options?: FeignOptions): any {
+
+
+    const feignOptions: FeignOptions = {
+        apiModule: defaultApiModuleName,
+        ...(options || {})
+    };
 
     /**
      * 创建feign代理的实例
      * @param  {T} clazz
      */
-    return (clazz: any): any => {
+    return (clazz: { new(...args: any[]): {} }): any => {
         if (proxyFactory == null) {
             new Error("proxyFactory is not init，please use setProxyFactory");
         }
-
-        const feign: FeignOptions = {
-            apiModule: defaultApiModuleName,
-            ...feignOptions
-        };
 
         /**
          * 返回一个实现了FeignProxy接口的匿名类
@@ -59,13 +60,13 @@ export function Feign<T extends FeignProxy>(feignOptions?: FeignOptions): any {
                 return proxyFactory.factory(this);
             }
 
-            serviceName: string = feign.value || clazz.name;
+            serviceName: string = feignOptions.value || clazz.name;
 
 
             /**
              * feign代理的相关配置
              */
-            feign: FeignOptions = feign;
+            feignOptions: FeignOptions = feignOptions;
 
             /**
              * 接口方法配置列表

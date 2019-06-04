@@ -3,7 +3,6 @@ import {ReactRouteView} from "common_state/src/annotations/ReactRouteView";
 import goodsListDataProvider from "../provider/GoodsListDataProvider";
 
 
-
 export interface GoodsListViewProps {
 
     goodsList: Array<{}>;
@@ -35,5 +34,12 @@ export default class GoodsListView extends React.Component<GoodsListViewProps, G
         return <div>
             {JSON.stringify(goodsList)}
         </div>
+    }
+
+    //@Aut({
+    //   con:"'
+    // })
+    add = () => {
+
     }
 }

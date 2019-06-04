@@ -20,7 +20,7 @@ export default class SimpleRequestURLResolver implements RequestURLResolver {
 
     resolve = (apiService: FeignProxy, methodName: string, data: object): string => {
 
-        const feignOptions = apiService.feign;
+        const feignOptions = apiService.feignOptions;
 
         //生成 例如 @member/member/queryMember 或 @default/member/{memberId}
         const url = `${getApiUriByApiService(apiService, feignOptions)}${getApiUriByApiServiceMethod(apiService, methodName)}`;

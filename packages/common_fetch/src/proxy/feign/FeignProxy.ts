@@ -59,7 +59,7 @@ export interface FeignProxy extends ProxyApiService {
     /**
      * feign的代理配置
      */
-    feign: FeignOptions;
+    feignOptions: FeignOptions;
 
     /**
      * 获取获取接口方法的配置

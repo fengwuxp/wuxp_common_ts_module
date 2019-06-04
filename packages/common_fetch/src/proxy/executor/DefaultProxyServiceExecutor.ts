@@ -121,7 +121,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
 
         //获取请求template
-        const restTemplate = this.getTemplate(apiService.feign);
+        const restTemplate = this.getTemplate(apiService.feignOptions);
 
         let response = await restTemplate.fetch(fetchOptions);
         if (response == null) {

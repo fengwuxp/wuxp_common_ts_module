@@ -59,6 +59,13 @@ function AnnotationToMethod() {
     }
 }
 
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
 
 function AnnotationToConstructor() {
     return () => (target, name, descriptor) => {
@@ -104,16 +111,21 @@ class Person {
     }
 }
 
+const testFn=(index,name)=>{}
+
 describe("annotation example", () => {
 
 
     test("annotation to class", () => {
 
         const annotationExampleTest = new AnnotationExampleTest();
-        console.log(annotationExampleTest.name);
+        logger.log(annotationExampleTest.name);
         const p = new Person();
         p.name();
         // annotationExampleTest.name='2'
+
+        const prototype = testFn.prototype;
+        logger.debug(prototype)
     })
 
 });

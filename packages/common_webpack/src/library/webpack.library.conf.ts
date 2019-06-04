@@ -12,6 +12,7 @@ interface GetLibraryTargetConfigOptions {
 
     entry: string | string[] | Entry | EntryFunc;
 
+    //生产环境
     production: boolean;
 
     /**
@@ -21,7 +22,9 @@ interface GetLibraryTargetConfigOptions {
 
     output?: Output;
 
-    plugins?: Plugin[]
+    plugins?: Plugin[],
+
+    splitChunkName?: string;
 }
 
 
@@ -33,8 +36,9 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
 
     const packPath = path.resolve(options.outputDir || "./lib");
 
-    return {
-        mode: options.production ? "production" : "development",
+    const isProduction = options.production;
+    const webpackConfig: webpack.Configuration = {
+        mode: isProduction ? "production" : "development",
         entry: options.entry,
         output: options.output || {
             filename: '[name].js',
@@ -42,10 +46,11 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
             path: packPath,
             libraryTarget: "commonjs"
         },
+
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js"],
         },
-        devtool: options.production ? false : "source-map",
+        devtool: isProduction ? false : "source-map",
         module: {
             rules: [
                 babelLoader,
@@ -55,7 +60,32 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
 
         plugins: [
             ...(options.plugins || []),
-            uglifyJsPlugin
-        ]
+            isProduction ? uglifyJsPlugin : null
+        ].filter(item => item != null)
+    };
+
+    if (isProduction) {
+        //压缩配置
+        // 提取js 第三方库等
+        webpackConfig.optimization = {
+            splitChunks: {
+                name: options.splitChunkName || "index",
+                cacheGroups: {
+                    common: {
+                        chunks: 'initial', // 必须三选一： "initial"(初始化) | "all" | "async"(默认就是异步)
+                        // name: 'index',    // entry中js
+                        enforce: true,      // 强制
+                        test: /node_modules/,     // 正则规则验证，如果符合就提取 chunk
+                        minSize: 0,
+                        minChunks: 1,
+                        reuseExistingChunk: true   // 可设置是否重用已用chunk 不再创建新的chunk
+                    }
+                }
+            },
+            concatenateModules: true,
+            minimizer: []
+        };
     }
+
+    return webpackConfig;
 };
