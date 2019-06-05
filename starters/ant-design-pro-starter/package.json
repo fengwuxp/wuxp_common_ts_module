@@ -1,0 +1,47 @@
+{
+  "name": "ant-design-pro-starter",
+  "version": "0.0.1",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "serve-dev": "webpack-dev-server  --config ./webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "common_react": "^0.0.1",
+    "common_starter": "^0.0.1",
+    "@ant-design/dark-theme": "^0.2.0",
+    "antd": "^3.15.0",
+    "lodash": "^4.17.10",
+    "lodash-decorators": "^6.0.0",
+    "memoize-one": "^5.0.0",
+    "moment": "^2.22.2",
+    "omit.js": "^1.0.0",
+    "path-to-regexp": "^2.4.0",
+    "qs": "^6.7.0",
+    "rc-animate": "^2.4.4",
+    "react": "^16.8.5",
+    "react-container-query": "^0.11.0",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^16.7.0",
+    "react-fittext": "^1.0.0",
+    "react-media-hook2": "^1.0.2"
+  }
+}

@@ -23,10 +23,8 @@ const proxyServerWebContext = 'api';
 config.devServer = {
     contentBase: path.join(__dirname, ''),
     compress: true,
-    host: host,
-    port,    //设置端口号
-
-    publicPath: '/',
+    host: '0.0.0.0',
+    public: `${ip}:${port}`,
     proxy: {
         '/api': {
             target: proxyTarget,

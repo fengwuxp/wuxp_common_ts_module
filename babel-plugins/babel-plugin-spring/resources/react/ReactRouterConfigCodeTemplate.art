@@ -1,0 +1,19 @@
+import {asyncComponent} from "typescript-spring-react/src/route/AsyncComponent";
+import {SpringReactRouteConfig} from "typescript-spring-react/src/route/SpringReactRouteConfig";
+
+/**
+ * 自动生成的路由配置列表
+ **/
+const routes: Array<SpringReactRouteConfig> = [
+
+   {{each routes route index }}
+
+      {
+        name : "{{route.name}}",
+        pathname : "{{route.pathname}}",
+        exact : {{route.exact}},
+        component : asyncComponent( ()=> import("{{route.component}}"))
+      },
+
+   {{/each}}
+]

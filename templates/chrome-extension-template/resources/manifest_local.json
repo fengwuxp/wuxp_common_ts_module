@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "chrome extension template",
+  "description": "chrome extension template",
+  "version": "1.0.1",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://192.168.80.1:9000/*",
+        "https://mai.taobao.com/*"
+      ],
+      "js": [
+        "js/content_script.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
+  "web_accessible_resources": ["js/injected_script.js"],
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "*://*",
+    "webRequestBlocking",
+    "storage",
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ]
+}

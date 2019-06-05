@@ -2,24 +2,22 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": false,
-    "allowJs": true,
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": false,
     "baseUrl": "./src",
-    "paths": {
-    },
+    "declaration": true,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
     "types": [
       "node",
       "jest",
-      "webpack"
+      "react"
     ],
     "lib": [
-      "esnext",
       "dom",
       "es6",
       "es2015",
@@ -27,9 +25,12 @@
     ]
   },
   "include": [
-    "src/**/*"
+    "./src/**/*",
+    "./test/**/*",
+    "./types/**/*.d.ts"
   ],
   "exclude": [
+    "dist",
     "node_modules",
     "**/*.spec.ts"
   ]

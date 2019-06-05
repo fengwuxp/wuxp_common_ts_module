@@ -1,0 +1,41 @@
+{
+  "name": "typescript-spring-react",
+  "version": "0.0.1",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
+    "npm_publish": "npm publish"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@types/react": "^16.8.16",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-router": "^5.0.1",
+    "@types/react-router-config": "^5.0.0",
+    "@types/react-router-dom": "^4.3.3",
+    "@types/react-loadable": "^5.5.1",
+    "classnames": "^2.2.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-config": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-loadable": "^5.5.0"
+  }
+}

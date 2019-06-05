@@ -36,21 +36,24 @@ export const ReactRouteView = (options: ReactRouteViewOptions): Function => {
             const [eventProps, updateEventProps] = useState({});
 
             useEffect(() => {
-                const topic = TopicManager.getTopic(ApplicationTopicType.ROUTE);
-                const pathname = location.pathname;
-                console.log(`订阅路由主题 pathname = ${pathname}`);
-                const subscriptionHolder = topic.subscribe((data: Payload) => {
+                    const topic = TopicManager.getTopic(ApplicationTopicType.ROUTE);
+                    const pathname = location.pathname;
+                    console.log(`订阅路由主题 pathname = ${pathname}`);
+                    const subscriptionHolder = topic.subscribe((data: Payload) => {
 
-                    if (data.type === pathname) {
-                        updateEventProps(data.value)
+                        if (data.type === pathname) {
+                            updateEventProps(data.value)
+                        }
+                    });
+
+                    return () => {
+                        console.log(`取消订阅路由主题 pathname =${pathname}`);
+                        subscriptionHolder.unsubscribe();
                     }
-                });
-
-                return () => {
-                    console.log(`取消订阅路由主题 pathname =${pathname}`);
-                    subscriptionHolder.unsubscribe();
-                }
-            });
+                },
+                //该effect只会执行一次
+                []
+            );
 
             return <ReactComponent {...props} {...eventProps}/>;
         };
