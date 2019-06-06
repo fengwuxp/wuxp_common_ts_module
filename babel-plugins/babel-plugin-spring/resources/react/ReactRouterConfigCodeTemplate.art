@@ -12,6 +12,7 @@ const routes: Array<SpringReactRouteConfig> = [
         name : "{{route.name}}",
         pathname : "{{route.pathname}}",
         exact : {{route.exact}},
+        condition: {{route.condition}},
         component : asyncComponent( ()=> import("{{route.component}}"))
       },
 

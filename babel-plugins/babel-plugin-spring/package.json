@@ -46,6 +46,7 @@
     "@babel/runtime": "^7.0.0",
     "@babel/runtime-corejs2": "^7.0.0",
     "@babel/template": "^7.0.0",
+    "@babel/generator": "^7.0.0",
     "@babel/traverse": "^7.0.0",
     "art-template": "^4.13.2"
   },

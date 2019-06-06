@@ -2,18 +2,22 @@ import {CodeGenerator} from "../CodeGenerator";
 import {
     ClassDeclaration,
     ObjectExpression,
+    ArrowFunctionExpression,
     Program,
     Statement,
     ClassBody,
     Decorator,
     CallExpression
 } from "@babel/types";
+import generator from "@babel/generator";
 import {getDecoratorByName} from "../../helper/AstPathNodeOperateHelper";
 import {ReactViewOptions} from "typescript-spring-react/src/route/ReactView";
 import {SpringReactRouteConfig} from "typescript-spring-react/src/route/SpringReactRouteConfig";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
+import * as fs from "fs";
+import * as path from "path";
 
-const k=new ArtTemplateCodeGenerator();
+const artTemplateCodeGenerator = new ArtTemplateCodeGenerator();
 /**
  * 用于生成 react route 的路由信息
  */
@@ -33,10 +37,19 @@ export default class ReactRouteConfigGenerator implements CodeGenerator {
         //解析参数转换为路由配置到路由配置
         const result: SpringReactRouteConfig = _arguments.map((item: ObjectExpression) => {
 
-            return item.properties.map((prop: any) => {
 
+            return item.properties.map((prop: any) => {
+                const name = prop.key.name;
+                const value = prop.value;
                 const attr = {};
-                attr[prop.key.name] = prop.value.value;
+                //&& value.type === "ArrowFunctionExpression"
+                if (name === "condition" ) {
+                    attr[name] = generator(value).code;
+                } else {
+                    attr[name] = value.value;
+                }
+
+
                 return attr;
             })
         }).flatMap((items) => [...items])
@@ -50,9 +63,18 @@ export default class ReactRouteConfigGenerator implements CodeGenerator {
 
         //从state种解析文件的相对路径
         const {cwd, filename} = state;
+        // console.log("path.sep",path.sep)
 
-        const filepath = filename.replace(filename, cwd);
-        result["component"] = filepath;
+        const filepath:string = filename.replace(cwd, "").replace(/\\/g,"/");
+        result.component = filepath as any;
+
+        const code = artTemplateCodeGenerator.generator("react/ReactRouterConfigCodeTemplate.art",{
+            routes:[result]
+        });
+
+        fs.writeFileSync(path.resolve(__dirname,"../../../.temp/ReactRouterConfig.ts"),
+            code,
+            {flag: "w+"});
 
         //移除掉reactView的装饰器
         classDeclaration.decorators = classDeclaration.decorators.filter((item) => {

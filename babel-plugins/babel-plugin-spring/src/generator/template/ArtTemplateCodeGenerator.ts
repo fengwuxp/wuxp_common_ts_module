@@ -6,8 +6,8 @@ import * as fs from "fs";
 template.defaults.loader = (filepath: string, options) => {
 
     return fs.readFileSync(filepath, "utf-8");
-
 };
+template.defaults["escape"] = false;
 
 export default class ArtTemplateCodeGenerator implements CodeGenerator {
 
@@ -15,7 +15,7 @@ export default class ArtTemplateCodeGenerator implements CodeGenerator {
 
 
     constructor(templateBaseDir?: string) {
-        this.templateBaseDir = templateBaseDir || path.join(__dirname, "../../resources/");
+        this.templateBaseDir = templateBaseDir || path.join(__dirname, "../../../resources/");
     }
 
     generator = (temmplate: string, data: any) => {

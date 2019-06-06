@@ -15,16 +15,18 @@ describe('art template test', () => {
         return text;
     };
 
+
+
     test("test code generator", () => {
         const paths = "../../resources/react/ReactRouterConfigCodeTemplate.art";
 
         const result = template(paths, {
-            className: "ReactRouterConfig",
             routes: [
                 {
                     name: "测试页面1",
                     pathname: "/test",
                     exact: true,
+
                     component: "../../test/TestView"
                 },
                 {
