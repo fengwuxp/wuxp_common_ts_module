@@ -5,7 +5,7 @@ import * as path from "path";
 export default class DefaultFilePathTransformStrategy implements FilePathTransformStrategy {
 
 
-    transform = (scannerOptions: ScannerOptions ) => {
+    transform = (scannerOptions: ScannerOptions) => {
 
         const {nodeModules, scanBasePackages} = scannerOptions;
 
@@ -21,7 +21,7 @@ export default class DefaultFilePathTransformStrategy implements FilePathTransfo
         });
 
         //加入项目要扫描的路径
-        modules.unshift(path.resolve("projectBasePath", "./src"));
+        modules.unshift(path.resolve(projectBasePath, "./src"));
 
         return scanBasePackages.map((dir) => {
 
