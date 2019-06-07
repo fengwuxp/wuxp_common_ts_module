@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitThis": true,
+    "suppressExcessPropertyErrors": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": true,
+    "allowJs": true,
+    "compileOnSave": false,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "baseUrl": "./src",
+    "paths": {
+      "@services/*": [
+        "./services/*"
+      ]
+    },
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "react-router",
+      "react-router-dom",
+      "react-loadable"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "es6",
+      "es2015",
+      "es2015.promise"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "node_modules/common_starter/types/index.d.ts",
+    "node_modules/common_core/types/PromiseExt.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}

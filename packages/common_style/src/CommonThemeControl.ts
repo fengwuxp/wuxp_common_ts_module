@@ -34,15 +34,16 @@ export default class CommonThemeControl {
      * @param themes 主题描述 key：css属性名称 value：主题变量名称
      * @param style  期望覆盖的目标样式
      */
-    static resolveStyle<K extends keyof CSS.Properties<string | number>>(themes: Pick<CSS.Properties<string | number>, K>, style: CSS.Properties): CSS.Properties<string | number> {
+    static resolveStyle<K extends keyof CSS.Properties<string | number>>(themes: Record<K, string>, style: CSS.Properties): CSS.Properties<string | number> {
 
 
         const themeStyle: CSS.Properties<string | number> = {};
 
         for (const cssAttrName in themes) {
+
             const styleValue = CommonThemeControl.THEME_MAP[themes[cssAttrName]];
             if (styleValue) {
-                themeStyle[cssAttrName] = styleValue;
+                themeStyle[cssAttrName as string] = styleValue;
             }
         }
         return {
