@@ -24,15 +24,21 @@ describe('package scanner test', () => {
 
         logger.debug(paths);
 
+
     });
 
     test("spring package scanner test", () => {
-        const packageScanner: PackageScanner<Record<string,File>> = new SpringPackageScanner();
+        const packageScanner: PackageScanner<Record<string, File>> = new SpringPackageScanner();
 
         const file = packageScanner.scan([
             path.resolve(__dirname, "../example/views/")
         ]);
         logger.debug("file length", Object.keys(file));
-    })
+    });
 
+
+    test("path relative", () => {
+        const s = path.relative("/.spring/index.ts", "/test/example/views/member/input.ts");
+        logger.debug(s);
+    })
 });

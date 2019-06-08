@@ -13,20 +13,17 @@ describe('file path transform strategy  test', () => {
 
     test(`test default strategy`, () => {
 
-        const dirs = fs.readdirSync(path.resolve(__dirname, "../../src"));
 
-        logger.debug("dirs",dirs);
+        const filePathTransformStrategy: FilePathTransformStrategy = new DefaultFilePathTransformStrategy();
 
-        // const filePathTransformStrategy: FilePathTransformStrategy = new DefaultFilePathTransformStrategy();
-        //
-        // const paths = filePathTransformStrategy.transform({
-        //     nodeModules: ["test_model", "simple_model"],
-        //     scanBasePackages: ["views", "pages"]
-        // });
-        // logger.debug("paths", paths);
-        //
-        // const defaultPaths = filePathTransformStrategy.transform(DEFAULT_SCANNER_OPTIONS);
-        // logger.debug("defaultPaths", defaultPaths);
+        const paths = filePathTransformStrategy.transform({
+            nodeModules: ["test_model", "simple_model"],
+            scanBasePackages: ["views", "pages"]
+        });
+        logger.debug("paths", paths);
+
+        const defaultPaths = filePathTransformStrategy.transform(DEFAULT_SCANNER_OPTIONS);
+        logger.debug("defaultPaths", defaultPaths);
 
     });
 

@@ -18,5 +18,5 @@ dist
 dist_web
 coverage
 *.tgz
-lib
 _src
+.spring

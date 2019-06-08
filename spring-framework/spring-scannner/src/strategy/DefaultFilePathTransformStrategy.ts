@@ -7,13 +7,8 @@ export default class DefaultFilePathTransformStrategy implements FilePathTransfo
 
     transform = (scannerOptions: ScannerOptions) => {
 
-        const {nodeModules, scanBasePackages} = scannerOptions;
+        const {nodeModules, scanPackages, projectBasePath, scanBasePath} = scannerOptions;
 
-
-        //获取项目的跟目录
-        const projectBasePath = path.resolve(__dirname, "../../../");
-
-        console.log("project base path", projectBasePath);
 
         const modules = nodeModules.map((modelName) => {
 
@@ -21,9 +16,9 @@ export default class DefaultFilePathTransformStrategy implements FilePathTransfo
         });
 
         //加入项目要扫描的路径
-        modules.unshift(path.resolve(projectBasePath, "./src"));
+        modules.unshift(scanBasePath ? scanBasePath : path.resolve(projectBasePath, "./src"));
 
-        return scanBasePackages.map((dir) => {
+        return scanPackages.map((dir) => {
 
             return modules.map((parentDir) => {
 
