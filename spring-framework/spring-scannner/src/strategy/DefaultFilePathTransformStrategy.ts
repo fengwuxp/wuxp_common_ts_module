@@ -1,6 +1,7 @@
 import {FilePathTransformStrategy} from "./FilePathTransformStrategy";
 import {ScannerOptions} from "../index";
 import * as path from "path";
+import {NODE_MODULES_DIR} from "../constant/ConstantVar";
 
 export default class DefaultFilePathTransformStrategy implements FilePathTransformStrategy {
 
@@ -12,7 +13,7 @@ export default class DefaultFilePathTransformStrategy implements FilePathTransfo
 
         const modules = nodeModules.map((modelName) => {
 
-            return path.resolve(projectBasePath, "./node_modules", modelName, "./src");
+            return path.resolve(projectBasePath, `./${NODE_MODULES_DIR}`, modelName, "./src");
         });
 
         //加入项目要扫描的路径

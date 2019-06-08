@@ -7,8 +7,6 @@ interface EditProps {
 }
 
 @ReactView({
-    name: "用户编辑",
-    pathname: "member_edit",
     condition: (context) => {
 
         return false;

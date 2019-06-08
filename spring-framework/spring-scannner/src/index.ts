@@ -6,6 +6,7 @@ import {CodeGenerator} from "./generator/CodeGenerator";
 import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerator";
 import * as path from "path";
 import {LOGGER} from "./helper/Log4jsHelper";
+import {NODE_MODULES_DIR} from "./constant/ConstantVar";
 
 
 export interface ScannerOptions {
@@ -52,14 +53,14 @@ export default function (options?: ScannerOptions) {
     //计算项目根路径
     let projectBasePath = path.resolve(__dirname, "../");
 
-    if (projectBasePath.indexOf("node_modules") > 0) {
+    if (projectBasePath.indexOf(NODE_MODULES_DIR) > 0) {
         projectBasePath = path.resolve(projectBasePath, "../");
     }
     LOGGER.debug("project base path", projectBasePath);
 
     const scannerOptions = {
-        ...(options || {}),
         ...DEFAULT_SCANNER_OPTIONS,
+        ...(options || {}),
         projectBasePath
     };
 
@@ -70,7 +71,8 @@ export default function (options?: ScannerOptions) {
 
     const reactRouteConfigGenerator: ReactRouteConfigGenerator = new ReactRouteConfigGenerator();
 
-    const files = springPackageScanner.scan(filePathTransformStrategy.transform(scannerOptions));
+    const paths = filePathTransformStrategy.transform(scannerOptions);
+    const files = springPackageScanner.scan(paths);
 
     reactRouteConfigGenerator.generator(files, {
         outputPath: scannerOptions.generateOutputPath,

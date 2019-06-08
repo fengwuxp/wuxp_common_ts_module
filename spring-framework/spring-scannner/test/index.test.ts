@@ -14,8 +14,10 @@ describe('spring scanner test', () => {
     test(`test one`, () => {
 
         packageScanner({
-            nodeModules: [],
-            scanPackages: ["views"],
+            nodeModules: [
+                "test-model-1"
+            ],
+            scanPackages: ["views","pages"],
             scanBasePath: path.resolve(__dirname, "./example")
         });
     })
