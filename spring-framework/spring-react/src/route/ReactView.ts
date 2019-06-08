@@ -40,5 +40,5 @@ export interface ReactViewOptions {
  */
 export const ReactView = (options: ReactViewOptions) => {
 
-
+    return (target) => target;
 };

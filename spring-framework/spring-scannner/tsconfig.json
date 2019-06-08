@@ -5,11 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "declaration": true,
     "target": "es5",
     "outDir": "lib",
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": false,
-    "allowJs": true,
     "baseUrl": "./src",
     "paths": {
     },

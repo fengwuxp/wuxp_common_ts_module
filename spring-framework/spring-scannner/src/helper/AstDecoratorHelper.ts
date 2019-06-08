@@ -1,5 +1,6 @@
 import {
     File,
+    Program,
     BaseNode,
     Decorator,
     ClassDeclaration,
@@ -9,16 +10,14 @@ import {
     isClassDeclaration,
     isImportDeclaration
 } from "@babel/types";
+import {REACT_VIEW_DECORATOR_PACKAGE_NAME} from "../constant/DecoratorPackageConstantVar";
 
-
-const REACT_VIEW_DECORATOR_PACKAGE_NAME = "typescript-spring-react/src/route/ReactView";
 
 /**
  * 是否为 ReactView decorator
  * @param file
  */
 export const hasReactViewDecorator = (file: File) => {
-
 
     return getReactViewDecorator(file) != null;
 
@@ -41,14 +40,44 @@ export const getReactViewDecorator = (file: File) => {
  * @param packageName 注解的包名
  */
 export const getFileDecorator = (file: File, packageName: string): Decorator => {
+    if (file == null) {
+        return null;
+    }
     const program = file.program;
+
+    return getProgramDecorator(program, {
+        decoratorPackageName: packageName
+    });
+};
+
+/**
+ * 通过program 获取注解
+ * @param program
+ * @param packageName
+ */
+export const getProgramDecorator = (program: Program, {decoratorPackageName, decoratorName}: {
+    decoratorPackageName: string;
+    decoratorName?: string;
+}): Decorator => {
+    if (program == null) {
+        return null;
+    }
     const statements: BaseNode[] = program.body;
 
     const importReactViewDecorator: ImportDeclaration = statements.filter((node) => {
         return isImportDeclaration(node);
-    }).find((node: ImportDeclaration) => node.source.value === packageName) as ImportDeclaration;
+    }).find((node: ImportDeclaration) => node.source.value === decoratorPackageName) as ImportDeclaration;
 
-    const decoratorName = importReactViewDecorator.specifiers[0].local.name;
+    if (importReactViewDecorator == null) {
+        return;
+    }
+
+    let _decoratorName;
+    if (importReactViewDecorator.specifiers.length === 1) {
+        _decoratorName = importReactViewDecorator.specifiers[0].local.name;
+    } else {
+        _decoratorName = decoratorName;
+    }
 
     const classDeclaration: ClassDeclaration = statements.filter((node) => {
         return isExportDefaultDeclaration(node)
@@ -65,6 +94,6 @@ export const getFileDecorator = (file: File, packageName: string): Decorator => 
     }
 
     return decorators.find((item) => {
-        return (item.expression as CallExpression).callee["name"] === decoratorName;
+        return (item.expression as CallExpression).callee["name"] === _decoratorName;
     });
 };

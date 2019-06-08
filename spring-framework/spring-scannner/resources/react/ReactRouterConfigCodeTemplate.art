@@ -1,4 +1,4 @@
-import {asyncComponent} from "typescript-spring-react/src/route/AsyncComponent";
+import asyncComponent from "typescript-spring-react/src/route/AsyncComponent";
 import {SpringReactRouteConfig} from "typescript-spring-react/src/route/SpringReactRouteConfig";
 
 /**
