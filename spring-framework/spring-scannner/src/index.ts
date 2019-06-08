@@ -1,83 +1,11 @@
-import {PackageScanner} from "./scanner/PackageScanner";
-import SpringPackageScanner from "./scanner/SpringPackageScanner";
-import {FilePathTransformStrategy} from "./strategy/FilePathTransformStrategy";
-import DefaultFilePathTransformStrategy from "./strategy/DefaultFilePathTransformStrategy";
-import {CodeGenerator} from "./generator/CodeGenerator";
-import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerator";
-import * as path from "path";
-import {LOGGER} from "./helper/Log4jsHelper";
-import {NODE_MODULES_DIR} from "./constant/ConstantVar";
-
-
-export interface ScannerOptions {
-
-    /**
-     * 扫描的node模块
-     * 默认：[]
-     */
-    nodeModules?: string[];
-
-    /**
-     * 扫描的基础包名
-     * 默认：["views"]
-     */
-    scanPackages?: string[];
-
-    /**
-     * 生成的代码输出跟路径
-     * 相对项目目录的 src目录
-     * 默认：.spring
-     */
-    generateOutputPath?: string;
-
-    //扫描的基础路径(文件全路径)
-    scanBasePath?: string;
-
-    //项目根路径
-    projectBasePath?: string;
-}
-
-export const DEFAULT_SCANNER_OPTIONS: ScannerOptions = {
-    scanPackages: ["views"],
-    nodeModules: [],
-    generateOutputPath: ".spring"
-};
-
+import jsYaml from "js-yaml";
+import * as fs from "fs";
 
 /**
- * 包扫码入口
- * @param options
+ * 默认 在项目根路径下 application-spring.yaml
+ * @param yamlConfigPath
  */
-export default function (options?: ScannerOptions) {
+export default function (yamlConfigPath?: string) {
 
-    //计算项目根路径
-    let projectBasePath = path.resolve(__dirname, "../");
-
-    if (projectBasePath.indexOf(NODE_MODULES_DIR) > 0) {
-        projectBasePath = path.resolve(projectBasePath, "../");
-    }
-    LOGGER.debug("project base path", projectBasePath);
-
-    const scannerOptions = {
-        ...DEFAULT_SCANNER_OPTIONS,
-        ...(options || {}),
-        projectBasePath
-    };
-
-
-    const filePathTransformStrategy: FilePathTransformStrategy = new DefaultFilePathTransformStrategy();
-
-    const springPackageScanner: SpringPackageScanner = new SpringPackageScanner();
-
-    const reactRouteConfigGenerator: ReactRouteConfigGenerator = new ReactRouteConfigGenerator();
-
-    const paths = filePathTransformStrategy.transform(scannerOptions);
-    const files = springPackageScanner.scan(paths);
-
-    reactRouteConfigGenerator.generator(files, {
-        outputPath: scannerOptions.generateOutputPath,
-        projectBasePath,
-        scanPackages: scannerOptions.scanPackages
-    });
-
+    jsYaml.safeLoad(yamlConfigPath)
 }

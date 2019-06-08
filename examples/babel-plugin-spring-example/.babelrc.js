@@ -1,13 +1,9 @@
 const config = require("common_webpack/babel/babelrc7");
 
-// config.plugins.push([
-//     "spring",
-//     {
-//         scanPackages:[
-//             "test-model-1"
-//         ]
-//     }
-// ]);
+config.plugins.push([
+    "spring",
+    {}
+]);
 
 config.plugins.push([
     "import",

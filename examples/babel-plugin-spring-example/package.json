@@ -16,6 +16,7 @@
   "main": "index.js",
   "scripts": {
     "yarn_i": "yarn install",
+    "scan-package-generate": "node ./node_modules/typescript-spring-scannner/lib/index.js",
     "serve-dev": "cross-env webpack-dev-server --config webpack.local.dev.js --devtool eval --progress --colors  --watch --port 9000 --open",
     "build": "cross-env  release=0 webpack --config webpack.config.js --progress --colors",
     "build:release": "cross-env RELEASE=1 webpack --config webpack.config.js --progress --colors",
@@ -37,6 +38,7 @@
     "common_starter": "^0.0.1",
     "common_webpack": "^0.0.1",
     "test-model-1": "^0.0.1",
-    "typescript-spring-react": "^0.0.1"
+    "typescript-spring-react": "^0.0.1",
+    "typescript-spring-scannner": "^0.0.1"
   }
 }

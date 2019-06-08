@@ -19,7 +19,7 @@ export const removeProgramDecorator = (program: Program, {decoratorPackageName, 
     }).find((node: ImportDeclaration) => node.source.value !== decoratorPackageName) as ImportDeclaration;
 
     if (importReactViewDecorator == null) {
-        return;
+        return null;
     }
 
     let _decoratorName;

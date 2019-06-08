@@ -20,3 +20,4 @@ coverage
 *.tgz
 _src
 .spring
+.awcache
