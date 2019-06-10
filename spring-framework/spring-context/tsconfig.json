@@ -14,7 +14,9 @@
     "importHelpers": true,
     "types": [
       "node",
-      "jest"
+      "jest",
+      "js-yaml",
+      "lodash"
     ],
     "lib": [
       "es6",

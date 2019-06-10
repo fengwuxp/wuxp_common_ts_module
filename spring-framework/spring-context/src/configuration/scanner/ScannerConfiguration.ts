@@ -1,7 +1,7 @@
-import jsYaml from "js-yaml";
-import * as fs from "fs";
-
-export interface SpringScannerConfig {
+/**
+ * 包扫描模块的配置
+ */
+export interface ScannerConfiguration {
 
     /**
      * 扫描的node模块
@@ -26,8 +26,3 @@ export interface SpringScannerConfig {
     scanBasePath?: string;
 
 }
-
-export const loadYamlConfig = (fliepath?: string): SpringScannerConfig => {
-
-    return null;
-};

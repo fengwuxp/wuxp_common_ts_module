@@ -1,0 +1,8 @@
+spring:
+  application:
+    context-path: /example
+    port: 9000
+  ### 开启feign代理
+  feign:
+    api-modules:
+      - default: http://xxx.oaknt.com

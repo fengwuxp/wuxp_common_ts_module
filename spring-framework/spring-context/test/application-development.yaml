@@ -1,0 +1,7 @@
+spring:
+  application:
+    context-path: /
+    port: 9000
+  feign:
+    api-modules:
+      - default: http://127.0.0.1:9080

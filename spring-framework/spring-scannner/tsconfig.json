@@ -16,9 +16,7 @@
     "types": [
       "node",
       "jest",
-      "webpack",
-      "yamljs",
-      "js-yaml"
+      "webpack"
     ],
     "lib": [
       "esnext",

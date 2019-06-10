@@ -49,9 +49,8 @@
     "@babel/generator": "^7.0.0",
     "@babel/traverse": "^7.0.0",
     "art-template": "^4.13.2",
-    "log4js": "^4.0.2",
-    "@types/js-yaml": "^3.12.1",
-    "js-yaml": "^3.13.1"
+    "log4js": "^4.0.2"
+
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
