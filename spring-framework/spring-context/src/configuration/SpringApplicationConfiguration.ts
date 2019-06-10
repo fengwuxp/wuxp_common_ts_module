@@ -9,7 +9,7 @@ export interface SpringApplicationConfiguration {
 
     feign?: FeignConfiguration;
 
-    scanner: ScannerConfiguration;
+    scanner?: ScannerConfiguration;
 
     //custom configuration，will be saved to the configuration list for injection
     // annotation @link {@Value}

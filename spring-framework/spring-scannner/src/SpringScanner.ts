@@ -1,16 +1,14 @@
-import {PackageScanner} from "./scanner/PackageScanner";
 import SpringPackageScanner from "./scanner/SpringPackageScanner";
 import {FilePathTransformStrategy} from "./strategy/FilePathTransformStrategy";
 import DefaultFilePathTransformStrategy from "./strategy/DefaultFilePathTransformStrategy";
-import {CodeGenerator} from "./generator/CodeGenerator";
 import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerator";
 import * as path from "path";
 import {LOGGER} from "./helper/Log4jsHelper";
-import {NODE_MODULES_DIR} from "./constant/ConstantVar";
+import {DEFAULT_GENERATOR_OUTPUT_DIR, NODE_MODULES_DIR} from "./constant/ConstantVar";
 import {ScannerConfiguration} from "typescript-spring-context/src/configuration/scanner/ScannerConfiguration";
 
 
-export interface ScannerOptions extends ScannerConfiguration{
+export interface ScannerOptions extends ScannerConfiguration {
 
     //项目根路径
     projectBasePath?: string;
@@ -19,7 +17,7 @@ export interface ScannerOptions extends ScannerConfiguration{
 export const DEFAULT_SCANNER_OPTIONS: ScannerOptions = {
     scanPackages: ["views"],
     nodeModules: [],
-    generateOutputPath: ".spring"
+    generateOutputPath: DEFAULT_GENERATOR_OUTPUT_DIR
 };
 
 
@@ -29,18 +27,10 @@ export const DEFAULT_SCANNER_OPTIONS: ScannerOptions = {
  */
 export default function (options?: ScannerOptions) {
 
-    //计算项目根路径
-    let projectBasePath = path.resolve(__dirname, "../");
-
-    if (projectBasePath.indexOf(NODE_MODULES_DIR) > 0) {
-        projectBasePath = path.resolve(projectBasePath, "../");
-    }
-    LOGGER.debug("project base path", projectBasePath);
 
     const scannerOptions = {
         ...DEFAULT_SCANNER_OPTIONS,
-        ...(options || {}),
-        projectBasePath
+        ...(options || {})
     };
 
 
@@ -55,7 +45,7 @@ export default function (options?: ScannerOptions) {
 
     reactRouteConfigGenerator.generator(files, {
         outputPath: scannerOptions.generateOutputPath,
-        projectBasePath,
+        projectBasePath: scannerOptions.projectBasePath,
         scanPackages: scannerOptions.scanPackages
     });
 

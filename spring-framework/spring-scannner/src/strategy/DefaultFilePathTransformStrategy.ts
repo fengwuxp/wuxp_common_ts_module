@@ -1,7 +1,7 @@
 import {FilePathTransformStrategy} from "./FilePathTransformStrategy";
-import {ScannerOptions} from "../index";
 import * as path from "path";
 import {NODE_MODULES_DIR} from "../constant/ConstantVar";
+import {ScannerOptions} from "../SpringScanner";
 
 export default class DefaultFilePathTransformStrategy implements FilePathTransformStrategy {
 

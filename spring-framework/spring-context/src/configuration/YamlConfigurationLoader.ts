@@ -35,13 +35,15 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
 
         return [
-            `${fileDir}${fileName}`,
+            `${fileDir}/${fileName}`,
             ...(profiles || []).filter(profile => StringUtils.hasText(profile))
                 .map((profile) => {
 
-                    return `${fileDir}${fileName.replace(".yaml", `-${profile}.yaml`)}`;
+                    return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;
                 })
-        ].map(this.loadConfig)
+        ].map((filepath)=>{
+            return path.normalize(filepath);
+        }).map(this.loadConfig)
             .filter(item => item != null)
             .reduce((prev, current) => {
                 return merge(prev, current);
@@ -59,8 +61,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
         }
 
         return jsYaml.safeLoad(this.convertString(fs.readFileSync(path.join(filepath), "UTF-8")), {
-            json: true,
-            legacy: true,
+            json: true
         });
     };
 

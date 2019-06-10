@@ -3,6 +3,7 @@ import {BeanType} from "../src/BeanType";
 import {BeanFactory} from "../src/factory/BeanFactory";
 import {Bean} from "../src/annotations/Bean";
 import AnnotationBeanFactory from "../src/factory/AnnotationBeanFactory";
+import {AutoWried} from "../src/annotations/AutoWried";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -30,6 +31,8 @@ class TestConfiguration {
 }
 
 
+
+
 describe("Reflect.decorate", () => {
 
     test("bean factory test", () => {
@@ -48,6 +51,14 @@ describe("Reflect.decorate", () => {
 
         logger.debug(bBeanType);
         logger.debug(beanA);
+        class Test {
+
+            @AutoWried()
+            private memberService: A;
+        }
+        const test1 = new Test();
+
+        logger.debug(test1)
 
     })
 });

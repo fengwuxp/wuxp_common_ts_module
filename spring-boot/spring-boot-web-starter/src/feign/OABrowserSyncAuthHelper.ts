@@ -1,15 +1,13 @@
 import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
-import simpleAppSessionManager from "weex_starter/src/session/WeexDefaultSessionManager";
-import AppRouter from "weex_starter/src/route/AppRouter";
-import {broadcast} from "../ExpotrtWeexOAKModel";
+
 import {AbstractSyncAuthHelper} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
 import {RestTemplate} from "common_fetch/src/template/RestTemplate";
 import {RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
 
 /**
- * weex 同步鉴权helper
+ * broswer 同步鉴权helper
  */
-export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
+export default class OABrowserSyncAuthHelper extends AbstractSyncAuthHelper {
 
 
     constructor(testTemplate?: RestTemplate) {
@@ -48,18 +46,14 @@ export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
     };
 
     protected broadcastRefreshTokenEvent = () => {
-        broadcast.send(AbstractSyncAuthHelper.NEED_AUTH_EVENT, AbstractSyncAuthHelper.NEED_AUTH_EVENT, true);
+
     };
     protected cancelTokenResultEvent = () => {
-        //取消事件监听
-        broadcast.unregister(AbstractSyncAuthHelper.REFRESH_TOKEN_RESULT, AbstractSyncAuthHelper.NEED_AUTH_EVENT);
+
     };
 
     protected receiveTokenResultEvent = () => {
-        //接受事件监听
-        broadcast.register(AbstractSyncAuthHelper.REFRESH_TOKEN_RESULT, AbstractSyncAuthHelper.NEED_AUTH_EVENT, (result: RefreshTokenResult) => {
-            this.handleWaitResult(result);
-        });
+
     };
 
 

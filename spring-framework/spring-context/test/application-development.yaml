@@ -4,4 +4,5 @@ spring:
     port: 9000
   feign:
     api-modules:
-      - default: http://127.0.0.1:9080
+        default: http://127.0.0.1:9080
+        member: http://127.0.0.1:9080

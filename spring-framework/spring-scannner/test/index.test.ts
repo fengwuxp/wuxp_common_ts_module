@@ -10,9 +10,12 @@ logger.level = 'debug';
 
 describe('spring scanner test', () => {
 
+    process.env.NODE_ENV = "development";
 
     test(`test one`, () => {
-        fn()
+        const yamlConfigPath = path.resolve(__dirname, "../../spring-context/test");
+        logger.debug("yamlConfigPath", yamlConfigPath);
+        fn(yamlConfigPath);
 
     })
 });

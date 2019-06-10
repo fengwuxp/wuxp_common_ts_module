@@ -1,6 +1,4 @@
-import {DefaultReceiver, Topic} from "./Topic";
 import {Publisher} from "../publishe/Publisher";
-import {SubscriptionHolder} from "../subscription/SubscriptionHolder";
 import {Observable, Observer, Subscription} from "rxjs";
 import {AbstractTopic} from "./AbstractTopic";
 

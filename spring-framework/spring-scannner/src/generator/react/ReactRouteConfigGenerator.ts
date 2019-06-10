@@ -1,4 +1,4 @@
-import {CodeGenerator} from "../CodeGenerator";
+import {CodeGenerator, CodeGeneratorOptions} from "../CodeGenerator";
 import {
     File,
     ObjectExpression,
@@ -7,37 +7,24 @@ import {
 import generator from "@babel/generator";
 import {SpringReactRouteConfig} from "typescript-spring-react/src/route/SpringReactRouteConfig";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
-import * as fs from "fs";
 import * as path from "path";
 import {getReactViewDecorator} from "../../helper/AstDecoratorHelper";
 import {LOGGER} from "../../helper/Log4jsHelper";
 import StringUtils from "common_utils/src/string/StringUtils";
 import {NODE_MODULES_DIR} from "../../constant/ConstantVar";
+import {outputToDir} from "../OutputToDirHelper";
 
 const artTemplateCodeGenerator = new ArtTemplateCodeGenerator();
 
-type ReactRouteConfigGeneratorOptions = {
-
-    //路由配置文件的输出目录，相对与项目的src路径
-    outputPath: string;
-
-    //路由配置文件的文件名
-    //默认 ReactRouteConfig
-    outputFilename?: string;
-
-    //项目根路径
-    projectBasePath: string;
+interface ReactRouteConfigGeneratorOptions extends CodeGeneratorOptions {
 
     /**
      * 扫描的基础包名
      * 默认：["views"]
      */
     scanPackages: string[];
-};
+}
 
-const DEFAULT_OPTIONS: ReactRouteConfigGeneratorOptions = {
-    outputFilename: "ReactRouteConfig"
-} as any;
 
 /**
  * 用于生成 react route 的路由信息
@@ -46,13 +33,14 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
 
     private routeConfigs: SpringReactRouteConfig[] = [];
 
+
     generator = (files: Record<string, File>, options: ReactRouteConfigGeneratorOptions) => {
 
         LOGGER.debug(`共扫描到react view ${Object.keys(files).length}`);
 
         const reactOptions: ReactRouteConfigGeneratorOptions = {
-            ...options,
-            ...DEFAULT_OPTIONS
+            outputFilename: "ReactRouteConfig",
+            ...options
         };
 
         this.routeConfigs = Object.keys(files).map(key => {
@@ -64,12 +52,7 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
             routes: this.routeConfigs
         });
 
-        const {projectBasePath, outputFilename, outputPath} = reactOptions;
-
-        const fileOutputPath = `${projectBasePath}/${outputPath}/${outputFilename}.ts`;
-        LOGGER.debug("fileOutputPath", fileOutputPath);
-        fs.writeFileSync(fileOutputPath,
-            code, {flag: "w+"});
+        outputToDir(code, reactOptions);
 
 
     };
