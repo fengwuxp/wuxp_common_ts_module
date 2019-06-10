@@ -2,7 +2,18 @@
   "name": "typescript-spring-context",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "lib/index.js",
   "scripts": {
     "yarn_i": "yarn install",
     "build:tsc": "rm -rf ./lib & tsc --pretty",

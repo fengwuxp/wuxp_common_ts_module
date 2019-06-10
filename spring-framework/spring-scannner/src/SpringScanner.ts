@@ -7,10 +7,10 @@ import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerat
 import * as path from "path";
 import {LOGGER} from "./helper/Log4jsHelper";
 import {NODE_MODULES_DIR} from "./constant/ConstantVar";
-import {SpringScannerConfig} from "./yaml/SpringYamlConfig";
+import {ScannerConfiguration} from "typescript-spring-context/src/configuration/scanner/ScannerConfiguration";
 
 
-export interface ScannerOptions extends SpringScannerConfig{
+export interface ScannerOptions extends ScannerConfiguration{
 
     //项目根路径
     projectBasePath?: string;

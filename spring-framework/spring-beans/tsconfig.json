@@ -3,7 +3,6 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": false,
-//    "compileOnSave": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "esnext",
