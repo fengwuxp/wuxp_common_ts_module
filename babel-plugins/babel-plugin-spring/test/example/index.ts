@@ -1,7 +1,7 @@
 import MemberService from "./components/MemberService";
 import {AutoWried} from "./annotations/AutoWried";
 import {BaseController, Controller} from "./controller/BaseController";
-import {ReactView} from "spring-framework/spring-react/src/route/ReactView";
+import {ReactView} from "spring-framework/spring-react/src/annoations/ReactView";
 
 
 @ReactView({

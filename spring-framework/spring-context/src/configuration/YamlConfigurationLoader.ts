@@ -47,7 +47,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
             .filter(item => item != null)
             .reduce((prev, current) => {
                 return merge(prev, current);
-            }, {spring: DEFAULT_OPTIONS}).spring;
+            }, {DEFAULT_OPTIONS});
 
 
     };

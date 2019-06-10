@@ -30,6 +30,7 @@
     "@types/react-router-config": "^5.0.0",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-loadable": "^5.5.1",
+    "common_auth": "^0.0.1",
     "classnames": "^2.2.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

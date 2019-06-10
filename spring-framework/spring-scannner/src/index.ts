@@ -39,7 +39,7 @@ export default function (yamlConfigPath?: string) {
 
     SpringScanner({
         projectBasePath,
-        ...springApplicationConfiguration.scanner
+        ...springApplicationConfiguration.spring.scanner
     });
 
     //生成spring 配置文件

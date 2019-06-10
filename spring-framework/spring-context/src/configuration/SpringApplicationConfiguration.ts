@@ -6,16 +6,19 @@ import {RouteConfiguration} from "./route/RouteConfiguration";
 
 export interface SpringApplicationConfiguration {
 
-    application?: ApplicationConfiguration;
 
-    // browser history config
-    route?: RouteConfiguration
+    spring: {
+        application?: ApplicationConfiguration;
 
-    //feign config
-    feign?: FeignConfiguration;
+        // browser history config
+        route?: RouteConfiguration
 
-    //scan config
-    scanner?: ScannerConfiguration;
+        //feign config
+        feign?: FeignConfiguration;
+
+        //scan config
+        scanner?: ScannerConfiguration;
+    }
 
     //custom configuration，will be saved to the configuration list for injection
     // annotation @link {@Value}
@@ -24,14 +27,16 @@ export interface SpringApplicationConfiguration {
 
 export const DEFAULT_OPTIONS: SpringApplicationConfiguration = {
 
-    application: {
-        port: 8080,
-        contextPath: "/"
-    },
-    route: {
-        model: "browser"
-    },
-    feign: {
-        apiModules: {}
+    spring: {
+        application: {
+            port: 8080,
+            contextPath: "/"
+        },
+        route: {
+            model: "browser"
+        },
+        feign: {
+            apiModules: {}
+        }
     }
 };

@@ -3,6 +3,8 @@ import SpringApplicationContext from "../context/SpringApplicationContext";
 
 /**
  * only use class prop
+ *
+ *  @target Filed
  * @param expression
  * example:
  *    expression="${a.b.c}"

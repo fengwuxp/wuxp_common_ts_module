@@ -1,7 +1,7 @@
 import {RouteProps} from "react-router";
 import {AppRouterAuthenticator} from "./AppRouterAuthenticator";
 import * as React from "react";
-import {Condition} from "../condition/Condition";
+import {Condition} from "../../../spring-context/src/condition/ConditionType";
 
 
 /**

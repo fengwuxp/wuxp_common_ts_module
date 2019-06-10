@@ -1,5 +1,5 @@
 import {RouteConfig} from "react-router-config";
-import {Condition} from "../condition/Condition";
+import {Condition} from "../../../spring-context/src/condition/ConditionType";
 
 /***
  * SpringReactRouteConfig

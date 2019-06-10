@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactView} from "../../../../spring-framework/spring-react/src/route/ReactView";
+import {ReactView} from "../../../../spring-framework/spring-react/src/annoations/ReactView";
 
 
 interface TemplateViewProps {

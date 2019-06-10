@@ -1,4 +1,4 @@
-import {Condition} from "../condition/Condition";
+import {Condition} from "typescript-spring-context/src/condition/Condition";
 
 
 export interface ReactViewOptions {

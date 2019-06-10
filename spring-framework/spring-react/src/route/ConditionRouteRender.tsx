@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Condition} from "../condition/Condition";
+import {Condition} from "../../../spring-context/src/condition/ConditionType";
 import {Redirect} from "react-router";
 
 /**
