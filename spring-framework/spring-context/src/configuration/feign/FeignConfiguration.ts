@@ -10,6 +10,7 @@ export interface FeignConfiguration {
      *    - order: http://xxx.order.com
      */
     apiModules: {
-        [api: string]: string;
+        //If there is only one, use  { default :"http://xxx.com/api"}
+        [API_ADRESS: string]: string;
     }
 }

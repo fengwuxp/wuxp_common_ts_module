@@ -8,11 +8,17 @@ import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
 import {MediaType} from "common_fetch/src/constant/http/MediaType";
 import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
 import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
+import {ApiRoutingMapping} from "common_fetch/src/route/ApiRoutingStrategy";
+import {Value} from "typescirpt-spring-context/src/annoations/Value";
+import OABrowserSyncAuthHelper from "./OABrowserSyncAuthHelper";
 
 
 export default class OAKBrowserDefaultRestTemplateLoader extends AbstractRestTemplateLoader {
 
     protected interceptorList: FetchInterceptor[];
+
+    @Value("spring.feign.apiModules")
+    protected routeMapping: ApiRoutingMapping;
 
     constructor(interceptorList: FetchInterceptor[]) {
         super();
@@ -30,10 +36,10 @@ export default class OAKBrowserDefaultRestTemplateLoader extends AbstractRestTem
                 produces: [MediaType.JSON],
                 timeout: 10 * 1000,
                 headers: {}
-            }, new DefaultApiRoutingStrategy(routeMapping),
+            }, new DefaultApiRoutingStrategy(this.routeMapping),
             new DefaultFetchClient(new WebFetchAdapter()),
             new FetchInterceptorExecutor(this.interceptorList));
-        // needAuthInterceptor.authHelper = new OAKWeexSyncAuthHelper(defaultRestTemplate);
+        needAuthInterceptor.authHelper = new OABrowserSyncAuthHelper(defaultRestTemplate);
         return defaultRestTemplate;
     };
 

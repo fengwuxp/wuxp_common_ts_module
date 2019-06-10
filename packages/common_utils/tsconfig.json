@@ -9,6 +9,7 @@
     "declarationDir": "./lib",
     "outDir": "./lib",
     "baseUrl": "./src",
+    "strict": false,
     "types": [
       "node"
     ],

@@ -25,6 +25,7 @@ export async function transferViewState() {
  * @param viewState
  */
 export async function setNextViewState(viewState: any) {
+
     if (viewState == null) {
         //清空页面的state
         await TaroLocalStorage.setStorage(PAGE_VIEW_STATE, null);

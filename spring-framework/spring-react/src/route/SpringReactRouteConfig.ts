@@ -18,6 +18,12 @@ export interface SpringReactRouteConfig extends RouteConfig {
     condition?: Condition;
 
     /**
+     * 是否需要鉴权（login）
+     * default use global config
+     */
+    // requiredAuth?: boolean;
+
+    /**
      * children
      */
     routes?: SpringReactRouteConfig[]

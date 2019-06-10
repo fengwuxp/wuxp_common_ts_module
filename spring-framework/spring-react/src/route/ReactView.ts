@@ -34,7 +34,7 @@ export interface ReactViewOptions {
 
 /**
  * 用来标记一个react 组件是一个视图
- * 通过 babel-plugin-spring来处理这个标记，生成对应的路由列表
+ * 通过 babel-plugin-spring来处理这个标记，生成对应的路由列表，并移除该装饰器
  * @scope only compiler
  * @constructor
  */

@@ -1,5 +1,5 @@
 import {ConfigurationLoader, DEFAULT_CONFIGURATION_FILE_NAME, LoadConfigurationOptions} from "./ConfigurationLoader";
-import {SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
+import {DEFAULT_OPTIONS, SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
 import * as path from "path";
 import * as fs from "fs";
 import * as jsYaml from "js-yaml";
@@ -41,18 +41,18 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
                     return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;
                 })
-        ].map((filepath)=>{
+        ].map((filepath) => {
             return path.normalize(filepath);
         }).map(this.loadConfig)
             .filter(item => item != null)
             .reduce((prev, current) => {
                 return merge(prev, current);
-            }, {spring: null}).spring;
+            }, {spring: DEFAULT_OPTIONS}).spring;
 
 
     };
 
-    private loadConfig = (filepath) => {
+    private loadConfig = (filepath: string) => {
 
         const existsSync = fs.existsSync(filepath);
         if (!existsSync) {

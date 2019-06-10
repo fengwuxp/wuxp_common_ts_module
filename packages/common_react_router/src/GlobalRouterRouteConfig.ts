@@ -9,10 +9,6 @@ export interface GlobalRouterRouteConfig {
      */
     requiredAuth?: boolean;
 
-    /**
-     * 登录的uri，默认 'login'
-     */
-    toLoginViewPathname?: string;
 
     /**
      * 是否准确匹配路由
@@ -24,4 +20,9 @@ export interface GlobalRouterRouteConfig {
      * 默认 null
      */
     strict?: boolean;
+
+    /**
+     * 登录的uri，默认 'login'
+     */
+    toLoginViewPathname?: string;
 }
