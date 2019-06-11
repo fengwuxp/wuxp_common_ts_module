@@ -25,7 +25,7 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
 
 
     //默认打包目录
-    const packPath = path.resolve("src", '../dist');
+    const packPath = path.resolve("src", options.outputPath || "../dist");
 
     const config: webpack.Configuration = {
         entry: {
@@ -95,9 +95,10 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
                                 //返回最终的资源相对路径
                                 publicPath(url) {
                                     //使用全局变量来传递 资源根路径
-                                    return path.join(global['__RESOURCES_BASE_NAME__'], url)
+                                    return path.join(options.staticResourcesBasePath || "./", url)
                                         .replace(/\\/g, '/')
-                                        .replace(/^(http:\/)/,"http://");
+                                        .replace(/^(http:\/)/, "http://")
+                                        .replace(/^(https:\/)/, "https://");
                                 }
                             },
 
@@ -133,27 +134,27 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             }),
         ]
     };
-    //是否打release包
-    let release = process.env.release;
-    if (release === "1") {
-        //重写打包目录到部署目录
-        config.output.path = DEPLOYMENT_DIRECTORY;
-    }
-    if (release != null) {
-        config.plugins.push(
-            //git https://github.com/johnagan/clean-webpack-plugin
-            //先将部署目录清除
-            new CleanWebpackPlugin([
-                config.output.path
-            ], {
-                root: PROJECT_DIR,       　　　　　　   //根目录
-                // verbose: true,        　　　　　　　  //开启在控制台输出信息
-                // dry: false        　　　　　　　　　　//启用删除文件,
-                allowExternal: true,                  //允许删除wbpack根目录之外的文件
-                // beforeEmit: true                       //在将文件发送到输出目录之前执行清理
-            }),
-        );
-    }
+    // //是否打release包
+    // let release = process.env.release;
+    // if (release === "1") {
+    //     //重写打包目录到部署目录
+    //     config.output.path = DEPLOYMENT_DIRECTORY;
+    // }
+    // if (release != null) {
+    //     config.plugins.push(
+    //         //git https://github.com/johnagan/clean-webpack-plugin
+    //         //先将部署目录清除
+    //         new CleanWebpackPlugin([
+    //             config.output.path
+    //         ], {
+    //             root: PROJECT_DIR,       　　　　　　   //根目录
+    //             // verbose: true,        　　　　　　　  //开启在控制台输出信息
+    //             // dry: false        　　　　　　　　　　//启用删除文件,
+    //             allowExternal: true,                  //允许删除wbpack根目录之外的文件
+    //             // beforeEmit: true                    //在将文件发送到输出目录之前执行清理
+    //         }),
+    //     );
+    // }
 
 
     return config;

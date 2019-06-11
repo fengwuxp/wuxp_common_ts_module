@@ -32,6 +32,12 @@ export interface FunctionConditionResolver extends ConditionResolver<ConditionFu
 
 }
 
-export const BooleanConditionResolver: BooleanConditionResolver = {
-    resolve: (conditionType) => conditionType || false
+export const DefaultBooleanConditionResolver: BooleanConditionResolver = {
+    resolve: (conditionType: boolean) => {
+
+        if (conditionType == null) {
+            return null;
+        }
+        return conditionType || false;
+    }
 };

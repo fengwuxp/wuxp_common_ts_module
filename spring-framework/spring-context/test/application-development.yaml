@@ -6,3 +6,7 @@ spring:
     api-modules:
         default: http://127.0.0.1:9080
         member: http://127.0.0.1:9080
+  node:
+    #将写入  process.env
+    env:
+      NODE_ENV: development

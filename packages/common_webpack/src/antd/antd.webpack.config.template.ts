@@ -1,7 +1,7 @@
 import * as path from "path";
-import {getWebpackBaseConfig} from "../webpack.base.config";
-import {isExclude} from "../../utils/WebpackUtils";
-import {getBabel7CommonConfig} from "../../babel/GetBabelCommonConfig";
+import {getWebpackBaseConfig} from "../web/webpack.base.config";
+import {isExclude} from "../utils/WebpackUtils";
+import {getBabel7CommonConfig} from "../babel/GetBabelCommonConfig";
 
 
 const babel7CommonConfig = getBabel7CommonConfig();

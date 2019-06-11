@@ -1,9 +1,12 @@
-import {ExpressionParser} from "./ExpressionParser";
+import {Expression, ExpressionParser, IsExpressionAssert} from "./Expression";
+
+//spel expression  example:${a.b.c}
+export type SpelExpression = Expression | "${*}" | "#{*}";
 
 const SPEL_REG_EXP = /\$\{([^\}]*)\}/g;
 
 
-export const isSpelExpressionParser = (expression: string) => {
+export const isSpelExpression: IsExpressionAssert<SpelExpression> = (expression: SpelExpression) => {
 
     return SPEL_REG_EXP.test(expression);
 };
@@ -13,13 +16,13 @@ export const isSpelExpressionParser = (expression: string) => {
  * @param expression  ${a.b.c}
  * @param context
  */
-export const spelExpressionParser: ExpressionParser = <T = any>(expression: string, context: any): T => {
+export const spelExpressionParser: ExpressionParser = <T = any, SpelExpression>(expression: SpelExpression, context: any): T => {
 
     //TODO  增加简单的计算支持
 
     //TODO example  ${a.b.c} + ${a.b.f} 、${a.b.c} > ${a.b.f}
 
-    if (expression == null || context == null) {
+    if (!isSpelExpression(expression) || context == null) {
         return null;
     }
 
@@ -29,17 +32,16 @@ export const spelExpressionParser: ExpressionParser = <T = any>(expression: stri
         return null;
     }
 
-    const attrs = execArray[1].split(".");
+    //属性列表
+    const attrs: any[] = execArray[1].split(".");
 
-    let next: any = context;
-
-    attrs.forEach((name) => {
-        if (next == null) {
-            return
+    return attrs.reduce((prev: any, name) => {
+        if (prev == null) {
+            return null;
         }
-        next = next[name];
-    });
+        prev = prev[name];
+        return prev;
+    }, context);
 
-    return next;
 
 };

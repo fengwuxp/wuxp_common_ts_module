@@ -1,13 +1,16 @@
 import {ConditionResolver, FunctionConditionResolver} from "./ConditionResolver";
+import {ApplicationContext} from "../context/ApplicationContext";
 
 
 export default class DefaultFunctionConditionResolver implements FunctionConditionResolver {
 
     private conditionResolvers: ConditionResolver[];
 
+    private applicationContext: ApplicationContext;
 
-    constructor(conditionResolvers: ConditionResolver[]) {
+    constructor(conditionResolvers: ConditionResolver[], /*applicationContext: ApplicationContext*/) {
         this.conditionResolvers = conditionResolvers || [];
+        // this.applicationContext = applicationContext;
     }
 
     resolve = (conditionType: (context, ...args) => (boolean | string | string[])): boolean => {
@@ -17,9 +20,8 @@ export default class DefaultFunctionConditionResolver implements FunctionConditi
             return null;
         }
 
-        //TODO context
-        const conditionResult = conditionType(null);
 
+        const conditionResult = conditionType(this.applicationContext);
 
         return this.conditionResolvers.map((resolver) => {
             return resolver.resolve(conditionResult)

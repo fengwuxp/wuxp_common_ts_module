@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Condition} from "../../../spring-context/src/condition/ConditionType";
+import {ConditionType} from "typescript-spring-context/src/condition/ConditionType";
 import {Redirect} from "react-router";
 
 /**
@@ -7,16 +7,14 @@ import {Redirect} from "react-router";
  */
 interface ConditionRouteRenderProps {
 
-    condition: Condition;
-
-    readonly children?: any;
+    readonly condition: ConditionType;
 
     // not permission view path
-    noPermissionView?: string;
+    readonly noPermissionView?: string;
 }
 
 
-export const ConditionRouteRender = (props: ConditionRouteRenderProps) => {
+export const ConditionRouteRender:React.FunctionComponent<ConditionRouteRenderProps> = (props) => {
 
 
     const {condition, children, noPermissionView} = props;
@@ -31,7 +29,7 @@ export const ConditionRouteRender = (props: ConditionRouteRenderProps) => {
 
         if (!r) {
             return <Redirect to={{
-                pathname:  noPermissionView == null ? "/no_permission" : noPermissionView.startsWith("/") ? noPermissionView : `/${noPermissionView}`,
+                pathname: noPermissionView == null ? "/no_permission" : noPermissionView.startsWith("/") ? noPermissionView : `/${noPermissionView}`,
                 state: {
                     from: props["location"]
                 }

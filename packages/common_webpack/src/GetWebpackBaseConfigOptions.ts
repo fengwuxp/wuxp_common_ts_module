@@ -1,5 +1,13 @@
-import awesomeTypescriptLoader from "./loader/TypescriptLoader";
 import {RuleSetRule} from "webpack";
+
+export enum OutputType {
+
+    dev,
+
+    prod,
+
+    release
+}
 
 /**
  * 获取webpack基础配置的options
@@ -22,4 +30,19 @@ export interface GetWebpackBaseConfigOptions {
      * awesomeTypescriptLoader
      */
     awesomeTypescriptLoader?: RuleSetRule;
+
+    /**
+     * 静态资源根路径
+     * default "./"
+     */
+    staticResourcesBasePath?: string;
+
+    /**
+     * 默认输出目录
+     * 相对与 src
+     * default "../dist"
+     */
+    outputPath?: string;
+
+
 }

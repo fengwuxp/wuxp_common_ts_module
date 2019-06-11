@@ -26,9 +26,7 @@ export default function (yamlConfigPath?: string) {
 
     const configurationLoader: ConfigurationLoader = new YamlConfigurationLoader({
         fileDir: yamlConfigPath || projectBasePath,
-        profiles: [
-            process.env.NODE_ENV
-        ]
+        profiles: (process.env.ACTIVE_PROFILES || [])
     });
 
     const springApplicationConfiguration = configurationLoader.load();

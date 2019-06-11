@@ -1,19 +1,28 @@
-import {ApplicationContext} from "./ApplicationContext";
 import {Environment} from "../env/Environment";
-import YamlConfigurationEnvironment from "../env/YamlConfigurationEnvironment";
-import SpringWebApplicationConfiguration from "../../../.spring/SpringWebApplicationConfiguration"
+// import YamlConfigurationEnvironment from "../env/YamlConfigurationEnvironment";
+// import SpringWebApplicationConfiguration from "../../../.spring/SpringWebApplicationConfiguration"
+import {EnvironmentApplicationContext} from "./EnvironmentApplicationContext";
+import {AutoWried} from "typescript-spring-beans/src/annotations/AutoWried";
+import {ApplicationContext} from "./ApplicationContext";
 
-class SpringApplicationContext implements ApplicationContext {
+class SpringApplicationContext implements EnvironmentApplicationContext {
 
 
-    protected environment: Environment;
+    @AutoWried()
+    private environment: Environment;
 
 
     constructor() {
-        this.environment = new YamlConfigurationEnvironment(SpringWebApplicationConfiguration);
+        // this.environment = new YamlConfigurationEnvironment(SpringWebApplicationConfiguration);
     }
 
     getEnvironment = (): Environment => this.environment;
+
+
+    getParent = (): ApplicationContext => {
+
+        return null;
+    };
 
 
 }

@@ -1,7 +1,9 @@
 import {ConditionResolver} from "./ConditionResolver";
 import {ConditionType} from "./ConditionType";
 
-
+/**
+ * default condition resolver
+ */
 export default class DefaultConditionResolver implements ConditionResolver {
 
 

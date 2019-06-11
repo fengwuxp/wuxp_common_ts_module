@@ -11,7 +11,7 @@ export default class SpelExpressionConditionResolver implements StringConditionR
 
     resolve = (conditionType: string): boolean => {
 
-        const result:any = spelExpressionParser(conditionType, SpringApplicationContext);
+        const result: any = spelExpressionParser(conditionType, SpringApplicationContext);
         if (result == null) {
             return null;
         }

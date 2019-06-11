@@ -54,7 +54,7 @@ describe('spring yaml test', () => {
                 })}`;
 
             });
-        }
+        };
 
         const baseConfig = jsYaml.safeLoad(convertString(fs.readFileSync(path.join(__dirname, "../application-spring.yaml"), "UTF-8")), {
             json: true,
@@ -81,12 +81,14 @@ describe('spring yaml test', () => {
 
         const configurationLoader:ConfigurationLoader=new YamlConfigurationLoader({
             fileDir:path.join(__dirname,"../"),
-            profiles:["production"]
+            // profiles:["production"]
         });
         const springApplicationConfiguration = configurationLoader.load();
-        logger.debug("application",springApplicationConfiguration.application.contextPath);
-        logger.debug("feign",springApplicationConfiguration.feign.apiModules);
-        logger.debug("scanner",springApplicationConfiguration.scanner.scanPackages);
+        logger.debug("application",springApplicationConfiguration.spring.application.contextPath);
+        logger.debug("feign",springApplicationConfiguration.spring.feign.apiModules);
+        logger.debug("scanner",springApplicationConfiguration.spring.scanner.scanPackages);
+        logger.debug("scanner",springApplicationConfiguration.spring.profiles);
+        logger.debug("scanner",springApplicationConfiguration.spring.node);
 
     })
 

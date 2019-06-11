@@ -1,5 +1,5 @@
 import {ConfigurationLoader, DEFAULT_CONFIGURATION_FILE_NAME, LoadConfigurationOptions} from "./ConfigurationLoader";
-import {DEFAULT_OPTIONS, SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
+import {DEFAULT_SPRING_APPLICATION_CONFIGURATION, SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
 import * as path from "path";
 import * as fs from "fs";
 import * as jsYaml from "js-yaml";
@@ -34,20 +34,26 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
         } = this.options;
 
 
-        return [
-            `${fileDir}/${fileName}`,
-            ...(profiles || []).filter(profile => StringUtils.hasText(profile))
-                .map((profile) => {
+        const baseConfigPath = `${fileDir}/${fileName}`;
 
-                    return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;
-                })
-        ].map((filepath) => {
-            return path.normalize(filepath);
-        }).map(this.loadConfig)
+        const baseConfig:SpringApplicationConfiguration = this.loadConfig(baseConfigPath);
+
+        const baseProfiles = baseConfig.spring.profiles;
+
+        return [
+            ...(profiles || []),
+            ...(baseProfiles ? baseProfiles.active || [] : [])
+        ].filter(profile => StringUtils.hasText(profile))
+            .map((profile) => {
+
+                return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;
+            }).map((filepath) => {
+                return path.normalize(filepath);
+            }).map(this.loadConfig)
             .filter(item => item != null)
             .reduce((prev, current) => {
                 return merge(prev, current);
-            }, {DEFAULT_OPTIONS});
+            }, merge(DEFAULT_SPRING_APPLICATION_CONFIGURATION,baseConfig));
 
 
     };

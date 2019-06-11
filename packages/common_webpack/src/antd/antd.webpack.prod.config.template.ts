@@ -1,6 +1,6 @@
 import config from "./antd.webpack.config.template";
 import {externals} from "./WebpackExternals";
-import {uglifyJsPlugin} from "../../plugins/UglifyJsPluginConfig";
+import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const prodConfig = {
