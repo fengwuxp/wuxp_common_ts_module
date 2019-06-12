@@ -1,4 +1,4 @@
-export const Configuration = () => {
+export const Configuration = (): Function => {
 
     return (target) => {
 

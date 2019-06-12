@@ -33,7 +33,7 @@ const CONFIGURATION_MAP: Map<any, any> = new Map<any, any>();
  *  Indicates that a method produces a bean to be managed by the Spring container.
  * @constructor
  */
-export const Bean = (options?: BeanOptions) => {
+export const Bean = (options?: BeanOptions): Function => {
 
 
     const beanOptions: BeanOptions = {

@@ -1,6 +1,6 @@
 export type ConditionSymbol = "|" | "&" | "^" | "!"
 
-export type ConditionSymbolResolver<ConditionSymbol> = (a, b?) => boolean ;
+export type ConditionSymbolResolver<S extends  ConditionSymbol = ConditionSymbol> = (a, b?) => boolean ;
 
 
 //Calculation symbol

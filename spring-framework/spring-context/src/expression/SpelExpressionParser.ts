@@ -16,7 +16,7 @@ export const isSpelExpression: IsExpressionAssert<SpelExpression> = (expression:
  * @param expression  ${a.b.c}
  * @param context
  */
-export const spelExpressionParser: ExpressionParser = <T = any, SpelExpression>(expression: SpelExpression, context: any): T => {
+export const spelExpressionParser: ExpressionParser<any, SpelExpression> =<T> (expression: SpelExpression, context: any): T => {
 
     //TODO  增加简单的计算支持
 

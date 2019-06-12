@@ -57,15 +57,13 @@ describe('spring yaml test', () => {
         };
 
         const baseConfig = jsYaml.safeLoad(convertString(fs.readFileSync(path.join(__dirname, "../application-spring.yaml"), "UTF-8")), {
-            json: true,
-            legacy: true,
+            json: true
         });
 
         logger.debug("baseConfig", baseConfig);
 
         const devConfig = jsYaml.safeLoad(convertString(fs.readFileSync(path.join(__dirname, "../application-spring-development.yaml"), "UTF-8")), {
-            json: true,
-            legacy: true,
+            json: true
         });
 
 

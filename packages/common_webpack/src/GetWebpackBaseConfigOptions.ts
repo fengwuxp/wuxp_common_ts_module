@@ -1,13 +1,5 @@
 import {RuleSetRule} from "webpack";
 
-export enum OutputType {
-
-    dev,
-
-    prod,
-
-    release
-}
 
 /**
  * 获取webpack基础配置的options

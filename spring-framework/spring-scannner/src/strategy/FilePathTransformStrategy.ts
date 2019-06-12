@@ -1,4 +1,5 @@
-import {ScannerOptions} from "../index";
+
+import {ScannerOptions} from "../SpringScanner";
 
 /**
  * 文件路径转换规则

@@ -15,8 +15,7 @@
     },
     "types": [
       "node",
-      "jest",
-      "webpack"
+      "jest"
     ],
     "lib": [
       "esnext",

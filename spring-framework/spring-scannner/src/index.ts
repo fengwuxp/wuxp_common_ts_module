@@ -10,6 +10,21 @@ import * as log4js from "log4js";
 const logger = log4js.getLogger("spring scanner");
 logger.level = 'debug';
 
+
+export const loadYmlConfiguration = (yamlConfigPath: string) => {
+
+    LOGGER.debug("yaml config path", yamlConfigPath);
+
+    const profiles: string[] = (process.env.ACTIVE_PROFILES || []) as string[];
+    const configurationLoader: ConfigurationLoader = new YamlConfigurationLoader({
+        fileDir: yamlConfigPath,
+        profiles
+    });
+
+    return configurationLoader.load();
+
+};
+
 /**
  * 默认 在项目根路径下 application-spring.yaml
  * @param yamlConfigPath
@@ -17,23 +32,13 @@ logger.level = 'debug';
 export default function (yamlConfigPath?: string) {
 
     //计算项目根路径
-    let projectBasePath = path.resolve(__dirname, "../");
+    // let projectBasePath = path.resolve(__dirname, "../");
+    let projectBasePath = path.resolve("./");
 
     if (projectBasePath.indexOf(NODE_MODULES_DIR) > 0) {
         projectBasePath = path.resolve(projectBasePath, "../");
     }
-    LOGGER.debug("project base path", projectBasePath);
-
-    const configurationLoader: ConfigurationLoader = new YamlConfigurationLoader({
-        fileDir: yamlConfigPath || projectBasePath,
-        profiles: (process.env.ACTIVE_PROFILES || [])
-    });
-
-    const springApplicationConfiguration = configurationLoader.load();
-    if (springApplicationConfiguration == null) {
-        logger.error("no load spring config");
-        return;
-    }
+    const springApplicationConfiguration = loadYmlConfiguration(yamlConfigPath || projectBasePath);
 
     SpringScanner({
         projectBasePath,

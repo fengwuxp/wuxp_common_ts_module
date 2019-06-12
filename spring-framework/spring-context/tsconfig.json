@@ -2,15 +2,16 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "module": "esnext",
-    "target": "es6",
-    "sourceMap": false,
-    "baseUrl": "./src",
     "declaration": true,
-    "importHelpers": true,
+    "target": "es5",
+    "outDir": "lib",
+    "sourceMap": false,
+    "strict": false,
+    "baseUrl": "./src",
+    "importHelpers": false,
     "types": [
       "node",
       "jest",
@@ -30,6 +31,7 @@
   ],
   "exclude": [
     "dist",
+    "./test",
     "node_modules",
     "**/*.spec.ts"
   ]

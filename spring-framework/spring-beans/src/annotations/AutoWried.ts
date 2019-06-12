@@ -8,7 +8,7 @@ export interface AutoWriedOptions {
     beanType?: string;
 }
 
-export function AutoWried(options: AutoWriedOptions={}) {
+export function AutoWried(options: AutoWriedOptions = {}): Function {
 
     const {name, beanType} = options;
 

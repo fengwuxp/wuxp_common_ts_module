@@ -23,8 +23,12 @@ export default class SpringApplicationConfigurationGenerator implements CodeGene
             ...options,
         };
 
-        const _c = {...config};
+        const _c: SpringApplicationConfiguration = {...config};
         delete _c.spring.scanner;
+        delete _c.spring.node;
+        delete _c.spring.webpack;
+        // delete _c.spring.profiles;
+
         const code = artTemplateCodeGenerator.generator("SpringApplicationConfiguration.art", {
             config: JSON.stringify(_c)
         });

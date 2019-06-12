@@ -7,7 +7,6 @@ import {ApplicationContext} from "./ApplicationContext";
 
 class SpringApplicationContext implements EnvironmentApplicationContext {
 
-
     @AutoWried()
     private environment: Environment;
 

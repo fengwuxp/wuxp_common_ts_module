@@ -2,7 +2,7 @@ import {Environment} from "./Environment";
 import {SpringApplicationConfiguration} from "../configuration/SpringApplicationConfiguration";
 import {spelExpressionParser} from "../expression/SpelExpressionParser";
 
-const ENV = process.env || {};
+const ENV: any = process.env || {};
 
 export default class YamlConfigurationEnvironment implements Environment {
 
@@ -14,7 +14,7 @@ export default class YamlConfigurationEnvironment implements Environment {
         this.springApplicationConfiguration = SpringApplicationConfiguration;
     }
 
-    getActiveProfiles = () => ENV.NODE_ENV || [];
+    getActiveProfiles = () => (ENV.ACTIVE_PROFILES || []) as string[];
 
 
     getApplicationConfiguration = () => {
@@ -28,7 +28,7 @@ export default class YamlConfigurationEnvironment implements Environment {
     };
 
     getEnvVariable = <T>(variableName: string): T => {
-        return ENV[variableName];
+        return ENV[variableName] as T;
     };
 
 
