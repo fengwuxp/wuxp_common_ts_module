@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {BasicLayout} from "@ant-design/pro-layout";
+import {Button} from "antd";
 
 
 /*
@@ -19,9 +21,10 @@ import * as ReactDOM from "react-dom";
 * */
 
 ReactDOM.render(
-    <div>
-        <p>122</p>
-    </div>,
+    <BasicLayout>
+        <div>1</div>
+        <Button type="primary">测试</Button>
+    </BasicLayout>,
     document.getElementById("app")
 );
 

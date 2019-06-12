@@ -45,12 +45,13 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
         const baseProfiles = baseConfig.spring.profiles;
 
-        const defaultProfiles=DEFAULT_SPRING_APPLICATION_CONFIGURATION.spring.profiles.active;
+        const defaultProfiles = DEFAULT_SPRING_APPLICATION_CONFIGURATION.spring.profiles.active;
 
-        return [
-            ...(profiles as Profiles[]),
+        const finallyProfiles: Profiles[] = profiles ? (profiles as Profiles[]) : [
             ...(baseProfiles ? baseProfiles.active || defaultProfiles : defaultProfiles)
-        ].filter((profile) => StringUtils.hasText(profile))
+        ];
+
+        return finallyProfiles.filter((profile) => StringUtils.hasText(profile))
             .map((profile) => {
 
                 return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;

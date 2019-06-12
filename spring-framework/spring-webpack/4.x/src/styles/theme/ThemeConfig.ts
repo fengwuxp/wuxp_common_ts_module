@@ -2,13 +2,13 @@ import * as path from "path";
 import {existsSync} from "fs";
 import * as CSS from 'csstype';
 
-const themeJSONFilePath = path.resolve("./theme/app.json");
+const themeJSONFilePath = path.resolve("./theme/index.json");
 
 /**
  * 默认的样式主题变量文件
  * 支持js文件和json文件
  */
-const DEFAULT_THEME_PATH = existsSync(themeJSONFilePath) ? themeJSONFilePath : path.resolve("./theme/app.js");
+const DEFAULT_THEME_PATH = existsSync(themeJSONFilePath) ? themeJSONFilePath : path.resolve("./theme/index.js");
 
 
 /**
