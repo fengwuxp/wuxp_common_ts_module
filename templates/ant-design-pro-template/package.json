@@ -17,13 +17,16 @@
   "scripts": {
     "serve-dev": "webpack-dev-server  --config ./webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
     "yarn_i": "yarn install",
-    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i"
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
+    "build:dev": "rm -rf ./dist & cross-env ACTIVE_PROFILES=dev webpack --config ./webpack.config.js --progress --colors",
+    "build:prod": "rm -rf ./dist & cross-env ACTIVE_PROFILES=prod webpack --config ./webpack.config.js --progress --colors"
   },
   "author": "wuxp",
   "license": "ISC",
   "devDependencies": {
   },
   "dependencies": {
-    "ant-design-pro-starter": "^0.0.1"
+    "ant-design-pro-starter": "^0.0.1",
+    "typescript-spring-webpack-4": "^0.0.1"
   }
 }

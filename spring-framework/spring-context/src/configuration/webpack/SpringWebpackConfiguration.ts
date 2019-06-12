@@ -1,5 +1,4 @@
-
-
+import HtmlWebPackPlugin from "html-webpack-plugin";
 
 export interface SpringWebpackConfiguration {
 
@@ -31,4 +30,6 @@ export interface SpringWebpackConfiguration {
     externals?: {
         [K: string]: string
     }
+
+    htmlPlugin?: HtmlWebPackPlugin.Options;
 }

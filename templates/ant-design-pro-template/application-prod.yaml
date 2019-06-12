@@ -1,0 +1,16 @@
+spring:
+  application:
+    context-path: /example
+    port: 9000
+  ### 开启feign代理
+  feign:
+    api-modules:
+      - default: http://xxx.oaknt.com
+  webpack:
+    mode: production
+    html-plugin:
+      template: ./src/index.html
+      filename: index.html
+      title: ant-desion-pro-template
+      baseBath: /prod
+      inject: true

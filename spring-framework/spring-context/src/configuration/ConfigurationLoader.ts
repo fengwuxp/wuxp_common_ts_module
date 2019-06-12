@@ -1,4 +1,5 @@
 import {SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
+import {Profiles} from "./profiles/ProfilesConfiguration";
 
 
 export interface LoadConfigurationOptions {
@@ -20,7 +21,7 @@ export interface LoadConfigurationOptions {
      * 默认：来自环境变量中的 NODE_ENV
      * 当存在激活的profile时，在配置文件的目录下需要有 application-${profile}.yaml的文件
      */
-    profiles?: string[];
+    profiles?: Profiles| Profiles[];
 }
 
 /**

@@ -1,10 +1,8 @@
-import YamlConfigurationLoader from "typescript-spring-context/src/configuration/YamlConfigurationLoader";
-import {ConfigurationLoader} from "typescript-spring-context/src/configuration/ConfigurationLoader";
 import * as path from "path";
-import {LOGGER} from "typescript-spring-scannner/src/helper/Log4jsHelper";
-import {NODE_MODULES_DIR} from "typescript-spring-scannner/src/constant/ConstantVar";
+import {LOGGER} from "typescript-spring-scannner/lib/helper/Log4jsHelper";
+import {NODE_MODULES_DIR} from "typescript-spring-scannner/lib/constant/ConstantVar";
 import {webpack4ReactConfigurationGenerator} from "./react/Webpack4ReactConfigurationGenerator";
-import {loadYmlConfiguration} from "typescript-spring-scannner/src";
+import {loadYmlConfiguration} from "typescript-spring-scannner/lib";
 
 
 export interface GeneratorWebpackOptions {
@@ -40,7 +38,12 @@ export default function (options: GeneratorWebpackOptions) {
 
     const springApplicationConfiguration = loadYmlConfiguration(yamlConfigPath || projectBasePath);
 
-    const springWebpackConfiguration = springApplicationConfiguration.spring.webpack;
+    const {webpack, node} = springApplicationConfiguration.spring;
 
-    return webpack4ReactConfigurationGenerator(springWebpackConfiguration);
+    const env = node ? node.env : undefined;
+    return webpack4ReactConfigurationGenerator({
+        mode: env ? env["NODE_ENV"] : undefined,
+        ...webpack,
+        env,
+    });
 }

@@ -17,7 +17,6 @@ const proxyTarget = `http://localhost:8912/api/`;
  */
 const proxyServerWebContext = 'api';
 
-// const public = `${host}:${port}`;
 
 config.devServer = {
     contentBase: path.join(__dirname, ''),

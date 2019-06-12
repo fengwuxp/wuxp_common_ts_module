@@ -1,5 +1,5 @@
-import YamlConfigurationLoader from "typescript-spring-context/src/configuration/YamlConfigurationLoader";
-import {ConfigurationLoader} from "typescript-spring-context/src/configuration/ConfigurationLoader";
+import YamlConfigurationLoader from "typescript-spring-context/lib/configuration/YamlConfigurationLoader";
+import {ConfigurationLoader} from "typescript-spring-context/lib/configuration/ConfigurationLoader";
 import * as path from "path";
 import {NODE_MODULES_DIR} from "./constant/ConstantVar";
 import {LOGGER} from "./helper/Log4jsHelper";
@@ -15,10 +15,10 @@ export const loadYmlConfiguration = (yamlConfigPath: string) => {
 
     LOGGER.debug("yaml config path", yamlConfigPath);
 
-    const profiles: string[] = (process.env.ACTIVE_PROFILES || []) as string[];
+
     const configurationLoader: ConfigurationLoader = new YamlConfigurationLoader({
         fileDir: yamlConfigPath,
-        profiles
+        profiles: (process.env.ACTIVE_PROFILES||null) as any
     });
 
     return configurationLoader.load();

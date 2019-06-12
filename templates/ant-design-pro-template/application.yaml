@@ -1,0 +1,11 @@
+spring:
+#  profiles:
+    ### 从环境变量中ACTIVE_PROFILES 读取，默认 dev
+#    active:
+#      - development
+  scanner:
+    node-modules:
+      - test-model-1
+    scan-packages:
+      - views
+      - pages

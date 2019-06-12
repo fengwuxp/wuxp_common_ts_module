@@ -1,5 +1,5 @@
 import * as webpack from "webpack";
-import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {pathAlias} from "../configuration/CommonpPathAlias";
 import {
     WebpackConfigurationGenerator,
@@ -7,15 +7,16 @@ import {
 } from "../WebpackConfigurationGenerator";
 import * as path from "path";
 import {babel7Loader} from "../babel/BabelLoader";
-import awesomeTypescriptLoader from "../typescript/TypescriptLoader";
+import {awesomeTypescriptLoader} from "../typescript/TypescriptLoader";
 import {cssModuleLoader} from "../styles/CssModuleLoader";
 import PostCssLoader from "../styles/postcss/PostCssLoader";
 import {lessLoader} from "../styles/less/LessLoader";
 import {scssLoader} from "../styles/scss/ScssLoader";
 import {getHappyPackPlugin} from "../happypack/GetHappyPackPluginConfig";
 import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
+import HtmlWebPackPlugin from "html-webpack-plugin";
+import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator = (options: WebpackConfigurationGeneratorOptions): webpack.Configuration => {
 
@@ -25,7 +26,9 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
         outputPath,
         publicPath,
         staticResourcesBasePath,
-        externals
+        externals,
+        env,
+        htmlPlugin
     } = options;
 
     const isProd = mode === "production";
@@ -38,8 +41,8 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
             app: path.resolve('src', 'App'),
         },
         output: {
-            filename: '[name]_[hash].js',
-            chunkFilename: '[name]_[hash].js',
+            filename: isProd ? '[name]_[hash].js' : "[name].js",
+            chunkFilename: isProd ? '[name]_[hash].js' : "[name].js",
             path: packPath,
             publicPath: publicPath || "/"
         },
@@ -125,11 +128,30 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
                 }
             ], 2),
             new ExtractTextWebpackPlugin({
-                filename: "[name].css",
+                filename: isProd ? "[name]_[hash].css" : "[name].css",
                 allChunks: true
-            }),
+            })
         ]
     };
+
+    if (env) {
+        webpackConfiguration.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env': Object.keys(env)
+                    .map((key) => {
+                        return [key, JSON.stringify(env[key])];
+                    }).reduce((prev, current) => {
+                        prev[current[0]] = current[1];
+                        return prev
+                    }, {})
+            })
+        )
+
+    }
+
+    if (htmlPlugin) {
+        webpackConfiguration.plugins.push(new HtmlWebPackPlugin(htmlPlugin));
+    }
 
     if (isProd) {
         webpackConfiguration.optimization = { // 提取js 第三方库等

@@ -1,4 +1,4 @@
-import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import  ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import { scssModuleLoader} from "../CssModuleLoader";
 import PostCssLoader from "../postcss/PostCssLoader";
 import {genHappyPackLoaderString, getHappyPackPlugin} from "../../happypack/GetHappyPackPluginConfig";

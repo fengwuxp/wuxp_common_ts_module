@@ -1,0 +1,21 @@
+spring:
+  application:
+    context-path: /
+    port: 9000
+  feign:
+    api-modules:
+      default: http://127.0.0.1:9080
+      member: http://127.0.0.1:9080
+  node:
+    #将写入  process.env
+    env:
+      NODE_ENV: development
+
+  webpack:
+    mode: development
+    html-plugin:
+      template: ./src/index.html
+      filename: index.html
+      title: ant-desion-pro-template
+      baseBath: /
+      inject: true

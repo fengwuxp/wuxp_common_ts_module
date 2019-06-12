@@ -2,7 +2,6 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    //导入语法 import foo from "foo"
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

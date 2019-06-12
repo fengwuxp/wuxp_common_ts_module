@@ -14,7 +14,7 @@ export enum ProfilesType {
     RELEASE = "release"
 }
 
-type Profiles = ProfilesType | string;
+export type Profiles = ProfilesType | string;
 
 
 export interface ProfilesConfiguration {

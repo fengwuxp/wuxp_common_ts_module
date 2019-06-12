@@ -1,11 +1,15 @@
 import {ConfigurationLoader, DEFAULT_CONFIGURATION_FILE_NAME, LoadConfigurationOptions} from "./ConfigurationLoader";
-import {DEFAULT_SPRING_APPLICATION_CONFIGURATION, SpringApplicationConfiguration} from "./SpringApplicationConfiguration";
+import {
+    DEFAULT_SPRING_APPLICATION_CONFIGURATION,
+    SpringApplicationConfiguration
+} from "./SpringApplicationConfiguration";
 import * as path from "path";
 import * as fs from "fs";
 import * as jsYaml from "js-yaml";
 import merge from "lodash/merge";
 import StringUtils from "common_utils/src/string/StringUtils"
 import * as log4js from "log4js";
+import {Profiles} from "./profiles/ProfilesConfiguration";
 
 const logger = log4js.getLogger("spring config loader");
 logger.level = 'info';
@@ -23,6 +27,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
         if (!StringUtils.hasText(this.options.fileName)) {
             this.options.fileName = DEFAULT_CONFIGURATION_FILE_NAME;
         }
+        this.parseProfiles();
     }
 
     load = (): SpringApplicationConfiguration => {
@@ -36,14 +41,14 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
         const baseConfigPath = `${fileDir}/${fileName}`;
 
-        const baseConfig:SpringApplicationConfiguration = this.loadConfig(baseConfigPath);
+        const baseConfig: SpringApplicationConfiguration = this.loadConfig(baseConfigPath);
 
         const baseProfiles = baseConfig.spring.profiles;
 
         return [
-            ...(profiles || []),
+            ...(profiles as Profiles[]),
             ...(baseProfiles ? baseProfiles.active || [] : [])
-        ].filter(profile => StringUtils.hasText(profile))
+        ].filter((profile) => StringUtils.hasText(profile))
             .map((profile) => {
 
                 return `${fileDir}/${fileName.replace(".yaml", `-${profile}.yaml`)}`;
@@ -53,7 +58,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
             .filter(item => item != null)
             .reduce((prev, current) => {
                 return merge(prev, current);
-            }, merge(DEFAULT_SPRING_APPLICATION_CONFIGURATION,baseConfig));
+            }, merge(DEFAULT_SPRING_APPLICATION_CONFIGURATION, baseConfig));
 
 
     };
@@ -71,6 +76,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
         });
     };
 
+
     /**
      * 替换 配置文件的内容
      *   input :  test-attr: 123
@@ -82,7 +88,21 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
             return `${$2}${$3.replace(/\\s[a-z]/g, $1 => $1.toLocaleUpperCase()).replace(/^[a-z]/, $1 => $1.toLocaleUpperCase())}`;
         });
+    };
+
+
+    private parseProfiles = () => {
+        const {profiles} = this.options;
+        if (profiles == null) {
+            this.options.profiles = [];
+            return null;
+        }
+        let newProfiles: Profiles[] = [];
+
+        if (typeof profiles === "string") {
+            newProfiles = profiles.split(",");
+        }
+
+        this.options.profiles = newProfiles;
     }
-
-
 }

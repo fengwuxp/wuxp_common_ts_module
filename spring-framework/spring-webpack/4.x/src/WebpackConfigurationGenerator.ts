@@ -3,8 +3,8 @@ import {SpringWebpackConfiguration} from "typescript-spring-context/src/configur
 
 export interface WebpackConfigurationGeneratorOptions extends SpringWebpackConfiguration {
 
-
+    env?: {}
 }
 
 
-export type WebpackConfigurationGenerator = (options: WebpackConfigurationGeneratorOptions) => webpack.Configuration;
+export type WebpackConfigurationGenerator = (options?: WebpackConfigurationGeneratorOptions) => webpack.Configuration;

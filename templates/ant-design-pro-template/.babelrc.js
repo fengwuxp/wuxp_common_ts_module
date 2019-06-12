@@ -1,4 +1,4 @@
-const config = require("common_webpack/babel/babelrc7");
+const config = require("typescript-spring-webpack-4/lib/babel/babelrc7");
 
 config.plugins.push(
     [
