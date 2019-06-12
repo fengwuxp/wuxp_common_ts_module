@@ -33,35 +33,3 @@ export const awesomeTypescriptLoader = {
 };
 
 
-// const babel7Configuration = getBabel7Configuration();
-//
-// const pluginImportOptions = {
-//     style: true,
-//     libraryName: "antd-mobile"
-// };
-//
-//
-// babel7Configuration.plugins.push([
-//     require.resolve('babel-plugin-import'),
-//     pluginImportOptions,
-// ]);
-//
-// export const awesomeTypescriptAndBabelLoader = {
-//     test: /\.ts[x]?$/,
-//     exclude: isExclude,
-//     use: [
-//         {
-//             loader: "babel-loader",
-//             options: babel7Configuration
-//         },
-//         {
-//
-//             loader: "awesome-typescript-loader",
-//             options: {
-//                 useCache: true
-//             }
-//         }
-//     ]
-// };
-
-

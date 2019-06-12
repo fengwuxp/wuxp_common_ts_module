@@ -1,5 +1,5 @@
-
-import x from "react";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 
 /*
@@ -17,4 +17,11 @@ import x from "react";
 *
 *
 * */
+
+ReactDOM.render(
+    <div>
+        <p>122</p>
+    </div>,
+    document.getElementById("app")
+);
 

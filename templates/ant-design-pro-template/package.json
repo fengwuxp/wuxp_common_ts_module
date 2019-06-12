@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
   "scripts": {
-    "serve-dev": "webpack-dev-server  --config ./webpack.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "serve-dev": "webpack-dev-server  --config ./webpack.local.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
     "yarn_i": "yarn install",
     "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
     "build:dev": "rm -rf ./dist & cross-env ACTIVE_PROFILES=dev webpack --config ./webpack.config.js --progress --colors",
