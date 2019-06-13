@@ -14,8 +14,8 @@ export const babel7Loader = {
     exclude: isExclude,
     use: [
         {
-            loader: "babel-loader"
-            // options: getBabel7Configuration()
+            loader: "babel-loader",
+            options: getBabel7Configuration()
         }
     ]
 };

@@ -16,7 +16,7 @@ function AnnotationToClass() {
 
 }
 
-function AnnotationToFiled(value) {
+function AnnotationToFiled(value) :Function{
 
     return (target, name, descriptor) => {
         // target[name] = value;
@@ -48,7 +48,7 @@ function AnnotationToParam() {
     }
 }
 
-function AnnotationToMethod() {
+function AnnotationToMethod():Function {
 
     return () => (target, name, descriptor) => {
         logger.debug("method", target);

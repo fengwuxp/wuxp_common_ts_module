@@ -97,7 +97,6 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
     private parseProfiles = () => {
         const {profiles} = this.options;
         if (profiles == null) {
-            this.options.profiles = [];
             return null;
         }
         let newProfiles: Profiles[] = [];

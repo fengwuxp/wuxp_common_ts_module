@@ -1,7 +1,5 @@
 import * as log4js from "log4js"
 import "reflect-metadata";
-import {Runtime} from "inspector";
-import PropertyDescriptor = module
 
 
 const logger = log4js.getLogger();
@@ -59,7 +57,7 @@ interface AutoWriedOptions {
     requiredType?: any;
 }
 
-function AutoWried(options: AutoWriedOptions) {
+function AutoWried(options: AutoWriedOptions):Function {
 
     const {requiredType} = options;
 

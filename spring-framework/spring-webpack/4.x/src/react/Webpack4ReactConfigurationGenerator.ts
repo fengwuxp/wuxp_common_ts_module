@@ -54,7 +54,7 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
         devtool: isProd ? false : "source-map",
         module: {
             rules: [
-                babel7Loader,
+                // babel7Loader,
                 awesomeTypescriptLoader,
                 /*-----------style----------*/
                 {

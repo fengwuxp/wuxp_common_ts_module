@@ -17,7 +17,7 @@
   "scripts": {
     "yarn_i": "yarn install",
     "build:tsc": "rm -rf ./lib & tsc",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm run build:tsc & npm publish"
   },
   "author": "wuxp",
   "license": "ISC",

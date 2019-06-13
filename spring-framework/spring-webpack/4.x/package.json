@@ -17,7 +17,7 @@
   "scripts": {
     "yarn_i": "yarn install",
     "build:tsc": "rm -rf ./lib & tsc",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm run build:tsc & npm publish"
   },
   "author": "wuxp",
   "license": "ISC",
@@ -30,6 +30,7 @@
     "@types/uglifyjs-webpack-plugin": "^1.1.0",
     "@types/webpack": "^4.4.25",
     "@types/webpack-dev-server": "^3.1.0",
+    "@babel/preset-typescript": "^7.3.3",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",

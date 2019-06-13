@@ -51,7 +51,7 @@ export const Bean = (options?: BeanOptions): Function => {
         let _target = CONFIGURATION_MAP.get(constructor);
 
         if (_target == null) {
-            _target = new constructor();
+            _target = new (constructor as any)();
             CONFIGURATION_MAP.set(constructor, _target);
         }
 

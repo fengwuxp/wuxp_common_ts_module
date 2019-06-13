@@ -7,7 +7,7 @@ export default class AnnotatedBeanDefinition<T = any> implements BeanDefinition<
     private beanScope: Scope;
 
 
-    constructor(factory: Function, beanScope: Scope) {
+    constructor(factory: () => T, beanScope: Scope) {
         this.beanScope = beanScope;
         this.getBean = factory;
     }

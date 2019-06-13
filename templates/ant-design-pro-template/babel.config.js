@@ -10,7 +10,8 @@ config.plugins.push(
             "libraryName": "antd",
             "libraryDirectory": "lib",
             "style": true
-        }
+        },
+        "ant-design"
     ],
     [
         "import",
@@ -18,7 +19,14 @@ config.plugins.push(
             "libraryName": "@ant-design/pro-layout",
             "libraryDirectory": "lib",
             "style": true
-        }
+        },
+        "ant-design/pro-layout"
     ]
 );
+
 module.exports = config;
+
+// module.exports = function (api) {
+//     api.cache(true);
+//     return config;
+// };
