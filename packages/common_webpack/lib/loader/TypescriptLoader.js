@@ -6,7 +6,7 @@ var path = require("path");
 var tsConfig = require(path.resolve("./tsconfig.json"));
 //tsconfig.json中配置target:es5
 //支持es6打包
-var options = tsConfig.target === "es5" ? {
+var options = tsConfig.compilerOptions.target === "es6" ? {
     useCache: true
 } : {
     useBabel: true,

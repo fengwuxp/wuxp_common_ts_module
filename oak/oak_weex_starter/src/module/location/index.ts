@@ -176,6 +176,13 @@ export interface LocationModule extends WeexModule {
      * @param failure
      */
     chooseCommunity: (success: (data: LocationResult) => void, failure: () => void) => void;
+
+    /**
+     * 选择位置
+     * @param success
+     * @param failure
+     */
+    chooseLocation: (categroy:string,keywords:string,options:any,success: (data: LocationResult) => void, failure: () => void) => void;
 }
 
 /**

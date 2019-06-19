@@ -24,7 +24,7 @@
   "author": "wuxp",
   "license": "ISC",
   "devDependencies": {
-
+    "classnames": "^2.2.6"
   },
   "dependencies": {
     "ant-design-pro-starter": "^0.0.1",

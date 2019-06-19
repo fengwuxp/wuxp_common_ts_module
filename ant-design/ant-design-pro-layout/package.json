@@ -1,0 +1,82 @@
+{
+  "name": "ant-design-pro-layout",
+  "version": "0.0.1",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "serve-dev": "webpack-dev-server  --config ./webpack.local.dev.js  --devtool eval --progress --colors  --watch --port 9088 --open",
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
+    "build:dev": "rm -rf ./dist & cross-env ACTIVE_PROFILES=dev webpack --config ./webpack.config.js --progress --colors",
+    "build:prod": "rm -rf ./dist & cross-env ACTIVE_PROFILES=prod webpack --config ./webpack.config.js --progress --colors"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^3.19.0",
+    "classnames": "^2.2.6",
+    "history": "^4.9.0",
+    "lodash": "^4.17.10",
+    "lodash-decorators": "^6.0.0",
+    "memoize-one": "^5.0.4",
+    "moment": "^2.22.2",
+    "omit.js": "^1.0.0",
+    "path-to-regexp": "^3.0.0",
+    "qs": "^6.7.0",
+    "react": "^16.8.6",
+    "react-container-query": "^0.11.0",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-document-title": "^2.0.3",
+    "react-dom": "^16.7.0",
+    "react-media-hook2": "^1.0.2",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/enzyme": "^3.9.1",
+    "@types/history": "^4.7.2",
+    "@types/jest": "^24.0.11",
+    "@types/lodash": "^4.14.123",
+    "@types/memoize-one": "^4.1.1",
+    "@types/react": "^16.8.18",
+    "@types/react-copy-to-clipboard": "^4.2.6",
+    "@types/react-document-title": "^2.0.3",
+    "@types/react-dom": "^16.8.4",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-import": "^1.12.0",
+    "chalk": "^2.4.2",
+    "check-prettier": "^1.0.1",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.9.0",
+    "husky": "^2.3.0",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-babylon": "^6.0.0",
+    "import-sort-parser-typescript": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "jest-puppeteer": "^4.1.1",
+    "jsdom": "^15.0.0",
+    "jsdom-global": "^3.0.2",
+    "less": "^3.9.0",
+    "lint-staged": "^8.1.1",
+    "prettier": "^1.17.0",
+    "slash2": "^2.0.0",
+    "stylelint": "^10.0.1",
+    "stylelint-config-css-modules": "^1.3.0",
+    "stylelint-config-prettier": "^5.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
+    "stylelint-order": "^3.0.0"
+  }
+}

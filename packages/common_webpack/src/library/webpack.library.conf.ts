@@ -46,7 +46,6 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
             path: packPath,
             libraryTarget: "commonjs"
         },
-
         resolve: {
             extensions: [".ts", ".tsx", "d.ts", ".js"],
         },
@@ -65,7 +64,7 @@ export const getWebpackLibraryTargetConfig = function (options: GetLibraryTarget
     };
 
     if (isProduction) {
-        //压缩配置
+        //覆盖掉默认的压缩配置（默认的压缩配置会压缩掉类名称）
         // 提取js 第三方库等
         webpackConfig.optimization = {
             splitChunks: {
