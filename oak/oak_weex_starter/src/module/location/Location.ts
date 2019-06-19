@@ -33,7 +33,7 @@ if (isWeb) {
         },
         chooseLocation: function (categroy: string, keywords: string, options: any, success: (data: LocationResult) => void, failure: () => void) {
             console.log("浏览器暂不支持该方法");
-            success(null);
+            success({} as any);
         }
 
 

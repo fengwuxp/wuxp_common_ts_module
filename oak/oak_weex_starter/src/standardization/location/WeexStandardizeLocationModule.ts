@@ -66,7 +66,7 @@ const standardizeLocationModule: WeexStandardizeLocationModule = standardizedWee
             return [
                 categoryList == null ? null : categoryList.join(" "),
                 keywords == null ? null : keywords.join(" "),
-                options.options
+                options.options || {}
             ];
         }
     },

@@ -61,14 +61,22 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         });
     };
 
-    switchTab(pathname: string) {
+    switchTab = (pathname: string) => {
         const url = this.generateURL({
             pathname
         });
         this.taroHolder.taro.switchTab({
             url
         });
-    }
+    };
+
+    reLaunch = (params: NavigatorDescriptorObject): Promise<void> => {
+        const url = this.generateURL(params);
+        setNextViewState(params.state);
+        return this.taroHolder.taro.reLaunch({
+            url
+        });
+    };
 
     protected generateURL = (navigatorDescriptorObject: NavigatorDescriptorObject): string => {
 

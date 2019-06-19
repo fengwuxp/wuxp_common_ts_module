@@ -38,6 +38,14 @@ class TaroAppRouterHelper implements AppRouterHelper {
 
     switchTab = (pathname: string) => TaroAppRouterHelper.navigator.switchTab(pathname);
 
+    reLaunch = (pathname: string, viewPrams?: RouteViewParams) => {
+        return TaroAppRouterHelper.navigator.reLaunch({
+            pathname,
+            ...(viewPrams || {})
+        });
+    };
+
+
     /**
      * 初始化页面状态
      * @param viewInstance
