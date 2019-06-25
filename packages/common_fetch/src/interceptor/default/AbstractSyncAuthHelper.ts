@@ -49,14 +49,23 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
         options: FetchOptions
     }[] = [];
 
+
+    /**
+     * 加入鉴权的token 名称
+     * 默认 token
+     */
+    private authorizationHeaderName: string;
+
+
     /**
      * 鉴权后用于重试的 restTemplate
      */
     protected retryTestTemplate: RestTemplate;
 
 
-    constructor(testTemplate?: RestTemplate) {
+    constructor(testTemplate?: RestTemplate, authorizationHeaderName?: string) {
         this.retryTestTemplate = testTemplate;
+        this.authorizationHeaderName = authorizationHeaderName || "token";
     }
 
     abstract isToAuthView: (data: R, options: T) => Promise<R>;
@@ -66,7 +75,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
         try {
             const token: string = await this.getToken();
             console.log("token", token);
-            (params as FetchOptions).headers["token"] = token;
+            (params as FetchOptions).headers[this.authorizationHeaderName] = token;
         } catch (e) {
             console.log("获取token失败", e);
             //获取本地用户信息失败 登录

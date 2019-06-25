@@ -36,7 +36,7 @@
     "@types/webpack": "^4.4.25",
     "@types/webpack-dev-server": "^3.1.0",
     "autoprefixer": "^9.3.1",
-    "awesome-typescript-loader": "^5.2.1",
+    "awesome-typescript-loader": "",
     "babel-loader": "^8.0.5",
     "browserslist": "^4.5.4",
     "clean-webpack-plugin": "^0.1.18",
