@@ -78,6 +78,10 @@ export type CommonResResponse = {
     //request total use time (ms)
     //毫秒数
     rt: number;
+
+
+    //上传的url结果列表
+    requestUrls: string[]
 };
 
 
@@ -215,6 +219,4 @@ export interface MultipartUploadResp {
     // {Object} callback server response data, sdk use JSON.parse() return
     readonly data: string;
 
-    //上传的url结果列表
-    readonly requestUrls: string[]
 }

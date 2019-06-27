@@ -154,6 +154,10 @@ declare module "ali-oss" {
         //request total use time (ms)
         //毫秒数
         rt: number;
+
+
+        //上传的url结果列表
+        requestUrls: string[]
     };
 
 

@@ -12,6 +12,7 @@ import StringUtils from "common_utils/lib/string/StringUtils";
 import {MediaType} from "common_fetch/src/constant/http/MediaType";
 import {ResponseType} from "common_fetch/src/constant/ResponseType";
 import {MultipartUploadResp} from "../types/object/oss-object";
+import UUIDUtil from "common_utils/lib/uuid/UUIDUtil";
 
 
 export interface OakALiYunOssInitializerOptions extends OssClientOptionalOptions, ALiYunOssInitializerOptions {
@@ -127,7 +128,11 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
 
         const days = date.getDate();
 
-        const name = extName ? `${filename}.${extName}` : filename;
+        if (!StringUtils.hasText(extName)) {
+            extName = filename.substring(filename.lastIndexOf(".") + 1, filename.length);
+        }
+
+        const name = `${UUIDUtil.guid(16)}_${date.getTime()}.${extName}`;
 
         const key = `${this.oakOptions.prefix}/${date.getFullYear()}/${date.getMonth() + 1}${days > 10 ? "0" + days : days}/${name}`;
         console.log("上传到oos的key", key);
@@ -139,9 +144,10 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
      * @param resp
      */
     resolveUploadResult = (resp: MultipartUploadResp): string[] => {
-        const {requestUrls} = resp;
+        console.log("上传结果", resp);
+        const {res} = resp;
 
-        return requestUrls.map(url => {
+        return res.requestUrls.map(url => {
 
             return url.split("?")[0];
         })
