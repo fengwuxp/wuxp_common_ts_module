@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-6.1.1.min.js"></script>
+<!--<script src="./lib/index.js"></script>-->
+<script>
+window.onload=function () {
+
+
+    const client=new OSS({
+        region: 'oss-cn-shenzhen.aliyuncs.com',
+        //云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用STS方式来进行API访问
+        accessKeyId: 'LTAIIro1K3oePe8C',
+        accessKeySecret: 'r9bWLd82mfzHCEMyJeAtscwkPcRDNY',
+        stsToken: 'CAIS+gF1q6Ft5B2yfSjIr4nEDfnBvaZZgJG+QWjjpzQEVtZqmo7qtDz2IH5IfHJvBu4btfUwnWxY6f8YlqB2RppPSFaBN5UoUhL+ONLkMeT7oMWQweEuqv/MQBq+aXPS2MvVfJ+KLrf0ceusbFbpjzJ6xaCAGxypQ12iN+/i6/clFKN1ODO1dj1bHtxbCxJ/ocsBTxvrOO2qLwThjxi7biMqmHIl0DsltPrvmZPMt0qO1wGj8IJP+dSteKrDRtJ3IZJyX+2y2OFLbafb2EZSkUMUqP8t0/MapGyW4YjBUwYIuQ/8NOPXt9p0N0pierN/EqVPoePnhSCcHxtAJxaeGoABnIZ261ZrjJ3T3FtSXccObuh+Yim7vBaauUB+EEIYuz8ebcNEO7+CJidhdWQpNHBcqNhkN7KTbiQD2thCsTnBcXVDMCNjrBdw8SK+wunjw/Z+TtUCE3+lA/eAqBmnEJ0igRIBCQtOjr7H2Vkv05jesJ/EqmR0/bIA9oDRn17YfYI=',
+        bucket: 'cldj'
+    })
+
+    console.log(client);
+    client.list({
+
+    }).then((result) => {
+        console.log(result);
+    });
+}
+</script>
+</body>
+</html>

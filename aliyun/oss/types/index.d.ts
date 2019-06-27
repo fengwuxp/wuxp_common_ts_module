@@ -1,8 +1,11 @@
+// import {AppendOptions, CommonResResponse, MultipartOptions, MultipartUploadResp, OssObject} from "./object/oss-object";
 
-import ReadStream = NodeJS.ReadStream;
 
 declare module "ali-oss" {
 
+
+
+    import ReadStream = NodeJS.ReadStream;
 
     /**
      * oss client options
@@ -119,7 +122,7 @@ declare module "ali-oss" {
          * @param file {String|File(only support Browser)|Blob(only support Browser)} file path or HTML5 Web File or web Blob
          * @param options
          */
-        multipartUpload: (name: string, file: string | File, options: MultipartOptions) => Promise<MultipartUploadResp>;
+        multipartUpload: (name: string, file: string | File, options?: MultipartOptions) => Promise<MultipartUploadResp>;
 
 
     }
@@ -287,6 +290,9 @@ declare module "ali-oss" {
 
         // {Object} callback server response data, sdk use JSON.parse() return
         readonly data: string;
+
+        //上传的url结果列表
+        readonly requestUrls: string[]
     }
 
     /*---------------  object operation -------------------*/
