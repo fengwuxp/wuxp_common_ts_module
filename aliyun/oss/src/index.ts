@@ -132,9 +132,9 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
             extName = filename.substring(filename.lastIndexOf(".") + 1, filename.length);
         }
 
-        const name = `${UUIDUtil.guid(16)}_${date.getTime()}.${extName}`;
+        const name = `${UUIDUtil.guid(16).replace(/-/g, "")}_${date.getTime()}.${extName}`;
 
-        const key = `${this.oakOptions.prefix}/${date.getFullYear()}/${date.getMonth() + 1}${days > 10 ? "0" + days : days}/${name}`;
+        const key = `${this.oakOptions.prefix}/${date.getFullYear()}/${date.getMonth() + 1}${days < 10 ? "0" + days : days}/${name}`;
         console.log("上传到oos的key", key);
         return key;
     };
