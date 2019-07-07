@@ -6,11 +6,13 @@ spring:
   feign:
     api-modules:
       - default: http://xxx.oaknt.com
-  webpack:
-    mode: production
-    html-plugin:
-      template: ./src/index.html
-      filename: index.html
-      title: ant-desion-pro-template
-      baseBath: /prod
-      inject: true
+
+
+webpack:
+  mode: production
+  html-plugin:
+    template: ./src/index.html
+    filename: index.html
+    title: ant-desion-pro-template
+    baseBath: /prod
+    inject: true

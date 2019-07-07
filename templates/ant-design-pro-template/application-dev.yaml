@@ -11,11 +11,11 @@ spring:
     env:
       NODE_ENV: development
 
-  webpack:
-    mode: development
-    html-plugin:
-      template: ./src/index.html
-      filename: index.html
-      title: ant-desion-pro-template
-      baseBath: /
-      inject: true
+webpack:
+  mode: development
+  html-plugin:
+    template: ./src/index.html
+    filename: index.html
+    title: ant-desion-pro-template
+    baseBath: /
+    inject: true

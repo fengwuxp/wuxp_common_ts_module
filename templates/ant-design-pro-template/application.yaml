@@ -9,3 +9,5 @@ spring:
     scan-packages:
       - views
       - pages
+
+

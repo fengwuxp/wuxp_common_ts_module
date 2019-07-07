@@ -1,0 +1,46 @@
+{
+  "name": "typescript-spring-rollup",
+  "version": "0.0.1",
+  "description": "spring rollup",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "./lib/index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "build_ts": "rm -rf ./lib && tsc",
+    "npm_publish": "npm publish",
+    "npm_build_publish": "npm run build_ts && npm publish"
+  },
+  "keywords": [
+    "rollup",
+    "typescript"
+  ],
+  "author": "wuxp",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@types/node": "^12.0.12",
+    "@types/rollup": "^0.54.0",
+    "rollup": "^1.16.6",
+    "rollup-plugin-babel": "^5.0.0-alpha.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-replace": "^2.2.0",
+    "typescript": "^3.5.2",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+  }
+}

@@ -103,6 +103,10 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
                 })
         ).then((values) => {
             const ossServerConfig: OssServerConfig = values[0];
+            const enabledOss = ossServerConfig.oss && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeyId) && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeySecret);
+            if (!enabledOss) {
+                return Promise.reject("oss not enabled");
+            }
             const aliYunStsTokenInfo: AliYunStsTokenInfo = values[1];
             // console.log("ossServerConfig", ossServerConfig);
             // console.log("aliYunStsTokenInfo", aliYunStsTokenInfo);

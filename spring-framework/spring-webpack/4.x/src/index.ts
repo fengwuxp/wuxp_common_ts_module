@@ -38,11 +38,13 @@ export default function (options: GeneratorWebpackOptions) {
 
     const springApplicationConfiguration = loadYmlConfiguration(yamlConfigPath || projectBasePath);
 
-    const {webpack, node} = springApplicationConfiguration.spring;
+    const {webpack, spring} = springApplicationConfiguration;
+
+    const {node} = spring;
 
     const env = node ? node.env : undefined;
     return webpack4ReactConfigurationGenerator({
-        mode: env ? env["NODE_ENV"] : undefined,
+        mode: env ? env["NODE_ENV"] : "development",
         ...webpack,
         env,
     });

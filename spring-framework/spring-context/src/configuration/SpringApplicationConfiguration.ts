@@ -28,9 +28,10 @@ export interface SpringApplicationConfiguration {
         //nodejs
         node?: NodeConfiguration;
 
-        //webpack
-        webpack?: SpringWebpackConfiguration;
     }
+
+    //webpack
+    webpack?: SpringWebpackConfiguration;
 
     //custom configuration，will be saved to the configuration list for injection
     // annotation @link {@Value}
@@ -53,5 +54,8 @@ export const DEFAULT_SPRING_APPLICATION_CONFIGURATION: SpringApplicationConfigur
         feign: {
             apiModules: {}
         }
+    },
+    webpack: {
+
     }
 };
