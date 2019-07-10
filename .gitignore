@@ -21,3 +21,6 @@ coverage
 _src
 .spring
 .awcache
+.publish_chennh
+publish_chennh.ts
+publish_chennh.js

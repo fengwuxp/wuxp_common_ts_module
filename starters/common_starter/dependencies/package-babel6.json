@@ -1,7 +1,7 @@
 {
   "name": "common_starter",
   "description": "common starter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -45,9 +45,9 @@
     "babel-runtime": "^6.26.0",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.18",
-    "common_core": "^0.0.1",
-    "common_fetch": "^0.0.1",
-    "common_view": "0.0.1",
+    "common_core": "^1.0.0",
+    "common_fetch": "^1.0.0",
+    "common_view": "1.0.0",
     "copy-webpack-plugin": "^4.3.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.1",

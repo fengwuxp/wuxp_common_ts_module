@@ -1,6 +1,6 @@
 {
   "name": "oak_aliyun_oss",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "wrapper aliyun oss",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -52,9 +52,9 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.2",
-    "common_fetch": "^0.0.1",
-    "common_utils": "^0.0.1",
-    "common_webpack": "^0.0.1",
+    "common_fetch": "^1.0.0",
+    "common_utils": "^1.0.0",
+    "common_webpack": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "tslib": "^1.9.3",

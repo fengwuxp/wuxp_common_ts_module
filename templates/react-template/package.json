@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -30,13 +30,13 @@
     "antd-mobile": "^2.2.9",
     "art-template": "^4.12.2",
     "art-template-loader": "^1.4.3",
-    "common_fetch": "^0.0.1",
-    "common_react": "^0.0.1",
-    "common_react_router": "^0.0.1",
-    "common_redux": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_state": "^0.0.1",
-    "common_starter": "^0.0.1",
+    "common_fetch": "^1.0.0",
+    "common_react": "^1.0.0",
+    "common_react_router": "^1.0.0",
+    "common_redux": "^1.0.0",
+    "common_route": "^1.0.0",
+    "common_starter": "^1.0.0",
+    "common_state": "^1.0.0",
     "inversify": "^5.0.1",
     "omit.js": "^1.0.0",
     "prop-types": "^15.6.2",
@@ -51,5 +51,5 @@
     "react-swipeable-views": "^0.12.16",
     "react-swipeable-views-utils": "^0.12.16"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

@@ -1,6 +1,6 @@
 {
   "name": "typescript-spring-context",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,17 +24,17 @@
   "dependencies": {
     "@types/node": "^12.0.4",
     "@types/lodash": "^4.14.134",
-    "common_utils": "^0.0.1",
+    "common_utils": "^1.0.0",
     "typescript": "^3.5.1",
     "tslib": "^1.10.0",
     "lodash": "^4.17.11",
     "@types/js-yaml": "^3.12.1",
     "js-yaml": "^3.13.1",
-    "typescript-spring-beans": "^0.0.1"
+    "typescript-spring-beans": "^1.0.0"
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.0",
-    "common_test": "^0.0.1",
+    "common_test": "^1.0.0",
     "core-decorators": "^0.20.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",

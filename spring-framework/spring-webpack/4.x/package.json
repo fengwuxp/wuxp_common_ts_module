@@ -1,6 +1,6 @@
 {
   "name": "typescript-spring-webpack-4",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -37,7 +37,7 @@
     "browserslist": "^4.5.4",
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.5.2",
-    "common_utils": "^0.0.1",
+    "common_utils": "^1.0.0",
     "cross-env": "^5.2.0",
     "csstype": "^2.6.5",
     "css-loader": "^0.28.11",
@@ -67,7 +67,7 @@
     "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",
     "terser-webpack-plugin": "^1.2.2",
-    "typescript-spring-scannner": "^0.0.1",
+    "typescript-spring-scannner": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
@@ -79,7 +79,7 @@
     "webpack-uglify-parallel": "^0.1.4"
   },
   "devDependencies": {
-    "common_test": "^0.0.1",
+    "common_test": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "tslib": "^1.9.3"

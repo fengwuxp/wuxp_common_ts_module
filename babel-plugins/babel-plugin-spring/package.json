@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-spring",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -53,14 +53,14 @@
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "@types/node": "^11.13.10",
-    "common_test": "^0.0.1",
-    "common_webpack": "^0.0.1",
+    "common_test": "^1.0.0",
+    "common_webpack": "^1.0.0",
     "jest": "^23.6.0",
     "loader-utils": "^1.2.3",
     "log4js": "^4.0.2",
     "typescript": "^3.4.5",
-    "typescript-spring-react": "^0.0.1",
-    "typescript-spring-scannner": "^0.0.1"
+    "typescript-spring-react": "^1.0.0",
+    "typescript-spring-scannner": "^1.0.0"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

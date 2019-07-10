@@ -1,6 +1,6 @@
 {
   "name": "ant-design-pro-template",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -27,7 +27,8 @@
     "classnames": "^2.2.6"
   },
   "dependencies": {
-    "ant-design-pro-starter": "^0.0.1",
-    "typescript-spring-webpack-4": "^0.0.1"
-  }
+    "ant-design-pro-starter": "^1.0.0",
+    "typescript-spring-webpack-4": "^1.0.0"
+  },
+  "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

@@ -1,6 +1,6 @@
 {
   "name": "taro_starter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "taro starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

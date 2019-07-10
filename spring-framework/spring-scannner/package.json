@@ -1,6 +1,6 @@
 {
   "name": "typescript-spring-scannner",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -50,17 +50,17 @@
     "@babel/traverse": "^7.0.0",
     "art-template": "^4.13.2",
     "log4js": "^4.0.2",
-    "typescript-spring-context": "^0.0.1",
-    "typescript-spring-react": "^0.0.1"
+    "typescript-spring-context": "^1.0.0",
+    "typescript-spring-react": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "@types/node": "^11.13.10",
-    "common_test": "^0.0.1",
-    "common_utils": "^0.0.1",
+    "common_test": "^1.0.0",
+    "common_utils": "^1.0.0",
     "jest": "^23.6.0",
     "loader-utils": "^1.2.3",
-    "test-model-1": "^0.0.1",
+    "test-model-1": "^1.0.0",
     "typescript": "^3.4.5"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"

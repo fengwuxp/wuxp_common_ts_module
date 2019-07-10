@@ -1,6 +1,6 @@
 {
   "name": "example-loader",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -22,7 +22,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^11.13.10",
-    "common_webpack": "^0.0.1",
+    "common_webpack": "^1.0.0",
     "loader-utils": "^1.2.3"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"

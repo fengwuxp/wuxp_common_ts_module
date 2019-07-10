@@ -1,6 +1,6 @@
 {
   "name": "antd-manager-template",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -25,7 +25,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "antd_manager_starter": "^0.0.1"
+    "antd_manager_starter": "^1.0.0"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

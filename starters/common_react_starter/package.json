@@ -1,6 +1,6 @@
 {
   "name": "common_react_starter",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common react starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

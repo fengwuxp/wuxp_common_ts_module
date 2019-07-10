@@ -10,22 +10,21 @@
     "yarn_i": "yarn install"
   },
   "author": "oak tem",
-  "dependencies": {
-  },
   "devDependencies": {
-    "@types/node": "^12.0.4",
     "@types/chrome": "^0.0.86",
     "@types/jquery": "^3.3.1",
+    "@types/node": "^12.0.4",
+    "ajax-hook": "^1.8.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "common_utils": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
-    "common_utils": "^0.0.1",
     "jquery": "^3.4.1",
     "ts-loader": "^5.3.3",
-    "awesome-typescript-loader": "^5.2.1",
     "typescript": "^3.2.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
-    "webpack-merge": "^4.2.1",
-    "uglifyjs-webpack-plugin": "^2.1.1",
-    "ajax-hook": "^1.8.3"
-  }
+    "webpack-merge": "^4.2.1"
+  },
+  "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

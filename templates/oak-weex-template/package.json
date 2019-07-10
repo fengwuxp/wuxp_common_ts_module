@@ -1,6 +1,6 @@
 {
   "name": "oak-weex-template",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "oak weex template",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -29,10 +29,10 @@
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^8.0.4",
-    "common_starter": "^0.0.1",
-    "oak_weex_starter": "^0.0.1",
+    "common_starter": "^1.0.0",
+    "oak_weex_starter": "^1.0.0",
     "weex-vue-precompiler": "0.1.23-bate",
-    "weex_components": "^0.0.1"
+    "weex_components": "^1.0.0"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

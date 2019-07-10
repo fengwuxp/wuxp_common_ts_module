@@ -1,6 +1,6 @@
 {
   "name": "spring-websocket",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "能够已经接口调用的形式访问websocket server",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -28,9 +28,9 @@
   "devDependencies": {
     "@types/node": "^12.0.12",
     "@types/rollup": "^0.54.0",
-    "common_test": "^0.0.1",
-    "typescript-spring-webpack-4": "^0.0.1",
-    "typescript-spring-rollup": "^0.0.1",
+    "common_test": "^1.0.0",
+    "typescript-spring-webpack-4": "^1.0.0",
+    "typescript-spring-rollup": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "rollup-plugin-json": "^4.0.0",
@@ -38,6 +38,6 @@
     "rollup-plugin-babel": "^4.3.3"
   },
   "dependencies": {
-    "common_fetch": "^0.0.1"
+    "common_fetch": "^1.0.0"
   }
 }

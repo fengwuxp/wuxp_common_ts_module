@@ -5,7 +5,6 @@
     "oak/*",
     "packages/*",
     "starters/*",
-    "templates/*",
     "types/*"
   ],
   "version": "0.0.1",

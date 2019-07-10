@@ -1,6 +1,6 @@
 {
   "name": "typescript-spring-rollup",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "spring rollup",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
