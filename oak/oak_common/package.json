@@ -1,6 +1,6 @@
 {
   "name": "oak_common",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "oak  common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -33,5 +33,5 @@
     "common_utils": "^0.0.1",
     "md5": "^2.2.1"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

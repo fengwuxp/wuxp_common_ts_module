@@ -1,6 +1,6 @@
 {
   "name": "common_view",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common view",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,5 +23,5 @@
   "devDependencies": {
     "@types/node": "^10.12.12"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

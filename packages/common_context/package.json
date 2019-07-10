@@ -1,6 +1,6 @@
 {
   "name": "common_context",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common context",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -26,11 +26,11 @@
   ],
   "devDependencies": {
     "@types/node": "^10.12.12",
-    "@types/weex": "^0.0.1",
-    "@types/weixin": "^0.0.1",
-    "common_test": "^0.0.1",
+    "@types/weex": "^1.0.0",
+    "@types/weixin": "^1.0.0",
+    "common_test": "^1.0.0",
     "jest": "^23.6.0",
     "tslib": "^1.9.3"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

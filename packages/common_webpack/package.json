@@ -1,7 +1,7 @@
 {
   "name": "common_webpack",
   "description": "common webpack",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -46,11 +46,11 @@
     "cssnano": "^4.1.10",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
+    "handlebars-loader": "^1.7.1",
     "happypack": "^5.0.1",
     "hard-source-webpack-plugin": "^0.13.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-beta.5",
-    "handlebars-loader": "^1.7.1",
     "http-proxy-middleware": "^0.18.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
@@ -59,18 +59,18 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-import": "^12.0.1",
+    "postcss-less": "^3.1.4",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
     "postcss-scss": "^2.0.0",
-    "postcss-less": "^3.1.4",
     "precss": "^4.0.0",
     "quick-local-ip": "^1.0.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",
     "terser-webpack-plugin": "^1.2.2",
-    "typescript": "^3.3.3333",
     "tslib": "^1.9.3",
+    "typescript": "^3.3.3333",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",
@@ -81,5 +81,5 @@
     "webpack-merge": "^4.2.1",
     "webpack-uglify-parallel": "^0.1.4"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

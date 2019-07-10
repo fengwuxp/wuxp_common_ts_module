@@ -1,6 +1,6 @@
 {
   "name": "common_route",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common route",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -27,16 +27,16 @@
   "devDependencies": {
     "@tarojs/taro": "^1.2.0-beta.12",
     "@types/node": "^10.9.4",
-    "@types/weex": "^0.0.1",
-    "@types/weixin": "^0.0.1",
-    "common_core": "^0.0.1",
-    "common_env": "^0.0.1",
-    "common_utils": "^0.0.1",
+    "@types/weex": "^1.0.0",
+    "@types/weixin": "^1.0.0",
+    "common_core": "^1.0.0",
+    "common_env": "^1.0.0",
+    "common_utils": "^1.0.0",
     "querystring": "^0.2.0"
   },
   "dependencies": {
     "@types/history": "^4.7.2",
     "history": "^4.7.2"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

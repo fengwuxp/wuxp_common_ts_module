@@ -22,14 +22,12 @@
   },
   "author": "wuxp",
   "license": "ISC",
-  "devDependencies": {
-  },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.5.3",
     "@ant-design/dark-theme": "^0.2.0",
-    "common_react": "^0.0.1",
+    "@ant-design/pro-layout": "^4.5.3",
+    "common_react": "^1.0.0",
     "common_starter": "^0.0.1",
-    "common_webpack": "^0.0.1",
+    "common_webpack": "^1.0.0",
     "lodash": "^4.17.10",
     "lodash-decorators": "^6.0.0",
     "memoize-one": "^5.0.0",
@@ -46,5 +44,6 @@
     "react-fittext": "^1.0.0",
     "react-media-hook2": "^1.0.2",
     "typescript-spring-scannner": "^0.0.1"
-  }
+  },
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

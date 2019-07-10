@@ -1,6 +1,6 @@
 {
   "name": "common_react_router",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common react router",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -31,12 +31,12 @@
     "@types/react-router-config": "^1.1.2",
     "@types/react-router-dom": "^4.3.1",
     "classnames": "^2.2.6",
-    "common_auth": "^0.0.1",
+    "common_auth": "^1.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^4.3.1",
     "react-router-config": "^4.4.0-beta.7",
     "react-router-dom": "^4.4.0-beta.7"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

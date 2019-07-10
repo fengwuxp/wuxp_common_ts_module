@@ -1,6 +1,6 @@
 {
   "name": "weex_components",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "weex components",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,17 +24,17 @@
   "keywords": [],
   "dependencies": {
     "@types/node": "^10.9.4",
-    "@types/weex": "^0.0.1",
-    "common_config": "^0.0.1",
-    "common_icons": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_style": "^0.0.1",
-    "common_weex": "^0.0.1",
-    "compress_image": "^0.0.1",
+    "@types/weex": "^1.0.0",
+    "common_config": "^1.0.0",
+    "common_icons": "^1.0.0",
+    "common_route": "^1.0.0",
+    "common_style": "^1.0.0",
+    "common_weex": "^1.0.0",
+    "compress_image": "^1.0.0",
     "weex-ui": "^0.6.6"
   },
   "devDependencies": {
     "csstype": "^2.6.0"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

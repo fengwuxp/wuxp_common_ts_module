@@ -1,6 +1,6 @@
 {
   "name": "common_plugins",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common plugins",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -25,11 +25,11 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.12",
-    "common_config": "^0.0.1",
-    "common_test": "^0.0.1",
-    "common_webpack": "^0.0.1",
+    "common_config": "^1.0.0",
+    "common_test": "^1.0.0",
+    "common_webpack": "^1.0.0",
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

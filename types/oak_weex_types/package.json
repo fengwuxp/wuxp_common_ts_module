@@ -1,6 +1,6 @@
 {
   "name": "@types/oak_weex",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -25,7 +25,7 @@
   "author": "wuxp",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@types/weex": "^0.0.1"
+    "@types/weex": "^1.0.0"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

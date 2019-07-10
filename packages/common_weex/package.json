@@ -1,6 +1,6 @@
 {
   "name": "common_weex",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "common weex",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -14,7 +14,6 @@
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
   "main": "index.js",
-
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
@@ -26,18 +25,18 @@
     "typescrit"
   ],
   "dependencies": {
-    "@types/weex": "^0.0.1",
+    "@types/weex": "^1.0.0",
     "@weex-project/weex-picker": "^0.2.4",
-    "common_config": "^0.0.1",
-    "common_mock": "^0.0.1",
-    "common_proxy": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_utils": "^0.0.1",
+    "common_config": "^1.0.0",
+    "common_mock": "^1.0.0",
+    "common_proxy": "^1.0.0",
+    "common_route": "^1.0.0",
+    "common_utils": "^1.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "^11.13.4",
     "vue": "^2.5.7"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }
