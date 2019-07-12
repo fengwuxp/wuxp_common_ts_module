@@ -18,7 +18,8 @@
   "license": "ISC",
   "scripts": {
     "yarn_i": "yarn install",
-    "npm_publish": "npm publish"
+    "npm_publish": "npm publish",
+    "npm unpublish": "npm unpublish --force"
   },
   "keywords": [
     "fetch",

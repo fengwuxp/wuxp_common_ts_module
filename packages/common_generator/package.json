@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "common generator",
   "publishConfig": {
-    "registry": "http://nexus.chennh.com/repository/npm/"
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
   "repository": {
     "type": "git",

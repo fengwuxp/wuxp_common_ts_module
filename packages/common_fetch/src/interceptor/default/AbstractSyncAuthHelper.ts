@@ -3,6 +3,7 @@ import {SyncAuthHelper} from "./NeedAuthInterceptor";
 import {RestTemplate} from "../../template/RestTemplate";
 import {MediaType} from "../../constant/http/MediaType";
 import {parse} from "querystring";
+import StringUtils from "../../../../common_utils/lib/string/StringUtils";
 
 
 export interface RefreshTokenResult {
@@ -72,10 +73,16 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
 
     async requestParamsEnhance(params: T): Promise<T> {
 
+        let authorizationHeaderValue: string = (params as FetchOptions).headers[this.authorizationHeaderName];
+        if (StringUtils.hasText(authorizationHeaderValue)) {
+            //如果默认有传鉴权字段，则不再处理
+            return params;
+        }
+
         try {
-            const token: string = await this.getToken();
-            console.log("token", token);
-            (params as FetchOptions).headers[this.authorizationHeaderName] = token;
+            authorizationHeaderValue = await this.getToken();
+            // console.log("token", token);
+            (params as FetchOptions).headers[this.authorizationHeaderName] = authorizationHeaderValue;
         } catch (e) {
             console.log("获取token失败", e);
             //获取本地用户信息失败 登录
