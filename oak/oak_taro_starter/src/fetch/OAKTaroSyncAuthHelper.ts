@@ -7,13 +7,13 @@ import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 /**
  * Taro 同步鉴权处理者
  */
-export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
+export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper<FetchOptions, FetchResponse> {
 
 
     protected taroHolder: TaroInterfaceHolder;
 
-    constructor(testTemplate: RestTemplate) {
-        super(testTemplate);
+    constructor(testTemplate: RestTemplate, authorizationHeaderName?: string) {
+        super(testTemplate, authorizationHeaderName);
         this.taroHolder = TaroJsHolder.getTaroHolder();
     }
 
@@ -35,7 +35,7 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper {
 
     protected getToken = (): Promise<string> => {
         return taroDefaultSessionManager.getMember().then((member) => {
-            const token = member["token"];
+            const token = member[this.authorizationHeaderName];
             if (this.verifyToken(token)) {
                 return token;
             } else {

@@ -40,6 +40,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     //等待登录结果通知的最大秒数
     public static MAX_WAIT_LOGIN_NOTICE_TIMES = 30 * 1000;
 
+    //等待队列的最大 size
     private static MAX_QUEUE_SIZE = 10;
 
     //等待请求的队列
@@ -55,7 +56,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
      * 加入鉴权的token 名称
      * 默认 token
      */
-    private authorizationHeaderName: string;
+    protected authorizationHeaderName: string;
 
 
     /**

@@ -13,7 +13,7 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-  "main": "index.js",
+  "main": "index.ts",
   "author": "wuxp",
   "license": "ISC",
   "scripts": {

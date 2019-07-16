@@ -11,6 +11,7 @@
     "sourceMap": false,
     "sourceRoot": "",
     "baseUrl": "./src",
+    "jsx": "preserve",
     "outDir": "./lib",
     "declaration": true,
     "importHelpers": true,
@@ -30,10 +31,14 @@
     "node_modules/common_fetch/src/**/*",
     "node_modules/common_fetch/types/index.d.ts",
     "node_modules/@tarojs/**/*",
-    "node_modules/@types/weixin/src/minapp/index.d.ts"
+    "node_modules/@types/weixin/src/minapp/index.d.ts",
+    "node_modules/@tarojs/taro/types/**/*.d.ts"
   ],
   "exclude": [
     "dist",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "node_modules/@tarojs/taro-h5/",
+    "node_modules/@tarojs/taro-rn/",
+    "node_modules/@tarojs/mobx/"
   ]
 }

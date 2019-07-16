@@ -8,6 +8,13 @@ import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
 import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
 import {Signature} from "common_fetch/src/annotations/security/Signature";
 import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
+import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
+import FetchInterceptorExecutor from "common_fetch/src/interceptor/FetchInterceptorExecutor";
+import {FetchResponse} from "common_fetch/src/FetchOptions";
+import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
+import {AbstractSyncAuthHelper, RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {RestTemplate} from "common_fetch/src/template/RestTemplate";
+import {MediaType} from "common_fetch/src/constant/http/MediaType";
 import OAKTaroFeignProxyInitializer from "./src/fetch/OAKTaroFeignProxyInitializer";
 import {FetchOptions} from "common_fetch/src/FetchOptions";
 import {FetchRetryOptions, RetryOptions} from "common_fetch/src/FetchRetryOptions";
@@ -20,10 +27,17 @@ import {getAppletImageResourceUrl, getAppletFontResourceUrl} from "taro_starter/
 import {showToast} from "./src/toast/WeChatAppletsToast";
 
 export {
-    Feign,
+    FetchInterceptor,
+    AbstractFetchInterceptor,
+    FetchInterceptorExecutor,
+    AbstractSyncAuthHelper,
+    RefreshTokenResult,
     FetchOptions,
     FetchRetryOptions,
     RetryOptions,
+    FetchResponse,
+    RestTemplate,
+    Feign,
     RequestMapping,
     PostMapping,
     DeleteMapping,
@@ -32,6 +46,7 @@ export {
     FetchRetry,
     Signature,
     RequestMethod,
+    MediaType,
     OAKTaroFeignProxyInitializer,
     TaroLocalStorage,
     taroDefaultSessionManager,

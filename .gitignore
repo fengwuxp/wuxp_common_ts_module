@@ -22,5 +22,5 @@ _src
 .spring
 .awcache
 .publish_chennh
-publish_chennh.ts
-publish_chennh.js
+scripts/publish_to_npm.ts
+scripts/publish_to_npm.js
