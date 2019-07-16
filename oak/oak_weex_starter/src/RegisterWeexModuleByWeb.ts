@@ -20,5 +20,7 @@ export const registerWeexModuleByWeb = () => {
     require("./module/Common");
     require("./module/Photo");
 
+    require("./natjs/network/web/");
+
 
 };

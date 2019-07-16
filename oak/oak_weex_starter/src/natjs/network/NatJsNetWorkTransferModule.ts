@@ -1,6 +1,6 @@
 import {WeexModule} from "weex";
 
-interface TransferResult {
+export interface TransferResult {
     status: number;
     statusText: string;
     ok: boolean;

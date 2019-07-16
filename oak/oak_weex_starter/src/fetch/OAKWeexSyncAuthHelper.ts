@@ -9,7 +9,7 @@ import {RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractS
 /**
  * weex 同步鉴权helper
  */
-export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper {
+export default class OAKWeexSyncAuthHelper extends AbstractSyncAuthHelper<FetchOptions,FetchResponse> {
 
 
     constructor(testTemplate?: RestTemplate) {
