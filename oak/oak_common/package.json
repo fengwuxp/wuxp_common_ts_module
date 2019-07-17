@@ -27,11 +27,11 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "common_fetch": "^0.0.1",
-    "common_plugins": "^0.0.1",
-    "common_test": "^0.0.1",
-    "common_utils": "^0.0.1",
-    "md5": "^2.2.1"
+    "common_fetch": "^1.0.0",
+    "common_plugins": "^1.0.0",
+    "common_test": "^1.0.0",
+    "common_utils": "^1.0.0",
+    "blueimp-md5": "^2.11.0"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

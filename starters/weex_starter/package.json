@@ -23,19 +23,19 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "@types/weex": "^0.0.1",
-    "common_test": "^0.0.1"
+    "@types/weex": "^1.0.0",
+    "common_test": "^1.0.0"
   },
   "dependencies": {
-    "common_auth": "^0.0.1",
-    "common_config": "^0.0.1",
-    "common_core": "^0.0.1",
-    "common_fetch": "^0.0.1",
-    "common_route": "^0.0.1",
-    "common_starter": "^0.0.1",
-    "common_style": "^0.0.1",
-    "common_webpack": "^0.0.1",
-    "common_weex": "^0.0.1",
+    "common_auth": "^1.0.0",
+    "common_config": "^1.0.0",
+    "common_core": "^1.0.0",
+    "common_fetch": "^1.0.0",
+    "common_route": "^1.0.0",
+    "common_starter": "^1.0.0",
+    "common_style": "^1.0.0",
+    "common_webpack": "^1.0.0",
+    "common_weex": "^1.0.0",
     "md5": "^2.2.1",
     "postcss-plugin-px2rem": "^0.8.0",
     "postcss-plugin-weex": "^0.1.7",
@@ -50,7 +50,7 @@
     "weex-vue-loader": "~0.7.0-bate",
     "weex-vue-precompiler": "^0.1.23-bate",
     "weex-vue-render": "^1.0.33",
-    "weex_components": "^0.0.1"
+    "weex_components": "^1.0.0"
   },
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"

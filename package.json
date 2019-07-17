@@ -17,7 +17,7 @@
   "scripts": {
     "publish": "node ./scripts/publish.js",
     "publish:chennh": "node scripts/publish_to_npm.js",
-    "publish:npm": "lerna publish --npm-tag=1.0.0",
+    "publish:npm": "lerna publish --npm-tag=1.0.2",
     "module_init": "npm run learn_init && npm run learn_bootstrap",
     "yarn_install": "yarn install",
     "learn_init": "lerna init",
