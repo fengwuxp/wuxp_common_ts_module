@@ -1,5 +1,5 @@
 import * as CSS from 'csstype';
-import {StyleTheme} from "common_style/src/CommonThemeControl";
+import {StyleTheme} from "fengwuxp_common_style/src/CommonThemeControl";
 
 /**
  * weex主题样式列表

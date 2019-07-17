@@ -2,8 +2,8 @@ import {
     NetworkStatusListener,
     NetworkStatus,
     NoneNetworkFailBack
-} from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
-import {weexToast} from "common_weex/src/toast/WeexToast";
+} from "fengwuxp_common_fetch/src/interceptor/default/NeedNetworkInterceptor";
+import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
 
 const appMain: any = weex.requireModule("appMain");
 

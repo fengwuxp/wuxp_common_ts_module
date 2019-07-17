@@ -6,13 +6,13 @@ import {
     OssClientOptionalOptions
 } from "./faactory/ALiYunOssInitializer";
 
-import WebFetchAdapter from "common_fetch/src/adapter/web/WebFetchAdapter";
-import {FetchResponse} from "common_fetch/src/FetchOptions";
-import StringUtils from "common_utils/lib/string/StringUtils";
-import {MediaType} from "common_fetch/src/constant/http/MediaType";
-import {ResponseType} from "common_fetch/src/constant/ResponseType";
+import WebFetchAdapter from "fengwuxp_common_fetch/src/adapter/web/WebFetchAdapter";
+import {FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
+import StringUtils from "fengwuxp_common_utils/lib/string/StringUtils";
+import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {ResponseType} from "fengwuxp_common_fetch/src/constant/ResponseType";
 import {MultipartUploadResp} from "../types/object/oss-object";
-import UUIDUtil from "common_utils/lib/uuid/UUIDUtil";
+import UUIDUtil from "fengwuxp_common_utils/lib/uuid/UUIDUtil";
 
 
 export interface OakALiYunOssInitializerOptions extends OssClientOptionalOptions, ALiYunOssInitializerOptions {

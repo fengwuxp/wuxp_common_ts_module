@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const config = require("common_webpack/lib/weex/native/webpack.native.config.prod").default;
+const config = require("fengwuxp_common_webpack/lib/weex/native/webpack.native.config.prod").default;
 const {PROD_API_DOMAIN} = require("./WebpackConfig");
 
 config.plugins.unshift(

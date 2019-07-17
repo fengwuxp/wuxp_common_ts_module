@@ -1,4 +1,4 @@
-import {AppView} from "common_view/src/AppView";
+import {AppView} from "fengwuxp_common_view/src/AppView";
 
 /**
  * pc端的导航页面

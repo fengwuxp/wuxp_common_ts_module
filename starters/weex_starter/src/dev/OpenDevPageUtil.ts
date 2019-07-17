@@ -1,5 +1,5 @@
-import {debounce} from "common_utils/src/timer/DebounceUtil";
-import {weexToast} from "common_weex/src/toast/WeexToast";
+import {debounce} from "fengwuxp_common_utils/src/timer/DebounceUtil";
+import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
 import AppRouterHelper from "../route/AppRouterHelper"
 
 //点击次数

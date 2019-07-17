@@ -1,7 +1,7 @@
 import {ComponentOptions} from "vue";
 import {broadcast} from "../../ExpotrtWeexOAKModel";
 import {R_CATEGORY, R_EVENT_NAME} from "../../constant/EventParamKey";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 
 //固定广播方法名称
 const sendBroadcastName: string = "sendAutoCreateBroadcastName";

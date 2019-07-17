@@ -1,7 +1,7 @@
 import {WeexModule} from "weex";
 import {WeexStandardizedModule} from "./WeexStandardizedModule";
-import ProxyFactory from "common_proxy/src/ProxyFactory"
-import {wrapperObjectToMocker} from "common_mock/src/MockerWrapper";
+import ProxyFactory from "fengwuxp_common_proxy/src/ProxyFactory"
+import {wrapperObjectToMocker} from "fengwuxp_common_mock/src/MockerWrapper";
 
 type TransformParamHandle = (...otherArgs) => any[]
 

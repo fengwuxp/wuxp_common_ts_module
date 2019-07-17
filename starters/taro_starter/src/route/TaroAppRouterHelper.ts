@@ -1,5 +1,5 @@
 import {TaroNavigatorAdapter} from "./TaroNavigatorAdapter";
-import {AppRouterHelper, RouteViewParams} from "common_route/src/helper/AppRouterHelper";
+import {AppRouterHelper, RouteViewParams} from "fengwuxp_common_route/src/helper/AppRouterHelper";
 import {transferViewState} from "./PageStatTransferUtil";
 
 

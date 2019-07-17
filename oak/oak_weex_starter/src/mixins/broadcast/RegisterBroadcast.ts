@@ -1,5 +1,5 @@
 import {ComponentOptions} from "vue";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {broadcast} from "../../ExpotrtWeexOAKModel";
 
 /**

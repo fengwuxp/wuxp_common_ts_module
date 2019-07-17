@@ -1,9 +1,9 @@
 import {applicationBootstrap} from "../../../boot/WeexViewBootstrap";
 import umengMixin from "../../../mixins/umeng/UmengMixin";
-import CommonThemeControl from "common_style/src/CommonThemeControl";
+import CommonThemeControl from "fengwuxp_common_style/src/CommonThemeControl";
 import {weexTheme} from "../../../theme/js_default_theme";
 import {enableImmersiveBottomBar, enableImmersiveNavBar} from "../../../condition/EnableImmersiveNavBar";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {getBottomBarHeight, getStatusBarHeight} from "../../../helper/FlexViewHelper";
 
 //注入默认的主题变量

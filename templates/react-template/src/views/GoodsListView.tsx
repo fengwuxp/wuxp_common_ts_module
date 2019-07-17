@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactRouteView} from "common_state/src/annotations/ReactRouteView";
+import {ReactRouteView} from "fengwuxp_common_state/src/annotations/ReactRouteView";
 import goodsListDataProvider from "../provider/GoodsListDataProvider";
 
 

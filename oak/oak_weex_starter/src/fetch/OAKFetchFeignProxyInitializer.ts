@@ -1,17 +1,17 @@
-import {RestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
+import {RestTemplateLoader} from "fengwuxp_common_fetch/src/template/RestTemplateLoader";
 import OAKWeexDefaultRestTemplateLoader from "./rest/OAKWeexDefaultRestTemplateLoader";
-import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
+import DefaultProxyServiceExecutor from "fengwuxp_common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
 import OakApiSignatureStrategy from "oak_common/src/fetch/sign/OakApiSignatureStrategy";
-import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
+import {FeignProxyInitializer} from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyInitializer";
 import {oakEnv} from "oak_common/src/env/OAKEnvVar";
-import {isWeb, isAndroid} from "common_weex/src/constant/WeexEnv";
-import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
-import {ProxyUnifiedTransformRequestFileObjectEncoder} from "common_fetch/src/proxy/ProxyUnifiedTransformRequestFileObjectEncoder";
-import DefaultFileUploadStrategy from "common_fetch/src/transfer/DefaultFileUploadStrategy";
-import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
-import {MediaType} from "common_fetch/src/constant/http/MediaType";
-import {FileUploadOptions} from "common_fetch/src/transfer/FileTransmitter";
+import {isWeb, isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import FeignProxyExecutorHolder from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
+import {ProxyUnifiedTransformRequestFileObjectEncoder} from "fengwuxp_common_fetch/src/proxy/ProxyUnifiedTransformRequestFileObjectEncoder";
+import DefaultFileUploadStrategy from "fengwuxp_common_fetch/src/transfer/DefaultFileUploadStrategy";
+import {defaultApiModuleName} from "fengwuxp_common_fetch/src/constant/FeignConstVar";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
+import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {FileUploadOptions} from "fengwuxp_common_fetch/src/transfer/FileTransmitter";
 
 
 export default class DefaultFetchFeignProxyInitializer implements FeignProxyInitializer {

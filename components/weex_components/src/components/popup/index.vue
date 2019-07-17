@@ -28,9 +28,9 @@
 
 <script>
 
-    import {isWeb, isIphoneX,} from "common_weex/src/constant/WeexEnv";
+    import {isWeb, isIphoneX,} from "fengwuxp_common_weex/src/constant/WeexEnv";
     import WxcOverlay from '../overlay';
-    import {animation, dom} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {animation, dom} from "fengwuxp_common_weex/src/sdk/ExportWeexSdkModule";
     import {IPHONEX_BOTTOM_HEIGHT} from "../../helper/FlexViewHelper";
     import {ON_CLOSE_EVENT_NAME, ON_DISPLAY_EVENT_NAME} from "../../config/EventNamesConfig";
 

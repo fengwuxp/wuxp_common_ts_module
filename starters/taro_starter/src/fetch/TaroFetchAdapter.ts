@@ -1,6 +1,6 @@
-import AbstractFetchAdapter from "common_fetch/src/adapter/AbstractFetchAdapter";
-import {WebFetchOptions} from "common_fetch/src/adapter/web/WebFetchOptions";
-import {FetchResponse} from "common_fetch/src/FetchOptions";
+import AbstractFetchAdapter from "fengwuxp_common_fetch/src/adapter/AbstractFetchAdapter";
+import {WebFetchOptions} from "fengwuxp_common_fetch/src/adapter/web/WebFetchOptions";
+import {FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
 import {request} from "@tarojs/taro";
 import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 

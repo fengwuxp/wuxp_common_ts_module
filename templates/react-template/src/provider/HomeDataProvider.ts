@@ -1,7 +1,7 @@
-import {WrapperDataProvider} from "common_state/src/annotations/BrowserRouteEventDataProvider";
-import {DataProvider} from "common_state/src/provider/DataProvider";
+import {WrapperDataProvider} from "fengwuxp_common_state/src/annotations/BrowserRouteEventDataProvider";
+import {DataProvider} from "fengwuxp_common_state/src/provider/DataProvider";
 import {HomeViewProps} from "../views/HomeView";
-import {StateType} from "common_state/src/provider/DataProvider";
+import {StateType} from "fengwuxp_common_state/src/provider/DataProvider";
 
 
 @WrapperDataProvider({})

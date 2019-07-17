@@ -88,7 +88,7 @@ const config = {
                     //是否为node_modules中的模块
                     var isNodeModules = path.indexOf("node_modules") >= 0;
 
-                    var isWxpComponents = ["_starter", "oak_", "common_"].some((item) => {
+                    var isWxpComponents = ["_starter", "oak_", "fengwuxp_common_"].some((item) => {
                         return path.indexOf(item) >= 0;
                     });
                     if (isWxpComponents || path.endsWith("_starter")) {

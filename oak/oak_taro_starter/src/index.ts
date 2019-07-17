@@ -1,29 +1,29 @@
-import "common_fetch/src/fetch.promise";
-import {Feign} from "common_fetch/src/annotations/Feign";
-import {RequestMapping} from "common_fetch/src/annotations/mapping/RequestMapping";
-import {PostMapping} from "common_fetch/src/annotations/mapping/PostMapping";
-import {DeleteMapping} from "common_fetch/src/annotations/mapping/DeleteMapping";
-import {GetMapping} from "common_fetch/src/annotations/mapping/GetMapping";
-import {PutMapping} from "common_fetch/src/annotations/mapping/PutMapping";
-import {FetchRetry} from "common_fetch/src/annotations/retry/FetchRetry";
-import {Signature} from "common_fetch/src/annotations/security/Signature";
-import {RequestMethod} from "common_fetch/src/constant/RequestMethod";
-import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
-import FetchInterceptorExecutor from "common_fetch/src/interceptor/FetchInterceptorExecutor";
-import {FetchResponse} from "common_fetch/src/FetchOptions";
-import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
+import "fengwuxp_common_fetch/src/fetch.promise";
+import {Feign} from "fengwuxp_common_fetch/src/annotations/Feign";
+import {RequestMapping} from "fengwuxp_common_fetch/src/annotations/mapping/RequestMapping";
+import {PostMapping} from "fengwuxp_common_fetch/src/annotations/mapping/PostMapping";
+import {DeleteMapping} from "fengwuxp_common_fetch/src/annotations/mapping/DeleteMapping";
+import {GetMapping} from "fengwuxp_common_fetch/src/annotations/mapping/GetMapping";
+import {PutMapping} from "fengwuxp_common_fetch/src/annotations/mapping/PutMapping";
+import {FetchRetry} from "fengwuxp_common_fetch/src/annotations/retry/FetchRetry";
+import {Signature} from "fengwuxp_common_fetch/src/annotations/security/Signature";
+import {RequestMethod} from "fengwuxp_common_fetch/src/constant/RequestMethod";
+import {FetchInterceptor} from "fengwuxp_common_fetch/src/interceptor/FetchInterceptor";
+import FetchInterceptorExecutor from "fengwuxp_common_fetch/src/interceptor/FetchInterceptorExecutor";
+import {FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
+import AbstractFetchInterceptor from "fengwuxp_common_fetch/src/interceptor/AbstractFetchInterceptor";
 import {
     AbstractSyncAuthHelper,
     RefreshTokenResult
-} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
-import {RestTemplate} from "common_fetch/src/template/RestTemplate";
-import {MediaType} from "common_fetch/src/constant/http/MediaType";
+} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
+import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
 
 import OAKTaroFeignProxyInitializer from "./fetch/OAKTaroFeignProxyInitializer";
 
 
-import {FetchOptions} from "common_fetch/src/FetchOptions";
-import {FetchRetryOptions, RetryOptions} from "common_fetch/src/FetchRetryOptions";
+import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
+import {FetchRetryOptions, RetryOptions} from "fengwuxp_common_fetch/src/FetchRetryOptions";
 import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 
 /*-------------------------------------------------------------*/

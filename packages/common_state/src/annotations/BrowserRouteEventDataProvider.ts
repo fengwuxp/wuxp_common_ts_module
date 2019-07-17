@@ -1,10 +1,10 @@
 import {AbstractDataProvider, DataProvider, FunctionDataProvider, StateType} from "../provider/DataProvider";
-import ProxyFactory from "common_proxy/src/ProxyFactory";
-import {transformInitialLetterLowercase} from "common_utils/src/string/LetterUtils";
-import TopicManager from "common_event_bus/src/DefaultTopicManager";
+import ProxyFactory from "fengwuxp_common_proxy/src/ProxyFactory";
+import {transformInitialLetterLowercase} from "fengwuxp_common_utils/src/string/LetterUtils";
+import TopicManager from "fengwuxp_common_event_bus/src/DefaultTopicManager";
 import {ApplicationTopicType} from "../enums/ApplicationTopicType";
 import {Payload} from "../Payload";
-import {Publisher} from "common_event_bus/src/publishe/Publisher";
+import {Publisher} from "fengwuxp_common_event_bus/src/publishe/Publisher";
 import {Provider} from "react";
 
 

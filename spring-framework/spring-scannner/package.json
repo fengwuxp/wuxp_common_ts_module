@@ -56,8 +56,8 @@
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "@types/node": "^11.13.10",
-    "common_test": "^1.0.0",
-    "common_utils": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
     "jest": "^23.6.0",
     "loader-utils": "^1.2.3",
     "test-model-1": "^1.0.0",

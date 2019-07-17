@@ -1,5 +1,5 @@
 import * as React from "react";
-import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig";
+import {NamedRouteConfig} from "fengwuxp_common_react/src/route/NamedRouteConfig";
 import DocumentTitle from "react-document-title";
 
 export interface BasicLayoutProps {

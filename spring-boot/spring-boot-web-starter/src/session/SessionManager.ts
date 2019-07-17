@@ -1,5 +1,5 @@
-import BrowserLocalStorage from "common_utils/src/storage/browser/BrowserLocalStorage";
-import {AppSessionManager} from "common_auth/src/session/AppSessionManager";
+import BrowserLocalStorage from "fengwuxp_common_utils/src/storage/browser/BrowserLocalStorage";
+import {AppSessionManager} from "fengwuxp_common_auth/src/session/AppSessionManager";
 import {AppRouterAuthenticator} from "../../../../spring-framework/spring-react/src/route/AppRouterAuthenticator";
 
 

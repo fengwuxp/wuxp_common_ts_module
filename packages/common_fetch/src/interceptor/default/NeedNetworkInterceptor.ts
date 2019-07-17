@@ -1,6 +1,6 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions} from "../../FetchOptions";
-import {debounce} from "common_utils/src/timer/DebounceUtil";
+import {debounce} from "fengwuxp_common_utils/src/timer/DebounceUtil";
 
 
 /**

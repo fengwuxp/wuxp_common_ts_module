@@ -1,5 +1,5 @@
 import {imageLoader} from "oak_weex_starter/src/ExpotrtWeexOAKModel";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 export default {
 

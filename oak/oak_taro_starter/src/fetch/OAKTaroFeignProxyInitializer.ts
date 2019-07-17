@@ -1,23 +1,23 @@
-import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
-import {RestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
+import {FeignProxyInitializer} from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyInitializer";
+import {RestTemplateLoader} from "fengwuxp_common_fetch/src/template/RestTemplateLoader";
 import OAKTaroDefaultRestTemplateLoader from "./OAKTaroDefaultRestTemplateLoader";
-import DefaultProxyServiceExecutor from "common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
+import DefaultProxyServiceExecutor from "fengwuxp_common_fetch/src/proxy/executor/DefaultProxyServiceExecutor";
 import OakApiSignatureStrategy from "oak_common/src/fetch/sign/OakApiSignatureStrategy";
-import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
-import {AppConfig} from "common_config/src/app/AppConfig";
-import {FetchInterceptor} from "common_fetch/src/interceptor/FetchInterceptor";
-import {ApiRoutingMapping} from "common_fetch/src/route/ApiRoutingStrategy";
-import NeedProgressBarInterceptor from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
-import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
+import {defaultApiModuleName} from "fengwuxp_common_fetch/src/constant/FeignConstVar";
+import {AppConfig} from "fengwuxp_common_config/src/app/AppConfig";
+import {FetchInterceptor} from "fengwuxp_common_fetch/src/interceptor/FetchInterceptor";
+import {ApiRoutingMapping} from "fengwuxp_common_fetch/src/route/ApiRoutingStrategy";
+import NeedProgressBarInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
+import NeedAuthInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedAuthInterceptor";
 import OAKTaroFetchProgressBar from "./OAKTaroFetchProgressBar";
 import OAKTaroSyncAuthHelper from "./OAKTaroSyncAuthHelper";
 import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessInterceptor";
-import FeignProxyExecutorHolder from "common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
+import FeignProxyExecutorHolder from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
-import DefaultTransformDateInterceptor from "common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
+import DefaultTransformDateInterceptor from "fengwuxp_common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
 import {OAKTaroNetworkListener} from "./OAKTaroNetworkListener";
-import NeedNetworkInterceptor from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
-import {RestTemplate} from "common_fetch/src/template/RestTemplate";
+import NeedNetworkInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedNetworkInterceptor";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
 
 interface OAKEnvVar {
 

@@ -1,7 +1,7 @@
-import {RouteView} from "common_view/src/RouteView";
+import {RouteView} from "fengwuxp_common_view/src/RouteView";
 import * as Taro from "@tarojs/taro";
-import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
-import {TaroNavigatorAdapter} from "common_route/src/adapter/taro/TaroNavigatorAdapter";
+import {NavigatorAdapter} from "fengwuxp_common_route/src/NavigatorAdapter";
+import {TaroNavigatorAdapter} from "fengwuxp_common_route/src/adapter/taro/TaroNavigatorAdapter";
 
 
 export interface TaroBaseView<T = any> extends RouteView<T> {

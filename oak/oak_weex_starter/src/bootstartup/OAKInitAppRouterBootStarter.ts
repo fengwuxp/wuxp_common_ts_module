@@ -1,10 +1,10 @@
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import AppRouter from "weex_starter/src/route/AppRouter";
-import {isIos} from "common_weex/src/constant/WeexEnv";
-import WeexNavigatorAdapter from "common_weex/src/route/WeexNavigatorAdapter";
-import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
+import {isIos} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import WeexNavigatorAdapter from "fengwuxp_common_weex/src/route/WeexNavigatorAdapter";
+import {AppBootStarter} from "fengwuxp_common_starter/src/bootstartup/AppBootStarter";
 import {WeexAppContext} from "weex_starter/src/config/WeexAppConfig";
-import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+import {getWeexResourceUrl} from "fengwuxp_common_weex/src/resources/ResourcePathParser";
 
 const navigator: WeexNavigatorModule = isIos ? weex.requireModule("nav") : weex.requireModule("navigator");
 

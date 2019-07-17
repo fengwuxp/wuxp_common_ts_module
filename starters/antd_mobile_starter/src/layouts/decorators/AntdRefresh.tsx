@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Icon,Flex} from "antd-mobile";
 import {Indicator} from 'rmc-pull-to-refresh/lib/PropsType';
-import {RefreshView} from "common_view/src/RefreshView";
+import {RefreshView} from "fengwuxp_common_view/src/RefreshView";
 
 
 export interface AntdRefreshOptions {

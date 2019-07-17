@@ -4,7 +4,7 @@ import * as React from "react";
 import {Menu} from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import styles from "./style.module.less";
-import FontAwesome5Icon from "common_web_icons/src/FontAwesome5"
+import FontAwesome5Icon from "fengwuxp_common_web_icons/src/FontAwesome5"
 
 /**
  * 默认的菜单构建者

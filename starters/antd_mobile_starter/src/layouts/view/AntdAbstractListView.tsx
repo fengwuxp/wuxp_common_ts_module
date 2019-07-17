@@ -2,15 +2,15 @@ import React from "react";
 import {ListView} from "antd-mobile";
 import {AntdRefreshListView} from "../decorators/AntdRefreshListView";
 import AntdAbstractView, {AntdAbstractViewState} from "./AntdAbstractView";
-import {PagingQueryView} from "common_view/src/PagingQueryView";
+import {PagingQueryView} from "fengwuxp_common_view/src/PagingQueryView";
 import {AntdAbstractQueryViewProps} from "./AntdAbstractQueryView";
 import {AntdRefreshState} from "./AntdAbstractRefreshView";
-import {PagingQueryHelper} from "common_starter/src/helper/PagingQueryHelper";
-import {FetchResponse} from "common_fetch/src/fetch/FetchOptions";
-import {PageInfo} from "common_starter/src/api/model/PageInfo";
-import {FetchOptions} from "common_fetch/src/fetch/FetchOptions";
-import {ServiceQueryEvt} from "common_starter/src/api/model/ServiceQueryEvt";
-import SimplePagingQueryHelper, {SimpleQueryHandle} from "common_starter/src/helper/SimplePagingQueryHelper";
+import {PagingQueryHelper} from "fengwuxp_common_starter/src/helper/PagingQueryHelper";
+import {FetchResponse} from "fengwuxp_common_fetch/src/fetch/FetchOptions";
+import {PageInfo} from "fengwuxp_common_starter/src/api/model/PageInfo";
+import {FetchOptions} from "fengwuxp_common_fetch/src/fetch/FetchOptions";
+import {ServiceQueryEvt} from "fengwuxp_common_starter/src/api/model/ServiceQueryEvt";
+import SimplePagingQueryHelper, {SimpleQueryHandle} from "fengwuxp_common_starter/src/helper/SimplePagingQueryHelper";
 
 
 export interface AntdAbstractListViewProps extends AntdAbstractQueryViewProps {

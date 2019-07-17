@@ -19,8 +19,8 @@
 <script>
 
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
-    import CommonThemeControl from "common_style/src/CommonThemeControl";
-    import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+    import CommonThemeControl from "fengwuxp_common_style/src/CommonThemeControl";
+    import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 
     export default {
         name: "nav-base-bar",

@@ -1,6 +1,6 @@
 import {PagingQueryHelper} from "./PagingQueryHelper";
 import {PageInfo} from "../api/model/PageInfo";
-import {FetchOptions, FetchResponse} from "common_fetch/src/fetch/FetchOptions";
+import {FetchOptions, FetchResponse} from "fengwuxp_common_fetch/src/fetch/FetchOptions";
 import {ServiceQueryEvt} from "../api/model/ServiceQueryEvt";
 
 

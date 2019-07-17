@@ -26,7 +26,7 @@
         ON_FOCUS_EVENT_NAME,
         ON_INPUT_EVENT_NAME
     } from "../../config/EventNamesConfig";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
     export default {
         name: "textarea-item",

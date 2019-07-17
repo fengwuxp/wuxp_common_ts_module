@@ -1,6 +1,6 @@
 {
-  "name": "common_weex",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_weex",
+  "version": "1.0.0",
   "description": "common weex",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -25,13 +25,13 @@
     "typescrit"
   ],
   "dependencies": {
-    "@types/weex": "^1.0.3",
+    "@types/weex": "^1.0.0",
     "@weex-project/weex-picker": "^0.2.4",
-    "common_config": "^1.0.3",
-    "common_mock": "^1.0.3",
-    "common_proxy": "^1.0.3",
-    "common_route": "^1.0.3",
-    "common_utils": "^1.0.3",
+    "fengwuxp_common_config": "^1.0.0",
+    "fengwuxp_common_mock": "^1.0.0",
+    "fengwuxp_common_proxy": "^1.0.0",
+    "fengwuxp_common_route": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import {storage} from "../sdk/ExportWeexSdkModule";
 import AbstractWeexLocalStorage from "./AbstractWeexLocalStorage";
-import DefaultLocalStorage from "common_utils/src/storage/DefaultLocalStorage";
+import DefaultLocalStorage from "fengwuxp_common_utils/src/storage/DefaultLocalStorage";
 
 
 /**

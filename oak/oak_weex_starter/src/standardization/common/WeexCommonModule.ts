@@ -1,7 +1,7 @@
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {common, appMain} from "../../ExpotrtWeexOAKModel";
-import {isAndroid} from "common_weex/src/constant/WeexEnv";
+import {isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 
 /**

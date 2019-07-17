@@ -1,4 +1,4 @@
-import {isPromise} from "common_utils/src/fn/isPromise";
+import {isPromise} from "fengwuxp_common_utils/src/fn/isPromise";
 
 
 /**

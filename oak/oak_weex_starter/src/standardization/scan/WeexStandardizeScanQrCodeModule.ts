@@ -1,6 +1,6 @@
 import {qrcode} from "../../ExpotrtWeexOAKModel";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 
 /**

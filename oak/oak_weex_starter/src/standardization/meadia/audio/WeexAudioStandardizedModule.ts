@@ -1,4 +1,4 @@
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 
 /**

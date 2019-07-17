@@ -3,8 +3,8 @@
     <image :src="backTopIcon" :style="topStyle" @click="backTop"></image>
 </template>
 <script>
-    import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
-    import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {getWeexResourceUrl} from "fengwuxp_common_weex/src/resources/ResourcePathParser";
+    import {dom} from "fengwuxp_common_weex/src/sdk/ExportWeexSdkModule";
 
     const defStyle = {
         right: "35px",

@@ -1,4 +1,4 @@
-import {PagingQueryView} from "common_view/src/PagingQueryView";
+import {PagingQueryView} from "fengwuxp_common_view/src/PagingQueryView";
 
 
 export default abstract class ReactSimpleQueryView implements PagingQueryView {

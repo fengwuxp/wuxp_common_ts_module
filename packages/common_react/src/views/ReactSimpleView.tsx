@@ -1,4 +1,4 @@
-import {BaseAppView} from "common_view/src/SimpleView";
+import {BaseAppView} from "fengwuxp_common_view/src/SimpleView";
 import * as React from "react";
 import {ErrorInfo} from "react";
 import FlexView from "../components/FlexView";

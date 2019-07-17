@@ -1,5 +1,5 @@
-import {weexToast} from "common_weex/src/toast/WeexToast";
-import {isIos} from "common_weex/src/constant/WeexEnv";
+import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
+import {isIos} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 const photo: any = weex.requireModule('photo');
 const appMain: any = weex.requireModule("appMain");

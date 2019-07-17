@@ -1,4 +1,4 @@
-import {isIos, isIphoneX, isIphoneXMax, isIphoneXR} from "common_weex/src/constant/WeexEnv";
+import {isIos, isIphoneX, isIphoneXMax, isIphoneXR} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 
 /**

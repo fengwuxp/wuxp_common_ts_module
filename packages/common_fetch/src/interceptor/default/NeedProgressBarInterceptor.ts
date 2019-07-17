@@ -1,6 +1,6 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions, FetchResponse, ProgressBarOptions} from "../../FetchOptions";
-import {Timer} from "common_task/src/timer/Timer";
+import {Timer} from "fengwuxp_common_task/src/timer/Timer";
 
 /**
  * 需要进度条的拦截器

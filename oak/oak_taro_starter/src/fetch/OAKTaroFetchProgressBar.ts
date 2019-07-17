@@ -1,5 +1,5 @@
-import {FetchProgressBar} from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
-import {ProgressBarOptions} from "common_fetch/src/FetchOptions";
+import {FetchProgressBar} from "fengwuxp_common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
+import {ProgressBarOptions} from "fengwuxp_common_fetch/src/FetchOptions";
 import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 
 export default class OAKTaroFetchProgressBar implements FetchProgressBar {

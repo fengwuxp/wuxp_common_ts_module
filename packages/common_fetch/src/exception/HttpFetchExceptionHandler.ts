@@ -1,5 +1,5 @@
-import {ExceptionHandler} from "common_exception/src/handler/ExceptionHandler";
-import {ExceptionRepairer} from "common_exception/src/ExceptionRepairer";
+import {ExceptionHandler} from "fengwuxp_common_exception/src/handler/ExceptionHandler";
+import {ExceptionRepairer} from "fengwuxp_common_exception/src/ExceptionRepairer";
 import {HttpFetchException} from "./HttpFetchException";
 
 /**

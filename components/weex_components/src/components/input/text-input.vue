@@ -39,8 +39,8 @@
 
 <script>
     import BaseInputProps from "./props/BaseInputProps";
-    import ioniconIcon from "common_icons/weex/ionicons/";
-    import { isAndroid} from "common_weex/src/constant/WeexEnv";
+    import ioniconIcon from "fengwuxp_common_icons/weex/ionicons/";
+    import { isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
     import TextInputMixin from "./mixins/TextInputMixin";
 
     export default {

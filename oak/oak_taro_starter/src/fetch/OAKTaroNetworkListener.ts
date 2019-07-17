@@ -2,7 +2,7 @@ import {
     NetworkStatusListener,
     NetworkStatus,
     NoneNetworkFailBack
-} from "common_fetch/src/interceptor/default/NeedNetworkInterceptor";
+} from "fengwuxp_common_fetch/src/interceptor/default/NeedNetworkInterceptor";
 import TaroJsHolder from "taro_starter/src/TaroJsHolder";
 
 

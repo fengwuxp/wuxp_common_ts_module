@@ -1,6 +1,6 @@
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
-import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
-import CommonThemeControl from "common_style/src/CommonThemeControl";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
+import {NavBarStyleOptions} from "fengwuxp_common_config/src/views/LayoutConfig";
+import CommonThemeControl from "fengwuxp_common_style/src/CommonThemeControl";
 
 
 /**

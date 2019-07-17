@@ -1,11 +1,11 @@
-import {NavigatorAdapter} from "common_route/src/NavigatorAdapter";
-import WeexNavigatorAdapter, {WeexNavigatorParam} from "common_weex/src/route/WeexNavigatorAdapter";
+import {NavigatorAdapter} from "fengwuxp_common_route/src/NavigatorAdapter";
+import WeexNavigatorAdapter, {WeexNavigatorParam} from "fengwuxp_common_weex/src/route/WeexNavigatorAdapter";
 import {WeexRouteItem} from "./WeexRouteItem";
 import {parse} from "querystring";
 import {ViewConfigByRoute} from "./ViewConfigByRoute";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {AppSessionManager} from "common_auth/src/session/AppSessionManager";
-import {getRedirectRoute} from "common_route/src/utils/RedirectRouteUtil";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import {AppSessionManager} from "fengwuxp_common_auth/src/session/AppSessionManager";
+import {getRedirectRoute} from "fengwuxp_common_route/src/utils/RedirectRouteUtil";
 
 
 export interface AppRoute {

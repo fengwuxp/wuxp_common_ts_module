@@ -1,12 +1,12 @@
-import {RestTemplate} from "common_fetch/src/template/RestTemplate";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
 import {Bean} from "typescript-spring-beans/src/annotations/Bean";
-import {RestTemplateLoader} from "common_fetch/src/template/RestTemplateLoader";
-import {defaultApiModuleName} from "common_fetch/src/constant/FeignConstVar";
+import {RestTemplateLoader} from "fengwuxp_common_fetch/src/template/RestTemplateLoader";
+import {defaultApiModuleName} from "fengwuxp_common_fetch/src/constant/FeignConstVar";
 import OAKBrowserDefaultRestTemplateLoader from "./OAKBrowserDefaultRestTemplateLoader";
 import NeedProgressBarInterceptor
-    from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
+    from "fengwuxp_common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
 import OakUnifiedRespProcessInterceptor from "oak_common/src/fetch/interceptor/OakUnifiedRespProcessInterceptor";
-import NeedAuthInterceptor from "common_fetch/src/interceptor/default/NeedAuthInterceptor";
+import NeedAuthInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedAuthInterceptor";
 
 
 const routeMapping = {};

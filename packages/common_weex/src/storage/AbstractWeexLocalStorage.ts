@@ -1,5 +1,5 @@
 import {WeexStorageModule, WeexStorageResult} from "weex/src/sdk/model/storage";
-import {LocalStorage} from "common_utils/src/storage/LocalStorage";
+import {LocalStorage} from "fengwuxp_common_utils/src/storage/LocalStorage";
 
 
 /**

@@ -3,7 +3,7 @@ import Base64 from "./core/base64";
 import Converter from "./core/converter";
 import Image from "./core/image";
 import Rotate from "./core/rotate";
-import {fileToBase64} from "common_utils/src/codec/FileConverterUtil";
+import {fileToBase64} from "fengwuxp_common_utils/src/codec/FileConverterUtil";
 
 
 /**

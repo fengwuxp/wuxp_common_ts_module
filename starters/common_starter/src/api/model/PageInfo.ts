@@ -1,4 +1,4 @@
-import {QueryType} from "common_fetch/src/enums/QueryType";
+import {QueryType} from "fengwuxp_common_fetch/src/enums/QueryType";
 
 /**
  * 统一分页对象

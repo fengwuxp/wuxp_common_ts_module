@@ -1,5 +1,5 @@
 import {WxcDialog} from 'weex-ui';
-import {appendElementToView} from "common_weex/src/dom/WeexDOM";
+import {appendElementToView} from "fengwuxp_common_weex/src/dom/WeexDOM";
 
 
 interface ShowDialogProps {

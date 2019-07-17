@@ -1,7 +1,7 @@
 {
   "name": "oak_common",
   "version": "1.0.0",
-  "description": "oak  common",
+  "description": "oak common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -18,19 +18,16 @@
     "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
-  "keywords": [
-    "weex",
-    "types"
-  ],
+  "keywords": [],
   "types": "./index.d.ts",
   "author": "wuxp",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "common_fetch": "^1.0.0",
-    "common_plugins": "^1.0.0",
-    "common_test": "^1.0.0",
-    "common_utils": "^1.0.0",
+    "fengwuxp_common_fetch": "^1.0.0",
+    "fengwuxp_common_plugins": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
     "blueimp-md5": "^2.11.0"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"

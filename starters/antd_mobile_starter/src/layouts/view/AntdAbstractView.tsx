@@ -3,14 +3,14 @@ import * as React from "react";
 import ReactSimpleView, {
     ReactSimpleViewProps,
     ReactSimpleViewState
-} from "common_react/src/views/ReactSimpleView";
+} from "fengwuxp_common_react/src/views/ReactSimpleView";
 import {NavBar,Icon} from "antd-mobile";
 import {
     reduxRouterHandler,
     ViewLocationDescriptorObject
-} from "common_redux/src/router/ReduxRouterHandler";
+} from "fengwuxp_common_redux/src/router/ReduxRouterHandler";
 import {LocationState} from "history";
-import {ReduxRouterProps} from "common_redux/src/props/ReduxRouterProps";
+import {ReduxRouterProps} from "fengwuxp_common_redux/src/props/ReduxRouterProps";
 
 
 export interface AntdAbstractViewProps extends ReactSimpleViewProps,ReduxRouterProps {

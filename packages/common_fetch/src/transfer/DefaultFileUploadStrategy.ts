@@ -2,9 +2,9 @@ import AbstractCacheFileUploadStrategy from "./AbstractCacheFileUploadStrategy";
 import {FileUploadOptions} from "./FileTransmitter";
 import {RestTemplate} from "../template/RestTemplate";
 import {FetchOptions} from "../FetchOptions";
-import {fileToBase64} from "common_utils/src/codec/FileConverterUtil";
+import {fileToBase64} from "fengwuxp_common_utils/src/codec/FileConverterUtil";
 import {MediaType} from "../constant/http/MediaType";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
 
 

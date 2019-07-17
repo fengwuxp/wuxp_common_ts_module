@@ -13,7 +13,7 @@
     "typescript": "^3.5.1"
   },
   "devDependencies": {
-    "common_test": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.0",
     "core-decorators": "^0.20.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",

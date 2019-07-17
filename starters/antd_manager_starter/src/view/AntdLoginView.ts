@@ -1,4 +1,4 @@
-import {LoginView} from "common_starter/src/views/account/LoginView";
+import {LoginView} from "fengwuxp_common_starter/src/views/account/LoginView";
 import * as React from "react";
 
 

@@ -1,6 +1,6 @@
 import Input, {InputProps} from "antd/es/input/Input";
 import {WxpTextInput} from "components_definition/src/form/input/WxpTextInput";
-import {Locale} from "common_core/src/in81/Locale";
+import {Locale} from "fengwuxp_common_core/src/in81/Locale";
 import * as React from "react";
 import {WrapperFormItem} from "../WrapperFormItem";
 import {ValidationRule} from "antd/es/form";

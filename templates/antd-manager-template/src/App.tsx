@@ -3,11 +3,11 @@ import * as ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {Route, Switch} from "react-router";
 import createBrowserHistory from 'history/createBrowserHistory';
-import ResolverRegister from "common_fetch/src/register/ResolverRegister";
-import NeedProgressBarInterceptor from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
-import FetchInterceptorRegister from "common_fetch/src/register/FetchInterceptorRegister";
-import HistoryRegistry from "common_route/src/registry/HistoryRegistry";
-import PopupLayerHelper from "common_react/src/components/popup-layer/PopupLayerHelper";
+import ResolverRegister from "fengwuxp_common_fetch/src/register/ResolverRegister";
+import NeedProgressBarInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
+import FetchInterceptorRegister from "fengwuxp_common_fetch/src/register/FetchInterceptorRegister";
+import HistoryRegistry from "fengwuxp_common_route/src/registry/HistoryRegistry";
+import PopupLayerHelper from "fengwuxp_common_react/src/components/popup-layer/PopupLayerHelper";
 import CustomArgumentsResolver from "./resolver/CustomArgumentsResolver";
 import CustomRequestURLResolver from "./resolver/CustomRequestURLResolver";
 import {ConnectedRouter} from 'connected-react-router'

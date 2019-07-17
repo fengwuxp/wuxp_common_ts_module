@@ -1,7 +1,7 @@
-import {AppConfig} from "common_config/src/app/AppConfig";
-import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
+import {AppConfig} from "fengwuxp_common_config/src/app/AppConfig";
+import {AppBootStarter} from "fengwuxp_common_starter/src/bootstartup/AppBootStarter";
 import AppRouter from "../route/AppRouter";
-import {AppConfigRegistry} from "common_config/src/app/AppConfigRegistry";
+import {AppConfigRegistry} from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {ResourceConfig} from "../resources/ResourceConfig";
 
 export interface WeexAppContext {

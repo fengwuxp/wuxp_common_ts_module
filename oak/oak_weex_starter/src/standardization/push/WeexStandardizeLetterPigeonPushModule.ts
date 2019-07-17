@@ -1,10 +1,10 @@
 import {LetterPigeonConfigOptions, PushMessageInfo, WeexLetterPigeonPushModule} from "../../module/push";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {msgPush, common, broadcast} from "../../ExpotrtWeexOAKModel";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {parse} from "querystring";
 import AppRouterHelper from "weex_starter/src/route/AppRouterHelper";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 
 /**
  * 消息处理的结果

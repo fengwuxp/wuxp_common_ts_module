@@ -1,6 +1,6 @@
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {WeexCommonModule} from "./WeexCommonModule";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {common} from "../../ExpotrtWeexOAKModel";
 
 

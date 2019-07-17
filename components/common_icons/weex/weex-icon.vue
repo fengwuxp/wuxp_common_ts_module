@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
+    import {getWeexResourceUrl} from "fengwuxp_common_weex/src/resources/ResourcePathParser";
     import {ON_CLICK_EVENT_NAME} from "../../weex_components/src/config/EventNamesConfig";
 
     const dom = weex.requireModule('dom');

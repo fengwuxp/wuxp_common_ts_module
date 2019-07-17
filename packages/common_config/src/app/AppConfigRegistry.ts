@@ -1,5 +1,5 @@
 import {AppConfig} from "./AppConfig";
-import {Registry} from "common_core/src/registry/Registry";
+import {Registry} from "fengwuxp_common_core/src/registry/Registry";
 import {LayoutConfig, NavBarStyleOptions} from "../views/LayoutConfig";
 
 

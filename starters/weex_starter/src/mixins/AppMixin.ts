@@ -1,11 +1,11 @@
 import {ComponentOptions} from "vue";
 import {Vue} from "vue/types/vue";
-import {transferViewState} from "common_weex/src/route/PageStatTransferUtil";
-import {URLArgumentsResolve} from "common_weex/src/resolve/URLArgumentsResolve";
-import DefaultURLArgumentsResolve from "common_weex/src/resolve/DefaultURLArgumentsResolve";
+import {transferViewState} from "fengwuxp_common_weex/src/route/PageStatTransferUtil";
+import {URLArgumentsResolve} from "fengwuxp_common_weex/src/resolve/URLArgumentsResolve";
+import DefaultURLArgumentsResolve from "fengwuxp_common_weex/src/resolve/DefaultURLArgumentsResolve";
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
 import AppRouterHelper from "../route/AppRouterHelper";
-import {isWeb, rpx} from "common_weex/src/constant/WeexEnv";
+import {isWeb, rpx} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 
 //使用默认的参数器解析参数

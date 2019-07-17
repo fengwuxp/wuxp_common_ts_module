@@ -1,7 +1,7 @@
-import {AppConfig} from "common_config/src/app/AppConfig";
-import {LayoutConfig} from "common_config/src/views/LayoutConfig";
-import {ResourceConfig} from "common_config/src/resources/ResourceConfig";
-import {NavBarStyleOptions} from "common_config/src/views/LayoutConfig";
+import {AppConfig} from "fengwuxp_common_config/src/app/AppConfig";
+import {LayoutConfig} from "fengwuxp_common_config/src/views/LayoutConfig";
+import {ResourceConfig} from "fengwuxp_common_config/src/resources/ResourceConfig";
+import {NavBarStyleOptions} from "fengwuxp_common_config/src/views/LayoutConfig";
 
 
 const navBarStyleOptions: NavBarStyleOptions = {

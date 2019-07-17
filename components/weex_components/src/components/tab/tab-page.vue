@@ -67,7 +67,7 @@
     const animation = weex.requireModule('animation');
     const swipeBack = weex.requireModule('swipeBack');
     const expressionBinding = weex.requireModule('expressionBinding');
-    import {isIos} from "common_weex/src/constant/WeexEnv";
+    import {isIos} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
     // import BindXEnv from "../utils/BindXEnv";
     // const supportsEB = BindXEnv.supportsEB();

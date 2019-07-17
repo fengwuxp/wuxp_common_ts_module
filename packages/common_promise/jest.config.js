@@ -1,4 +1,4 @@
-// const {jestConfig} = require("common_test/lib/CommonJestConfig");
+// const {jestConfig} = require("fengwuxp_common_test/lib/CommonJestConfig");
 //
 // module.exports = jestConfig;
 

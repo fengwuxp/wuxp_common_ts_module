@@ -1,4 +1,4 @@
-import AbstractStoreRepository from "common_redux/src/store/AbstractStoreRepository"
+import AbstractStoreRepository from "fengwuxp_common_redux/src/store/AbstractStoreRepository"
 import {applyMiddleware, createStore} from 'redux'
 import {createEpicMiddleware} from 'redux-observable'
 import {composeWithDevTools} from 'redux-devtools-extension'

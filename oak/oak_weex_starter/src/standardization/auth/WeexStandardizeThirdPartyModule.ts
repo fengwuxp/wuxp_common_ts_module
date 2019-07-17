@@ -2,7 +2,7 @@ import {ThirdPartyAuthType} from "./ThirdPartyAuthType";
 import {aliPay, thirdLogin, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {WxLoginOptions} from "../../module/third";
 import {AuthOptions} from "./AuthOptions";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 
 /**

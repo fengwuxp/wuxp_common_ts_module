@@ -1,5 +1,5 @@
 import {WxpComponent} from "../WxpComponent";
-import {Formatter} from "common_core/src/format/Formatter";
+import {Formatter} from "fengwuxp_common_core/src/format/Formatter";
 import {WxpFormEvent} from "./WxpFormEvent";
 
 /**

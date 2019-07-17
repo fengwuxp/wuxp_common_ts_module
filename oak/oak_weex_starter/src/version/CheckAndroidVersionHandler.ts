@@ -1,10 +1,10 @@
 import {appUpdate, common} from "../ExpotrtWeexOAKModel";
-import {isIos} from "common_weex/src/constant/WeexEnv";
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import {isIos} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {AppVersionInfo} from "./AppVersionInfo";
 import {PlatformType} from "./PlatformType";
-import {FetchOptions} from "common_fetch/src/FetchOptions";
-import {weexToast} from "common_weex/src/toast/WeexToast";
+import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
+import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
 
 
 interface CheckAppVersionReq {

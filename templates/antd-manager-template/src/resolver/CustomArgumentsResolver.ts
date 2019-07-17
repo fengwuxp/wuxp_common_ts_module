@@ -1,5 +1,5 @@
-import AbstractArgumentsResolver from "common_fetch/src/resolve/arguments/AbstractArgumentsResolver"
-import {FetchOptions} from "common_fetch/src/fetch/FetchOptions";
+import AbstractArgumentsResolver from "fengwuxp_common_fetch/src/resolve/arguments/AbstractArgumentsResolver"
+import {FetchOptions} from "fengwuxp_common_fetch/src/fetch/FetchOptions";
 
 
 export default class CustomArgumentsResolver extends AbstractArgumentsResolver<FetchOptions> {

@@ -1,10 +1,10 @@
-import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
+import {FetchOptions, FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
 import simpleAppSessionManager from "weex_starter/src/session/WeexDefaultSessionManager";
 import AppRouter from "weex_starter/src/route/AppRouter";
 import {broadcast} from "../ExpotrtWeexOAKModel";
-import {AbstractSyncAuthHelper} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
-import {RestTemplate} from "common_fetch/src/template/RestTemplate";
-import {RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {AbstractSyncAuthHelper} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
+import {RefreshTokenResult} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
 
 /**
  * weex 同步鉴权helper

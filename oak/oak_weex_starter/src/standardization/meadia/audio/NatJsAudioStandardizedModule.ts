@@ -1,5 +1,5 @@
 import {WeexAudioStandardizedModule} from "./WeexAudioStandardizedModule";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {natJsAudioModule} from "../../../natjs/media";
 
 

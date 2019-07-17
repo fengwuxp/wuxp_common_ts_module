@@ -1,4 +1,4 @@
-import {FetchProgressBar} from "common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
+import {FetchProgressBar} from "fengwuxp_common_fetch/src/interceptor/default/NeedProgressBarInterceptor";
 import {appMain} from "../ExpotrtWeexOAKModel";
 
 

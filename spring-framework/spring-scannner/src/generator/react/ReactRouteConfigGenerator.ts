@@ -10,7 +10,7 @@ import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
 import * as path from "path";
 import {getReactViewDecorator} from "../../helper/AstDecoratorHelper";
 import {LOGGER} from "../../helper/Log4jsHelper";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {NODE_MODULES_DIR} from "../../constant/ConstantVar";
 import {outputToDir} from "../OutputToDirHelper";
 

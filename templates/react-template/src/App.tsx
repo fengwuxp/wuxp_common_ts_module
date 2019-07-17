@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import {history} from "./AppRouterHelper";
-import {renderRoutes} from "common_react_router/src/RenderRoutes";
+import {renderRoutes} from "fengwuxp_common_react_router/src/RenderRoutes";
 import routes from "./views";
 import {Router} from "react-router";
 

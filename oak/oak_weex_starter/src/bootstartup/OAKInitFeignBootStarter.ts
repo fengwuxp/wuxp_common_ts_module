@@ -1,6 +1,6 @@
 import {WeexAppConfig, WeexAppContext} from "weex_starter/src/config/WeexAppConfig";
 import OAKFetchFeignProxyInitializer from "../fetch/OAKFetchFeignProxyInitializer";
-import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
+import {AppBootStarter} from "fengwuxp_common_starter/src/bootstartup/AppBootStarter";
 
 
 //默认的初始化feignProxy

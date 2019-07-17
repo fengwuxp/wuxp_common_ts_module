@@ -1,5 +1,5 @@
-import RequestURLResolver from "common_fetch/src/resolve/url/RequestURLResolver"
-import {ProxyApiService} from "common_fetch/src/proxy/ProxyApiService";
+import RequestURLResolver from "fengwuxp_common_fetch/src/resolve/url/RequestURLResolver"
+import {ProxyApiService} from "fengwuxp_common_fetch/src/proxy/ProxyApiService";
 
 
 export default class CustomRequestURLResolver extends RequestURLResolver {

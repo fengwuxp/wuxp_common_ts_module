@@ -1,8 +1,8 @@
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
-import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
-import {promisePicker} from "common_weex/src/sdk/ExportPromiseWeexSdkModule";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
+import DateFormatUtils from "fengwuxp_common_utils/src/date/DateFormatUtils";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import {promisePicker} from "fengwuxp_common_weex/src/sdk/ExportPromiseWeexSdkModule";
 
 /**
  * weex 标准化的时间选择器模块

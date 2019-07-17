@@ -1,4 +1,4 @@
-import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 /**
  * 自定义cache 保存对象

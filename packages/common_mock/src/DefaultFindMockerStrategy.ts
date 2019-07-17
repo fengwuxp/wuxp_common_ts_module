@@ -1,6 +1,6 @@
 import {FindMockerStrategy} from "./FunctionMockRegistrar";
 import {FunctionMocker} from "./FunctionMocker";
-import ProxyFactory from "common_proxy/src/ProxyFactory";
+import ProxyFactory from "fengwuxp_common_proxy/src/ProxyFactory";
 
 
 const CACHE: Map<any, any> = new Map();

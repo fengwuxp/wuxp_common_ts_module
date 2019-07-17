@@ -1,9 +1,9 @@
-import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
+import {NavigatorAdapter, NavigatorDescriptorObject} from "fengwuxp_common_route/src/NavigatorAdapter";
 import {WeexNavigatorModule} from "weex/src/sdk/model/navigator";
 import DefaultURLArgumentsResolve from "../resolve/DefaultURLArgumentsResolve";
 import {URLArgumentsResolve} from "../resolve/URLArgumentsResolve";
 import {setNextViewState} from "./PageStatTransferUtil";
-import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
+import {handleRedirect} from "fengwuxp_common_route/src/utils/RedirectRouteUtil";
 import {parse} from "querystring";
 
 

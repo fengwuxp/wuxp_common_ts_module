@@ -1,6 +1,6 @@
 import {aliPay, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {ThirdPartyPaymentMethod} from "./ThirdPartyPaymentMethod";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 
 /**
  * 标准化第三方支付

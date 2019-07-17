@@ -1,6 +1,6 @@
 {
-  "name": "common_env",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_env",
+  "version": "1.0.0",
   "description": "common env",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

@@ -1,7 +1,7 @@
 import {HttpFetchExceptionName} from "./Const";
-import {ExceptionHandler} from "common_exception/src/handler/ExceptionHandler";
+import {ExceptionHandler} from "fengwuxp_common_exception/src/handler/ExceptionHandler";
 import HttpFetchExceptionHandler from "./HttpFetchExceptionHandler";
-import {Exception} from "common_exception/src/Exception";
+import {Exception} from "fengwuxp_common_exception/src/Exception";
 
 
 const exceptionHandlerMap: Map<string, ExceptionHandler> = new Map<string, ExceptionHandler>();

@@ -7,7 +7,7 @@ import * as path from "path";
 import * as fs from "fs";
 import * as jsYaml from "js-yaml";
 import merge from "lodash/merge";
-import StringUtils from "common_utils/src/string/StringUtils"
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils"
 import * as log4js from "log4js";
 import {Profiles} from "./profiles/ProfilesConfiguration";
 

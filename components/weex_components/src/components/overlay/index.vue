@@ -26,7 +26,7 @@
 </style>
 
 <script>
-    import {animation} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {animation} from "fengwuxp_common_weex/src/sdk/ExportWeexSdkModule";
     import {ON_CLICK_EVENT_NAME} from "../../config/EventNamesConfig";
 
 

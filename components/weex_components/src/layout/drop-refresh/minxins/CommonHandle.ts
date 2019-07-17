@@ -1,7 +1,7 @@
 import DropRefreshProps from "../props/DropRefreshProps";
-import {getWeexResourceUrl} from "common_weex/src/resources/ResourcePathParser";
-import {dom} from "common_weex/src/sdk/ExportWeexSdkModule";
-import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {getWeexResourceUrl} from "fengwuxp_common_weex/src/resources/ResourcePathParser";
+import {dom} from "fengwuxp_common_weex/src/sdk/ExportWeexSdkModule";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 export default {
     components: {},

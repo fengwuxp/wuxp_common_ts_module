@@ -1,6 +1,6 @@
 {
-  "name": "common_style",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_style",
+  "version": "1.0.0",
   "description": "common style",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

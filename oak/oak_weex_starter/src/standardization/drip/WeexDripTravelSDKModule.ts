@@ -2,9 +2,9 @@ import {GetEstimatePriceParam, GetEstimatePriceResult} from "./GetEstimatePrice"
 import {NewOrderParam, NewOrderResult} from "./NewOrder";
 import {DriverInfo} from "./DriverInfo";
 import {OrderStatusInfo} from "./OrderStatusInfo";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {CallAppParam, ShoDDPageParams} from "../../module/drip";
-import {WeexStandardizedModule} from "common_weex/src/sdk/standardization/WeexStandardizedModule";
+import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
 import {DripTravelSDKResp} from "./DripTravelSDKResp";
 
 /**

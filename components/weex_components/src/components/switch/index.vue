@@ -9,8 +9,8 @@
 
 <script>
 
-    import {isAndroid, isWeb} from "common_weex/src/constant/WeexEnv";
-    import {animation} from "common_weex/src/sdk/ExportWeexSdkModule";
+    import {isAndroid, isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
+    import {animation} from "fengwuxp_common_weex/src/sdk/ExportWeexSdkModule";
     import {SIZE_CONFIG} from "./SizeConfigMap";
     import {ON_CHANGE_EVENT_NAME, ON_INPUT_EVENT_NAME} from "../../config/EventNamesConfig";
 

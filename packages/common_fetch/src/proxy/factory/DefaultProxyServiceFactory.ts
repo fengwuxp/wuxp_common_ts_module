@@ -1,7 +1,7 @@
 import {AbstractProxyServiceFactory} from "./ProxyServiceFactory";
 import {ProxyApiService} from "../ProxyApiService";
-import ProxyFactory from "common_proxy/src/ProxyFactory";
-import {ProxyScope} from "common_proxy/src/proxy/ProxyScope";
+import ProxyFactory from "fengwuxp_common_proxy/src/ProxyFactory";
+import {ProxyScope} from "fengwuxp_common_proxy/src/proxy/ProxyScope";
 
 
 /**

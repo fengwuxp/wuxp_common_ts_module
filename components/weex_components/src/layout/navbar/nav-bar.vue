@@ -46,8 +46,8 @@
 
 <script>
     import NavBaseBar from "./nav-base-bar";
-    import FeatherIcon from "common_icons/weex/feather/index";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import FeatherIcon from "fengwuxp_common_icons/weex/feather/index";
+    import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
     import {getAppHeaderBaseProps} from "./props/AppHeaderBaseProps";
 
     export default {

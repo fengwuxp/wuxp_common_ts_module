@@ -1,5 +1,5 @@
 // import {FormComponentProps} from "antd/lib/form/Form";
-import {ReduxRouterProps} from "common_redux/src/props/ReduxRouterProps";
+import {ReduxRouterProps} from "fengwuxp_common_redux/src/props/ReduxRouterProps";
 import {WrappedFormUtils} from "../../types/rc-form";
 
 export interface FormComponentProps {

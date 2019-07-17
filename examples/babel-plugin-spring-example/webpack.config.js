@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
-const {getWebpackBaseConfig} = require("common_webpack/lib/web/webpack.base.config");
+const {getWebpackBaseConfig} = require("fengwuxp_common_webpack/lib/web/webpack.base.config");
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 

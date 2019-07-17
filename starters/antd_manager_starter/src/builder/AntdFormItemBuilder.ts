@@ -1,4 +1,4 @@
-import {FormItemBuilder} from "common_starter/src/builder/form/FormItemBuilder";
+import {FormItemBuilder} from "fengwuxp_common_starter/src/builder/form/FormItemBuilder";
 import * as React from "react";
 import {WrappedFormUtils} from "antd/es/form/Form";
 

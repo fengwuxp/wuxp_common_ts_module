@@ -1,7 +1,7 @@
-import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
+import {FetchOptions, FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
-import {AbstractSyncAuthHelper, RefreshTokenResult} from "common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
-import {RestTemplate} from "common_fetch/src/template/RestTemplate";
+import {AbstractSyncAuthHelper, RefreshTokenResult} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
 import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 
 /**

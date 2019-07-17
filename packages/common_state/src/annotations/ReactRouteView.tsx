@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
-import TopicManager from "common_event_bus/src/DefaultTopicManager";
+import TopicManager from "fengwuxp_common_event_bus/src/DefaultTopicManager";
 import {ApplicationTopicType} from "../enums/ApplicationTopicType";
 import {Payload} from "../Payload";
 

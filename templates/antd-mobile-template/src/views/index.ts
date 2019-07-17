@@ -1,4 +1,4 @@
-import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig"
+import {NamedRouteConfig} from "fengwuxp_common_react/src/route/NamedRouteConfig"
 import IndexNavView from "./IndexNavView";
 // import {ErrorMessage, ErrorView, NotFoundView} from "./exception/CommonException";
 import {buildRouteNames} from "../utils/CommonUtil";

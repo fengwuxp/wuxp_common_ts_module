@@ -1,4 +1,4 @@
-import {base64ToFile,canvasToBase64} from "common_utils/src/codec/FileConverterUtil";
+import {base64ToFile,canvasToBase64} from "fengwuxp_common_utils/src/codec/FileConverterUtil";
 
 
 

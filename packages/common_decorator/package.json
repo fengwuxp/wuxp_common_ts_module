@@ -1,6 +1,6 @@
 {
-  "name": "common_decorator",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_decorator",
+  "version": "1.0.0",
   "description": "common decorator",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,7 +24,7 @@
   "types": "./index.d.ts",
   "devDependencies": {
     "@types/node": "^9.4.6",
-    "common_utils": "^1.0.3",
+    "fengwuxp_common_utils": "^1.0.0",
     "lodash-decorators": "^6.0.0"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"

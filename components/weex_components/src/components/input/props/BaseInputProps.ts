@@ -1,4 +1,4 @@
-import CommonThemeControl from "common_style/src/CommonThemeControl";
+import CommonThemeControl from "fengwuxp_common_style/src/CommonThemeControl";
 
 export default {
 

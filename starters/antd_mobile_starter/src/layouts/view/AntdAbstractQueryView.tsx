@@ -2,7 +2,7 @@ import * as React from "react";
 import {AntdRefreshView} from "../decorators/AntdRefreshView";
 import {AntdRefreshState} from "./AntdAbstractRefreshView";
 import AntdAbstractView, {AntdAbstractViewProps, AntdAbstractViewState} from "./AntdAbstractView";
-import {RefreshView} from "common_view/src/RefreshView";
+import {RefreshView} from "fengwuxp_common_view/src/RefreshView";
 
 export interface AntdAbstractQueryViewProps extends AntdAbstractViewProps {
 

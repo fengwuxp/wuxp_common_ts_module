@@ -1,6 +1,6 @@
-import {NavigatorAdapter, NavigatorDescriptorObject} from "common_route/src/NavigatorAdapter";
+import {NavigatorAdapter, NavigatorDescriptorObject} from "fengwuxp_common_route/src/NavigatorAdapter";
 import {parse, stringify} from "querystring";
-import {handleRedirect} from "common_route/src/utils/RedirectRouteUtil";
+import {handleRedirect} from "fengwuxp_common_route/src/utils/RedirectRouteUtil";
 import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 import {setNextViewState} from "./PageStatTransferUtil";
 

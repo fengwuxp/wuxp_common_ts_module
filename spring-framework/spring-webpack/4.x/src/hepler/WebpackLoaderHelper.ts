@@ -1,6 +1,6 @@
 //默认导入的模块
 const DEFAULT_INCLUDE: string[] = [
-    "common_",
+    "fengwuxp_common_",
     "oak_",
     "_starter",
     "typescript-spring-"

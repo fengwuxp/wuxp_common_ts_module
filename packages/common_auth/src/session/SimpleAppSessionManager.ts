@@ -1,5 +1,5 @@
 import {AppSessionManager} from "./AppSessionManager";
-import {LocalStorage} from "common_utils/src/storage/LocalStorage";
+import {LocalStorage} from "fengwuxp_common_utils/src/storage/LocalStorage";
 
 
 /**

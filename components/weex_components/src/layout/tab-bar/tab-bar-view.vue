@@ -49,7 +49,7 @@
 
     import {NavItemType} from "./props/NavItemType";
     import DefaultNavProps from "./props/DefaultNavProps";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
     export default {
         //组件

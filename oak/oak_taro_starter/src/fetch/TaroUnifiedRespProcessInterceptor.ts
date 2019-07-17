@@ -1,7 +1,7 @@
-import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
-import {FetchOptions, FetchResponse} from "common_fetch/src/FetchOptions";
+import AbstractFetchInterceptor from "fengwuxp_common_fetch/src/interceptor/AbstractFetchInterceptor";
+import {FetchOptions, FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
 import {ApiResp} from "oak_common/src/model/api/ApiResp";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 
 

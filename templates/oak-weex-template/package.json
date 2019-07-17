@@ -29,7 +29,7 @@
   "license": "ISC",
   "devDependencies": {
     "babel-loader": "^8.0.4",
-    "common_starter": "^1.0.0",
+    "fengwuxp_common_starter": "^1.0.0",
     "oak_weex_starter": "^1.0.0",
     "weex-vue-precompiler": "0.1.23-bate",
     "weex_components": "^1.0.0"

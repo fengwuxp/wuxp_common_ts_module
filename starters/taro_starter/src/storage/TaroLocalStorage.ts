@@ -1,5 +1,5 @@
-import {LocalStorage} from "common_utils/src/storage/LocalStorage";
-import {LocalStorageOptions} from "common_utils/src/storage/LocalStorage";
+import {LocalStorage} from "fengwuxp_common_utils/src/storage/LocalStorage";
+import {LocalStorageOptions} from "fengwuxp_common_utils/src/storage/LocalStorage";
 import TaroJsHolder, {TaroInterfaceHolder} from "../TaroJsHolder";
 
 

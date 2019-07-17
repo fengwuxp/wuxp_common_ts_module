@@ -1,4 +1,4 @@
-import {Authenticator} from "common_auth/src/Authenticator";
+import {Authenticator} from "fengwuxp_common_auth/src/Authenticator";
 
 
 /**

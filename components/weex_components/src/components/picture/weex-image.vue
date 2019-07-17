@@ -14,7 +14,7 @@
 </template>
 <script>
 
-    import {isAndroid} from "common_weex/src/constant/WeexEnv";
+    import {isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
     import ImageAutoSize from "./minxins/ImageAutoSize";
     import {weexTheme} from "../../theme/js_default_theme";
     import {ON_CLICK_EVENT_NAME} from "../../config/EventNamesConfig";

@@ -1,6 +1,6 @@
 import {parse, stringify} from "querystring";
-import StringToHexUtil from "common_utils/src/codec/StringToHexUtil";
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringToHexUtil from "fengwuxp_common_utils/src/codec/StringToHexUtil";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {ignoreParamNames} from "../constant/IgnoreParamNames";
 import {URLArgumentsResolve} from "./URLArgumentsResolve";
 

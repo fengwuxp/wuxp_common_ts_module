@@ -1,8 +1,8 @@
-import appConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import appConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import AppRouter from "../route/AppRouter";
 
 import weexDefaultSessionManager from "../session/WeexDefaultSessionManager";
-import {AppBootStarter} from "common_starter/src/bootstartup/AppBootStarter";
+import {AppBootStarter} from "fengwuxp_common_starter/src/bootstartup/AppBootStarter";
 
 //约定导入 app配置
 // @ts-ignore

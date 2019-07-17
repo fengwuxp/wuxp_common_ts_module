@@ -1,4 +1,4 @@
-import {isWeb} from "common_weex/src/constant/WeexEnv";
+import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 import {WeexDateTimerPickerModule} from "./index";
 
 

@@ -1,4 +1,4 @@
-import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig"
+import {NamedRouteConfig} from "fengwuxp_common_react/src/route/NamedRouteConfig"
 import IndexView from "./IndexView";
 import HomeView from "./HomeView";
 import GoodsListView from "./GoodsListView";

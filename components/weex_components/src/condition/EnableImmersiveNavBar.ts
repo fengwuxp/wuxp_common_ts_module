@@ -1,4 +1,4 @@
-import {isIos, isWeb} from "common_weex/src/constant/WeexEnv";
+import {isIos, isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 
 /**

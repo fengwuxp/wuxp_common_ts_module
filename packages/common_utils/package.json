@@ -1,6 +1,6 @@
 {
-  "name": "common_utils",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_utils",
+  "version": "1.0.0",
   "description": "common utils",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,13 +23,13 @@
     "npm_publish": "npm publish"
   },
   "dependencies": {
-    "@types/weex": "^1.0.3",
+    "@types/weex": "^1.0.0",
     "@types/weixin": "^1.0.3"
   },
   "devDependencies": {
     "@types/node": "^10.12.26",
-    "common_test": "^1.0.3",
-    "common_webpack": "^1.0.3",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_webpack": "^1.0.0",
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },

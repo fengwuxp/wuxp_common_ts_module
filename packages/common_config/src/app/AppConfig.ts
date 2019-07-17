@@ -1,7 +1,7 @@
 import {LayoutConfig} from "../views/LayoutConfig";
 
 // @ts-ignore
-import {FeignProxyInitializer} from "common_fetch/src/proxy/feign/FeignProxyInitializer";
+import {FeignProxyInitializer} from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyInitializer";
 
 
 /**

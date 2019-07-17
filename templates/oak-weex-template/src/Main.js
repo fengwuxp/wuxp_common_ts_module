@@ -1,6 +1,6 @@
 import App from "./App.vue";
 import router from "weex_starter/src/route/WebRouterHolder";
-import {WeexWebNavigatorModule} from "common_weex/src/route/WeexWebNavigatorModule";
+import {WeexWebNavigatorModule} from "fengwuxp_common_weex/src/route/WeexWebNavigatorModule";
 import {registerWeexModuleByWeb} from "oak_weex_starter/src/RegisterWeexModuleByWeb";
 
 /**

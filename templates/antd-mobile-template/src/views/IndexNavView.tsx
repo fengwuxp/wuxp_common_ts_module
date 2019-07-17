@@ -3,7 +3,7 @@ import * as React from "react";
 import {connect, MapStateToPropsParam} from "react-redux";
 import {parse} from "querystring";
 import {AntdMobileStore} from "../store/AntdMobileStore";
-import {reduxRouterHandler} from "common_redux/src/router/ReduxRouterHandler";
+import {reduxRouterHandler} from "fengwuxp_common_redux/src/router/ReduxRouterHandler";
 
 
 export interface IndexNavViewProps {

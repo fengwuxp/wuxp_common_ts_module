@@ -1,6 +1,6 @@
 {
-  "name": "common_route",
-  "version": "1.0.3",
+  "name": "fengwuxp_common_route",
+  "version": "1.0.0",
   "description": "common route",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -27,11 +27,11 @@
   "devDependencies": {
     "@tarojs/taro": "^1.2.0-beta.12",
     "@types/node": "^10.9.4",
-    "@types/weex": "^1.0.3",
-    "@types/weixin": "^1.0.3",
-    "common_core": "^1.0.3",
-    "common_env": "^1.0.3",
-    "common_utils": "^1.0.3",
+    "@types/weex": "^1.0.0",
+    "@types/weixin": "^1.0.0",
+    "fengwuxp_common_core": "^1.0.0",
+    "fengwuxp_common_env": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
     "querystring": "^0.2.0"
   },
   "dependencies": {

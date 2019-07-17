@@ -1,6 +1,6 @@
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const {getWebpackLibraryTargetConfig} = require("common_webpack/lib/library/webpack.library.conf");
+const {getWebpackLibraryTargetConfig} = require("fengwuxp_common_webpack/lib/library/webpack.library.conf");
 
 
 const config = getWebpackLibraryTargetConfig({

@@ -1,7 +1,7 @@
 import * as React from "react";
 import FlexView from "../components/FlexView";
 import Header from "../components/Header";
-import {ReactRouteView} from "common_state/src/annotations/ReactRouteView";
+import {ReactRouteView} from "fengwuxp_common_state/src/annotations/ReactRouteView";
 import HomeDataProvider from "../provider/HomeDataProvider";
 
 

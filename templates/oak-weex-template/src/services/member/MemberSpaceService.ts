@@ -1,7 +1,7 @@
-import {FetchOptions} from "common_fetch/src/FetchOptions";
-import {Feign} from "common_fetch/src/annotations/Feign";
-import {Signature} from "common_fetch/src/annotations/security/Signature";
-import {PostMapping} from "common_fetch/src/annotations/mapping/PostMapping";
+import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
+import {Feign} from "fengwuxp_common_fetch/src/annotations/Feign";
+import {Signature} from "fengwuxp_common_fetch/src/annotations/security/Signature";
+import {PostMapping} from "fengwuxp_common_fetch/src/annotations/mapping/PostMapping";
 
 /**
  * 会员空间

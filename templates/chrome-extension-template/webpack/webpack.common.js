@@ -3,7 +3,7 @@ const path = require('path');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const wuxpModuleList = [
-    "common_utils"
+    "fengwuxp_common_utils"
 ];
 
 const isExclude = function (path) {

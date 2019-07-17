@@ -1,7 +1,7 @@
 import * as React from "react";
 import {PullToRefresh} from "antd-mobile";
 import {AntdRefresh} from "./AntdRefresh";
-import {RefreshView} from "common_view/src/RefreshView";
+import {RefreshView} from "fengwuxp_common_view/src/RefreshView";
 
 
 export interface AntdRefreshViewOptions {

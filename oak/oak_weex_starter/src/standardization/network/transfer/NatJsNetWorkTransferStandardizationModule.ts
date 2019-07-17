@@ -3,7 +3,7 @@ import {
     NetworkUploadOptions,
     WeexNetworkTransferStandardizedModule
 } from "./WeexNetworkTransferStandardizedModule";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {natJsNetWorkTransferModule} from "../../../natjs/network";
 
 

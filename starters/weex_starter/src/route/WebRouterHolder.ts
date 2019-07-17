@@ -6,7 +6,7 @@ import routes from '../../../../src/route/WebRoute';
 import {AppRoute} from "./AppRouter";
 import {WeexRouteItem} from "./WeexRouteItem";
 import {Component} from "vue";
-import {getRedirectRoute} from "common_route/src/utils/RedirectRouteUtil";
+import {getRedirectRoute} from "fengwuxp_common_route/src/utils/RedirectRouteUtil";
 
 
 const routerBasePahth = process.env.ROUTER_BASE_PATH || "";

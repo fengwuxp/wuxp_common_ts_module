@@ -4,7 +4,7 @@ var path = require("path");
 var webpackConfig_1 = require("../config/webpackConfig");
 //默认导入的模块
 var DEFAULT_INCLUDE = [
-    "common_",
+    "fengwuxp_common_",
     "oak_",
     "_starter"
 ];

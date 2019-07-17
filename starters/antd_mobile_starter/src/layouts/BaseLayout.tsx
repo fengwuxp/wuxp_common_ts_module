@@ -1,8 +1,8 @@
 import * as React from "react";
 import DocumentTitle from "react-document-title";
 import {renderRoutes} from "react-router-config";
-import {ReduxRouterProps} from "common_redux/src/props/ReduxRouterProps";
-import {NamedRouteConfig} from "common_react/src/route/NamedRouteConfig";
+import {ReduxRouterProps} from "fengwuxp_common_redux/src/props/ReduxRouterProps";
+import {NamedRouteConfig} from "fengwuxp_common_react/src/route/NamedRouteConfig";
 
 
 interface BaseLayoutProps extends ReduxRouterProps {

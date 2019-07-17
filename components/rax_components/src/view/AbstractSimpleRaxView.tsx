@@ -1,7 +1,7 @@
 import {createElement, render, Component} from 'rax';
 import {BaseAppView} from "../../../../packages/common_view/src/BaseAppView";
-import {SendMessageView} from "common_view/src/broadcast/SendMessageView";
-import {ReceiveMessageView} from "common_view/src/broadcast/ReceiveMessageView";
+import {SendMessageView} from "fengwuxp_common_view/src/broadcast/SendMessageView";
+import {ReceiveMessageView} from "fengwuxp_common_view/src/broadcast/ReceiveMessageView";
 import * as React from "react";
 
 

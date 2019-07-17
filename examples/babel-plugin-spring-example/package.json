@@ -29,14 +29,14 @@
     "babel-plugin-spring": "^1.0.0"
   },
   "devDependencies": {
-    "common_fetch": "^1.0.0",
-    "common_react": "^1.0.0",
-    "common_react_router": "^1.0.0",
-    "common_redux": "^1.0.0",
-    "common_route": "^1.0.0",
-    "common_state": "^1.0.0",
-    "common_starter": "^1.0.0",
-    "common_webpack": "^1.0.0",
+    "fengwuxp_common_fetch": "^1.0.0",
+    "fengwuxp_common_react": "^1.0.0",
+    "fengwuxp_common_react_router": "^1.0.0",
+    "fengwuxp_common_redux": "^1.0.0",
+    "fengwuxp_common_route": "^1.0.0",
+    "fengwuxp_common_state": "^1.0.0",
+    "fengwuxp_common_starter": "^1.0.0",
+    "fengwuxp_common_webpack": "^1.0.0",
     "test-model-1": "^1.0.0",
     "typescript-spring-react": "^1.0.0",
     "typescript-spring-scannner": "^1.0.0"

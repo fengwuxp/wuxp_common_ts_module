@@ -1,4 +1,4 @@
-import StringUtils from "common_utils/src/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {NavigatorAdapter, NavigatorDescriptorObject} from "../NavigatorAdapter";
 
 /**

@@ -1,8 +1,8 @@
-import AbstractFetchInterceptor from "common_fetch/src/interceptor/AbstractFetchInterceptor";
-import {FetchResponse} from "common_fetch/src/FetchOptions";
-import {FetchOptions} from "common_fetch/src/FetchOptions";
-import StringUtils from "common_utils/src/string/StringUtils";
-import {HttpFetchException} from "common_fetch/src/exception/HttpFetchException";
+import AbstractFetchInterceptor from "fengwuxp_common_fetch/src/interceptor/AbstractFetchInterceptor";
+import {FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
+import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
+import {HttpFetchException} from "fengwuxp_common_fetch/src/exception/HttpFetchException";
 import {ApiResp} from "../../model/api/ApiResp";
 
 /**

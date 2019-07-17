@@ -13,7 +13,7 @@
 <script>
     import FlexView from "weex_components/src/layout/view/flex-view";
     import AppMixin from "weex_starter/src/mixins/AppMixin";
-    import {isAndroid} from "common_weex/src/constant/WeexEnv";
+    import {isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
     export default {
         props: {

@@ -1,5 +1,5 @@
 import {WeexVideoStandardizedModule} from "./WeexVideoStandardizedModule";
-import {standardizedWeexModuleToPromise} from "common_weex/src/sdk/standardization/StandardizationHelper";
+import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {natJsVideoModule} from "../../../natjs/media";
 
 

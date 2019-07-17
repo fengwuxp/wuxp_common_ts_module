@@ -37,10 +37,10 @@
 
 <script>
 
-    import ioniconIcon from "common_icons/weex/ionicons/";
-    import CommonThemeControl from "common_style/src/CommonThemeControl";
+    import ioniconIcon from "fengwuxp_common_icons/weex/ionicons/";
+    import CommonThemeControl from "fengwuxp_common_style/src/CommonThemeControl";
     import CountDownControl from "./mixins/CountDownControl";
-    import {isAndroid} from "common_weex/src/constant/WeexEnv";
+    import {isAndroid} from "fengwuxp_common_weex/src/constant/WeexEnv";
     import {
         ON_BLUR_EVENT_NAME,
         ON_CHANGE_EVENT_NAME,

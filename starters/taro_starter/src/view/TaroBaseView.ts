@@ -1,5 +1,5 @@
 import * as Taro from "@tarojs/taro";
-import {BaseAppView} from "common_view/src/BaseAppView";
+import {BaseAppView} from "fengwuxp_common_view/src/BaseAppView";
 import TaroAppRouterHelper from "../route/TaroAppRouterHelper";
 
 

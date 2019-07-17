@@ -31,7 +31,7 @@
 <script>
     import TabScrollHeader from "./tab-scroll-header";
     import props from "./TabHeaderProps";
-    import {isWeb} from "common_weex/src/constant/WeexEnv";
+    import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
     export default {
         components: {TabScrollHeader},

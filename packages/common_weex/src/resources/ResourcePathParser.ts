@@ -1,4 +1,4 @@
-import AppConfigRegistry from "common_config/src/app/AppConfigRegistry";
+import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import * as path from "path";
 import {isIos, isWeb} from "../constant/WeexEnv";
 
