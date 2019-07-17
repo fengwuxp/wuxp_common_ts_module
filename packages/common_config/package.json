@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_config",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "common config",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,8 +23,8 @@
   "keywords": [],
   "types": "./index.d.ts",
   "dependencies": {
-    "fengwuxp_common_core": "^1.0.0",
-    "csstype": "^2.5.7"
+    "csstype": "^2.5.7",
+    "fengwuxp_common_core": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_event_bus",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "common event bus",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,9 +24,9 @@
   "types": "./index.d.ts",
   "devDependencies": {
     "@types/node": "^10.9.4",
-    "@types/weex": "^1.0.0",
-    "fengwuxp_common_core": "^1.0.0",
-    "fengwuxp_common_test": "^1.0.0",
+    "@types/weex": "^1.0.2",
+    "fengwuxp_common_core": "^1.0.2",
+    "fengwuxp_common_test": "^1.0.2",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "md5": "^2.2.1",

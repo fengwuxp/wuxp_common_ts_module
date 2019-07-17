@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_react_starter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "common react starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,7 +23,7 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "fengwuxp_common_test": "^1.0.0"
+    "fengwuxp_common_test": "^1.0.2"
   },
   "dependencies": {
     "react-icons": "^3.2.2"

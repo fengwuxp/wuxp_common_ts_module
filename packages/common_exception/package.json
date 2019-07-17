@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_exception",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "common exception",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -30,7 +30,7 @@
     "@types/node": "^10.11.3"
   },
   "dependencies": {
-    "fengwuxp_common_core": "^1.0.0"
+    "fengwuxp_common_core": "^1.0.2"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
 }

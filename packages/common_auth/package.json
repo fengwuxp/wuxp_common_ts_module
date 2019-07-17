@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_auth",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "common auth",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -24,8 +24,8 @@
   "keywords": [],
   "types": "./index.d.ts",
   "dependencies": {
-    "fengwuxp_common_core": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0"
+    "fengwuxp_common_core": "^1.0.2",
+    "fengwuxp_common_utils": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

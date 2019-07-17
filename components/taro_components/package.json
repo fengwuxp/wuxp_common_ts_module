@@ -1,6 +1,6 @@
 {
   "name": "taro_components",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "taro components",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -51,13 +51,13 @@
     "@types/node": "^10.9.4",
     "@types/react": "^16.7.18",
     "@types/webpack-env": "^1.13.9",
-    "fengwuxp_common_config": "^1.0.0",
-    "fengwuxp_common_icons": "^1.0.0",
-    "fengwuxp_common_route": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.0",
-    "compress_image": "^1.0.0",
+    "compress_image": "^1.0.2",
     "csstype": "^2.6.0",
-    "oak_taro_starter": "^1.0.0",
+    "fengwuxp_common_config": "^1.0.2",
+    "fengwuxp_common_icons": "^1.0.2",
+    "fengwuxp_common_route": "^1.0.2",
+    "fengwuxp_common_style": "^1.0.2",
+    "oak_taro_starter": "^1.0.2",
     "taro-ui": "^2.1.0"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
