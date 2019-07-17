@@ -26,7 +26,7 @@
   "dependencies": {
     "@types/weex": "^1.0.0",
     "@types/weixin": "^1.0.0",
-    "fengwuxp_common_env": "^1.0.3"
+    "fengwuxp_common_env": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

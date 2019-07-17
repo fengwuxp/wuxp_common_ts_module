@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@types/weex": "^1.0.0",
-    "@types/weixin": "^1.0.3"
+    "@types/weixin": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.26",

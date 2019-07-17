@@ -24,7 +24,7 @@
   "keywords": [],
   "devDependencies": {
     "@types/weex": "^1.0.0",
-    "fengwuxp_common_test": "^1.0.3"
+    "fengwuxp_common_test": "^1.0.0"
   },
   "dependencies": {
     "fengwuxp_common_auth": "^1.0.0",
@@ -50,7 +50,7 @@
     "weex-vue-loader": "~0.7.0-bate",
     "weex-vue-precompiler": "^0.1.23-bate",
     "weex-vue-render": "^1.0.33",
-    "weex_components": "^1.0.3"
+    "weex_components": "^1.0.0"
   },
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"

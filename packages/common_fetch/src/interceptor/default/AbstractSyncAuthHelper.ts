@@ -3,7 +3,7 @@ import {SyncAuthHelper} from "./NeedAuthInterceptor";
 import {RestTemplate} from "../../template/RestTemplate";
 import {MediaType} from "../../constant/http/MediaType";
 import {parse} from "querystring";
-import StringUtils from "../../../../common_utils/lib/string/StringUtils";
+import StringUtils from "fengwuxp_common_utils/lib/string/StringUtils";
 
 
 export interface RefreshTokenResult {
