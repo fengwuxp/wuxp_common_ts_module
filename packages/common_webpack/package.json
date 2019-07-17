@@ -1,7 +1,7 @@
 {
   "name": "common_webpack",
   "description": "common webpack",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },

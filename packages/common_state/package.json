@@ -1,6 +1,6 @@
 {
   "name": "common_state",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -25,15 +25,15 @@
   "types": "./index.d.ts",
   "devDependencies": {
     "@types/react": "^16.8.16",
-    "common_proxy": "^1.0.0",
-    "common_test": "^1.0.0",
-    "common_utils": "^1.0.0",
+    "common_proxy": "^1.0.3",
+    "common_test": "^1.0.3",
+    "common_utils": "^1.0.3",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "react": "^16.8.6"
   },
   "dependencies": {
-    "common_event_bus": "^1.0.0",
+    "common_event_bus": "^1.0.3",
     "immutable": "^4.0.0-rc.12"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"

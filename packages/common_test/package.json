@@ -1,6 +1,6 @@
 {
   "name": "common_test",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "common test",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

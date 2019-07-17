@@ -1,6 +1,6 @@
 {
   "name": "common_websocket",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "common websocket",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,9 +24,9 @@
     "websocket"
   ],
   "dependencies": {
-    "@types/weex": "^1.0.0",
-    "@types/weixin": "^1.0.0",
-    "common_env": "^1.0.0"
+    "@types/weex": "^1.0.3",
+    "@types/weixin": "^1.0.3",
+    "common_env": "^1.0.3"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"
