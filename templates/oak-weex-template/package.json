@@ -1,6 +1,6 @@
 {
   "name": "oak-weex-template",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "oak weex template",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

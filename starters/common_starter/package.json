@@ -1,7 +1,7 @@
 {
   "name": "fengwuxp_common_starter",
   "description": "common starter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
