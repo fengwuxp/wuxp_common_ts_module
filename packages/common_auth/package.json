@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "common auth",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
   "repository": {
     "type": "git",
