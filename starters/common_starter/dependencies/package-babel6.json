@@ -1,7 +1,7 @@
 {
   "name": "fengwuxp_common_starter",
   "description": "common starter",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -47,7 +47,7 @@
     "clean-webpack-plugin": "^0.1.18",
     "fengwuxp_common_core": "^1.0.0",
     "fengwuxp_common_fetch": "^1.0.0",
-    "fengwuxp_common_view": "1.0.0",
+    "fengwuxp_common_view": "^1.0.0",
     "copy-webpack-plugin": "^4.3.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.1",
