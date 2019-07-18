@@ -1,5 +1,5 @@
 import * as webpack from "webpack";
-import {SpringWebpackConfiguration} from "typescript-spring-context/src/configuration/webpack/SpringWebpackConfiguration";
+import {SpringWebpackConfiguration} from "fengwuxp-spring-context/src/configuration/webpack/SpringWebpackConfiguration";
 
 export interface WebpackConfigurationGeneratorOptions extends SpringWebpackConfiguration {
 

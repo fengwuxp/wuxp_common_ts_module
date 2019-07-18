@@ -3,7 +3,7 @@ import {AppRouterAuthenticator} from "./AppRouterAuthenticator";
 import {Route, Switch, SwitchProps} from "react-router";
 import {SpringReactRouteConfig} from "./SpringReactRouteConfig";
 import DefaultPrivateRoute from "./DefaultPrivateRoute";
-import RouteConfiguration from "typescript-spring-context/src/configuration/route/RouteConfiguration"
+import RouteConfiguration from "fengwuxp-spring-context/src/configuration/route/RouteConfiguration"
 import {PrivateRouteProps} from "./PrivateRoute";
 
 /**

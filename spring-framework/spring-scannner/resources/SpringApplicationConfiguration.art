@@ -1,4 +1,4 @@
-import {SpringApplicationConfiguration} from "typescript-spring-context/src/configuration/SpringApplicationConfiguration";
+import {SpringApplicationConfiguration} from "fengwuxp-spring-context/src/configuration/SpringApplicationConfiguration";
 
 
 const springApplicationConfiguration:SpringApplicationConfiguration = {{config}}

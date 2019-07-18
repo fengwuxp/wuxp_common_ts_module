@@ -1,5 +1,5 @@
 {
-  "name": "typescript-spring-webpack-4",
+  "name": "fengwuxp-spring-webpack-4",
   "version": "1.0.2",
   "description": "",
   "publishConfig": {
@@ -67,7 +67,7 @@
     "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",
     "terser-webpack-plugin": "^1.2.2",
-    "typescript-spring-scannner": "^1.0.0",
+    "fengwuxp-spring-scannner": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6",

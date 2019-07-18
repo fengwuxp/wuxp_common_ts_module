@@ -1,5 +1,5 @@
 import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
-import {Bean} from "typescript-spring-beans/src/annotations/Bean";
+import {Bean} from "fengwuxp-spring-beans/src/annotations/Bean";
 import {RestTemplateLoader} from "fengwuxp_common_fetch/src/template/RestTemplateLoader";
 import {defaultApiModuleName} from "fengwuxp_common_fetch/src/constant/FeignConstVar";
 import OAKBrowserDefaultRestTemplateLoader from "./OAKBrowserDefaultRestTemplateLoader";

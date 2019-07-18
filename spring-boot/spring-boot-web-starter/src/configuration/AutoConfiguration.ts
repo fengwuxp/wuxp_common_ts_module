@@ -1,4 +1,4 @@
-import {Bean} from "typescript-spring-beans/src/annotations/Bean";
+import {Bean} from "fengwuxp-spring-beans/src/annotations/Bean";
 import {History, createHashHistory, createBrowserHistory} from "history"
 import {Value} from "typescirpt-spring-context/src/annoations/Value";
 

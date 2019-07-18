@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "yarn_i": "yarn install",
-    "scan-package-generate": "node ./node_modules/typescript-spring-scannner/lib/index.js",
+    "scan-package-generate": "node ./node_modules/fengwuxp-spring-scannner/lib/index.js",
     "serve-dev": "cross-env webpack-dev-server --config webpack.local.dev.js --devtool eval --progress --colors  --watch --port 9000 --open",
     "build": "cross-env  release=0 webpack --config webpack.config.js --progress --colors",
     "build:release": "cross-env RELEASE=1 webpack --config webpack.config.js --progress --colors",
@@ -38,7 +38,7 @@
     "fengwuxp_common_starter": "^1.0.0",
     "fengwuxp_common_webpack": "^1.0.0",
     "test-model-1": "^1.0.0",
-    "typescript-spring-react": "^1.0.0",
-    "typescript-spring-scannner": "^1.0.0"
+    "fengwuxp-spring-react": "^1.0.0",
+    "fengwuxp-spring-scannner": "^1.0.0"
   }
 }

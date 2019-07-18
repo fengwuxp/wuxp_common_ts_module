@@ -5,7 +5,7 @@ import {
     CallExpression
 } from "@babel/types";
 import generator from "@babel/generator";
-import {SpringReactRouteConfig} from "typescript-spring-react/src/route/SpringReactRouteConfig";
+import {SpringReactRouteConfig} from "fengwuxp-spring-react/src/route/SpringReactRouteConfig";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
 import * as path from "path";
 import {getReactViewDecorator} from "../../helper/AstDecoratorHelper";

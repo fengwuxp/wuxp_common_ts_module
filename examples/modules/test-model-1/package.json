@@ -31,6 +31,6 @@
   "devDependencies": {
     "babel-plugin-spring": "^1.0.0",
     "fengwuxp_common_webpack": "^1.0.0",
-    "typescript-spring-react": "^1.0.0"
+    "fengwuxp-spring-react": "^1.0.0"
   }
 }

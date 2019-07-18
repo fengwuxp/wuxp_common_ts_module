@@ -1,4 +1,4 @@
-const config = require("typescript-spring-webpack-4/lib/babel/babelrc7");
+const config = require("fengwuxp-spring-webpack-4/lib/babel/babelrc7");
 
 /**
  * @doc https://babeljs.io/docs/en/configuration#babelconfigjs

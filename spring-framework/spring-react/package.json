@@ -1,5 +1,5 @@
 {
-  "name": "typescript-spring-react",
+  "name": "fengwuxp-spring-react",
   "version": "1.0.2",
   "description": "",
   "publishConfig": {
@@ -38,7 +38,7 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-loadable": "^5.5.0",
-    "typescript-spring-beans": "^1.0.0",
-    "typescript-spring-context": "^1.0.0"
+    "fengwuxp-spring-beans": "^1.0.0",
+    "fengwuxp-spring-context": "^1.0.0"
   }
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactView} from "typescript-spring-react/src/route/ReactView";
+import {ReactView} from "fengwuxp-spring-react/src/route/ReactView";
 
 
 interface ListViewProps {

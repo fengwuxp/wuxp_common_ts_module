@@ -1,6 +1,6 @@
 {
   "name": "taro_components",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "taro components",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -57,8 +57,8 @@
     "fengwuxp_common_icons": "^1.0.2",
     "fengwuxp_common_route": "^1.0.2",
     "fengwuxp_common_style": "^1.0.2",
-    "oak_taro_starter": "^1.0.2",
+    "oak_taro_starter": "^1.0.0",
     "taro-ui": "^2.1.0"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
 }

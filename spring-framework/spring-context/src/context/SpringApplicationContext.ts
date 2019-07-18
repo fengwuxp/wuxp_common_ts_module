@@ -2,7 +2,7 @@ import {Environment} from "../env/Environment";
 // import YamlConfigurationEnvironment from "../env/YamlConfigurationEnvironment";
 // import SpringWebApplicationConfiguration from "../../../.spring/SpringWebApplicationConfiguration"
 import {EnvironmentApplicationContext} from "./EnvironmentApplicationContext";
-import {AutoWried} from "typescript-spring-beans/src/annotations/AutoWried";
+import {AutoWried} from "fengwuxp-spring-beans/src/annotations/AutoWried";
 import {ApplicationContext} from "./ApplicationContext";
 
 class SpringApplicationContext implements EnvironmentApplicationContext {

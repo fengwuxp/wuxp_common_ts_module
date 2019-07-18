@@ -1,5 +1,5 @@
-import YamlConfigurationLoader from "typescript-spring-context/lib/configuration/YamlConfigurationLoader";
-import {ConfigurationLoader} from "typescript-spring-context/lib/configuration/ConfigurationLoader";
+import YamlConfigurationLoader from "fengwuxp-spring-context/lib/configuration/YamlConfigurationLoader";
+import {ConfigurationLoader} from "fengwuxp-spring-context/lib/configuration/ConfigurationLoader";
 import * as path from "path";
 import {NODE_MODULES_DIR} from "./constant/ConstantVar";
 import {LOGGER} from "./helper/Log4jsHelper";

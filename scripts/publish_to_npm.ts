@@ -5,6 +5,8 @@ import * as childProcess from "child_process";
 const version = process.env.npm_package_config_version;
 
 // const chennhPublishTargetRegistry = "http://nexus.chennh.com/repository/npm/";
+// yarn add fengwuxp_common_fetch --registry=http://nexus.chennh.com/repository/npm-public --loglevel=verbose
+//npm i vma-vue-assist --loglevel=verbose
 const npmPublishTargetRegistry = "https://registry.npmjs.org/";
 
 const mainPublishTargetRegistry = "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/";

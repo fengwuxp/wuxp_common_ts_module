@@ -1,6 +1,6 @@
 {
   "name": "weex_starter",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "weex starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -27,12 +27,12 @@
     "fengwuxp_common_test": "^1.0.2"
   },
   "dependencies": {
-    "fengwuxp_common_auth": "^1.0.2",
+    "fengwuxp_common_auth": "^1.0.0",
     "fengwuxp_common_config": "^1.0.2",
     "fengwuxp_common_core": "^1.0.2",
-    "fengwuxp_common_fetch": "^1.0.2",
+    "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_route": "^1.0.2",
-    "fengwuxp_common_starter": "^1.0.2",
+    "fengwuxp_common_starter": "^1.0.0",
     "fengwuxp_common_style": "^1.0.2",
     "fengwuxp_common_webpack": "^1.0.2",
     "fengwuxp_common_weex": "^1.0.2",
@@ -55,5 +55,5 @@
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
 }

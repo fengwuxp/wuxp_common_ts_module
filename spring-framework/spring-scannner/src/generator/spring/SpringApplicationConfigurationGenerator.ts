@@ -1,6 +1,6 @@
 import {CodeGenerator, CodeGeneratorOptions} from "../CodeGenerator";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
-import {SpringApplicationConfiguration} from "typescript-spring-context/lib/configuration/SpringApplicationConfiguration";
+import {SpringApplicationConfiguration} from "fengwuxp-spring-context/lib/configuration/SpringApplicationConfiguration";
 import {DEFAULT_GENERATOR_OUTPUT_DIR} from "../../constant/ConstantVar";
 import {outputToDir} from "../OutputToDirHelper";
 

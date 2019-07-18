@@ -1,4 +1,4 @@
-// import getRollupConfig from "typescript-spring-rollup";
+// import getRollupConfig from "fengwuxp-spring-rollup";
 //
 // export default getRollupConfig({
 //     input: 'src/index.ts',

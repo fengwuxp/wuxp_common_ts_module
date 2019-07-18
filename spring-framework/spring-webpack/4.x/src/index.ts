@@ -1,8 +1,8 @@
 import * as path from "path";
-import {LOGGER} from "typescript-spring-scannner/lib/helper/Log4jsHelper";
-import {NODE_MODULES_DIR} from "typescript-spring-scannner/lib/constant/ConstantVar";
+import {LOGGER} from "fengwuxp-spring-scannner/lib/helper/Log4jsHelper";
+import {NODE_MODULES_DIR} from "fengwuxp-spring-scannner/lib/constant/ConstantVar";
 import {webpack4ReactConfigurationGenerator} from "./react/Webpack4ReactConfigurationGenerator";
-import {loadYmlConfiguration} from "typescript-spring-scannner/lib";
+import {loadYmlConfiguration} from "fengwuxp-spring-scannner/lib";
 
 
 export interface GeneratorWebpackOptions {

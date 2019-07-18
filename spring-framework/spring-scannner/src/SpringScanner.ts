@@ -5,7 +5,7 @@ import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerat
 import * as path from "path";
 import {LOGGER} from "./helper/Log4jsHelper";
 import {DEFAULT_GENERATOR_OUTPUT_DIR, NODE_MODULES_DIR} from "./constant/ConstantVar";
-import {ScannerConfiguration} from "typescript-spring-context/lib/configuration/scanner/ScannerConfiguration";
+import {ScannerConfiguration} from "fengwuxp-spring-context/lib/configuration/scanner/ScannerConfiguration";
 
 
 export interface ScannerOptions extends ScannerConfiguration {

@@ -60,14 +60,14 @@
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.12.0",
     "classnames": "^2.2.6",
+    "es5-shim": "^4.5.9",
+    "es6-promise": "^4.1.1",
     "fengwuxp_common_core": "^1.0.0",
     "fengwuxp_common_decorator": "^1.0.0",
     "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_route": "^1.0.0",
     "fengwuxp_common_view": "^1.0.0",
     "fengwuxp_common_webpack": "^1.0.0",
-    "es5-shim": "^4.5.9",
-    "es6-promise": "^4.1.1",
     "fetch-detector": "^1.0.1",
     "fetch-ie8": "^1.5.0",
     "file-loader": "2.0.0",
@@ -82,5 +82,5 @@
     "typescript": "^3.2.2",
     "typings": "^2.1.1"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
 }

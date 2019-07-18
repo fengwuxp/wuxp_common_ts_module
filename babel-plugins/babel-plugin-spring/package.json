@@ -59,8 +59,8 @@
     "loader-utils": "^1.2.3",
     "log4js": "^4.0.2",
     "typescript": "^3.4.5",
-    "typescript-spring-react": "^1.0.0",
-    "typescript-spring-scannner": "^1.0.0"
+    "fengwuxp-spring-react": "^1.0.0",
+    "fengwuxp-spring-scannner": "^1.0.0"
   },
   "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
 }

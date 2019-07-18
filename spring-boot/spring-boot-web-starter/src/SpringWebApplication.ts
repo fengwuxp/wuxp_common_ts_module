@@ -1,4 +1,4 @@
-import {SpringApplication} from "typescript-spring-context/src/SpringApplication";
+import {SpringApplication} from "fengwuxp-spring-context/src/SpringApplication";
 
 export interface SpringWebApplication extends SpringApplication {
 

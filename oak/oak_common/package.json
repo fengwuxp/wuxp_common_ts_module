@@ -24,11 +24,11 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/node": "^10.12.18",
+    "blueimp-md5": "^2.11.0",
     "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_plugins": "^1.0.0",
     "fengwuxp_common_test": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0",
-    "blueimp-md5": "^2.11.0"
+    "fengwuxp_common_utils": "^1.0.0"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
 }

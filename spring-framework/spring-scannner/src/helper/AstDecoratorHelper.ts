@@ -25,7 +25,7 @@ export const hasReactViewDecorator = (file: File) => {
 
 /**
  * 获取 ReactView的注解
- * @link typescript-spring-react/src/route/ReactView
+ * @link fengwuxp-spring-react/src/route/ReactView
  * @param file
  */
 export const getReactViewDecorator = (file: File) => {

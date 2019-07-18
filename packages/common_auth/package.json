@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_auth",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "common auth",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -30,5 +30,5 @@
   "devDependencies": {
     "@types/node": "^10.9.4"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
 }

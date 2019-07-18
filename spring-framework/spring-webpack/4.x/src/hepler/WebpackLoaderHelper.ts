@@ -3,7 +3,7 @@ const DEFAULT_INCLUDE: string[] = [
     "fengwuxp_common_",
     "oak_",
     "_starter",
-    "typescript-spring-"
+    "fengwuxp-spring-"
 ];
 
 const includes: string[] = [

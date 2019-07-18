@@ -30,8 +30,8 @@
     "fengwuxp_common_event_bus": "^1.0.0",
     "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_utils": "^1.0.0",
-    "typescript-spring-beans": "^1.0.0",
-    "typescript-spring-context": "^1.0.0",
-    "typescript-spring-react": "^1.0.0"
+    "fengwuxp-spring-beans": "^1.0.0",
+    "fengwuxp-spring-context": "^1.0.0",
+    "fengwuxp-spring-react": "^1.0.0"
   }
 }
