@@ -4,10 +4,6 @@ var fs = require("fs");
 var path = require("path");
 var childProcess = require("child_process");
 var version = process.env.npm_package_config_version;
-// const chennhPublishTargetRegistry = "http://nexus.chennh.com/repository/npm/";
-// yarn add fengwuxp_common_fetch --registry=http://nexus.chennh.com/repository/npm-public --loglevel=verbose
-//npm i vma-vue-assist --loglevel=verbose
-var npmPublishTargetRegistry = "https://registry.npmjs.org/";
 var mainPublishTargetRegistry = "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/";
 function readJsonFile(filepath) {
     var text = fs.readFileSync(filepath, "utf-8");
@@ -21,14 +17,10 @@ function readFilDirList(basePath) {
     dirs.forEach(function (dirPath) {
         var targetDir = path.join(resolvePath, dirPath);
         console.log("targetDir", targetDir);
-        replacePrivateRegistry(targetDir, mainPublishTargetRegistry, npmPublishTargetRegistry);
+        replacePrivateRegistry(targetDir);
     });
 }
-function replacePrivateRegistry(packagePath, mainRegistry, otherRegister) {
-    var packageJsonFilePath = path.join(packagePath, "./package.json");
-    var packageJson = fs.readFileSync(packageJsonFilePath, "utf-8");
-    packageJson = packageJson.replace(mainRegistry, otherRegister);
-    fs.writeFileSync(packageJsonFilePath, packageJson);
+function replacePrivateRegistry(packagePath) {
     //发布模块
     var npmPublishCommand = "npm publish  --loglevel=verbose";
     try {
@@ -42,8 +34,6 @@ function replacePrivateRegistry(packagePath, mainRegistry, otherRegister) {
         console.error("发布模块异常", e);
     }
     console.log("\u53D1\u5E03\u6A21\u5757\uFF1A " + npmPublishCommand + "  cwd  " + packagePath);
-    packageJson = packageJson.replace(otherRegister, mainRegistry);
-    fs.writeFileSync(packageJsonFilePath, packageJson);
 }
 var lernaConfig = readJsonFile("./lerna.json");
 var packages = lernaConfig.packages;

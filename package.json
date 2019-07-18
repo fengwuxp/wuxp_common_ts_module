@@ -1,6 +1,6 @@
 {
   "name": "wuxp_common_ts_module",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "private": true,
   "author": "wuxp",
   "publishConfig": {
@@ -18,6 +18,7 @@
     "publish": "node ./scripts/publish.js",
     "publish:npm": "node scripts/publish_to_npm.js",
     "unpublish:npm": "node scripts/un_publish_to_npm.js",
+    "publish:oak:to_js": "node scripts/publish_to_oak.js",
     "publish:oak": "lerna publish --npm-tag=1.0.0",
     "module_init": "npm run learn_init && npm run learn_bootstrap",
     "yarn_install": "yarn install",
@@ -26,6 +27,7 @@
     "learn_publish": "lerna publish --skip-git --repo-version=1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^12.6.8",
     "lerna": "^3.15.0"
   },
   "config": {

@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_promise",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,8 +24,8 @@
   "keywords": [],
   "types": "./index.d.ts",
   "devDependencies": {
-    "fengwuxp_common_test": "^1.0.2",
+    "fengwuxp_common_test": "^1.0.0",
     "jest": "^23.6.0"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "11c47e23899cfd625ca24d9ecfed2447f949b029"
 }

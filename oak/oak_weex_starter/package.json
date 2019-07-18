@@ -27,14 +27,14 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/weex": "^1.0.2",
-    "fengwuxp_common_test": "^1.0.2"
+    "fengwuxp_common_test": "^1.0.0"
   },
   "dependencies": {
-    "fengwuxp_common_plugins": "^1.0.2",
+    "fengwuxp_common_plugins": "^1.0.0",
     "md5": "^2.2.1",
     "oak_common": "^1.0.0",
     "weex-vue-precompiler": "^0.1.23-bate",
     "weex_starter": "^1.0.0"
   },
-  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
+  "gitHead": "11c47e23899cfd625ca24d9ecfed2447f949b029"
 }

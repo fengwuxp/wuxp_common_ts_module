@@ -1,6 +1,6 @@
 {
   "name": "antd_mobile_starter",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "基于ant mobile的通用壳子",
   "main": "index.js",
   "publishConfig": {
@@ -48,5 +48,5 @@
     "react-swipeable-views": "^0.12.16",
     "react-swipeable-views-utils": "^0.12.16"
   },
-  "gitHead": "1d6df93bc3fc4cd1c4b1910d27c0b4364cec286e"
+  "gitHead": "11c47e23899cfd625ca24d9ecfed2447f949b029"
 }
