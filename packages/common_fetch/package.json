@@ -29,9 +29,7 @@
   "devDependencies": {
     "@types/node": "^12.0.12",
     "fengwuxp_common_config": "^1.0.0",
-    "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_test": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0",
     "fengwuxp_common_webpack": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2"
@@ -46,6 +44,7 @@
     "fengwuxp_common_exception": "^1.0.0",
     "fengwuxp_common_proxy": "^1.0.0",
     "fengwuxp_common_task": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
     "fetch-detector": "^1.0.1",
     "fetch-ie8": "^1.5.0",
     "isomorphic-fetch": "^2.2.1",
