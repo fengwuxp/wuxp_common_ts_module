@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@types/node": "^9.4.6",
-    "fengwuxp_common_core": "^1.0.2",
+    "fengwuxp_common_core": "^1.0.0",
     "typescript": "^2.8.3"
   },
   "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"

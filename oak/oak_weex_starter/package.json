@@ -26,7 +26,7 @@
   "author": "wuxp",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@types/weex": "^1.0.2",
+    "@types/weex": "^1.0.0",
     "fengwuxp_common_test": "^1.0.0"
   },
   "dependencies": {

@@ -24,8 +24,8 @@
     "websocket"
   ],
   "dependencies": {
-    "@types/weex": "^1.0.2",
-    "@types/weixin": "^1.0.2",
+    "@types/weex": "^1.0.0",
+    "@types/weixin": "^1.0.0",
     "fengwuxp_common_env": "^1.0.2"
   },
   "devDependencies": {

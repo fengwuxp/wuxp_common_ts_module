@@ -25,9 +25,9 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.12",
-    "fengwuxp_common_config": "^1.0.2",
-    "fengwuxp_common_test": "^1.0.2",
-    "fengwuxp_common_webpack": "^1.0.2",
+    "fengwuxp_common_config": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_webpack": "^1.0.0",
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },

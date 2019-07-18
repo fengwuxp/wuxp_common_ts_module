@@ -23,18 +23,18 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "@types/weex": "^1.0.2",
+    "@types/weex": "^1.0.0",
     "fengwuxp_common_test": "^1.0.0"
   },
   "dependencies": {
     "fengwuxp_common_auth": "^1.0.0",
-    "fengwuxp_common_config": "^1.0.2",
-    "fengwuxp_common_core": "^1.0.2",
+    "fengwuxp_common_config": "^1.0.0",
+    "fengwuxp_common_core": "^1.0.0",
     "fengwuxp_common_fetch": "^1.0.0",
     "fengwuxp_common_route": "^1.0.0",
     "fengwuxp_common_starter": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.2",
-    "fengwuxp_common_webpack": "^1.0.2",
+    "fengwuxp_common_style": "^1.0.0",
+    "fengwuxp_common_webpack": "^1.0.0",
     "fengwuxp_common_weex": "^1.0.0",
     "md5": "^2.2.1",
     "postcss-plugin-px2rem": "^0.8.0",

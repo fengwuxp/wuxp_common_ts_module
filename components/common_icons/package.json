@@ -25,7 +25,7 @@
     "npm unpublish": "npm unpublish --force"
   },
   "devDependencies": {
-    "@types/weex": "^1.0.2",
+    "@types/weex": "^1.0.0",
     "fengwuxp_common_react": "^1.0.0",
     "fengwuxp_common_weex": "^1.0.0",
     "vue": "^2.5.17"

@@ -53,10 +53,10 @@
     "@types/webpack-env": "^1.13.9",
     "compress_image": "^1.0.0",
     "csstype": "^2.6.0",
-    "fengwuxp_common_config": "^1.0.2",
+    "fengwuxp_common_config": "^1.0.0",
     "fengwuxp_common_icons": "^1.0.0",
     "fengwuxp_common_route": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.2",
+    "fengwuxp_common_style": "^1.0.0",
     "oak_taro_starter": "^1.0.0",
     "taro-ui": "^2.1.0"
   },
