@@ -1,6 +1,6 @@
 {
   "name": "antd_pc_starter",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "基于antd的通用pc前端壳子",
   "main": "index.js",
   "publishConfig": {

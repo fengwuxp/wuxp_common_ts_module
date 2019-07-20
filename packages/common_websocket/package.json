@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_websocket",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "common websocket",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

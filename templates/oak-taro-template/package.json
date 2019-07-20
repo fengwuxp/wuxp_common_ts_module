@@ -1,6 +1,6 @@
 {
   "name": "oak-taro-template",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "description": "oak taro template",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
