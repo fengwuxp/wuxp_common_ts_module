@@ -6,11 +6,15 @@ import {ShowToastOptions} from "weixin/src/minapp/ui/modal";
 //
 // }
 
-export  const showToast = (options: ShowToastOptions) => {
+
+export const showToast = (options: ShowToastOptions) => {
+
+    const _o = {...options};
 
     return new Promise(resolve => {
-        const {duration} = options;
-        wx.showToast(options);
+        const {duration} = _o;
+        _o.icon = _o.icon || "none";
+        wx.showToast(_o);
         setTimeout(() => {
             wx.hideLoading();
             resolve();

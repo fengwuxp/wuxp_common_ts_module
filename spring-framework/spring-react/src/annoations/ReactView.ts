@@ -1,4 +1,4 @@
-import {ConditionType} from "fengwuxp-spring-context/src/condition/Condition";
+import {ConditionType} from "fengwuxp-spring-context/src/condition/ConditionType";
 
 
 export interface ReactViewOptions {

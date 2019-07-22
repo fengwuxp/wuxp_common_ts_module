@@ -3,7 +3,7 @@ export interface AutoWriedOptions {
     requiredType?: any;
 }
 
-export function AutoWried(options: AutoWriedOptions) {
+export function AutoWried(options: AutoWriedOptions):Function {
 
     const {requiredType} = options;
 

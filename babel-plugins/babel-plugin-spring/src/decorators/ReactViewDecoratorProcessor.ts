@@ -16,7 +16,9 @@ export default class ReactViewDecoratorProcessor implements DecoratorProgramProc
 
 
     process = (program: Program) => {
-        const decorator = getProgramDecorator(program, REACT_VIEW_DECORATOR_PACKAGE_NAME);
+        const decorator = getProgramDecorator(program, {
+            decoratorPackageName:REACT_VIEW_DECORATOR_PACKAGE_NAME
+        });
         if (decorator == null) {
             return;
         }

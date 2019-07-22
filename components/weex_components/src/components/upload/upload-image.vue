@@ -197,7 +197,7 @@
                     throw new Error("upload handle is null");
                 }
 
-                Promise.all(base64DataList.map((data, index) => uploadHandle(data, index)))
+                Promise.all(base64DataList.map((data, index) => uploadHandle(data, index,this.orderIndex)))
                     .then((resultList) => {
                         //上传结果是一个数组
                         // [{url:"http://xxx",orderIndex:1}]

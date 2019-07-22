@@ -1,0 +1,27 @@
+{
+  "name": "fengwuxp-spring-router",
+  "version": "1.0.0",
+  "description": "spring router",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "dependencies": {
+    "@types/history": "^4.7.2",
+    "@types/node": "^12.0.4",
+    "history": "^4.9.0",
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {
+    "core-decorators": "^0.20.0",
+    "fengwuxp_common_proxy": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
+    "jest": "^23.6.0",
+    "log4js": "^4.0.2",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^1.9.3"
+  }
+}
