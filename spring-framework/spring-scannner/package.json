@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/generator": "^7.0.0",
     "@babel/plugin-proposal-async-generator-functions": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
@@ -46,12 +47,11 @@
     "@babel/runtime": "^7.0.0",
     "@babel/runtime-corejs2": "^7.0.0",
     "@babel/template": "^7.0.0",
-    "@babel/generator": "^7.0.0",
     "@babel/traverse": "^7.0.0",
     "art-template": "^4.13.2",
-    "log4js": "^4.0.2",
     "fengwuxp-spring-context": "^1.0.0",
-    "fengwuxp-spring-react": "^1.0.0"
+    "fengwuxp-spring-react": "^1.0.0",
+    "log4js": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
@@ -63,5 +63,5 @@
     "test-model-1": "^1.0.0",
     "typescript": "^3.4.5"
   },
-  "gitHead": "fdc7fec73022cdb7b7dbd026803549903c6d60c0"
+  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
 }

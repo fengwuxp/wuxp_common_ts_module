@@ -24,17 +24,18 @@
   "dependencies": {
     "@types/history": "^4.7.2",
     "@types/node": "^12.0.4",
-    "history": "^4.9.0",
-    "typescript": "^3.5.1",
+    "fengwuxp-spring-context": "^1.0.0",
     "fengwuxp_common_proxy": "^1.0.0",
     "fengwuxp_common_test": "^1.0.0",
     "fengwuxp_common_utils": "^1.0.0",
-    "fengwuxp-spring-context": "^1.0.0"
+    "history": "^4.9.0",
+    "typescript": "^3.5.1"
   },
   "devDependencies": {
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.9.3"
-  }
+  },
+  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
 }

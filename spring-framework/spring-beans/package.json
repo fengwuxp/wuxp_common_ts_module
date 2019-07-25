@@ -26,11 +26,12 @@
     "typescript": "^3.5.1"
   },
   "devDependencies": {
-    "fengwuxp_common_test": "^1.0.0",
     "core-decorators": "^0.20.0",
+    "fengwuxp_common_test": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.9.3"
-  }
+  },
+  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
 }

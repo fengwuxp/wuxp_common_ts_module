@@ -22,9 +22,6 @@
     "yarn_i": "yarn install",
     "npm_publish": "npm publish"
   },
-  "dependencies": {
-
-  },
   "devDependencies": {
     "@types/node": "^10.12.26",
     "fengwuxp_common_test": "^1.0.0",
@@ -32,5 +29,5 @@
     "jest": "^24.1.0",
     "log4js": "^4.0.2"
   },
-  "gitHead": "ac974980189c3281d82bb06aa4cf79a24ab2635c"
+  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
 }
