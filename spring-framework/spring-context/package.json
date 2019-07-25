@@ -22,6 +22,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
+    "@types/html-webpack-plugin": "^3.2.0",
     "@types/node": "^12.0.4",
     "@types/lodash": "^4.14.134",
     "fengwuxp_common_utils": "^1.0.0",
@@ -30,10 +31,10 @@
     "lodash": "^4.17.11",
     "@types/js-yaml": "^3.12.1",
     "js-yaml": "^3.13.1",
-    "fengwuxp-spring-beans": "^1.0.0"
+    "fengwuxp-spring-beans": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0"
   },
   "devDependencies": {
-    "@types/html-webpack-plugin": "^3.2.0",
     "fengwuxp_common_test": "^1.0.0",
     "core-decorators": "^0.20.0",
     "jest": "^23.6.0",

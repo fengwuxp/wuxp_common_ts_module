@@ -5,19 +5,22 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "module": "esnext",
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
-    "compileOnSave": false,
     "jsx": "react",
     "jsxFactory": "React.createElement",
     "baseUrl": "./src",
     "paths": {
-      "@services/*": ["./services/*"]
+      "@services/*": [
+        "./services/*"
+      ]
     },
     "types": [
       "node",
+      "jest",
       "react",
       "react-dom",
       "react-router",
@@ -31,8 +34,7 @@
   },
   "include": [
     "src/**/*",
-    "node_modules/common_starter/types/index.d.ts"
-
+    "node_modules/fengwuxp_common_starter/types/index.d.ts"
   ],
   "exclude": [
     "**/*.spec.ts"

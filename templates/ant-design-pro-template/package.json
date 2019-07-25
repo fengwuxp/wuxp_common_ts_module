@@ -24,7 +24,12 @@
   "author": "wuxp",
   "license": "ISC",
   "devDependencies": {
-    "classnames": "^2.2.6"
+    "@types/jest": "^24.0.15",
+    "@types/node": "^11.13.10",
+    "classnames": "^2.2.6",
+    "fengwuxp_common_test": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
+    "jest": "^23.6.0"
   },
   "dependencies": {
     "ant-design-pro-starter": "^1.0.0",

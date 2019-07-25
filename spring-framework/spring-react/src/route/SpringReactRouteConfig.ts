@@ -1,5 +1,5 @@
 import {RouteConfig} from "react-router-config";
-import {Condition} from "../../../spring-context/src/condition/ConditionType";
+import {ConditionType} from "fengwuxp-spring-context/src/condition/ConditionType";
 
 /***
  * SpringReactRouteConfig
@@ -15,7 +15,7 @@ export interface SpringReactRouteConfig extends RouteConfig {
      * 进入页面的条件 例如进行权限检查
      * default true
      */
-    condition?: Condition;
+    condition?: ConditionType;
 
     /**
      * 是否需要鉴权（login）

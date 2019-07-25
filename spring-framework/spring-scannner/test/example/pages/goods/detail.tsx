@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/annoations/ReactViewMapping";
 import IndexView from "@pages/index";
 
 

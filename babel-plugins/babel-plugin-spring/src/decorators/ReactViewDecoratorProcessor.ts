@@ -10,18 +10,19 @@ import {removeProgramDecorator} from "../helper/DecoratorHelper";
 
 /**
  * 对有 ReactView装饰器的类进行处理
- * @link  node_modules/fengwuxp-spring-react/src/route/ReactView.ts
+ * @link  node_modules/fengwuxp-spring-react/src/route/ReactViewMapping.ts
  */
 export default class ReactViewDecoratorProcessor implements DecoratorProgramProcessor {
 
 
     process = (program: Program) => {
         const decorator = getProgramDecorator(program, {
-            decoratorPackageName:REACT_VIEW_DECORATOR_PACKAGE_NAME
+            decoratorPackageName: REACT_VIEW_DECORATOR_PACKAGE_NAME
         });
         if (decorator == null) {
             return;
         }
+        //移除注解
         this.remove(program);
     };
 
