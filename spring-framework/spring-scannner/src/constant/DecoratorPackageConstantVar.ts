@@ -7,4 +7,4 @@
 /**
  * react view mapping decorator
  */
-export const REACT_VIEW_MAPPING_DECORATOR_PACKAGE_NAME = "fengwuxp-spring-react/src/annoations/ReactViewMapping";
+export const REACT_VIEW_MAPPING_DECORATOR_PACKAGE_NAME = "fengwuxp-spring-react/src/annotations/ReactViewMapping";

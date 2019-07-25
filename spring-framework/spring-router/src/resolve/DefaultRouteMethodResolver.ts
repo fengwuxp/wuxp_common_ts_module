@@ -9,7 +9,7 @@ const URI_SYMBOL_COLON = ":";
 const REPLACE_COLON_SYMBOL = "$";
 
 /**
- * 默认的解析者
+ * 默认的路由方法解析者
  */
 export default class DefaultRouteMethodResolver implements RouteMethodResolver {
 

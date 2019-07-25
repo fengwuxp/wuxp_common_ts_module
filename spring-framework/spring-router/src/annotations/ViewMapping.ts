@@ -32,7 +32,7 @@ export interface ViewMappingOptions<P = {}, S = {}> {
     /**
      * 页面接收的状态
      */
-    state: S;
+    state?: S;
 
     /**
      * 进入页面的条件，例如进行登陆检查、权限检查等

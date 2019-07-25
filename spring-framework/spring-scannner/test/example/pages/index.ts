@@ -1,7 +1,7 @@
 
 
 import * as React from "react";
-import {ReactViewMapping} from "fengwuxp-spring-react/src/annoations/ReactViewMapping";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/annotations/ReactViewMapping";
 
 
 interface IndexViewProps {

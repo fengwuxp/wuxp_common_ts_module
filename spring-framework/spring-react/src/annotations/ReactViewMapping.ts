@@ -1,4 +1,4 @@
-import {ViewMapping, ViewMappingOptions} from "fengwuxp-spring-router/src/annoations/ViewMapping";
+import {ViewMapping, ViewMappingOptions} from "fengwuxp-spring-router/src/annotations/ViewMapping";
 
 
 export interface ReactViewOptions extends ViewMappingOptions {

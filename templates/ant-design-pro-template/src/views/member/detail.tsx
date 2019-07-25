@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactViewMapping} from "fengwuxp-spring-react/src/annoations/ReactViewMapping";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/annotations/ReactViewMapping";
 
 
 interface DetailProps {
@@ -7,7 +7,7 @@ interface DetailProps {
 }
 
 @ReactViewMapping({
-    condition:"member.add"
+    condition: "member.add"
 })
 export default class DetailView extends React.Component<DetailProps> {
 
