@@ -3,6 +3,9 @@ import * as path from "path";
 import {NODE_MODULES_DIR} from "../constant/ConstantVar";
 import {ScannerOptions} from "../SpringScanner";
 
+/**
+ * 默认的文件路径转换规则
+ */
 export default class DefaultFilePathTransformStrategy implements FilePathTransformStrategy {
 
 

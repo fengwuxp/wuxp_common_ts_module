@@ -1,12 +1,12 @@
 import * as React from "react";
-import {ReactView} from "fengwuxp-spring-react/src/route/ReactView";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
 
 
 interface EditProps {
 
 }
 
-@ReactView({
+@ReactViewMapping({
     name: "用户编辑",
     pathname: "member_edit",
     condition: (context) => {

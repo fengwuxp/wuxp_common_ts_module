@@ -1,13 +1,18 @@
 import {CodeGeneratorOptions} from "./CodeGenerator";
 import {LOGGER} from "../helper/Log4jsHelper";
 import * as fs from "fs";
+import * as path from "path";
 
 
 export const outputToDir = (code: string, options: CodeGeneratorOptions) => {
     const {projectBasePath, outputFilename, outputPath} = options;
 
-    const fileOutputPath = `${projectBasePath}/${outputPath}/${outputFilename}.ts`;
-    LOGGER.debug("fileOutputPath", fileOutputPath);
-    fs.writeFileSync(fileOutputPath, code, {flag: "w+"});
+    const fileOutputDir = path.normalize(`${projectBasePath}/${outputPath}/`);
+    LOGGER.debug("fileOutputDir", fileOutputDir);
+    if (!fs.existsSync(fileOutputDir)) {
+        fs.mkdirSync(fileOutputDir);
+    }
 
-}
+    fs.writeFileSync(`${fileOutputDir}/${outputFilename}.ts`, code, {flag: "w+"});
+
+};

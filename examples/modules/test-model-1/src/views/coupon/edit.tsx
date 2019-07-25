@@ -1,16 +1,18 @@
 import * as React from "react";
-import {ReactView} from "fengwuxp-spring-react/src/route/ReactView";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
+import HomeIndexView from "../index";
 
 
 interface EditProps {
 
 }
 
-@ReactView({
-    condition:(context)=>{
+@ReactViewMapping({
+    condition: (context) => {
 
         return false;
-    }
+    },
+    parent: HomeIndexView
 })
 export default class EditView extends React.Component<EditProps> {
 

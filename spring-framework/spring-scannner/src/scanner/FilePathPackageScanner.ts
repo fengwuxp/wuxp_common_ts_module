@@ -19,18 +19,26 @@ export default class FilePathPackageScanner implements PackageScanner<string[]> 
         }).map(function (path) {
             const dirs = fs.readdirSync(path);
             return dirs.map((fileName) => {
-                const stats = fs.lstatSync(`${path}${pathModule.sep}${fileName}`);
+                // const stats = fs.lstatSync(`${path}${pathModule.sep}${fileName}`);
+                // if (stats.isDirectory()) {
+                //     //文件夹
+                //     return `${path}${pathModule.sep}${fileName}`;
+                // }
+                // //文件
+                return `${path}${pathModule.sep}${fileName}`;
+            }).filter((filepath) => {
+                return filepath != null;
+            }).map((filepath) => {
+                const stats = fs.lstatSync(filepath);
                 if (stats.isDirectory()) {
-                    return `${path}${pathModule.sep}${fileName}`;
+                    const fileNames = fs.readdirSync(filepath);
+                    return fileNames.map((filename) => {
+                        return `${filepath}${pathModule.sep}${filename}`;
+                    });
+                }else {
+                    return [filepath];
                 }
-                return null;
-            }).filter((dir) => {
-                return dir != null;
-            }).map((dir) => {
-                const fileNames = fs.readdirSync(dir);
-                return fileNames.map((filename) => {
-                    return `${dir}${pathModule.sep}${filename}`;
-                });
+
             }).flatMap((items) => [...items]);
         }).flatMap((items) => [...items]);
     };

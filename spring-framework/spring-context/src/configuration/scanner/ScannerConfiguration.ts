@@ -25,4 +25,16 @@ export interface ScannerConfiguration {
     //扫描的基础路径(文件全路径)
     scanBasePath?: string;
 
+
+    /**
+     * 别名配置的根路径
+     */
+    aliasBasePath?: string;
+
+    /**
+     * 导入语句的别名配置
+     */
+    aliasConfiguration?: {
+        [key: string]: string[]
+    };
 }

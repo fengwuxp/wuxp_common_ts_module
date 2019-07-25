@@ -1,17 +1,18 @@
+
+
 import * as React from "react";
 import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
-import IndexView from "../index";
 
 
-interface InputProps {
+interface IndexViewProps {
 
 }
 
 @ReactViewMapping({
     condition:"member.add",
-    parent: IndexView,
-
+    exact: false,
+    strict: false
 })
-export default class InputView extends React.Component<InputProps> {
+export default class IndexView extends React.Component<IndexViewProps> {
 
 }

@@ -13,6 +13,9 @@ import {LOGGER} from "../../helper/Log4jsHelper";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {NODE_MODULES_DIR} from "../../constant/ConstantVar";
 import {outputToDir} from "../OutputToDirHelper";
+import {getImportDeclaration} from "../../helper/AstImportHelper";
+import {GenerateSpringReactRouteOptions} from "./GenerateSpringReactRouteOptions";
+import {isAliasImport, normalizeAliasImportPath} from "../../helper/ImportAliasMatchHelper";
 
 const artTemplateCodeGenerator = new ArtTemplateCodeGenerator();
 
@@ -31,8 +34,6 @@ interface ReactRouteConfigGeneratorOptions extends CodeGeneratorOptions {
  */
 export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
 
-    private routeConfigs: SpringReactRouteConfig[] = [];
-
 
     generator = (files: Record<string, File>, options: ReactRouteConfigGeneratorOptions) => {
 
@@ -43,13 +44,65 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
             ...options
         };
 
-        this.routeConfigs = Object.keys(files).map(key => {
+        const routeConfigs: GenerateSpringReactRouteOptions[] = Object.keys(files).map(key => {
 
             return this.buildRouteConfig(files[key], key, reactOptions);
         });
 
+        //组装父子路由
+
+        //有父页面的路由
+        const hasParentRoutes = routeConfigs.filter(config => {
+            return config.parent != null;
+        });
+
+        //无父页面的路由
+        const routes = routeConfigs.filter(config => {
+            return config.parent == null;
+        });
+
+        const {aliasConfiguration, projectBasePath, outputPath, aliasBasePath} = reactOptions;
+
+        hasParentRoutes.forEach((subRoute) => {
+            const {component, parent} = subRoute;
+
+            let parentImportPath = parent.importPath;
+            if (subRoute.isNodeModules) {
+                const _component = component.substring(0, component.lastIndexOf("/"));
+                // 计算导入路径
+                parentImportPath = path.resolve(__dirname, `${_component}`, parentImportPath)
+                    .replace(__dirname, "");
+                parentImportPath = parentImportPath.substring(1, parentImportPath.length);
+            } else {
+                if (isAliasImport(parent.importPath)) {
+                    //转换别名的导入
+                    parentImportPath = normalizeAliasImportPath(aliasBasePath, aliasConfiguration, parent.importPath);
+                } else {
+                    const _component = component.substring(0, component.lastIndexOf("/"));
+                    // 计算导入路径
+                    parentImportPath = path.resolve(aliasBasePath, _component, parentImportPath);
+                }
+                parentImportPath = path.relative(`${projectBasePath}${outputPath}/`, parentImportPath);
+            }
+            parentImportPath = this.normalizeImportPath(parentImportPath);
+
+            const parentRoute = routes.find((route) => {
+
+                return route.component === parentImportPath;
+            });
+            if (parentRoute == null) {
+                LOGGER.error("路由配置未找到父页面 ", subRoute)
+            } else {
+                parentRoute.routes = parentRoute.routes || [];
+                //强制使用严格模式
+                subRoute.exact = true;
+                parentRoute.routes.push(subRoute);
+            }
+        });
+
+
         const code = artTemplateCodeGenerator.generator("react/ReactRouterConfigCodeTemplate.art", {
-            routes: this.routeConfigs
+            routes: this.sortByExact(routes)
         });
 
         outputToDir(code, reactOptions);
@@ -58,11 +111,19 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
     };
 
 
+    /**
+     * build route config
+     * @param file
+     * @param filepath
+     * @param projectBasePath
+     * @param outputPath
+     * @param scanPackages
+     */
     private buildRouteConfig = (file: File, filepath: string, {
         projectBasePath,
         outputPath,
         scanPackages
-    }: ReactRouteConfigGeneratorOptions) => {
+    }: ReactRouteConfigGeneratorOptions): GenerateSpringReactRouteOptions => {
         //获取到reactView的装饰器
         const ReactViewDecorator = getReactViewDecorator(file);
 
@@ -72,7 +133,7 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
 
 
         //解析参数转换为路由配置到路由配置
-        const springReactRouteConfig: SpringReactRouteConfig = _arguments.map((item: ObjectExpression) => {
+        const springReactRouteConfig: GenerateSpringReactRouteOptions = _arguments.map((item: ObjectExpression) => {
 
             return item.properties.map((prop: any) => {
                 const name = prop.key.name;
@@ -85,21 +146,33 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
                     attr[name] = value.value;
                 }
 
+                if (name === "parent") {
+                    //有父页面属性，获取父页面的导入语句
+                    // attr[name] = generator(value).code;
+                    const importDeclaration = getImportDeclaration(file, value.name);
 
-                return attr;
+                    //得到导入的文件路径
+                    const importPath = importDeclaration.source.value;
+                    //得到文件
+                    attr[name] = {
+                        importName: value.name,
+                        importPath: importPath
+                    };
+                }
+
+                return attr as GenerateSpringReactRouteOptions;
             })
         }).flatMap((items) => [...items])
             .reduce((prev, current) => {
                 return {
                     ...prev,
                     ...current
-                }
-            }, {});
+                } as GenerateSpringReactRouteOptions
+            }, {} as GenerateSpringReactRouteOptions);
 
-        springReactRouteConfig.path = springReactRouteConfig["pathname"];
 
-        if (!StringUtils.hasText(springReactRouteConfig.path)) {
-            //默认使用 文件名称+文件名 "/member/input";
+        if (!StringUtils.hasText(springReactRouteConfig.pathname)) {
+            //没有pathname 默认使用 文件名称+文件名 "/member/input" 然后全小写;
             const index = scanPackages.map((item) => {
                 const itemLength = item.length + 1;
                 return [
@@ -117,33 +190,74 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
                 return prev + current;
             }, 0);
 
-            springReactRouteConfig.path = filepath.substring(index, filepath.lastIndexOf("."))
-                .replace(/\\/g, "/");
+            springReactRouteConfig.pathname = this.normalizeImportPath(filepath.substring(index, filepath.lastIndexOf("."))).toLowerCase();
         }
         if (springReactRouteConfig.exact == null) {
             springReactRouteConfig.exact = true;
         }
+        if (springReactRouteConfig.strict == null) {
+            springReactRouteConfig.strict = true;
+        }
 
-        if (!springReactRouteConfig.path.startsWith("/")) {
-            springReactRouteConfig.path = `/${springReactRouteConfig.path}`;
+        if (!springReactRouteConfig.pathname.startsWith("/")) {
+            //不是斜杠开头
+            springReactRouteConfig.pathname = `/${springReactRouteConfig.pathname}`;
         }
 
 
         let componentImportPath: string;
 
         const nodeModulesIndex = filepath.indexOf(NODE_MODULES_DIR);
-        if (nodeModulesIndex > 0) {
+        const isNodeModules = nodeModulesIndex > 0;
+        springReactRouteConfig.isNodeModules = isNodeModules;
+        if (isNodeModules) {
             //node中的模块
             componentImportPath = filepath.substring(nodeModulesIndex + NODE_MODULES_DIR.length + 1, filepath.length);
         } else {
             //计算相对路径
             // /test/example/views/member/input
-            const p1 = filepath.replace(projectBasePath, "");
+            // const p1 = filepath.replace(projectBasePath, "");
             // componentImportPath = path.relative(`/${outputPath}/${outputFilename}.ts`, p1);
-            componentImportPath = path.relative(`/${outputPath}/`, p1);
+            componentImportPath = path.relative(`${projectBasePath}${outputPath}/`, filepath);
         }
-        componentImportPath = componentImportPath.replace(/\\/g, "/");
-        springReactRouteConfig.component = componentImportPath as any;
+        componentImportPath = this.normalizeImportPath(componentImportPath);
+
+        //移除文件扩展名称
+        let lastIndexOf = componentImportPath.lastIndexOf(".");
+        if (lastIndexOf > 0) {
+            componentImportPath = componentImportPath.substring(0, lastIndexOf);
+        }
+
+        springReactRouteConfig.component = componentImportPath;
         return springReactRouteConfig;
+    };
+
+    /**
+     * 按照路由的严格模式排序，宽松模式排排后面
+     * @param routes
+     */
+    private sortByExact = (routes: GenerateSpringReactRouteOptions[]) => {
+        return routes.sort((item1, item2) => {
+            //sub route 强制就是按照严格模式匹配
+            // if (item1.routes) {
+            //     item1.routes = this.sortByExact(item1.routes);
+            // }
+
+            if (item1.exact) {
+                return 0
+            }
+            if (item2.exact) {
+                return 1
+            }
+            return -1;
+        });
+    };
+
+    /**
+     * 标准化导入语句
+     * @param componentImportPath
+     */
+    private normalizeImportPath = (componentImportPath: string) => {
+        return componentImportPath.replace(/\\/g, "/");
     }
 }

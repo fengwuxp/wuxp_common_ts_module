@@ -1,13 +1,15 @@
 import * as React from "react";
-import {ReactView} from "fengwuxp-spring-react/src/route/ReactView";
+import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
+import IndexView from "@pages/index";
 
 
 interface DetailProps {
 
 }
 
-@ReactView({
-    condition:"member.add"
+@ReactViewMapping({
+    condition: "member.add",
+    parent: IndexView
 })
 export default class DetailView extends React.Component<DetailProps> {
 

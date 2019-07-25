@@ -19,12 +19,11 @@ export default class DefaultRouteMethodResolver implements RouteMethodResolver {
             return null;
         }
 
+        //加上第一个斜杆
+        return URI_SYMBOL_SLASH + methodName.replace(/[A-Z]+/g, (s) => {
 
-
-        return methodName.replace(/[A-Z]+/g,(s)=>{
-
-            return `/${s.toUpperCase()}`
-        }).replace(REPLACE_COLON_SYMBOL,URI_SYMBOL_COLON);
+            return `${URI_SYMBOL_SLASH}${s.toUpperCase()}`
+        }).replace(REPLACE_COLON_SYMBOL, URI_SYMBOL_COLON);
     };
 
     uriToMethodName = (uri: string) => {
@@ -37,6 +36,10 @@ export default class DefaultRouteMethodResolver implements RouteMethodResolver {
         return chars.map((item, index) => {
             switch (item) {
                 case URI_SYMBOL_SLASH:
+                    if (index == 0) {
+                        //忽略第一个斜杆
+                        return "";
+                    }
                     //斜杠转驼峰
                     const nextChart = chars[index + 1].toUpperCase();
                     chars[index + 1] = nextChart;

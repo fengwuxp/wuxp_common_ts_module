@@ -1,8 +1,9 @@
 import {ConditionType} from "fengwuxp-spring-context/src/condition/ConditionType";
 
-
-export interface ReactViewOptions {
-
+/**
+ * 视图映射配置
+ */
+export interface ViewMappingOptions<P = {}, S = {}> {
 
     /**
      * 所有的页面文件默认放在views目录下
@@ -11,7 +12,7 @@ export interface ReactViewOptions {
     pathname?: string;
 
     /**
-     * 页面的中文名称
+     * 页面的名称
      * 默认 null
      */
     name?: string;
@@ -24,6 +25,16 @@ export interface ReactViewOptions {
     exact?: boolean;
 
     /**
+     * 页面接收的查询参数
+     */
+    queryParams?: P;
+
+    /**
+     * 页面接收的状态
+     */
+    state: S;
+
+    /**
      * 进入页面的条件，例如进行登陆检查、权限检查等
      * default true
      * @param context 应用上下文
@@ -33,13 +44,6 @@ export interface ReactViewOptions {
 
 
 /**
- * 用来标记一个react 组件是一个视图
- * 通过 babel-plugin-spring来处理这个标记，生成对应的路由列表，并移除该装饰器
- * @scope only compiler
- * @target Class
- * @constructor
+ * 视图映射
  */
-export const ReactView = (options: ReactViewOptions) => {
-
-    return (target) => target;
-};
+export type ViewMapping<T extends ViewMappingOptions = ViewMappingOptions, V = any> = (mappingOptions: T) => V;

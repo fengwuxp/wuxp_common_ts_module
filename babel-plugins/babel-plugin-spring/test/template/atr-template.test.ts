@@ -26,14 +26,22 @@ describe('art template test', () => {
                     name: "测试页面1",
                     pathname: "/test",
                     exact: true,
-
-                    component: "../../test/TestView"
+                    component: "../../test/TestView",
+                    routes:[
+                        {
+                            name: "测试子页面",
+                            pathname: "/test",
+                            exact: true,
+                            component: "../../test/TestSubView",
+                        }
+                    ]
                 },
                 {
                     name: "首页",
                     pathname: "/home",
                     exact: true,
-                    component: "../../home/HomeView"
+                    component: "../../home/HomeView",
+
                 }
             ]
         });

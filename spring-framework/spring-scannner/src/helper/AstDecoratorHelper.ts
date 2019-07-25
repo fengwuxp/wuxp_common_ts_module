@@ -10,7 +10,7 @@ import {
     isClassDeclaration,
     isImportDeclaration
 } from "@babel/types";
-import {REACT_VIEW_DECORATOR_PACKAGE_NAME} from "../constant/DecoratorPackageConstantVar";
+import {REACT_VIEW_MAPPING_DECORATOR_PACKAGE_NAME} from "../constant/DecoratorPackageConstantVar";
 
 
 /**
@@ -30,7 +30,7 @@ export const hasReactViewDecorator = (file: File) => {
  */
 export const getReactViewDecorator = (file: File) => {
 
-    return getFileDecorator(file, REACT_VIEW_DECORATOR_PACKAGE_NAME);
+    return getFileDecorator(file, REACT_VIEW_MAPPING_DECORATOR_PACKAGE_NAME);
 };
 
 

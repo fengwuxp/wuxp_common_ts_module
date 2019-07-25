@@ -46,7 +46,9 @@ export default function (options?: ScannerOptions) {
     reactRouteConfigGenerator.generator(files, {
         outputPath: scannerOptions.generateOutputPath,
         projectBasePath: scannerOptions.projectBasePath,
-        scanPackages: scannerOptions.scanPackages
+        scanPackages: scannerOptions.scanPackages,
+        aliasBasePath: scannerOptions.aliasBasePath,
+        aliasConfiguration: scannerOptions.aliasConfiguration
     });
 
 }

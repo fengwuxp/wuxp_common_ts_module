@@ -2,13 +2,12 @@ import * as React from "react";
 import {ReactViewMapping} from "fengwuxp-spring-react/src/route/ReactViewMapping";
 
 
-interface DetailProps {
-
-}
-
 @ReactViewMapping({
-    condition:"member.add"
+    condition:(context)=>{
+
+        return false;
+    }
 })
-export default class DetailView extends React.Component<DetailProps> {
+export default class HomeIndexView extends React.Component<{},{}> {
 
 }

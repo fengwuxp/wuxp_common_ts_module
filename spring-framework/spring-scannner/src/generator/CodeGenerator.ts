@@ -1,5 +1,3 @@
-
-
 /**
  * code generator
  */
@@ -19,4 +17,15 @@ export interface CodeGeneratorOptions {
 
     //项目根路径
     projectBasePath: string;
+
+    /**
+     * 别名配置的根路径
+     */
+    aliasBasePath?: string;
+    /**
+     * 导入语句的别名配置
+     */
+    aliasConfiguration?: {
+        [key: string]: string[];
+    };
 }

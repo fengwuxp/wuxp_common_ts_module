@@ -26,5 +26,5 @@ export interface SpringReactRouteConfig extends RouteConfig {
     /**
      * children
      */
-    routes?: SpringReactRouteConfig[]
+    routes?: SpringReactRouteConfig[];
 }
