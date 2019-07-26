@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp-spring-scannner",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -49,19 +49,19 @@
     "@babel/template": "^7.0.0",
     "@babel/traverse": "^7.0.0",
     "art-template": "^4.13.2",
-    "fengwuxp-spring-context": "^1.0.0",
-    "fengwuxp-spring-react": "^1.0.0",
+    "fengwuxp-spring-context": "^1.0.5",
+    "fengwuxp-spring-react": "^1.0.5",
     "log4js": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "@types/node": "^11.13.10",
-    "fengwuxp_common_test": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0",
+    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_utils": "^1.0.5",
     "jest": "^23.6.0",
     "loader-utils": "^1.2.3",
     "test-model-1": "^1.0.0",
     "typescript": "^3.4.5"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

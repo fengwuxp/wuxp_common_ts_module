@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_react_router",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "common react router",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -31,12 +31,12 @@
     "@types/react-router-config": "^1.1.2",
     "@types/react-router-dom": "^4.3.1",
     "classnames": "^2.2.6",
-    "fengwuxp_common_auth": "^1.0.0",
+    "fengwuxp_common_auth": "^1.0.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^4.3.1",
     "react-router-config": "^4.4.0-beta.7",
     "react-router-dom": "^4.4.0-beta.7"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

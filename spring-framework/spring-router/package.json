@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp-spring-router",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "spring router",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,10 +24,10 @@
   "dependencies": {
     "@types/history": "^4.7.2",
     "@types/node": "^12.0.4",
-    "fengwuxp-spring-context": "^1.0.0",
-    "fengwuxp_common_proxy": "^1.0.0",
-    "fengwuxp_common_test": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0",
+    "fengwuxp-spring-context": "^1.0.5",
+    "fengwuxp_common_proxy": "^1.0.5",
+    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_utils": "^1.0.5",
     "history": "^4.9.0",
     "typescript": "^3.5.1"
   },
@@ -37,5 +37,5 @@
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.9.3"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

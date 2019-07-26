@@ -1,6 +1,6 @@
 {
   "name": "oak_common",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "oak common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -22,13 +22,15 @@
   "types": "./index.d.ts",
   "author": "wuxp",
   "license": "BSD-3-Clause",
+  "dependencies": {
+    "blueimp-md5": "^2.11.0"
+  },
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "blueimp-md5": "^2.11.0",
-    "fengwuxp_common_fetch": "^1.0.0",
-    "fengwuxp_common_plugins": "^1.0.0",
-    "fengwuxp_common_test": "^1.0.0",
-    "fengwuxp_common_utils": "^1.0.0"
+    "fengwuxp_common_fetch": "^1.0.5",
+    "fengwuxp_common_plugins": "^1.0.5",
+    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_utils": "^1.0.5"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp-spring-react",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -29,10 +29,10 @@
     "@types/react-router-config": "^5.0.0",
     "@types/react-router-dom": "^4.3.3",
     "classnames": "^2.2.6",
-    "fengwuxp-spring-beans": "^1.0.0",
-    "fengwuxp-spring-context": "^1.0.0",
-    "fengwuxp-spring-router": "^1.0.0",
-    "fengwuxp_common_auth": "^1.0.0",
+    "fengwuxp-spring-beans": "^1.0.5",
+    "fengwuxp-spring-context": "^1.0.5",
+    "fengwuxp-spring-router": "^1.0.5",
+    "fengwuxp_common_auth": "^1.0.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loadable": "^5.5.0",
@@ -40,5 +40,5 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

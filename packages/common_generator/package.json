@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_generator",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "common generator",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -20,5 +20,5 @@
     "npm_i": "npm i",
     "npm_publish": "npm publish"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

@@ -1,6 +1,6 @@
 {
   "name": "compress_image",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "javascript image compress image",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -51,10 +51,10 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.2",
-    "fengwuxp_common_utils": "^1.0.0",
-    "fengwuxp_common_webpack": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.5",
+    "fengwuxp_common_webpack": "^1.0.5",
     "typescript": "^3.2.2",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^3.3.6"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

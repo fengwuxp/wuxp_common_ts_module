@@ -1,6 +1,6 @@
 {
   "name": "antd_mobile_starter",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "基于ant mobile的通用壳子",
   "main": "index.js",
   "publishConfig": {
@@ -29,12 +29,12 @@
     "antd-mobile": "^2.2.9",
     "art-template": "^4.12.2",
     "art-template-loader": "^1.4.3",
-    "fengwuxp_common_fetch": "^1.0.0",
-    "fengwuxp_common_react": "^1.0.0",
-    "fengwuxp_common_react_router": "^1.0.0",
-    "fengwuxp_common_redux": "^1.0.0",
-    "fengwuxp_common_route": "^1.0.0",
-    "fengwuxp_common_starter": "^1.0.0",
+    "fengwuxp_common_fetch": "^1.0.5",
+    "fengwuxp_common_react": "^1.0.5",
+    "fengwuxp_common_react_router": "^1.0.5",
+    "fengwuxp_common_redux": "^1.0.5",
+    "fengwuxp_common_route": "^1.0.5",
+    "fengwuxp_common_starter": "^1.0.5",
     "omit.js": "^1.0.0",
     "prop-types": "^15.6.2",
     "rc-animate": "^2.5.4",
@@ -48,5 +48,5 @@
     "react-swipeable-views": "^0.12.16",
     "react-swipeable-views-utils": "^0.12.16"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

@@ -1,7 +1,7 @@
 {
   "name": "fengwuxp_common_webpack",
   "description": "common webpack",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -81,5 +81,5 @@
     "webpack-merge": "^4.2.1",
     "webpack-uglify-parallel": "^0.1.4"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

@@ -1,6 +1,6 @@
 {
   "name": "weex_starter",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "weex starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,19 +23,19 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "@types/weex": "^1.0.0",
-    "fengwuxp_common_test": "^1.0.0"
+    "@types/weex": "^1.0.5",
+    "fengwuxp_common_test": "^1.0.5"
   },
   "dependencies": {
-    "fengwuxp_common_auth": "^1.0.0",
-    "fengwuxp_common_config": "^1.0.0",
-    "fengwuxp_common_core": "^1.0.0",
-    "fengwuxp_common_fetch": "^1.0.0",
-    "fengwuxp_common_route": "^1.0.0",
-    "fengwuxp_common_starter": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.0",
-    "fengwuxp_common_webpack": "^1.0.0",
-    "fengwuxp_common_weex": "^1.0.0",
+    "fengwuxp_common_auth": "^1.0.5",
+    "fengwuxp_common_config": "^1.0.5",
+    "fengwuxp_common_core": "^1.0.5",
+    "fengwuxp_common_fetch": "^1.0.5",
+    "fengwuxp_common_route": "^1.0.5",
+    "fengwuxp_common_starter": "^1.0.5",
+    "fengwuxp_common_style": "^1.0.5",
+    "fengwuxp_common_webpack": "^1.0.5",
+    "fengwuxp_common_weex": "^1.0.5",
     "md5": "^2.2.1",
     "postcss-plugin-px2rem": "^0.8.0",
     "postcss-plugin-weex": "^0.1.7",
@@ -50,10 +50,10 @@
     "weex-vue-loader": "~0.7.0-bate",
     "weex-vue-precompiler": "^0.1.23-bate",
     "weex-vue-render": "^1.0.33",
-    "weex_components": "^1.0.0"
+    "weex_components": "^1.0.5"
   },
   "optionalDependencies": {
     "weex-devtool": "^0.3.8"
   },
-  "gitHead": "c59985e596775aa0729956f2afabe49dabcc4451"
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }
