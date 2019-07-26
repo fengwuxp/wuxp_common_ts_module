@@ -4,7 +4,6 @@
     "components/*",
     "oak/*",
     "packages/*",
-    "spring-framework/*",
     "starters/*",
     "types/*"
   ],
