@@ -61,6 +61,11 @@ export interface RestTemplateConfig extends RetryOptions {
      * @see {@link ../constant/http/MediaType}
      */
     produces?: string[];
+
+    /**
+     * 默认的fetch options
+     */
+    defaultFetchOptions: FetchOptions;
 }
 
 const defaultTemplateConfig: RestTemplateConfig = {
@@ -75,7 +80,8 @@ const defaultTemplateConfig: RestTemplateConfig = {
 
     headers: {
         'Accept': 'application/json, application/json;charset=UTF-8, text/plain, */*'
-    }
+    },
+    defaultFetchOptions: {} as FetchOptions
 };
 
 //响应类型的映射关系
@@ -160,18 +166,22 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             options = transformRequest(options);
         }
 
+        const newOptions = {
+            ...this.templateConfig.defaultFetchOptions,
+            ...options
+        };
 
         let fetchOptions, resp, response, fetchIsError;
         try {
             //执行前置拦截器
-            fetchOptions = await interceptorExecutor.preHandle(options);
+            fetchOptions = await interceptorExecutor.preHandle(newOptions);
         } catch (e) {
             //忽略前置拦截器的执行异常
             console.error("interceptor pre handle error", e);
         }
 
         //获取请求客户端
-        const fetchClient = this.getFetchClient(options);
+        const fetchClient = this.getFetchClient(fetchOptions);
 
         try {
             //请求数据

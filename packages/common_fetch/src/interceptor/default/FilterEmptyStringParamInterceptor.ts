@@ -4,7 +4,7 @@ import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 
 
 /**
- * 过滤参数中的空字符串
+ * 过滤参数中的null 和 空字符串
  */
 export default class FilterEmptyStringParamInterceptor extends AbstractFetchInterceptor<FetchOptions> {
 
