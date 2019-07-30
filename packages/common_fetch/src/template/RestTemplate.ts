@@ -119,10 +119,13 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     protected interceptorExecutor: FetchInterceptorExecutor;
 
 
-    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, fetchClient: FetchClient, interceptorExecutor: FetchInterceptorExecutor) {
+    constructor(templateConfig: RestTemplateConfig,
+                routingStrategy: ApiRoutingStrategy,
+                fetchClient: FetchClient,
+                interceptorExecutor: FetchInterceptorExecutor) {
         this.templateConfig = {
-            ...templateConfig,
-            ...defaultTemplateConfig
+            ...defaultTemplateConfig,
+            ...templateConfig
         };
         this.routingStrategy = routingStrategy;
         this.fetchClient = fetchClient;
