@@ -162,17 +162,19 @@ export abstract class AbstractRestTemplate implements RestTemplate {
 
         //TODO 进行重试的参数设置
 
+        let newOptions = {
+            ...this.templateConfig.defaultFetchOptions,
+            ...options
+        };
+
+
 
         const transformRequest = options.transformRequest;
         if (transformRequest) {
             //执行 transformRequest
-            options = transformRequest(options);
+            newOptions = transformRequest(newOptions);
         }
 
-        const newOptions = {
-            ...this.templateConfig.defaultFetchOptions,
-            ...options
-        };
 
         let fetchOptions, resp, response, fetchIsError;
         try {
@@ -190,7 +192,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             //请求数据
             resp = await fetchClient.request(fetchOptions);
         } catch (e) {
-            const {statusText, headers, data, status} = e;
+            const {statusText, headers, status} = e;
             console.debug("请求异常", status, statusText);
             const exception: HttpFetchException = {
                 name: HttpFetchExceptionName,

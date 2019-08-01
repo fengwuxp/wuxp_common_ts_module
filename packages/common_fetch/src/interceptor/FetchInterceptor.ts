@@ -30,7 +30,7 @@ export interface FetchInterceptor<T = any> {
     postHandleError?<R>(response: R, options: T): R | undefined | null;
 
     /**
-     * 请求完成后执行，不论成功或失败，一旦实现了改方法则将不会执行postHandle或postHandleError
+     * 请求完成后执行，不论成功或失败，一旦实现了该方法则将不会执行postHandle或postHandleError
      * @param response
      * @param options
      */

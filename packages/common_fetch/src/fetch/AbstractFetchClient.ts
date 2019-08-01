@@ -98,6 +98,11 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
             //默认以表单的形式提交数据
             headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
         }
+        if (options.enabledGzip) {
+            //开启gzip压缩
+            headers["Accept-Encoding"] = "gzip";
+        }
+
         return options;
 
     }

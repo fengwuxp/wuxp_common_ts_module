@@ -1,4 +1,4 @@
-const md5 = require("md5");
+const md5 = require("blueimp-md5");
 
 /**
  * ap请求时签名

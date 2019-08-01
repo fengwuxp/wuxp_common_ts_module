@@ -14,6 +14,7 @@ import {RequestMethod} from "../src/constant/RequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
 import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
+import FilterEmptyStringParamInterceptor from "../src/interceptor/default/FilterEmptyStringParamInterceptor";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -37,10 +38,15 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
                 consumes: [MediaType.JSON_UTF8],
                 produces: [MediaType.JSON_UTF8],
                 timeout: 10 * 1000,
-                headers: {}
+                headers: {},
+                defaultFetchOptions: {
+                    filterEmptyString: true
+                },
             }, new DefaultApiRoutingStrategy(routingMapping),
             new DefaultFetchClient(new MockFetchAdapter()),
-            new FetchInterceptorExecutor([]));
+            new FetchInterceptorExecutor([
+                new FilterEmptyStringParamInterceptor()
+            ]));
         return restTemplate;
     };
 }
@@ -115,11 +121,15 @@ describe("test proxy api service", () => {
         await testService.testQuery({
             memberId: 1,
             file: new Blob()
+        }, {
+            filterEmptyString: false
         }).then((data) => {
             logger.debug("--请求结束，成功->", data);
         }).catch((e) => {
             logger.debug("--请求结束，失败-->", e);
-        }).f;
+        }).finally(() => {
+
+        });
 
         // testService.deleteMember({memberId: 1});
     }, 30 * 1000);

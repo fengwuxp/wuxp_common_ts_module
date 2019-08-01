@@ -12,7 +12,10 @@ import RetryFetchClient from "../fetch/RetryFetchClient";
 export default class DefaultRestTemplate extends AbstractRestTemplate {
 
 
-    constructor(templateConfig: RestTemplateConfig, routingStrategy: ApiRoutingStrategy, engine: FetchClient, executor: FetchInterceptorExecutor) {
+    constructor(templateConfig: RestTemplateConfig,
+                routingStrategy: ApiRoutingStrategy,
+                engine: FetchClient,
+                executor: FetchInterceptorExecutor) {
         super(templateConfig, routingStrategy, engine, executor);
     }
 

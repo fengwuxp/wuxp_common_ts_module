@@ -81,7 +81,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
         }
 
         try {
-            authorizationHeaderValue = await this.getToken();
+            authorizationHeaderValue = await this.getToken(params);
             // console.log("token", token);
             (params as FetchOptions).headers[this.authorizationHeaderName] = authorizationHeaderValue;
         } catch (e) {
@@ -102,7 +102,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
     };
 
 
-    protected abstract getToken: () => Promise<string>;
+    protected abstract getToken: (options: T) => Promise<string>;
 
 
     /**

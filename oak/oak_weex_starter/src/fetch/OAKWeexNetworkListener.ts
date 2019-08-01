@@ -49,6 +49,6 @@ export class OAKWeexNetworkListener implements NetworkStatusListener {
 export class OakWeexNoneNetworkFailBack implements NoneNetworkFailBack {
 
     handle = () => {
-        weexToast("网络未连接哦~");
+        // weexToast("网络未连接哦~");
     };
 }
