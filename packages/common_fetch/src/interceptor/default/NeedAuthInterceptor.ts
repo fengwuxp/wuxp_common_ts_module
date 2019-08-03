@@ -38,7 +38,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 }
 
 
-export interface SyncAuthHelper<T = FetchOptions, R = FetchResponse> {
+export interface SyncAuthHelper<T extends FetchOptions  = FetchOptions, R extends FetchResponse<any> = FetchResponse<any>> {
 
 
     /**

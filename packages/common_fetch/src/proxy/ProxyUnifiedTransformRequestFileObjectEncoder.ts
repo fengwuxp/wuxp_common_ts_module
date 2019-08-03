@@ -120,9 +120,9 @@ export class ProxyUnifiedTransformRequestFileObjectEncoder implements RequestDat
      * 上传
      * @param value
      */
-    private uploadFile = (value): Promise<any> => this.fileUploadStrategy.upload({
+    private uploadFile = (value): Promise<string> => this.fileUploadStrategy.upload({
         data: value
-    })
+    } as any)
 
 
 }

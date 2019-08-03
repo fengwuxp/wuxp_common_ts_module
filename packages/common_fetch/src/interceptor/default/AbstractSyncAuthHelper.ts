@@ -21,7 +21,7 @@ export interface RefreshTokenResult {
 /**
  * 抽象的实现
  */
-export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse> implements SyncAuthHelper<T, R> {
+export abstract class AbstractSyncAuthHelper<T extends FetchOptions = FetchOptions, R extends FetchResponse = FetchResponse> implements SyncAuthHelper<T, R> {
 
 
     protected static REFRESH_TOKEN_TIMER_ID;
@@ -74,7 +74,7 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
 
     async requestParamsEnhance(params: T): Promise<T> {
 
-        let authorizationHeaderValue: string = (params as FetchOptions).headers[this.authorizationHeaderName];
+        let authorizationHeaderValue: string = params.headers[this.authorizationHeaderName];
         if (StringUtils.hasText(authorizationHeaderValue)) {
             //如果默认有传鉴权字段，则不再处理
             return params;
@@ -83,11 +83,11 @@ export abstract class AbstractSyncAuthHelper<T = FetchOptions, R = FetchResponse
         try {
             authorizationHeaderValue = await this.getToken(params);
             // console.log("token", token);
-            (params as FetchOptions).headers[this.authorizationHeaderName] = authorizationHeaderValue;
+            params.headers[this.authorizationHeaderName] = authorizationHeaderValue;
         } catch (e) {
             console.log("获取token失败", e);
             //获取本地用户信息失败 登录
-            if ((params as FetchOptions).needAuth === true) {
+            if (params.needAuth === true) {
                 console.log("需要鉴权加入等待鉴权队列", params);
                 return this.buildWaitPromise({
                     options: params,
