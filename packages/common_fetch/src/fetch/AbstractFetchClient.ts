@@ -4,9 +4,8 @@ import {RequestMethod} from "../constant/RequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import {stringify} from "querystring";
 import {MediaType} from "../constant/http/MediaType";
+import {contentTypeName} from "../constant/FeignConstVar";
 
-
-const contentTypeName = 'Content-Type';
 
 /**
  * 抽象的fetch client 实现
@@ -73,31 +72,40 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         const {contentType, data, method, queryPrams, url, headers} = options;
 
+
+        if (headers[contentTypeName] == null) {
+            //默认以表单的形式提交数据
+            headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
+        }
+
+        const newContentType = headers[contentTypeName];
+
+        options.contentType = newContentType;
+
+
         if (method === RequestMethod.GET) {
             //处理查询参数
             const queryParams = {
                 ...data,
                 ...queryPrams
             };
-            options.url = `${url}${url.endsWith("?") ? '&' : "?"}${stringify(queryParams)}`;
+            options.url = `${url}${url.endsWith("?") ? '&' : '?'}${stringify(queryParams)}`;
             delete options.data;
             delete options.queryPrams;
 
         } else if (method === RequestMethod.POST) {
             //POST请求
-            if (contentType === MediaType.FORM_DATA) {
+            if (newContentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据
                 options.data = stringify(data);
-            } else if (contentType === MediaType.JSON_UTF8) {
+            } else if (newContentType === MediaType.JSON_UTF8) {
                 //json
                 options.data = JSON.stringify(data);
             } else {
             }
         }
-        if (headers[contentTypeName] == null) {
-            //默认以表单的形式提交数据
-            headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
-        }
+
+
         if (options.enabledGzip) {
             //开启gzip压缩
             headers["Accept-Encoding"] = "gzip";

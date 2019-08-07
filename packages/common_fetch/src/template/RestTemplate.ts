@@ -65,7 +65,7 @@ export interface RestTemplateConfig extends RetryOptions {
     /**
      * 默认的fetch options
      */
-    defaultFetchOptions: FetchOptions;
+    defaultFetchOptions?: FetchOptions;
 }
 
 const defaultTemplateConfig: RestTemplateConfig = {
@@ -135,31 +135,6 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     async fetch(options: FetchOptions): Promise<FetchResponse> {
 
         const interceptorExecutor = this.interceptorExecutor;
-
-        //参数检查
-        if (!options.method) {
-            options.method = this.templateConfig.method;
-        }
-
-        if (!options.contentType) {
-            //请求提交的数据类型
-            options.contentType = this.templateConfig.produces[0] || MediaType.JSON_UTF8;
-        }
-
-        if (options.timeout == null) {
-            //请求提交的数据类型
-            options.timeout = this.templateConfig.timeout;
-        }
-
-        if (options.responseType == null) {
-            //默认使用json
-            options.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
-        }
-
-        //路由
-        //TODO 进制值复制处理
-        options.url = this.routingStrategy.route(options.url);
-
         //TODO 进行重试的参数设置
 
         let newOptions = {
@@ -167,9 +142,32 @@ export abstract class AbstractRestTemplate implements RestTemplate {
             ...options
         };
 
+        //参数检查
+        if (!newOptions.method) {
+            newOptions.method = this.templateConfig.method;
+        }
+
+        if (!newOptions.contentType) {
+            //请求提交的数据类型
+            newOptions.contentType = this.templateConfig.produces[0] || MediaType.JSON_UTF8;
+        }
+
+        if (newOptions.timeout == null) {
+            //请求提交的数据类型
+            newOptions.timeout = this.templateConfig.timeout;
+        }
+
+        if (newOptions.responseType == null) {
+            //默认使用json
+            newOptions.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
+        }
+
+        //路由
+        //TODO 进制值复制处理
+        newOptions.url = this.routingStrategy.route(newOptions.url);
 
 
-        const transformRequest = options.transformRequest;
+        const transformRequest = newOptions.transformRequest;
         if (transformRequest) {
             //执行 transformRequest
             newOptions = transformRequest(newOptions);

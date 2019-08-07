@@ -3,6 +3,8 @@ import {ResponseType} from "../../constant/ResponseType";
 import {WebFetchOptions} from "./WebFetchOptions";
 import {RequestMethod} from "../../constant/RequestMethod";
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
+import {MediaType} from "../../constant/http/MediaType";
+import {contentTypeName} from "../../constant/FeignConstVar";
 
 
 // RequestInit 属性name列表
@@ -62,6 +64,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
      */
     private buildRequest(options: WebFetchOptions): RequestInfo {
         let {
+            contentType,
             url,
             method,
             headers,
@@ -69,6 +72,12 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
             mode
         } = options;
 
+
+        if (contentType === MediaType.MULTIPART_FORM_DATA) {
+            //移除
+            //@link https://segmentfault.com/a/1190000010205162
+            delete headers[contentTypeName];
+        }
 
         const reqMethodElement = RequestMethod[method];
 

@@ -1,5 +1,6 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
+import {isBrowserFormData} from "../../utils/EvnAndTypeUtil";
 
 /**
  * 默认处理时间类型属性的方式
@@ -9,6 +10,10 @@ export default class DefaultTransformDateInterceptor extends AbstractFetchInterc
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
         const data = params.data;
+
+        if (isBrowserFormData(data)) {
+            return params;
+        }
         if (data != null) {
             for (const key in data) {
                 const val = data[key];

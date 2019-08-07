@@ -93,18 +93,6 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             }
         }
 
-        //transform request data encoder
-        for (const encoder of this.requestEncoders) {
-            if (!encoder.needExecute(options, serviceMethodConfig)) {
-                continue;
-            }
-            try {
-                data = await encoder.encode(data, serviceMethodConfig);
-            } catch (e) {
-                console.error("编码转换出现异常", e);
-            }
-        }
-
 
         if (this.apiSignatureStrategy != null) {
             //签名处理
@@ -115,6 +103,19 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
                 ...sign
             };
         }
+
+        //transform request data encoder
+        for (const encoder of this.requestEncoders) {
+            if (!encoder.needExecute(fetchOptions, serviceMethodConfig)) {
+                continue;
+            }
+            try {
+                fetchOptions.data = await encoder.encode(fetchOptions.data, serviceMethodConfig);
+            } catch (e) {
+                console.error("编码转换出现异常", e);
+            }
+        }
+
 
         //需要重试
         (fetchOptions as FetchRetryOptions).retryOptions = retryOptions;
@@ -130,7 +131,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         //加入数据解码
         for (const decoder of this.responseDecoders) {
-            if (!decoder.needExecute(options, serviceMethodConfig)) {
+            if (!decoder.needExecute(fetchOptions, serviceMethodConfig)) {
                 continue;
             }
             response = decoder.decode(response, serviceMethodConfig);

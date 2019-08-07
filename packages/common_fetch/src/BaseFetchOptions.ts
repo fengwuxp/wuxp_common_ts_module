@@ -56,7 +56,7 @@ export interface BaseFetchOptions {
      * 是否开启gzip压缩
      * 默认：false
      */
-    enabledGzip: boolean;
+    enabledGzip?: boolean;
 
     /**
      * 请求之前的执行的函数，在拦截器执行之前执行

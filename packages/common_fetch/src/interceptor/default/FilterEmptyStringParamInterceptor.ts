@@ -1,6 +1,7 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions} from "../../FetchOptions";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
+import {isBrowserFormData} from "../../utils/EvnAndTypeUtil";
 
 
 /**
@@ -13,7 +14,7 @@ export default class FilterEmptyStringParamInterceptor extends AbstractFetchInte
 
         const {filterEmptyString, data} = options;
 
-        if (filterEmptyString === false || data == null) {
+        if (filterEmptyString === false || data == null || isBrowserFormData(data)) {
             return Promise.resolve(options);
         }
         const newData = {};

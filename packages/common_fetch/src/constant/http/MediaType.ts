@@ -11,6 +11,12 @@ export enum MediaType {
 
 
     /**
+     * 文件上传
+     */
+    MULTIPART_FORM_DATA = "multipart/form-data",
+
+
+    /**
      * json
      */
     JSON = "application/json",
@@ -22,5 +28,10 @@ export enum MediaType {
 
     TEXT = "text/plain",
 
-    HTML = "text/html"
+    HTML = "text/html",
+
+    /**
+     * 流
+     */
+    STREAM="application/octet-stream"
 }

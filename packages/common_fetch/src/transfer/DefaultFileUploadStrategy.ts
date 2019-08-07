@@ -6,6 +6,7 @@ import {fileToBase64} from "fengwuxp_common_utils/src/codec/FileConverterUtil";
 import {MediaType} from "../constant/http/MediaType";
 import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
+import {isBrowser} from "../utils/EvnAndTypeUtil";
 
 
 /**
@@ -63,7 +64,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
         };
         const {data, contentType, formDataFileName} = fetchOptions;
         if (data.constructor === File || data.constructor === Blob) {
-            if (typeof window === "undefined") {
+            if (!isBrowser()) {
                 throw new Error("File or Blob only support browser");
             }
             const name = formDataFileName;

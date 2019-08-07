@@ -14,10 +14,14 @@ import OAKTaroSyncAuthHelper from "./OAKTaroSyncAuthHelper";
 import TaroUnifiedRespProcessInterceptor from "./TaroUnifiedRespProcessInterceptor";
 import FeignProxyExecutorHolder from "fengwuxp_common_fetch/src/proxy/feign/FeignProxyExecutorHolder";
 import TaroJsHolder, {TaroInterface} from "taro_starter/src/TaroJsHolder";
-import DefaultTransformDateInterceptor from "fengwuxp_common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
+import DefaultTransformDateInterceptor
+    from "fengwuxp_common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
 import {OAKTaroNetworkListener} from "./OAKTaroNetworkListener";
 import NeedNetworkInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedNetworkInterceptor";
-import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
+import {RestTemplate, RestTemplateConfig} from "fengwuxp_common_fetch/src/template/RestTemplate";
+import {RequestMethod} from "fengwuxp_common_fetch/src/constant/RequestMethod";
+import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
 
 interface OAKEnvVar {
 
@@ -57,6 +61,8 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
     }
 
     initFeignProxyFactory = (options?: {
+        defaultProduce?: MediaType
+        defaultFetchOptions?: FetchOptions,
         interceptor: (needNetworkInterceptor: NeedNetworkInterceptor,
                       needProgressBarInterceptor: NeedProgressBarInterceptor,
                       needAuthInterceptor: NeedAuthInterceptor,
@@ -72,11 +78,14 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             new DefaultTransformDateInterceptor(),
         ];
 
+
         if (this.oakEnvVar != null) {
             const interceptorList = this.interceptorList || [];
             const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
                 this.routeMapping,
-                interceptorList);
+                interceptorList,
+                options.defaultProduce,
+                options.defaultFetchOptions);
 
             //设置template
             needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null));
@@ -99,7 +108,9 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
             const interceptorList = [];
             const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
                 this.routeMapping,
-                interceptorList);
+                interceptorList,
+                options.defaultProduce,
+                options.defaultFetchOptions);
             interceptorList.push(...interceptor(
                 defaultInterceptorList[0] as any,
                 defaultInterceptorList[1] as any,
