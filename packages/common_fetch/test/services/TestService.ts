@@ -15,7 +15,7 @@ import {FetchRetry} from "../../src/annotations/retry/FetchRetry";
  **/
 @Feign({
     // apiModule: "member",
-    value: "test"
+    value: "test/"
 })
 export default class TestService {
 
@@ -24,7 +24,7 @@ export default class TestService {
 
     @Signature({fields: []})
     @RequestMapping({
-        value: "testQuery",
+        value: "/testQuery",
         method: RequestMethod.POST,
         headers:{}
     })

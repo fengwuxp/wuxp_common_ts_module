@@ -44,6 +44,7 @@ const getApiUriByApiService = (apiService: FeignProxy, feignOptions: FeignOption
     return `@${apiModule}${serviceName.startsWith("/") ? serviceName : "/" + serviceName}`;
 };
 
+
 /**
  * 通过 ApiService Method 生成uri
  * @param apiService
