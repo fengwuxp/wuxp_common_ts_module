@@ -59,7 +59,7 @@ export class BeanType {
 
     public static create = (name: string,
                             exportName: string = name,
-                            importPath: string = "N",
+                            importPath: string = "NormalizeUrl.ts",
                             supperClass?: any,
                             supperInterfaces?: string[]) => {
 

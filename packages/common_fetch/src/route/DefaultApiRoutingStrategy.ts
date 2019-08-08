@@ -1,5 +1,4 @@
 import {ApiRoutingMapping, ApiRoutingStrategy} from "./ApiRoutingStrategy";
-import normalizeUrl from "normalize-url"
 
 
 /**
@@ -16,7 +15,7 @@ export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
 
     route = (url: string): string => {
         if (/^(http|https)/.test(url)) {
-            return url;
+            return normalizeUrl(url);
         }
         if (!/^(@)/.test(url)) {
             throw  new Error(`illegal routing url -> ${url}`);
@@ -33,3 +32,17 @@ export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
 
 
 }
+
+/**
+ * Remove duplicate slashes if not preceded by a protocol
+ * @param url
+ */
+const normalizeUrl = (url: string): string => {
+    return url.replace(/((?!:).|^)\/{2,}/g, (_, p1) => {
+        if (/^(?!\/)/g.test(p1)) {
+            return `${p1}/`;
+        }
+
+        return '/';
+    });
+};

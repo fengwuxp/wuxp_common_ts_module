@@ -62,3 +62,5 @@ const getApiUriByApiServiceMethod = (apiService: FeignProxy, methodName: string)
 
     return value.startsWith("/") ? value : `/${value}`;
 };
+
+

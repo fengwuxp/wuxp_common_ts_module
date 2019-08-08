@@ -81,11 +81,12 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
 
         if (this.oakEnvVar != null) {
             const interceptorList = this.interceptorList || [];
+            const optionsIsNull = options == null;
             const templateLoader: RestTemplateLoader = new OAKTaroDefaultRestTemplateLoader(
                 this.routeMapping,
                 interceptorList,
-                options.defaultProduce,
-                options.defaultFetchOptions);
+                optionsIsNull ? null : options.defaultProduce,
+                optionsIsNull ? null : options.defaultFetchOptions);
 
             //设置template
             needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null));

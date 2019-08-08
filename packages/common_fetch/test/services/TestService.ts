@@ -24,7 +24,7 @@ export default class TestService {
 
     @Signature({fields: []})
     @RequestMapping({
-        value: "/testQuery",
+        value: "//testQuery",
         method: RequestMethod.POST,
         headers:{}
     })

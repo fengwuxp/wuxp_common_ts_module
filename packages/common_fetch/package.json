@@ -48,7 +48,6 @@
     "fengwuxp_common_utils": "^1.0.5",
     "fetch-detector": "^1.0.1",
     "fetch-ie8": "^1.5.0",
-    "normalize-url": "^4.3.0",
     "isomorphic-fetch": "^2.2.1",
     "tslib": "^1.9.3",
     "file-saver": "^2.0.2"
