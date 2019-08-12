@@ -216,3 +216,17 @@ export const getNextYear = (time: number) => {
     date.setFullYear(date.getFullYear() + 1);
     return date;
 };
+
+/**
+ * 计算2个日期相差的天数
+ * @param begin       开始时间
+ * @param end         结束时间
+ * @param includeToday  是否包含今天
+ */
+export const dateDiffToDays = (begin: Date, end: Date, includeToday: boolean = false): number => {
+
+    begin = getDateTimeBegin(begin);
+    end = getDateTimeEnd(end);
+
+    return Math.floor(Math.abs(end.getTime() - begin.getTime()) / ONE_DAY_MILLISECONDS) + (includeToday ? 1 : 0);
+};

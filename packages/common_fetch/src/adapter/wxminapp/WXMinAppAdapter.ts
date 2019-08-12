@@ -43,16 +43,18 @@ export default class WXMinAppAdapter extends AbstractFetchAdapter<WebFetchOption
                 complete: (response: FetchResp) => {
                     const ok = response.statusCode >= 200 && response.statusCode <= 300;
                     const {header, data, statusCode} = response;
+
                     const result = {
                         headers: header,
                         data: data || response,
                         status: statusCode,
                         ok
                     };
+                    const resp = this.resolveResponse.resolve(result);
                     if (ok) {
-                        resolve(result);
+                        resolve(resp);
                     } else {
-                        reject(result);
+                        reject(resp);
                     }
                 },
             });
