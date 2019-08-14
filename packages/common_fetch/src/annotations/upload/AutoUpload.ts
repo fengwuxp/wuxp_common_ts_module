@@ -1,5 +1,6 @@
 import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 /**
  * 需要自动上传配置
@@ -21,7 +22,7 @@ export interface NeedAutoUploadOptions {
  * @param options  需要自动上传
  * @constructor
  */
-export function AutoUpload<T extends ProxyApiService>(options: NeedAutoUploadOptions): Function {
+export function AutoUpload<T extends FeignProxy>(options: NeedAutoUploadOptions): Function {
 
 
     /**

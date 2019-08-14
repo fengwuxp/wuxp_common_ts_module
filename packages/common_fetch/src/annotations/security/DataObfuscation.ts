@@ -1,5 +1,5 @@
-import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 /**
  * 数据混淆配置
@@ -22,7 +22,7 @@ export interface DataObfuscationOptions {
  * @param options 数据混淆
  * @constructor
  */
-export function DataObfuscation<T extends ProxyApiService>(options: DataObfuscationOptions): Function {
+export function DataObfuscation<T extends FeignProxy>(options: DataObfuscationOptions): Function {
 
 
     /**
@@ -31,7 +31,7 @@ export function DataObfuscation<T extends ProxyApiService>(options: DataObfuscat
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function (target: T, name: string, descriptor: PropertyDescriptor): T {
+    return function (target: FeignProxy, name: string, descriptor: PropertyDescriptor): FeignProxy {
         defaultGenerateAnnotationMethodConfig(target, name, {
             dataObfuscationOptions: options
         });

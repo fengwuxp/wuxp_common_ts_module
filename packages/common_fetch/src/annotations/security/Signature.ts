@@ -1,5 +1,5 @@
-import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 /**
  * 签名配置
@@ -17,7 +17,7 @@ export interface SignatureOptions {
  * @param options 签名配置
  * @constructor
  */
-export function Signature<T extends ProxyApiService>(options: SignatureOptions): Function {
+export function Signature<T extends FeignProxy>(options: SignatureOptions): Function {
 
 
     /**

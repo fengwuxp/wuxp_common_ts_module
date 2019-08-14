@@ -1,7 +1,7 @@
 import {RequestMethod} from "../../constant/RequestMethod";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
-import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {MediaType} from "../../constant/http/MediaType";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 
 export interface BaseRequestMappingOptions {
@@ -69,7 +69,7 @@ export type Mapping<T extends BaseRequestMappingOptions = BaseRequestMappingOpti
  */
 export function generateMapping<T extends BaseRequestMappingOptions>(method?: RequestMethod): Mapping<T> {
 
-    return function <E extends ProxyApiService>(options: T): Function {
+    return function <E extends FeignProxy>(options: T): Function {
 
 
         /**

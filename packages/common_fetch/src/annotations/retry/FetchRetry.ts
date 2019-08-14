@@ -1,6 +1,6 @@
-import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {RetryOptions} from "../../FetchRetryOptions";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 export const defaultOptions: RetryOptions = {
     retries: 1,
@@ -13,7 +13,7 @@ export const defaultOptions: RetryOptions = {
  * @param options
  * @constructor
  */
-export function FetchRetry<T extends ProxyApiService>(options: RetryOptions): Function {
+export function FetchRetry<T extends FeignProxy>(options: RetryOptions): Function {
 
 
     /**

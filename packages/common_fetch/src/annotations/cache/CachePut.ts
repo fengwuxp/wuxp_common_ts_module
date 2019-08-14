@@ -1,5 +1,5 @@
-import {ProxyApiService} from "../../proxy/ProxyApiService";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
+import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 /**
  * 缓存配置
@@ -31,7 +31,7 @@ export interface CachePutOptions {
  * @param options  缓存配置
  * @constructor
  */
-export function CachePut<T extends ProxyApiService>(options: CachePutOptions): Function {
+export function CachePut<T extends FeignProxy>(options: CachePutOptions): Function {
 
 
     /**
