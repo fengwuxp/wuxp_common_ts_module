@@ -16,7 +16,7 @@ export type GenerateAnnotationMethodConfig<T extends ProxyApiService = ProxyApiS
  * @param methodName
  * @param options
  */
-export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConfig<ProxyApiService,
+export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConfig<FeignProxy,
     FeignProxyApiServiceMethodConfig> = (targetService: FeignProxy,
                                          methodName: string,
                                          options: FeignProxyApiServiceMethodConfig) => {

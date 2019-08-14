@@ -12,10 +12,10 @@ export default class DefaultProxyServiceFactory extends AbstractProxyServiceFact
 
     factory<T extends ProxyApiService>(targetService: T): T {
         return ProxyFactory.newProxyInstance(
-            targetService, (target: ProxyApiService, serviceMethod: string, receiver: any) => {
+            targetService, (target: ProxyApiService, serviceMethod: PropertyKey, receiver: any) => {
                 return (...args) => {
                     //TODO  根据不同的策略可以返回不同的代理服务执行器
-                    return this.getProxyServiceExecutor().execute(targetService, serviceMethod, ...args);
+                    return this.getProxyServiceExecutor().execute(targetService, serviceMethod as string, ...args);
                 };
             }, null,
             ProxyScope.METHOD,
