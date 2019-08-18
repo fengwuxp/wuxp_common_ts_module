@@ -91,7 +91,12 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
             ...(queryParams || {})
         };
 
-        let url = `/${this.prefix}${paths[0].startsWith("/") ? "" : "/"}${paths[0]}`;
+        let url = paths[0];
+        if (!url.startsWith(this.prefix) && !url.startsWith(`/${this.prefix}`)) {
+            //没有包含前缀
+            url = url.startsWith("/") ? `${this.prefix}${url}` : `${this.prefix}/${url}`;
+        }
+        url = url.startsWith("/") ? url : `/${url}`;
 
         if (Object.keys(params).length > 0) {
             url = `${url}?${stringify(params)}`;

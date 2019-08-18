@@ -1,4 +1,4 @@
-import {asyncComponent} from "fengwuxp-spring-react/src/route/AsyncComponent";
+import asyncComponent from "fengwuxp-spring-react/src/route/AsyncComponent";
 import {SpringReactRouteConfig} from "fengwuxp-spring-react/src/route/SpringReactRouteConfig";
 
 /**

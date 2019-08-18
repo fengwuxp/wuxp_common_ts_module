@@ -34,6 +34,7 @@
   },
   "include": [
     "src/**/*",
+    ".spring/**/*",
     "node_modules/fengwuxp_common_starter/types/index.d.ts"
   ],
   "exclude": [

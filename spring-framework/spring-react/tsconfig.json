@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "esnext",
@@ -11,6 +11,8 @@
     "baseUrl": "./src",
     "outDir": "./lib",
     "declaration": true,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
     "importHelpers": true,
     "types": [
       "node",

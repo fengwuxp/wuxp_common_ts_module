@@ -63,6 +63,7 @@ class DateFormatUtils {
 
         if (/\w*T\w*/.test(source)) {
             //TODO 带有时区
+            throw new Error("not support");
         } else {
             return new Date(source.replace(/-/g, "/"));
         }
