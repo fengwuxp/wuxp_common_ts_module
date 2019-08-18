@@ -57,7 +57,7 @@ class TaroAppRouterHelper implements AppRouterHelper {
             return {
                 viewParams: viewInstance.$router.params,
                 viewPreload: viewInstance.$router.preload,
-                viewState
+                viewState: viewState == null ? {} as any : viewState
             }
         });
     };
