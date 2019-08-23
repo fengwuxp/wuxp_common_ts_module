@@ -63,6 +63,9 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
     initFeignProxyFactory = (options?: {
         defaultProduce?: MediaType
         defaultFetchOptions?: FetchOptions,
+
+        //鉴权请求头的名称
+        authorizationHeaderName?: string;
         interceptor: (needNetworkInterceptor: NeedNetworkInterceptor,
                       needProgressBarInterceptor: NeedProgressBarInterceptor,
                       needAuthInterceptor: NeedAuthInterceptor,
@@ -89,7 +92,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
                 optionsIsNull ? null : options.defaultFetchOptions);
 
             //设置template
-            needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null));
+            needAuthInterceptor.authHelper = new OAKTaroSyncAuthHelper(templateLoader.load(null), optionsIsNull ? null : options.authorizationHeaderName);
 
             interceptorList.push(
                 ...defaultInterceptorList,

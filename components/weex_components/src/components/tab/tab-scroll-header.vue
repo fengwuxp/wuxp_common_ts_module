@@ -86,13 +86,12 @@
 
                 }
 
-                if (this.startScrollIndex <= index) {
-                    const elIndex = index - this.startScrollIndex;
-                    const currentTabEl = this.$refs[`tab-title-${elIndex}`][0];
-                    previousPage !== index && dom.scrollToElement(currentTabEl, {
-                        animated: true
-                    });
-                }
+                const isRight = this.startScrollIndex <= index;
+                const elIndex = isRight ? index - this.startScrollIndex : 0;
+                const currentTabEl = this.$refs[`tab-title-${elIndex}`][0];
+                previousPage !== index && dom.scrollToElement(currentTabEl, {
+                    animated: true
+                });
 
 
                 this.currentPage = index;

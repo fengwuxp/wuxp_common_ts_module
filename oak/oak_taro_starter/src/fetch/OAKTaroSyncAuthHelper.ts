@@ -1,6 +1,9 @@
 import {FetchOptions, FetchResponse} from "fengwuxp_common_fetch/src/FetchOptions";
 import taroDefaultSessionManager from "taro_starter/src/session/TaroDefaultSessionManager";
-import {AbstractSyncAuthHelper, RefreshTokenResult} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
+import {
+    AbstractSyncAuthHelper,
+    RefreshTokenResult
+} from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
 import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
 import TaroJsHolder, {TaroInterfaceHolder} from "taro_starter/src/TaroJsHolder";
 
@@ -12,8 +15,14 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper<FetchO
 
     protected taroHolder: TaroInterfaceHolder;
 
-    constructor(testTemplate: RestTemplate, authorizationHeaderName?: string) {
+    protected tokenAttrName: string;
+
+    constructor(testTemplate: RestTemplate,
+                authorizationHeaderName?: string,
+                tokenAttrName?: string
+    ) {
         super(testTemplate, authorizationHeaderName);
+        this.tokenAttrName = tokenAttrName || "token";
         this.taroHolder = TaroJsHolder.getTaroHolder();
     }
 
@@ -35,7 +44,7 @@ export default class OAKTaroSyncAuthHelper extends AbstractSyncAuthHelper<FetchO
 
     protected getToken = (): Promise<string> => {
         return taroDefaultSessionManager.getMember().then((member) => {
-            const token = member[this.authorizationHeaderName];
+            const token = member[this.tokenAttrName];
             if (this.verifyToken(token)) {
                 return token;
             } else {

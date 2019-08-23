@@ -1,0 +1,37 @@
+{
+  "name": "fengwuxp-spring-data",
+  "version": "1.0.5",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
+    "npm_publish": "npm publish"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "devDependencies": {
+    "fengwuxp_common_proxy": "^1.0.5",
+    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_utils": "^1.0.5",
+    "jest": "^23.6.0",
+    "log4js": "^4.0.2"
+  },
+  "dependencies": {
+    "rxjs": "^6.4.0",
+    "fengwuxp_common_event_bus": "^1.0.5",
+    "immutable": "^4.0.0-rc.12"
+  },
+  "gitHead": "7f9f674005bae0a4f54232ad0b46b9bd8dcd0b78"
+}

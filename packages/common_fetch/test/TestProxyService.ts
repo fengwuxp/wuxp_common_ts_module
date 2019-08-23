@@ -15,13 +15,15 @@ import {MediaType} from "../src/constant/http/MediaType";
 import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
 import FilterEmptyStringParamInterceptor from "../src/interceptor/default/FilterEmptyStringParamInterceptor";
+import SystemService from "./services/SystemService";
+import NodeFetchAdapter from "../src/adapter/node/NodeFetchAdapter";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
 
 
 const routingMapping = {
-    default: "https://test.oaknt.com/api"
+    default: "http://127.0.0.1:18080/api"
 };
 
 class TestRestTemplateLoader extends AbstractRestTemplateLoader {
@@ -43,7 +45,7 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
                     filterEmptyString: true
                 },
             }, new DefaultApiRoutingStrategy(routingMapping),
-            new DefaultFetchClient(new MockFetchAdapter()),
+            new DefaultFetchClient(new NodeFetchAdapter()),
             new FetchInterceptorExecutor([
                 new FilterEmptyStringParamInterceptor()
             ]));
@@ -94,8 +96,9 @@ class TestProxyServiceExecutor extends DefaultProxyServiceExecutor {
 
 const restTemplate: RestTemplateLoader = new TestRestTemplateLoader();
 
+
 const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(restTemplate,
-    new TestApiSignatureStrategy("a", "b", "node"));
+    new TestApiSignatureStrategy("app", "2aecdd9db7d816462e2232632c90f8fa", "WEB"));
 
 
 //设置代理执行器
@@ -104,6 +107,17 @@ FeignProxyExecutorHolder.registerDefaultExecutor(proxyServiceExecutor);
 
 describe("test proxy api service", () => {
 
+
+    test("node evn http", async () => {
+
+        await SystemService.currentTime({}).then((data) => {
+
+            logger.info(`数据`, data);
+        }).catch((error) => {
+            logger.error(`异常 `, error);
+        });
+
+    }, 30 * 1000);
 
     test("test mock api method", async () => {
 

@@ -28,7 +28,7 @@ export const ReactRouteView = (options: ReactRouteViewOptions): Function => {
      * @param  {string} name                     装饰的属性的 key
      * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
      */
-    return function (ReactComponent: any, name: string, descriptor: PropertyDescriptor): any {
+    return function (ReactComponent: React.Component<any,any>, name: string, descriptor: PropertyDescriptor): any {
 
 
         return (props) => {
@@ -55,6 +55,7 @@ export const ReactRouteView = (options: ReactRouteViewOptions): Function => {
                 []
             );
 
+            // @ts-ignore
             return <ReactComponent {...props} {...eventProps}/>;
         };
 

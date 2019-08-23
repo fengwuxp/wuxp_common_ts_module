@@ -22,7 +22,7 @@ export const ConditionRouteRender:React.FunctionComponent<ConditionRouteRenderPr
     if (condition != null) {
         let r = false;
         if (typeof condition === "function") {
-            r = condition(props["context"], ...props) as boolean;
+            r = condition(props["context"], ...(props as any)) as boolean;
         } else {
             r = condition as boolean;
         }
@@ -39,6 +39,7 @@ export const ConditionRouteRender:React.FunctionComponent<ConditionRouteRenderPr
     }
 
 
+    // @ts-ignore
     return <>
         {children}
     </>;

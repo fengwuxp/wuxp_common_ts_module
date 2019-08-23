@@ -6,7 +6,7 @@ import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardizati
 /**
  * 标准化的扫码能力
  */
-export interface WeexStandardizeScanQrCodeModule  extends WeexStandardizedModule{
+export interface WeexStandardizeScanQrCodeModule extends WeexStandardizedModule {
 
     /**
      * ZXing扫码
@@ -52,7 +52,10 @@ const weexStandardizeScanQrCodeModule: WeexStandardizeScanQrCodeModule = standar
         scanWithZXing,
         scanWithZbar: scanWithZXing
     },
-    transformCallbackMap:{}
+    transformCallbackMap: {
+        scanWithZXing: (resolve, reject) => [resolve, reject],
+        scanWithZbar: (resolve, reject) => [resolve, reject],
+    }
 });
 /**
  * 标准化的扫码模块
