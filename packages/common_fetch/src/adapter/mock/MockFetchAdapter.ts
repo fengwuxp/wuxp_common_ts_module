@@ -11,18 +11,21 @@ export default class MockFetchAdapter extends AbstractFetchAdapter<FetchOptions>
 
     protected mockDataSource: Record<string, MockDataType> = {};
 
+    protected baseUrl: string = "";
+
     //是否启用参数匹配
     // protected enabledParamsPattern: boolean = false;
 
-    constructor(mockDataSource: Record<string, any>) {
+    constructor(baseUrl: string, mockDataSource?: Record<string, any>) {
         super();
+        this.baseUrl = baseUrl;
         this.mockDataSource = mockDataSource || {};
     }
 
     request = (options: FetchOptions): Promise<FetchResponse> => {
 
         const {url} = options;
-        const key = url.split("?")[0];
+        const key = url.split("?")[0].replace(this.baseUrl, "");
         const result: MockDataType = this.mockDataSource[key];
         if (result == null) {
             const response: Response = {

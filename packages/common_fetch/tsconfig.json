@@ -2,7 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
 //    "compileOnSave": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

@@ -42,6 +42,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
             });
             //超时控制
             const timeId = setTimeout(() => {
+                //丢弃请求
                 console.debug("web fetch adapter request timeout");
                 reject({
                     status: 502,
@@ -131,7 +132,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
             case ResponseType.BLOB:
                 return this.paresBlob(response);
             default:
-                const error = new Error("不支持的结果数据类型：" + dataType);
+                const error = new Error(`不支持的结果数据类型： ${dataType}`);
                 error['response'] = response;
                 throw error;
         }

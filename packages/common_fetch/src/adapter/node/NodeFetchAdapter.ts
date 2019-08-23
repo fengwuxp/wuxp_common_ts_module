@@ -4,6 +4,7 @@ import request from "request";
 import {MediaType} from "../../constant/http/MediaType";
 import {NodeFetchOptions} from "./NodeFetchOptions";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
+import {ResponseType} from "../../constant/ResponseType";
 
 /**
  * node fetch adapter
@@ -13,7 +14,7 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
 
     request = (options: NodeFetchOptions): Promise<FetchResponse> => {
 
-        const {url, method, headers, timeout, jar} = options;
+        const {url, method, responseType, headers, timeout, jar, auth, oauth} = options;
 
         return new Promise<FetchResponse>((resolve, reject) => {
 
@@ -22,6 +23,8 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
                 method,
                 headers,
                 jar,
+                auth,
+                oauth,
                 timeout,
                 ...this.buildOption(options)
             }, (error, response, body) => {
@@ -31,7 +34,7 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
                         statusText: response.statusMessage,
                         status: response.statusCode,
                         headers: response.headers,
-                        data: StringUtils.hasText(body) ? JSON.parse(body) : null
+                        data: this.parse(response, responseType)
                     }));
                 } else {
                     reject(this.resolveResponse.resolve({
@@ -45,12 +48,11 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
     };
 
 
-    protected buildOption = (options: NodeFetchOptions) => {
+    private buildOption = (options: NodeFetchOptions) => {
 
         const {contentType, data} = options;
 
         if (contentType === MediaType.FORM_DATA) {
-
             return {
                 form: data
             }
@@ -59,14 +61,40 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
                 body: data
             }
         } else if (contentType === MediaType.MULTIPART_FORM_DATA) {
-
             return {
                 formData: data
-
             }
-
         }
 
         return {};
     };
+
+    /**
+     * 格式化数据
+     * @param response
+     * @param dataType
+     * @return {any}
+     */
+    private parse = (response: any, dataType: ResponseType): Promise<any> => {
+
+        const body = response.body;
+
+        switch (dataType) {
+            case ResponseType.JSON:
+                return StringUtils.hasText(body) ? JSON.parse(body) : null;
+            case ResponseType.TEXT:
+                return body;
+            case ResponseType.HTML:
+                return body;
+            case ResponseType.SCRIPT:
+                return body;
+            case ResponseType.BLOB:
+                return body;
+            default:
+                const error = new Error(`不支持的结果数据类型： ${dataType}`);
+                error['response'] = response;
+                throw error;
+        }
+
+    }
 }

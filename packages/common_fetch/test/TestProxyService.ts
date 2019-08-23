@@ -12,11 +12,12 @@ import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy"
 import {apiSign} from "./utils/ApiSginUtils";
 import {RequestMethod} from "../src/constant/RequestMethod";
 import {MediaType} from "../src/constant/http/MediaType";
-import {MockFetchAdapter} from "./mock/MockFetchAdapter";
+// import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
 import FilterEmptyStringParamInterceptor from "../src/interceptor/default/FilterEmptyStringParamInterceptor";
 import SystemService from "./services/SystemService";
 import NodeFetchAdapter from "../src/adapter/node/NodeFetchAdapter";
+import MockFetchAdapter from "../src/adapter/mock/MockFetchAdapter";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -45,7 +46,8 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
                     filterEmptyString: true
                 },
             }, new DefaultApiRoutingStrategy(routingMapping),
-            new DefaultFetchClient(new NodeFetchAdapter()),
+            // new DefaultFetchClient(new NodeFetchAdapter()),
+            new DefaultFetchClient(new MockFetchAdapter("")),
             new FetchInterceptorExecutor([
                 new FilterEmptyStringParamInterceptor()
             ]));
