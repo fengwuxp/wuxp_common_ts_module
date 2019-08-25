@@ -4,6 +4,9 @@ import {
     BaseNode
 } from "@babel/types";
 
+/**
+ * decorator program processor
+ */
 export interface DecoratorProgramProcessor extends ProgramProcessor {
 
 

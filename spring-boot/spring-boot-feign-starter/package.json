@@ -1,0 +1,37 @@
+{
+  "name": "spring-boot-feign-starter",
+  "version": "1.0.0",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_rest_dependencies": "rm -rf ./node_modules & npm run yarn_i",
+    "npm_publish": "npm publish"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@types/node": "^12.0.7",
+    "@types/history": "^4.7.2",
+    "history": "^4.9.0",
+    "fengwuxp_common_event_bus": "^1.0.0",
+    "fengwuxp_common_fetch": "^1.0.0",
+    "fengwuxp_common_utils": "^1.0.0",
+    "fengwuxp-spring-beans": "^1.0.0",
+    "fengwuxp-spring-context": "^1.0.0",
+    "fengwuxp-spring-react": "^1.0.0"
+  }
+}

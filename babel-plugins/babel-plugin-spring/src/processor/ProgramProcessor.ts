@@ -3,7 +3,9 @@ import {
     Program
 } from "@babel/types";
 
-
+/**
+ * program processor
+ */
 export interface ProgramProcessor {
 
     /**

@@ -16,9 +16,8 @@ describe('art template test', () => {
     };
 
 
-
     test("test code generator", () => {
-        const paths = "../../resources/react/ReactRouterConfigCodeTemplate.art";
+        const paths = "../../node_modules/fengwuxp-spring-scannner/resources/react/ReactRouterConfigCodeTemplate.art";
 
         const result = template(paths, {
             routes: [
@@ -27,7 +26,7 @@ describe('art template test', () => {
                     pathname: "/test",
                     exact: true,
                     component: "../../test/TestView",
-                    routes:[
+                    routes: [
                         {
                             name: "测试子页面",
                             pathname: "/test",
@@ -47,12 +46,15 @@ describe('art template test', () => {
         });
 
 
-        fs.writeFile(path.resolve(__dirname,"./ReactRouterConfig.ts"),
+        const output = path.resolve(__dirname, "../../.spring/ReactRouterConfig.ts");
+        logger.debug("output", output);
+        fs.writeFile(output,
             result,
             {flag: "w+"},
             (e) => {
                 logger.debug(e)
-            });
+            }
+        );
 
         logger.debug("result", result)
     });

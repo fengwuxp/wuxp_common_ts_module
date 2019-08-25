@@ -2,35 +2,34 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "target": "es5",
-    "outDir": "lib",
+    "module": "esnext",
+    "target": "es6",
     "sourceMap": false,
-    "allowJs": false,
     "baseUrl": "./src",
-    "paths": {
-    },
+    "declaration": true,
+    "importHelpers": true,
     "types": [
       "node",
       "jest",
-      "webpack"
+      "js-yaml",
+      "lodash"
     ],
     "lib": [
-      "esnext",
-      "dom",
       "es6",
       "es2015",
       "es2015.promise"
     ]
   },
   "include": [
-    "src/**/*",
-    "test/**/*"
+    "./src/**/*",
+    "./test/**/*",
+    "./types/**/*.d.ts"
   ],
   "exclude": [
+    "dist",
     "node_modules",
     "**/*.spec.ts"
   ]

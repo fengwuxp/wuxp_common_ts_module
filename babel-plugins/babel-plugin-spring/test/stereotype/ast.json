@@ -1,0 +1,1455 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 743,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 37,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "interpreter": null,
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 42,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 42
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 8,
+          "end": 19,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 19
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 19,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 19
+              },
+              "identifierName": "TestService"
+            },
+            "name": "TestService"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 19,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 19
+              },
+              "identifierName": "TestService"
+            },
+            "name": "TestService"
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "start": 26,
+        "end": 41,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 26
+          },
+          "end": {
+            "line": 1,
+            "column": 41
+          }
+        },
+        "extra": {
+          "rawValue": "./TestService",
+          "raw": "\"./TestService\""
+        },
+        "value": "./TestService"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 44,
+      "end": 122,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 78
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 52,
+          "end": 61,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 8
+            },
+            "end": {
+              "line": 2,
+              "column": 17
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 52,
+            "end": 61,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 8
+              },
+              "end": {
+                "line": 2,
+                "column": 17
+              },
+              "identifierName": "AutoWried"
+            },
+            "name": "AutoWried"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 52,
+            "end": 61,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 8
+              },
+              "end": {
+                "line": 2,
+                "column": 17
+              },
+              "identifierName": "AutoWried"
+            },
+            "name": "AutoWried"
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "start": 68,
+        "end": 121,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 24
+          },
+          "end": {
+            "line": 2,
+            "column": 77
+          }
+        },
+        "extra": {
+          "rawValue": "fengwuxp-spring-beans/lib/src/annotations/AutoWried",
+          "raw": "\"fengwuxp-spring-beans/lib/src/annotations/AutoWried\""
+        },
+        "value": "fengwuxp-spring-beans/lib/src/annotations/AutoWried"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 124,
+      "end": 218,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 94
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 132,
+          "end": 139,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 8
+            },
+            "end": {
+              "line": 3,
+              "column": 15
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 132,
+            "end": 139,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 8
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              },
+              "identifierName": "Service"
+            },
+            "name": "Service"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 132,
+            "end": 139,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 8
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              },
+              "identifierName": "Service"
+            },
+            "name": "Service"
+          }
+        }
+      ],
+      "source": {
+        "type": "StringLiteral",
+        "start": 146,
+        "end": 217,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 22
+          },
+          "end": {
+            "line": 3,
+            "column": 93
+          }
+        },
+        "extra": {
+          "rawValue": "../../../../../spring-framework/spring-context/src/stereotype/Service",
+          "raw": "\"../../../../../spring-framework/spring-context/src/stereotype/Service\""
+        },
+        "value": "../../../../../spring-framework/spring-context/src/stereotype/Service"
+      },
+      "trailingComments": [
+        {
+          "type": "CommentBlock",
+          "value": "*\r\n * example service\r\n ",
+          "start": 224,
+          "end": 252,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 254,
+      "end": 323,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 1
+        }
+      },
+      "specifiers": [],
+      "source": null,
+      "declaration": {
+        "type": "TSInterfaceDeclaration",
+        "start": 261,
+        "end": 323,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 7
+          },
+          "end": {
+            "line": 12,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 271,
+          "end": 285,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 17
+            },
+            "end": {
+              "line": 9,
+              "column": 31
+            },
+            "identifierName": "ExampleService"
+          },
+          "name": "ExampleService"
+        },
+        "typeParameters": {
+          "type": "TSTypeParameterDeclaration",
+          "start": 285,
+          "end": 290,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 31
+            },
+            "end": {
+              "line": 9,
+              "column": 36
+            }
+          },
+          "params": [
+            {
+              "type": "TSTypeParameter",
+              "start": 286,
+              "end": 287,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 32
+                },
+                "end": {
+                  "line": 9,
+                  "column": 33
+                }
+              },
+              "name": "T"
+            },
+            {
+              "type": "TSTypeParameter",
+              "start": 288,
+              "end": 289,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 34
+                },
+                "end": {
+                  "line": 9,
+                  "column": 35
+                }
+              },
+              "name": "K"
+            }
+          ]
+        },
+        "body": {
+          "type": "TSInterfaceBody",
+          "start": 291,
+          "end": 323,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 37
+            },
+            "end": {
+              "line": 12,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "TSPropertySignature",
+              "start": 300,
+              "end": 320,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 4
+                },
+                "end": {
+                  "line": 11,
+                  "column": 24
+                }
+              },
+              "key": {
+                "type": "Identifier",
+                "start": 300,
+                "end": 307,
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 11
+                  },
+                  "identifierName": "useTest"
+                },
+                "name": "useTest"
+              },
+              "computed": false,
+              "typeAnnotation": {
+                "type": "TSTypeAnnotation",
+                "start": 307,
+                "end": 319,
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 23
+                  }
+                },
+                "typeAnnotation": {
+                  "type": "TSFunctionType",
+                  "start": 309,
+                  "end": 319,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 23
+                    }
+                  },
+                  "parameters": [],
+                  "typeAnnotation": {
+                    "type": "TSTypeAnnotation",
+                    "start": 312,
+                    "end": 319,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 23
+                      }
+                    },
+                    "typeAnnotation": {
+                      "type": "TSVoidKeyword",
+                      "start": 315,
+                      "end": 319,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 23
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "CommentBlock",
+          "value": "*\r\n * example service\r\n ",
+          "start": 224,
+          "end": 252,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentBlock",
+          "value": "*\r\n * abstract example service\r\n ",
+          "start": 327,
+          "end": 364,
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 16,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ClassDeclaration",
+      "start": 366,
+      "end": 410,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 1
+        }
+      },
+      "abstract": true,
+      "id": {
+        "type": "Identifier",
+        "start": 381,
+        "end": 403,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 15
+          },
+          "end": {
+            "line": 17,
+            "column": 37
+          },
+          "identifierName": "AbstractExampleService"
+        },
+        "name": "AbstractExampleService"
+      },
+      "superClass": null,
+      "body": {
+        "type": "ClassBody",
+        "start": 404,
+        "end": 410,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 38
+          },
+          "end": {
+            "line": 19,
+            "column": 1
+          }
+        },
+        "body": []
+      },
+      "leadingComments": [
+        {
+          "type": "CommentBlock",
+          "value": "*\r\n * abstract example service\r\n ",
+          "start": 327,
+          "end": 364,
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 16,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 426,
+      "end": 741,
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 36,
+          "column": 1
+        }
+      },
+      "specifiers": [],
+      "source": null,
+      "declaration": {
+        "type": "ClassDeclaration",
+        "start": 414,
+        "end": 741,
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 0
+          },
+          "end": {
+            "line": 36,
+            "column": 1
+          }
+        },
+        "decorators": [
+          {
+            "type": "Decorator",
+            "start": 414,
+            "end": 424,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 0
+              },
+              "end": {
+                "line": 21,
+                "column": 10
+              }
+            },
+            "expression": {
+              "type": "CallExpression",
+              "start": 415,
+              "end": 424,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 1
+                },
+                "end": {
+                  "line": 21,
+                  "column": 10
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 415,
+                "end": 422,
+                "loc": {
+                  "start": {
+                    "line": 21,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 21,
+                    "column": 8
+                  },
+                  "identifierName": "Service"
+                },
+                "name": "Service"
+              },
+              "arguments": []
+            }
+          }
+        ],
+        "id": {
+          "type": "Identifier",
+          "start": 439,
+          "end": 457,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 13
+            },
+            "end": {
+              "line": 22,
+              "column": 31
+            },
+            "identifierName": "ExampleServiceImpl"
+          },
+          "name": "ExampleServiceImpl"
+        },
+        "typeParameters": {
+          "type": "TSTypeParameterDeclaration",
+          "start": 457,
+          "end": 460,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 31
+            },
+            "end": {
+              "line": 22,
+              "column": 34
+            }
+          },
+          "params": [
+            {
+              "type": "TSTypeParameter",
+              "start": 458,
+              "end": 459,
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 32
+                },
+                "end": {
+                  "line": 22,
+                  "column": 33
+                }
+              },
+              "name": "T"
+            }
+          ]
+        },
+        "superClass": {
+          "type": "Identifier",
+          "start": 469,
+          "end": 491,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 43
+            },
+            "end": {
+              "line": 22,
+              "column": 65
+            },
+            "identifierName": "AbstractExampleService"
+          },
+          "name": "AbstractExampleService"
+        },
+        "implements": [
+          {
+            "type": "TSExpressionWithTypeArguments",
+            "start": 503,
+            "end": 527,
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 77
+              },
+              "end": {
+                "line": 22,
+                "column": 101
+              }
+            },
+            "expression": {
+              "type": "Identifier",
+              "start": 503,
+              "end": 517,
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 77
+                },
+                "end": {
+                  "line": 22,
+                  "column": 91
+                },
+                "identifierName": "ExampleService"
+              },
+              "name": "ExampleService"
+            },
+            "typeParameters": {
+              "type": "TSTypeParameterInstantiation",
+              "start": 517,
+              "end": 527,
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 91
+                },
+                "end": {
+                  "line": 22,
+                  "column": 101
+                }
+              },
+              "params": [
+                {
+                  "type": "TSTypeReference",
+                  "start": 518,
+                  "end": 519,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 92
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 93
+                    }
+                  },
+                  "typeName": {
+                    "type": "Identifier",
+                    "start": 518,
+                    "end": 519,
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 92
+                      },
+                      "end": {
+                        "line": 22,
+                        "column": 93
+                      },
+                      "identifierName": "T"
+                    },
+                    "name": "T"
+                  }
+                },
+                {
+                  "type": "TSStringKeyword",
+                  "start": 520,
+                  "end": 526,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 94
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 100
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "body": {
+          "type": "ClassBody",
+          "start": 528,
+          "end": 741,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 102
+            },
+            "end": {
+              "line": 36,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ClassProperty",
+              "start": 537,
+              "end": 588,
+              "loc": {
+                "start": {
+                  "line": 24,
+                  "column": 4
+                },
+                "end": {
+                  "line": 25,
+                  "column": 37
+                }
+              },
+              "decorators": [
+                {
+                  "type": "Decorator",
+                  "start": 537,
+                  "end": 549,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 16
+                    }
+                  },
+                  "expression": {
+                    "type": "CallExpression",
+                    "start": 538,
+                    "end": 549,
+                    "loc": {
+                      "start": {
+                        "line": 24,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 16
+                      }
+                    },
+                    "callee": {
+                      "type": "Identifier",
+                      "start": 538,
+                      "end": 547,
+                      "loc": {
+                        "start": {
+                          "line": 24,
+                          "column": 5
+                        },
+                        "end": {
+                          "line": 24,
+                          "column": 14
+                        },
+                        "identifierName": "AutoWried"
+                      },
+                      "name": "AutoWried"
+                    },
+                    "arguments": []
+                  }
+                }
+              ],
+              "accessibility": "private",
+              "static": false,
+              "key": {
+                "type": "Identifier",
+                "start": 563,
+                "end": 574,
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 23
+                  },
+                  "identifierName": "testService"
+                },
+                "name": "testService"
+              },
+              "computed": false,
+              "typeAnnotation": {
+                "type": "TSTypeAnnotation",
+                "start": 574,
+                "end": 587,
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 23
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 36
+                  }
+                },
+                "typeAnnotation": {
+                  "type": "TSTypeReference",
+                  "start": 576,
+                  "end": 587,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 36
+                    }
+                  },
+                  "typeName": {
+                    "type": "Identifier",
+                    "start": 576,
+                    "end": 587,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 36
+                      },
+                      "identifierName": "TestService"
+                    },
+                    "name": "TestService"
+                  }
+                }
+              },
+              "value": null
+            },
+            {
+              "type": "ClassProperty",
+              "start": 596,
+              "end": 734,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 4
+                },
+                "end": {
+                  "line": 33,
+                  "column": 6
+                }
+              },
+              "static": false,
+              "key": {
+                "type": "Identifier",
+                "start": 596,
+                "end": 603,
+                "loc": {
+                  "start": {
+                    "line": 27,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 11
+                  },
+                  "identifierName": "useTest"
+                },
+                "name": "useTest"
+              },
+              "computed": false,
+              "value": {
+                "type": "ArrowFunctionExpression",
+                "start": 606,
+                "end": 733,
+                "loc": {
+                  "start": {
+                    "line": 27,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 5
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 612,
+                  "end": 733,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 20
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 625,
+                      "end": 646,
+                      "loc": {
+                        "start": {
+                          "line": 29,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 29,
+                          "column": 29
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 625,
+                        "end": 645,
+                        "loc": {
+                          "start": {
+                            "line": 29,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 29,
+                            "column": 28
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 625,
+                          "end": 643,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 26
+                            }
+                          },
+                          "object": {
+                            "type": "MemberExpression",
+                            "start": 625,
+                            "end": 641,
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 24
+                              }
+                            },
+                            "object": {
+                              "type": "ThisExpression",
+                              "start": 625,
+                              "end": 629,
+                              "loc": {
+                                "start": {
+                                  "line": 29,
+                                  "column": 8
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 12
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 630,
+                              "end": 641,
+                              "loc": {
+                                "start": {
+                                  "line": 29,
+                                  "column": 13
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 24
+                                },
+                                "identifierName": "testService"
+                              },
+                              "name": "testService"
+                            },
+                            "computed": false
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 642,
+                            "end": 643,
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 25
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 26
+                              },
+                              "identifierName": "a"
+                            },
+                            "name": "a"
+                          },
+                          "computed": false
+                        },
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "type": "VariableDeclaration",
+                      "start": 656,
+                      "end": 687,
+                      "loc": {
+                        "start": {
+                          "line": 30,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 30,
+                          "column": 39
+                        }
+                      },
+                      "declarations": [
+                        {
+                          "type": "VariableDeclarator",
+                          "start": 662,
+                          "end": 686,
+                          "loc": {
+                            "start": {
+                              "line": 30,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 30,
+                              "column": 38
+                            }
+                          },
+                          "id": {
+                            "type": "Identifier",
+                            "start": 662,
+                            "end": 663,
+                            "loc": {
+                              "start": {
+                                "line": 30,
+                                "column": 14
+                              },
+                              "end": {
+                                "line": 30,
+                                "column": 15
+                              },
+                              "identifierName": "b"
+                            },
+                            "name": "b"
+                          },
+                          "init": {
+                            "type": "CallExpression",
+                            "start": 666,
+                            "end": 686,
+                            "loc": {
+                              "start": {
+                                "line": 30,
+                                "column": 18
+                              },
+                              "end": {
+                                "line": 30,
+                                "column": 38
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 666,
+                              "end": 684,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 18
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 36
+                                }
+                              },
+                              "object": {
+                                "type": "MemberExpression",
+                                "start": 666,
+                                "end": 682,
+                                "loc": {
+                                  "start": {
+                                    "line": 30,
+                                    "column": 18
+                                  },
+                                  "end": {
+                                    "line": 30,
+                                    "column": 34
+                                  }
+                                },
+                                "object": {
+                                  "type": "ThisExpression",
+                                  "start": 666,
+                                  "end": 670,
+                                  "loc": {
+                                    "start": {
+                                      "line": 30,
+                                      "column": 18
+                                    },
+                                    "end": {
+                                      "line": 30,
+                                      "column": 22
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 671,
+                                  "end": 682,
+                                  "loc": {
+                                    "start": {
+                                      "line": 30,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 30,
+                                      "column": 34
+                                    },
+                                    "identifierName": "testService"
+                                  },
+                                  "name": "testService"
+                                },
+                                "computed": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 683,
+                                "end": 684,
+                                "loc": {
+                                  "start": {
+                                    "line": 30,
+                                    "column": 35
+                                  },
+                                  "end": {
+                                    "line": 30,
+                                    "column": 36
+                                  },
+                                  "identifierName": "b"
+                                },
+                                "name": "b"
+                              },
+                              "computed": false
+                            },
+                            "arguments": []
+                          }
+                        }
+                      ],
+                      "kind": "const"
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 699,
+                      "end": 726,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 35
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 699,
+                        "end": 725,
+                        "loc": {
+                          "start": {
+                            "line": 32,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 32,
+                            "column": 34
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 699,
+                          "end": 710,
+                          "loc": {
+                            "start": {
+                              "line": 32,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 32,
+                              "column": 19
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 699,
+                            "end": 706,
+                            "loc": {
+                              "start": {
+                                "line": 32,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 32,
+                                "column": 15
+                              },
+                              "identifierName": "console"
+                            },
+                            "name": "console"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 707,
+                            "end": 710,
+                            "loc": {
+                              "start": {
+                                "line": 32,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 32,
+                                "column": 19
+                              },
+                              "identifierName": "log"
+                            },
+                            "name": "log"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "StringLiteral",
+                            "start": 711,
+                            "end": 721,
+                            "loc": {
+                              "start": {
+                                "line": 32,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 32,
+                                "column": 30
+                              }
+                            },
+                            "extra": {
+                              "rawValue": "use test",
+                              "raw": "\"use test\""
+                            },
+                            "value": "use test"
+                          },
+                          {
+                            "type": "Identifier",
+                            "start": 723,
+                            "end": 724,
+                            "loc": {
+                              "start": {
+                                "line": 32,
+                                "column": 32
+                              },
+                              "end": {
+                                "line": 32,
+                                "column": 33
+                              },
+                              "identifierName": "b"
+                            },
+                            "name": "b"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "directives": []
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "directives": []
+}

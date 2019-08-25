@@ -10,7 +10,7 @@
     "outDir": "lib",
     "sourceMap": false,
     "strict": false,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "importHelpers": false,
     "types": [
       "node",

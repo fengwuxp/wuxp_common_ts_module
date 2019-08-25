@@ -15,11 +15,11 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
     /**
      * 请求数据的适配器
      */
-    protected fetchAdapter: FetchAdapter;
+    private _fetchAdapter: FetchAdapter;
 
 
     constructor(fetchAdapter: FetchAdapter) {
-        this.fetchAdapter = fetchAdapter;
+        this._fetchAdapter = fetchAdapter;
     }
 
     delete = (options: T): Promise<FetchResponse> => {
@@ -56,7 +56,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
             options.timeout = 10000;
         }
 
-        return this.fetchAdapter.request(this.handleFetchOptions(options));
+        return this._fetchAdapter.request(this.handleFetchOptions(options));
     };
 
     /**
@@ -113,7 +113,13 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         return options;
 
-    }
+    };
 
+    /**
+     * @return fetch adapter instance
+     */
+    get fetchAdapter(): FetchAdapter<FetchOptions> {
+        return this._fetchAdapter;
+    }
 
 }

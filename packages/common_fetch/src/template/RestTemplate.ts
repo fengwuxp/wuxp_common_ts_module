@@ -22,9 +22,9 @@ import {RetryOptions} from "../FetchRetryOptions";
  *
  * <pre>
  */
-export interface RestTemplate {
+export interface RestTemplate<T = FetchResponse> {
 
-    fetch: (options: FetchOptions) => Promise<FetchResponse>;
+    fetch: (options: FetchOptions) => Promise<T>;
 }
 
 /**
@@ -94,7 +94,7 @@ RESPONSE_MAP.set(MediaType.HTML, ResponseType.HTML);
 /**
  * 抽象的 rest template实现
  */
-export abstract class AbstractRestTemplate implements RestTemplate {
+export abstract class AbstractRestTemplate<T = FetchResponse> implements RestTemplate<T> {
 
     /**
      * 模板配置
@@ -119,6 +119,13 @@ export abstract class AbstractRestTemplate implements RestTemplate {
     protected interceptorExecutor: FetchInterceptorExecutor;
 
 
+    /**
+     *
+     * @param templateConfig
+     * @param routingStrategy
+     * @param fetchClient
+     * @param interceptorExecutor
+     */
     constructor(templateConfig: RestTemplateConfig,
                 routingStrategy: ApiRoutingStrategy,
                 fetchClient: FetchClient,
@@ -132,7 +139,7 @@ export abstract class AbstractRestTemplate implements RestTemplate {
         this.interceptorExecutor = interceptorExecutor;
     }
 
-    async fetch(options: FetchOptions): Promise<FetchResponse> {
+    async fetch(options: FetchOptions): Promise<T> {
 
         const interceptorExecutor = this.interceptorExecutor;
         //TODO 进行重试的参数设置

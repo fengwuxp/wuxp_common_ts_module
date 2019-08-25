@@ -15,6 +15,7 @@ export default class DefaultApiRoutingStrategy implements ApiRoutingStrategy {
 
     route = (url: string): string => {
         if (/^(http|https)/.test(url)) {
+            //uri
             return normalizeUrl(url);
         }
         if (!/^(@)/.test(url)) {
