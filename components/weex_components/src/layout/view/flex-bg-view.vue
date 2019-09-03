@@ -1,6 +1,6 @@
 <!--flex bg view-->
 <template>
-    <div class="app"
+    <div class="flex-view"
          :style="viewStyle"
          @viewappear="viewAppear"
          @viewdisappear="viewDisappear">

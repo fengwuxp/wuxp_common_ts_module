@@ -1,18 +1,18 @@
 <!--tabbar view 且底部导航带背景图片-->
 <template>
-    <flex-view class="tabbar-view"
+    <flex-view class="flex_1"
                :immersiveBottomBarColor="immersiveBottomBarColor"
                :enableImmersiveNavBar="false">
-        <div slot="app-body" class="flex_cell" v-if="isWeb">
+        <div slot="app-body" class="flex_1" v-if="isWeb">
             <div v-for="(item,i ) in viewItems"
                  v-if="item.targetType===NavItemType.VIEW && isLoad(i)"
                  v-show="i===currentViewIndex"
-                 class="flex_cell">
+                 class="flex_1">
                 <slot :name="'view_'+i"></slot>
             </div>
         </div>
         <div slot="app-body"
-             class="flex_cell"
+             class="flex_1"
              v-else>
             <!--加入单个加载-->
             <embed class="view_content"
@@ -101,6 +101,7 @@
     }
 </script>
 <style scoped lang="less">
+
     .view_content {
         position: absolute;
         top: 0;
@@ -109,13 +110,8 @@
         bottom: 0;
     }
 
-    .tabbar-view {
+    .flex_1 {
         flex: 1;
-        height: 100%;
-        width: 100%;
         overflow: hidden;
-        background-color: @background-color-base;
     }
-
-
 </style>
