@@ -1,6 +1,6 @@
 <!--tabbar view 且底部导航带背景图片-->
 <template>
-    <flex-view class="flex_cell default_bg_color"
+    <flex-view class="tabbar-view"
                :immersiveBottomBarColor="immersiveBottomBarColor"
                :enableImmersiveNavBar="false">
         <div slot="app-body" class="flex_cell" v-if="isWeb">
@@ -109,8 +109,12 @@
         bottom: 0;
     }
 
-    .flex_cell {
+    .tabbar-view {
         flex: 1;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: @background-color-base;
     }
 
 

@@ -13,15 +13,15 @@ config.plugins.push(
         },
         "ant-design"
     ],
-    [
-        "import",
-        {
-            "libraryName": "@ant-design/pro-layout",
-            "libraryDirectory": "lib",
-            "style": true
-        },
-        "ant-design/pro-layout"
-    ]
+    // [
+    //     "import",
+    //     {
+    //         "libraryName": "@ant-design/pro-layout",
+    //         "libraryDirectory": "lib",
+    //         "style": true
+    //     },
+    //     "ant-design/pro-layout"
+    // ]
 );
 
 module.exports = config;

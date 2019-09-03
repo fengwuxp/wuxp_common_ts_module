@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ReactView} from "../../../../spring-framework/spring-react/src/annotations/ReactViewMapping";
+import {ReactRouteView} from "fengwuxp_common_state/src/annotations/ReactRouteView";
 
 
 interface TemplateViewProps {
@@ -11,7 +11,7 @@ interface TemplateViewState {
 }
 
 
-@ReactView({
+@ReactRouteView({
     pathname: "template",
     name: "模板页面",
     //是否可以可以进入该页面，如果没有权限则跳转到无权限的页面

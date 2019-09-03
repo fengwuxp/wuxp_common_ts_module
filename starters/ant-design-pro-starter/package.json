@@ -23,8 +23,8 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-    "@ant-design/dark-theme": "^0.2.0",
-    "@ant-design/pro-layout": "^4.5.3",
+    "@ant-design/dark-theme": "^0.2.2",
+    "@ant-design/pro-layout": "^4.5.14",
     "fengwuxp-spring-scannner": "^1.0.5",
     "fengwuxp_common_react": "^1.0.5",
     "fengwuxp_common_starter": "^1.0.5",

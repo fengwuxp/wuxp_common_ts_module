@@ -25,8 +25,8 @@ export const ReactRouteView = (options: ReactRouteViewOptions): Function => {
     /**
      * decorator
      * @param  {T} ReactComponent                        装饰的属性所属的类的原型，注意，不是实例后的类。如果装饰的是 T 的某个属性，这个 target 的值就是 T.prototype
-     * @param  {string} name                     装饰的属性的 key
-     * @param  {PropertyDescriptor} descriptor   装饰的对象的描述对象
+     * @param  {string} name                             装饰的属性的 key
+     * @param  {PropertyDescriptor} descriptor           装饰的对象的描述对象
      */
     return function (ReactComponent: React.Component<any,any>, name: string, descriptor: PropertyDescriptor): any {
 

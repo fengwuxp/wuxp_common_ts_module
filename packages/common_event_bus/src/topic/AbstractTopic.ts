@@ -15,7 +15,7 @@ export abstract class AbstractTopic<T> implements Topic<T> {
 
 
     constructor(topicName?: string) {
-        this.topicName = topicName || "_t_";
+        this.topicName = topicName || "_T_";
     }
 
     abstract getPublisher: () => Publisher<T>;
@@ -26,17 +26,19 @@ export abstract class AbstractTopic<T> implements Topic<T> {
 
     subscribe = (receiver: DefaultReceiver<T>, complete?: () => void): SubscriptionHolder => {
         this.tryClosedHandle();
-        const isExit = this.receiverIsExit(receiver);
-        if (!isExit) {
+        let index = this.receiverIsExit(receiver);
+        if (index < 0) {
+            //不存在
             this.receivers.push(receiver);
             this.completeHandles.push(complete);
+            index = this.receivers.length - 1;
         }
 
-        return this.buildHolder(receiver);
+        return this.buildHolder(receiver, index);
     };
 
 
-    protected buildHolder = (receiver: DefaultReceiver<T>) => {
+    protected buildHolder = (receiver: DefaultReceiver<T>, index: number) => {
 
         let closed = false;
         const holder: SubscriptionHolder = {
@@ -48,17 +50,9 @@ export abstract class AbstractTopic<T> implements Topic<T> {
                     return;
                 }
                 closed = true;
-                let index = 0;
-                this.receivers = this.receivers.filter((item, i) => {
-                    const b = item === receiver;
-                    if (b) {
-                        index = i;
-                    }
-
-                    return !b;
-                });
-                this.completeHandles = this.completeHandles.filter((item, i) => i !== index);
-
+                const filterHandle = (item, i) => i !== index;
+                this.receivers = this.receivers.filter(filterHandle);
+                this.completeHandles = this.completeHandles.filter(filterHandle);
             }
         };
 
@@ -67,7 +61,7 @@ export abstract class AbstractTopic<T> implements Topic<T> {
 
     protected receiverIsExit = (receiver: DefaultReceiver) => {
 
-        return this.receivers.some((item) => {
+        return this.receivers.findIndex((item) => {
             return receiver === item;
         });
     };

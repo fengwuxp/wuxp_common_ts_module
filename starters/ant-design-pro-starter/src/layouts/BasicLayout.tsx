@@ -2,6 +2,7 @@ import BasicLayout, {
     BasicLayoutProps,
     SettingDrawer,
     Settings,
+    MenuDataItem,
 } from '@ant-design/pro-layout';
 import React, {useState} from 'react';
 
@@ -35,16 +36,17 @@ const BasicLayoutWrapper: React.FC<BasicLayoutWrapperProps> = props => {
                 }}
                 menuDataRender={menuList => {
                     return menuList.map(item => {
-                        return Authorized.check(item.authority, item, null) as MenuDataItem;
+                        return item;
+                        // return Authorized.check(item.authority, item, null) as MenuDataItem;
                     });
                 }}
                 itemRender={route => {
                     return <Link to={route.path}>{route.breadcrumbName}</Link>;
                 }}
-                menuItemRender={(props, defaultDom) => (
-                    <Link to={props.path}>{defaultDom}</Link>
-                )}
-                rightContentRender={rightProps => <RightContent {...rightProps} />}
+                // menuItemRender={(props, defaultDom) => (
+                //     <Link to={props.path}>{defaultDom}</Link>
+                // )}
+                // rightContentRender={rightProps => <RightContent {...rightProps} />}
             >
                 {children}
             </BasicLayout>
