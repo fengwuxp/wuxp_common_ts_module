@@ -13,7 +13,7 @@
 ```vue
 <template>
   <wxc-button text="Confirm"
-              @wxcButtonClicked="wxcButtonClicked"></wxc-button>
+              @onClick="wxcButtonClicked"></wxc-button>
 </template>
 
 <script>
