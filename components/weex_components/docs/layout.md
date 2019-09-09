@@ -100,7 +100,7 @@
      </flex-view>
 
 ```
-- drop-refresh，[组件说明](../layout/drop-refresh/README.md)
+- drop-refresh，[组件说明](../src/layout/drop-refresh/README.md)
 ```
    对weex的 scroller和list组件做了封装，支持下拉刷新和上拉加载，具体的查看组件说明
 ```
