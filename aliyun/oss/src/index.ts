@@ -77,6 +77,19 @@ interface AliYunStsTokenInfo {
     expirationSeconds;
 }
 
+function getFetchResponsePromise(url) {
+    return webFetchAdapter.request({
+        url,
+        headers: {
+            "Content-Type": MediaType.JSON_UTF8
+        },
+        responseType: ResponseType.JSON
+    }).then((response: FetchResponse) => {
+        const data = response.data;
+        return data.code == 0 ? data.data : null;
+    });
+}
+
 export default class OakALiYunOssInitializer implements ALiYunOssInitializer<OakALiYunOssInitializerOptions> {
 
     private oakOptions: {
@@ -87,40 +100,30 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
 
         const {getConfigUrl, getStsTokenUrl} = options;
 
-        return Promise.all(
-            [getConfigUrl, getStsTokenUrl].filter(item => StringUtils.hasText(item))
-                .map((url) => {
-                    return webFetchAdapter.request({
-                        url,
-                        headers: {
-                            "Content-Type": MediaType.JSON_UTF8
-                        },
-                        responseType: ResponseType.JSON
-                    }).then((response: FetchResponse) => {
-                        const data = response.data;
-                        return data.code == 0 ? data.data : null;
-                    });
-                })
-        ).then((values) => {
-            const ossServerConfig: OssServerConfig = values[0];
+        //获取oos配置
+        return getFetchResponsePromise(getConfigUrl).then((resp) => {
+            const ossServerConfig: OssServerConfig = resp;
             const enabledOss = ossServerConfig.oss && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeyId)
                 && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeySecret);
             if (!enabledOss) {
+                //未启用
                 return Promise.reject("oss not enabled");
             }
-            const aliYunStsTokenInfo: AliYunStsTokenInfo = values[1];
-            // console.log("ossServerConfig", ossServerConfig);
-            // console.log("aliYunStsTokenInfo", aliYunStsTokenInfo);
-            this.oakOptions = {
-                prefix: ossServerConfig.aliyunOssPrefix
-            };
-            return new OakSTSALiYunOssFactory({
-                // region: ossServerConfig["region"] || "cn-hangzhou",
-                accessKeyId: aliYunStsTokenInfo.accessKeyId,
-                accessKeySecret: aliYunStsTokenInfo.accessKeySecret,
-                bucket: ossServerConfig.aliyunOssBuckeName,
-                endpoint: ossServerConfig.aliyunOssEndpoint,
-            }, aliYunStsTokenInfo);
+            return getFetchResponsePromise(getStsTokenUrl).then((aliYunStsTokenInfo) => {
+                // const aliYunStsTokenInfo: AliYunStsTokenInfo = resp;
+                // console.log("ossServerConfig", ossServerConfig);
+                // console.log("aliYunStsTokenInfo", aliYunStsTokenInfo);
+                this.oakOptions = {
+                    prefix: ossServerConfig.aliyunOssPrefix
+                };
+                return new OakSTSALiYunOssFactory({
+                    // region: ossServerConfig["region"] || "cn-hangzhou",
+                    accessKeyId: aliYunStsTokenInfo.accessKeyId,
+                    accessKeySecret: aliYunStsTokenInfo.accessKeySecret,
+                    bucket: ossServerConfig.aliyunOssBuckeName,
+                    endpoint: ossServerConfig.aliyunOssEndpoint,
+                }, aliYunStsTokenInfo);
+            });
         });
 
     };
