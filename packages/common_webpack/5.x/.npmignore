@@ -1,5 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
-# src
 tsconfig.json
-webpack.config.js
+src
+scripts
+.lock
 .awcache
+jest.config.js
+test
+tsconfig.test.json

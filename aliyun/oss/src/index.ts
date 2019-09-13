@@ -69,12 +69,12 @@ interface AliYunStsTokenInfo {
     /**
      * 访问token有效日期
      */
-    expirationTime: string;
+    expirationTime: number;
 
     /**
      * 访问token有效秒数
      */
-    expirationSeconds;
+    expirationSeconds: number;
 }
 
 function getFetchResponsePromise(url) {
@@ -121,8 +121,8 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
                     accessKeyId: aliYunStsTokenInfo.accessKeyId,
                     accessKeySecret: aliYunStsTokenInfo.accessKeySecret,
                     bucket: ossServerConfig.aliyunOssBuckeName,
-                    endpoint: ossServerConfig.aliyunOssEndpoint,
-                }, aliYunStsTokenInfo);
+                    endpoint: ossServerConfig.aliyunOssEndpoint
+                }, getStsTokenUrl, aliYunStsTokenInfo);
             });
         });
 
@@ -167,6 +167,7 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
  */
 class OakSTSALiYunOssFactory implements ALiYunOssFactory {
 
+    //oss 相关的配置
     private ossClientOptions: OssClientOptions;
 
 
@@ -174,9 +175,17 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
     //使用ststoken模式
     private aliYunStsTokenInfo: AliYunStsTokenInfo;
 
-    constructor(ossClientOptions: OssClientOptions, aliYunStsTokenInfo?: AliYunStsTokenInfo) {
+    //刷新sts token url
+    private getStsTokenUrl: string;
+
+    constructor(ossClientOptions: OssClientOptions,
+                getStsTokenUrl: string,
+                aliYunStsTokenInfo?: AliYunStsTokenInfo) {
         this.ossClientOptions = ossClientOptions;
         this.aliYunStsTokenInfo = aliYunStsTokenInfo;
+        //自动刷新sts token
+        this.autoRefresh();
+
     }
 
     factory = (ossClientOptions?: OssClientOptionalOptions): AliOssClient => {
@@ -185,16 +194,50 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
             ...(ossClientOptions || {}),
             ...this.ossClientOptions
         };
-        if (this.aliYunStsTokenInfo) {
+        const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
+        if (aliYunStsTokenInfo) {
             //设置sts token
-            options.stsToken = this.aliYunStsTokenInfo.securityToken;
+            options.stsToken = aliYunStsTokenInfo.securityToken;
         }
         // console.log("options", options);
         return new AliOssClient(options, {});
     };
 
 
+    private autoRefresh = () => {
+        const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
+        setTimeout(() => {
+            this.refreshStsToken().then(this.autoRefresh);
+            //提前2分钟刷新token
+        }, aliYunStsTokenInfo.expirationTime - new Date().getTime() - 2 * 60 * 1000);
+    };
+
+    /**
+     * 刷新sts token
+     */
+    private refreshStsToken = () => {
+        // const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
+        // if (aliYunStsTokenInfo.expirationTime > (new Date().getTime() - 2 * 60 * 1000)) {
+        //     return;
+        // }
+
+        //提前2分钟刷新
+        return getFetchResponsePromise(this.getStsTokenUrl)
+            .then((aliYunStsTokenInfo) => {
+                this.ossClientOptions = {
+                    accessKeyId: aliYunStsTokenInfo.accessKeyId,
+                    accessKeySecret: aliYunStsTokenInfo.accessKeySecret,
+                    ...this.ossClientOptions
+                };
+                this.aliYunStsTokenInfo = aliYunStsTokenInfo;
+            }).catch((e) => {
+                console.error(`刷新token失败：${e}`);
+            });
+    }
 }
+
+
+
 
 
 

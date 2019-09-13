@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpackConfig = require('common_webpack/lib/weex/web/webpack.config.prod').default;
+const webpackConfig = require('fengwuxp_common_webpack/lib/weex/web/webpack.config.prod').default;
 const {PROD_API_ADDRESS} = require('./webpack-config/WebpackConfig');
 
 webpackConfig.plugins.push(
