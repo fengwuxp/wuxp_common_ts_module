@@ -5,7 +5,7 @@ const pathTo = require('path');
 const chalk = require('chalk');
 const port = 9088;
 const {DEV_API_DOMAIN} = require('./webpack-config/WebpackConfig');
-const {rewriteCooke} = require('fengwuxp_common_webpack_5/lib/utils/DevProxyRewriteCookie');
+const {rewriteCooke} = require('fengwuxp_common_webpack/lib/utils/DevProxyRewriteCookie');
 /**
  * 接口请求被代理的入口地址
  * @type {string}

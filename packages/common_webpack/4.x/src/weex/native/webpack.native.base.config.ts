@@ -1,5 +1,7 @@
 import * as webpack from "webpack";
 import * as path from "path";
+
+
 import entry from "./GetNativePackViews";
 import WeexPackConfig from "./WeexPackConfig";
 import babelLoader from "../../loader/BabelLoader";
@@ -74,7 +76,8 @@ const config: webpack.Configuration = {
                     modifyVars: getThemeConfig()
                 }
             }
-        ], 4)
+        ], 4),
+
     ]
 };
 

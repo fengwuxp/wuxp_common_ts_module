@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpackConfig = require('fengwuxp_common_webpack_5/lib/weex/web/webpack.base.config').default;
+const webpackConfig = require('fengwuxp_common_webpack/lib/weex/web/webpack.base.config').default;
 
 const {DEV_API_DOMAIN} = require('./webpack-config/WebpackConfig');
 

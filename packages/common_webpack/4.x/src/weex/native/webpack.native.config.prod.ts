@@ -1,20 +1,31 @@
 import * as webpack from "webpack";
 import config from "./webpack.native.config";
 import {uglifyJsPlugin} from "../../plugins/UglifyJsPluginConfig";
-
+import CompressionWebpackPlugin from "compression-webpack-plugin";
 
 // const SideEffectsFlagPlugin = require("webpack/lib/optimize/SideEffectsFlagPlugin");
 // const FlagDependencyUsagePlugin = require("webpack/lib/FlagDependencyUsagePlugin");
 // const FlagDependencyExportsPlugin = require("webpack/lib/FlagDependencyExportsPlugin");
 
 
-
 config.plugins.unshift(
-    uglifyJsPlugin
+    uglifyJsPlugin,
+    //gzip 压缩
+    // new CompressionWebpackPlugin({
+    //     filename: '[path].gz[query]',
+    //     algorithm: 'gzip',
+    //     //压缩 js 与 css
+    //     test: new RegExp(
+    //         '\\.(js|css)$'
+    //     ),
+    //     threshold: 10240,
+    //     minRatio: 0.8
+    // })
     // new webpack.DefinePlugin({"process.env.NODE_ENV": JSON.stringify("production")}),
     // new webpack.optimize.OccurrenceOrderPlugin(true),
     // new FlagDependencyUsagePlugin(),
     // new FlagDependencyExportsPlugin(),
+
 );
 //模拟 config.mode = "production"
 //https://webpack.docschina.org/concepts/mode/#mode-production

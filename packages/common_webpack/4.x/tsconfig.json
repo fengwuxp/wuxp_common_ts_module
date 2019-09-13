@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-//    "esModuleInterop":true,
-    "allowSyntheticDefaultImports": false,
-//    "compileOnSave": false,
-//    "emitDecoratorMetadata": true,
-//    "experimentalDecorators": true,
-    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": false,
     "target": "es5",
+    "outDir": "lib",
     "sourceMap": false,
-//    "allowJs": true,
+    "strict": false,
     "baseUrl": "./src",
-    "outDir": "./lib",
     "types": [
       "node",
       "webpack"

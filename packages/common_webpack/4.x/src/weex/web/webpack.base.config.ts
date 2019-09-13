@@ -3,7 +3,7 @@ import * as path from "path";
 import babelLoader from "../../loader/BabelLoader";
 import awesomeTypescriptLoader from "../../loader/TypescriptLoader";
 
-import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {getThemeConfig} from "../../style/ThemeConfig";
 import {pathAlias} from "../../config/CommonpPathAlias";
 import {genHappyPackLoaderString, getHappyPackPlugin} from "../../utils/GetHappyPackPluginConfig";
@@ -177,7 +177,7 @@ const webpackConfig: webpack.Configuration = {
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
         "vue": "Vue",
-        "vue-router":"VueRouter"
+        "vue-router": "VueRouter"
     },
 };
 

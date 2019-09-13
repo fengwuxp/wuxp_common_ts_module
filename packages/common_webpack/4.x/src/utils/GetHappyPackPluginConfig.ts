@@ -1,5 +1,5 @@
 import * as os from "os";
-import * as HappyPack from "happypack";
+import HappyPack from "happypack";
 
 
 /**

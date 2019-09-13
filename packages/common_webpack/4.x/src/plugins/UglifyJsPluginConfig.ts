@@ -1,4 +1,4 @@
-import * as UglifyJsPlugin from "uglifyjs-webpack-plugin";
+import UglifyJsPlugin from "uglifyjs-webpack-plugin";
 
 /**
  * UglifyJsPlugin 插件配置

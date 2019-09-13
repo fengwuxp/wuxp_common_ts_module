@@ -1,6 +1,6 @@
 import * as webpack from "webpack";
 import * as path from "path";
-import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {loadLessLoader} from "../style/ThemeLessLoader";
 import {cssModuleLoader, scssModuleLoader} from "../style/CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";

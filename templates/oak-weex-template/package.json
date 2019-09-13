@@ -27,13 +27,14 @@
   },
   "author": "wuxp",
   "license": "ISC",
+  "dependencies": {
+  },
   "devDependencies": {
     "babel-loader": "^8.0.4",
     "fengwuxp_common_starter": "^1.0.0",
     "oak_weex_starter": "^1.0.0",
     "weex-vue-precompiler": "0.1.23-bate",
-    "weex_components": "^1.0.0",
-    "fengwuxp_common_webpack_5": "^1.0.5"
+    "weex_components": "^1.0.0"
   },
   "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

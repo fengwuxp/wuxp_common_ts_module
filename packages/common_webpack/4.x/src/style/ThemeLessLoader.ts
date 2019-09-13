@@ -1,4 +1,4 @@
-import * as ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
+import  ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import { lessModuleLoader} from "./CssModuleLoader";
 import {GetWebpackBaseConfigOptions} from "../GetWebpackBaseConfigOptions";
 import PostCssLoader from "./PostCssLoader";
@@ -48,26 +48,26 @@ export const lessHappyLoader = {
     })
 };
 
-export const getHappyLessLoaderPlugin = (options?: GetWebpackBaseConfigOptions) => {
-    let isPackage, theme;
-
-    if (options == null) {
-        options = {};
-    }
-
-    isPackage = options.packagePath !== undefined && options.packagePath !== null;
-    theme = getThemeConfig(isPackage ? options.packagePath : options.themePath, isPackage);
-    return getHappyPackPlugin("less", [
-        {
-            loader: 'less-loader',
-            options: {
-                sourceMap: true,
-                javascriptEnabled: true,
-                modifyVars: theme,
-                ident: "css-loader"
-            }
-        }
-    ], 2);
-};
+// export const getHappyLessLoaderPlugin = (options?: GetWebpackBaseConfigOptions) => {
+//     let isPackage, theme;
+//
+//     if (options == null) {
+//         options = {};
+//     }
+//
+//     isPackage = options.packagePath !== undefined && options.packagePath !== null;
+//     theme = getThemeConfig(isPackage ? options.packagePath : options.themePath, isPackage);
+//     return getHappyPackPlugin("less", [
+//         {
+//             loader: 'less-loader',
+//             options: {
+//                 sourceMap: true,
+//                 javascriptEnabled: true,
+//                 modifyVars: theme,
+//                 ident: "css-loader"
+//             }
+//         }
+//     ], 2);
+// };
 
 
