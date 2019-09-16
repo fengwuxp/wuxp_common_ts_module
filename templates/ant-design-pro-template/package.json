@@ -34,8 +34,9 @@
   "dependencies": {
     "ant-design-pro-starter": "^1.0.0",
     "@ant-design/dark-theme": "^0.2.2",
-    "@ant-design/pro-layout": "^4.5.14",
-    "fengwuxp-spring-webpack-4": "^1.0.0"
+    "@ant-design/pro-layout": "^4.5.15",
+    "fengwuxp-spring-webpack-4": "^1.0.0",
+    "react-intl": "^3.2.1"
   },
   "gitHead": "a0dc00930af9a16c9c373d4c380d56283a1a371f"
 }

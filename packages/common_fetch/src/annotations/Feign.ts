@@ -2,6 +2,7 @@ import {ProxyServiceFactory} from "../proxy/factory/ProxyServiceFactory";
 import {FeignProxy, FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
 import DefaultProxyServiceFactory from "../proxy/factory/DefaultProxyServiceFactory";
+import {FeignConfiguration} from "../configuration/FeignConfiguration";
 
 
 export interface FeignOptions {
@@ -18,7 +19,14 @@ export interface FeignOptions {
      */
     value?: string;
 
+    /**
+     * 配置
+     */
+    configuration?: FeignConfiguration[];
+
 }
+
+
 
 // type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 

@@ -17,7 +17,7 @@ const onSettingChange = (settings: Partial<Settings>) => {
     console.log(settings);
 };
 
-export const Example: React.FC<BasicLayoutWrapperProps> = props => {
+export const Example: React.FC<BasicLayoutWrapperProps> = (props?) => {
 
     const {children} = props;
     return (

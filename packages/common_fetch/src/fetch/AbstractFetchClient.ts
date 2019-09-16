@@ -2,7 +2,7 @@ import {FetchClient} from "./FetchClient";
 import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {RequestMethod} from "../constant/RequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
-import {stringify} from "querystring";
+import {stringify} from "../utils/QueryString";
 import {MediaType} from "../constant/http/MediaType";
 import {contentTypeName} from "../constant/FeignConstVar";
 
@@ -85,19 +85,20 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         if (method === RequestMethod.GET) {
             //处理查询参数
-            const queryParams = {
+            const combinedQueryParams = {
                 ...data,
                 ...queryPrams
             };
-            options.url = `${url}${url.endsWith("?") ? '&' : '?'}${stringify(queryParams)}`;
+            //过滤无效的数据
+            options.url = `${url}${url.endsWith("?") ? '&' : '?'}${stringify(combinedQueryParams, true)}`;
             delete options.data;
             delete options.queryPrams;
 
-        } else if (method === RequestMethod.POST) {
-            //POST请求
+        } else /*if (method === RequestMethod.POST)*/ {
+            //其他请求
             if (newContentType === MediaType.FORM_DATA) {
                 //以表单的形式提交数据
-                options.data = stringify(data);
+                options.data = stringify(data, options.filterEmptyString);
             } else if (newContentType === MediaType.JSON_UTF8) {
                 //json
                 options.data = JSON.stringify(data);

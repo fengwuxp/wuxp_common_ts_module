@@ -13,8 +13,35 @@
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
+      "@src/*": [
+        "./*"
+      ],
+      "@api/*": [
+        "./api/*"
+      ],
       "@services/*": [
         "./services/*"
+      ],
+      "@feign/*": [
+        "./feign/*"
+      ],
+      "@enums/*": [
+        "./enums/*"
+      ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@constant/*": [
+        "./constant/*"
+      ],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@views/*": [
+        "./views/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
       ]
     },
     "types": [

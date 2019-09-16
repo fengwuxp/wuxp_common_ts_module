@@ -14,7 +14,7 @@ export interface AuthenticationStrategy<T extends BaseFetchOptions = BaseFetchOp
     needToken: (options: T) => boolean;
 
     /**
-     * 获取token
+     * 获取本地的token
      * @param options
      */
     getToken: (options: T) => Promise<string>;

@@ -51,19 +51,14 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
 
         //原始参数
         const originalParameter = args[0] || {};
-
         //解析参数，进行值复制（浅拷贝）
         let data = {...originalParameter};
-
-
         const options: FetchOptions = args[1] || {};
 
         //解析url
         const requestURL = this.requestURLResolver.resolve(apiService, methodName, data);
-
         //处理请求头
         const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
-
         //请求requestMapping
         const serviceMethodConfig = apiService.getServiceMethodConfig(methodName);
         const {requestMapping, signature, retryOptions} = serviceMethodConfig;

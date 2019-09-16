@@ -54,7 +54,7 @@ const getApiUriByApiServiceMethod = (apiService: FeignProxy, methodName: string)
 
     const apiServiceConfig = apiService.getServiceMethodConfig(methodName);
     let value;
-    if (apiServiceConfig.requestMapping == null || !apiServiceConfig.requestMapping.value) {
+    if (apiServiceConfig.requestMapping == null || apiServiceConfig.requestMapping.value == null) {
         value = methodName;
     } else {
         value = apiServiceConfig.requestMapping.value

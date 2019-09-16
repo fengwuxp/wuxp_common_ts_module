@@ -136,7 +136,9 @@ describe("test proxy api service", () => {
 
         await testService.testQuery({
             memberId: 1,
-            file: new Blob()
+            status: ["A", "B"],
+            val: 2
+            // file: new Blob()
         }, {
             filterEmptyString: false
         }).then((data) => {

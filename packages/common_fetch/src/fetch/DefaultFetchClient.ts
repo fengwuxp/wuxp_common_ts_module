@@ -1,5 +1,5 @@
 import {FetchAdapter} from "../adapter/FetchAdapter";
-import {FetchOptions, FetchResponse} from "../FetchOptions";
+import {FetchOptions} from "../FetchOptions";
 import AbstractFetchClient from "./AbstractFetchClient";
 
 

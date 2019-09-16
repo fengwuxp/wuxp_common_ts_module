@@ -67,8 +67,9 @@ export interface FetchOptions extends BaseFetchOptions {
     useUnifiedTransformResponse?: boolean;
 
     /**
-     * 是否使用过滤空字符串的拦截器
-     * 默认：true (在有配置该拦截器的情况下生效)
+     * 是否过滤提交数据中的 空字符串，null的数据，数值类型的NaN
+     * 默认：true
+     * @link {./utils/QueryString}
      */
     filterEmptyString?: boolean;
 

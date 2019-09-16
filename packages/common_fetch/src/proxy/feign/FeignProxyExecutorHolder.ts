@@ -10,9 +10,18 @@ import {defaultApiModuleName} from "../../constant/FeignConstVar";
  */
 export interface FeignProxyExecutorHolder {
 
-    registerExecutor: (name: string, exctuer: ProxyServiceExecutor) => void;
+    /**
+     * 注册一个执行器
+     * @param name     模块名称
+     * @param executor 执行器
+     */
+    registerExecutor: (name: string, executor: ProxyServiceExecutor) => void;
 
-    registerDefaultExecutor: (exctuer: ProxyServiceExecutor) => void;
+    /**
+     * 注册默认的执行器
+     * @param executor
+     */
+    registerDefaultExecutor: (executor: ProxyServiceExecutor) => void;
 
     /**
      * 获取一个执行器，如果
@@ -25,7 +34,7 @@ export interface FeignProxyExecutorHolder {
 class DefaultFeignProxyExecutorHolder implements FeignProxyExecutorHolder {
 
     /**
-     * 默认的执行器
+     * 执行器的缓存
      */
     private static HOLDER_MAP: Map<string, ProxyServiceExecutor> = new Map<string, ProxyServiceExecutor>();
 
@@ -34,12 +43,12 @@ class DefaultFeignProxyExecutorHolder implements FeignProxyExecutorHolder {
 
     getExecutor = (name: string = defaultApiModuleName) => DefaultFeignProxyExecutorHolder.HOLDER_MAP.get(name);
 
-    registerDefaultExecutor = (exctuer: ProxyServiceExecutor) => {
-        return this.registerExecutor(defaultApiModuleName, exctuer);
+    registerDefaultExecutor = (executor: ProxyServiceExecutor) => {
+        return this.registerExecutor(defaultApiModuleName, executor);
     };
 
-    registerExecutor = (name: string, exctuer: ProxyServiceExecutor) => {
-        DefaultFeignProxyExecutorHolder.HOLDER_MAP.set(name, exctuer);
+    registerExecutor = (name: string, executor: ProxyServiceExecutor) => {
+        DefaultFeignProxyExecutorHolder.HOLDER_MAP.set(name, executor);
     }
 
 
