@@ -49,7 +49,7 @@ export const stringify = (obj: ParsedUrlQueryInput,
                     return;
                 }
                 if (valType === "string") {
-                    if (StringUtils.hasText(value as string)) {
+                    if (!StringUtils.hasText(value as string)) {
                         return;
                     }
                 }

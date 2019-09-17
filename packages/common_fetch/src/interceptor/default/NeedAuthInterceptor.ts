@@ -1,5 +1,6 @@
 import AbstractFetchInterceptor from "../AbstractFetchInterceptor";
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
+import {HttpFetchException} from "../../exception/HttpFetchException";
 
 /**
  * 需要鉴权的拦截器
@@ -23,6 +24,15 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
         return this._authHelper.isToAuthView(data, options);
     };
 
+
+    postHandleError = (exception: HttpFetchException, options: FetchOptions): HttpFetchException | Promise<HttpFetchException> | null | undefined => {
+
+
+        return this._authHelper.isToAuthView(exception.response, options).finally(() => {
+            return exception
+        }) as any;
+    };
+
     preHandle = (params: FetchOptions): Promise<FetchOptions> | FetchOptions | null | undefined => {
 
         //初始化请求头
@@ -38,7 +48,7 @@ export default class NeedAuthInterceptor extends AbstractFetchInterceptor<FetchO
 }
 
 
-export interface SyncAuthHelper<T extends FetchOptions  = FetchOptions, R extends FetchResponse<any> = FetchResponse<any>> {
+export interface SyncAuthHelper<T extends FetchOptions = FetchOptions, R extends FetchResponse<any> = FetchResponse<any>> {
 
 
     /**

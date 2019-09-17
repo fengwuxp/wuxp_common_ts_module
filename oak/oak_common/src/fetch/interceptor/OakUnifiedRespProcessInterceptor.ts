@@ -59,17 +59,17 @@ export default class OakUnifiedRespProcessInterceptor extends AbstractFetchInter
 
     };
 
-    postHandleError = (response: any, options: FetchOptions): any => {
+
+    postHandleError = (exception: HttpFetchException, options: FetchOptions): HttpFetchException | FetchResponse | Promise<FetchResponse | HttpFetchException> | undefined | null => {
         if (options.useUnifiedTransformResponse !== false) {
             //不使用统一的响应转换
-            const exception = response as HttpFetchException;
             const message = exception.message || `请求异常 http code：${exception.httpCode}`;
             if (this.useUnifiedToast(options, message)) {
                 // 加入错误提示
                 this.toastMethod(message);
             }
         }
-        return response;
+        return exception.response;
     };
 
     /**

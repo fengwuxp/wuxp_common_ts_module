@@ -1,4 +1,5 @@
 import {FetchResponse} from "../FetchOptions";
+import {HttpFetchException} from "../exception/HttpFetchException";
 
 /**
  * 拦截器
@@ -24,10 +25,10 @@ export interface FetchInterceptor<T = any> {
 
     /**
      * 请求之后的处理，仅在请求失败执行
-     * @param response
+     * @param exception
      * @param options
      */
-    postHandleError?<R>(response: R, options: T): R | undefined | null;
+    postHandleError?(exception: HttpFetchException | FetchResponse, options: T): HttpFetchException | FetchResponse | Promise<FetchResponse | HttpFetchException> | undefined | null;
 
     /**
      * 请求完成后执行，不论成功或失败，一旦实现了该方法则将不会执行postHandle或postHandleError
