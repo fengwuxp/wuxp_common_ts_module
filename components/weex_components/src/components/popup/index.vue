@@ -18,7 +18,7 @@
              v-if="show"
              :height="_height"
              :hack="isNeedShow"
-             @click="()=>{}"
+             @click="onClickPopupContainer"
              :class="['wxc-popup',pos]"
              :style="padStyle">
             <slot></slot>
@@ -99,7 +99,8 @@
             },
             _height() {
                 this.appearPopup(this.show, 150);
-                return this.height;
+                console.log(this.height);
+                return `${this.height}px`;
             },
             transformValue() {
                 return this.getTransform(this.pos, this.width, this.height, true);
@@ -137,8 +138,11 @@
 
                     style = {
                         ...style,
+                        height: `${height}px`,
                         left: `${deviceWidth / 2}px`,
-                        top: `${deviceHeight / 2}px`
+                        top: `${deviceHeight / 2}px`,
+                        justifyContent: 'center',
+                        alignItems: 'center'
                     }
                 }
                 if (isIphoneX) {
@@ -167,7 +171,9 @@
                 }
 
             },
-
+            onClickPopupContainer() {
+                this.$emit("onClickPopupContainer");
+            },
             /**
              * 显示或隐藏 popup
              * @param bool
