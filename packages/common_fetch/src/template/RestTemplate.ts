@@ -144,29 +144,30 @@ export abstract class AbstractRestTemplate<T = FetchResponse> implements RestTem
         const interceptorExecutor = this.interceptorExecutor;
         //TODO 进行重试的参数设置
 
+        const templateConfig = this.templateConfig;
         let newOptions = {
-            ...this.templateConfig.defaultFetchOptions,
+            ...templateConfig.defaultFetchOptions,
             ...options
         };
 
         //参数检查
         if (!newOptions.method) {
-            newOptions.method = this.templateConfig.method;
+            newOptions.method = templateConfig.method;
         }
 
         if (!newOptions.contentType) {
             //请求提交的数据类型
-            newOptions.contentType = this.templateConfig.produces[0] || MediaType.JSON_UTF8;
+            newOptions.contentType = templateConfig.produces[0] || MediaType.JSON_UTF8;
         }
 
         if (newOptions.timeout == null) {
             //请求提交的数据类型
-            newOptions.timeout = this.templateConfig.timeout;
+            newOptions.timeout = templateConfig.timeout;
         }
 
         if (newOptions.responseType == null) {
             //默认使用json
-            newOptions.responseType = RESPONSE_MAP[this.templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
+            newOptions.responseType = RESPONSE_MAP[templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
         }
 
         //路由

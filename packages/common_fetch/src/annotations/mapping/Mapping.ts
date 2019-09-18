@@ -90,7 +90,7 @@ export function generateMapping<T extends BaseRequestMappingOptions>(method?: Re
                 requestMapping.consumes = [MediaType.JSON_UTF8]
             }
             if (requestMapping.produces == null) {
-                requestMapping.produces = [MediaType.JSON_UTF8]
+                requestMapping.produces = []//[MediaType.JSON_UTF8]
             }
             defaultGenerateAnnotationMethodConfig(target, name, {
                 requestMapping

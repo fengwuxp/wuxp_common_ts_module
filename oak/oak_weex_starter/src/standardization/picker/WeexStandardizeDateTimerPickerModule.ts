@@ -93,7 +93,7 @@ export interface WeexStandardizeDateTimerPickerOptions extends BaseWeexStandardi
 
 }
 
-const EMPTY_CHAR = "NormalizeUrl.ts";
+const EMPTY_CHAR = "N";
 
 const transformDate = (date: string | Date, format: string) => {
     if (date == null) {
