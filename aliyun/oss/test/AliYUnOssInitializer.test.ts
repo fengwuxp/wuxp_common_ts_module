@@ -17,6 +17,7 @@ describe("function test", () => {
             getConfigUrl: ""
         }).then((factory) => {
             const client = factory.factory();
+
             client.multipartUpload("", null, {})
                 .then(({res, name, bucket}) => {
                     logger.log("上传成功");

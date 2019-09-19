@@ -103,7 +103,7 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         }
 
 
-        console.debug("--url-->", url);
+        console.log("--url-->", url);
 
         return url;
     }

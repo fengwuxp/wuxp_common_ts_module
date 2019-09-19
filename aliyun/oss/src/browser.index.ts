@@ -2,7 +2,7 @@ import {ALiYunOssInitializerOptions, OssClientOptionalOptions} from "./faactory/
 import OakALiYunOssInitializer from "./index";
 
 
-const ossVersion = "6.1.1";
+// const ossVersion = "6.1.1";
 
 //自动引入oss
 // const ossScript = document.createElement("script");

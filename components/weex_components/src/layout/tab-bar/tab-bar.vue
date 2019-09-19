@@ -62,7 +62,6 @@
         data() {
 
 
-
             return {
                 currentViewIndex: 0,
                 NavItemType,
@@ -70,17 +69,18 @@
             };
         },
         methods: {
-            navOnclick(index) {
+            async navOnclick(index) {
 
                 const targetItem = this.viewItems[index];
                 const targetType = targetItem.targetType;
                 const beforeChange = this.beforeChange;
                 if (typeof beforeChange === "function") {
-                    let r = beforeChange({
+                    const r = await beforeChange({
                         index,
                         targetType
                     });
-                    if (!r) {
+                    //明确为false时不进行跳转
+                    if (r === false) {
                         return;
                     }
                 }
