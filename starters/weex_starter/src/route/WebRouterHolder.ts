@@ -43,7 +43,7 @@ setRouteList(routes as any);
 
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: process.env.ROUTE_MODE as any || 'history',
     routes: routeList,
     base: ROUTER_BASE_PATH
 });

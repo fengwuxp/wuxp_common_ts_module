@@ -5,7 +5,7 @@ import {AntdMobileStore} from "../store/AntdMobileStore";
 import AntdAbstractView, {
     AntdAbstractViewProps,
     AntdAbstractViewState
-} from "../../../../starters/antd_mobile_starter/src/layouts/view/AntdAbstractView";
+} from "antd_mobile_starter/src/layouts/view/AntdAbstractView";
 import classNames from "classnames"
 import styles from "./style.module.less";
 import utilLess from "starters/antd_mobile_starter/src/less/utils.module.less";

@@ -1,11 +1,12 @@
 import {aliPay, weixinPay} from "../../ExpotrtWeexOAKModel";
 import {ThirdPartyPaymentMethod} from "./ThirdPartyPaymentMethod";
 import {WeexStandardizedModule} from "fengwuxp_common_weex/src/sdk/standardization/WeexStandardizedModule";
+import weexCommonThirdAppModule from "../common/WeexCommonThirdAppModule";
 
 /**
  * 标准化第三方支付
  */
-export interface WeexStandardizeThirdPartyPaymentModule extends WeexStandardizedModule{
+export interface WeexStandardizeThirdPartyPaymentModule extends WeexStandardizedModule {
 
 
     /**
@@ -62,12 +63,24 @@ const weexStandardizeThirdPartyPaymentModule: WeexStandardizeThirdPartyPaymentMo
  * @param signData
  * @param useSandboxEnv
  */
-const handleAilPay = (signData: string, useSandboxEnv: boolean = false) => {
+const handleAilPay = async (signData: string, useSandboxEnv: boolean = false) => {
 
     if (useSandboxEnv === true) {
         aliPay.setSandboxEnv(useSandboxEnv);
     }
 
+    //判断是否安装了支付宝
+    let isInstallAliPay = false;
+    try {
+        isInstallAliPay = await weexCommonThirdAppModule.isAliPayInstalled();
+    } catch (e) {
+    }
+    if (!isInstallAliPay) {
+        return Promise.reject({
+            errorCode: "-1",
+            errorMessage: "支付宝未安装"
+        });
+    }
     return new Promise<void>((resolve, reject) => {
         aliPay.pay(true, signData, (data) => {
             if (typeof data === "string") {
@@ -103,7 +116,19 @@ const handleAilPay = (signData: string, useSandboxEnv: boolean = false) => {
  * @param payParam
  * @param useSandboxEnv
  */
-const handleWeiXinPay = (payParam: {}, useSandboxEnv: boolean = false) => {
+const handleWeiXinPay = async (payParam: {}, useSandboxEnv: boolean = false) => {
+    //判断是否安装了微信
+    let isWeChatInstall = false;
+    try {
+        isWeChatInstall = await weexCommonThirdAppModule.isWeChatAppInstalled();
+    } catch (e) {
+    }
+    if (!isWeChatInstall) {
+        return Promise.reject({
+            errorCode: "-1",
+            errorMessage: "微信未安装"
+        });
+    }
     return new Promise<void>((resolve, reject) => {
 
         if (typeof payParam === "string") {
