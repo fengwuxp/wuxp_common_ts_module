@@ -15,8 +15,8 @@ if (isWeb) {
          * AccessKey
          * @param
          */
-        config(params: LetterPigeonConfigOptions) {
-            console.log(params);
+        config(configOptions: LetterPigeonConfigOptions) {
+            console.log(configOptions);
         },
         /**
          * 注册
@@ -46,7 +46,13 @@ if (isWeb) {
         readMsg(msgId, callback = () => {
         }) {
             console.log("web环境暂不支持 readMsg");
+        },
+
+        setConfig: function (accessId: number, accessKey: string) {
+            console.log("web环境暂不支持 setConfig");
         }
+
+
     };
     console.log("注册自定义模块 msgPush");
     console.log(messagePush);

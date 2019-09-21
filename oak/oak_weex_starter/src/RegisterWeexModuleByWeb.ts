@@ -13,12 +13,15 @@ export const registerWeexModuleByWeb = () => {
     require("./module/picker/DateTimerPickerModule");
     require("./module/share/ShareModel");
     require("./module/keyboard/KeyboardModule");
+    require("./module/push/WeexLetterPigeonPushModule");
+    require("./module/push/WeexMiPushModule");
 
     require("./module/Cache");
     require("./module/AppMain");
     require("./module/ImageLoad");
     require("./module/Common");
     require("./module/Photo");
+
 
     require("./natjs/network/web/");
 
