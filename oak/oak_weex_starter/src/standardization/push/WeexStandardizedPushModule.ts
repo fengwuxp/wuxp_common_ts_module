@@ -128,10 +128,28 @@ export const defaultReceiveMessage: ReceiveMessageHandle = ({data, id}) => {
 
 
 /**
+ * 推送模式
+ */
+export enum PushModel {
+
+    /**
+     * 信鸽
+     */
+    LETTER_PIGEON,
+
+    /**
+     * 小米推送
+     */
+    MI
+}
+
+/**
  * 获取标准化的推送配置
  * @param weexPushModule
+ * @param pushModel
  */
-export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule) => {
+export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
+                                                 pushModel?: PushModel) => {
 
     return {
         module: weexPushModule,
@@ -204,10 +222,13 @@ export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule)
                 });
 
             },
-            registerReceiver(standardizedModule: WeexStandardizedModule, accountId: number) {
+            registerReceiver(standardizedModule: WeexStandardizedModule, accountId: number | string) {
+                const isLetter = pushModel == PushModel.LETTER_PIGEON;
                 let id: string = accountId.toString();
-                if ((typeof accountId === "number" && accountId < 10) || id.length === 1) {
-                    id = `0${accountId}`;
+                if (isLetter) {
+                    if ((typeof accountId === "number" && accountId < 10) || id.length === 1) {
+                        id = `0${accountId}`;
+                    }
                 }
                 return new Promise((resolve, reject) => {
                     weexPushModule.registerMsgPush(id, resolve, reject);

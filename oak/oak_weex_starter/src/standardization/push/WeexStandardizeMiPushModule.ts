@@ -1,6 +1,6 @@
 import {standardizedWeexModuleToPromise} from "fengwuxp_common_weex/src/sdk/standardization/StandardizationHelper";
 import {WeexPushModule} from "../../module/push";
-import {getStandardizedPushModuleOptions, WeexStandardizedPushModule} from "./WeexStandardizedPushModule";
+import {getStandardizedPushModuleOptions, PushModel, WeexStandardizedPushModule} from "./WeexStandardizedPushModule";
 
 
 /**
@@ -12,6 +12,6 @@ export interface WeexStandardizeMiPushModule extends WeexStandardizedPushModule 
 
 const msgMiPush: WeexPushModule = weex.requireModule("msgMiPush");
 
-const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeMiPushModule>(getStandardizedPushModuleOptions(msgMiPush));
+const standardizeLetterPigeonPushModule = standardizedWeexModuleToPromise<WeexStandardizeMiPushModule>(getStandardizedPushModuleOptions(msgMiPush, PushModel.MI));
 
 export default standardizeLetterPigeonPushModule;

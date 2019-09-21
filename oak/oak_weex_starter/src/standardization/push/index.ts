@@ -1,24 +1,10 @@
 import {PushConfigOptions} from "../../module/push";
 import weexStandardizeLetterPigeonPushModule from "./WeexStandardizeLetterPigeonPushModule";
 import weexStandardizeMiPushModule from "./WeexStandardizeMiPushModule";
-import {WeexStandardizedPushModule} from "./WeexStandardizedPushModule";
+import {PushModel, WeexStandardizedPushModule} from "./WeexStandardizedPushModule";
 
 
-/**
- * 推送模式
- */
-export enum PushModel {
 
-    /**
-     * 信鸽
-     */
-    LETTER_PIGEON,
-
-    /**
-     * 小米推送
-     */
-    MI
-}
 
 
 /**
@@ -31,8 +17,8 @@ export enum PushModel {
 export const registerMessageReceiverAccount = <T extends PushConfigOptions>(accountId: number | string,
                                                              options: T,
                                                              pushModel: PushModel = PushModel.MI): Promise<void> => {
-
-    const standardizeLetterPushModule:WeexStandardizedPushModule = pushModel == PushModel.MI ? weexStandardizeMiPushModule : weexStandardizeLetterPigeonPushModule;
+    const isLetter = pushModel == PushModel.LETTER_PIGEON;
+    const standardizeLetterPushModule:WeexStandardizedPushModule = isLetter ? weexStandardizeMiPushModule : weexStandardizeLetterPigeonPushModule;
     standardizeLetterPushModule.config(options);
     return standardizeLetterPushModule.registerReceiver(accountId);
 };
