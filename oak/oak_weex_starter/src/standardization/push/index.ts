@@ -4,9 +4,6 @@ import weexStandardizeMiPushModule from "./WeexStandardizeMiPushModule";
 import {PushModel, WeexStandardizedPushModule} from "./WeexStandardizedPushModule";
 
 
-
-
-
 /**
  * 注册消息推送接收账号
  * @param accountId  用户id
@@ -15,10 +12,10 @@ import {PushModel, WeexStandardizedPushModule} from "./WeexStandardizedPushModul
  * @return Promise<void>
  */
 export const registerMessageReceiverAccount = <T extends PushConfigOptions>(accountId: number | string,
-                                                             options: T,
-                                                             pushModel: PushModel = PushModel.MI): Promise<void> => {
+                                                                            options: T,
+                                                                            pushModel: PushModel = PushModel.MI): Promise<void> => {
     const isLetter = pushModel == PushModel.LETTER_PIGEON;
-    const standardizeLetterPushModule:WeexStandardizedPushModule = isLetter ? weexStandardizeMiPushModule : weexStandardizeLetterPigeonPushModule;
+    const standardizeLetterPushModule: WeexStandardizedPushModule = isLetter ? weexStandardizeLetterPigeonPushModule : weexStandardizeMiPushModule;
     standardizeLetterPushModule.config(options);
     return standardizeLetterPushModule.registerReceiver(accountId);
 };

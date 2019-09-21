@@ -20,6 +20,8 @@ if (isWeb) {
         registerMsgPush(accountId: string,
                         success: (data: string) => void,
                         failure: (errorMessage: string) => void) {
+            console.log("web端暂不支持小米推送", accountId);
+            success(accountId);
         },
         setAcceptTime(startHour: number, startMin: number, endHour: number, endMin: number) {
         },
