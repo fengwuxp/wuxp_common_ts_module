@@ -143,9 +143,7 @@ export interface WeexMiPushModule extends WeexPushModule {
 
 export interface MiPushConfigOptions extends PushConfigOptions {
 
-    // accessId?: number;
-    // accessKey?: string;
-
-    AppID?: string;
-    AppKey?: string;
+    // AppID?: string;
+    // AppKey?: string;
 }
+

@@ -14,7 +14,15 @@ describe("function test", () => {
     test("test", () => {
 
         oakALiYunOssInitializer.initFactory({
-            getConfigUrl: ""
+            getConfigUrl: () => {
+                //接口调用
+                return Promise.resolve()
+            },
+            // getStsTokenUrl: () => {
+            //     //接口调用
+            //     return Promise.resolve()
+            // }
+            getStsTokenUrl: ""
         }).then((factory) => {
             const client = factory.factory();
 

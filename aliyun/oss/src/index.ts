@@ -14,14 +14,15 @@ import {ResponseType} from "fengwuxp_common_fetch/src/constant/ResponseType";
 import {MultipartUploadResp} from "../types/object/oss-object";
 import UUIDUtil from "fengwuxp_common_utils/lib/uuid/UUIDUtil";
 
+type GetConfigFunction = () => Promise<any>;
 
 export interface OakALiYunOssInitializerOptions extends OssClientOptionalOptions, ALiYunOssInitializerOptions {
 
-    //获取配置的url
-    getConfigUrl: string;
+    //获取配置的url或方法
+    getConfigUrl: GetConfigFunction | string;
 
-    //获取stsToken的url
-    getStsTokenUrl?: string;
+    //获取配置的url或方法
+    getStsTokenUrl?: GetConfigFunction | string;
 }
 
 
@@ -77,7 +78,12 @@ interface AliYunStsTokenInfo {
     expirationSeconds: number;
 }
 
-function getFetchResponsePromise(url) {
+function getFetchResponsePromise(url: string | Function) {
+
+    if (typeof url === "function") {
+        return url();
+    }
+
     return webFetchAdapter.request({
         url,
         headers: {
@@ -176,13 +182,14 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
     private aliYunStsTokenInfo: AliYunStsTokenInfo;
 
     //刷新sts token url
-    private getStsTokenUrl: string;
+    private getStsTokenUrl: GetConfigFunction | string;
 
     constructor(ossClientOptions: OssClientOptions,
-                getStsTokenUrl: string,
+                getStsTokenUrl: GetConfigFunction | string,
                 aliYunStsTokenInfo?: AliYunStsTokenInfo) {
         this.ossClientOptions = ossClientOptions;
         this.aliYunStsTokenInfo = aliYunStsTokenInfo;
+        this.getStsTokenUrl = getStsTokenUrl;
         //自动刷新sts token
         this.autoRefresh();
 
