@@ -14,6 +14,7 @@ import DefaultFileUploadStrategy from "../../transfer/DefaultFileUploadStrategy"
 import {defaultApiModuleName} from "../../constant/FeignConstVar";
 import {BaseFetchOptions} from "../../BaseFetchOptions";
 import {ResponseDataDecoder} from "../../codec/ResponseDataDecoder";
+import {isEq} from "../../utils/MediaTypeUtil";
 
 /**
  * 默认的代理执行器
@@ -58,7 +59,7 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
         //解析url
         const requestURL = this.requestURLResolver.resolve(apiService, methodName, data);
         //处理请求头
-        const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data);
+        const headers = this.requestHeaderResolver.resolve(apiService, methodName, options.headers, data) || {};
         //请求requestMapping
         const serviceMethodConfig = apiService.getServiceMethodConfig(methodName);
         const {requestMapping, signature, retryOptions} = serviceMethodConfig;
@@ -78,9 +79,9 @@ export default class DefaultProxyServiceExecutor extends AbstractProxyServiceExe
             fetchOptions.contentType = fetchOptions.contentType || requestMapping.produces[0];
 
             const consume = requestMapping.consumes[0];
-            if (consume === MediaType.JSON_UTF8) {
+            if (isEq(consume as MediaType, MediaType.JSON_UTF8)) {
                 fetchOptions.responseType = ResponseType.JSON
-            } else if (consume === MediaType.TEXT) {
+            } else if (isEq(consume as MediaType, MediaType.TEXT)) {
                 fetchOptions.responseType = ResponseType.TEXT
             } else {
                 //默认使用json

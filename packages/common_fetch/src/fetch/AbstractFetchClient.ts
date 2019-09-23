@@ -5,6 +5,7 @@ import {FetchAdapter} from "../adapter/FetchAdapter";
 import {stringify} from "../utils/QueryString";
 import {MediaType} from "../constant/http/MediaType";
 import {contentTypeName} from "../constant/FeignConstVar";
+import {isEq} from "../utils/MediaTypeUtil";
 
 
 /**
@@ -96,10 +97,10 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         } else /*if (method === RequestMethod.POST)*/ {
             //其他请求
-            if (newContentType === MediaType.FORM_DATA) {
+            if (isEq(newContentType, MediaType.FORM_DATA)) {
                 //以表单的形式提交数据
                 options.data = stringify(data, options.filterEmptyString);
-            } else if (newContentType === MediaType.JSON_UTF8) {
+            } else if (isEq(newContentType, MediaType.JSON_UTF8)) {
                 //json
                 options.data = JSON.stringify(data);
             } else {

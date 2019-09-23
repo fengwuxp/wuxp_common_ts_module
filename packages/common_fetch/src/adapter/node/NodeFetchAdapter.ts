@@ -5,6 +5,7 @@ import {MediaType} from "../../constant/http/MediaType";
 import {NodeFetchOptions} from "./NodeFetchOptions";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import {ResponseType} from "../../constant/ResponseType";
+import {isEq} from "../../utils/MediaTypeUtil";
 
 /**
  * node fetch adapter
@@ -52,15 +53,15 @@ export default class NodeFetchAdapter extends AbstractFetchAdapter<NodeFetchOpti
 
         const {contentType, data} = options;
 
-        if (contentType === MediaType.FORM_DATA) {
+        if (isEq(contentType as MediaType, MediaType.FORM_DATA)) {
             return {
                 form: data
             }
-        } else if (contentType === MediaType.JSON_UTF8 || contentType == MediaType.JSON_UTF8) {
+        } else if (isEq(contentType as MediaType, MediaType.JSON_UTF8)) {
             return {
                 body: data
             }
-        } else if (contentType === MediaType.MULTIPART_FORM_DATA) {
+        } else if (isEq(contentType as MediaType, MediaType.MULTIPART_FORM_DATA)) {
             return {
                 formData: data
             }

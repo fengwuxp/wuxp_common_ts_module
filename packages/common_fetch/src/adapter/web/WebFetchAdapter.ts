@@ -5,6 +5,7 @@ import {RequestMethod} from "../../constant/RequestMethod";
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
 import {MediaType} from "../../constant/http/MediaType";
 import {contentTypeName} from "../../constant/FeignConstVar";
+import {isEq} from "../../utils/MediaTypeUtil";
 
 
 // RequestInit 属性name列表
@@ -80,7 +81,7 @@ export default class WebFetchAdapter extends AbstractFetchAdapter<WebFetchOption
         } = options;
 
 
-        if (contentType === MediaType.MULTIPART_FORM_DATA) {
+        if (isEq(contentType as MediaType, MediaType.MULTIPART_FORM_DATA)) {
             //移除
             //@link https://segmentfault.com/a/1190000010205162
             delete headers[contentTypeName];
