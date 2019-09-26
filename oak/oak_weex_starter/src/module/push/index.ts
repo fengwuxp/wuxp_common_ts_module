@@ -93,7 +93,9 @@ export interface WeexMiPushModule extends WeexPushModule {
      * 设置小米推送置
      * @param config
      */
-    config: (config: MiPushConfigOptions) => void;
+    config: (config: MiPushConfigOptions,
+             success?: () => void,
+             failure?: (errorMessage: string) => void) => void;
 
     /**
      * 设置配置

@@ -5,7 +5,7 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
+    "declaration": false,
     "target": "es5",
     "outDir": "lib",
     "sourceMap": false,

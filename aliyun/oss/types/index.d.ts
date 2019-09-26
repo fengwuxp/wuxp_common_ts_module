@@ -4,7 +4,6 @@
 declare module "ali-oss" {
 
 
-
     import ReadStream = NodeJS.ReadStream;
 
     /**
@@ -69,6 +68,9 @@ declare module "ali-oss" {
 
         append: (name: string, file: (string | Buffer | NodeJS.ReadStream), options: AppendOptions) => Promise<{ name: string; url: string; res: CommonResResponse; nextAppendPosition: string }>;
         multipartUpload: (name: string, file: (string | File), options: MultipartOptions) => Promise<MultipartUploadResp>;
+
+        cancel: () => void;
+        isCancel: () => boolean;
 
     }
 

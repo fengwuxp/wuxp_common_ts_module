@@ -48,7 +48,7 @@ export interface WeexStandardizedPushModule extends WeexStandardizedModule {
      * 配置推送的参数
      * @param config
      */
-    readonly  config: <T extends PushConfigOptions>(config: T) => void;
+    readonly  config: <T extends PushConfigOptions>(config: T) => Promise<void>;
 
 
     /**
@@ -151,6 +151,7 @@ export enum PushModel {
 export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
                                                  pushModel?: PushModel) => {
 
+
     return {
         module: weexPushModule,
         transformParamMap: {
@@ -162,7 +163,9 @@ export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
             }
 
         },
-        transformCallbackMap: {},
+        transformCallbackMap: {
+            config: (resolve, reject) => pushModel == PushModel.MI ? [resolve, reject] : []
+        },
         enhanceMap: {
 
             onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {

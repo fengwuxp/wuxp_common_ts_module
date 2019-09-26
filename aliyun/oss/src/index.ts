@@ -109,7 +109,7 @@ export default class OakALiYunOssInitializer implements ALiYunOssInitializer<Oak
         //获取oos配置
         return getFetchResponsePromise(getConfigUrl).then((resp) => {
             const ossServerConfig: OssServerConfig = resp;
-            const enabledOss = ossServerConfig.oss && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeyId)
+            const enabledOss = (ossServerConfig.oss || ossServerConfig.mode === "oss") && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeyId)
                 && StringUtils.hasText(ossServerConfig.aliyunStsAccessKeySecret);
             if (!enabledOss) {
                 //未启用

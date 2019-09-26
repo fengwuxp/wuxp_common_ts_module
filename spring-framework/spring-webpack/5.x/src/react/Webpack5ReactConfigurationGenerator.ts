@@ -1,11 +1,11 @@
 import * as webpack from "webpack";
-import ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {pathAlias} from "../configuration/CommonpPathAlias";
 import {
     WebpackConfigurationGenerator,
     WebpackConfigurationGeneratorOptions
 } from "../WebpackConfigurationGenerator";
 import * as path from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {awesomeTypescriptLoader} from "../typescript/TypescriptLoader";
 import {cssModuleLoader} from "../styles/CssModuleLoader";
 import PostCssLoader from "../styles/postcss/PostCssLoader";
@@ -15,9 +15,10 @@ import {getHappyPackPlugin} from "../happypack/GetHappyPackPluginConfig";
 import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
 import HtmlWebPackPlugin from "html-webpack-plugin";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
+import {miniCssExtractLoader} from "../styles/minicss";
 
 
-export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator = (options: WebpackConfigurationGeneratorOptions): webpack.Configuration => {
+export const webpack5ReactConfigurationGenerator: WebpackConfigurationGenerator = (options: WebpackConfigurationGeneratorOptions): webpack.Configuration => {
 
 
     const {
@@ -58,13 +59,11 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
                 /*-----------style----------*/
                 {
                     test: /\.css$/,
-                    use: ExtractTextWebpackPlugin.extract({
-                        fallback: "style-loader",
-                        use: [
-                            cssModuleLoader,
-                            PostCssLoader
-                        ]
-                    }),
+                    use: [
+                        miniCssExtractLoader,
+                        cssModuleLoader,
+                        PostCssLoader
+                    ]
 
                 },
                 lessLoader(),
@@ -126,10 +125,10 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
                     }
                 }
             ], 2),
-            new ExtractTextWebpackPlugin({
-                filename: isProd ? "[name]_[hash].css" : "[name].css",
-                allChunks: true
-            })
+            new MiniCssExtractPlugin({
+                filename: "[name]_[hash].css",
+                chunkFilename: "[name]_[hash].css",
+            }),
         ]
     };
 

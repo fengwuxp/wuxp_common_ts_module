@@ -14,8 +14,36 @@ import {PushModel, WeexStandardizedPushModule} from "./WeexStandardizedPushModul
 export const registerMessageReceiverAccount = <T extends PushConfigOptions>(accountId: number | string,
                                                                             options: T,
                                                                             pushModel: PushModel = PushModel.MI): Promise<void> => {
+    const standardizeLetterPushModule = getPushModule(pushModel);
+    return standardizeLetterPushModule.config(options).then(() => {
+        return standardizeLetterPushModule.registerReceiver(accountId);
+    });
+
+
+    // return new Promise<void>((resolve, reject) => {
+    //     const timerId = setTimeout(() => {
+    //         if (pushModel === PushModel.MI) {
+    //             //20秒后尝试重新注册用户，小米推送首次需要等待应用授权
+    //             console.log("重新注册");
+    //             standardizeLetterPushModule.registerReceiver(accountId)
+    //                 .then(resolve)
+    //                 .catch(reject);
+    //         }
+    //     }, 20 * 1000);
+    //
+    //     return standardizeLetterPushModule.registerReceiver(accountId).then(() => {
+    //         clearTimeout(timerId);
+    //         resolve()
+    //     }).catch(reject);
+    // })
+};
+
+
+/**
+ * 获取推送模块
+ * @param pushModel
+ */
+export const getPushModule = (pushModel: PushModel): WeexStandardizedPushModule => {
     const isLetter = pushModel == PushModel.LETTER_PIGEON;
-    const standardizeLetterPushModule: WeexStandardizedPushModule = isLetter ? weexStandardizeLetterPigeonPushModule : weexStandardizeMiPushModule;
-    standardizeLetterPushModule.config(options);
-    return standardizeLetterPushModule.registerReceiver(accountId);
+    return isLetter ? weexStandardizeLetterPigeonPushModule : weexStandardizeMiPushModule;
 };

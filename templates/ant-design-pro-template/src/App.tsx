@@ -20,8 +20,8 @@ import * as ReactDOM from "react-dom";
 *
 * */
 
-ReactDOM.render(
-
-    document.getElementById("app")
-);
+// ReactDOM.render(
+//
+//     document.getElementById("app")
+// );
 

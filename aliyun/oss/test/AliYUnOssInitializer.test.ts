@@ -1,7 +1,7 @@
 import * as log4js from "log4js";
 import OakALiYunOssInitializer, {OakALiYunOssInitializerOptions} from "../src";
 import {ALiYunOssInitializer} from "../src/faactory/ALiYunOssInitializer";
-import AliOssClient from "ali-oss";
+import AliOssCLinet from "ali-oss";
 
 const logger = log4js.getLogger();
 logger.level = 'debug';
@@ -24,7 +24,7 @@ describe("function test", () => {
             // }
             getStsTokenUrl: ""
         }).then((factory) => {
-            const client = factory.factory();
+            const client:AliOssCLinet = factory.factory();
 
             client.multipartUpload("", null, {})
                 .then(({res, name, bucket}) => {

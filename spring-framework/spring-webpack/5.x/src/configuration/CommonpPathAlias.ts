@@ -7,7 +7,6 @@ export const pathAlias = {
     "@src": path.resolve("src/"),
     "@services": path.resolve("src/services/"),
     "@feign": path.resolve("src/feign/"),
-    "@helper": path.resolve("src/helper/"),
     "@api": path.resolve("src/api/"),
     "@enums": path.resolve("src/enums/"),
     "@config": path.resolve("src/config/"),

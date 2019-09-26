@@ -9,7 +9,9 @@ if (isWeb) {
     const msgMiPush: WeexMiPushModule = {
         clearNotification(callback: () => void) {
         },
-        config(configOptions: MiPushConfigOptions) {
+        config(configOptions: MiPushConfigOptions,
+               success: () => void,
+               failure: (errorMessage: string) => void) {
         },
         getRegId(callback: () => void) {
         },
