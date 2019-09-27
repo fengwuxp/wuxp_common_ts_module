@@ -9,12 +9,12 @@ import {isWeb} from "fengwuxp_common_weex/src/constant/WeexEnv";
 
 export default {
 
-    methods:{
+    methods: {
 
         onFocus(e) {
             this.isFocus = true;
             this.$emit(ON_FOCUS_EVENT_NAME, e);
-            if (isWeb){
+            if (isWeb) {
                 //  const input = e.target;
                 // setTimeout(()=>{
                 //     input.scrollIntoView(true);
@@ -67,10 +67,25 @@ export default {
                 $ref.focus();
             }
         },
-        blur(){
+        blur() {
             const $ref = this.$refs["input"];
             if ($ref) {
                 $ref.blur();
+            }
+        },
+        setTextFormatter(params: {
+            //格式化匹配的正则表达式
+            formatRule: string,
+            //格式化匹配后用于替换的内容
+            formatReplace: string,
+            //从格式化后的内容还原原始内容的正则表达式
+            recoverRule: string,
+            //还原原始内容时用于替换的内容
+            recoverReplace: string,
+        }) {
+            const $ref = this.$refs["input"];
+            if ($ref && $ref.setTextFormatter) {
+                $ref.setTextFormatter(params);
             }
         }
     }

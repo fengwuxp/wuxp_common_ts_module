@@ -5,6 +5,7 @@ import {AppVersionInfo} from "./AppVersionInfo";
 import {PlatformType} from "./PlatformType";
 import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
 import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
+import {LocalVersionInfo} from "./LocalVersionInfo";
 
 
 interface CheckAppVersionReq {
@@ -71,24 +72,37 @@ export default class CheckAndroidVersionHandler {
      * 是否最新版本
      */
     isNewestVersion = (useProgressBar): Promise<AppVersionInfo> => {
-        return new Promise<AppVersionInfo>((resolve, reject) => {
+
+        return this.getLocalVersion().then(({versionCode}) => {
+            return this.getAppVersionByServer(versionCode, useProgressBar)
+                .catch(({message}) => {
+                    message = message || "检查更新查询失败";
+                    if (useProgressBar) {
+                        weexToast(message);
+                    }
+                    return Promise.reject(message);
+                });
+        })
+    };
+
+    /**
+     * 获取本地版本
+     */
+    getLocalVersion = (): Promise<LocalVersionInfo> => {
+        return new Promise<LocalVersionInfo>((resolve, reject) => {
             common.getAppVersionInfo(({versionCode, versionName, packageName}) => {
-                console.log("当前版本-> " + versionCode);
-                this.getAppVersionByServer(versionCode, useProgressBar)
-                    .then(resolve)
-                    .catch(({message}) => {
-                        message = message || "检查更新查询失败";
-                        if (useProgressBar) {
-                            weexToast(message);
-                        }
-                        reject(message);
-                    });
+
+                resolve({
+                    versionCode,
+                    versionName,
+                    packageName
+                })
+
             }, (message = "获取版本信息失败！") => {
                 reject(message);
             });
         })
     };
-
 
     /**
      * 从服务端获取版本号
