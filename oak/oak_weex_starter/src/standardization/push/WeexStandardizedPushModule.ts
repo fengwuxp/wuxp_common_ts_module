@@ -58,7 +58,7 @@ export interface WeexStandardizedPushModule extends WeexStandardizedModule {
     readonly registerReceiver: (accountId: number | string) => Promise<void>;
 
     /**
-     * 接收信鸽消息，全局只要调用一次，比如在首页（常驻存活的页面）
+     * 接收推送消息，全局只要调用一次，比如在首页（常驻存活的页面）
      * @param handle 可不传，将使用默认的处理方式
      */
     readonly onReceiveMessage: (handle: ReceiveMessageHandle) => void;
@@ -86,19 +86,38 @@ export interface WeexStandardizedPushModule extends WeexStandardizedModule {
  * 被点击的消息id前缀
  * @type {string}
  */
-export const CLICK_MSG_PREFIX = "onClick_";
+export const ON_CLICK_MSG_PREFIX = "onClick_";
 
-/**
- * 未被点击的消息id前缀
- * @type {string}
- */
-export const COMMON_MSG_PREFIX = "onText_";
 
 /**
  * 当前显示的消息
  */
 export const ON_SHOW_PREFIX = "onShow_";
 
+/**
+ * 透传的消息id前缀
+ * @type {string}
+ */
+export const ON_MESSAGE_PREFIX = "onText_";
+
+//filter predicate factory
+const filterPredicateFactory = (prefix: string) => (messageId: string) => messageId.startsWith(prefix);
+
+/**
+ * 过滤透传消息
+ * @param id
+ */
+const filterOnTransparentMessage = filterPredicateFactory(ON_MESSAGE_PREFIX);
+
+/**
+ * 过滤当前显示的通知消息
+ */
+const filterOnNotificationMessage = filterPredicateFactory(ON_SHOW_PREFIX);
+
+/**
+ * 过滤被点击的通知消息
+ */
+const filterOnClickNotificationMessage = filterPredicateFactory(ON_CLICK_MSG_PREFIX);
 
 /**
  * 查找当前被点击的消息
@@ -106,7 +125,7 @@ export const ON_SHOW_PREFIX = "onShow_";
  */
 export const findCurrentClickMessage = (list: PushMessageInfo[]) => {
     return list.find((item) => {
-        return item.id.indexOf(CLICK_MSG_PREFIX) >= 0;
+        return filterOnClickNotificationMessage(item.id);
     });
 };
 
@@ -176,7 +195,8 @@ export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
                     if (data.constructor !== Array) {
                         data = [data as any];
                     }
-                    const messageInfo = data.find(({id}) => id.startsWith(ON_SHOW_PREFIX));
+
+                    const messageInfo = data.find(({id}) => filterOnTransparentMessage(id) || filterOnNotificationMessage(id));
                     if (messageInfo) {
                         let r = handle(messageInfo);
                         if (r) {
