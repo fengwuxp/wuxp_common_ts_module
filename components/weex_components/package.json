@@ -31,7 +31,8 @@
     "fengwuxp_common_route": "^1.0.5",
     "fengwuxp_common_style": "^1.0.5",
     "fengwuxp_common_weex": "^1.0.5",
-    "weex-ui": "^0.6.6"
+    "weex-ui": "^0.6.6",
+    "bui-weex": "^0.4.31"
   },
   "devDependencies": {
     "csstype": "^2.6.0"

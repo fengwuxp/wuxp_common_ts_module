@@ -39,14 +39,29 @@ export default {
             queryLoading: false,
             //是否查询结束
             queryEnd: false,
+
             //显示加载中
-            // showLoading: false
+            showLoading: false
         }
     },
     computed: {
         loadingDisplayValue() {
 
-            return this.queryLoading ? "show" : "hide"
+            return this.showLoading ? "show" : "hide"
+        },
+        loadingText() {
+            const {queryLoading, queryEnd, showLoading} = this;
+            if (queryEnd) {
+                return "没有更多数据了"
+            }
+            if (queryLoading) {
+                return "加载中"
+            }
+            if (showLoading) {
+                return "加载更多"
+            }
+
+            return "";
         }
     },
     methods: {
@@ -119,6 +134,9 @@ export default {
                     this.queryPage++;
                 }
                 this.queryLoading = false;
+                setTimeout(() => {
+                    this.showLoading = false;
+                }, 200);
             });
         },
 
@@ -177,7 +195,14 @@ export default {
         },
 
         onLoading() {
-
+            const {queryEnd} = this;
+            this.showLoading = true;
+            this.$emit("onLoading");
+            if (queryEnd){
+                setTimeout(() => {
+                    this.showLoading = false;
+                }, 500);
+            }
         },
 
         /**

@@ -1,3 +1,5 @@
+@import "../../theme/defualt_theme";
+
 .flex_v_center {
   align-items: center;
 }
@@ -12,13 +14,22 @@
 
 .loading_text {
   font-size: 30px;
-  color: #c9c5cb;
+  color:  @brand-primary;
   text-align: center;
   padding-left: 10px;
 }
 
-.loading{
-  justify-content: center;
-  align-items: center;
+.loading {
   width: 750px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.loading_indicator {
+  height: 40px;
+  width: 40px;
+  color: @brand-primary
 }

@@ -31,12 +31,13 @@
         <cell ref="first_node"></cell>
         <slot></slot>
         <!--loading-->
-<!--        <loading @loading="onLoading"-->
-<!--                 class="loading flex_row"-->
-<!--                 :display="loadingDisplayValue">-->
-<!--            <loading-indicator></loading-indicator>-->
-<!--            <text class="loading_text" :value="ladingText"></text>-->
-<!--        </loading>-->
+        <loading  v-if="useLoading"
+                  @loading="onLoading"
+                 class="loading flex_row"
+                 :display="loadingDisplayValue">
+            <loading-indicator class=loading_indicator></loading-indicator>
+            <text class="loading_text" :value="loadingText"></text>
+        </loading>
     </list>
 </template>
 

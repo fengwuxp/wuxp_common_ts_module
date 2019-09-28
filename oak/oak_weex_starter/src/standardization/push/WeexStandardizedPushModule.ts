@@ -60,11 +60,12 @@ export interface WeexStandardizedPushModule extends WeexStandardizedModule {
     /**
      * 接收推送消息，全局只要调用一次，比如在首页（常驻存活的页面）
      * @param handle 可不传，将使用默认的处理方式
+     * @param predicate 过滤消息的谓词
      */
-    readonly onReceiveMessage: (handle: ReceiveMessageHandle) => void;
+    readonly onReceiveMessage: (handle: ReceiveMessageHandle, predicate?: (messageId: string) => boolean) => void;
 
     /**
-     * 信鸽消息被点击消息
+     * 消息被点击消息
      * @param handle
      */
     readonly onClickMessage: (handle?: ReceiveMessageHandle) => void;
@@ -187,7 +188,11 @@ export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
         },
         enhanceMap: {
 
-            onReceiveMessage(standardizedModule: WeexStandardizedModule, handle: ReceiveMessageHandle) {
+            onReceiveMessage(standardizedModule: WeexStandardizedModule,
+                             handle: ReceiveMessageHandle,
+                             predicate: (messageId: string) => boolean = (messageId: string) => {
+                                 return filterOnTransparentMessage(messageId) || filterOnNotificationMessage(messageId);
+                             }) {
                 broadcast.register("PUSH_MSG_CATEGORY", "NEW_PUSH_MSG", ({data}: { data: ReceiveMessageInfo[] }) => {
                     if (data == null) {
                         return;
@@ -196,7 +201,7 @@ export const getStandardizedPushModuleOptions = (weexPushModule: WeexPushModule,
                         data = [data as any];
                     }
 
-                    const messageInfo = data.find(({id}) => filterOnTransparentMessage(id) || filterOnNotificationMessage(id));
+                    const messageInfo = data.find(({id}) => predicate(id));
                     if (messageInfo) {
                         let r = handle(messageInfo);
                         if (r) {

@@ -48,6 +48,12 @@ export default {
         default: "正在加载中"
     },
 
+    /**
+     * 是否使用loading
+     */
+    useLoading: {
+        default: true
+    },
     ladingText: {
         default: "数据加载中..."
     },
