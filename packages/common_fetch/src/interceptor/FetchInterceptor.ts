@@ -36,5 +36,5 @@ export interface FetchInterceptor<T = any> {
      * @param options
      */
     postHandleCompleted?<R>(response: R, options: T): R | undefined | null;
-
+    
 }

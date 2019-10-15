@@ -8,7 +8,7 @@
 |-------ios
 |-----dist                 原生应用的bundlejs
 |-----dist_web             web端js
-|-----public               web开放环境需要的框架js
+|-----public               web开发环境需要的框架js
 |-----src
 |-------components         组件
 |-------config             项目配置

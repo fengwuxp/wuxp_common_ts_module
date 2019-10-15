@@ -41,6 +41,18 @@ interface WeexPackConfig {
      * 项目根目录
      */
     PROJECT_ROOT_DIR: string;
+
+    /**
+     * 打包输出目录
+     * 默认 "./dist"
+     */
+    JS_OUTPUT_DIR: string;
+
+    /**
+     * 获取渠道包的静态资源配置
+     * @param options
+     */
+    getProductFlavorsStaticResourcesCopyConfig: (options) => Array<any>;
 }
 
 let {
@@ -49,7 +61,9 @@ let {
     IOS_DIR,
     BUNDLE_JS_DIR,
     IMAGE_PATH,
-    FONT_PATH
+    FONT_PATH,
+    getProductFlavorsStaticResourcesCopyConfig,
+    OUTPUT_DIR
 } = require("../../../../../webpack-config/WebpackConfig");
 
 
@@ -74,10 +88,13 @@ IMAGE_PATH = IMAGE_PATH || "./images";
 
 FONT_PATH = FONT_PATH || "./fonts";
 
+const JS_OUTPUT_DIR = OUTPUT_DIR || "dist";
+
 /**
  * 获取项目更目录
  */
 const PROJECT_ROOT_DIR: string = getProjectRootDir();
+const _getProductFlavorsStaticResourcesCopyConfig = (options) => getProductFlavorsStaticResourcesCopyConfig(options) || [];
 
 // console.log("PROJECT_ROOT_DIR",PROJECT_ROOT_DIR)
 
@@ -88,7 +105,9 @@ const PackConfig: WeexPackConfig = {
     BUNDLE_JS_DIR,
     IMAGE_PATH,
     FONT_PATH,
-    PROJECT_ROOT_DIR
+    PROJECT_ROOT_DIR,
+    JS_OUTPUT_DIR,
+    getProductFlavorsStaticResourcesCopyConfig: _getProductFlavorsStaticResourcesCopyConfig
 };
 
 export default PackConfig;

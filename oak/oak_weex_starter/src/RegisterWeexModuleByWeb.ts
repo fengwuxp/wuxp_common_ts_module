@@ -24,6 +24,8 @@ export const registerWeexModuleByWeb = () => {
 
 
     require("./natjs/network/web/");
+    require("./natjs/media/web/AudioWebModule");
+    require("./natjs/media/web/VideoWebModule");
 
 
 };

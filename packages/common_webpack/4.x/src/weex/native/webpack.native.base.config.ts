@@ -15,9 +15,10 @@ const babel7Options = require("../../../babel/babelrc7");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, FONT_PATH, BUNDLE_JS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
+const {IMAGE_PATH, ANDROID_DIR, IOS_DIR, FONT_PATH, getProductFlavorsStaticResourcesCopyConfig, JS_OUTPUT_DIR, BUNDLE_JS_DIR, PROJECT_ROOT_DIR} = WeexPackConfig;
 
 const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : false;
+
 
 /**
  * weex 打包的 base config
@@ -28,7 +29,7 @@ const nativeRelease = process.env.NATIVE_RELEASE ? process.env.NATIVE_RELEASE : 
 const config: webpack.Configuration = {
     entry,
     output: {
-        path: nativeRelease ? path.resolve("./") : path.resolve("./dist"),
+        path: nativeRelease ? path.resolve("./") : path.resolve(`./${JS_OUTPUT_DIR}`),
         filename: '[name].js',
     },
     resolve: {
@@ -111,12 +112,19 @@ if (nativeRelease) {
     //将图片资源复制到对应的原始目录
     let imageFormPath = path.join(PROJECT_ROOT_DIR, IMAGE_PATH.replace("./", "./static_resources/"));
     if (nativeRelease.indexOf("ANDROID") >= 0) {
+        const to = path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH,"./");
         config.plugins.push(
             //复制图片
-            new CopyWebpackPlugin([{
-                from: imageFormPath,
-                to: path.join(PROJECT_ROOT_DIR, ANDROID_DIR, IMAGE_PATH) + "/"
-            }]),
+            new CopyWebpackPlugin([
+                {
+                    from: imageFormPath,
+                    to
+                },
+                ...getProductFlavorsStaticResourcesCopyConfig({
+                    isAndroid: true,
+                    to
+                })
+            ]),
 
             // //复制字体图标
             // new CopyWebpackPlugin([{
@@ -126,11 +134,18 @@ if (nativeRelease) {
         );
     }
     if (nativeRelease.indexOf("IOS") >= 0) {
+        const to = path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH,"./");
         config.plugins.push(
-            new CopyWebpackPlugin([{
-                from: imageFormPath,
-                to: path.join(PROJECT_ROOT_DIR, IOS_DIR, IMAGE_PATH) + "/"
-            }]),
+            new CopyWebpackPlugin([
+                {
+                    from: imageFormPath,
+                    to
+                },
+                ...getProductFlavorsStaticResourcesCopyConfig({
+                    isIos: true,
+                    to
+                })
+            ]),
             //复制字体图标
             // new CopyWebpackPlugin([{
             //     from: from.replace("images", "fonts"),

@@ -9,7 +9,7 @@ const port = 9000;
  * 接口请求被代理的入口地址
  * @type {string}
  */
-const proxyTarget = `http://localhost:8912/api/`;
+const proxyTarget = `http://localhost:9018/api/`;
 // const proxyTarget = `http:///api/`;
 
 /**

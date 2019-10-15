@@ -24,7 +24,7 @@ const stringifyPrimitive = function (v) {
  * @param filterNoneValue
  * @param sep
  * @param eq
- * @name name
+ * @param name
  */
 export const stringify = (obj: ParsedUrlQueryInput,
                           filterNoneValue: boolean = true,

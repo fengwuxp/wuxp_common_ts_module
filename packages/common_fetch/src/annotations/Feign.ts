@@ -27,7 +27,6 @@ export interface FeignOptions {
 }
 
 
-
 // type FeignGenerate<T extends FeignProxy> = (clazz: T) => FeignProxy
 
 
@@ -53,7 +52,7 @@ export function Feign<T extends FeignProxy>(options?: FeignOptions): any {
      */
     return (clazz: { new(...args: any[]): {} }): any => {
         if (proxyFactory == null) {
-            new Error("proxyFactory is not init，please use setProxyFactory");
+            throw  new Error("proxyFactory is not init，please use setProxyFactory");
         }
 
         /**

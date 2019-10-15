@@ -90,10 +90,13 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
                 ...data,
                 ...queryPrams
             };
-            //过滤无效的数据
-            options.url = `${url}${url.endsWith("?") ? '&' : '?'}${stringify(combinedQueryParams, true)}`;
-            delete options.data;
-            delete options.queryPrams;
+            if (Object.keys(combinedQueryParams).length > 0) {
+                //过滤无效的数据
+                options.url = `${url}${url.endsWith("?") ? '&' : '?'}${stringify(combinedQueryParams, true)}`;
+                delete options.data;
+                delete options.queryPrams;
+            }
+
 
         } else /*if (method === RequestMethod.POST)*/ {
             //其他请求

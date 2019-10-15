@@ -1,6 +1,6 @@
 import AbstractFetchAdapter from "../AbstractFetchAdapter";
 import {FetchResponse} from "../../FetchOptions";
-import request from "request";
+
 import {MediaType} from "../../constant/http/MediaType";
 import {NodeFetchOptions} from "./NodeFetchOptions";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";

@@ -32,7 +32,7 @@ export interface GetWebpackBaseConfigOptions {
     /**
      * 默认输出目录
      * 相对与 src
-     * default "../dist"
+     * default "./dist"
      */
     outputPath?: string;
 

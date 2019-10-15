@@ -3,6 +3,7 @@ import IndexView from "./IndexView";
 import HomeView from "./HomeView";
 import GoodsListView from "./GoodsListView";
 import FunctionView from "./FunctionView";
+import LoginView from "./LoginView";
 
 
 interface IndexRouteNames {
@@ -20,6 +21,11 @@ interface IndexRouteNames {
 }
 
 const routes: Array<NamedRouteConfig> = [
+    {
+        path: "/login",
+        exact: true,
+        component: LoginView
+    },
     {
         path: "/home",
         exact: true,
