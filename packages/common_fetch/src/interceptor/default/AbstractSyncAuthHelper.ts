@@ -26,6 +26,9 @@ export abstract class AbstractSyncAuthHelper<T extends FetchOptions = FetchOptio
 
     protected static REFRESH_TOKEN_TIMER_ID;
 
+    //中断请求错误
+    public static INTERRUPT_ERROR: number = -9999;
+
     /**
      * 发送需要鉴权的广播
      */
@@ -85,6 +88,10 @@ export abstract class AbstractSyncAuthHelper<T extends FetchOptions = FetchOptio
             // console.log("token", token);
             params.headers[this.authorizationHeaderName] = authorizationHeaderValue;
         } catch (e) {
+            //中断本次请求
+            if (e === AbstractSyncAuthHelper.INTERRUPT_ERROR) {
+                return Promise.reject("request is interrupt");
+            }
             console.log("获取token失败", e);
             //获取本地用户信息失败 登录
             if (params.needAuth === true) {

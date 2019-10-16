@@ -184,6 +184,9 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
     //刷新sts token url
     private getStsTokenUrl: GetConfigFunction | string;
 
+    //最小刷新间隔 20分钟
+    private static MIN_REFRESH_TIMES: number = 20 * 60 * 1000;
+
     constructor(ossClientOptions: OssClientOptions,
                 getStsTokenUrl: GetConfigFunction | string,
                 aliYunStsTokenInfo?: AliYunStsTokenInfo) {
@@ -213,10 +216,14 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
 
     private autoRefresh = () => {
         const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
+        //提前2分钟刷新token
+        const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 2 * 60 * 1000;
+
         setTimeout(() => {
-            this.refreshStsToken().then(this.autoRefresh);
-            //提前2分钟刷新token
-        }, aliYunStsTokenInfo.expirationTime - new Date().getTime() - 2 * 60 * 1000);
+            this.refreshStsToken().then(this.autoRefresh)/*.catch((e)=>{
+                //TODO 刷新失败
+            });*/
+        }, timeout < OakSTSALiYunOssFactory.MIN_REFRESH_TIMES ? OakSTSALiYunOssFactory.MIN_REFRESH_TIMES : timeout);
     };
 
     /**
@@ -239,6 +246,7 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
                 this.aliYunStsTokenInfo = aliYunStsTokenInfo;
             }).catch((e) => {
                 console.error(`刷新token失败：${e}`);
+                return Promise.reject(e);
             });
     }
 }
