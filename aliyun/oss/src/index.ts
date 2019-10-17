@@ -216,14 +216,14 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
 
     private autoRefresh = () => {
         const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
-        //提前2分钟刷新token
-        const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 2 * 60 * 1000;
+        //提前3分钟刷新token
+        const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 3 * 60 * 1000;
 
         setTimeout(() => {
             this.refreshStsToken().then(this.autoRefresh)/*.catch((e)=>{
                 //TODO 刷新失败
             });*/
-        }, timeout < OakSTSALiYunOssFactory.MIN_REFRESH_TIMES ? OakSTSALiYunOssFactory.MIN_REFRESH_TIMES : timeout);
+        }, timeout || 0/*timeout < OakSTSALiYunOssFactory.MIN_REFRESH_TIMES ? OakSTSALiYunOssFactory.MIN_REFRESH_TIMES : timeout*/);
     };
 
     /**
