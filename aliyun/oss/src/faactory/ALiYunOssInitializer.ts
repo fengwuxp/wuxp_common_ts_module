@@ -3,7 +3,7 @@ import AliOssClient, {OssClientOptions} from "ali-oss";
 
 export interface ALiYunOssInitializer<T extends ALiYunOssInitializerOptions> {
 
-    initFactory: (options: T) =>  Promise<ALiYunOssFactory>;
+    initFactory: (options: T) => Promise<ALiYunOssFactory>;
 }
 
 export interface ALiYunOssInitializerOptions {
@@ -24,7 +24,7 @@ export interface ALiYunOssFactory {
     /**
      * 初始化阿里云oss的代理工厂
      */
-    factory: (ossClientOptions?: OssClientOptionalOptions) => AliOssClient;
+    factory: (ossClientOptions?: OssClientOptionalOptions) => Promise<AliOssClient> | AliOssClient;
 }
 
 

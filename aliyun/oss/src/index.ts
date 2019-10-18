@@ -184,8 +184,8 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
     //刷新sts token url
     private getStsTokenUrl: GetConfigFunction | string;
 
-    //最小刷新间隔 20分钟
-    private static MIN_REFRESH_TIMES: number = 20 * 60 * 1000;
+
+    private static CLIENT_MAP: WeakMap<String, AliOssClient> = new WeakMap<String, AliOssClient>();
 
     constructor(ossClientOptions: OssClientOptions,
                 getStsTokenUrl: GetConfigFunction | string,
@@ -194,11 +194,11 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
         this.aliYunStsTokenInfo = aliYunStsTokenInfo;
         this.getStsTokenUrl = getStsTokenUrl;
         //自动刷新sts token
-        this.autoRefresh();
+        // this.autoRefresh();
 
     }
 
-    factory = (ossClientOptions?: OssClientOptionalOptions): AliOssClient => {
+    factory = async (ossClientOptions?: OssClientOptionalOptions): Promise<AliOssClient> => {
 
         const options: OssClientOptions = {
             ...(ossClientOptions || {}),
@@ -209,33 +209,53 @@ class OakSTSALiYunOssFactory implements ALiYunOssFactory {
             //设置sts token
             options.stsToken = aliYunStsTokenInfo.securityToken;
         }
-        // console.log("options", options);
+        // const key = this.geneKey(ossClientOptions);
+        // let aliOssClient = OakSTSALiYunOssFactory.CLIENT_MAP.get(key);
+        // if (aliOssClient != null) {
+        //     return aliOssClient;
+        // }
+        // // console.log("options", options);
+        // aliOssClient = new AliOssClient(options, {});
+        // OakSTSALiYunOssFactory.CLIENT_MAP.set(key, aliOssClient);
+        // return aliOssClient;
+
+        // const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 3 * 60 * 1000;
+
+        //提前3分钟刷新token
+        const needRefreshToken = new Date().getTime() + 3 * 60 * 1000 > aliYunStsTokenInfo.expirationTime;
+        if (needRefreshToken) {
+            // 刷新token
+            await this.refreshStsToken();
+        }
         return new AliOssClient(options, {});
     };
 
+    // private geneKey = (ossClientOptions: OssClientOptionalOptions): string => {
+    //     const keys = [];
+    //     for (const k in ossClientOptions) {
+    //         keys.push(ossClientOptions[k]);
+    //     }
+    //     return keys.join("-");
+    // };
 
-    private autoRefresh = () => {
-        const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
-        //提前3分钟刷新token
-        const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 3 * 60 * 1000;
 
-        setTimeout(() => {
-            this.refreshStsToken().then(this.autoRefresh)/*.catch((e)=>{
-                //TODO 刷新失败
-            });*/
-        }, timeout || 0/*timeout < OakSTSALiYunOssFactory.MIN_REFRESH_TIMES ? OakSTSALiYunOssFactory.MIN_REFRESH_TIMES : timeout*/);
-    };
+    // private autoRefresh = () => {
+    //     const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
+    //     //提前3分钟刷新token
+    //     const timeout = aliYunStsTokenInfo.expirationTime - new Date().getTime() - 3 * 60 * 1000;
+    //
+    //     setTimeout(() => {
+    //         this.refreshStsToken().then(this.autoRefresh)/*.catch((e)=>{
+    //             //TODO 刷新失败
+    //         });*/
+    //     }, timeout || 0/*timeout < OakSTSALiYunOssFactory.MIN_REFRESH_TIMES ? OakSTSALiYunOssFactory.MIN_REFRESH_TIMES : timeout*/);
+    // };
 
     /**
      * 刷新sts token
      */
     private refreshStsToken = () => {
-        // const aliYunStsTokenInfo = this.aliYunStsTokenInfo;
-        // if (aliYunStsTokenInfo.expirationTime > (new Date().getTime() - 2 * 60 * 1000)) {
-        //     return;
-        // }
 
-        //提前2分钟刷新
         return getFetchResponsePromise(this.getStsTokenUrl)
             .then((aliYunStsTokenInfo) => {
                 this.ossClientOptions = {
