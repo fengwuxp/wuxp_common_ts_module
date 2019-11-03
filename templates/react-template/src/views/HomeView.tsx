@@ -3,6 +3,7 @@ import FlexView from "../components/FlexView";
 import Header from "../components/Header";
 import {ReactRouteView} from "fengwuxp_common_state/src/annotations/ReactRouteView";
 import HomeDataProvider from "../provider/HomeDataProvider";
+import { useState } from "react";
 
 
 
@@ -18,6 +19,18 @@ export interface HomeViewProps {
 interface HomeViewState {
 }
 
+function Example() {
+    // 声明一个新的叫做 “count” 的 state 变量
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
+}
+
 /**
  * 首页
  */
@@ -27,6 +40,7 @@ interface HomeViewState {
 export default class HomeView extends React.Component<HomeViewProps, HomeViewState> {
 
     state: HomeViewState = {};
+
 
     constructor(props: Readonly<HomeViewProps>) {
         super(props);
@@ -52,6 +66,9 @@ export default class HomeView extends React.Component<HomeViewProps, HomeViewSta
 
         console.log("name", name);
 
+        let exaample = <Example/>;
+
+
         return <FlexView>
             <Header title={"首页"}/>
             <div>
@@ -63,7 +80,9 @@ export default class HomeView extends React.Component<HomeViewProps, HomeViewSta
             <div>
                 {JSON.stringify(simpleObject)}
             </div>
+            {exaample}
         </FlexView>;
     }
+
 
 }

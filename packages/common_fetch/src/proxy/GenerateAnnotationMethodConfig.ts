@@ -23,7 +23,6 @@ export const defaultGenerateAnnotationMethodConfig: GenerateAnnotationMethodConf
     const oldFn = targetService[methodName];
 
     targetService[methodName] = function (...args) {
-
         if (typeof oldFn === "function") {
             //保证this 不丢失
             oldFn.apply(this, [...args]);

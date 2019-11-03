@@ -27,7 +27,6 @@
   "include": [
     "./src/**/*",
     "./types/**/*.d.ts"
-//    "./types/index.d.ts"
   ],
   "exclude": [
     "dist",

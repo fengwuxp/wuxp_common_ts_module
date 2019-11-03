@@ -11,10 +11,10 @@ export default class BrowserWebSocketAdapter extends AbstractWebSocketAdapter<We
     constructor(options: WebSocketOptions, handler: WebSocketLifeCycleHandler) {
         super(new WebSocket(options.url, options.protocols), handler);
 
-        this.socket.onclose = this.onClose;
-        this.socket.onerror = this.onError;
-        this.socket.onmessage = this.onMessage;
-        this.socket.onopen = this.onOpen;
+        // this.socket.onclose = this.onClose;
+        // this.socket.onerror = this.onError;
+        // this.socket.onmessage = this.onMessage;
+        // this.socket.onopen = this.onOpen;
 
         window.onbeforeunload = () => {
             if (this.socket) {

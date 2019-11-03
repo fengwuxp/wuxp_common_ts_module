@@ -1,8 +1,22 @@
 "use strict";
+// export enum Test {
+//
+//     A = "B",
+//     B = "A"
+// }
+//
+// export const enum Example {
+//
+//     A = "B",
+//     B = "A"
+// }
+//
+// console.log(Example.A);
 exports.__esModule = true;
-var Test;
-(function (Test) {
-    Test["A"] = "B";
-    Test["B"] = "A";
-})(Test = exports.Test || (exports.Test = {}));
-console.log("B" /* A */);
+var Test = /** @class */ (function () {
+    function Test() {
+    }
+    return Test;
+}());
+exports.Test = Test;
+var test = new Test();

@@ -12,14 +12,17 @@ const DEFAULT_ROLLUP_OPTIONS: RollupOptions = {
 
     plugins: [
         typescript({lib: ["es5", "es6", "dom"], target: "es5"}),
+        // resolve({
+        //     // 该属性是指定将Node包转换为ES2015模块
+        //     jsnext: true,
+        //     // main 和 browser 属性将使插件决定将那些文件应用到bundle中
+        //     // Default: true
+        //     main: true,
+        //     // Default: false
+        //     browser: true
+        // }),
         resolve({
-            // 该属性是指定将Node包转换为ES2015模块
-            jsnext: true,
-            // main 和 browser 属性将使插件决定将那些文件应用到bundle中
-            // Default: true
-            main: true,
-            // Default: false
-            browser: true
+            mainFields: ['module', 'main']
         }),
         commonjs(),
         json(),

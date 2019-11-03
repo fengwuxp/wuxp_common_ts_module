@@ -1,0 +1,24 @@
+
+/**
+ * CSS 变量教程
+ *  http://www.ruanyifeng.com/blog/2017/05/css-variables.html
+ */
+:root {
+  --main-color: #4d4e53;
+  --main-bg: rgb(255, 255, 255);
+  --logo-border-color: rebeccapurple;
+  --header-height: 68px;
+  --content-padding: 10px 20px;
+  --base-line-height: 1.428571429;
+  --transition-duration: .35s;
+  --external-link: "external link";
+  --margin-top: calc(2vh + 20px);
+}
+
+a {
+  font-size: 26px;
+  color: var(--main-color);
+  padding: var(--content-padding);
+  line-height: var(--base-line-height);
+  text-decoration-color: var(--logo-border-color);
+}

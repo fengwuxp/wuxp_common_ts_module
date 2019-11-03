@@ -1,7 +1,7 @@
 import {WebSocketAdapter, WebSocketOptions} from "../adapter/WebSocketAdapter";
 import {RUN_ENV} from "fengwuxp_common_env/src/EnvVariable";
-import {RunEnv} from "../../../common_env/src/enums/RunEnv";
 import {WebSocketLifeCycleHandler} from "../core/WebSocketLifeCycleHandler";
+import {RunEnv} from "fengwuxp_common_env/src/enums/RunEnv";
 
 type WebSocketAdapterClazz = WebSocketAdapter;
 

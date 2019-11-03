@@ -19,7 +19,7 @@
 |-------utils              工具类
 |-------views              App的页面
 |-------Mian.js            web端入口js
-|-----static_resource      静态资源目录
+|-----static_resources     静态资源目录
 |--------images            图标
 |--------fonts             字体文件（主要用于字体图标）
 |-----theme                主题定制

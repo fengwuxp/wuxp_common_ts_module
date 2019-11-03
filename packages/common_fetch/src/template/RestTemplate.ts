@@ -159,6 +159,15 @@ export abstract class AbstractRestTemplate<T = FetchResponse> implements RestTem
             //请求提交的数据类型
             newOptions.contentType = templateConfig.produces[0] || MediaType.JSON_UTF8;
         }
+        if (newOptions.headers) {
+            //请求提交的数据类型
+            newOptions.headers = {
+                ...newOptions.headers,
+                ...templateConfig.defaultFetchOptions.headers
+            }
+        } else {
+            newOptions.headers = templateConfig.defaultFetchOptions.headers;
+        }
 
         if (newOptions.timeout == null) {
             //请求提交的数据类型

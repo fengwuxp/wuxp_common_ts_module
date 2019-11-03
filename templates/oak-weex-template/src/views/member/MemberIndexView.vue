@@ -2,7 +2,9 @@
 <template>
     <flex-view :viewStyle="viewStyle">
         <nav-bar slot="app-header" :navTitle="navTitle"></nav-bar>
-        <div slot="app-body" class="flex_1"></div>
+        <div slot="app-body" class="flex_1">
+            <example></example>
+        </div>
         <div slot="app-footer" class="app_footer"></div>
     </flex-view>
 
@@ -14,9 +16,10 @@
     import AppMixin from "weex_starter/src/mixins/AppMixin"
     import FlexView from "weex_components/src/layout/view/flex-view";
     import NavBar from "weex_components/src/layout/navbar/nav-bar";
+    import Example from "../../compoents/example";
 
     export default {
-        components: {NavBar, FlexView},
+        components: {Example, NavBar, FlexView},
         mixins: [AppMixin],
         props: {
             navTitle: {

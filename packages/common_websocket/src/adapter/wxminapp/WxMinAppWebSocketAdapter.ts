@@ -1,6 +1,8 @@
 import {WebSocketOptions} from "../WebSocketAdapter";
 import {WebSocketLifeCycleHandler} from "../../core/WebSocketLifeCycleHandler";
+// @ts-ignore
 import {ConnectSocketOptions} from "weixin/src/minapp/websocket/ConnectSocketOptions";
+// @ts-ignore
 import {WebSocketTask} from "weixin/src/minapp/websocket/WebSocketTask";
 import AbstractWebSocketAdapter from "../AbstractWebSocketAdapter";
 
@@ -11,6 +13,7 @@ export default class WxMinAppWebSocketAdapter extends AbstractWebSocketAdapter<W
 
 
     constructor(options: WebSocketOptions, handler: WebSocketLifeCycleHandler) {
+        // @ts-ignore
         super(wx.connectSocket(options as ConnectSocketOptions), handler);
 
         this.socket.onClose = (this.onClose);

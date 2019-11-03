@@ -70,7 +70,6 @@ const webpackConfig: webpack.Configuration = {
             babelLoader,
             {
                 test: /\.vue(\?[^?]+)?$/,
-
                 use: [
                     {
                         loader: 'vue-loader',
