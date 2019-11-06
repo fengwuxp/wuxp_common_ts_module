@@ -22,7 +22,8 @@ const routes: Array<RouteConfig> = [
     {
         path: "/login",
         exact: true,
-        component: asyncComponent(() => import("./views/LoginView"))
+        //重写文件名称
+        component: asyncComponent(() => import( /* webpackChunkName: "sample/[name]-[hash]" */ "./views/LoginView"))
     },
     {
         path: "/register",

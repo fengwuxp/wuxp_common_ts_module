@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window sandbox</title>
+</head>
+<body>
+<script>
+
+    const proxyWindow = {};
+    const WIN = window;
+    const sandboxWindow = new Proxy(proxyWindow, {
+        get(target, p, receiver) {
+            console.log("get", target, p, window);
+            let windowElement = window[p];
+            if (windowElement === undefined) {
+                windowElement = target[p];
+            }
+            if (typeof windowElement === "function") {
+                return function (args) {
+                    return windowElement(args)
+                }
+            }
+            return windowElement;
+        },
+        set(target, p, value, receiver) {
+            console.log("set", target, p, value);
+            target[p] = value;
+            return true;
+        }
+    });
+
+
+    (function (window, globalThis) {
+        window["__A__"] = 1;
+        console.log(window["__A__"], WIN["__A__"]);
+        console.log("window", window, typeof window.alert);
+        window.alert("1");
+    }(sandboxWindow, sandboxWindow))
+
+
+</script>
+</body>
+</html>

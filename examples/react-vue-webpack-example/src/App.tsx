@@ -6,6 +6,9 @@ import {Route, Router, Switch} from "react-router";
 import {renderRoutes} from "react-router-config";
 import {BrowserRouter} from "react-router-dom";
 import {history} from "./reactdemo/AppRouterHelper"
+import {runSandboxEvnTest} from "./scanbox/SandboxRunGlobalObject";
+
+runSandboxEvnTest()
 
 // const App =  <div>
 //     <BrowserRouter>
