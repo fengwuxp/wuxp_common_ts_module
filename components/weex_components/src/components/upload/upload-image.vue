@@ -102,6 +102,10 @@
                 type: Number,
                 default: 0
             },
+            // 上传headers
+            headers: {
+                default: null
+            },
             //裁图比例
             proportion: {
                 type: Array,
@@ -183,9 +187,9 @@
 
             /**
              * 处理图片上传
-             * @param base64DataList 要上传的base64图片数据
+             * @param dataList 要上传的base64图片数据
              **/
-            handleUpload(base64DataList) {
+            handleUpload(dataList) {
 
                 //使用默认的上传处理
                 let uploadHandle = this.uploadFile;
@@ -197,7 +201,7 @@
                     throw new Error("upload handle is null");
                 }
 
-                Promise.all(base64DataList.map((data, index) => uploadHandle(data, index,this.orderIndex)))
+                Promise.all(dataList.map((data, index) => uploadHandle(data, index)))
                     .then((resultList) => {
                         //上传结果是一个数组
                         // [{url:"http://xxx",orderIndex:1}]

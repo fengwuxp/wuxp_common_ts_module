@@ -1,8 +1,9 @@
-const path =require("path");
-const config =require("./webpack.config");
+const path = require("path");
+const webpack = require("webpack");
+const config = require("./webpack.config");
 const ip = require('quick-local-ip').getLocalIP4();
 
-const host =ip; //"localhost";
+const host = ip; //"localhost";
 const port = 9000;
 
 /**
@@ -19,6 +20,15 @@ const proxyTarget = `http://localhost:9018/api/`;
 const proxyServerWebContext = 'api';
 
 // const public = `${host}:${port}`;
+config.output.publicPath = "/demo/";
+
+config.plugins.push(
+    new webpack.DefinePlugin({
+        'process.env': {
+            API_ROOT_PATH: JSON.stringify(`/api`),
+        }
+    })
+);
 
 config.devServer = {
     contentBase: path.join(__dirname, ''),
@@ -59,4 +69,4 @@ config.devServer = {
 
 };
 
-module.exports=config;
+module.exports = config;

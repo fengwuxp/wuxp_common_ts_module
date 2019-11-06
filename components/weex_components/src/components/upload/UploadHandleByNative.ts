@@ -1,5 +1,7 @@
 import {weexToast} from "fengwuxp_common_weex/src/toast/WeexToast";
 import {isIos} from "fengwuxp_common_weex/src/constant/WeexEnv";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
+import {stringify} from "querystring";
 
 const photo: any = weex.requireModule('photo');
 const appMain: any = weex.requireModule("appMain");
@@ -90,7 +92,7 @@ export default {
                         appMain.showProgressBar(20);
                         return;
                     }
-                    if (data.constructor !== Array) {
+                    if (!Array.isArray(data)) {
                         data = [data];
                     }
 
@@ -108,13 +110,12 @@ export default {
         uploadFile(filePath, index) {
 
             appMain.showProgressBar(20);
-            this.uploadStep = 1;
 
             return new Promise((resolve, reject) => {
-
                 nat_network_transfer.upload({
-                    url: process.env.PIC_SERVICE_URL,
-                    path: filePath
+                    url: `${process.env.PIC_SERVICE_URL}?${stringify(this.headers)}`,
+                    path: filePath,
+                    headers: this.headers
                 }, (result) => {
                     const {data, ok, progress} = result;
                     if (progress) {
@@ -129,11 +130,11 @@ export default {
                         reject("上传无结果");
                         return;
                     }
-                    const resp = JSON.parse(data);
+                    const resp = StringUtils.isJSONString(data) ? JSON.parse(data) : {url: data};
                     const {url} = resp;
                     resolve({
                         orderIndex: this.orderIndex,
-                        url: (process.env.PIC_SERVICE_DOMAIN||'') + url
+                        url: (process.env.PIC_SERVICE_DOMAIN || '') + url
                     });
                 });
             })
