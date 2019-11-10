@@ -1,0 +1,15 @@
+var $ffee443f94c130b03686296b1747c0f$exports = {};
+Object.defineProperty($ffee443f94c130b03686296b1747c0f$exports, "__esModule", {
+  value: true
+});
+var $ffee443f94c130b03686296b1747c0f$export$history = void 0;
+$ffee443f94c130b03686296b1747c0f$exports.history = $ffee443f94c130b03686296b1747c0f$export$history;
+var $ffee443f94c130b03686296b1747c0f$var$_history = $parcel$require("5ffee443f94c130b03686296b1747c0f", "history");
+var $ffee443f94c130b03686296b1747c0f$var$history = (0, $ffee443f94c130b03686296b1747c0f$var$_history.createBrowserHistory)({
+  basename: "/react"
+}); // const history = createHashHistory({
+//     basename: "/react"
+// });
+
+$ffee443f94c130b03686296b1747c0f$export$history = $ffee443f94c130b03686296b1747c0f$var$history
+$ffee443f94c130b03686296b1747c0f$exports.history = $ffee443f94c130b03686296b1747c0f$export$history;

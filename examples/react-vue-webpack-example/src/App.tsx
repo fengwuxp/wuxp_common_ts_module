@@ -6,9 +6,14 @@ import {Route, Router, Switch} from "react-router";
 import {renderRoutes} from "react-router-config";
 import {BrowserRouter} from "react-router-dom";
 import {history} from "./reactdemo/AppRouterHelper"
-import {runSandboxEvnTest} from "./scanbox/SandboxRunGlobalObject";
+// import {runSandboxEvnTest} from "./scanbox/SandboxRunGlobalObject";
 
-runSandboxEvnTest()
+// runSandboxEvnTest()
+
+import('./scanbox/SandboxRunGlobalObject').then(function ({runSandboxEvnTest}) {
+    // 渲染页面
+    runSandboxEvnTest()
+});
 
 // const App =  <div>
 //     <BrowserRouter>

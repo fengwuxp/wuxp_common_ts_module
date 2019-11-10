@@ -3,20 +3,6 @@ import {RouteConfig} from "react-router-config";
 import asyncComponent from "./AsyncComponent";
 
 
-interface IndexRouteNames {
-
-    login: string;
-
-    register: string
-
-    404: string;
-
-    500: string;
-
-    error_message: string
-
-}
-
 
 const routes: Array<RouteConfig> = [
     {

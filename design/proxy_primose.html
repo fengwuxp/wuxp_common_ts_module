@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    function getInstance() {
+
+        return new Promise((resolve, reject) => {
+
+
+            const sendMessageToMinApp = (type, data) => {
+                // @ts-ignore
+                window.postMessage({
+                    type,
+                    data
+                })
+            };
+
+            const WAIT_QUEUE = [];
+
+            window.onMessage = function (event) {
+                const {type, success, result, error} = event.detail;
+                const waitItem = WAIT_QUEUE.find(item => item.type === type);
+                if (waitItem == null) {
+                    return;
+                }
+                if (success) {
+                    waitItem.resolve(result);
+                } else {
+                    waitItem.reject(error);
+                }
+            };
+
+
+            const fnNames = [
+                "callPrint",
+                "callPay"
+            ];
+
+            const openApi = new Proxy({}, {
+
+                get(target, prop, receiver) {
+                    const b = fnNames.some((name) => name === prop);
+                    console.log(`name = ${prop} function no defined`)
+                    if (b) {
+                        return (data) => {
+                            return new Promise((resolve, reject) => {
+                                sendMessageToMinApp(prop, data);
+                                WAIT_QUEUE.push({
+                                    type: prop,
+                                    resolve,
+                                    reject
+                                });
+                            });
+                        }
+                        // throw new Error(`name = ${prop} function no defined`);
+                    }
+
+                    return target[prop];
+                }
+            });
+
+            resolve(openApi)
+        })
+    }
+
+    getInstance().then((openApi) => {
+        console.log("openApi", openApi);
+        openApi.callPay().then((data)=>{
+            console.log(data)
+        })
+    })
+
+</script>
+</body>
+</html>

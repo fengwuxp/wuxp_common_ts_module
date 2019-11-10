@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
 const {VueLoaderPlugin} = require('vue-loader');
+const babel7Options = require("./.babelrc");
 
 const cssModuleLoader = ({resource}) => ({
     loader: 'css-loader',
@@ -72,7 +73,7 @@ module.exports = {
         publicPath: "/"
     },
     resolve: {
-        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue",".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
+        extensions: [".ts", ".tsx", "d.ts", ".js", ".vue", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
         alias: {
             "@src": path.resolve("src/"),
             "@api": path.resolve("src/api/"),
@@ -92,11 +93,33 @@ module.exports = {
         rules: [
             {
                 test: /\.js[x]?$/,
-                // exclude: isExclude,
+                // exclude: function (path) {
+                //     console.log("-->",path)
+                //     //是否为node_modules中的模块
+                //     return path.indexOf("node_modules") >= 0;
+                // },
                 use: [
                     {
                         loader: "babel-loader",
                         // options: babel7Options
+                    }
+                ]
+            },
+            {
+                test: /\.ts[x]?$/,
+                // exclude: isExclude,
+                use: [
+                    // 链式调用
+                    // {
+                    //     loader: "babel-loader",
+                    //     options: babel7Options
+                    // },
+                    {
+
+                        loader: "awesome-typescript-loader",
+                        options: {
+                            useCache: true
+                        }
                     }
                 ]
             },
@@ -109,18 +132,6 @@ module.exports = {
                             optimizeSSR: false,
                             compilerOptions: {}
                         }
-                    }
-                ]
-            },
-            {
-                test: /\.ts[x]?$/,
-                // exclude: isExclude,
-                use: [
-                    //supportEs6BabelLoader,
-                    {
-
-                        loader: "awesome-typescript-loader",
-                        options: {}
                     }
                 ]
             },
@@ -223,5 +234,6 @@ module.exports = {
             filename: "index.html",
             inject: true
         })
-    ]
+    ],
+
 };

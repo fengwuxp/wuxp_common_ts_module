@@ -1,0 +1,40 @@
+var $c97d581a3ff2bedd645bde61c181b7c$exports = {};
+
+function $c97d581a3ff2bedd645bde61c181b7c$var$_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { $c97d581a3ff2bedd645bde61c181b7c$var$_typeof = function _typeof(obj) { return typeof obj; }; } else { $c97d581a3ff2bedd645bde61c181b7c$var$_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return $c97d581a3ff2bedd645bde61c181b7c$var$_typeof(obj); }
+
+Object.defineProperty($c97d581a3ff2bedd645bde61c181b7c$exports, "__esModule", {
+  value: true
+});
+var $c97d581a3ff2bedd645bde61c181b7c$export$Home = void 0;
+$c97d581a3ff2bedd645bde61c181b7c$exports.Home = $c97d581a3ff2bedd645bde61c181b7c$export$Home;
+var $c97d581a3ff2bedd645bde61c181b7c$var$_react = $c97d581a3ff2bedd645bde61c181b7c$var$_interopRequireDefault($parcel$require("3c97d581a3ff2bedd645bde61c181b7c", "react"));
+$parcel$require("3c97d581a3ff2bedd645bde61c181b7c", "./styles");
+var $c97d581a3ff2bedd645bde61c181b7c$var$styles = $c97d581a3ff2bedd645bde61c181b7c$var$_interopRequireWildcard($parcel$require("3c97d581a3ff2bedd645bde61c181b7c", "./styles.module.less"));
+$parcel$require("3c97d581a3ff2bedd645bde61c181b7c", "./css-variable");
+var $c97d581a3ff2bedd645bde61c181b7c$var$_AppRouterHelper = $parcel$require("3c97d581a3ff2bedd645bde61c181b7c", "./AppRouterHelper");
+
+function $c97d581a3ff2bedd645bde61c181b7c$var$_getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); $c97d581a3ff2bedd645bde61c181b7c$var$_getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function $c97d581a3ff2bedd645bde61c181b7c$var$_interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || $c97d581a3ff2bedd645bde61c181b7c$var$_typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = $c97d581a3ff2bedd645bde61c181b7c$var$_getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function $c97d581a3ff2bedd645bde61c181b7c$var$_interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var $c97d581a3ff2bedd645bde61c181b7c$var$Home = function Home(props) {
+  return $c97d581a3ff2bedd645bde61c181b7c$var$_react["default"].createElement("div", {
+    className: "home_container"
+  }, $c97d581a3ff2bedd645bde61c181b7c$var$_react["default"].createElement("p", {
+    className: $c97d581a3ff2bedd645bde61c181b7c$var$styles.home_text
+  }, "\u8FD9\u662F\u4E00\u4E2Areact\u7684demo"), $c97d581a3ff2bedd645bde61c181b7c$var$_react["default"].createElement("a", {
+    href: "javascript;"
+  }, "css \u53D8\u91CF"), $c97d581a3ff2bedd645bde61c181b7c$var$_react["default"].createElement("p", {
+    href: "javascript;",
+    onClick: function onClick() {
+      $c97d581a3ff2bedd645bde61c181b7c$var$_AppRouterHelper.history.push({
+        pathname: "/login"
+      });
+    }
+  }, "to login"));
+};
+
+$c97d581a3ff2bedd645bde61c181b7c$export$Home = $c97d581a3ff2bedd645bde61c181b7c$var$Home
+$c97d581a3ff2bedd645bde61c181b7c$exports.Home = $c97d581a3ff2bedd645bde61c181b7c$export$Home;
