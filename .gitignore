@@ -21,6 +21,8 @@ coverage
 _src
 .spring
 .awcache
+.cache
+.parcel-cache
 .publish_chennh
 #scripts/publish_to_npm.ts
 #scripts/publish_to_npm.js

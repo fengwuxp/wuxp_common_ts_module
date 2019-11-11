@@ -20,7 +20,14 @@ const proxyTarget = `http://localhost:9018/api/`;
 const proxyServerWebContext = 'api';
 
 // const public = `${host}:${port}`;
-config.output.publicPath = "/demo/";
+config.output.publicPath = "/react/";
+
+// login
+
+// v-ma.com/vma/官网/dist/login
+// /home/vma/官网/dist/index.html
+// /vma/官网/dist/.
+
 
 config.plugins.push(
     new webpack.DefinePlugin({
@@ -31,7 +38,7 @@ config.plugins.push(
 );
 
 config.devServer = {
-    contentBase: path.join(__dirname, ''),
+    contentBase: path.join(__dirname, config.output.publicPath),
     compress: true,
     host: '0.0.0.0',
     public: `${ip}:${port}`,
@@ -65,7 +72,13 @@ config.devServer = {
 
     //如果你的应用使用HTML5 history API，
     //你可能需要使用index.html响应404或者问题请求，只需要设置g historyApiFallback: true即可
-    historyApiFallback: true
+    historyApiFallback: {
+        rewrites: [{
+            from: /.*/g,
+            to: path.posix.join(config.output.publicPath, "index.html")
+        }]
+
+    }
 
 };
 

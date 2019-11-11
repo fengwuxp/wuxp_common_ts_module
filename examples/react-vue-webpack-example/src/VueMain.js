@@ -21,5 +21,11 @@ new Vue({
     el: '#app',
     router: router,
     template: '<App/>',
-    components: { App }
+    components: {App}
 });
+
+// profill
+[[1], [2],].flatMap((items) => {
+    return [...items]
+})
+// ==> [1,2]

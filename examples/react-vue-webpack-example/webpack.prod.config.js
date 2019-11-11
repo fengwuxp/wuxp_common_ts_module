@@ -5,7 +5,7 @@ const baseConfig = require("./webpack.config");
 //https://github.com/webpack-contrib/terser-webpack-plugin
 const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJsWebpackPlugin = require("uglifyjs-webpack-plugin");
-
+baseConfig.output.publicPath = "/dist/";
 const config = {
     ...baseConfig,
     // resolve: {

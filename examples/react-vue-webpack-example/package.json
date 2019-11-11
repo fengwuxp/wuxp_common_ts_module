@@ -39,6 +39,7 @@
     "react-router-config": "^4.4.0-beta.8",
     "react-router-dom": "^4.4.0-beta.8",
     "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^2.2.0",
     "vue": "^2.5.17",
     "vue-loader": "^15.4.1",
     "vue-router": "^3.0.1",

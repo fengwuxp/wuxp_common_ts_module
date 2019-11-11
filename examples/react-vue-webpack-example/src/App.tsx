@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {history} from "./reactdemo/AppRouterHelper"
 // import {runSandboxEvnTest} from "./scanbox/SandboxRunGlobalObject";
 
+
 // runSandboxEvnTest()
 
 import('./scanbox/SandboxRunGlobalObject').then(function ({runSandboxEvnTest}) {

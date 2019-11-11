@@ -4,6 +4,7 @@ const path = require("path");
 const {VueLoaderPlugin} = require('vue-loader');
 const babel7Options = require("./.babelrc");
 
+// css module
 const cssModuleLoader = ({resource}) => ({
     loader: 'css-loader',
     options: {
@@ -110,10 +111,10 @@ module.exports = {
                 // exclude: isExclude,
                 use: [
                     // 链式调用
-                    // {
-                    //     loader: "babel-loader",
-                    //     options: babel7Options
-                    // },
+                    {
+                        loader: "babel-loader",
+                        options: babel7Options
+                    },
                     {
 
                         loader: "awesome-typescript-loader",
@@ -186,7 +187,14 @@ module.exports = {
                     {
                         loader: "url-loader",
                         options: {
-                            limit: 1024 * 5
+                            limit: 1024 * 5,
+                            // publicPath(url) {
+                            //     //使用全局变量来传递 资源根路径
+                            //     return path.join(options.staticResourcesBasePath || "./", url)
+                            //         .replace(/\\/g, '/')
+                            //         .replace(/^(http:\/)/, "http://")
+                            //         .replace(/^(https:\/)/, "https://");
+                            // }
                         }
                     }
                 ]
@@ -221,7 +229,8 @@ module.exports = {
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
-        // "React":"react"
+        // "react": "React",
+        // "react-dom": "ReactDOM",
     },
     plugins: [
         new VueLoaderPlugin(),
