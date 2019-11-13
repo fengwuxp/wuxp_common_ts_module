@@ -9,7 +9,7 @@ const routes: Array<RouteConfig> = [
         path: "/login",
         exact: true,
         //重写文件名称
-        component: asyncComponent(() => import( /* webpackChunkName: "sample/[name]-[hash]" */ "./views/LoginView"))
+        component: asyncComponent(() => import( /* webpackChunkName: "[name]_[hash].js" */ "./views/LoginView"))
     },
     {
         path: "/register",

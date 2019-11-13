@@ -28,6 +28,7 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
         this.routeMapping = routeMapping;
         this.interceptorList = interceptorList;
 
+
         this.defaultTemplateConfig = {
 
             method: RequestMethod.POST,
@@ -41,6 +42,7 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
             headers: {
                 'Accept': 'application/json, application/json;charset=UTF-8, text/plain, */*'
             },
+            // @ts-ignore
             defaultFetchOptions: defaultFetchOptions || {}
         };
     }
