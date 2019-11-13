@@ -15,12 +15,12 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
     /**
      * 页面前缀
      */
-    private prefix: string;
+    private _prefix: string;
 
     protected taroHolder: TaroInterfaceHolder;
 
     constructor(prefix: string = "pages") {
-        this.prefix = prefix;
+        this._prefix = prefix;
         this.taroHolder = TaroJsHolder.getTaroHolder();
     }
 
@@ -92,9 +92,9 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         };
 
         let url = paths[0];
-        if (!url.startsWith(this.prefix) && !url.startsWith(`/${this.prefix}`)) {
+        if (!url.startsWith(this._prefix) && !url.startsWith(`/${this._prefix}`)) {
             //没有包含前缀
-            url = url.startsWith("/") ? `${this.prefix}${url}` : `${this.prefix}/${url}`;
+            url = url.startsWith("/") ? `${this._prefix}${url}` : `${this._prefix}/${url}`;
         }
         url = url.startsWith("/") ? url : `/${url}`;
 
@@ -106,6 +106,10 @@ export class TaroNavigatorAdapter implements NavigatorAdapter {
         console.log("--url-->", url);
 
         return url;
-    }
+    };
 
+
+    get prefix(): string {
+        return this._prefix;
+    }
 }

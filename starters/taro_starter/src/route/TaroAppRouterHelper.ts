@@ -1,6 +1,7 @@
 import {TaroNavigatorAdapter} from "./TaroNavigatorAdapter";
 import {AppRouterHelper, RouteViewParams} from "fengwuxp_common_route/src/helper/AppRouterHelper";
 import {transferViewState} from "./PageStatTransferUtil";
+import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 
 
 export interface ViewRouteState<Q = any, S = any, P = any> {
@@ -17,29 +18,32 @@ export interface ViewRouteState<Q = any, S = any, P = any> {
 
 class TaroAppRouterHelper implements AppRouterHelper {
 
-    private static navigator: TaroNavigatorAdapter = new TaroNavigatorAdapter();
+    private static DEFAULT_NAVIGATOR: TaroNavigatorAdapter = new TaroNavigatorAdapter();
 
-    toView = (pathname: string, viewPrams?: RouteViewParams) => {
-        return TaroAppRouterHelper.navigator.push({
+    private static nativeMap: Map<string, TaroNavigatorAdapter> = new Map<string, TaroNavigatorAdapter>();
+
+    toView = (pathname: string, viewPrams?: RouteViewParams, packageModule?: string) => {
+
+        return TaroAppRouterHelper.getNavigator(packageModule).push({
             pathname,
             ...(viewPrams || {})
         });
     };
 
-    redirectView = (pathname: string, viewPrams?: RouteViewParams) => {
-        return TaroAppRouterHelper.navigator.redirect({
+    redirectView = (pathname: string, viewPrams?: RouteViewParams, packageModule?: string) => {
+        return TaroAppRouterHelper.getNavigator(packageModule).redirect({
             pathname,
             ...(viewPrams || {})
         });
     };
 
-    backView = () => TaroAppRouterHelper.navigator.goBack();
+    backView = () => TaroAppRouterHelper.DEFAULT_NAVIGATOR.goBack();
 
 
-    switchTab = (pathname: string) => TaroAppRouterHelper.navigator.switchTab(pathname);
+    switchTab = (pathname: string, packageModule?: string) => TaroAppRouterHelper.getNavigator(packageModule).switchTab(pathname);
 
-    reLaunch = (pathname: string, viewPrams?: RouteViewParams) => {
-        return TaroAppRouterHelper.navigator.reLaunch({
+    reLaunch = (pathname: string, viewPrams?: RouteViewParams, packageModule?: string) => {
+        return TaroAppRouterHelper.getNavigator(packageModule).reLaunch({
             pathname,
             ...(viewPrams || {})
         });
@@ -62,6 +66,19 @@ class TaroAppRouterHelper implements AppRouterHelper {
         });
     };
 
+    private static getNavigator = (packageModule?: string) => {
+        if (StringUtils.hasText(packageModule)) {
+            let taroNavigatorAdapter = TaroAppRouterHelper.nativeMap.get(packageModule);
+            if (taroNavigatorAdapter == null) {
+                taroNavigatorAdapter = new TaroNavigatorAdapter(`/${packageModule}/pages`);
+                TaroAppRouterHelper.nativeMap.set(packageModule, taroNavigatorAdapter);
+            }
+
+            return taroNavigatorAdapter
+        }
+
+        return TaroAppRouterHelper.DEFAULT_NAVIGATOR;
+    }
 }
 
 export default new TaroAppRouterHelper();
