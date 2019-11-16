@@ -2,6 +2,9 @@
  * 获取一个沙箱对象
  * @param proxyObject
  */
+
+
+
 export const generateSandboxObject = <T>(proxyObject: T): T => {
     const sandbox = {};
     return new Proxy(sandbox as any, {
@@ -16,6 +19,14 @@ export const generateSandboxObject = <T>(proxyObject: T): T => {
                     return proxyObjectElement(...args);
                 }
             }
+
+
+            if (p === "addEventListener") {
+                return function (type, fun, f) {
+                    return window.addEventListener(type, fun, fun)
+                }
+            }
+
             return proxyObjectElement;
         },
         set(target, p, value, receiver) {
@@ -30,7 +41,16 @@ export const runScriptWithSandbox = (script: string) => {
     // 获取一个安全的window沙箱对象
     const safetyWindowObjectSandbox = generateSandboxObject(window);
     //使用沙箱对象运行，保证全局对象不被污染
-    return (new Function("window", "globalThis", `${script}`)(safetyWindowObjectSandbox, safetyWindowObjectSandbox));
+    const x = [];
+    return {
+        run: () => {
+            (new Function("window", "globalThis", `${script}`)(safetyWindowObjectSandbox, safetyWindowObjectSandbox));
+        },
+        uninstall: () => {
+            // 卸载监听的事件
+
+        }
+    }
 };
 
 

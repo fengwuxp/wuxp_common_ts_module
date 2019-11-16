@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe src="./mock_iframe.html"></iframe>
+<script src="./lib/WebViewApiFactory.js"></script>
+
+<script>
+
+
+    window.getWebOpenApiInstance().then((webOpenApi) => {
+
+        webOpenApi.callGetLocalPrinterList().then((data) => {
+            console.log("callGetLocalPrinterList",data)
+        })
+        webOpenApi.callGetLocalPrinterList().then((data) => {
+            console.log("callGetLocalPrinterList",data)
+        })
+        webOpenApi.callGetLocalPrinterList().then((data) => {
+            console.log("callGetLocalPrinterList",data)
+        })
+    })
+
+</script>
+</body>
+</html>

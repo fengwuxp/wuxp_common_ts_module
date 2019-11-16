@@ -1,5 +1,16 @@
 import {generateSandboxObject, runScriptWithSandbox} from "./SafetySandboxWrapper";
 
+
+const runRemoteJsOnSafetySandbox = () => {
+
+
+    // sessionStorage
+    // localStorage
+
+    //
+
+};
+
 /**
  * 沙箱环境测试
  */
@@ -14,8 +25,9 @@ export const runSandboxEvnTest = function () {
     }).then((data) => {
 
         //使用沙箱对象运行，保证全局对象不被污染
-        (new Function("window", "globalThis", `${data}`)(safetyWindowObjectSandbox, safetyWindowObjectSandbox));
+        const sandbox = new Function("window", "globalThis", `${data}`)(safetyWindowObjectSandbox, safetyWindowObjectSandbox);
 
+        sandbox.unstall();
         // 真正的全局对象并没有被改变  window["___A___"] = undefined
         console.log("real window ___A___", window["___A___"]);
         // 沙箱对象  safetyWindowObjectSandbox["___A___"] = 1

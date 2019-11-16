@@ -19,7 +19,9 @@
   "scripts": {
     "yarn:install": "yarn install",
     "npm_publish": "npm publish",
-    "tsc": "tsc"
+    "build:lib": "rm -rf ./lib && cross-env _self=1 webpack --config webpack.config.js --progress --colors",
+    "build:lib-production": "rm -rf ./lib && cross-env _self=1 production=true webpack --config webpack.config.js --progress --colors",
+    "tsc": "rm -rf ./lib && tsc"
   },
   "keywords": [],
   "types": "./index.d.ts",
@@ -55,6 +57,7 @@
     "fengwuxp_common_webpack": "^1.0.0",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
+    "oak_common": "^1.0.6",
     "tslib": "^1.9.3",
     "typescript": "^3.2.2",
     "webpack-cli": "^3.3.6"

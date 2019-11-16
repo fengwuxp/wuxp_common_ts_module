@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./lib/WebViewApiFactory.js"></script>
+<script>
+
+
+    window.getWebOpenApiInstance().then((webOpenApi) => {
+
+        webOpenApi.callGetLocalPrinterList().then((data) => {
+            console.log("iframe callGetLocalPrinterList", data)
+        })
+        webOpenApi.callLoginOutAfterClassExchange();
+    })
+
+</script>
+</body>
+</html>

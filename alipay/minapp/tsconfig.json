@@ -11,7 +11,7 @@
     "baseUrl": "./src",
     "sourceMap": false,
     "declaration": false,
-    "importHelpers": true,
+    "importHelpers": false,
     "types": [
       "node",
       "jest"
