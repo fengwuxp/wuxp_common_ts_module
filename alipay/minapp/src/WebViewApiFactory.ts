@@ -41,7 +41,7 @@ export const getWebOpenApiInstance = async (enableDebug = true): Promise<WebView
 
 };
 
-window["getWebOpenApiInstance"] = getWebOpenApiInstance;
+// window["getWebOpenApiInstance"] = getWebOpenApiInstance;
 
 
 
