@@ -37,19 +37,19 @@ module.exports = {
         //         legacy: true
         //     }
         // ],
-        // "@babel/plugin-proposal-json-strings",
-        // "@babel/plugin-syntax-dynamic-import",
-        // "@babel/plugin-syntax-import-meta",
-        // "@babel/plugin-transform-async-to-generator",
-        // "@babel/plugin-transform-regenerator",
-        // [
-        //     "@babel/plugin-transform-runtime",
-        //     {
-        //         // corejs: 2,  //false or 2
-        //         helpers: false,
-        //         regenerator: true,
-        //     }
-        // ]
+        "@babel/plugin-proposal-json-strings",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-syntax-import-meta",
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-transform-regenerator",
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                // corejs: 2,  //false or 2
+                helpers: false,
+                regenerator: true,
+            }
+        ]
     ]
 };
 

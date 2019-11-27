@@ -107,6 +107,7 @@ const proxyServiceExecutor: ProxyServiceExecutor = new TestProxyServiceExecutor(
 FeignProxyExecutorHolder.registerDefaultExecutor(proxyServiceExecutor);
 
 
+
 describe("test proxy api service", () => {
 
 

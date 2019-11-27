@@ -22,3 +22,4 @@ export class A1 extends A {
 }
 
 //let NewAaa=Test(A)
+

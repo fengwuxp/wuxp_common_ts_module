@@ -12,7 +12,6 @@
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
-    "compileOnSave": false,
     "jsx": "react",
     "jsxFactory": "React.createElement",
     "baseUrl": "./src",
@@ -24,14 +23,17 @@
       "react",
       "react-dom",
       "react-router",
-      "react-router-dom"
+      "react-router-dom",
+      "jest"
     ],
     "lib": [
       "esnext",
       "dom",
-      "es6",
-      "es2015",
-      "es2015.promise"
+//      "es6",
+//      "esnext",
+//      "es2015",
+//      "es2015.promise",
+      "es2020"
     ]
   },
   "include": [
