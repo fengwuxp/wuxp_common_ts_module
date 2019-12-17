@@ -199,7 +199,7 @@ interface OnQueryPaymentFailedEventResult {
     reply: string;
 }
 
-interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, ListenCodePaymentResult> {
+interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, void> {
 
 }
 

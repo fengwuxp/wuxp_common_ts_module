@@ -199,6 +199,22 @@ export interface OnQueryPaymentFailedEventResult {
     reply: string;
 }
 
+export interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, ListenCodePaymentResult> {
+
+}
+
+export interface ListenCodePaymentResult {
+    // 返回码，返回"0"表示成功
+    // -1 未知错误
+    // -6 超时
+    // -10 查单失败
+    // -11 用户刷脸多次失败，转二维码支付
+    // -12 查单参数有误
+    replyCode: '-1' | '-6' | '-10' | '-11' | '-12';
+    // 错误信息
+    reply: string;
+}
+
 export interface OnCodePayEventParam extends BaseParam<OnCodePayEventResult, OnCodePayEventResult> {
 
 }
