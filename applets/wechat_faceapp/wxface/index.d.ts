@@ -1,42 +1,38 @@
 import {
+    AbleToQuickPayParam,
+    AbleToQuickPayResult,
     BaseParam,
     CheckWxFacePayOsInfoError,
     CheckWxFacePayOsInfoResult,
-    LaunchMpResult,
+    FaceLoginParam,
+    FaceLoginResult,
+    FacePayParam,
+    FacePayResult,
+    GetLastPayResultParam,
+    GetLastPayResultResult,
     LaunchMpParam,
+    LaunchMpResult,
+    ListenCodePaymentParam,
+    ListenCodePaymentResult,
+    OnCodePayEventResult,
+    OnFacePayFailedEventResult,
+    OnFacePayPassEventResult,
+    OnKeyBoardEventResult,
+    OnQueryPaymentFailedEventResult,
+    OnQueryPaymentSucEventResult,
+    OnRemoteMessageResult,
+    OnSpecialCtrlEventResult,
+    PostMsgParam,
+    PostMsgResult,
+    QuickPayParam,
+    QuickPayResult,
+    RegistKeyBoardParam,
+    RegistKeyBoardResult,
+    WeChatAppletsOnEventTemplateMethod,
     WeChatAppletsTemplateMethod,
     WriteToSerialPortError,
     WriteToSerialPortParam,
-    WriteToSerialPortResult,
-    PostMsgResult,
-    PostMsgParam,
-    OnRemoteMessageParam,
-    OnRemoteMessageResult,
-    RegistKeyBoardResult,
-    RegistKeyBoardParam,
-    OnKeyBoardEventResult,
-    OnKeyBoardEventParam,
-    FacePayResult,
-    FacePayParam,
-    OnFacePayPassEventResult,
-    OnFacePayPassEventParam,
-    OnFacePayFailedEventResult,
-    OnFacePayFailedEventParam,
-    OnQueryPaymentSucEventResult,
-    OnQueryPaymentSucEventParam,
-    OnQueryPaymentFailedEventResult,
-    OnQueryPaymentFailedEventParam,
-    ListenCodePaymentResult,
-    ListenCodePaymentParam,
-    OnCodePayEventResult,
-    OnCodePayEventParam,
-    QuickPayResult,
-    QuickPayParam,
-    AbleToQuickPayResult,
-    AbleToQuickPayParam,
-    GetLastPayResultResult,
-    GetLastPayResultParam,
-    FaceLoginResult, FaceLoginParam, OnSpecialCtrlEventResult, OnSpecialCtrlEventParam
+    WriteToSerialPortResult
 } from "./wxface";
 
 declare global {
@@ -82,7 +78,7 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_3-6-小程序间消息接受-onremotemessage
          *  3.7小程序间消息接受 - onRemoteMessage
          */
-        const onRemoteMessage: WeChatAppletsTemplateMethod<OnRemoteMessageResult, OnRemoteMessageResult, OnRemoteMessageParam>;
+        const onRemoteMessage: WeChatAppletsOnEventTemplateMethod<OnRemoteMessageResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_3-8-注册监听键盘输入-registkeyboard
@@ -94,7 +90,7 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_3-9-监听键盘输入-onkeyboardevent
          *  3.9. 监听键盘输入 - onKeyBoardEvent
          */
-        const onKeyBoardEvent: WeChatAppletsTemplateMethod<OnKeyBoardEventResult, OnKeyBoardEventResult, OnKeyBoardEventParam>;
+        const onKeyBoardEvent: WeChatAppletsOnEventTemplateMethod<OnKeyBoardEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-1-启动刷脸支付-facepay
@@ -106,25 +102,25 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-1-启动刷脸支付-facepay
          *  4.1.1. 刷脸成功 - onFacePayPassEvent
          */
-        const onFacePayPassEvent: WeChatAppletsTemplateMethod<OnFacePayPassEventResult, OnFacePayPassEventResult, OnFacePayPassEventParam>;
+        const onFacePayPassEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayPassEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-1-启动刷脸支付-facepay
          *  4.1.2. 刷脸失败 - onFacePayFailedEvent
          */
-        const onFacePayFailedEvent: WeChatAppletsTemplateMethod<OnFacePayFailedEventResult, OnFacePayFailedEventResult, OnFacePayFailedEventParam>;
+        const onFacePayFailedEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayFailedEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-1-启动刷脸支付-facepay
          *  4.1.3. 查单成功 - onQueryPaymentSucEvent
          */
-        const onQueryPaymentSucEvent: WeChatAppletsTemplateMethod<OnQueryPaymentSucEventResult, OnQueryPaymentSucEventResult, OnQueryPaymentSucEventParam>;
+        const onQueryPaymentSucEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentSucEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-1-启动刷脸支付-facepay
          *  4.1.4. 查单失败 - onQueryPaymentFailedEvent
          */
-        const onQueryPaymentFailedEvent: WeChatAppletsTemplateMethod<OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventParam>;
+        const onQueryPaymentFailedEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentFailedEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-2-监听扫码器-listencodepayment
@@ -136,13 +132,14 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-2-监听扫码器-listencodepayment
          *  4.2.1 扫码支付事件监听 - onCodePayEvent
          */
-        const onCodePayEvent: WeChatAppletsTemplateMethod<OnCodePayEventResult, OnCodePayEventResult, OnCodePayEventParam>;
+        const onCodePayEvent: WeChatAppletsOnEventTemplateMethod<OnCodePayEventResult>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-2-监听扫码器-listencodepayment
          *  4.3. 快速支付 - quickPay
          */
-        const quickPay: WeChatAppletsTemplateMethod<QuickPayResult, QuickPayResult, QuickPayParam>;
+        const quickPay: WeChatAppletsTemplateMethod<QuickPayResult, QuickPayParam>;
+
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-4-快速支付是否可用-abletoquickpay
@@ -172,6 +169,6 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_6-1-会员场景特殊指令-onspecialctrlevent
          *  6.1. 会员场景特殊指令 - onSpecialCtrlEvent
          */
-        const onSpecialCtrlEvent: WeChatAppletsTemplateMethod<OnSpecialCtrlEventResult, OnSpecialCtrlEventResult, OnSpecialCtrlEventParam>;
+        const onSpecialCtrlEvent: WeChatAppletsOnEventTemplateMethod<OnSpecialCtrlEventResult>;
     }
 }

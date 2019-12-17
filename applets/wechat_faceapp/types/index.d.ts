@@ -15,7 +15,7 @@ interface CheckWxFacePayOsInfoResult {
     osSerialNumber: string;
 }
 
-interface CheckWxFacePayOsInfoError{
+interface CheckWxFacePayOsInfoError {
     osErrorMsg: string
 }
 
@@ -35,7 +35,6 @@ interface WriteToSerialPortResult {
 }
 
 interface WriteToSerialPortError {
-    // 参数	类型	说明
     // 返回码，返回"-1"表示写串口失败
     replyCode: string;
     // 错误具体信息
@@ -53,11 +52,12 @@ interface LaunchMpParam extends BaseParam<LaunchMpResult, LaunchMpResult> {
     // 小程序的启动页面
     launchPage: string;
     //是否需要登录态{0:不需要;1:需要}
-    needLogin: string;
+    needLogin: 0 | 1;
 }
 
 interface LaunchMpResult {
     //具体返回码见下表
+    // "0" 表示成功
     // "-1"	后屏小程序正在启动,请勿重复启动
     // "-2"	青蛙小程序内部错误
     // "-3"	人脸支付已经在运行
@@ -86,13 +86,9 @@ interface PostMsgResult {
     // "-6"	机具不支持此功能
     // "-7"	未知错误
     // "-8"	发送消息超时
-    replyCode: "-1" | "-2" | "-3" | "-4" | "-5" | "-6" | "-7" | "-8";
+    replyCode: "0" | "-1" | "-2" | "-3" | "-4" | "-5" | "-6" | "-7" | "-8";
     //错误具体信息
     reply: string;
-}
-
-interface OnRemoteMessageParam extends BaseParam<OnRemoteMessageResult, OnRemoteMessageResult> {
-
 }
 
 interface OnRemoteMessageResult {
@@ -114,16 +110,9 @@ interface RegistKeyBoardResult {
     reply: string;
 }
 
-interface OnKeyBoardEventParam extends BaseParam<OnKeyBoardEventResult, OnKeyBoardEventResult> {
-    // 定义了需要监听的各个按键所对应的AndroidKeyCode，注意，此输入不可为空，数组中的某个子Item也不可为空
-    keyCodeList: number[];
-}
-
 interface OnKeyBoardEventResult {
-    // 返回码，返回0表示成功，返回-1表示输入参数解析失败
-    replyCode: '-1' | '0';
-    // 返回信息，注册成功返回“Success register to listen keyboard event”
-    reply: string;
+    // 返回码，返回0表示成功
+    keyName: string;
 }
 
 interface FacePayParam extends BaseParam<FacePayResult, FacePayResult> {
@@ -144,9 +133,6 @@ interface FacePayResult {
     reply: string;
 }
 
-interface OnFacePayPassEventParam extends BaseParam<OnFacePayPassEventResult, OnFacePayPassEventResult> {
-
-}
 
 interface OnFacePayPassEventResult {
     // 返回码，返回"0"表示成功
@@ -157,9 +143,6 @@ interface OnFacePayPassEventResult {
     faceCode: string;
 }
 
-interface OnFacePayFailedEventParam extends BaseParam<OnFacePayFailedEventResult, OnFacePayFailedEventResult> {
-
-}
 
 interface OnFacePayFailedEventResult {
     // 返回码，返回"0"表示成功
@@ -172,9 +155,6 @@ interface OnFacePayFailedEventResult {
     reply: string;
 }
 
-interface OnQueryPaymentSucEventParam extends BaseParam<OnQueryPaymentSucEventResult, OnQueryPaymentSucEventResult> {
-
-}
 
 interface OnQueryPaymentSucEventResult {
     // 返回码，返回"0"表示成功
@@ -183,9 +163,6 @@ interface OnQueryPaymentSucEventResult {
     reply: string;
 }
 
-interface OnQueryPaymentFailedEventParam extends BaseParam<OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventResult> {
-
-}
 
 interface OnQueryPaymentFailedEventResult {
     // 返回码，返回"0"表示成功
@@ -199,17 +176,22 @@ interface OnQueryPaymentFailedEventResult {
     reply: string;
 }
 
-interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, void> {
+interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, ListenCodePaymentResult> {
 
 }
 
 interface ListenCodePaymentResult {
-
+    // 返回码，返回"0"表示成功
+    // -1 未知错误
+    // -6 超时
+    // -10 查单失败
+    // -11 用户刷脸多次失败，转二维码支付
+    // -12 查单参数有误
+    replyCode: '-1' | '-6' | '-10' | '-11' | '-12';
+    // 错误信息
+    reply: string;
 }
 
-interface OnCodePayEventParam extends BaseParam<OnCodePayEventResult, OnCodePayEventResult> {
-
-}
 
 interface OnCodePayEventResult {
     // 返回码，返回"0"表示成功
@@ -246,27 +228,21 @@ interface AbleToQuickPayResult {
     reply: string;
 }
 
-interface GetLastPayResultParam extends BaseParam<GetLastPayResultResult, GetLastPayResultError> {
+interface GetLastPayResultParam extends BaseParam<GetLastPayResultResult, GetLastPayResultResult> {
 
 }
 
 interface GetLastPayResultResult {
     // '0' 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
+    // '-1' 后屏小程序正在启动,请勿重复启动
+    // '-2' 查询不到上一笔支付结果
+    replyCode: '0' | '-1' | '-2';
     // 返回信息，成功回调返回"fetch suc"
     reply: string;
     // 消费金额,单位:分
-    totalFee: string;
+    totalFee?: string;
     // 折扣金额,单位:分
-    discountFee: string;
-}
-
-interface GetLastPayResultError {
-    // '-1' 后屏小程序正在启动,请勿重复启动
-    // '-2' 查询不到上一笔支付结果
-    replyCode: String;
-    // 错误信息
-    reply: string;
+    discountFee?: string;
 }
 
 interface FaceLoginParam extends BaseParam<FaceLoginResult, FaceLoginResult> {
@@ -286,24 +262,38 @@ interface FaceLoginResult {
     reply: string;
 }
 
-interface OnSpecialCtrlEventParam extends BaseParam<OnSpecialCtrlEventResult, OnSpecialCtrlEventResult> {
-
-}
 
 interface OnSpecialCtrlEventResult {
-    // 返回码， {0:传码;1:收款}
+    // 返回码，{0:传码;1:收款}
     ctrlCode: '0' | '1';
     // 返回信息，传码场景下,返回"传码",收款场景下,返回"收款"
     ctrlMsg: string;
 }
 
-
 declare type WeChatAppletsPromiseTemplateMethod<P = any, S = any, E = any> = (param: P) => Promise<S>;
+declare type WeChatAppletsOnEventTemplateMethod<R = any> = (listener: (result: R) => void) => void;
 interface PromiseStandardizationWeChatAppletsSdk {
     checkWxFacePayOsInfo: WeChatAppletsPromiseTemplateMethod<void, CheckWxFacePayOsInfoResult, CheckWxFacePayOsInfoError>;
     writeToSerialPort: WeChatAppletsPromiseTemplateMethod<WriteToSerialPortParam, WriteToSerialPortResult, WriteToSerialPortError>;
     launchMp: WeChatAppletsPromiseTemplateMethod<LaunchMpParam, LaunchMpResult, LaunchMpResult>;
-
+    exitMp: WeChatAppletsPromiseTemplateMethod<void, void, void>;
+    postMsg: WeChatAppletsPromiseTemplateMethod<PostMsgParam, PostMsgResult, PostMsgResult>;
+    registKeyBoard: WeChatAppletsPromiseTemplateMethod<RegistKeyBoardParam, RegistKeyBoardResult, RegistKeyBoardResult>;
+    facePay: WeChatAppletsPromiseTemplateMethod<FacePayParam, FacePayResult, FacePayResult>;
+    quickPay: WeChatAppletsPromiseTemplateMethod<QuickPayParam, QuickPayResult, QuickPayResult>;
+    ableToQuickPay: WeChatAppletsPromiseTemplateMethod<AbleToQuickPayParam, AbleToQuickPayResult, AbleToQuickPayResult>;
+    getLastPayResult: WeChatAppletsPromiseTemplateMethod<GetLastPayResultParam, GetLastPayResultResult, GetLastPayResultResult>;
+    isLoginOnFaceApp: WeChatAppletsPromiseTemplateMethod<void, void, void>;
+    faceLogin: WeChatAppletsPromiseTemplateMethod<FaceLoginParam, FaceLoginResult, FaceLoginResult>;
+    listenCodePayment: WeChatAppletsPromiseTemplateMethod<ListenCodePaymentParam, ListenCodePaymentResult, ListenCodePaymentResult>;
+    onRemoteMessage: WeChatAppletsOnEventTemplateMethod<OnRemoteMessageResult>;
+    onKeyBoardEvent: WeChatAppletsOnEventTemplateMethod<OnKeyBoardEventResult>;
+    onFacePayPassEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayPassEventResult>;
+    onFacePayFailedEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayFailedEventResult>;
+    onQueryPaymentSucEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentSucEventResult>;
+    onQueryPaymentFailedEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentFailedEventResult>;
+    onCodePayEvent: WeChatAppletsOnEventTemplateMethod<OnCodePayEventResult>;
+    onSpecialCtrlEvent: WeChatAppletsOnEventTemplateMethod<OnSpecialCtrlEventResult>;
 }
 declare const WeChatAppletsSdk: PromiseStandardizationWeChatAppletsSdk;
 

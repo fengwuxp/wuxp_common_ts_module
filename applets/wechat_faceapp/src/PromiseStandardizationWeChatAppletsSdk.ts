@@ -9,29 +9,21 @@ import {
     WriteToSerialPortResult,
     PostMsgParam,
     PostMsgResult,
-    OnRemoteMessageParam,
     OnRemoteMessageResult,
     RegistKeyBoardParam,
     RegistKeyBoardResult,
-    OnKeyBoardEventParam,
     OnKeyBoardEventResult,
     FacePayParam,
     FacePayResult,
-    OnFacePayPassEventParam,
     OnFacePayPassEventResult,
     OnFacePayFailedEventResult,
-    OnFacePayFailedEventParam,
     FaceLoginParam,
     FaceLoginResult,
-    OnCodePayEventParam,
     OnCodePayEventResult,
     AbleToQuickPayParam,
     AbleToQuickPayResult,
-    OnQueryPaymentFailedEventParam,
     OnQueryPaymentFailedEventResult,
-    OnQueryPaymentSucEventParam,
     OnQueryPaymentSucEventResult,
-    OnSpecialCtrlEventParam,
     OnSpecialCtrlEventResult,
     QuickPayParam,
     QuickPayResult,
@@ -42,6 +34,9 @@ import {
 } from "../wxface/wxface";
 
 type WeChatAppletsPromiseTemplateMethod<P = any, S = any, E = any> = (param: P) => Promise<S>;
+
+type WeChatAppletsOnEventTemplateMethod<R = any> = (listener: (result: R) => void) => void;
+
 
 export interface PromiseStandardizationWeChatAppletsSdk {
 
@@ -55,25 +50,10 @@ export interface PromiseStandardizationWeChatAppletsSdk {
 
     postMsg: WeChatAppletsPromiseTemplateMethod<PostMsgParam, PostMsgResult, PostMsgResult>;
 
-    onRemoteMessage: WeChatAppletsPromiseTemplateMethod<OnRemoteMessageParam, OnRemoteMessageResult, OnRemoteMessageResult>;
 
     registKeyBoard: WeChatAppletsPromiseTemplateMethod<RegistKeyBoardParam, RegistKeyBoardResult, RegistKeyBoardResult>;
 
-    onKeyBoardEvent: WeChatAppletsPromiseTemplateMethod<OnKeyBoardEventParam, OnKeyBoardEventResult, OnKeyBoardEventResult>;
-
     facePay: WeChatAppletsPromiseTemplateMethod<FacePayParam, FacePayResult, FacePayResult>;
-
-    onFacePayPassEvent: WeChatAppletsPromiseTemplateMethod<OnFacePayPassEventParam, OnFacePayPassEventResult, OnFacePayPassEventResult>;
-
-    onFacePayFailedEvent: WeChatAppletsPromiseTemplateMethod<OnFacePayFailedEventParam, OnFacePayFailedEventResult, OnFacePayFailedEventResult>;
-
-    onQueryPaymentSucEvent: WeChatAppletsPromiseTemplateMethod<OnQueryPaymentSucEventParam, OnQueryPaymentSucEventResult, OnQueryPaymentSucEventResult>;
-
-    onQueryPaymentFailedEvent: WeChatAppletsPromiseTemplateMethod<OnQueryPaymentFailedEventParam, OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventResult>;
-
-    listenCodePayment: WeChatAppletsPromiseTemplateMethod<ListenCodePaymentParam, ListenCodePaymentResult, ListenCodePaymentResult>;
-
-    onCodePayEvent: WeChatAppletsPromiseTemplateMethod<OnCodePayEventParam, OnCodePayEventResult, OnCodePayEventResult>;
 
     quickPay: WeChatAppletsPromiseTemplateMethod<QuickPayParam, QuickPayResult, QuickPayResult>;
 
@@ -85,7 +65,25 @@ export interface PromiseStandardizationWeChatAppletsSdk {
 
     faceLogin: WeChatAppletsPromiseTemplateMethod<FaceLoginParam, FaceLoginResult, FaceLoginResult>;
 
-    onSpecialCtrlEvent: WeChatAppletsPromiseTemplateMethod<OnSpecialCtrlEventParam, OnSpecialCtrlEventResult, OnSpecialCtrlEventResult>;
+    listenCodePayment: WeChatAppletsPromiseTemplateMethod<ListenCodePaymentParam, ListenCodePaymentResult, ListenCodePaymentResult>;
+
+    /*---------------------事件监听-------------*/
+
+    onRemoteMessage: WeChatAppletsOnEventTemplateMethod<OnRemoteMessageResult>;
+
+    onKeyBoardEvent: WeChatAppletsOnEventTemplateMethod<OnKeyBoardEventResult>;
+
+    onFacePayPassEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayPassEventResult>;
+
+    onFacePayFailedEvent: WeChatAppletsOnEventTemplateMethod<OnFacePayFailedEventResult>;
+
+    onQueryPaymentSucEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentSucEventResult>;
+
+    onQueryPaymentFailedEvent: WeChatAppletsOnEventTemplateMethod<OnQueryPaymentFailedEventResult>;
+
+    onCodePayEvent: WeChatAppletsOnEventTemplateMethod<OnCodePayEventResult>;
+
+    onSpecialCtrlEvent: WeChatAppletsOnEventTemplateMethod<OnSpecialCtrlEventResult>;
 
 }
 
@@ -95,8 +93,6 @@ type PromiseResolveConditionInterface = {
 }
 
 const SUCCESS_CODE = "0";
-const FACE_PAY_FAIL_SUCCESS_CODE = ["-1", "-6", "-7", "-8"];
-const ON_QUERY_PAYMENT_FAILED_EVENT_SUCCESS_CODE = ["-1", "-6", "-10", "-11", "-12"];
 
 /**
  * 表示成功调用的条件
@@ -114,53 +110,20 @@ const PromiseResolveCondition: PromiseResolveConditionInterface = {
         return result.replyCode === SUCCESS_CODE;
     },
 
-    exitMp: () => {
-        return true;
-    },
 
     postMsg: (result: PostMsgResult) => {
         return result.replyCode === SUCCESS_CODE;
-    },
-
-    onRemoteMessage: () => {
-        return true;
     },
 
     registKeyBoard: (result: RegistKeyBoardResult) => {
         return result.replyCode === SUCCESS_CODE;
     },
 
-    onKeyBoardEvent: (result: OnKeyBoardEventResult) => {
-        return result.keyName === SUCCESS_CODE;
-    },
 
     facePay: (result: FacePayResult) => {
         return result.replyCode === SUCCESS_CODE;
     },
 
-    onFacePayPassEvent: (result: OnFacePayPassEventResult) => {
-        return result.replyCode === SUCCESS_CODE;
-    },
-
-    onFacePayFailedEvent: (result: OnFacePayFailedEventResult) => {
-        return FACE_PAY_FAIL_SUCCESS_CODE.indexOf(result.replyCode) > -1
-    },
-
-    onQueryPaymentSucEvent: (result: OnQueryPaymentSucEventResult) => {
-        return result.replyCode === SUCCESS_CODE;
-    },
-
-    onQueryPaymentFailedEvent: (result: OnQueryPaymentFailedEventResult) => {
-        return ON_QUERY_PAYMENT_FAILED_EVENT_SUCCESS_CODE.indexOf(result.replyCode) > -1
-    },
-
-    listenCodePayment: () => {
-        return true
-    },
-
-    onCodePayEvent: (result: OnCodePayEventResult) => {
-        return result.replyCode === SUCCESS_CODE;
-    },
 
     quickPay: (result: QuickPayResult) => {
         return result.replyCode === SUCCESS_CODE;
@@ -174,20 +137,33 @@ const PromiseResolveCondition: PromiseResolveConditionInterface = {
         return result.replyCode === SUCCESS_CODE;
     },
 
-    isLoginOnFaceApp: (result: GetLastPayResultResult) => {
-        return true
-    },
-
     faceLogin: (result: FaceLoginResult) => {
         return result.replyCode === SUCCESS_CODE;
     }
 
 };
 
+// 单个callback的方法
+// const singleCallbackFunctionNames = [
+//     "onRemoteMessage",
+//     "onSpecialCtrlEvent",
+//     "onQueryPaymentFailedEvent",
+//     "onFacePayFailedEvent",
+//     "onQueryPaymentSucEvent",
+//     "onKeyBoardEvent",
+//     "onFacePayPassEvent",
+//     "onCodePayEvent"
+// ];
+
 const WeChatAppletsSdk: PromiseStandardizationWeChatAppletsSdk = newProxyInstance(wxfaceapp as any, (target, propertyKey) => {
 
     return function <E = any, P = any>(param: P): Promise<E> {
         const condition = PromiseResolveCondition[propertyKey];
+        // on 监听
+        const isOnEventMonitor = (propertyKey as string).startsWith("on");
+        if (isOnEventMonitor) {
+            return wxfaceapp[propertyKey];
+        }
         return new Promise<E>((resolve, reject) => {
             wxfaceapp[propertyKey]({
                 ...param,
@@ -200,6 +176,7 @@ const WeChatAppletsSdk: PromiseStandardizationWeChatAppletsSdk = newProxyInstanc
                 } : resolve,
                 fail: reject
             })
+
         })
     }
 });

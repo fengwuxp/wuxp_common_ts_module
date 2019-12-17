@@ -6,6 +6,7 @@ export interface BaseParam<R = any, E = Error> {
 }
 
 export type WeChatAppletsTemplateMethod<S = any, E = any, P extends BaseParam<S, E> = BaseParam<S, E>> = (param: P) => void;
+export type WeChatAppletsOnEventTemplateMethod<S = any> = (listener: (result: S) => void) => void;
 
 export interface CheckWxFacePayOsInfoResult {
     // 参数	类型	说明
@@ -93,10 +94,6 @@ export interface PostMsgResult {
     reply: string;
 }
 
-export interface OnRemoteMessageParam extends BaseParam<OnRemoteMessageResult, OnRemoteMessageResult> {
-
-}
-
 export interface OnRemoteMessageResult {
     // 发送本条消息的小程序Appid
     senderAppid: string;
@@ -114,11 +111,6 @@ export interface RegistKeyBoardResult {
     replyCode: '-1' | '0';
     // 返回信息，注册成功返回“Success register to listen keyboard event”
     reply: string;
-}
-
-export interface OnKeyBoardEventParam extends BaseParam<OnKeyBoardEventResult, OnKeyBoardEventResult> {
-    // 定义了需要监听的各个按键所对应的AndroidKeyCode，注意，此输入不可为空，数组中的某个子Item也不可为空
-    keyCodeList: number[];
 }
 
 export interface OnKeyBoardEventResult {
@@ -144,9 +136,6 @@ export interface FacePayResult {
     reply: string;
 }
 
-export interface OnFacePayPassEventParam extends BaseParam<OnFacePayPassEventResult, OnFacePayPassEventResult> {
-
-}
 
 export interface OnFacePayPassEventResult {
     // 返回码，返回"0"表示成功
@@ -157,9 +146,6 @@ export interface OnFacePayPassEventResult {
     faceCode: string;
 }
 
-export interface OnFacePayFailedEventParam extends BaseParam<OnFacePayFailedEventResult, OnFacePayFailedEventResult> {
-
-}
 
 export interface OnFacePayFailedEventResult {
     // 返回码，返回"0"表示成功
@@ -172,9 +158,6 @@ export interface OnFacePayFailedEventResult {
     reply: string;
 }
 
-export interface OnQueryPaymentSucEventParam extends BaseParam<OnQueryPaymentSucEventResult, OnQueryPaymentSucEventResult> {
-
-}
 
 export interface OnQueryPaymentSucEventResult {
     // 返回码，返回"0"表示成功
@@ -183,9 +166,6 @@ export interface OnQueryPaymentSucEventResult {
     reply: string;
 }
 
-export interface OnQueryPaymentFailedEventParam extends BaseParam<OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventResult> {
-
-}
 
 export interface OnQueryPaymentFailedEventResult {
     // 返回码，返回"0"表示成功
@@ -215,9 +195,6 @@ export interface ListenCodePaymentResult {
     reply: string;
 }
 
-export interface OnCodePayEventParam extends BaseParam<OnCodePayEventResult, OnCodePayEventResult> {
-
-}
 
 export interface OnCodePayEventResult {
     // 返回码，返回"0"表示成功
@@ -288,9 +265,6 @@ export interface FaceLoginResult {
     reply: string;
 }
 
-export interface OnSpecialCtrlEventParam extends BaseParam<OnSpecialCtrlEventResult, OnSpecialCtrlEventResult> {
-
-}
 
 export interface OnSpecialCtrlEventResult {
     // 返回码，{0:传码;1:收款}

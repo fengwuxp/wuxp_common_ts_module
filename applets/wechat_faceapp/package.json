@@ -19,7 +19,8 @@
   "files": [
     "dist",
     "es",
-    "types"
+    "types",
+    "wxface"
   ],
   "author": "wuxp",
   "license": "ISC",
