@@ -303,7 +303,7 @@ interface OnSpecialCtrlEventParam extends BaseParam<OnSpecialCtrlEventResult, On
 }
 
 interface OnSpecialCtrlEventResult {
-    // 返回码，{0:传码;1:收款}
+    // 返回码， {0:传码;1:收款}
     ctrlCode: '0' | '1';
     // 返回信息，传码场景下,返回"传码",收款场景下,返回"收款"
     ctrlMsg: string;
