@@ -2,7 +2,7 @@ import {RequestDataEncoder} from "../codec/RequestDataEncoder";
 import {FetchOptions} from "../FetchOptions";
 import {FeignProxyApiServiceMethodConfig} from "../proxy/feign/FeignProxy";
 import {contentTypeName} from '../constant/FeignConstVar';
-import {MediaType} from '../constant/http/MediaType';
+import {HttpMediaType} from '../constant/http/HttpMediaType';
 import {isBrowser} from "../utils/EvnAndTypeUtil";
 
 
@@ -25,7 +25,7 @@ export default class FileUpLoadRequestDataEncoder implements RequestDataEncoder 
 
     needExecute = (options: FetchOptions, config: FeignProxyApiServiceMethodConfig): boolean => {
         const contentType = options.contentType || options.headers[contentTypeName];
-        const b = contentType !== MediaType.MULTIPART_FORM_DATA || !isBrowser();
+        const b = contentType !== HttpMediaType.MULTIPART_FORM_DATA || !isBrowser();
         if (b) {
             return false;
         }

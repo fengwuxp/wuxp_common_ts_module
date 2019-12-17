@@ -1,7 +1,7 @@
 {
-  "name": "fengwuxp-styles-variable-transformer",
+  "name": "fengwuxp-ui-control",
   "version": "1.0.0",
-  "description": "styles variable transformer",
+  "description": "common ui control abstract",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -17,7 +17,7 @@
   "module": "es/index.js",
   "typings": "types/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "es",
     "types"
   ],
@@ -32,26 +32,19 @@
     "publish:lib": "npm run rollup:build && npm run npm:publish"
   },
   "keywords": [
-    "route",
-    "adapter",
+    "fetch",
+    "feign",
     "typescript"
   ],
   "devDependencies": {
+    "@babel/runtime": "^7.0.0",
+    "@babel/runtime-corejs3": "^7.0.0",
+    "core-js": "^3.4.1",
     "fengwuxp-library-starter": "^1.0.0",
-    "fengwuxp-styles-dependency": "^1.0.0",
-    "@babel/runtime-corejs3": "^7.7.2",
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "css": "^2.2.4",
-    "less": "^3.10.3",
-    "node-sass": "^4.13.0",
-    "sass-loader": "^8.0.0",
-    "fengwuxp-common-proxy": "^1.0.0",
-    "fengwuxp-common-utils": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.6",
-    "graceful-fs": "^4.2.3",
-    "sass-variable-parser": "^1.2.2"
+
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

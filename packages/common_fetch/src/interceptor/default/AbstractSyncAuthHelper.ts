@@ -1,7 +1,7 @@
 import {FetchOptions, FetchResponse} from "../../FetchOptions";
 import {SyncAuthHelper} from "./NeedAuthInterceptor";
 import {RestTemplate} from "../../template/RestTemplate";
-import {MediaType} from "../../constant/http/MediaType";
+import {HttpMediaType} from "../../constant/http/HttpMediaType";
 import {parse} from "querystring";
 import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 
@@ -221,9 +221,9 @@ export abstract class AbstractSyncAuthHelper<T extends FetchOptions = FetchOptio
                 //重试
                 const {contentType} = options;
                 if (typeof options.data === "string") {
-                    if (contentType === MediaType.FORM_DATA) {
+                    if (contentType === HttpMediaType.FORM_DATA) {
                         options.data = parse(options.data);
-                    } else if (contentType === MediaType.JSON_UTF8) {
+                    } else if (contentType === HttpMediaType.APPLICATION_JSON_UTF8) {
                         options.data = JSON.parse(options.data);
                     }
                 }

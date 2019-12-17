@@ -3,7 +3,7 @@ import {FileUploadOptions} from "./FileTransmitter";
 import {RestTemplate} from "../template/RestTemplate";
 import {FetchOptions} from "../FetchOptions";
 import {fileToBase64} from "fengwuxp_common_utils/src/codec/FileConverterUtil";
-import {MediaType} from "../constant/http/MediaType";
+import {HttpMediaType} from "../constant/http/HttpMediaType";
 import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
 import {defaultApiModuleName} from "../constant/FeignConstVar";
 import {isBrowser} from "../utils/EvnAndTypeUtil";
@@ -35,7 +35,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
         const appConfig = AppConfigRegistry.get();
         this.defaultFileOptions = defaultFileOptions || {
             url: appConfig != null ? appConfig.uploadFileURL : (process.env.UNIFIED_UPLOAD_FILE_URL || `@${defaultApiModuleName}/system/upload`),
-            contentType: MediaType.JSON_UTF8,
+            contentType: HttpMediaType.APPLICATION_JSON_UTF8,
             formDataFileName: "file"
         } as FileUploadOptions;
     }
@@ -70,7 +70,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
             const name = formDataFileName;
             const blob = data as Blob;
             const extName = blob.type.split("/")[0];
-            if (contentType === MediaType.FORM_DATA) {
+            if (contentType === HttpMediaType.FORM_DATA) {
                 //使用表单
                 const formData = new FormData();
                 formData.append(name, blob);
@@ -79,7 +79,7 @@ export default class DefaultFileUploadStrategy extends AbstractCacheFileUploadSt
                     ...fetchOptions,
                     data: formData
                 });
-            } else if (contentType == null || contentType === MediaType.JSON_UTF8) {
+            } else if (contentType == null || contentType === HttpMediaType.APPLICATION_JSON_UTF8) {
                 //使用 json
                 return fileToBase64(blob).then((base64) => {
                     const result = {

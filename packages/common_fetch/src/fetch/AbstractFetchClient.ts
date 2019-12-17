@@ -3,7 +3,7 @@ import {FetchOptions, FetchResponse} from "../FetchOptions";
 import {RequestMethod} from "../constant/RequestMethod";
 import {FetchAdapter} from "../adapter/FetchAdapter";
 import {stringify} from "../utils/QueryString";
-import {MediaType} from "../constant/http/MediaType";
+import {HttpMediaType} from "../constant/http/HttpMediaType";
 import {contentTypeName} from "../constant/FeignConstVar";
 import {isEq} from "../utils/MediaTypeUtil";
 
@@ -76,7 +76,7 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         if (headers[contentTypeName] == null) {
             //默认以表单的形式提交数据
-            headers[contentTypeName] = (contentType || MediaType.FORM_DATA);
+            headers[contentTypeName] = (contentType || HttpMediaType.FORM_DATA);
         }
 
         const newContentType = headers[contentTypeName];
@@ -100,10 +100,10 @@ export default abstract class AbstractFetchClient<T extends FetchOptions> implem
 
         } else /*if (method === RequestMethod.POST)*/ {
             //其他请求
-            if (isEq(newContentType, MediaType.FORM_DATA)) {
+            if (isEq(newContentType, HttpMediaType.FORM_DATA)) {
                 //以表单的形式提交数据
                 options.data = stringify(data, options.filterEmptyString);
-            } else if (isEq(newContentType, MediaType.JSON_UTF8)) {
+            } else if (isEq(newContentType, HttpMediaType.APPLICATION_JSON_UTF8)) {
                 //json
                 options.data = JSON.stringify(data);
             } else {

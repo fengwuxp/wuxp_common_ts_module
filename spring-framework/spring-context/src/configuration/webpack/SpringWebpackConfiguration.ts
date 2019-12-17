@@ -1,6 +1,16 @@
 import HtmlWebPackPlugin from "html-webpack-plugin";
+import {Entry, EntryFunc} from "webpack";
 
 export interface SpringWebpackConfiguration {
+
+
+    /**
+     * 入口文件
+     * default： {
+     *     app:"src/App.tsx"
+     * }
+     */
+    entry?: string | string[] | Entry | EntryFunc;
 
     /**
      * 静态资源根路径

@@ -1,6 +1,6 @@
 import {RequestMethod} from "../../constant/RequestMethod";
 import {defaultGenerateAnnotationMethodConfig} from "../../proxy/GenerateAnnotationMethodConfig";
-import {MediaType} from "../../constant/http/MediaType";
+import {HttpMediaType} from "../../constant/http/HttpMediaType";
 import {FeignProxy} from "../../proxy/feign/FeignProxy";
 
 
@@ -87,7 +87,7 @@ export function generateMapping<T extends BaseRequestMappingOptions>(method?: Re
             };
 
             if (requestMapping.consumes == null) {
-                requestMapping.consumes = [MediaType.JSON_UTF8]
+                requestMapping.consumes = [HttpMediaType.APPLICATION_JSON_UTF8]
             }
             if (requestMapping.produces == null) {
                 requestMapping.produces = []//[MediaType.JSON_UTF8]

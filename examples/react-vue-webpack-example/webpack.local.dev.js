@@ -77,7 +77,6 @@ config.devServer = {
             from: /.*/g,
             to: path.posix.join(config.output.publicPath, "index.html")
         }]
-
     }
 
 };

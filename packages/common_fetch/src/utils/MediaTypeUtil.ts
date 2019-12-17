@@ -1,4 +1,4 @@
-import {MediaType} from "../constant/http/MediaType";
+import {HttpMediaType} from "../constant/http/HttpMediaType";
 
 
 const UTF_8 = ";charset=UTF-8";
@@ -8,7 +8,7 @@ const UTF_8 = ";charset=UTF-8";
  * @param type1
  * @param type2
  */
-export const isEq = (type1: MediaType, type2: MediaType) => {
+export const isEq = (type1: HttpMediaType, type2: HttpMediaType) => {
 
     if (type1 === type2) {
         return true;

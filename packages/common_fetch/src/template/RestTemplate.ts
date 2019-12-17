@@ -7,7 +7,7 @@ import {HttpFetchException} from "../exception/HttpFetchException";
 import {HttpFetchExceptionName} from "../exception/Const";
 import ExceptionBroadcaster from "../exception/ExceptionBroadcaster";
 import {ResponseType} from "../constant/ResponseType";
-import {MediaType} from "../constant/http/MediaType";
+import {HttpMediaType} from "../constant/http/HttpMediaType";
 import {RetryOptions} from "../FetchRetryOptions";
 
 
@@ -72,9 +72,9 @@ const defaultTemplateConfig: RestTemplateConfig = {
 
     method: RequestMethod.POST,
 
-    consumes: [MediaType.JSON_UTF8],
+    consumes: [HttpMediaType.APPLICATION_JSON_UTF8],
 
-    produces: [MediaType.JSON_UTF8],
+    produces: [HttpMediaType.APPLICATION_JSON_UTF8],
 
     timeout: 10 * 1000,
 
@@ -86,9 +86,9 @@ const defaultTemplateConfig: RestTemplateConfig = {
 
 //响应类型的映射关系
 const RESPONSE_MAP: Map<string, ResponseType> = new Map<string, ResponseType>();
-RESPONSE_MAP.set(MediaType.JSON_UTF8, ResponseType.JSON);
-RESPONSE_MAP.set(MediaType.TEXT, ResponseType.TEXT);
-RESPONSE_MAP.set(MediaType.HTML, ResponseType.HTML);
+RESPONSE_MAP.set(HttpMediaType.APPLICATION_JSON_UTF8, ResponseType.JSON);
+RESPONSE_MAP.set(HttpMediaType.TEXT, ResponseType.TEXT);
+RESPONSE_MAP.set(HttpMediaType.HTML, ResponseType.HTML);
 
 
 /**
@@ -157,7 +157,7 @@ export abstract class AbstractRestTemplate<T = FetchResponse> implements RestTem
 
         if (!newOptions.contentType) {
             //请求提交的数据类型
-            newOptions.contentType = templateConfig.produces[0] || MediaType.JSON_UTF8;
+            newOptions.contentType = templateConfig.produces[0] || HttpMediaType.APPLICATION_JSON_UTF8;
         }
         if (newOptions.headers) {
             //请求提交的数据类型
@@ -176,7 +176,7 @@ export abstract class AbstractRestTemplate<T = FetchResponse> implements RestTem
 
         if (newOptions.responseType == null) {
             //默认使用json
-            newOptions.responseType = RESPONSE_MAP[templateConfig.consumes[0] || MediaType.JSON_UTF8] || ResponseType.JSON;
+            newOptions.responseType = RESPONSE_MAP[templateConfig.consumes[0] || HttpMediaType.APPLICATION_JSON_UTF8] || ResponseType.JSON;
         }
 
         //路由

@@ -108,6 +108,7 @@ const transformDate = (date: string | Date, format: string) => {
     }
     return DateFormatUtils.formatterDate(date, format.replace("HH", "hh"));
 };
+
 const dateTimePickerModule = weex.requireModule("dateTimePicker");
 const weexStandardizeDateTimerPickerModule: WeexStandardizeDateTimerPickerModule = standardizedWeexModuleToPromise<WeexStandardizeDateTimerPickerModule>({
     module: dateTimePickerModule,

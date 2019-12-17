@@ -11,7 +11,7 @@ import TestService from "./services/TestService";
 import {SimpleApiSignatureStrategy} from "../src/signature/ApiSignatureStrategy";
 import {apiSign} from "./utils/ApiSginUtils";
 import {RequestMethod} from "../src/constant/RequestMethod";
-import {MediaType} from "../src/constant/http/MediaType";
+import {HttpMediaType} from "../src/constant/http/HttpMediaType";
 // import {MockFetchAdapter} from "./mock/MockFetchAdapter";
 import FeignProxyExecutorHolder from "../src/proxy/feign/FeignProxyExecutorHolder";
 import FilterEmptyStringParamInterceptor from "../src/interceptor/default/FilterEmptyStringParamInterceptor";
@@ -38,8 +38,8 @@ class TestRestTemplateLoader extends AbstractRestTemplateLoader {
 
         const restTemplate = new DefaultRestTemplate({
                 method: RequestMethod.POST,
-                consumes: [MediaType.JSON_UTF8],
-                produces: [MediaType.JSON_UTF8],
+                consumes: [HttpMediaType.APPLICATION_JSON_UTF8],
+                produces: [HttpMediaType.APPLICATION_JSON_UTF8],
                 timeout: 10 * 1000,
                 headers: {},
                 defaultFetchOptions: {

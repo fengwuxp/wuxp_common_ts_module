@@ -1,7 +1,7 @@
 {
-  "name": "fengwuxp-styles-variable-transformer",
+  "name": "fengwuxp-wechat-face-applets-sdk",
   "version": "1.0.0",
-  "description": "styles variable transformer",
+  "description": "declarative face applets sdk",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
@@ -38,20 +38,12 @@
   ],
   "devDependencies": {
     "fengwuxp-library-starter": "^1.0.0",
-    "fengwuxp-styles-dependency": "^1.0.0",
-    "@babel/runtime-corejs3": "^7.7.2",
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "css": "^2.2.4",
-    "less": "^3.10.3",
-    "node-sass": "^4.13.0",
-    "sass-loader": "^8.0.0",
     "fengwuxp-common-proxy": "^1.0.0",
     "fengwuxp-common-utils": "^1.0.0",
-    "fengwuxp_common_style": "^1.0.6",
-    "graceful-fs": "^4.2.3",
-    "sass-variable-parser": "^1.2.2"
+    "fengwuxp-declarative-command": "1.0.0"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

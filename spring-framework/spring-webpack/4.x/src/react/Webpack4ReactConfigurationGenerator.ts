@@ -1,17 +1,13 @@
 import * as webpack from "webpack";
 import ExtractTextWebpackPlugin from "extract-text-webpack-plugin";
 import {pathAlias} from "../configuration/CommonpPathAlias";
-import {
-    WebpackConfigurationGenerator,
-    WebpackConfigurationGeneratorOptions
-} from "../WebpackConfigurationGenerator";
+import {WebpackConfigurationGenerator, WebpackConfigurationGeneratorOptions} from "../WebpackConfigurationGenerator";
 import * as path from "path";
 import {awesomeTypescriptLoader} from "../typescript/TypescriptLoader";
 import {cssModuleLoader} from "../styles/CssModuleLoader";
 import PostCssLoader from "../styles/postcss/PostCssLoader";
 import {lessLoader} from "../styles/less/LessLoader";
 import {scssLoader} from "../styles/scss/ScssLoader";
-import {getHappyPackPlugin} from "../happypack/GetHappyPackPluginConfig";
 import {uglifyJsPlugin} from "../plugins/UglifyJsPluginConfig";
 import HtmlWebPackPlugin from "html-webpack-plugin";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
@@ -21,6 +17,7 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
 
 
     const {
+        entry,
         mode,
         outputPath,
         publicPath,
@@ -36,7 +33,7 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
     const packPath = path.resolve("src", outputPath || "../dist");
 
     const webpackConfiguration: webpack.Configuration = {
-        entry: {
+        entry: entry || {
             app: path.resolve('src', 'App'),
         },
         output: {
@@ -118,14 +115,6 @@ export const webpack4ReactConfigurationGenerator: WebpackConfigurationGenerator 
         },
 
         plugins: [
-            getHappyPackPlugin("sass", [
-                {
-                    loader: "sass-loader",
-                    options: {
-                        ident: "css-loader"
-                    }
-                }
-            ], 2),
             new ExtractTextWebpackPlugin({
                 filename: isProd ? "[name]_[hash].css" : "[name].css",
                 allChunks: true

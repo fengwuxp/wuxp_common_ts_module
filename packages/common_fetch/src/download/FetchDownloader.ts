@@ -3,7 +3,7 @@ import StringUtils from "fengwuxp_common_utils/src/string/StringUtils";
 import DefaultFetchClient from '../fetch/DefaultFetchClient';
 import WebFetchAdapter from "../adapter/web/WebFetchAdapter";
 import {FetchOptions} from "../FetchOptions";
-import {MediaType} from "../constant/http/MediaType";
+import {HttpMediaType} from "../constant/http/HttpMediaType";
 import {contentTypeName} from "../constant/FeignConstVar";
 
 
@@ -25,7 +25,7 @@ export function downloadFile(options: FetchOptions, fileName?: string) {
     }
 
     const headers = {};
-    headers[contentTypeName] = MediaType.STREAM;
+    headers[contentTypeName] = HttpMediaType.STREAM;
 
     return fetchClient.post({
         headers,
