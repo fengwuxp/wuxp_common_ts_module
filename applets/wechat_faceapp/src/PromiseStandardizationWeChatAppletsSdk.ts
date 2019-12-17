@@ -1,7 +1,7 @@
 import {newProxyInstance} from "fengwuxp-common-proxy";
 import {
     CheckWxFacePayOsInfoError,
-    CheckWxFacePayOsInfoResult, launchMpResult, launchMpParam,
+    CheckWxFacePayOsInfoResult, LaunchMpResult, LaunchMpParam,
     WriteToSerialPortError, WriteToSerialPortParam,
     WriteToSerialPortResult
 } from "../wxface/wxface";
@@ -14,7 +14,7 @@ export interface PromiseStandardizationWeChatAppletsSdk {
 
     writeToSerialPort: WeChatAppletsPromiseTemplateMethod<WriteToSerialPortParam, WriteToSerialPortResult, WriteToSerialPortError>;
 
-    launchMp: WeChatAppletsPromiseTemplateMethod<launchMpParam, launchMpResult, launchMpResult>;
+    launchMp: WeChatAppletsPromiseTemplateMethod<LaunchMpParam, LaunchMpResult, LaunchMpResult>;
 
     exitMp: WeChatAppletsPromiseTemplateMethod<void, void, void>;
 
@@ -39,7 +39,7 @@ const PromiseResolveCondition: PromiseResolveConditionInterface = {
         return result.replyCode === SUCCESS_CODE;
     },
 
-    launchMp: (result: launchMpResult) => {
+    launchMp: (result: LaunchMpResult) => {
         return result.replyCode === SUCCESS_CODE;
     }
 };
