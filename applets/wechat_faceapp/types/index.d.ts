@@ -218,43 +218,31 @@ interface OnCodePayEventResult {
     reply: string;
 }
 
-interface QuickPayParam extends BaseParam<QuickPayResult, QuickPayError> {
+interface QuickPayParam extends BaseParam<QuickPayResult, QuickPayResult> {
 
 }
 
 interface QuickPayResult {
     // 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
+    // '-1' 后屏小程序正在启动,请勿重复启动
+    // '-2' 接收端的小程序Appid不匹配
+    // '-3' 字符数超出限制
+    replyCode: '0' | '-1' | '-2' | '-3';
     // 返回信息，成功回调返回"suc launching quick pay"
     reply: string;
 }
 
-interface QuickPayError {
-    // '-1' 后屏小程序正在启动,请勿重复启动
-    // '-2' 接收端的小程序Appid不匹配
-    // '-3' 字符数超出限制
-    replyCode: String;
-    // 错误信息
-    reply: string;
-}
-
-interface AbleToQuickPayParam extends BaseParam<AbleToQuickPayResult, AbleToQuickPayError> {
+interface AbleToQuickPayParam extends BaseParam<AbleToQuickPayResult, AbleToQuickPayResult> {
 
 }
 
 interface AbleToQuickPayResult {
     // '0' 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
-    // 返回信息，成功回调返回"suc launching quick pay"
-    reply: string;
-}
-
-interface AbleToQuickPayError {
     // '-1' 后屏小程序正在启动,请勿重复启动
     // '-2' 接收端的小程序Appid不匹配
     // '-3' 字符数超出限制
-    replyCode: String;
-    // 错误信息
+    replyCode: '0' | '-1' | '-2' | '-3';
+    // 返回信息，成功回调返回"suc launching quick pay"
     reply: string;
 }
 
@@ -315,22 +303,7 @@ interface PromiseStandardizationWeChatAppletsSdk {
     checkWxFacePayOsInfo: WeChatAppletsPromiseTemplateMethod<void, CheckWxFacePayOsInfoResult, CheckWxFacePayOsInfoError>;
     writeToSerialPort: WeChatAppletsPromiseTemplateMethod<WriteToSerialPortParam, WriteToSerialPortResult, WriteToSerialPortError>;
     launchMp: WeChatAppletsPromiseTemplateMethod<LaunchMpParam, LaunchMpResult, LaunchMpResult>;
-    postMsg: WeChatAppletsPromiseTemplateMethod<PostMsgParam, PostMsgResult, PostMsgResult>;
-    onRemoteMessage: WeChatAppletsPromiseTemplateMethod<OnRemoteMessageParam, OnRemoteMessageResult, OnRemoteMessageResult>;
-    registKeyBoard: WeChatAppletsPromiseTemplateMethod<RegistKeyBoardParam, RegistKeyBoardResult, RegistKeyBoardResult>;
-    onKeyBoardEvent: WeChatAppletsPromiseTemplateMethod<OnKeyBoardEventParam, OnKeyBoardEventResult, OnKeyBoardEventResult>;
-    facePay: WeChatAppletsPromiseTemplateMethod<FacePayParam, FacePayResult, FacePayResult>;
-    onFacePayPassEvent: WeChatAppletsPromiseTemplateMethod<OnFacePayPassEventParam, OnFacePayPassEventResult, OnFacePayPassEventResult>;
-    onFacePayFailedEvent: WeChatAppletsPromiseTemplateMethod<OnFacePayFailedEventParam, OnFacePayFailedEventResult, OnFacePayFailedEventResult>;
-    onQueryPaymentSucEvent: WeChatAppletsPromiseTemplateMethod<OnQueryPaymentSucEventParam, OnQueryPaymentSucEventResult, OnQueryPaymentSucEventResult>;
-    onQueryPaymentFailedEvent: WeChatAppletsPromiseTemplateMethod<OnQueryPaymentFailedEventParam, OnQueryPaymentFailedEventResult, OnQueryPaymentFailedEventResult>;
-    listenCodePayment: WeChatAppletsPromiseTemplateMethod<ListenCodePaymentParam, ListenCodePaymentResult, ListenCodePaymentResult>;
-    onCodePayEvent: WeChatAppletsPromiseTemplateMethod<OnCodePayEventParam, OnCodePayEventResult, OnCodePayEventResult>;
-    quickPay: WeChatAppletsPromiseTemplateMethod<QuickPayParam, QuickPayResult, QuickPayError>;
-    ableToQuickPay: WeChatAppletsPromiseTemplateMethod<AbleToQuickPayParam, AbleToQuickPayResult, AbleToQuickPayError>;
-    getLastPayResult: WeChatAppletsPromiseTemplateMethod<GetLastPayResultParam, GetLastPayResultResult, GetLastPayResultError>;
-    faceLogin: WeChatAppletsPromiseTemplateMethod<FaceLoginParam, FaceLoginResult, FaceLoginResult>;
-    onSpecialCtrlEvent: WeChatAppletsPromiseTemplateMethod<OnSpecialCtrlEventParam, OnSpecialCtrlEventResult, OnSpecialCtrlEventResult>;
+
 }
 declare const WeChatAppletsSdk: PromiseStandardizationWeChatAppletsSdk;
 

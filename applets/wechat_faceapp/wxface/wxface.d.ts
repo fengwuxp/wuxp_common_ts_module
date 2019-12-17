@@ -88,7 +88,7 @@ export interface PostMsgResult {
     // "-6"	机具不支持此功能
     // "-7"	未知错误
     // "-8"	发送消息超时
-    replyCode: "-1" | "-2" | "-3" | "-4" | "-5" | "-6" | "-7" | "-8";
+    replyCode: "0" | "-1" | "-2" | "-3" | "-4" | "-5" | "-6" | "-7" | "-8";
     //错误具体信息
     reply: string;
 }
@@ -199,14 +199,6 @@ export interface OnQueryPaymentFailedEventResult {
     reply: string;
 }
 
-export interface ListenCodePaymentParam extends BaseParam<ListenCodePaymentResult, ListenCodePaymentResult> {
-
-}
-
-export interface ListenCodePaymentResult {
-
-}
-
 export interface OnCodePayEventParam extends BaseParam<OnCodePayEventResult, OnCodePayEventResult> {
 
 }
@@ -218,67 +210,49 @@ export interface OnCodePayEventResult {
     reply: string;
 }
 
-export interface QuickPayParam extends BaseParam<QuickPayResult, QuickPayError> {
+export interface QuickPayParam extends BaseParam<QuickPayResult, QuickPayResult> {
 
 }
 
 export interface QuickPayResult {
     // 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
+    // '-1' 后屏小程序正在启动,请勿重复启动
+    // '-2' 接收端的小程序Appid不匹配
+    // '-3' 字符数超出限制
+    replyCode: '0' | '-1' | '-2' | '-3';
     // 返回信息，成功回调返回"suc launching quick pay"
     reply: string;
 }
 
-export interface QuickPayError {
-    // '-1' 后屏小程序正在启动,请勿重复启动
-    // '-2' 接收端的小程序Appid不匹配
-    // '-3' 字符数超出限制
-    replyCode: String;
-    // 错误信息
-    reply: string;
-}
-
-export interface AbleToQuickPayParam extends BaseParam<AbleToQuickPayResult, AbleToQuickPayError> {
+export interface AbleToQuickPayParam extends BaseParam<AbleToQuickPayResult, AbleToQuickPayResult> {
 
 }
 
 export interface AbleToQuickPayResult {
     // '0' 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
+    // '-1' 后屏小程序正在启动,请勿重复启动
+    // '-2' 接收端的小程序Appid不匹配
+    // '-3' 字符数超出限制
+    replyCode: '0' | '-1' | '-2' | '-3';
     // 返回信息，成功回调返回"suc launching quick pay"
     reply: string;
 }
 
-export interface AbleToQuickPayError {
-    // '-1' 后屏小程序正在启动,请勿重复启动
-    // '-2' 接收端的小程序Appid不匹配
-    // '-3' 字符数超出限制
-    replyCode: String;
-    // 错误信息
-    reply: string;
-}
-
-export interface GetLastPayResultParam extends BaseParam<GetLastPayResultResult, GetLastPayResultError> {
+export interface GetLastPayResultParam extends BaseParam<GetLastPayResultResult, GetLastPayResultResult> {
 
 }
 
 export interface GetLastPayResultResult {
     // '0' 返回码，返回"0"表示启动后屏小程序成功
-    replyCode: String;
+    // '-1' 后屏小程序正在启动,请勿重复启动
+    // '-2' 查询不到上一笔支付结果
+    replyCode: '0' | '-1' | '-2';
     // 返回信息，成功回调返回"fetch suc"
     reply: string;
     // 消费金额,单位:分
-    totalFee: string;
+    totalFee?: string;
     // 折扣金额,单位:分
-    discountFee: string;
-}
-
-export interface GetLastPayResultError {
-    // '-1' 后屏小程序正在启动,请勿重复启动
-    // '-2' 查询不到上一笔支付结果
-    replyCode: String;
-    // 错误信息
-    reply: string;
+    discountFee?: string;
 }
 
 export interface FaceLoginParam extends BaseParam<FaceLoginResult, FaceLoginResult> {

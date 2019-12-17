@@ -32,12 +32,9 @@ import {
     OnCodePayEventParam,
     QuickPayResult,
     QuickPayParam,
-    QuickPayError,
     AbleToQuickPayResult,
-    AbleToQuickPayError,
     AbleToQuickPayParam,
     GetLastPayResultResult,
-    GetLastPayResultError,
     GetLastPayResultParam,
     FaceLoginResult, FaceLoginParam, OnSpecialCtrlEventResult, OnSpecialCtrlEventParam
 } from "./wxface";
@@ -145,19 +142,19 @@ declare global {
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-2-监听扫码器-listencodepayment
          *  4.3. 快速支付 - quickPay
          */
-        const quickPay: WeChatAppletsTemplateMethod<QuickPayResult, QuickPayError, QuickPayParam>;
+        const quickPay: WeChatAppletsTemplateMethod<QuickPayResult, QuickPayResult, QuickPayParam>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-4-快速支付是否可用-abletoquickpay
          *  4.4. 快速支付是否可用 - ableToQuickPay
          */
-        const ableToQuickPay: WeChatAppletsTemplateMethod<AbleToQuickPayResult, AbleToQuickPayError, AbleToQuickPayParam>;
+        const ableToQuickPay: WeChatAppletsTemplateMethod<AbleToQuickPayResult, AbleToQuickPayResult, AbleToQuickPayParam>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_4-5-获取上一笔支付记录-getlastpayresult
          *  4.5. 获取上一笔支付记录 - getLastPayResult
          */
-        const getLastPayResult: WeChatAppletsTemplateMethod<GetLastPayResultResult, GetLastPayResultError, GetLastPayResultParam>;
+        const getLastPayResult: WeChatAppletsTemplateMethod<GetLastPayResultResult, GetLastPayResultResult, GetLastPayResultParam>;
 
         /**
          * https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_5-2-查看青蛙app此时是否具有登录态-isloginonfaceapp
