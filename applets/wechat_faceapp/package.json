@@ -1,7 +1,7 @@
 {
   "name": "fengwuxp-wechat-face-applets-sdk",
   "version": "1.0.0",
-  "description": "declarative face applets sdk",
+  "description": "将微信小程序特殊Api Promise化",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },

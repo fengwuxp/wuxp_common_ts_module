@@ -25,6 +25,9 @@ type PromiseResolveConditionInterface = {
 
 const SUCCESS_CODE = "0";
 
+/**
+ * 表示成功调用的条件
+ */
 const PromiseResolveCondition: PromiseResolveConditionInterface = {
     checkWxFacePayOsInfo: (result: CheckWxFacePayOsInfoResult) => {
         return result.osStatus === "valid";
@@ -40,7 +43,6 @@ const PromiseResolveCondition: PromiseResolveConditionInterface = {
 const WeChatAppletsSdk: PromiseStandardizationWeChatAppletsSdk = newProxyInstance(wxfaceapp as any, (target, propertyKey) => {
 
     return function <E = any, P = any>(param: P): Promise<E> {
-
         const condition = PromiseResolveCondition[propertyKey];
         return new Promise<E>((resolve, reject) => {
             wxfaceapp[propertyKey]({
