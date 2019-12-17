@@ -17,7 +17,7 @@ export interface CheckWxFacePayOsInfoResult {
     osSerialNumber: string;
 }
 
-export interface CheckWxFacePayOsInfoError{
+export interface CheckWxFacePayOsInfoError {
     osErrorMsg: string
 }
 
@@ -45,7 +45,7 @@ export interface WriteToSerialPortError {
 
 }
 
-export interface launchMpParam extends BaseParam<launchMpError, launchMpError> {
+export interface launchMpParam extends BaseParam<launchMpResult, launchMpResult> {
     // 需要启动的后屏小程序的AppId
     appId: string;
     // 需要启动的后屏小程序的主体ID
@@ -55,11 +55,12 @@ export interface launchMpParam extends BaseParam<launchMpError, launchMpError> {
     // 小程序的启动页面
     launchPage: string;
     //是否需要登录态{0:不需要;1:需要}
-    needLogin: string;
+    needLogin: 0 | 1;
 }
 
-export interface launchMpError {
+export interface launchMpResult {
     //具体返回码见下表
+    // "0" 表示成功
     // "-1"	后屏小程序正在启动,请勿重复启动
     // "-2"	青蛙小程序内部错误
     // "-3"	人脸支付已经在运行

@@ -1,7 +1,8 @@
 import {
+    BaseParam,
     CheckWxFacePayOsInfoError,
     CheckWxFacePayOsInfoResult,
-    launchMpError,
+    launchMpResult,
     launchMpParam,
     WeChatAppletsTemplateMethod,
     WriteToSerialPortError,
@@ -32,6 +33,13 @@ declare global {
          * @link https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_3-3-%E5%90%AF%E5%8A%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F-launchmp
          * 启动小程序 - launchMp
          */
-        const launchMp: WeChatAppletsTemplateMethod<launchMpError, launchMpError, launchMpParam>
+        const launchMp: WeChatAppletsTemplateMethod<launchMpResult, launchMpResult, launchMpParam>;
+
+
+        /**
+         * @link https://pay.weixin.qq.com/wiki/doc/wxfacepay/develop/miniprogram-api.html#_3-4-%E9%80%80%E5%87%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-exitmp
+         *  退出小程序 - exitMp
+         */
+        const exitMp: WeChatAppletsTemplateMethod<void, void, BaseParam<void, void>>;
     }
 }
