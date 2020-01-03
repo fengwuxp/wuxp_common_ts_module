@@ -1,6 +1,6 @@
 {
   "name": "antd_mobile_starter",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "基于ant mobile的通用壳子",
   "main": "index.js",
   "publishConfig": {
@@ -34,7 +34,7 @@
     "fengwuxp_common_react_router": "^1.0.7",
     "fengwuxp_common_redux": "^1.0.7",
     "fengwuxp_common_route": "^1.0.7",
-    "fengwuxp_common_starter": "^1.0.7",
+    "fengwuxp_common_starter": "^1.0.8",
     "omit.js": "^1.0.0",
     "prop-types": "^15.6.2",
     "rc-animate": "^2.5.4",
