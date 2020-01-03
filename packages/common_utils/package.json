@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_utils",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "common utils",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.26",
-    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_test": "^1.0.7",
     "fengwuxp_common_webpack": "^1.0.5",
     "jest": "^24.1.0",
     "log4js": "^4.0.2",

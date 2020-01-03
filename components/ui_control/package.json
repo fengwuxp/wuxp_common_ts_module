@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp-ui-control",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "common ui control abstract",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -42,9 +42,6 @@
     "core-js": "^3.4.1",
     "fengwuxp-library-starter": "^1.0.0",
     "typescript": "^3.7.2"
-  },
-  "dependencies": {
-
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

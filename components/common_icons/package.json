@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_icons",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "common icons",
   "main": "index.js",
   "publishConfig": {
@@ -25,9 +25,9 @@
     "npm unpublish": "npm unpublish --force"
   },
   "devDependencies": {
-    "@types/weex": "^1.0.5",
-    "fengwuxp_common_react": "^1.0.5",
-    "fengwuxp_common_weex": "^1.0.5",
+    "@types/weex": "^1.0.7",
+    "fengwuxp_common_react": "^1.0.7",
+    "fengwuxp_common_weex": "^1.0.7",
     "vue": "^2.5.17"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"

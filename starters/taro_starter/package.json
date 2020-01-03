@@ -1,6 +1,6 @@
 {
   "name": "taro_starter",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "taro starter",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -23,7 +23,7 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "@types/weixin": "^1.0.5",
+    "@types/weixin": "^1.0.7",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.12.0"
   },
@@ -58,13 +58,13 @@
     "eslint-config-taro": "^1.3.13",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-taro": "^1.3.13",
-    "fengwuxp_common_auth": "^1.0.5",
-    "fengwuxp_common_config": "^1.0.5",
-    "fengwuxp_common_fetch": "^1.0.5",
-    "fengwuxp_common_route": "^1.0.5",
-    "fengwuxp_common_style": "^1.0.5",
-    "fengwuxp_common_utils": "^1.0.5",
-    "fengwuxp_common_view": "^1.0.5",
+    "fengwuxp_common_auth": "^1.0.7",
+    "fengwuxp_common_config": "^1.0.7",
+    "fengwuxp_common_fetch": "^1.0.7",
+    "fengwuxp_common_route": "^1.0.7",
+    "fengwuxp_common_style": "^1.0.7",
+    "fengwuxp_common_utils": "^1.0.7",
+    "fengwuxp_common_view": "^1.0.7",
     "mobx": "^5.5.2",
     "nerv-devtools": "^1.3.9",
     "nervjs": "^1.3.9",

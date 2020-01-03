@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_fetch",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "common fetch",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -29,30 +29,30 @@
   "devDependencies": {
     "@types/node": "^12.0.12",
     "@types/request": "^2.48.2",
-    "fengwuxp_common_config": "^1.0.5",
-    "fengwuxp_common_test": "^1.0.5",
+    "fengwuxp_common_config": "^1.0.7",
+    "fengwuxp_common_test": "^1.0.7",
     "fengwuxp_common_webpack": "^1.0.5",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "request": "^2.88.0"
   },
   "dependencies": {
-    "@types/weex": "^1.0.5",
-    "@types/weixin": "^1.0.5",
+    "@types/weex": "^1.0.7",
+    "@types/weixin": "^1.0.7",
     "blueimp-md5": "^2.11.0",
     "es5-shim": "^4.5.9",
     "es6-promise": "^4.1.1",
-    "fengwuxp_common_auth": "^1.0.5",
-    "fengwuxp_common_core": "^1.0.5",
-    "fengwuxp_common_exception": "^1.0.5",
-    "fengwuxp_common_proxy": "^1.0.5",
-    "fengwuxp_common_task": "^1.0.5",
-    "fengwuxp_common_utils": "^1.0.5",
+    "fengwuxp_common_auth": "^1.0.7",
+    "fengwuxp_common_core": "^1.0.7",
+    "fengwuxp_common_exception": "^1.0.7",
+    "fengwuxp_common_proxy": "^1.0.7",
+    "fengwuxp_common_task": "^1.0.7",
+    "fengwuxp_common_utils": "^1.0.7",
     "fetch-detector": "^1.0.1",
     "fetch-ie8": "^1.5.0",
+    "file-saver": "^2.0.2",
     "isomorphic-fetch": "^2.2.1",
     "tslib": "^1.9.3",
-    "file-saver": "^2.0.2",
     "typescript": "^3.5.3"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"

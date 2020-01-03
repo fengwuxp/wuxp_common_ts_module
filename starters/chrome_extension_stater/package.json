@@ -1,6 +1,6 @@
 {
   "name": "chrome_extension_stater",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "chrome extension stater",
   "main": "index.js",
   "publishConfig": {
@@ -31,7 +31,7 @@
     "@types/node": "^10.12.18",
     "awesome-typescript-loader": "^5.2.1",
     "copy-webpack-plugin": "^4.6.0",
-    "fengwuxp_common_utils": "^1.0.5",
+    "fengwuxp_common_utils": "^1.0.7",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.1.1",

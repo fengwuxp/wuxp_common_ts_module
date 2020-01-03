@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_websocket",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "common websocket",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -24,9 +24,9 @@
     "websocket"
   ],
   "dependencies": {
-    "@types/weex": "^1.0.5",
-    "@types/weixin": "^1.0.5",
-    "fengwuxp_common_env": "^1.0.5"
+    "@types/weex": "^1.0.7",
+    "@types/weixin": "^1.0.7",
+    "fengwuxp_common_env": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^10.9.4"

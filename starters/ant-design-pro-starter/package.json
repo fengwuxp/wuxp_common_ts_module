@@ -1,6 +1,6 @@
 {
   "name": "ant-design-pro-starter",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -26,8 +26,8 @@
     "@ant-design/dark-theme": "^0.2.2",
     "@ant-design/pro-layout": "^4.5.14",
     "fengwuxp-spring-scannner": "^1.0.5",
-    "fengwuxp_common_react": "^1.0.5",
-    "fengwuxp_common_starter": "^1.0.5",
+    "fengwuxp_common_react": "^1.0.7",
+    "fengwuxp_common_starter": "^1.0.7",
     "fengwuxp_common_webpack": "^1.0.5",
     "lodash": "^4.17.10",
     "lodash-decorators": "^6.0.0",

@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_state",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -25,15 +25,15 @@
   "types": "./index.d.ts",
   "devDependencies": {
     "@types/react": "^16.8.16",
-    "fengwuxp_common_proxy": "^1.0.5",
-    "fengwuxp_common_test": "^1.0.5",
-    "fengwuxp_common_utils": "^1.0.5",
+    "fengwuxp_common_proxy": "^1.0.7",
+    "fengwuxp_common_test": "^1.0.7",
+    "fengwuxp_common_utils": "^1.0.7",
     "jest": "^23.6.0",
     "log4js": "^4.0.2",
     "react": "^16.8.6"
   },
   "dependencies": {
-    "fengwuxp_common_event_bus": "^1.0.5",
+    "fengwuxp_common_event_bus": "^1.0.7",
     "immutable": "^4.0.0-rc.12"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
