@@ -4,7 +4,7 @@
   "description": "common web icon",
   "main": "index.js",
   "publishConfig": {
-    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,8 @@
   "dependencies": {
     "@types/node": "^9.4.6",
     "@types/react": "^16.4.9",
-    "@types/weex": "^1.0.7",
-    "fengwuxp_common_view": "^1.0.7",
+    "@types/weex": "^1.0.5",
+    "fengwuxp_common_view": "^1.0.5",
     "rax": "^0.6.4"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"

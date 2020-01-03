@@ -62,7 +62,7 @@
     "postcss-scss": "^2.0.0",
     "postcss-less": "^3.1.4",
     "precss": "^4.0.0",
-    "quick-local-ip": "^1.0.7",
+    "quick-local-ip": "^1.0.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "svg-url-loader": "^2.3.2",

@@ -51,7 +51,7 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.2",
-    "fengwuxp_common_utils": "^1.0.7",
+    "fengwuxp_common_utils": "^1.0.5",
     "fengwuxp_common_webpack": "^1.0.5",
     "typescript": "^3.2.2",
     "webpack-cli": "^3.3.6"

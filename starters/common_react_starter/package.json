@@ -23,7 +23,7 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "fengwuxp_common_test": "^1.0.7"
+    "fengwuxp_common_test": "^1.0.5"
   },
   "dependencies": {
     "react-icons": "^3.2.2"
