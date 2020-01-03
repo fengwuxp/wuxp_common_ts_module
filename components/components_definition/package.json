@@ -1,6 +1,6 @@
 {
   "name": "components_definition",
-  "version": "1.0.7",
+  "version": "1.0.5",
   "main": "index.js",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

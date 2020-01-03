@@ -1,6 +1,6 @@
 {
   "name": "@types/weixin",
-  "version": "1.0.7",
+  "version": "1.0.5",
   "description": "微信 API types，公众号，小程序等",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

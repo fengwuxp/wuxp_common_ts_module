@@ -1,6 +1,6 @@
 {
   "name": "rax_components",
-  "version": "1.0.7",
+  "version": "1.0.5",
   "description": "common web icon",
   "main": "index.js",
   "publishConfig": {

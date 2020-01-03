@@ -1,6 +1,6 @@
 {
   "name": "fengwuxp_common_config",
-  "version": "1.0.7",
+  "version": "1.0.5",
   "description": "common config",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"

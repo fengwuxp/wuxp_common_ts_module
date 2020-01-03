@@ -1,6 +1,6 @@
 {
   "name": "ant-design-pro-starter",
-  "version": "1.0.7",
+  "version": "1.0.5",
   "description": "",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
