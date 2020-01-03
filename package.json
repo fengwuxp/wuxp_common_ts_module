@@ -20,7 +20,7 @@
     "publish:npm": "node scripts/publish_to_npm.js",
     "unpublish:npm": "node scripts/un_publish_to_npm.js",
     "publish:oak:to_js": "node scripts/publish_to_oak.js",
-    "publish:oak": "lerna publish --npm-tag=1.0.5",
+    "publish:oak": "lerna publish --npm-tag=1.0.6",
     "module_init": "npm run learn_init && npm run learn_bootstrap",
     "yarn_install": "yarn install",
     "learn_init": "lerna init",
@@ -32,6 +32,6 @@
     "lerna": "^3.15.0"
   },
   "config": {
-    "version": "1.0.5"
+    "version": "1.0.6"
   }
 }

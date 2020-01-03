@@ -1,7 +1,7 @@
 import {RouteProps} from "react-router";
 import {AppRouterAuthenticator} from "./AppRouterAuthenticator";
 import * as React from "react";
-import {Condition} from "../../../spring-context/src/condition/ConditionType";
+import {ConditionType} from "fengwuxp-spring-context/src/condition/ConditionType";
 
 
 /**
@@ -31,17 +31,19 @@ export interface PrivateRouteProps extends RouteProps {
      * default true
      * @param context 应用上下文
      */
-    condition?: Condition;
+    condition?: ConditionType;
 
     /**
      * default null
      */
-    requiredAuth?:boolean;
+    requiredAuth?: boolean;
 
     /**
      * 额外的属性
      */
     extraProps: {};
+
+    key?: string | number;
 }
 
 

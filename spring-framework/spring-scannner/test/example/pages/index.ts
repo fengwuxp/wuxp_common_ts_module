@@ -1,15 +1,13 @@
-
-
 import * as React from "react";
 import {ReactViewMapping} from "fengwuxp-spring-react/src/annotations/ReactViewMapping";
 
 
-interface IndexViewProps {
+export interface IndexViewProps {
 
 }
 
 @ReactViewMapping({
-    condition:"member.add",
+    condition: "member.add",
     exact: false,
     strict: false
 })

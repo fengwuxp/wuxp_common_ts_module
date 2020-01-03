@@ -65,7 +65,7 @@ class DateFormatUtils {
             //TODO 带有时区
             throw new Error("not support");
         } else {
-            return new Date(source.replace(/-/g, "/"));
+            return new Date(date.replace(/-/g, "/"));
         }
 
     };

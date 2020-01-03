@@ -1,9 +1,4 @@
-import {
-    File,
-    BaseNode,
-    ImportDeclaration,
-    isImportDeclaration
-} from "@babel/types";
+import {BaseNode, File, ImportDeclaration, isImportDeclaration} from "@babel/types";
 
 /**
  * ast import helper

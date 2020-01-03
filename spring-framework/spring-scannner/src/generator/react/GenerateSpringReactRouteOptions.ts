@@ -16,6 +16,11 @@ export interface GenerateSpringReactRouteOptions {
 
     condition: ConditionType;
 
+    // prop的泛型
+    propsType?: Record<"name"/*名称*/, string/*导入路径*/>;
+    // 生成的路由方法名称
+    routeMethodName?:string;
+
     routes?: GenerateSpringReactRouteOptions[];
 
     /**

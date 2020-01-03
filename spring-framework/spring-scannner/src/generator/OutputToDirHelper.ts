@@ -13,6 +13,6 @@ export const outputToDir = (code: string, options: CodeGeneratorOptions) => {
         fs.mkdirSync(fileOutputDir);
     }
 
-    fs.writeFileSync(`${fileOutputDir}/${outputFilename}.ts`, code, {flag: "w+"});
+    fs.writeFileSync(`${fileOutputDir}/${outputFilename}`, code, {flag: "w+"});
 
 };

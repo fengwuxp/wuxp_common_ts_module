@@ -4,7 +4,7 @@ import {SpringReactRouteConfig} from "fengwuxp-spring-react/src/route/SpringReac
 /**
  * 自动生成的路由配置列表
  **/
-const routes: Array<SpringReactRouteConfig> = [
+export const routes: Array<SpringReactRouteConfig> = [
 
    {{each routes route index }}
 

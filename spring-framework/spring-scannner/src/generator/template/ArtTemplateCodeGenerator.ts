@@ -23,8 +23,7 @@ export default class ArtTemplateCodeGenerator implements CodeGenerator {
     }
 
     generator = (templateFileName: string, data: any) => {
-        const code = template(this.templateBaseDir + templateFileName, data);
-        return code;
+        return template(this.templateBaseDir + templateFileName, data);
     };
 
 

@@ -32,9 +32,10 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "ant-design-pro-starter": "^1.0.0",
     "@ant-design/dark-theme": "^0.2.2",
     "@ant-design/pro-layout": "^4.5.15",
+    "ant-design-pro-starter": "^1.0.0",
+    "fengwuxp-spring-react": "^1.0.0",
     "fengwuxp-spring-webpack-4": "^1.0.0",
     "react-intl": "^3.2.1"
   },

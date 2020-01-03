@@ -3,7 +3,7 @@ import {ReactViewMapping} from "fengwuxp-spring-react/src/annotations/ReactViewM
 import IndexView from "@pages/index";
 
 
-interface DetailProps {
+export interface DetailProps {
 
 }
 

@@ -31,6 +31,7 @@
     "classnames": "^2.2.6",
     "fengwuxp-spring-beans": "^1.0.5",
     "fengwuxp-spring-context": "^1.0.5",
+    "fengwuxp-spring-react": "^1.0.0",
     "fengwuxp-spring-router": "^1.0.5",
     "fengwuxp_common_auth": "^1.0.5",
     "react": "^16.8.6",

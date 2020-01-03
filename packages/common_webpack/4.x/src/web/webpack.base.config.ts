@@ -41,7 +41,6 @@ export const getWebpackBaseConfig = function (options?: GetWebpackBaseConfigOpti
             extensions: [".ts", ".tsx", "d.ts", ".js", ".css", ".scss", ".less", ".png", "jpg", ".jpeg", ".gif"],
             alias: pathAlias
         },
-
         devtool: "source-map",
         module: {
             rules: [

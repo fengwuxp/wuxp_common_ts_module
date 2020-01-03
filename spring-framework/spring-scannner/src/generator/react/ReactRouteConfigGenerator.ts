@@ -2,10 +2,13 @@ import {CodeGenerator, CodeGeneratorOptions} from "../CodeGenerator";
 import {
     File,
     ObjectExpression,
-    CallExpression
+    CallExpression,
+    ClassDeclaration,
+    TSTypeParameterInstantiation,
+    TSTypeReference,
+    Identifier
 } from "@babel/types";
 import generator from "@babel/generator";
-import {SpringReactRouteConfig} from "fengwuxp-spring-react/src/route/SpringReactRouteConfig";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";
 import * as path from "path";
 import {getReactViewDecorator} from "../../helper/AstDecoratorHelper";
@@ -16,6 +19,7 @@ import {outputToDir} from "../OutputToDirHelper";
 import {getImportDeclaration} from "../../helper/AstImportHelper";
 import {GenerateSpringReactRouteOptions} from "./GenerateSpringReactRouteOptions";
 import {isAliasImport, normalizeAliasImportPath} from "../../helper/ImportAliasMatchHelper";
+import {findExportDefaultDeclaration} from "../../helper/FindAstHelper";
 
 const artTemplateCodeGenerator = new ArtTemplateCodeGenerator();
 
@@ -26,6 +30,12 @@ interface ReactRouteConfigGeneratorOptions extends CodeGeneratorOptions {
      * 默认：["views"]
      */
     scanPackages: string[];
+
+    /**
+     * 路径名称转方法名称策略
+     * @param pathname
+     */
+    pathnameTransformMethodNameResolver?: (pathname: string) => string;
 }
 
 
@@ -40,7 +50,7 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
         LOGGER.debug(`共扫描到react view ${Object.keys(files).length}`);
 
         const reactOptions: ReactRouteConfigGeneratorOptions = {
-            outputFilename: "ReactRouteConfig",
+            outputFilename: "ReactRouteConfig.ts",
             ...options
         };
 
@@ -101,13 +111,29 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
         });
 
 
+        // 生成路由列表
         const code = artTemplateCodeGenerator.generator("react/ReactRouterConfigCodeTemplate.art", {
             routes: this.sortByExact(routes)
         });
 
         outputToDir(code, reactOptions);
 
-
+        // 生成AppRouter
+        const routerCode = artTemplateCodeGenerator.generator("react/AppRouterTemplate.art", {
+            routes: this.sortByExact(routes)
+        });
+        outputToDir(routerCode, {
+            outputFilename: "AppRouter.ts",
+            ...options
+        });
+        // 生成AppRouter.d.ts
+        const routerDtsCode = artTemplateCodeGenerator.generator("react/AppRouterInterfaceTemplate.art", {
+            routes: this.sortByExact(routes)
+        });
+        outputToDir(routerDtsCode, {
+            outputFilename: "AppRouterInterface.d.ts",
+            ...options
+        });
     };
 
 
@@ -229,6 +255,11 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
         }
 
         springReactRouteConfig.component = componentImportPath;
+
+        // 获取组件的props 类型
+        springReactRouteConfig.propsType = this.getComponentPropsType(file);
+        springReactRouteConfig.routeMethodName = springReactRouteConfig.pathname;
+
         return springReactRouteConfig;
     };
 
@@ -259,5 +290,22 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
      */
     private normalizeImportPath = (componentImportPath: string) => {
         return componentImportPath.replace(/\\/g, "/");
+    };
+
+    /**
+     * 获取组件上的 props 类型
+     * @param file
+     */
+    private getComponentPropsType = (file: File): Record<"name", string> => {
+        const defaultDeclaration: ClassDeclaration = findExportDefaultDeclaration(file) as ClassDeclaration;
+
+        const superTypeParameters: TSTypeParameterInstantiation = defaultDeclaration.superTypeParameters as TSTypeParameterInstantiation;
+        if (superTypeParameters == null) {
+            return null;
+        }
+        const params: TSTypeReference[] = superTypeParameters.params as TSTypeReference[];
+        return {
+            name: (params[0].typeName as Identifier).name
+        };
     }
 }

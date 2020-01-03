@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-
+import {routes} from "../.spring/ReactRouteConfig";
+import {renderRoutes} from "fengwuxp-spring-react/src/route/RenderRoutes";
 
 
 /*
@@ -20,8 +20,15 @@ import * as ReactDOM from "react-dom";
 *
 * */
 
-// ReactDOM.render(
-//
-//     document.getElementById("app")
-// );
+const App = (props) => {
+
+    return <div>
+        {renderRoutes(routes,null,null,props)}
+    </div>
+};
+
+ReactDOM.render(
+    <App/>,
+    document.getElementById("app")
+);
 

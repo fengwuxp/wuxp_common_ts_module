@@ -9,6 +9,15 @@ interface DetailProps {
 @ReactViewMapping({
     condition:"member.add"
 })
-export default class DetailView extends React.Component<DetailProps> {
+class DetailView extends React.Component<DetailProps> {
 
+
+    constructor(props: DetailProps, context: any) {
+        super(props, context);
+    }
+
+    render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+        return undefined;
+    }
 }
+export default DetailView

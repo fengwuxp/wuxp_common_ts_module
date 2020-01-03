@@ -79,17 +79,6 @@ const imageToCanvas = (width, height, orientation) => {
     }
 };
 
-// const canvasToBase64 = (canvas, quality = 0.75) => {
-//     // in order to compress the final image format has to be jpeg
-//     return canvas.toDataURL('image/jpeg', quality)
-// };
-
-// const canvasToImage = (canvas, quality=.75, mimeType='image/jpeg') => {
-//   const image = new Image()
-//   const base64str = canvas.toDataURL(mimeType, quality)
-//   image.src = base64str
-//   return image
-// }
 
 const size = (size) => {
     return {

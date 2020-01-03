@@ -14,6 +14,7 @@ export interface ViewMappingOptions<P = {}, S = {}> {
     /**
      * 页面的名称
      * 默认 null
+     * 支持表达式
      */
     name?: string;
 

@@ -3,7 +3,7 @@ import {ReactViewMapping} from "fengwuxp-spring-react/src/annotations/ReactViewM
 import IndexView from "../index";
 
 
-interface InputProps {
+export interface InputProps {
 
 }
 
