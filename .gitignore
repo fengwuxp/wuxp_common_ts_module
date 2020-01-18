@@ -27,3 +27,4 @@ _src
 .publish_chennh
 #scripts/publish_to_npm.ts
 #scripts/publish_to_npm.js
+esnext
