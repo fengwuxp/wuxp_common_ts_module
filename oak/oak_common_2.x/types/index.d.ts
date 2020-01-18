@@ -1,3 +1,5 @@
+import { FeignRequestOptions, FeignClientExecutorInterceptor, UnifiedFailureToast, HttpResponse, SimpleApiSignatureStrategy, UriVariable, FeignRequestBaseOptions } from 'fengwuxp-typescript-feign';
+
 /**
  * 提示类型
  */
@@ -206,4 +208,40 @@ interface ApiQueryResp<T = any> extends ApiResp<PageInfo<T>> {
     readonly notEmpty: boolean;
 }
 
-export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, PageInfo, PromptData, PromptType, QueryType };
+declare class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = FeignRequestOptions> implements FeignClientExecutorInterceptor<T> {
+    private static SUCCESS_CODE;
+    private static NEED_AUTHENTICATION;
+    private static IS_TO_AUTHENTICATION_VIEW;
+    protected unifiedFailureToast: UnifiedFailureToast;
+    protected toAuthenticationViewHandle: Function;
+    postError: (options: T, response: HttpResponse<any>) => Promise<never>;
+    postHandle: <E = any>(options: T, response: any) => Promise<any>;
+    /**
+     * 尝试进行错误提示
+     * @param options
+     * @param message
+     */
+    private tryToast;
+}
+
+/**
+ * oak的api签名策略
+ */
+declare class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
+    /**
+     * 客户端id
+     */
+    private clientId;
+    /**
+     * 签名秘钥
+     */
+    private clientSecret;
+    /**
+     * 渠道编号
+     */
+    private channelCode;
+    constructor(clientId: string, clientSecret: string, channelCode: string);
+    sign: (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => void;
+}
+
+export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };
