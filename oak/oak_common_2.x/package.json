@@ -1,6 +1,6 @@
 {
-  "name": "oak_common",
-  "version": "2.0.0",
+  "name": "oak-common",
+  "version": "1.0.0",
   "description": "oak common",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
@@ -13,14 +13,10 @@
     "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
   },
   "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "esnext": "esnext/index.js",
+  "main": "es/index.js",
   "typings": "types/index.d.ts",
   "files": [
-    "lib",
     "es",
-    "esnext",
     "types"
   ],
   "keywords": [],
@@ -32,18 +28,14 @@
     "npm:publish": "npm publish",
     "tsc:build": "rm -rf ./types & tsc -p ./tsconfig.lib.json --emitDeclarationOnly",
     "test": "jest --config ./jest.config.js --verbose=true",
-    "rollup:build:esnext": "rm -rf ./esnext & rollup -c ./rollup.esnext.config.js",
     "rollup:build": "npm run tsc:build & rollup -c &  rm -rf ./types-temp",
-    "publish:lib": "npm run rollup:build & npm run rollup:build:esnext & npm run npm:publish"
+    "publish:lib": "npm run rollup:build & npm run npm:publish"
   },
   "dependencies": {
     "blueimp-md5": "^2.11.0",
     "fengwuxp-common-utils": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.0.0",
-    "@babel/runtime-corejs3": "^7.0.0",
-    "core-js": "^3.4.1",
     "fengwuxp-library-starter": "^1.0.0",
     "fengwuxp-typescript-feign": "^1.0.0",
     "typescript": "^3.7.2"
