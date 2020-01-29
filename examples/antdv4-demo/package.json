@@ -1,0 +1,41 @@
+{
+  "name": "react-vue-webpack-example",
+  "version": "1.0.0",
+  "description": "",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "main": "index.js",
+  "scripts": {
+    "yarn:install": "yarn install",
+    "serve-dev": "cross-env webpack-dev-server --config webpack.local.dev.js --devtool eval --progress --colors  --watch --port 9000 --open",
+    "build:wepack": "rm -rf ./dist & webpack --config webpack.config.js  --progress --colors",
+    "build:wepack:prod": "rm -rf ./dist & webpack --config webpack.prod.config.js  --progress --colors"
+  },
+  "author": "wuxp",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "0.28.11",
+    "mini-css-extract-plugin": "^0.9.0"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "4.0.0-rc.0",
+    "@ant-design/pro-layout": "4.11.0-1",
+    "antd": "^4.0.0-rc.2",
+    "chai": "^4.2.0",
+    "fengwuxp-babel-dependency": "^1.0.0",
+    "fengwuxp-jest-dependency": "^1.0.0",
+    "fengwuxp-react-dependency": "^1.0.0",
+    "fengwuxp-styles-dependency": "^1.0.0",
+    "fengwuxp-typescipt-dependency": "^1.0.0",
+    "fengwuxp-webpack-4.x-dependency": "^1.0.0"
+  }
+}

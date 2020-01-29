@@ -18,7 +18,7 @@ describe('file path transform strategy  test', () => {
 
         const paths = filePathTransformStrategy.transform({
             nodeModules: ["test_model", "simple_model"],
-            scanBasePackages: ["views", "pages"]
+            scanPackages: ["views", "pages"]
         });
         logger.debug("paths", paths);
 

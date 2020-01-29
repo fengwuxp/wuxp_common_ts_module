@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitThis": true,
+    "suppressExcessPropertyErrors": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+
+    },
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "react-router",
+      "react-router-dom",
+      "jest"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+//      "es6",
+//      "esnext",
+//      "es2015",
+//      "es2015.promise",
+      "es2020"
+    ]
+  },
+  "include": [
+    "./src/**/*",
+    "./types/index.d.ts",
+    "./src/typings.d.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
+}
