@@ -3,8 +3,7 @@ import slash from 'slash2';
 import defaultSettings from './defaultSettings';
 import themePluginConfig from './themePluginConfig';
 import * as path from 'path';
-import CopyWebpackPlugin from "copy-webpack-plugin";
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const plugins: IPlugin[] = [
   // ['umi-plugin-antd-icon-config', {}],
@@ -14,17 +13,14 @@ const plugins: IPlugin[] = [
       antd: {
         importDirectory: "es"
       },
-      // dva: {
-      //   hmr: true,
-      // },
-      // locale: {
-      //   // default false
-      //   enable: false,
-      //   // default zh-CN
-      //   default: 'zh-CN',
-      //   // default true, when it is true, will use `navigator.language` overwrite default
-      //   baseNavigator: true,
-      // },
+      locale: {
+        // default false
+        enable: true,
+        // default zh-CN
+        default: 'zh-CN',
+        // default true, when it is true, will use `navigator.language` overwrite default
+        baseNavigator: true,
+      },
       dynamicImport: {
         loadingComponent: './components/PageLoading/index',
         webpackChunkName: true,
@@ -65,31 +61,52 @@ export default {
   routes: [
     {
       path: '/',
-      component: '../layouts/BasicLayout',
+      component: '../layouts/BlankLayout',
       routes: [
         {
-          // path: 'https://github.com/ant-design/ant-design-pro-layout/issues',
-          name: 'site',
-          icon: require(`@ant-design/icons-svg/lib/asn/AccountBookOutlined`).default,
-          path: "/",
-          target: '_blank',
-          component: './Welcome',
+          path: '/user',
+          component: '../layouts/UserLayout',
+          routes: [
+            {
+              path: '/user',
+              redirect: '/user/login',
+            },
+            {
+              name: 'login',
+              icon: require(`@ant-design/icons-svg/lib/asn/AimOutlined`).default,
+              path: '/user/login',
+              component: './user/login',
+            },
+            {
+              component: '404',
+            },
+          ]
         },
         {
-          name: 'flex 布局测试',
-          // icon: require(`@ant-design/icons-svg/lib/asn/AlertFilled`).default,
-          icon: '/static_resources/svg/alert.svg',
-          path: 'flex',
-          component: './FlexDemo',
+          path: '/',
+          component: '../layouts/BasicLayout',
+          routes: [
+            {
+              name: 'uform',
+              icon: require(`@ant-design/icons-svg/lib/asn/AimOutlined`).default,
+              path: '/uform',
+              routes: [
+                {
+                  name: 'site',
+                  icon: require(`@ant-design/icons-svg/lib/asn/AccountBookOutlined`).default,
+                  path: '/uform/simple',
+                  component: './uform/simple',
+                },
+              ]
+            }
+          ],
         },
         {
-          name: '测试',
-          icon: require(`@ant-design/icons-svg/lib/asn/AimOutlined`).default,
-          path: '/example',
-          component: './example',
-        }
-      ],
-    },
+          component: '404',
+        },
+      ]
+    }
+
   ],
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -131,9 +148,9 @@ export default {
   manifest: {
     basePath: '/',
   },
-  alias: {
-    'static': path.resolve(__dirname, '../static/')
-  },
+  // alias: {
+  //   'static': path.resolve(__dirname, '../static/')
+  // },
   // publicPath: "/static_resources/",
   // externals: {
   //   "react": "window.React",
@@ -149,7 +166,17 @@ export default {
         camel2DashComponentName: false
       },
       "@ant-design/icons"
-    ]
+    ],
+    // [
+    //   "import",
+    //   {
+    //     "libraryName": "@uform/antd",
+    //     "libraryDirectory": "esm",
+    //     "style": false,
+    //     camel2DashComponentName: false
+    //   },
+    //   "@uform/antd"
+    // ]
   ],
   chainWebpack: function (config, {webpack}) {
 

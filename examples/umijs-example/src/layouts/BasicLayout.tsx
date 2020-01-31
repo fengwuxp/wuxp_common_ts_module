@@ -4,19 +4,22 @@
  * https://github.com/ant-design/ant-design-pro-layout
  */
 
-// import ProLayout, {
-//   MenuDataItem,
-//   BasicLayoutProps as ProLayoutProps,
-//   Settings,
-//   SettingDrawer,
-//   DefaultFooter,
-// } from '@ant-design/pro-layout';
 import React, {useState} from 'react';
-import DefaultFooter from "@ant-design/pro-layout/es/Footer"
-import ProLayout, {BasicLayoutProps as ProLayoutProps} from "@ant-design/pro-layout/es/BasicLayout"
-import {Settings} from '@ant-design/pro-layout/es/defaultSettings'
+
+
+// import DefaultFooter from "@ant-design/pro-layout/es/Footer"
+// import ProLayout, {BasicLayoutProps as ProLayoutProps} from "@ant-design/pro-layout/es/BasicLayout"
+// import {Settings} from '@ant-design/pro-layout/es/defaultSettings'
+// import {MenuDataItem} from "@ant-design/pro-layout/es/typings"
+// import SettingDrawer from '@ant-design/pro-layout/es/SettingDrawer/index'
+
+import DefaultFooter from "@/pro-layout/Footer"
+import ProLayout, {BasicLayoutProps as ProLayoutProps} from "@/pro-layout/BasicLayout"
+import {Settings} from '@/pro-layout/defaultSettings'
 import {MenuDataItem} from "@ant-design/pro-layout/es/typings"
-import SettingDrawer from '@ant-design/pro-layout/es/SettingDrawer/index'
+import SettingDrawer from '@/pro-layout/SettingDrawer/index'
+
+
 import {HeartTwoTone} from '@ant-design/icons';
 import AntdIcon from '@ant-design/icons/lib/components/AntdIcon';
 import defaultSettings from '../../config/defaultSettings';
@@ -25,10 +28,15 @@ import Link from 'umi/link';
 import history from 'umi/router';
 import logo from '../assets/logo.svg';
 import SelectLang from '@/components/SelectLang';
-//
-//import {ReactSVG} from 'react-svg'
-import SVG from 'react-inlinesvg';
 import SvgIcon from '@/components/icon/SvgIcon';
+
+// import Authorized from '@/utils/Authorized';
+//
+// const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
+//   menuList.map(item => {
+//     const localItem = {...item, children: item.children ? menuDataRender(item.children) : []};
+//     return Authorized.check(item.authority, localItem, null) as MenuDataItem;
+//   });
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
@@ -49,11 +57,11 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
     fixSiderbar: true,
     fixedHeader: true,
   });
+  console.log("props", props);
   return (
     <>
       <ProLayout
         logo={logo}
-        // siderWidth={200}
         menuHeaderRender={(logoDom, titleDom) => (
           <Link to="/">
             {logoDom}
@@ -68,15 +76,27 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
           </>,
         ]}
         onCollapse={handleMenuCollapse}
+        breadcrumbRender={(routers = []) => [
+          {
+            path: '/',
+            breadcrumbName: '首页',
+          },
+          ...routers,
+        ]}
+        itemRender={(route, params, routes, paths) => {
+          const first = routes.indexOf(route) === 0;
+          return first ? (
+            <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+          ) : (
+            <span>{route.breadcrumbName}</span>
+          );
+        }}
         menuItemRender={(menuItemProps, defaultDom) => {
-          // console.log("menuItemProps", menuItemProps, defaultDom);
           const icon = menuItemProps.icon as any;
-          // console.log("icon", icon)
-
           const item = <span>
-            <span style={{color: "#ff0000"}}>
+            <span>
               {typeof icon === "string" ? <SvgIcon className={"anticon"}
-                                                   src={"http://192.168.80.1:8000/static/svg/alert.svg"}/> :
+                                                   src={"/static/svg/alert.svg"}/> :
                 <AntdIcon icon={icon}/>}
             </span>
             {menuItemProps.name}
@@ -88,8 +108,13 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
               {item}
             </Link>
           )
+          // if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
+          //   return defaultDom;
+          // }
+          //
+          // return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
-
+        // menuDataRender={menuDataRender}
         rightContentRender={() => (
           <div
             style={{
@@ -99,12 +124,11 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
             <SelectLang/>
           </div>
         )}
+        footerRender={() => <DefaultFooter/>}
         collapsed={collapsed}
         onMenuHeaderClick={() => history.push('/')}
-        footerRender={() => <DefaultFooter/>}
         {...props}
-        {...settings}
-      >
+        {...settings}>
         {props.children}
       </ProLayout>
       <SettingDrawer
@@ -116,7 +140,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       />
     </>
   )
-    ;
 };
 
 export default BasicLayout;
