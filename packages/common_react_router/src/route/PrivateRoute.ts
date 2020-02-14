@@ -28,4 +28,4 @@ export interface PrivateRouteProps extends RouteProps {
 /**
  * 私有路由的定义
  */
-export type PrivateRoute = React.ComponentType<any>;
+export type PrivateRoute = React.ComponentType<PrivateRouteProps>;

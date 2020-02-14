@@ -55,7 +55,6 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
         };
 
         const routeConfigs: GenerateSpringReactRouteOptions[] = Object.keys(files).map(key => {
-
             return this.buildRouteConfig(files[key], key, reactOptions);
         });
 
@@ -150,6 +149,8 @@ export default class ReactRouteConfigGenerator implements CodeGenerator<void> {
         outputPath,
         scanPackages
     }: ReactRouteConfigGeneratorOptions): GenerateSpringReactRouteOptions => {
+
+
         //获取到reactView的装饰器
         const ReactViewDecorator = getReactViewDecorator(file);
 

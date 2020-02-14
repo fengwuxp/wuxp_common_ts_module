@@ -8,12 +8,11 @@ import {
   Reset,
   createFormActions
 } from '@uform/antd/esm'
+
 import {Button} from 'antd'
 import PageHeaderWrapper from "@/pro-layout/PageHeaderWrapper";
-// import Printer from '@uform/printer'
 
-
-const actions = createFormActions()
+const actions = createFormActions();
 
 
 const UFormSimpleDemo = (props) => {
@@ -22,8 +21,7 @@ const UFormSimpleDemo = (props) => {
   return <>
     <PageHeaderWrapper content="uform 简单示例">
       <SchemaForm
-        // onSubmit={v => console.log(v)}
-        onFinish={(v) => console.log("onfinish", v)}
+        onSubmit={v => console.log(v)}
         actions={actions}
         labelCol={{span: 7}}
         initialValues={{
@@ -36,6 +34,9 @@ const UFormSimpleDemo = (props) => {
           }]
         }}
         wrapperCol={{span: 12}}
+        onValidateFailed={(results) => {
+          console.log("results", results);
+        }}
         effects={($, {setFieldState}) => {
           $('onFormMount').subscribe(() => {
             setFieldState('radio', state => {
@@ -125,7 +126,7 @@ const UFormSimpleDemo = (props) => {
         />
         <Field type="rating" title="等级" name="rating"/>
         <FormButtonGroup offset={7} sticky>
-          <Submit/>
+          <Submit htmlType={'button'}/>
           <Reset/>
           <Button
             onClick={() => {
@@ -161,5 +162,6 @@ const UFormSimpleDemo = (props) => {
     </PageHeaderWrapper>
   </>
 }
+
 
 export default UFormSimpleDemo;

@@ -8,7 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {history} from "./reactdemo/AppRouterHelper"
 import "./promise/PromiseDemo";
 // import {runSandboxEvnTest} from "./scanbox/SandboxRunGlobalObject";
-
+import ModalGalleryExample from "./dialog_route";
 
 // runSandboxEvnTest()
 
@@ -23,11 +23,43 @@ import('./scanbox/SandboxRunGlobalObject').then(function ({runSandboxEvnTest}) {
 //     </BrowserRouter>
 // </div>;
 
-const App = <div>
-    <Router history={history}>
-        <Switch> {renderRoutes(routes)}</Switch>
-    </Router>
-</div>;
 
-ReactDOM.render(App,
+interface PageHeader {
+
+    getPagHeader?: () => string;
+}
+
+const Demo = (props) => {
+
+    const element: React.ReactNode & PageHeader = <div>
+        <Router history={history}>
+            <Switch> {renderRoutes(routes)}</Switch>
+        </Router>
+    </div>;
+
+    // element.getPagHeader = () => {
+    //
+    //     return "test";
+    // };
+
+    return element
+};
+
+Demo.getPagHeader = () => {
+    return "test";
+}
+
+
+const App = (props) => {
+
+    let demo: React.ReactNode & PageHeader = <Demo/>;
+    console.log("demo", demo);
+    return <div>
+        {/*{demo.getPagHeader()}*/}
+        {demo}
+    </div>
+};
+
+
+ReactDOM.render(<ModalGalleryExample/>,
     document.getElementById("app"));

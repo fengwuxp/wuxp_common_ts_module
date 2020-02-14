@@ -1,5 +1,5 @@
 import {Button, message, notification} from 'antd';
-import "antd/dist/antd.less";
+// import "antd/dist/antd.less";
 
 import React from 'react';
 import {formatMessage} from 'umi-plugin-react/locale';

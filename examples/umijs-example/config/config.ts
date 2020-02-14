@@ -97,8 +97,29 @@ export default {
                   path: '/uform/simple',
                   component: './uform/simple',
                 },
+                {
+                  name: 'verification',
+                  icon: require(`@ant-design/icons-svg/lib/asn/AccountBookOutlined`).default,
+                  path: '/uform/verification',
+                  component: './uform/verification',
+                },
+              ]
+            },
+
+            {
+              name: '表格',
+              // icon: require(`@ant-design/icons-svg/lib/asn/AimOutlined`).default,
+              path: '/table',
+              routes: [
+                {
+                  name: '搜索表格',
+                  icon: require(`@ant-design/icons-svg/lib/asn/AccountBookOutlined`).default,
+                  path: '/table/demo',
+                  component: './list/table-list/',
+                }
               ]
             }
+
           ],
         },
         {
@@ -106,7 +127,6 @@ export default {
         },
       ]
     }
-
   ],
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -156,6 +176,9 @@ export default {
   //   "react": "window.React",
   //   "react-dom": "window.ReactDOM"
   // },
+  extraBabelIncludes: [
+    /node_modules[\\/][\\@]uform[\\/]antd[\\/]esm/
+  ],
   extraBabelPlugins: [
     [
       "import",

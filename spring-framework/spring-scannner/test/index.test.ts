@@ -19,3 +19,4 @@ describe('spring scanner test', () => {
 
     })
 });
+

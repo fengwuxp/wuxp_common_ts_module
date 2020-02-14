@@ -1,12 +1,12 @@
-import { PageHeader, Tabs } from 'antd';
-import React, { useContext } from 'react';
-import { Helmet } from 'react-helmet';
+import {PageHeader, Tabs} from 'antd';
+import React, {useContext} from 'react';
+import {Helmet} from 'react-helmet';
 import classNames from 'classnames';
-import { TabsProps, TabPaneProps } from 'antd/es/tabs';
-import { PageHeaderProps } from 'antd/es/page-header';
+import {TabsProps, TabPaneProps} from 'antd/es/tabs';
+import {PageHeaderProps} from 'antd/es/page-header';
 import './index.less';
 import GridContent from '../GridContent';
-import RouteContext, { RouteContextType } from '../RouteContext';
+import RouteContext, {RouteContextType} from '../RouteContext';
 
 export interface PageHeaderTabConfig {
   tabList?: TabPaneProps[];
@@ -33,12 +33,12 @@ const prefixedClassName = 'ant-pro-page-header-wrap';
  * basically all the functions are implemented.
  */
 const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
-  tabList,
-  tabActiveKey,
-  onTabChange,
-  tabBarExtraContent,
-  tabProps,
-}) => {
+                                                                          tabList,
+                                                                          tabActiveKey,
+                                                                          onTabChange,
+                                                                          tabBarExtraContent,
+                                                                          tabProps,
+                                                                        }) => {
   if (tabList && tabList.length) {
     return (
       <Tabs
@@ -53,7 +53,7 @@ const renderFooter: React.SFC<Omit<PageHeaderWrapperProps, 'title'>> = ({
         {...tabProps}
       >
         {tabList.map(item => (
-          <Tabs.TabPane {...item} tab={item.tab} key={item.key} />
+          <Tabs.TabPane {...item} tab={item.tab} key={item.key}/>
         ))}
       </Tabs>
     );
@@ -100,7 +100,7 @@ const defaultPageHeaderRender = (
   } = props;
 
   if (pageHeaderRender) {
-    return pageHeaderRender({ ...props, ...value });
+    return pageHeaderRender({...props, ...value});
   }
   let pageHeaderTitle = title;
   if (!title && title !== false) {
@@ -109,9 +109,9 @@ const defaultPageHeaderRender = (
   return (
     <>
       <Helmet>
-        <meta name="description" content={value.title} />
+        <meta name="description" content={value.title}/>
         {typeof props.content === 'string' && (
-          <meta name="description" content={props.content} />
+          <meta name="description" content={props.content}/>
         )}
       </Helmet>
       <PageHeader
@@ -126,8 +126,8 @@ const defaultPageHeaderRender = (
   );
 };
 
-const PageHeaderWrapper: React.SFC<PageHeaderWrapperProps> = props => {
-  const { children, style } = props;
+const PageHeaderWrapper: React.FC<PageHeaderWrapperProps> = props => {
+  const {children, style} = props;
   const value = useContext(RouteContext);
   const className = classNames(prefixedClassName, props.className);
   return (

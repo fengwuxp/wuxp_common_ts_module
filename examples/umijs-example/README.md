@@ -8,3 +8,5 @@
 - [uform](https://github.com/alibaba/uform)
 
 
+##### 路由
+- 支持dialog 的形式打开页面
