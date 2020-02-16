@@ -9,11 +9,11 @@ const APP_ID_KEY: string = "appId";
 const APP_SECRET_KEY: string = "appSecret";
 const NONCE_STR_KEY: string = "nonceStr";
 const TIME_STAMP: string = "timeStamp";
-// const API_SIGNATURE: string = "apiSignature";
+const API_SIGNATURE: string = "apiSignature";
 
 
 const APP_ID_HEADER_KEY = "Api-App-Id";
-const NONCE_STR_HEADER_KEY = "Api-nonce-str";
+const NONCE_STR_HEADER_KEY = "Api-Nonce-Str";
 const APP_SIGN_HEADER_KEY = "Api-Signature";
 const TIME_STAMP_HEADER_KEY = "Api-Time-Stamp";
 
@@ -51,31 +51,29 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
         const noneStr = UUIDUtil.guid();
         const timestamp = new Date().getTime();
         const headers = feignRequestBaseOptions.headers;
+        const appSignature = apiSign(fields, data, this.appId, this.appSecret, this.channelCode, timestamp, noneStr);
         const newHeaders = {
             [APP_ID_HEADER_KEY]: this.appId,
             [NONCE_STR_HEADER_KEY]: noneStr,
             [TIME_STAMP_HEADER_KEY]: timestamp.toString(),
-            [APP_SIGN_HEADER_KEY]: apiSign(fields, data, this.appId, this.appSecret, this.channelCode, timestamp, noneStr)
+            [APP_SIGN_HEADER_KEY]: appSignature
         };
         feignRequestBaseOptions.headers = {
             ...headers,
             ...newHeaders
-        }
-
+        };
         //签名处理
-        // const sign = {};
-        // sign[APP_ID_KEY] = this.clientId;
-        // sign[TIME_STAMP] = timestamp.toString();
-        // sign[NONCE_STR_KEY] = noneStr;
-        // sign[API_SIGNATURE] = apiSign(fields, data, this.clientId, this.clientSecret, this.channelCode, timestamp, noneStr);
-        // if (feignRequestBaseOptions.body == null) {
-        //
-        // }else {
-        //     feignRequestBaseOptions.body = {
-        //         ...feignRequestBaseOptions.body,
-        //         ...sign
-        //     }
-        // }
+        if (feignRequestBaseOptions.body != null) {
+            const sign = {};
+            sign[APP_ID_KEY] = this.appId;
+            sign[TIME_STAMP] = timestamp.toString();
+            sign[NONCE_STR_KEY] = noneStr;
+            sign[API_SIGNATURE] = appSignature;
+            feignRequestBaseOptions.body = {
+                ...feignRequestBaseOptions.body,
+                ...sign
+            }
+        }
 
 
     };
