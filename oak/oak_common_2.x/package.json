@@ -20,8 +20,6 @@
     "types"
   ],
   "keywords": [],
-  "main": "./es/index.js",
-  "types": "./types/index.d.ts",
   "author": "wuxp",
   "license": "ISC",
   "scripts": {
