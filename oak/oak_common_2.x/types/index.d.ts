@@ -263,7 +263,7 @@ declare class OAKApiSignatureStrategyVersion1 implements SimpleApiSignatureStrat
      */
     private channelCode;
     constructor(clientId: string, clientSecret: string, channelCode: string);
-    sign: (fields: string[], data: any) => {};
+    sign: (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => void;
 }
 
 export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategyVersion1, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };

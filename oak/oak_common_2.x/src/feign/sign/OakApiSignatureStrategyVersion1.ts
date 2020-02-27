@@ -1,5 +1,5 @@
 import DateFormatUtils from "fengwuxp-common-utils/lib/date/DateFormatUtils";
-import {SimpleApiSignatureStrategy} from "fengwuxp-typescript-feign";
+import {FeignRequestBaseOptions, SimpleApiSignatureStrategy, UriVariable} from "fengwuxp-typescript-feign";
 
 const md5 = require("blueimp-md5");
 
@@ -31,7 +31,7 @@ export default class OAKApiSignatureStrategyVersion1 implements SimpleApiSignatu
         this.channelCode = channelCode;
     }
 
-    sign = (fields: string[], data: (object | any)) => {
+    sign = (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => {
 
         const sign = {};
 
@@ -43,7 +43,11 @@ export default class OAKApiSignatureStrategyVersion1 implements SimpleApiSignatu
         sign['sign'] = apiSign(fields, data, this.clientId, this.clientSecret, this.channelCode, timestamp);
 
         // logger.debug("--签名结果->", sign);
-        return sign;
+        //签名处理
+        feignRequestBaseOptions.body = {
+            ...feignRequestBaseOptions.body,
+            ...sign
+        }
     };
 
 
