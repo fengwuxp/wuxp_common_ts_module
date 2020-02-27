@@ -245,4 +245,25 @@ declare class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
     sign: (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => void;
 }
 
-export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };
+/**
+ * oak的api签名策略
+ * @since 1.0
+ */
+declare class OAKApiSignatureStrategyVersion1 implements SimpleApiSignatureStrategy {
+    /**
+     * 客户端id
+     */
+    private clientId;
+    /**
+     * 签名秘钥
+     */
+    private clientSecret;
+    /**
+     * 渠道编号
+     */
+    private channelCode;
+    constructor(clientId: string, clientSecret: string, channelCode: string);
+    sign: (fields: string[], data: any) => {};
+}
+
+export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategyVersion1, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };
