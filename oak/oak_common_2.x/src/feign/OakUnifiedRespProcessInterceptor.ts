@@ -24,6 +24,14 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     // jump authentication view
     protected toAuthenticationViewHandle: Function;
 
+
+    constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle: Function = function () {
+    }) {
+        this.unifiedFailureToast = unifiedFailureToast;
+        this.toAuthenticationViewHandle = toAuthenticationViewHandle;
+    }
+
+
     postError = (options: T, response: HttpResponse<any>) => {
         const resp: ApiResp = response.data;
         if (response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION) {

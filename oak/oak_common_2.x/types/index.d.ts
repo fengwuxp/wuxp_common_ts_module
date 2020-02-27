@@ -214,6 +214,7 @@ declare class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = F
     private static IS_TO_AUTHENTICATION_VIEW;
     protected unifiedFailureToast: UnifiedFailureToast;
     protected toAuthenticationViewHandle: Function;
+    constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle?: Function);
     postError: (options: T, response: HttpResponse<any>) => Promise<never>;
     postHandle: <E = any>(options: T, response: any) => Promise<any>;
     /**
