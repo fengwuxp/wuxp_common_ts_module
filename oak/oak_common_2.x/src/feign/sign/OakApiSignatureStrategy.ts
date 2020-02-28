@@ -7,15 +7,17 @@ const md5 = require("blueimp-md5");
 
 const APP_ID_KEY: string = "appId";
 const APP_SECRET_KEY: string = "appSecret";
+const CHANNEL_CODE_KEY = "channelCode";
 const NONCE_STR_KEY: string = "nonceStr";
-const TIME_STAMP: string = "timeStamp";
-const API_SIGNATURE: string = "apiSignature";
+const TIME_STAMP_KEY: string = "timeStamp";
+const API_SIGNATURE_KEY: string = "apiSignature";
 
 
 const APP_ID_HEADER_KEY = "Api-App-Id";
 const NONCE_STR_HEADER_KEY = "Api-Nonce-Str";
 const APP_SIGN_HEADER_KEY = "Api-Signature";
 const TIME_STAMP_HEADER_KEY = "Api-Time-Stamp";
+const CHANNEL_CODE_HEADER_KEY = "Api-Channel-Code";
 
 
 /**
@@ -47,16 +49,19 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
 
     sign = (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => {
 
-
+        const {appId, appSecret, channelCode} = this;
         const noneStr = UUIDUtil.guid();
         const timestamp = new Date().getTime();
         const headers = feignRequestBaseOptions.headers;
-        const appSignature = apiSign(fields, data, this.appId, this.appSecret, this.channelCode, timestamp, noneStr);
+        const appSignature = apiSign(fields, data, appId, appSecret, channelCode, timestamp, noneStr);
+
+        //加入请求头
         const newHeaders = {
             [APP_ID_HEADER_KEY]: this.appId,
             [NONCE_STR_HEADER_KEY]: noneStr,
             [TIME_STAMP_HEADER_KEY]: timestamp.toString(),
-            [APP_SIGN_HEADER_KEY]: appSignature
+            [APP_SIGN_HEADER_KEY]: appSignature,
+            [CHANNEL_CODE_HEADER_KEY]: channelCode
         };
         feignRequestBaseOptions.headers = {
             ...headers,
@@ -66,9 +71,9 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
         if (feignRequestBaseOptions.body != null) {
             const sign = {};
             sign[APP_ID_KEY] = this.appId;
-            sign[TIME_STAMP] = timestamp.toString();
+            sign[TIME_STAMP_KEY] = timestamp.toString();
             sign[NONCE_STR_KEY] = noneStr;
-            sign[API_SIGNATURE] = appSignature;
+            sign[API_SIGNATURE_KEY] = appSignature;
             feignRequestBaseOptions.body = {
                 ...feignRequestBaseOptions.body,
                 ...sign
@@ -86,8 +91,8 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
  * ap请求时签名
  * @param fields             需要签名的列
  * @param params             请求参数
- * @param clientId           接入客户端ID
- * @param clientSecret       接入客户端秘钥
+ * @param appId              接入客户端ID
+ * @param appSecret          接入客户端秘钥
  * @param channelCode        接入客户端代码
  * @param timestamp          请求时间戳
  * @param noneStr            noneStr
@@ -95,8 +100,8 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
  */
 const apiSign = (fields: Array<string>,
                  params: any,
-                 clientId: string,
-                 clientSecret: string,
+                 appId: string,
+                 appSecret: string,
                  channelCode: string,
                  timestamp: number,
                  noneStr: string): string => {
@@ -120,8 +125,13 @@ const apiSign = (fields: Array<string>,
     }
 
     //加入appId 、appSecret 时间戳参与签名
-
-    value += `${APP_ID_KEY}=${clientId}&${APP_SECRET_KEY}=${clientSecret}&${NONCE_STR_KEY}=${noneStr}&${TIME_STAMP}=${timestamp}`;
+    value += [
+        `${APP_ID_KEY}=${appId}`,
+        `${APP_SECRET_KEY}=${appSecret}`,
+        `${CHANNEL_CODE_KEY}=${channelCode}`,
+        `${NONCE_STR_KEY}=${noneStr}`,
+        `${TIME_STAMP_KEY}=${timestamp}`
+    ].join("&");
 
 
     //TODO 加密规则
