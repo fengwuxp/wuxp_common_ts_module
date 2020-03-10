@@ -52,22 +52,23 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     };
 
 
+    /**
+     *
+     * @param options
+     * @param response {@see ApiResp}
+     */
     postHandle = async <E = any>(options: T, response: any) => {
         if (options.useUnifiedTransformResponse === false || response == null) {
             //不使用统一的响应转换
             return response;
         }
-        const resp: ApiResp = response.data;
-        if (resp == null) {
+
+        if (response.code !== OakUnifiedRespProcessInterceptor.SUCCESS_CODE) {
+            this.tryToast(options, response.message);
             return Promise.reject(response);
         }
 
-        if (resp.code !== OakUnifiedRespProcessInterceptor.SUCCESS_CODE) {
-            this.tryToast(options, resp.message || response.statusText);
-            return Promise.reject(resp);
-        }
-
-        return resp.data;
+        return response.data;
     };
 
 

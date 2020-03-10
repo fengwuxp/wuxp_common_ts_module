@@ -74,6 +74,7 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
             sign[TIME_STAMP_KEY] = timestamp.toString();
             sign[NONCE_STR_KEY] = noneStr;
             sign[API_SIGNATURE_KEY] = appSignature;
+            sign[CHANNEL_CODE_HEADER_KEY] = channelCode;
             feignRequestBaseOptions.body = {
                 ...feignRequestBaseOptions.body,
                 ...sign
