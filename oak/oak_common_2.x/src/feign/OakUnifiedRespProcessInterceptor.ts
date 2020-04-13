@@ -13,6 +13,7 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     implements FeignClientExecutorInterceptor<T> {
 
     private static SUCCESS_CODE = 0;
+
     private static NEED_AUTHENTICATION = 99;
 
 
@@ -35,8 +36,8 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     postError = (options: T, response: HttpResponse<any>) => {
         const resp: ApiResp = response.data;
         if (response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION) {
-            OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = true;
             if (!OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW) {
+                OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = true;
                 this.toAuthenticationViewHandle();
                 setTimeout(() => {
                     OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = false
@@ -64,8 +65,11 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
         }
 
         if (response.code !== OakUnifiedRespProcessInterceptor.SUCCESS_CODE) {
-            this.tryToast(options, response.message);
-            return Promise.reject(response);
+            return this.postError(options, {
+                statusCode: HttpStatus.OK,
+                ok: true,
+                data: response
+            });
         }
 
         return response.data;
