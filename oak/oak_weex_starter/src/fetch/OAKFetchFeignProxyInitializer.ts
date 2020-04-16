@@ -10,7 +10,7 @@ import {ProxyUnifiedTransformRequestFileObjectEncoder} from "fengwuxp_common_fet
 import DefaultFileUploadStrategy from "fengwuxp_common_fetch/src/transfer/DefaultFileUploadStrategy";
 import {defaultApiModuleName} from "fengwuxp_common_fetch/src/constant/FeignConstVar";
 import AppConfigRegistry from "fengwuxp_common_config/src/app/AppConfigRegistry";
-import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {HttpMediaType} from "fengwuxp_common_fetch/src/constant/http/HttpMediaType";
 import {FileUploadOptions} from "fengwuxp_common_fetch/src/transfer/FileTransmitter";
 
 
@@ -49,7 +49,7 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
                             {
                                 url: url,
                                 formDataFileName: "base64Data",
-                                contentType: MediaType.JSON
+                                contentType: HttpMediaType.JSON
                             } as FileUploadOptions
                         )
                     )

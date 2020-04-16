@@ -2,7 +2,7 @@ import {AbstractRestTemplateLoader} from "fengwuxp_common_fetch/src/template/Res
 import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
 import DefaultRestTemplate from "fengwuxp_common_fetch/src/template/DefaultRestTemplate";
 import {RequestMethod} from "fengwuxp_common_fetch/src/constant/RequestMethod";
-import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {HttpMediaType} from "fengwuxp_common_fetch/src/constant/http/HttpMediaType";
 import DefaultApiRoutingStrategy from "fengwuxp_common_fetch/src/route/DefaultApiRoutingStrategy";
 import DefaultFetchClient from "fengwuxp_common_fetch/src/fetch/DefaultFetchClient";
 import {WeexAdapter} from "fengwuxp_common_fetch/src/adapter/weex/WeexAdapter";
@@ -40,8 +40,8 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
 
         const defaultRestTemplate = new DefaultRestTemplate({
                 method: RequestMethod.POST,
-                consumes: [MediaType.JSON],
-                produces: [MediaType.JSON],
+                consumes: [HttpMediaType.JSON],
+                produces: [HttpMediaType.JSON],
                 timeout: 10 * 1000,
                 headers: {}
             }, new DefaultApiRoutingStrategy(routeMapping),
