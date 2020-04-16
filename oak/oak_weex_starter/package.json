@@ -1,6 +1,6 @@
 {
   "name": "oak_weex_starter",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },

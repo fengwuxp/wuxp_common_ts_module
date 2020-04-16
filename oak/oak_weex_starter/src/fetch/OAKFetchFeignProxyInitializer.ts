@@ -49,7 +49,7 @@ export default class DefaultFetchFeignProxyInitializer implements FeignProxyInit
                             {
                                 url: url,
                                 formDataFileName: "base64Data",
-                                contentType: HttpMediaType.JSON
+                                contentType: HttpMediaType.APPLICATION_JSON
                             } as FileUploadOptions
                         )
                     )

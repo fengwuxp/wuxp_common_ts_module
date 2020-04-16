@@ -40,8 +40,8 @@ export default class OAKWeexDefaultRestTemplateLoader extends AbstractRestTempla
 
         const defaultRestTemplate = new DefaultRestTemplate({
                 method: RequestMethod.POST,
-                consumes: [HttpMediaType.JSON],
-                produces: [HttpMediaType.JSON],
+                consumes: [HttpMediaType.APPLICATION_JSON],
+                produces: [HttpMediaType.APPLICATION_JSON],
                 timeout: 10 * 1000,
                 headers: {}
             }, new DefaultApiRoutingStrategy(routeMapping),
