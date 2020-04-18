@@ -1,5 +1,6 @@
 import {
     FeignClientExecutorInterceptor,
+    FeignConfigurationRegistry,
     FeignRequestOptions,
     HttpResponse,
     HttpStatus,
@@ -16,13 +17,18 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
 
     private static NEED_AUTHENTICATION = 99;
 
-
+    /**
+     * @deprecated
+     */
     private static IS_TO_AUTHENTICATION_VIEW: boolean = false;
 
 
     protected unifiedFailureToast: UnifiedFailureToast;
 
-    // jump authentication view
+    /**
+     * jump authentication view
+     * @deprecated
+     */
     protected toAuthenticationViewHandle: Function;
 
 
@@ -35,15 +41,7 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
 
     postError = (options: T, response: HttpResponse<any>) => {
         const resp: ApiResp = response.data;
-        if (response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION) {
-            if (!OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW) {
-                OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = true;
-                this.toAuthenticationViewHandle();
-                setTimeout(() => {
-                    OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = false
-                }, 20 * 1000);
-            }
-        }
+        this.tryUnAuthorizedResp(response, resp);
 
         if (resp == null) {
             return Promise.reject(response);
@@ -52,6 +50,34 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
         return Promise.reject(response);
     };
 
+
+    private tryUnAuthorizedResp(response: HttpResponse<any>, resp: ApiResp<any>) {
+        const isUnAuthorized = response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION;
+        if (!isUnAuthorized) {
+            return;
+        }
+
+        const feignConfiguration = FeignConfigurationRegistry.getDefaultFeignConfiguration();
+        const getAuthenticationBroadcaster = feignConfiguration.getAuthenticationBroadcaster;
+        if (getAuthenticationBroadcaster != null) {
+            const authenticationBroadcaster = getAuthenticationBroadcaster();
+            const authenticationStrategy = feignConfiguration.getAuthenticationStrategy();
+            if (authenticationStrategy.clearCache != null) {
+                authenticationStrategy.clearCache()
+            }
+            authenticationBroadcaster.sendUnAuthorizedEvent();
+            return;
+        }
+
+
+        if (!OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW) {
+            OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = true;
+            this.toAuthenticationViewHandle();
+            setTimeout(() => {
+                OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = false
+            }, 20 * 1000);
+        }
+    }
 
     /**
      *

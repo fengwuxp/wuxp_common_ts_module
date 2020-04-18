@@ -211,11 +211,19 @@ interface ApiQueryResp<T = any> extends ApiResp<PageInfo<T>> {
 declare class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = FeignRequestOptions> implements FeignClientExecutorInterceptor<T> {
     private static SUCCESS_CODE;
     private static NEED_AUTHENTICATION;
+    /**
+     * @deprecated
+     */
     private static IS_TO_AUTHENTICATION_VIEW;
     protected unifiedFailureToast: UnifiedFailureToast;
+    /**
+     * jump authentication view
+     * @deprecated
+     */
     protected toAuthenticationViewHandle: Function;
     constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle?: Function);
     postError: (options: T, response: HttpResponse<any>) => Promise<never>;
+    private tryUnAuthorizedResp;
     /**
      *
      * @param options
