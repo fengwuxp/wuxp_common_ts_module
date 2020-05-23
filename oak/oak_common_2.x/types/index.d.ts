@@ -1,4 +1,4 @@
-import { FeignRequestOptions, FeignClientExecutorInterceptor, UnifiedFailureToast, HttpResponse, SimpleApiSignatureStrategy, UriVariable, FeignRequestBaseOptions } from 'fengwuxp-typescript-feign';
+import { FeignRequestOptions, FeignClientExecutorInterceptor, UnifiedFailureToast, HttpResponse, HttpRequest, ClientHttpRequestInterceptorInterface, AuthenticationStrategy, AuthenticationToken, SimpleApiSignatureStrategy, UriVariable, FeignRequestBaseOptions } from 'fengwuxp-typescript-feign';
 
 /**
  * 提示类型
@@ -239,6 +239,46 @@ declare class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = F
 }
 
 /**
+ *  oak Authentication client http request interceptor
+ *
+ *  Support blocking 'authorization' refresh
+ */
+declare class OakAuthenticationClientHttpRequestInterceptor<T extends HttpRequest = HttpRequest> implements ClientHttpRequestInterceptorInterface<T> {
+    protected static IS_REFRESH_TOKEN_ING: boolean;
+    protected static WAITING_QUEUE: Array<{
+        resolve: (value?: any | PromiseLike<any>) => void;
+        reject: (reason?: any) => void;
+        request: HttpRequest;
+    }>;
+    protected static EXPIRED_MARK: number;
+    private aheadOfTimes;
+    private authenticationStrategy;
+    private blockingRefreshAuthorization;
+    private looseMode;
+    /**
+     *
+     * @param authenticationStrategy
+     * @param aheadOfTimes                default: 5 * 60 * 1000
+     * @param blockingRefreshAuthorization
+     * @param looseMode                   default: true
+     */
+    constructor(authenticationStrategy: AuthenticationStrategy, aheadOfTimes?: number, blockingRefreshAuthorization?: boolean, looseMode?: boolean);
+    interceptor: (req: T) => Promise<T>;
+    /**
+     * append authorization header
+     * @param authorization
+     * @param headers
+     */
+    private appendAuthorizationHeader;
+    /**
+     * need append authorization header
+     * @param headers
+     */
+    private needAppendAuthorizationHeader;
+    setAuthenticationStrategy: (authenticationStrategy: AuthenticationStrategy<AuthenticationToken>) => void;
+}
+
+/**
  * oak的api签名策略
  */
 declare class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
@@ -279,4 +319,4 @@ declare class OAKApiSignatureStrategyVersion1 implements SimpleApiSignatureStrat
     sign: (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => void;
 }
 
-export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategyVersion1, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };
+export { Action, ApiQueryReq, ApiQueryResp, ApiReq, ApiResp, OAKApiSignatureStrategyVersion1, OAKApiSignatureStrategy as OakApiSignatureStrategy, OakAuthenticationClientHttpRequestInterceptor, OakUnifiedRespProcessInterceptor, PageInfo, PromptData, PromptType, QueryType };
