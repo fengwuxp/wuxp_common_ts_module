@@ -294,7 +294,11 @@ declare class OAKApiSignatureStrategy implements SimpleApiSignatureStrategy {
      * 渠道编号
      */
     private channelCode;
-    constructor(appId: string, appSecret: string, channelCode: string);
+    /**
+     * 支持使用body上传签名数据
+     */
+    private supportBody;
+    constructor(appId: string, appSecret: string, channelCode: string, supportBody?: boolean);
     sign: (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => void;
 }
 

@@ -40,11 +40,17 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
      */
     private channelCode: string;
 
+    /**
+     * 支持使用body上传签名数据
+     */
+    private supportBody: boolean;
 
-    constructor(appId: string, appSecret: string, channelCode: string) {
+
+    constructor(appId: string, appSecret: string, channelCode: string, supportBody?: boolean) {
         this.appId = appId;
         this.appSecret = appSecret;
         this.channelCode = channelCode;
+        this.supportBody = supportBody || true;
     }
 
     sign = (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => {
@@ -68,13 +74,13 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
             ...newHeaders
         };
         //签名处理
-        if (feignRequestBaseOptions.body != null) {
+        if (feignRequestBaseOptions.body != null && this.supportBody) {
             const sign = {};
             sign[APP_ID_KEY] = this.appId;
             sign[TIME_STAMP_KEY] = timestamp.toString();
             sign[NONCE_STR_KEY] = noneStr;
             sign[API_SIGNATURE_KEY] = appSignature;
-            sign[CHANNEL_CODE_HEADER_KEY] = channelCode;
+            sign[CHANNEL_CODE_KEY] = channelCode;
             feignRequestBaseOptions.body = {
                 ...feignRequestBaseOptions.body,
                 ...sign
