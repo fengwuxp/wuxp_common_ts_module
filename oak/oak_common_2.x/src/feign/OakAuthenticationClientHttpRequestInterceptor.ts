@@ -111,15 +111,16 @@ export default class OakAuthenticationClientHttpRequestInterceptor<T extends Htt
             return Promise.reject('authorization is null');
         }
         const currentTimes = new Date().getTime();
-
-        if (authorization.expireDate <= currentTimes - OakAuthenticationClientHttpRequestInterceptor.EXPIRED_MARK) {
+        const isNever = authorization.expireDate === NEVER_REFRESH_FLAG;
+        if (!isNever && authorization.expireDate <= currentTimes - OakAuthenticationClientHttpRequestInterceptor.EXPIRED_MARK) {
             if (!forceCertification) {
                 return req;
             }
             // 20 seconds in advance, the token is invalid and needs to be re-authenticated
             return Promise.reject(UNAUTHORIZED_RESPONSE);
         }
-        const authorizationIsInvalid = authorization.expireDate !== NEVER_REFRESH_FLAG && authorization.expireDate < currentTimes + aheadOfTimes;
+
+        const authorizationIsInvalid = !isNever && authorization.expireDate < currentTimes + aheadOfTimes;
         if (!authorizationIsInvalid) {
             req.headers = this.appendAuthorizationHeader(authorization, req.headers);
             return req;
