@@ -1,10 +1,11 @@
 import {
-    HttpRequest,
-    getFeignClientMethodConfigurationByRequest,
-    CacheAuthenticationStrategy,
-    ClientHttpRequestInterceptorInterface,
     AuthenticationStrategy,
     AuthenticationToken,
+    AuthenticationType,
+    CacheAuthenticationStrategy,
+    ClientHttpRequestInterceptorInterface,
+    getFeignClientMethodConfigurationByRequest,
+    HttpRequest,
     NEVER_REFRESH_FLAG,
     UNAUTHORIZED_RESPONSE
 } from "fengwuxp-typescript-feign";
@@ -72,14 +73,15 @@ export default class OakAuthenticationClientHttpRequestInterceptor<T extends Htt
         const feignClientMethodConfigurationByRequest = getFeignClientMethodConfigurationByRequest(req);
         const mappingOptions = feignClientMethodConfigurationByRequest == null ? null : feignClientMethodConfigurationByRequest.requestMapping;
         if (mappingOptions != null) {
-            if (mappingOptions.needCertification === false) {
+            let authenticationType = mappingOptions.authenticationType;
+            if (authenticationType === AuthenticationType.NONE) {
                 // none certification
                 if (looseMode) {
                     forceCertification = false;
                 } else {
                     return req;
                 }
-            } else if (mappingOptions.needCertification === true) {
+            } else if (authenticationType === AuthenticationType.FORCE) {
                 // force none certification
                 forceCertification = true;
             } else {

@@ -46,11 +46,11 @@ export default class OAKApiSignatureStrategy implements SimpleApiSignatureStrate
     private supportBody: boolean;
 
 
-    constructor(appId: string, appSecret: string, channelCode: string, supportBody?: boolean) {
+    constructor(appId: string, appSecret: string, channelCode: string, supportBody: boolean = true) {
         this.appId = appId;
         this.appSecret = appSecret;
         this.channelCode = channelCode;
-        this.supportBody = supportBody || true;
+        this.supportBody = supportBody;
     }
 
     sign = (fields: string[], data: UriVariable, feignRequestBaseOptions: FeignRequestBaseOptions) => {
