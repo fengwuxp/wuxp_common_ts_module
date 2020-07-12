@@ -1,7 +1,7 @@
 {
   "name": "fengwuxp_common_webpack",
   "description": "\"common webpack for webpack 4.x version",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publishConfig": {
     "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
   },
