@@ -1,0 +1,36 @@
+{
+  "name": "oak_weex_components",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "http://nexus.oaknt.com:18081/repository/oak_npm_hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module"
+  },
+  "bugs": {
+    "url": "https://github.com/fengwuxp/wuxp_common_ts_module/issues"
+  },
+  "homepage": "https://github.com/fengwuxp/wuxp_common_ts_module#readme",
+  "description": "oak weex starter",
+  "main": "index.js",
+  "scripts": {
+    "yarn_i": "yarn install",
+    "npm_publish": "npm publish"
+  },
+  "keywords": [
+    "weex",
+    "types"
+  ],
+  "types": "./index.d.ts",
+  "author": "wuxp",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@types/weex": "^1.0.7",
+    "fengwuxp_common_test": "^1.0.7"
+  },
+  "dependencies": {
+    "oak_weex_starter": "^1.0.9"
+  },
+  "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
+}

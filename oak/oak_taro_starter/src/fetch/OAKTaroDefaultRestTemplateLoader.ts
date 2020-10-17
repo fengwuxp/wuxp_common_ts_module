@@ -2,7 +2,7 @@ import {AbstractRestTemplateLoader} from "fengwuxp_common_fetch/src/template/Res
 import {RestTemplate, RestTemplateConfig} from "fengwuxp_common_fetch/src/template/RestTemplate";
 import DefaultRestTemplate from "fengwuxp_common_fetch/src/template/DefaultRestTemplate";
 import {RequestMethod} from "fengwuxp_common_fetch/src/constant/RequestMethod";
-import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {HttpMediaType} from "fengwuxp_common_fetch/src/constant/http/HttpMediaType";
 import DefaultApiRoutingStrategy from "fengwuxp_common_fetch/src/route/DefaultApiRoutingStrategy";
 import {ApiRoutingMapping} from "fengwuxp_common_fetch/src/route/ApiRoutingStrategy";
 import DefaultFetchClient from "fengwuxp_common_fetch/src/fetch/DefaultFetchClient";
@@ -22,7 +22,7 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
     private defaultTemplateConfig: RestTemplateConfig;
 
     constructor(routeMapping: ApiRoutingMapping, interceptorList: FetchInterceptor[],
-                defaultProduce: MediaType,
+                defaultProduce: HttpMediaType,
                 defaultFetchOptions: FetchOptions) {
         super();
         this.routeMapping = routeMapping;
@@ -33,9 +33,9 @@ export default class OAKTaroDefaultRestTemplateLoader extends AbstractRestTempla
 
             method: RequestMethod.POST,
 
-            consumes: [MediaType.JSON_UTF8],
+            consumes: [HttpMediaType.APPLICATION_JSON],
 
-            produces: [defaultProduce || MediaType.JSON_UTF8],
+            produces: [defaultProduce || HttpMediaType.APPLICATION_JSON],
 
             timeout: 10 * 1000,
 

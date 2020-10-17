@@ -18,9 +18,8 @@ import DefaultTransformDateInterceptor
     from "fengwuxp_common_fetch/src/interceptor/default/DefaultTransformDateInterceptor";
 import {OAKTaroNetworkListener} from "./OAKTaroNetworkListener";
 import NeedNetworkInterceptor from "fengwuxp_common_fetch/src/interceptor/default/NeedNetworkInterceptor";
-import {RestTemplate, RestTemplateConfig} from "fengwuxp_common_fetch/src/template/RestTemplate";
-import {RequestMethod} from "fengwuxp_common_fetch/src/constant/RequestMethod";
-import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
+import {HttpMediaType} from "fengwuxp_common_fetch/src/constant/http/HttpMediaType";
 import {FetchOptions} from "fengwuxp_common_fetch/src/FetchOptions";
 
 interface OAKEnvVar {
@@ -61,7 +60,7 @@ export default class OAKTaroFeignProxyInitializer implements FeignProxyInitializ
     }
 
     initFeignProxyFactory = (options?: {
-        defaultProduce?: MediaType
+        defaultProduce?: HttpMediaType
         defaultFetchOptions?: FetchOptions,
 
         //鉴权请求头的名称

@@ -38,6 +38,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "fengwuxp_common_config": "^1.0.7",
     "oak_common": "^1.0.7",
     "taro_starter": "^1.0.7"
   },

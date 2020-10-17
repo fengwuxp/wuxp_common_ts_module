@@ -17,7 +17,7 @@ import {
     RefreshTokenResult
 } from "fengwuxp_common_fetch/src/interceptor/default/AbstractSyncAuthHelper";
 import {RestTemplate} from "fengwuxp_common_fetch/src/template/RestTemplate";
-import {MediaType} from "fengwuxp_common_fetch/src/constant/http/MediaType";
+import {HttpMediaType} from "fengwuxp_common_fetch/src/constant/http/HttpMediaType";
 
 import OAKTaroFeignProxyInitializer from "./fetch/OAKTaroFeignProxyInitializer";
 
@@ -58,7 +58,7 @@ export {
     FetchRetry,
     Signature,
     RequestMethod,
-    MediaType,
+    HttpMediaType,
 
     OAKTaroFeignProxyInitializer,
     TaroLocalStorage,
