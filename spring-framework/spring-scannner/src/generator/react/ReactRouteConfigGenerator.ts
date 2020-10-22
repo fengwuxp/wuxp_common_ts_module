@@ -1,12 +1,12 @@
 import {CodeGenerator, CodeGeneratorOptions} from "../CodeGenerator";
 import {
-    File,
-    ObjectExpression,
     CallExpression,
     ClassDeclaration,
+    File,
+    Identifier,
+    ObjectExpression,
     TSTypeParameterInstantiation,
-    TSTypeReference,
-    Identifier
+    TSTypeReference
 } from "@babel/types";
 import generator from "@babel/generator";
 import ArtTemplateCodeGenerator from "../template/ArtTemplateCodeGenerator";

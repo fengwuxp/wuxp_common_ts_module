@@ -1,4 +1,4 @@
-import {EsPlugin} from "fengwuxp_common_plugins/src/EsPlugin";
+import {EsPlugin} from "common_plugins/src/EsPlugin";
 import {BroadcastEvent} from "./BroadcastEvent";
 import {BroadcastEventData} from "./BroadcastData";
 import {BroadcastEventHolder} from "./BroadcastEventHolder";

@@ -27,10 +27,10 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "fengwuxp_common_fetch": "^1.0.7",
-    "fengwuxp_common_plugins": "^1.0.7",
-    "fengwuxp_common_test": "^1.0.7",
-    "fengwuxp_common_utils": "^1.0.7"
+    "common_fetch": "^1.0.7",
+    "common_plugins": "^1.0.7",
+    "common_test": "^1.0.7",
+    "common_utils": "^1.0.7"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

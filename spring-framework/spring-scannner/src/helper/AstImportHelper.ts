@@ -1,4 +1,4 @@
-import {BaseNode, File, ImportDeclaration, isImportDeclaration} from "@babel/types";
+import {File, ImportDeclaration, isImportDeclaration, Statement} from "@babel/types";
 
 /**
  * ast import helper
@@ -15,7 +15,7 @@ export const getImportDeclaration = (file: File, name: string): ImportDeclaratio
     const program = file.program;
 
 
-    const statements: BaseNode[] = program.body;
+    const statements: Statement[] = program.body;
 
     return statements.filter((node) => {
         return isImportDeclaration(node);

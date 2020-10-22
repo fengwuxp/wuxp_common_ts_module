@@ -2,9 +2,7 @@ import SpringPackageScanner from "./scanner/SpringPackageScanner";
 import {FilePathTransformStrategy} from "./strategy/FilePathTransformStrategy";
 import DefaultFilePathTransformStrategy from "./strategy/DefaultFilePathTransformStrategy";
 import ReactRouteConfigGenerator from "./generator/react/ReactRouteConfigGenerator";
-import * as path from "path";
-import {LOGGER} from "./helper/Log4jsHelper";
-import {DEFAULT_GENERATOR_OUTPUT_DIR, NODE_MODULES_DIR} from "./constant/ConstantVar";
+import {DEFAULT_GENERATOR_OUTPUT_DIR} from "./constant/ConstantVar";
 import {ScannerConfiguration} from "fengwuxp-spring-context/lib/configuration/scanner/ScannerConfiguration";
 
 

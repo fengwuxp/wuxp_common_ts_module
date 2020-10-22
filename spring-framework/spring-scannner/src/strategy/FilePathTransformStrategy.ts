@@ -1,4 +1,3 @@
-
 import {ScannerOptions} from "../SpringScanner";
 
 /**

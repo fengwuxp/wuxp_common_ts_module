@@ -66,7 +66,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
     };
 
-    private loadConfig = (filepath: string) => {
+    private loadConfig = (filepath: string):SpringApplicationConfiguration => {
 
         const existsSync = fs.existsSync(filepath);
         if (!existsSync) {
@@ -76,7 +76,7 @@ export default class YamlConfigurationLoader implements ConfigurationLoader {
 
         return jsYaml.safeLoad(this.convertString(fs.readFileSync(path.join(filepath), "UTF-8")), {
             json: true
-        });
+        }) as SpringApplicationConfiguration;
     };
 
 

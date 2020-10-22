@@ -1,5 +1,5 @@
-import {SimpleApiSignatureStrategy} from "fengwuxp_common_fetch/src/signature/ApiSignatureStrategy";
-import DateFormatUtils from "fengwuxp_common_utils/src/date/DateFormatUtils";
+import {SimpleApiSignatureStrategy} from "common_fetch/src/signature/ApiSignatureStrategy";
+import DateFormatUtils from "common_utils/src/date/DateFormatUtils";
 
 const md5 = require("blueimp-md5");
 
