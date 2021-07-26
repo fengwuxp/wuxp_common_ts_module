@@ -2,7 +2,6 @@ import * as log4js from "log4js";
 import * as fs from "fs";
 import * as path from "path";
 import sass from "node-sass";
-import sassLoader from "sass-loader";
 
 const _importsToResolve = require("sass-loader/dist/importsToResolve");
 
@@ -25,11 +24,11 @@ describe("test  less js", () => {
         // });
         // logger.debug(data);
         const stylePath = path.join(__dirname, "./scss/theme.scss");
-        const scssStyles = fs.readFileSync(stylePath, "UTF-8");
+        const scssStyles = fs.readFileSync(stylePath);
 
         const scssCodes = [];
 
-        sass.render({
+        const result = await sass.render({
             data: scssStyles,
             indentedSyntax: Boolean(true),
             outputStyle: 'compact',
@@ -42,18 +41,20 @@ describe("test  less js", () => {
                     const files = paths.filter((filepath) => {
                         return fs.existsSync(filepath);
                     }).map((filepath) => {
-                        return fs.readFileSync(filepath, "UTF-8")
+                        return fs.readFileSync(filepath)
                     });
                     let code = files[0];
                     scssCodes.push(code);
-                    // done(code);
+                    done(code);
 
                 }
             ]
         }, (error, result) => {
             const cssResult = result.css.toString();
             logger.debug("------->", cssResult)
-        })
+        });
+        logger.debug("result", result);
+        logger.debug("scssCodes", scssCodes);
 
 
     }, 10 * 1000)

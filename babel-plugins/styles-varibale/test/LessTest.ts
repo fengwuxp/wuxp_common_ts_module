@@ -15,7 +15,7 @@ describe("test  less js", () => {
     test("test less js parse", () => {
 
         const stylePath = path.join(__dirname, "./less/theme.less");
-        const lessStyles = fs.readFileSync(stylePath, "UTF-8");
+        const lessStyles = fs.readFileSync(stylePath);
 
         let camelCase = false;
         let prefix = null;
@@ -33,12 +33,12 @@ describe("test  less js", () => {
                 return;
             }
             try {
-                var evalEnv = new less.contexts.Eval(options);
-                var evaldRoot = root.eval(evalEnv);
-                var ruleset = evaldRoot.rules;
+                let evalEnv = new less.contexts.Eval(options);
+                let evaldRoot = root.eval(evalEnv);
+                let ruleset = evaldRoot.rules;
                 ruleset.forEach(function (rule) {
                     if (rule.variable === true) {
-                        var name;
+                        let name;
                         if (camelCase === false) {
                             name = rule.name.substr(1);
                         } else {
@@ -46,7 +46,7 @@ describe("test  less js", () => {
                         }
 
                         if (!prefix || name.substr(0, prefix.length) !== prefix) {
-                            var value = rule.value;
+                            let value = rule.value;
                             lessVars[name] = value.toCSS(options);
                         }
                     }

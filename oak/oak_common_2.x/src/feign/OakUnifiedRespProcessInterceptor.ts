@@ -51,13 +51,13 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     };
 
 
-    private tryUnAuthorizedResp(response: HttpResponse<any>, resp: ApiResp<any>) {
+    private tryUnAuthorizedResp = async (response: HttpResponse<any>, resp: ApiResp<any>) => {
         const isUnAuthorized = response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION;
         if (!isUnAuthorized) {
             return;
         }
 
-        const feignConfiguration = FeignConfigurationRegistry.getDefaultFeignConfiguration();
+        const feignConfiguration = await FeignConfigurationRegistry.getDefaultFeignConfiguration();
         const getAuthenticationBroadcaster = feignConfiguration.getAuthenticationBroadcaster;
         if (getAuthenticationBroadcaster != null) {
             const authenticationBroadcaster = getAuthenticationBroadcaster();
@@ -102,23 +102,21 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     };
 
 
+
     /**
      * 尝试进行错误提示
      * @param options
      * @param message
      */
     private tryToast = (options: T, message: string) => {
-        if (this.unifiedFailureToast == null) {
-            return;
-        }
         if (options.useUnifiedToast === false || options.useProgressBar === false) {
-            return false;
+            return
         }
-        if (StringUtils.hasText(message)) {
+        const {unifiedFailureToast} = this;
+        if (StringUtils.hasText(message) && typeof unifiedFailureToast === "function") {
             // use failure toast
-            this.unifiedFailureToast(message);
+            unifiedFailureToast(message);
         }
-
     }
 
 }
