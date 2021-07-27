@@ -70,6 +70,10 @@ interface PromptData {
 /**
  * 动作配置
  */
+
+/**
+ * 动作配置
+ */
 interface Action {
     /**
      * "动作类型，可能是跳转视图或者是执行某个动作
@@ -185,6 +189,10 @@ interface ApiResp<T = any> {
     readonly actions: Action[];
 }
 
+/**
+ * 统一分页对象
+ */
+
 interface PageInfo<T = any> {
     readonly total: number;
     readonly records: Array<T>;
@@ -211,31 +219,32 @@ interface ApiQueryResp<T = any> extends ApiResp<PageInfo<T>> {
 declare class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = FeignRequestOptions> implements FeignClientExecutorInterceptor<T> {
     private static SUCCESS_CODE;
     private static NEED_AUTHENTICATION;
-    /**
-     * @deprecated
-     */
-    private static IS_TO_AUTHENTICATION_VIEW;
-    protected unifiedFailureToast: UnifiedFailureToast;
+    private static TO_AUTHENTICATION_VIEW_STATE;
+    private readonly unifiedFailureToast;
     /**
      * jump authentication view
-     * @deprecated
      */
-    protected toAuthenticationViewHandle: Function;
+    private readonly toAuthenticationViewHandle;
     constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle?: Function);
-    postError: (options: T, response: HttpResponse<any>) => Promise<never>;
-    private tryUnAuthorizedResp;
+    postError: (options: T, response: HttpResponse<ApiResp>) => Promise<never>;
     /**
      *
      * @param options
      * @param response {@see ApiResp}
      */
     postHandle: <E = any>(options: T, response: any) => Promise<any>;
+    private tryHandleUnAuthorizedResp;
+    private toAuthenticationViewAndResetState;
+    private isUnAuthorized;
+    private asyncSendUnAuthorizedEvent;
+    private sendUnAuthorizedEvent;
     /**
      * 尝试进行错误提示
      * @param options
-     * @param message
+     * @param response
      */
-    private tryToast;
+    private tryToastErrorMessage;
+    private toastErrorMessage;
 }
 
 /**

@@ -37,7 +37,8 @@
   "devDependencies": {
     "fengwuxp-library-starter": "^1.0.0",
     "fengwuxp-typescript-feign": "^1.0.0",
-    "typescript": "^3.7.2"
+    "fengwuxp-typescipt-dependency": "^1.0.0",
+    "typescript": "^4.3.5"
   },
   "gitHead": "2564d68bbb97e34c3cc1ca04477852c20d5d19e7"
 }

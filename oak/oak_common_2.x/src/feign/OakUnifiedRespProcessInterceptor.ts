@@ -10,7 +10,6 @@ import {
 import {ApiResp} from "../model/api/ApiResp";
 import StringUtils from "fengwuxp-common-utils/lib/string/StringUtils";
 
-
 export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOptions = FeignRequestOptions>
     implements FeignClientExecutorInterceptor<T> {
 

@@ -1,9 +1,10 @@
 import * as os from 'os';
-import resolve from 'rollup-plugin-node-resolve';
-import common from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
+import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
-import json from 'rollup-plugin-json';
 import filesize from "rollup-plugin-filesize";
 import includePaths from "rollup-plugin-includepaths";
 import analyze from "rollup-plugin-analyzer";
@@ -30,8 +31,8 @@ const getConfig = (isProd) => {
         ],
         output: [
             {
-                file: isProd ? pkg.main.replace(".js", ".min.js") : pkg.main,
-                format: 'esm',
+                file:  pkg.main,
+                format: 'commonjs',
                 compact: true,
                 extend: false,
                 sourcemap: isProd,
@@ -50,7 +51,7 @@ const getConfig = (isProd) => {
             }),
             json(),
             resolve(),
-            common({
+            commonjs({
                 // 包括
                 include: [
                     // 'node_modules/**'
@@ -58,6 +59,11 @@ const getConfig = (isProd) => {
                 // 排除
                 exclude: [],
                 extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"],
+            }),
+            babel({
+                exclude: "node_modules/**",
+                babelHelpers: "runtime",
+                extensions: [...DEFAULT_EXTENSIONS, ".ts", ".tsx"]
             }),
             analyze({
                 stdout: true,
@@ -69,12 +75,13 @@ const getConfig = (isProd) => {
             //压缩代码
             isProd && terser({
                 output: {
-                    comments: false
+                    comments: false,
+                    source_map: true,
                 },
-                include: [/^.+\.js$/],
-                exclude: ['node_modules/**'],
-                numWorkers: cpuNums,
-                sourcemap: true
+                keep_classnames: false,
+                ie8: false,
+                ecma: 2015,
+                numWorkers: cpuNums
             }),
 
         ],
@@ -97,4 +104,3 @@ export default [
         plugins: [dts()],
     },
 ]
-
