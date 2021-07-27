@@ -1,5 +1,6 @@
 import {
     FeignClientExecutorInterceptor,
+    FeignConfiguration,
     FeignConfigurationRegistry,
     FeignRequestOptions,
     HttpResponse,
@@ -17,67 +18,30 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
 
     private static NEED_AUTHENTICATION = 99;
 
-    /**
-     * @deprecated
-     */
-    private static IS_TO_AUTHENTICATION_VIEW: boolean = false;
+    private static TO_AUTHENTICATION_VIEW_STATE: boolean = false;
 
-
-    protected unifiedFailureToast: UnifiedFailureToast;
+    private readonly unifiedFailureToast: UnifiedFailureToast;
 
     /**
      * jump authentication view
-     * @deprecated
      */
-    protected toAuthenticationViewHandle: Function;
+    private readonly toAuthenticationViewHandle: Function;
 
 
-    constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle: Function = function () {
-    }) {
+    constructor(unifiedFailureToast?: UnifiedFailureToast, toAuthenticationViewHandle?: Function) {
         this.unifiedFailureToast = unifiedFailureToast;
         this.toAuthenticationViewHandle = toAuthenticationViewHandle;
     }
 
 
-    postError = (options: T, response: HttpResponse<any>) => {
-        const resp: ApiResp = response.data;
-        this.tryUnAuthorizedResp(response, resp);
-
-        if (resp == null) {
+    postError = (options: T, response: HttpResponse<ApiResp>) => {
+        this.tryHandleUnAuthorizedResp(response);
+        if (response.data == null) {
             return Promise.reject(response);
         }
-        this.tryToast(options, resp.message || response.statusText);
+        this.tryToastErrorMessage(options, response);
         return Promise.reject(response);
     };
-
-
-    private tryUnAuthorizedResp = async (response: HttpResponse<any>, resp: ApiResp<any>) => {
-        const isUnAuthorized = response.statusCode === HttpStatus.UNAUTHORIZED || resp.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION;
-        if (!isUnAuthorized) {
-            return;
-        }
-
-        const feignConfiguration = await FeignConfigurationRegistry.getDefaultFeignConfiguration();
-        const getAuthenticationBroadcaster = feignConfiguration.getAuthenticationBroadcaster;
-        if (getAuthenticationBroadcaster != null) {
-            const authenticationBroadcaster = getAuthenticationBroadcaster();
-            const authenticationStrategy = feignConfiguration.getAuthenticationStrategy();
-            if (authenticationStrategy.clearCache != null) {
-                authenticationStrategy.clearCache()
-            }
-            authenticationBroadcaster.sendUnAuthorizedEvent();
-            return;
-        }
-
-
-        if (!OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW) {
-            OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = true;
-            this.toAuthenticationViewHandle();
-            setTimeout(() => {
-                OakUnifiedRespProcessInterceptor.IS_TO_AUTHENTICATION_VIEW = false
-            }, 20 * 1000);
-        }
-    }
 
     /**
      *
@@ -86,7 +50,7 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
      */
     postHandle = async <E = any>(options: T, response: any) => {
         if (options.useUnifiedTransformResponse === false || response == null) {
-            //不使用统一的响应转换
+            // 不使用统一的响应转换
             return response;
         }
 
@@ -101,22 +65,64 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
         return response.data;
     };
 
+    private tryHandleUnAuthorizedResp = (response: HttpResponse<ApiResp>) => {
+        if (this.isUnAuthorized(response)) {
+            this.asyncSendUnAuthorizedEvent();
+            this.toAuthenticationViewAndResetState();
+        }
+    }
+
+    private toAuthenticationViewAndResetState = () => {
+        if (!OakUnifiedRespProcessInterceptor.TO_AUTHENTICATION_VIEW_STATE) {
+            OakUnifiedRespProcessInterceptor.TO_AUTHENTICATION_VIEW_STATE = true;
+            this.toAuthenticationViewHandle();
+            setTimeout(() => {
+                OakUnifiedRespProcessInterceptor.TO_AUTHENTICATION_VIEW_STATE = false
+            }, 20 * 1000);
+        }
+    }
+
+    private isUnAuthorized = (response: HttpResponse<ApiResp>) => {
+        return response.statusCode === HttpStatus.UNAUTHORIZED || response.data?.code === OakUnifiedRespProcessInterceptor.NEED_AUTHENTICATION;
+    }
+
+    private asyncSendUnAuthorizedEvent = () => {
+        FeignConfigurationRegistry.getDefaultFeignConfiguration().then(this.sendUnAuthorizedEvent)
+    }
+
+    private sendUnAuthorizedEvent = (feignConfiguration: FeignConfiguration) => {
+        const getAuthenticationBroadcaster = feignConfiguration.getAuthenticationBroadcaster;
+        if (getAuthenticationBroadcaster == null) {
+            return
+        }
+        const authenticationBroadcaster = getAuthenticationBroadcaster();
+        const authenticationStrategy = feignConfiguration.getAuthenticationStrategy();
+        if (authenticationStrategy.clearCache != null) {
+            authenticationStrategy.clearCache()
+        }
+        authenticationBroadcaster.sendUnAuthorizedEvent();
+    }
 
 
     /**
      * 尝试进行错误提示
      * @param options
-     * @param message
+     * @param response
      */
-    private tryToast = (options: T, message: string) => {
-        if (options.useUnifiedToast === false || options.useProgressBar === false) {
-            return
+    private tryToastErrorMessage = (options: T, response: HttpResponse) => {
+        const forceCloseToast = options.useUnifiedToast === false || options.useProgressBar === false;
+        if (forceCloseToast) {
+            return;
         }
+        this.toastErrorMessage(response);
+    }
+
+    private toastErrorMessage = (response: HttpResponse) => {
         const {unifiedFailureToast} = this;
+        const message = response.data?.message ?? response.statusText;
         if (StringUtils.hasText(message) && typeof unifiedFailureToast === "function") {
             // use failure toast
             unifiedFailureToast(message);
         }
     }
-
 }
