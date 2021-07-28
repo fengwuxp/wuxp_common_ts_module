@@ -8,6 +8,8 @@ export interface PageInfo<T = any> {
 
     readonly  total: number;
 
+    readonly  totalPage: number;
+
     readonly  records: Array<T>
 
     readonly  queryType: QueryType
