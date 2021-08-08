@@ -90,16 +90,19 @@ export default class OakUnifiedRespProcessInterceptor<T extends FeignRequestOpti
     }
 
     private sendUnAuthorizedEvent = (feignConfiguration: FeignConfiguration) => {
+        const getAuthenticationStrategy = feignConfiguration.getAuthenticationStrategy;
+        if (typeof getAuthenticationStrategy === "function") {
+            const authenticationStrategy = getAuthenticationStrategy();
+            if (authenticationStrategy.clearCache != null) {
+                authenticationStrategy.clearCache()
+            }
+        }
+
         const getAuthenticationBroadcaster = feignConfiguration.getAuthenticationBroadcaster;
-        if (getAuthenticationBroadcaster == null) {
-            return
+        if (typeof getAuthenticationBroadcaster === "function") {
+            const authenticationBroadcaster = getAuthenticationBroadcaster();
+            authenticationBroadcaster.sendUnAuthorizedEvent();
         }
-        const authenticationBroadcaster = getAuthenticationBroadcaster();
-        const authenticationStrategy = feignConfiguration.getAuthenticationStrategy();
-        if (authenticationStrategy.clearCache != null) {
-            authenticationStrategy.clearCache()
-        }
-        authenticationBroadcaster.sendUnAuthorizedEvent();
     }
 
 
