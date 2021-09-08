@@ -72,7 +72,10 @@ const apiSign = (fields: Array<string>, params: any, clientId: string, clientSec
             const key = item.toString();
             let param = params[key];
             if (param == null) {
-                throw new Error("参与签名的参数：" + key + " 未传入或值无效!");
+                return;
+            }
+            if (typeof param === "string" && param.trim().length == 0) {
+                return;
             }
 
             if (param.constructor === Date) {

@@ -32,12 +32,14 @@
     "fengwuxp_common_fetch": "^1.0.7",
     "fengwuxp_common_route": "^1.0.7",
     "fengwuxp_common_starter": "^1.0.8",
-    "fengwuxp_common_webpack": "^1.0.5",
+    "fengwuxp_common_webpack": "^1.0.6",
     "react-native": "^0.60.3",
     "tslib": "^1.9.3",
+    "typescript": "^3.9.10",
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "babel-loader": "^8.2.2",
     "fengwuxp_common_config": "^1.0.7",
     "oak_common": "^1.0.7",
     "taro_starter": "^1.0.7"

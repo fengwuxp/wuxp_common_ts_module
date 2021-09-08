@@ -26,7 +26,7 @@
   "author": "wuxp",
   "license": "ISC",
   "dependencies": {
-
+    "oak_taro_starter": "^1.0.8"
   },
   "devDependencies": {
     "babel-plugin-spring": "^1.0.0",

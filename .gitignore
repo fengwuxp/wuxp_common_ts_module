@@ -10,6 +10,7 @@ genode
 build
 *.properties
 oak/oak_taro_starter/lib/modules
+oak/oak_taro_starter/.awcache
 *-lock.json
 yarn.lock
 *.log
