@@ -4,7 +4,7 @@ import {
     AuthenticationType,
     CacheAuthenticationStrategy,
     ClientHttpRequestInterceptorInterface,
-    getFeignClientMethodConfigurationByRequest,
+    getFeignClientMethodConfiguration,
     HttpRequest,
     NEVER_REFRESH_FLAG,
     UNAUTHORIZED_RESPONSE
@@ -70,10 +70,9 @@ export default class OakAuthenticationClientHttpRequestInterceptor<T extends Htt
         const looseMode = this.looseMode;
         // need force certification
         let forceCertification = !looseMode;
-        const feignClientMethodConfigurationByRequest = getFeignClientMethodConfigurationByRequest(req);
-        const mappingOptions = feignClientMethodConfigurationByRequest == null ? null : feignClientMethodConfigurationByRequest.requestMapping;
-        if (mappingOptions != null) {
-            let authenticationType = mappingOptions.authenticationType;
+        const requestMapping = getFeignClientMethodConfiguration(req)?.requestMapping;
+        if (requestMapping != null) {
+            let authenticationType = requestMapping.authenticationType;
             if (authenticationType === AuthenticationType.NONE) {
                 // none certification
                 if (looseMode) {
@@ -84,7 +83,6 @@ export default class OakAuthenticationClientHttpRequestInterceptor<T extends Htt
             } else if (authenticationType === AuthenticationType.FORCE) {
                 // force none certification
                 forceCertification = true;
-            } else {
             }
         }
 
